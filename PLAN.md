@@ -19,8 +19,8 @@ No tooling yet. Just aggregation.
 Start with three concrete streams:
 
 - [x] GitHub repos / issues (Commons, DataHub, Substack-for-Data) — **done: `datasets/commons-issues/` (~200 files fetched from datahub/commons)**
-- [ ] Microfacts database (your old DB)
-- [ ] Ad hoc finds (URLs, datasets, files on disk)
+- [x] Factoidal database — **done: items in `datasets/INBOX.md`**
+- [x] Ad hoc finds (URLs, datasets, files on disk) — **done: items in `datasets/INBOX.md`**
 
 Do **not** over-structure. Just extract candidates.
 
@@ -35,7 +35,7 @@ Use a single Markdown file:
 
 - [ ] URL — description — why interesting
 - [ ] Dataset file — local path — notes
-- [ ] Microfact — short summary
+- [ ] Factoidal — short summary
 ```
 
 That's it.
@@ -117,7 +117,7 @@ Based on your habits and past tooling patterns, probable candidates:
 * CLI: `datapressr publish`
 
   * Commit + push
-* Microfact importer script
+* Factoidal importer script
 * GitHub issue → post converter
 
 But this comes **after** manual clarity.
