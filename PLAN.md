@@ -18,9 +18,9 @@ No tooling yet. Just aggregation.
 
 Start with three concrete streams:
 
-* GitHub repos / issues (Commons, DataHub, Substack-for-Data)
-* Microfacts database (your old DB)
-* Ad hoc finds (URLs, datasets, files on disk)
+- [x] GitHub repos / issues (Commons, DataHub, Substack-for-Data) — **done: `datasets/commons-issues/` (~200 files fetched from datahub/commons)**
+- [ ] Microfacts database (your old DB)
+- [ ] Ad hoc finds (URLs, datasets, files on disk)
 
 Do **not** over-structure. Just extract candidates.
 
@@ -38,11 +38,13 @@ Use a single Markdown file:
 - [ ] Microfact — short summary
 ```
 
-That’s it.
+That's it.
 
 No schema. No metadata fields yet.
 
 You are optimizing for velocity.
+
+**Status: `datasets/BACKLOG.md` exists with initial items from commons-issues.**
 
 ---
 
@@ -140,15 +142,14 @@ No architecture until you feel the friction.
 
 Do only this:
 
-* Create `BACKLOG.md`
-* Add 20 items from:
+- [x] Create `BACKLOG.md` — **done: `datasets/BACKLOG.md`**
+- [x] Add corpus from GitHub issues — **done: `datasets/commons-issues/` (~200 files)**
+- [ ] Add 20 curated items to BACKLOG.md from:
+  - [ ] Microfacts
+  - [ ] URLs you already care about
+- [ ] Publish 1 post manually
 
-  * GitHub issues
-  * Microfacts
-  * URLs you already care about
-* Publish 1 post manually
-
-That’s it.
+That's it.
 
 ---
 
