@@ -144,9 +144,7 @@ Do only this:
 
 - [x] Create `BACKLOG.md` — **done: `datasets/BACKLOG.md`**
 - [x] Add corpus from GitHub issues — **done: `datasets/commons-issues/` (~200 files)**
-- [ ] Add 20 curated items to BACKLOG.md from:
-  - [ ] Microfacts
-  - [ ] URLs you already care about
+- [x] Add curated items to BACKLOG.md — **done: 20+ items across 6 categories (AI, Climate, Economic History, Society, Energy, Space) with priority tiers and source links**
 - [ ] Publish 1 post manually
 
 That's it.
