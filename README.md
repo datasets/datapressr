@@ -1,4 +1,4 @@
-# DataPressr 🍇➡️🍷
+# DataPressr 🍇 ➛ 🍷
 
 Creating datasets and data stories fast with AI
 
