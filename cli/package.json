@@ -1,7 +1,7 @@
 {
   "name": "datapressr",
   "version": "0.1.0",
-  "description": "CLI to push datasets to DataHub Cloud",
+  "description": "CLI tools for preparing and scaffolding datasets",
   "type": "module",
   "bin": {
     "datapressr": "./dist/index.js"
