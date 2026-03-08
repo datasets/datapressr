@@ -1,15 +1,7 @@
-# DataPressr
+# DataPressr 🍇➡️🍷
 
-Tools for preparing and scaffolding datasets.
+Creating datasets and data stories fast with AI
 
-Turn raw data finds into clean, structured dataset directories — fast.
+And then and publishing them to DataHub.
 
-## CLI
-
-The `data` CLI scaffolds new dataset directories locally:
-
-```sh
-data init my-dataset
-```
-
-See [docs/cli.md](docs/cli.md) for installation and usage.
+Turn raw data into something polished.
