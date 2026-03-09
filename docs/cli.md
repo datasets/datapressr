@@ -2,6 +2,10 @@
 
 Local tooling for scaffolding datasets. No API, no config required.
 
+```sh
+data init world-gdp && cd world-gdp && claude
+```
+
 ## Installation
 
 ### go install
@@ -36,14 +40,15 @@ Creates:
 
 ```
 my-dataset/
-  datapackage.json
-  data/
-  .datahubignore
+  datapackage.json   # dataset metadata and resource list
+  data/              # data files go here
+  .datahubignore     # gitignore-style exclusions for dh push
+  AGENTS.md          # AI assistant context (read by Claude Code, Codex, Gemini CLI)
 ```
 
 `datapackage.json` is pre-filled with `name` (and `title`/`description` if provided).
 
-`.datahubignore` is created empty, ready for any patterns you want to exclude when pushing with `dh push`.
+`AGENTS.md` gives your AI assistant immediate context about the dataset structure and conventions — no explanation needed.
 
 **Flags:**
 

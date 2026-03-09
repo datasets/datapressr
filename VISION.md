@@ -6,6 +6,10 @@ created: 2026-03-09
 
 **A CLI for data wranglers. Turn raw finds into clean, publishable datasets.**
 
+```sh
+data init world-gdp && cd world-gdp && claude
+```
+
 ---
 
 ## The Problem
