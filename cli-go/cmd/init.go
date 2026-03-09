@@ -59,8 +59,62 @@ func runInit(cmd *cobra.Command, args []string) error {
 		return err
 	}
 
+	agents := `# Dataset: ` + name + `
+
+This is a [Frictionless Data Package](https://specs.frictionlessdata.io/data-package/).
+
+## Structure
+
+` + "```" + `
+` + name + `/
+  datapackage.json   # Dataset metadata and resource list
+  data/              # Data files (csv, json, parquet, etc.)
+  .datahubignore     # Files to exclude when pushing (gitignore syntax)
+` + "```" + `
+
+## datapackage.json
+
+Describes the dataset. Keep ` + "`resources`" + ` in sync with what's in ` + "`data/`" + `:
+
+` + "```json" + `
+{
+  "name": "` + name + `",
+  "title": "Human readable title",
+  "description": "What this dataset is about",
+  "resources": [
+    {
+      "path": "data/my-file.csv",
+      "name": "my-file",
+      "mediatype": "text/csv"
+    }
+  ]
+}
+` + "```" + `
+
+## Workflow
+
+` + "```sh" + `
+# Add data files to data/
+# Edit datapackage.json — update resources to list them
+
+# Push to DataHub
+dh push .
+` + "```" + `
+
+## Key rules
+
+- Every file in ` + "`data/`" + ` that you want published must be listed in ` + "`resources`" + `
+- ` + "`name`" + ` in datapackage.json must be URL-safe (lowercase, hyphens)
+- Use ` + "`.datahubignore`" + ` to exclude scratch files, large intermediaries, etc.
+`
+
+	if err := os.WriteFile(filepath.Join(dir, "AGENTS.md"), []byte(agents), 0644); err != nil {
+		return err
+	}
+
 	fmt.Printf("Created dataset '%s' at ./%s/\n", name, name)
 	fmt.Println("  datapackage.json")
 	fmt.Println("  data/")
+	fmt.Println("  AGENTS.md")
 	return nil
 }

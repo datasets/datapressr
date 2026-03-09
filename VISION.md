@@ -33,17 +33,15 @@ The target user is someone already comfortable with the terminal who uses an AI 
 
 ## AI Integration
 
-`data` ships with an `AGENTS.md` in the repo root. This is the cross-tool standard for AI assistant instructions — Claude Code, Codex CLI, and Gemini CLI all read it automatically when working in a project.
+`data init` generates an `AGENTS.md` inside every new dataset directory. `AGENTS.md` is the cross-tool standard for AI assistant instructions — Claude Code, Codex CLI, Gemini CLI, and others all read it automatically when working in a directory.
 
-The `AGENTS.md` teaches AI assistants:
-- What `data` commands exist and when to use them
-- The expected dataset structure (`datapackage.json`, `data/`, `.datahubignore`)
-- The Frictionless Data Package conventions (resources, schema, etc.)
-- How `data` and `dh` fit together in the workflow
+The generated `AGENTS.md` gives the AI immediate context:
+- The dataset structure (`datapackage.json`, `data/`, `.datahubignore`)
+- Frictionless Data Package conventions (resources, schema, etc.)
+- How to push to DataHub with `dh push`
+- Key rules (resources must be listed, name must be URL-safe, etc.)
 
-**Why `AGENTS.md` over `CLAUDE.md`:** `CLAUDE.md` is Claude Code-specific. `AGENTS.md` is the emerging cross-tool standard that works across all major AI CLI tools. Since the target audience may use any of them, `AGENTS.md` is the right choice.
-
-One `AGENTS.md` lives in the datapressr repo. No per-dataset file needed — the conventions are simple enough that the repo-level file is sufficient.
+This means the moment a user opens a dataset directory in their AI assistant, the AI already knows the conventions and can help correctly — without the user having to explain anything.
 
 ---
 
@@ -55,7 +53,7 @@ One `AGENTS.md` lives in the datapressr repo. No per-dataset file needed — the
 data init <name>
 ```
 
-Creates a dataset directory with `datapackage.json`, `data/`, and `.datahubignore`. The starting point for any new dataset.
+Creates a dataset directory with `datapackage.json`, `data/`, `.datahubignore`, and `AGENTS.md`. The starting point for any new dataset.
 
 ---
 
