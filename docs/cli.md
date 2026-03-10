@@ -20,7 +20,7 @@ go install github.com/datasets/datapressr/cli@latest
 
 ```sh
 git clone https://github.com/datasets/datapressr.git
-cd datapressr/cli-go
+cd datapressr/cli
 go build -o data .
 mv data /usr/local/bin/data
 ```
