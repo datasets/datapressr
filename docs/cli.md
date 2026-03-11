@@ -1,62 +1,74 @@
-# datapressr CLI (`data`)
+# Working with datasets using AI assistants
 
-Local tooling for scaffolding datasets. No API, no config required.
+Datapressr is a skills repo — instead of a CLI, it provides AI assistant instructions that work across tools (Claude Code, Codex CLI, Gemini CLI, etc.).
 
-```sh
-data init world-gdp && cd world-gdp && claude
-```
-
-## Installation
-
-### go install
-
-Requires Go 1.22+:
+## Quick start
 
 ```sh
-go install github.com/datasets/datapressr/cli@latest
+mkdir world-gdp && cd world-gdp && claude
 ```
 
-### Build from source
+Then inside the session:
 
-```sh
-git clone https://github.com/datasets/datapressr.git
-cd datapressr/cli
-go build -o data .
-mv data /usr/local/bin/data
+```
+/init world-gdp
 ```
 
-## Commands
+Your AI assistant will scaffold the directory, create `datapackage.json`, and explain next steps.
 
-### `data init <name>`
+## AGENTS.md
+
+Every dataset directory should contain `AGENTS.md` — a knowledge file that gives your AI assistant immediate context about dataset structure, conventions, and the publish workflow. The `/init` command copies it automatically.
+
+`AGENTS.md` is the standard cross-tool instruction file:
+
+| Tool | Reads |
+|------|-------|
+| Claude Code | `AGENTS.md` + `.claude/commands/` |
+| Codex CLI | `AGENTS.md` |
+| Gemini CLI | `AGENTS.md` |
+
+## Claude Code slash commands
+
+When using Claude Code in this repo, the following slash commands are available:
+
+### `/init <name>`
 
 Scaffold a new dataset directory.
 
-```sh
-data init my-dataset
-data init my-dataset --title "My Dataset" --description "A great dataset"
+```
+/init world-gdp
 ```
 
 Creates:
 
 ```
-my-dataset/
+world-gdp/
   datapackage.json   # dataset metadata and resource list
   data/              # data files go here
   .datahubignore     # gitignore-style exclusions for dh push
-  AGENTS.md          # AI assistant context (read by Claude Code, Codex, Gemini CLI)
+  AGENTS.md          # AI assistant context
 ```
 
-`datapackage.json` is pre-filled with `name` (and `title`/`description` if provided).
+### `/validate`
 
-`AGENTS.md` gives your AI assistant immediate context about the dataset structure and conventions — no explanation needed.
+Check `datapackage.json` for common issues before pushing.
 
-**Flags:**
+Reports errors (must fix) and warnings (worth fixing):
 
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--title` | `-t` | Dataset title |
-| `--description` | `-d` | Dataset description |
+- **Errors**: missing file, invalid JSON, unsafe name, empty resources
+- **Warnings**: missing title/description/status, unlisted files in `data/`, large files
 
-## Pushing datasets
+### `/push`
 
-To push a dataset to DataHub, use the [`dh` CLI](https://github.com/datopian/datahub-next/tree/staging/cli).
+Push the current dataset to DataHub.
+
+Requires env vars:
+
+```sh
+export DATAHUB_API_URL=https://datahub.io
+export DATAHUB_API_TOKEN=<your-token>
+export DATAHUB_PUBLICATION=<your-publication-slug>
+```
+
+Runs `dh push .` using the [`dh` CLI](https://github.com/datopian/datahub-next/tree/staging/cli).
