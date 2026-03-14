@@ -30,9 +30,11 @@ Top picks rationale:
 
 ### AI & Technology
 
-- [ ] 🔥🔥🔥 **Epoch Data on AI Models** — comprehensive database of 2800+ ML models tracking compute, parameters, performance over time. CSVs attached to issue. _Highly topical._ [commons#412](commons-issues/412-epoch-data-on-ai-models.md)
-- [ ] 🔥🔥 **Historical Adoption of Technology (CHAT)** — NBER dataset: adoption of 100+ technologies across 150+ countries since 1800. CSV available. Great for "how fast do technologies spread?" stories. [commons#156](commons-issues/156-historical-adoption-of-technology.md)
-- [ ] 🔥 **Genome Sequencing Costs** — cost per genome from 2001 onward; faster decline than Moore's law. Dataset already exists at github.com/datasets/genome-sequencing-costs (closed issue = done). Good to surface/post. [commons#148](commons-issues/148-genome-sequencing-costs.md)
+- [x] 🔥🔥🔥 **Epoch Data on AI Models** — comprehensive database of 2800+ ML models tracking compute, parameters, performance over time. CSVs attached to issue. _Highly topical._ [commons#412](commons-issues/412-epoch-data-on-ai-models.md)
+- [x] 🔥🔥 **Historical Adoption of Technology (CHAT)** — NBER dataset: adoption of 100+ technologies across 150+ countries since 1800. CSV available. Great for "how fast do technologies spread?" stories. [commons#156](commons-issues/156-historical-adoption-of-technology.md)
+  <!-- published: https://datahub.io/technology/historical-adoption-of-technology -->
+- [x] 🔥 **Genome Sequencing Costs** — cost per genome from 2001 onward; faster decline than Moore's law. Dataset already exists at github.com/datasets/genome-sequencing-costs (closed issue = done). Good to surface/post. [commons#148](commons-issues/148-genome-sequencing-costs.md)
+  <!-- published: https://datahub.io/technology/genome-sequencing-costs -->
 
 ### Climate & Environment
 
@@ -65,4 +67,5 @@ Top picks rationale:
 
 ### Space
 
-- [ ] 🔥🔥 **GCAT: General Catalog of Artificial Space Objects** — every satellite, rocket stage, and debris object ever launched. Stub repo already exists at github.com/datasets/gcat-artificial-space-objects. [commons#406](commons-issues/406-gcat-general-catalog-of-artificial-space-objects.md)
+- [x] 🔥🔥 **GCAT: General Catalog of Artificial Space Objects** — every satellite, rocket stage, and debris object ever launched. Stub repo already exists at github.com/datasets/gcat-artificial-space-objects. [commons#406](commons-issues/406-gcat-general-catalog-of-artificial-space-objects.md)
+  <!-- published: https://datahub.io/technology/gcat-artificial-space-objects -->
