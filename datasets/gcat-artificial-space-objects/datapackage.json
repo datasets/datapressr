@@ -1,0 +1,175 @@
+{
+  "name": "gcat-artificial-space-objects",
+  "title": "GCAT: General Catalog of Artificial Space Objects",
+  "description": "Every artificial object ever launched into space — from Sputnik in 1957 to the present — catalogued by Jonathan McDowell. Includes launch date, country, object type (payload, rocket body, debris, component), orbit class, and current status.",
+  "version": "1.0.0",
+  "licenses": [
+    {
+      "name": "odc-pddl",
+      "title": "Open Data Commons Public Domain Dedication and License",
+      "path": "http://opendatacommons.org/licenses/pddl/1.0/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "GCAT — Jonathan McDowell's General Catalog of Artificial Space Objects",
+      "path": "https://planet4589.org/space/gcat/"
+    }
+  ],
+  "resources": [
+    {
+      "name": "satcat",
+      "title": "Satellite Catalog (satcat)",
+      "description": "Standard catalog of all artificial space objects. One row per phase; most objects have a single phase. Covers all objects ever tracked in Earth orbit and beyond.",
+      "path": "data/satcat.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "jcat",
+            "title": "JCAT ID",
+            "description": "Jonathan's Catalog ID — unique GCAT identifier. Prefix letter indicates catalog (S = standard satcat).",
+            "type": "string"
+          },
+          {
+            "name": "satcat",
+            "title": "NORAD Catalog Number",
+            "description": "US Space Force / NORAD catalog number. Not set for all objects.",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "title": "Object Name",
+            "description": "Official or common name of the space object.",
+            "type": "string"
+          },
+          {
+            "name": "launch_date",
+            "title": "Launch Date",
+            "description": "Date of launch (ISO 8601, YYYY-MM-DD). Partial dates (year only) appear when exact date is uncertain.",
+            "type": "string",
+            "format": "default"
+          },
+          {
+            "name": "launch_year",
+            "title": "Launch Year",
+            "description": "Four-digit launch year, extracted from launch_date. Suitable for aggregation.",
+            "type": "integer"
+          },
+          {
+            "name": "object_type",
+            "title": "Object Type",
+            "description": "Simplified object classification. Values: Payload, Rocket Body, Debris, Component, Suborbital Payload, Unknown. Derived from the GCAT SatType byte 1.",
+            "type": "string",
+            "constraints": {
+              "enum": ["Payload", "Rocket Body", "Debris", "Component", "Suborbital Payload", "Unknown"]
+            }
+          },
+          {
+            "name": "state",
+            "title": "State",
+            "description": "ISO country code of the owning nation or organization (e.g. US, SU, CN, RU, FR). Historical codes like SU (Soviet Union) are preserved.",
+            "type": "string"
+          },
+          {
+            "name": "owner",
+            "title": "Owner",
+            "description": "Abbreviated name of the owning organization or agency.",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "title": "Status",
+            "description": "Current or final orbital status. Values: In Orbit, Decayed, Deorbited, Beyond Earth Orbit, Exploded.",
+            "type": "string"
+          },
+          {
+            "name": "orbit_class",
+            "title": "Orbit Class",
+            "description": "Operational orbit category code (e.g. LEO/I, GEO/S, MEO, HEO). See https://planet4589.org/space/gcat/web/intro/orbits.html for definitions.",
+            "type": "string"
+          },
+          {
+            "name": "perigee_km",
+            "title": "Perigee (km)",
+            "description": "Perigee altitude above Earth's surface in kilometres, at last known orbital epoch.",
+            "type": "number"
+          },
+          {
+            "name": "apogee_km",
+            "title": "Apogee (km)",
+            "description": "Apogee altitude above Earth's surface in kilometres, at last known orbital epoch.",
+            "type": "number"
+          },
+          {
+            "name": "inclination_deg",
+            "title": "Inclination (degrees)",
+            "description": "Orbital inclination in degrees, at last known orbital epoch.",
+            "type": "number"
+          }
+        ],
+        "missingValues": ["", "-", "?"]
+      }
+    },
+    {
+      "name": "objects-per-year",
+      "title": "Objects Launched per Year by Type",
+      "description": "Pre-aggregated count of objects launched per year, broken down by object type. Used for the bar chart view.",
+      "path": "data/objects_per_year.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "profile": "tabular-data-resource",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "title": "Year",
+            "type": "integer"
+          },
+          {
+            "name": "Payload",
+            "title": "Payloads",
+            "description": "Number of payloads launched.",
+            "type": "integer"
+          },
+          {
+            "name": "Rocket Body",
+            "title": "Rocket Bodies",
+            "description": "Number of rocket bodies (launch vehicle stages) tracked.",
+            "type": "integer"
+          },
+          {
+            "name": "Debris",
+            "title": "Debris",
+            "description": "Number of fragmentation debris pieces tracked.",
+            "type": "integer"
+          },
+          {
+            "name": "Component",
+            "title": "Components",
+            "description": "Number of payload components tracked.",
+            "type": "integer"
+          }
+        ],
+        "missingValues": [""]
+      }
+    }
+  ],
+  "views": [
+    {
+      "name": "objects-launched-per-year",
+      "title": "70 Years of Space Launches: Objects by Type per Year",
+      "resourceName": "objects-per-year",
+      "specType": "simple",
+      "spec": {
+        "type": "bar",
+        "group": "year",
+        "series": ["Payload", "Rocket Body", "Debris", "Component"]
+      }
+    }
+  ]
+}
