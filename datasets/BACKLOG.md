@@ -49,7 +49,8 @@ Top picks rationale:
   ✅ Published: https://datahub.io/climate-and-environment/hyde
 - [x] 🔥 **Bioregions 2023** — One Earth: 185 discrete bioregions across biogeographical realms. Novel framework, good visuals. [commons#400](commons-issues/400-httpswwwoneearthorgbioregions-2023.md)
   ✅ Published: https://datahub.io/climate-and-environment/bioregions-2023
-- [ ] 🔥 **Lazard Levelized Cost of Energy (LCOE)** — annual benchmark for cost of solar, wind, storage vs fossil fuels. Mainly PDFs — worth extracting key time series. [commons#332](commons-issues/332-lazard-levelized-cost-of-energy-lcoe-and-levelized-cost-of-s.md)
+- [x] 🔥 **Lazard Levelized Cost of Energy (LCOE)** — annual benchmark for cost of solar, wind, storage vs fossil fuels. Mainly PDFs — worth extracting key time series. [commons#332](commons-issues/332-lazard-levelized-cost-of-energy-lcoe-and-levelized-cost-of-s.md)
+  ✅ Published: https://datahub.io/climate-and-environment/lazard-lcoe
 - [x] 🔥 **Emissions Trading Schemes & Carbon Pricing** — global carbon price / ETS data. Thin issue but important topic; NZ data already scraped. [commons#256](commons-issues/256-emissions-trading-schemes-and-carbon-pricing.md)
   ✅ Published: https://datahub.io/climate-and-environment/carbon-pricing
 
