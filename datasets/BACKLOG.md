@@ -70,3 +70,15 @@ Top picks rationale:
 
 - [x] 🔥🔥 **GCAT: General Catalog of Artificial Space Objects** — every satellite, rocket stage, and debris object ever launched. Stub repo already exists at github.com/datasets/gcat-artificial-space-objects. [commons#406](commons-issues/406-gcat-general-catalog-of-artificial-space-objects.md)
   ✅ Published: https://datahub.io/technology/gcat-artificial-space-objects
+
+---
+
+## Extra
+
+Datasets published that weren't sourced from the backlog above.
+
+- [x] **Adoption Rates of Key Technologies** — US adoption rates over time for telephone, radio, TV, PC, internet, mobile, smartphone. Story: each wave is faster than the last.
+  ✅ Published: https://datahub.io/technology/adoption-rates-technology
+
+- [x] **Cloud Providers Pricing Over Time** — historical storage pricing ($/GB/month) for AWS S3, GCP, Azure from launch to present. Story: 85% price decline since 2006.
+  ✅ Published: https://datahub.io/technology/cloud-providers-pricing
