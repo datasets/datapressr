@@ -48,7 +48,8 @@ Top picks rationale:
 - [ ] 🔥🔥 **HYDE — History Database of the Global Environment** — 12,000 years of gridded population and land use data. Netherlands PBL. Extraordinary scope. [commons#254](commons-issues/254-hyde-history-database-of-the-global-environment.md)
 - [ ] 🔥 **Bioregions 2023** — One Earth: 185 discrete bioregions across biogeographical realms. Novel framework, good visuals. [commons#400](commons-issues/400-httpswwwoneearthorgbioregions-2023.md)
 - [ ] 🔥 **Lazard Levelized Cost of Energy (LCOE)** — annual benchmark for cost of solar, wind, storage vs fossil fuels. Mainly PDFs — worth extracting key time series. [commons#332](commons-issues/332-lazard-levelized-cost-of-energy-lcoe-and-levelized-cost-of-s.md)
-- [ ] 🔥 **Emissions Trading Schemes & Carbon Pricing** — global carbon price / ETS data. Thin issue but important topic; NZ data already scraped. [commons#256](commons-issues/256-emissions-trading-schemes-and-carbon-pricing.md)
+- [x] 🔥 **Emissions Trading Schemes & Carbon Pricing** — global carbon price / ETS data. Thin issue but important topic; NZ data already scraped. [commons#256](commons-issues/256-emissions-trading-schemes-and-carbon-pricing.md)
+  ✅ Published: https://datahub.io/climate-and-environment/carbon-pricing
 
 ### Economic History
 
