@@ -75,7 +75,7 @@ Top picks rationale:
   ✅ Published: https://datahub.io/society-and-living-standards/history-global-living-conditions
 - [x] 🔥🔥 **Segregation Tracking Project** — USC/Stanford: comprehensive tracking of segregation across every US neighborhood and school. [commons#410](commons-issues/410-the-segregation-tracking-project.md)
   ✅ Published: https://datahub.io/society-and-living-standards/segregation-tracking
-- [ ] 🔥 **PISA Education Performance** — OECD PISA cross-country student performance data. [commons#308](commons-issues/308-pisa-education-performance-data-oecd-pisa.md)
+- [x] 🔥 **PISA Education Performance** — OECD PISA cross-country student performance data. [commons#308](commons-issues/308-pisa-education-performance-data-oecd-pisa.md) — published: https://github.com/datasets/society-and-living-standards/tree/main/pisa-education-performance
 
 ### Energy & Commodities
 
