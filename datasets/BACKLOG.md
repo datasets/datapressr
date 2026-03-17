@@ -77,7 +77,8 @@ Top picks rationale:
 
 > Repo: `git@github.com:datasets/energy-and-commodities.git` | Publication: https://datahub.io/energy-and-commodities
 
-- [ ] 🔥🔥 **BP Statistical Review of World Energy** — annual flagship energy stats: production, consumption, prices by country and fuel type. [commons#333](commons-issues/333-bp-statistical-review-of-world-energy.md)
+- [x] 🔥🔥 **BP Statistical Review of World Energy** — annual flagship energy stats: production, consumption, prices by country and fuel type. [commons#333](commons-issues/333-bp-statistical-review-of-world-energy.md)
+  ✅ Published: https://datahub.io/energy-and-commodities/bp-statistical-review-world-energy
 - [ ] 🔥🔥 **US Primary Energy Consumption 1635–2000** — very long historical US energy series. [commons#339](commons-issues/339-estimated-primary-energy-consumption-in-the-united-states-16.md)
 - [ ] 🔥 **Precious Metals Prices** — silver, platinum, palladium time series (complement to existing gold-prices dataset). [commons#401](commons-issues/401-precious-metals-datasets.md)
 
