@@ -85,7 +85,8 @@ Top picks rationale:
   ✅ Published: https://datahub.io/energy-and-commodities/bp-statistical-review-world-energy
 - [x] 🔥🔥 **US Primary Energy Consumption 1635–2000** — very long historical US energy series. [commons#339](commons-issues/339-estimated-primary-energy-consumption-in-the-united-states-16.md)
   ✅ Committed: https://github.com/datasets/energy-and-commodities/tree/main/us-primary-energy-consumption-historical
-- [ ] 🔥 **Precious Metals Prices** — silver, platinum, palladium time series (complement to existing gold-prices dataset). [commons#401](commons-issues/401-precious-metals-datasets.md)
+- [x] 🔥 **Precious Metals Prices** — silver, platinum, palladium time series (complement to existing gold-prices dataset). [commons#401](commons-issues/401-precious-metals-datasets.md)
+  ✅ Published: https://github.com/datasets/energy-and-commodities/tree/main/precious-metals-prices
 
 ### Space
 
