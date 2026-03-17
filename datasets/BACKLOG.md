@@ -56,6 +56,8 @@ Top picks rationale:
 
 ### Economic History
 
+> Repo: `git@github.com:datasets/economic-history.git` | Publication: https://datahub.io/economic-history
+
 - [ ] 🔥🔥🔥 **Eight Centuries of Global Real Interest Rates** — Schmelzing/BoE 2020 paper. Annual real rates 1311–2018 across 78% of advanced economy GDP. Data xlsx attached to issue. Directly challenges Piketty. [commons#330](commons-issues/330-very-long-term-real-interest-rates-over-centuries.md)
 - [ ] 🔥🔥 **Millennium of Macroeconomic Data for the UK** — Bank of England dataset back to C13th (some estimates from Domesday Book 1086). GDP, wages, prices, interest rates. 28MB xlsx. [commons#331](commons-issues/331-a-millenium-of-macroeconomic-data-for-the-uk-boe.md)
 - [ ] 🔥🔥 **Working Hours — Historical Time Series** — Huberman & Minns (2007): work hours across countries 1870–2000. ILO for recent. Good "we work less than we used to" story. [commons#200](commons-issues/200-working-hours-time-series-historical.md)
@@ -63,11 +65,15 @@ Top picks rationale:
 
 ### Society & Living Standards
 
+> Repo: `git@github.com:datasets/society-and-living-standards.git` | Publication: https://datahub.io/society-and-living-standards
+
 - [ ] 🔥🔥🔥 **History of Global Living Conditions** — OurWorldInData 6-chart summary (poverty, life expectancy, literacy, democracy, etc.). Could become a mini dashboard. [commons#409](commons-issues/409-a-history-of-global-living-conditions-in-6-charts.md)
 - [ ] 🔥🔥 **Segregation Tracking Project** — USC/Stanford: comprehensive tracking of segregation across every US neighborhood and school. [commons#410](commons-issues/410-the-segregation-tracking-project.md)
 - [ ] 🔥 **PISA Education Performance** — OECD PISA cross-country student performance data. [commons#308](commons-issues/308-pisa-education-performance-data-oecd-pisa.md)
 
 ### Energy & Commodities
+
+> Repo: `git@github.com:datasets/energy-and-commodities.git` | Publication: https://datahub.io/energy-and-commodities
 
 - [ ] 🔥🔥 **BP Statistical Review of World Energy** — annual flagship energy stats: production, consumption, prices by country and fuel type. [commons#333](commons-issues/333-bp-statistical-review-of-world-energy.md)
 - [ ] 🔥🔥 **US Primary Energy Consumption 1635–2000** — very long historical US energy series. [commons#339](commons-issues/339-estimated-primary-energy-consumption-in-the-united-states-16.md)
