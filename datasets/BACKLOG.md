@@ -70,7 +70,8 @@ Top picks rationale:
 
 - [x] 🔥🔥🔥 **History of Global Living Conditions** — OurWorldInData 6-chart summary (poverty, life expectancy, literacy, democracy, etc.). Could become a mini dashboard. [commons#409](commons-issues/409-a-history-of-global-living-conditions-in-6-charts.md)
   ✅ Published: https://datahub.io/society-and-living-standards/history-global-living-conditions
-- [ ] 🔥🔥 **Segregation Tracking Project** — USC/Stanford: comprehensive tracking of segregation across every US neighborhood and school. [commons#410](commons-issues/410-the-segregation-tracking-project.md)
+- [x] 🔥🔥 **Segregation Tracking Project** — USC/Stanford: comprehensive tracking of segregation across every US neighborhood and school. [commons#410](commons-issues/410-the-segregation-tracking-project.md)
+  ✅ Published: https://datahub.io/society-and-living-standards/segregation-tracking
 - [ ] 🔥 **PISA Education Performance** — OECD PISA cross-country student performance data. [commons#308](commons-issues/308-pisa-education-performance-data-oecd-pisa.md)
 
 ### Energy & Commodities
