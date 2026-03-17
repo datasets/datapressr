@@ -62,7 +62,8 @@ Top picks rationale:
   ✅ Published: https://github.com/datasets/economic-history/tree/main/eight-centuries-interest-rates
 - [x] 🔥🔥 **Millennium of Macroeconomic Data for the UK** — Bank of England dataset back to C13th (some estimates from Domesday Book 1086). GDP, wages, prices, interest rates. 28MB xlsx. [commons#331](commons-issues/331-a-millenium-of-macroeconomic-data-for-the-uk-boe.md)
   ✅ Committed: https://github.com/datasets/economic-history/tree/main/millennium-macroeconomic-data-uk
-- [ ] 🔥🔥 **Working Hours — Historical Time Series** — Huberman & Minns (2007): work hours across countries 1870–2000. ILO for recent. Good "we work less than we used to" story. [commons#200](commons-issues/200-working-hours-time-series-historical.md)
+- [x] 🔥🔥 **Working Hours — Historical Time Series** — Huberman & Minns (2007): work hours across countries 1870–2000. ILO for recent. Good "we work less than we used to" story. [commons#200](commons-issues/200-working-hours-time-series-historical.md)
+  ✅ Published: https://github.com/datasets/economic-history/tree/main/working-hours-historical
 - [ ] 🔥 **Global Wealth Distribution** — Credit Suisse Global Wealth Databook. Distribution of wealth globally. [commons#207](commons-issues/207-global-wealth-distribution-wip.md)
 
 ### Society & Living Standards
