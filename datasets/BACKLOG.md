@@ -64,7 +64,8 @@ Top picks rationale:
   ✅ Committed: https://github.com/datasets/economic-history/tree/main/millennium-macroeconomic-data-uk
 - [x] 🔥🔥 **Working Hours — Historical Time Series** — Huberman & Minns (2007): work hours across countries 1870–2000. ILO for recent. Good "we work less than we used to" story. [commons#200](commons-issues/200-working-hours-time-series-historical.md)
   ✅ Published: https://github.com/datasets/economic-history/tree/main/working-hours-historical
-- [ ] 🔥 **Global Wealth Distribution** — Credit Suisse Global Wealth Databook. Distribution of wealth globally. [commons#207](commons-issues/207-global-wealth-distribution-wip.md)
+- [x] 🔥 **Global Wealth Distribution** — Credit Suisse Global Wealth Databook. Distribution of wealth globally. [commons#207](commons-issues/207-global-wealth-distribution-wip.md)
+  ✅ Published: https://datahub.io/economic-history/global-wealth-distribution
 
 ### Society & Living Standards
 
