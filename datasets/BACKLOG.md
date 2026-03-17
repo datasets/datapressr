@@ -58,7 +58,8 @@ Top picks rationale:
 
 > Repo: `git@github.com:datasets/economic-history.git` | Publication: https://datahub.io/economic-history
 
-- [ ] 🔥🔥🔥 **Eight Centuries of Global Real Interest Rates** — Schmelzing/BoE 2020 paper. Annual real rates 1311–2018 across 78% of advanced economy GDP. Data xlsx attached to issue. Directly challenges Piketty. [commons#330](commons-issues/330-very-long-term-real-interest-rates-over-centuries.md)
+- [x] 🔥🔥🔥 **Eight Centuries of Global Real Interest Rates** — Schmelzing/BoE 2020 paper. Annual real rates 1311–2018 across 78% of advanced economy GDP. Data xlsx attached to issue. Directly challenges Piketty. [commons#330](commons-issues/330-very-long-term-real-interest-rates-over-centuries.md)
+  ✅ Published: https://github.com/datasets/economic-history/tree/main/eight-centuries-interest-rates
 - [ ] 🔥🔥 **Millennium of Macroeconomic Data for the UK** — Bank of England dataset back to C13th (some estimates from Domesday Book 1086). GDP, wages, prices, interest rates. 28MB xlsx. [commons#331](commons-issues/331-a-millenium-of-macroeconomic-data-for-the-uk-boe.md)
 - [ ] 🔥🔥 **Working Hours — Historical Time Series** — Huberman & Minns (2007): work hours across countries 1870–2000. ILO for recent. Good "we work less than we used to" story. [commons#200](commons-issues/200-working-hours-time-series-historical.md)
 - [ ] 🔥 **Global Wealth Distribution** — Credit Suisse Global Wealth Databook. Distribution of wealth globally. [commons#207](commons-issues/207-global-wealth-distribution-wip.md)
