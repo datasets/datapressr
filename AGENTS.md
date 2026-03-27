@@ -113,6 +113,10 @@ Copy this `AGENTS.md` into the new directory so future AI sessions have context.
 
 ### Push to DataHub
 
+**Skip this step if credentials are not configured.** Commit and push to GitHub — that is sufficient. Do not attempt `dh push` and do not treat missing credentials as an error.
+
+If credentials are configured:
+
 ```sh
 dh push .
 ```
