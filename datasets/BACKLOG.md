@@ -41,7 +41,8 @@ Top picks rationale:
 
 > Repo: `git@github.com:datasets/climate-and-environment.git` | Publication: https://datahub.io/climate-and-environment
 
-- [ ] 🔥🔥🔥 **Planetary Boundaries** — Steffen et al. 2015 Science paper. Defines 9 planetary boundaries; 4 already crossed. Community member (BastienGauthier) has temporal evolution data started. Ready to package. [commons#338](commons-issues/338-steffen-et-al-planetary-boundaries-guiding-human-development.md)
+- [x] 🔥🔥🔥 **Planetary Boundaries** — Steffen et al. 2015 Science paper. Defines 9 planetary boundaries; 4 already crossed. Community member (BastienGauthier) has temporal evolution data started. Ready to package. [commons#338](commons-issues/338-steffen-et-al-planetary-boundaries-guiding-human-development.md)
+  ✅ Published: https://datahub.io/climate-and-environment/planetary-boundaries
 - [ ] 🔥🔥🔥 **Project Drawdown** — ranked table of ~80 climate solutions by CO2 reduction impact. Data scraped from HTML table; community scraper exists. Very shareable. [commons#329](commons-issues/329-project-drawdown.md)
 - [x] 🔥🔥 **Trajectory of the Anthropocene: The Great Acceleration** — Steffen et al. data on 24 socioeconomic + Earth system trends since 1950. Labeled "easy / good first issue". Data in supplementary material of Science paper. Dashboard potential. [commons#408](commons-issues/408-trajectory-of-the-anthropocene-the-great-acceleration.md)
   ✅ Published: https://datahub.io/climate-and-environment/great-acceleration
