@@ -16,6 +16,8 @@ Scaffold a new dataset directory called $ARGUMENTS.
   "title": "",
   "description": "",
   "status": "stub",
+  "licenses": [],
+  "sources": [],
   "resources": []
 }
 ```
@@ -25,5 +27,5 @@ Scaffold a new dataset directory called $ARGUMENTS.
 4. Tell the user:
    - What was created
    - To add data files to `$ARGUMENTS/data/`
-   - To fill in `title`, `description`, and `resources` in `datapackage.json`
+   - To fill in `title`, `description`, `licenses`, `sources`, and `resources` (with a typed `schema` per resource) in `datapackage.json` — see `AGENTS.md` → "Data conventions" for the bar a dataset needs to clear before `status: structured`
    - To run `/push` when ready

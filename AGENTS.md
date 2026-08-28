@@ -53,12 +53,26 @@ Minimal valid example:
   "title": "World GDP",
   "description": "GDP by country from World Bank, 1960–2024",
   "status": "structured",
+  "licenses": [
+    { "name": "ODbL-1.0", "title": "Open Data Commons Open Database License", "path": "https://opendatacommons.org/licenses/odbl/" }
+  ],
+  "sources": [
+    { "title": "World Bank Open Data", "path": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD" }
+  ],
   "resources": [
     {
       "path": "data/gdp.csv",
       "name": "gdp",
       "title": "GDP by Country",
-      "mediatype": "text/csv"
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "type": "string" },
+          { "name": "year", "type": "year" },
+          { "name": "gdp_usd", "type": "number" }
+        ],
+        "primaryKey": ["country_code", "year"]
+      }
     }
   ]
 }
@@ -68,7 +82,23 @@ Minimal valid example:
 - `name` must be URL-safe: lowercase, hyphens only
 - Every file in `data/` that should be published must be in `resources`
 - `status` should reflect the lifecycle stage above
+- `licenses` and `sources` are **not optional** once the dataset leaves `stub`. We are republishing other people's data — record where it came from and what it's licensed under as soon as both are known. Use an SPDX id in `licenses[].name` when one applies (`CC-BY-4.0`, `ODbL-1.0`, `CC0-1.0`, `PDDL-1.0`...); if there's no SPDX id, use the license's own name and a link.
+- Every resource should declare a `schema` with a `type` per field and a `primaryKey` where one exists. This is what makes the dataset actually structured, not just "a CSV that exists."
 - Use `.datahubignore` to exclude scratch files, large intermediaries, raw downloads
+
+### Data conventions
+
+Applies from `structured` onward — the bar a dataset must clear before it's more than a stub:
+
+- **Encoding**: UTF-8, no BOM.
+- **Column names**: `snake_case`, no spaces. Include units where the value is ambiguous without them (`gdp_usd_millions`, not `gdp`).
+- **Missing values**: a genuinely empty cell. Don't mix `NA`, `N/A`, `-`, `0`, and empty string for "missing" within one column.
+- **Dates**: ISO 8601 (`YYYY-MM-DD`, or `YYYY` for year-only series).
+- **One value per cell, one row per observation.** No merged headers, no totals rows mixed in with data rows.
+- **Reproducibility**: any transform beyond a trivial rename should be a checked-in script (e.g. `build.sql` run through DuckDB, or `build.ts`) living in the dataset directory next to the raw snapshot — not a one-off interactive edit that can't be re-run when the source updates. The raw snapshot plus the script should be able to reproduce `data/*.csv` deterministically.
+- **Scale**: this workflow assumes small data — comfortably fits in memory / a local DuckDB instance (rule of thumb: well under ~1GB raw). If a source is bigger than that, say so explicitly rather than quietly forcing it through the same pipeline; it needs a different approach.
+
+**Definition of done for `status: structured`:** every resource has a `schema` with typed fields, a `primaryKey` if one exists, `licenses` and `sources` are filled in, the build is reproducible from a script, and `/validate` passes with no warnings.
 
 ### Adding charts (views)
 

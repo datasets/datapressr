@@ -57,7 +57,7 @@ Check `datapackage.json` for common issues before pushing.
 Reports errors (must fix) and warnings (worth fixing):
 
 - **Errors**: missing file, invalid JSON, unsafe name, empty resources
-- **Warnings**: missing title/description/status, unlisted files in `data/`, large files
+- **Warnings**: missing title/description/status, unlisted files in `data/`, large files, missing `licenses`/`sources`, resources with no typed `schema` or no `primaryKey`
 
 ### `/push`
 

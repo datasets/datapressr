@@ -16,7 +16,11 @@ Read `datapackage.json` and check:
 - `title` is present
 - `description` is present
 - Files exist in `data/` that are not listed in `resources`
-- Any resource file is very large (>50MB)
+- Any resource file is very large (>50MB) — flag as approaching the small-data ceiling this workflow assumes
 - `status` field is not set
+- `licenses` is missing or empty (required once `status` is past `stub` — see `AGENTS.md`)
+- `sources` is missing or empty (required once `status` is past `stub`)
+- Any resource has no `schema`, or a `schema` with fields missing a `type`
+- A resource with an obvious identifying column (e.g. named `id`, or the first column) has no `schema.primaryKey` declared
 
 Print a clear summary with ✓ for passing checks, ✗ for errors, and ⚠ for warnings.
