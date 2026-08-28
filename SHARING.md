@@ -21,7 +21,9 @@ We're at the end of Stage 1: the posting loop exists, on paper and in practice.
 - **Data model docs** — defined the data hierarchy, lifecycle, and a catalog-as-repo pattern (with EH.net as a concrete example)
 - **Dashboard candidates** — an initial list of data stories worth building
 
-**Next:** publish the first post manually. Pick one item, fill the template, commit, ship.
+**Update:** Stage 1 worked — 20+ datasets published to DataHub from the backlog. `/init`, `/validate`, `/push` cover the last mile (clean data → package → ship), but everything upstream (capture, archive, wrangling, storytelling) is still done ad hoc in conversation.
+
+**Next:** build out the rest of the skill suite — see [`docs/skills-vision.md`](docs/skills-vision.md) for the outline (capture/archive/structure/enrich/story skills, DuckDB-first wrangling, charting still to be decided).
 
 ---
 
