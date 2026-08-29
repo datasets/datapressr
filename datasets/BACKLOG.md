@@ -1,6 +1,9 @@
 ---
 created: 2026-02-18
+superseded: 2026-08-29
 ---
+
+**This file no longer tracks active candidates** — new/open ones live as [GitHub issues](https://github.com/datasets/datapressr/issues), with `datasets/NEXT.md` as the short "what's actionable now" view. Kept below as the historical record of what was sourced from the commons issue tracker and what got published from it — genuinely useful as a changelog, not as a live backlog.
 
 Candidates mined from commons GitHub issues: https://github.com/datasets/commons
 
@@ -24,9 +27,6 @@ Top picks rationale:
 - **Project Drawdown** — scraper already written by community, ranked climate solutions table is very shareable
 - **History of Global Living Conditions** — OurWorldInData source, natural mini-dashboard, strong narrative arc
 
-## To Post
-
-- [ ] ➕2026-02-18 Five Thirty Eight ...
 
 ### AI & Technology
 
@@ -43,7 +43,7 @@ Top picks rationale:
 
 - [x] 🔥🔥🔥 **Planetary Boundaries** — Steffen et al. 2015 Science paper. Defines 9 planetary boundaries; 4 already crossed. Community member (BastienGauthier) has temporal evolution data started. Ready to package. [commons#338](commons-issues/338-steffen-et-al-planetary-boundaries-guiding-human-development.md)
   ✅ Published: https://datahub.io/climate-and-environment/planetary-boundaries
-- [ ] 🔥🔥🔥 **Project Drawdown** — ranked table of ~80 climate solutions by CO2 reduction impact. Data scraped from HTML table; community scraper exists. Very shareable. [commons#329](commons-issues/329-project-drawdown.md)
+- [ ] 🔥🔥🔥 **Project Drawdown** — ranked table of ~80 climate solutions by CO2 reduction impact. Data scraped from HTML table; community scraper exists. Very shareable. [commons#329](commons-issues/329-project-drawdown.md) — tracked as [datapressr#3](https://github.com/datasets/datapressr/issues/3)
 - [x] 🔥🔥 **Trajectory of the Anthropocene: The Great Acceleration** — Steffen et al. data on 24 socioeconomic + Earth system trends since 1950. Labeled "easy / good first issue". Data in supplementary material of Science paper. Dashboard potential. [commons#408](commons-issues/408-trajectory-of-the-anthropocene-the-great-acceleration.md)
   ✅ Published: https://datahub.io/climate-and-environment/great-acceleration
 - [x] 🔥🔥 **HYDE — History Database of the Global Environment** — 12,000 years of gridded population and land use data. Netherlands PBL. Extraordinary scope. [commons#254](commons-issues/254-hyde-history-database-of-the-global-environment.md)

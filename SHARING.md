@@ -21,9 +21,11 @@ We're at the end of Stage 1: the posting loop exists, on paper and in practice.
 - **Data model docs** — defined the data hierarchy, lifecycle, and a catalog-as-repo pattern (with EH.net as a concrete example)
 - **Dashboard candidates** — an initial list of data stories worth building
 
-**Update:** Stage 1 worked — 20+ datasets published to DataHub from the backlog. `/init`, `/validate`, `/push` cover the last mile (clean data → package → ship), but everything upstream (capture, archive, wrangling, storytelling) is still done ad hoc in conversation.
+**Update:** Stage 1 worked — 20+ datasets published to DataHub from the backlog. `/init`/`/validate`/`/push` cover the last mile, and `structure` (turning a raw source into a clean, typed dataset) is now a real skill too — see [`docs/skills-vision.md`](docs/skills-vision.md). `/validate` and the `structure` playbook's cleanup idioms are backed by an actual test suite (`npm test`), not just prose.
 
-**Next:** build out the rest of the skill suite — see [`docs/skills-vision.md`](docs/skills-vision.md) for the outline (capture/archive/structure/enrich/story skills, DuckDB-first wrangling, charting still to be decided).
+The backlog/inbox/dashboards markdown files are superseded — active candidates are [GitHub issues](https://github.com/datasets/datapressr/issues) now, with [`datasets/NEXT.md`](datasets/NEXT.md) as the short "what's actionable right now" view.
+
+**Next:** `capture`/`archive` skills, then a few data stories written by hand before deciding on a charting approach — see `docs/skills-vision.md`.
 
 ---
 
