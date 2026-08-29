@@ -92,7 +92,7 @@ These block finalizing a *reusable* `story` skill, but not `capture`/`archive`/`
 
 ## Proposed build order
 
-1. **`structure.md`** — biggest gap, most value, doesn't depend on any research spike. DuckDB-first wrangling checklist + schema authoring, built on the data conventions and definition-of-done now in `AGENTS.md`.
+1. ~~**`structure.md`**~~ — done: `.claude/skills/structure/SKILL.md`. Node/TS-first (see the reversed engine decision above), grounded in two real datasets (`precious-metals-prices` for the simple case, `millennium-macroeconomic-data-uk`'s 27MB multi-sheet xlsx for the messy one). Cleanup idioms aren't just prose in the playbook — they're a tested module, `scripts/wrangling-idioms.mjs` + `scripts/wrangling-idioms.test.mjs`, so the skill's code examples can't silently drift out of correctness the way most playbook prose can.
 2. **`capture.md`** + **`archive.md`** — mechanical, quick wins, formalize what `BACKLOG.md`/`INBOX.md` already do informally.
 3. **Write 2–3 stories by hand**, no skill, no standard chart syntax — plain markdown, whatever charting gets it done fastest.
 4. **Charting research spike** (timeboxed), informed by what actually caused friction in step 3 → then **`enrich.md`** and **`story.md`**.
@@ -113,5 +113,6 @@ Worth being blunt about, since it's easy to assume more rigor exists than does. 
 
 - **`scripts/validate-datapackage.mjs` is tested** — real fixtures, real assertions, `npm test`. This is the only code in the repo, and the only thing with a test suite.
 - **`/init`, `/push`, and the rest of `/validate`'s fallback path are prompts, not code.** An LLM reads English instructions and decides what to do each run. There's no meaningful way to unit-test that the way you'd test a function — the closest available tool is skill evals (see the `skill-creator` skill's "benchmark skill performance" capability), which hasn't been applied here. That's a real, separate gap, not a solved one.
-- **The `capture`/`archive`/`structure`/`enrich`/`story` playbooks don't exist yet**, so there's nothing to test for them yet — that's expected at this stage, not a gap.
-- **Once `structure.md` exists**, the reproducibility rule already in `AGENTS.md` (a checked-in `build.sql`/`build.ts` per dataset) doubles as that dataset's test: re-running the build script against the raw snapshot and diffing the output is the closest thing to a test a wrangling step gets. No dataset in this project currently has one — the 20+ published datasets were wrangled ad hoc, before this rule existed.
+- **`structure.md` exists now; `capture`/`archive`/`enrich`/`story` still don't** — nothing to test for those yet, expected at this stage.
+- **`structure.md`'s own code examples are tested** (`scripts/wrangling-idioms.mjs` + tests), not just prose that could drift. The playbook itself (the step-by-step judgment calls) still isn't eval-tested — same gap as the other prompts, not solved, just smaller than it was.
+- The reproducibility rule in `AGENTS.md` (a checked-in `build.ts` per dataset, re-run and diffed) is the closest thing a wrangling step gets to a test — `structure.md`'s step 6 makes this explicit. No dataset in this project has one yet — the 20+ published datasets were wrangled ad hoc, before this rule existed. Real prior work (`datasets/economic-history`, `datasets/energy-and-commodities`) independently converged on the same idea with `process.py`, which is reassuring, but those predate the rule too.
