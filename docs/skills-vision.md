@@ -46,23 +46,29 @@ Plus: `/validate` now also checks for `licenses`, `sources`, and a typed `schema
 
 ## Decisions
 
-### Wrangling engine: DuckDB-first, with a thin scripting escape hatch
+### Wrangling engine: Node/TypeScript-first, DuckDB as an escape hatch
 
-Pandas rejected as the default — heavy to install for what should be a lightweight, repeatable step ("sledgehammer for a nut"). DuckDB is the starting point:
+**Reversed from the previous decision.** The first pass here landed on DuckDB-first with a TS escape hatch, reasoned from general preference. Testing against real data changed that: every dataset in `datasets/economic-history` and `datasets/energy-and-commodities` (7 checked) was actually wrangled with a checked-in `process.py`, and 6 of 7 use it — zero use DuckDB, zero use TypeScript. On review, that precedent doesn't actually settle the question: it's the work of human data engineers, some of it years old, reflecting what tooling existed *then* (DuckDB and good TS tooling are both newer than some of these scripts), not a signal about what's best to standardize on *now*. The one thing it does confirm, strongly, independent of language: a checked-in, re-runnable build script per dataset is already how this kind of work gets done well — see the reproducibility rule below, which this evidence validates rather than complicates.
 
-- Runs as a single binary/embedded lib, no environment to manage
-- SQL is a fine fit for the shape-changing work: joins, aggregation, reshaping, type casting
-- A surprising amount of "messy data" cleanup — stripping currency symbols, parsing dates — is doable directly in SQL (`regexp_replace`, `strptime`, `try_cast`) and the `structure` playbook should lead with these before reaching for anything else
+Decision, as an actual opinion rather than a default-by-inertia: **Node, written as `.ts` files with type annotations, run directly with no build step.** Verified in this sandbox — `node script.ts` runs today on Node 22 with zero flags, zero `tsc`, zero bundler. Reasoning:
 
-Known limitation, called out directly from experience: some string/date cleanup gets awkward in pure SQL. So: when a transform stops being readable as SQL, drop to a small script rather than fighting DuckDB. Leaning toward **TypeScript/Node** for that escape hatch over Python — lighter to run, and it gives us a typed layer for free, which matters for the validation point below. Not fully closed — Rust was mentioned as an interest too, but Node's ecosystem and immediacy make it the more practical default for a scripting fallback right now.
+- **Already proven in this exact repo.** `scripts/validate-datapackage.mjs` — zero dependencies, instant to run, has a real test suite — is the one piece of working, tested infrastructure this project has. That's a stronger precedent than any of the older catalog repos, because it's ours, written under our own rules, today.
+- **One language across the whole pipeline.** Charting/story output is inherently JS/declarative-spec territory (Vega-Lite, Observable Plot — see the story decision below) — wrangling in the same language means one runtime, one test framework, shared utilities (a date parser, a schema checker) reusable between `structure` and `story` instead of duplicated across Python and JS.
+- **Lowest friction to write and run correctly**, which is the actual criterion right now — not deployability. Built-in `fetch`/`fs`/`URL` cover most sources without any dependency at all, matching what the Python precedent got right (stdlib first) without Python's environment/venv overhead.
 
-**Reproducibility is the actual requirement, not just engine choice.** A transform that only exists as commands typed into a chat session can't be re-run when the source updates and can't be reviewed in a PR diff. Every `structured` dataset needs a checked-in build script (`build.sql` via DuckDB, or `build.ts`) that deterministically turns the raw snapshot into `data/*.csv`. This is now written into `AGENTS.md`, not just this doc, since it's a rule every wrangling session needs at hand.
+Stdlib-first, same principle as before, different language:
+- Plain Node built-ins (`fetch`, `fs`, `URL`, `Intl`) for straightforward CSV/JSON sources — the common case.
+- One targeted, pure-JS package only when the source format demands it — e.g. `exceljs` for xlsx (no native bindings, `npm install` just works here, unlike some Python xlsx libraries).
+- **DuckDB is a real escape hatch, not abandoned** — reach for it (via its Node binding) when a transform is genuinely relational: multi-file joins, heavy aggregation, reshaping wide-to-long across many columns. That's a SQL-shaped problem no matter what language wraps it. Just not the default for the common case of "clean up one messy source into one tidy CSV."
+- Deployability (can this run unattended in CI, a scheduled job, a worker) matters for `monitor` — a source that updates and needs re-wrangling on a schedule — but not for a one-off `structure` pass on a source we'll never re-fetch. Don't let that constraint drive the default; it's a real factor for exactly one future skill (`monitor`), not for `structure` itself.
+
+**Reproducibility is the actual requirement, not just engine choice.** A transform that only exists as commands typed into a chat session can't be re-run when the source updates and can't be reviewed in a PR diff. Every `structured` dataset needs a checked-in build script (`build.ts`, run directly with `node`) that deterministically turns the raw snapshot into `data/*.csv`. This is now written into `AGENTS.md`, not just this doc, since it's a rule every wrangling session needs at hand — and it's the one part of the old Python precedent this project should keep doing, just in the new language.
 
 **Validation** is a first-class concern, not an afterthought: `datapackage.json` already carries a Frictionless Table Schema per resource declaring column types and a `primaryKey` — `structure` must always fill these in, and `/validate` now checks for their presence (see updated `.claude/commands/validate.md`), not just that the file exists. Whether we also want a typed validation layer (e.g. a schema library on the TS side) for anything Frictionless types can't express is still a research question.
 
 **Provenance uses Frictionless's own fields, not a bespoke scheme.** The first draft of this doc proposed inventing new provenance tracking for `archive`; `datapackage.json` already has `licenses` and `sources` fields for exactly this, and — a genuine gap found on review — the existing `/init` scaffold and `AGENTS.md` example didn't use them. Fixed: both now include `licenses`/`sources`, and `AGENTS.md` states they're required past `stub`. This matters beyond tidiness — this project republishes other people's data; shipping a dataset with no recorded license is a real liability, not a nice-to-have.
 
-**Scale ceiling**: "small data" now has a stated rule of thumb (in `AGENTS.md`) — comfortably fits in memory / a local DuckDB instance, well under ~1GB raw. Past that, the workflow should say so explicitly rather than silently forcing it through.
+**Scale ceiling**: "small data" now has a stated rule of thumb (in `AGENTS.md`) — comfortably fits in memory in a single Node process, well under ~1GB raw. Past that, the workflow should say so explicitly rather than silently forcing it through.
 
 ### Skill format: rich `SKILL.md` playbooks
 
