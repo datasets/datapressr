@@ -1,0 +1,9 @@
+{
+  "name": "world-gdp",
+  "title": "World GDP",
+  "description": "Resource has no schema declared",
+  "status": "stub",
+  "resources": [
+    { "path": "data/gdp.csv", "name": "gdp", "mediatype": "text/csv" }
+  ]
+}

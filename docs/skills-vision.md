@@ -81,7 +81,7 @@ Direction (not a final decision): fenced code-block chart specs inside the markd
 These block finalizing a *reusable* `story` skill, but not `capture`/`archive`/`structure`, and not writing individual stories by hand right now.
 
 1. **Charting standard** — informed by 2–3 hand-written stories, not before. Survey Vega-Lite vs Observable Plot (vs others); decide the fenced-block syntax for markdown; decide who renders it (DataHub itself, or a renderer we own).
-2. **Validation depth** — how far Frictionless Table Schema types get us vs. where real validation is needed, and what implements the gap.
+2. ~~**Validation depth**~~ — partially answered: `/validate`'s deterministic checks now live in `scripts/validate-datapackage.mjs` (zero dependencies, plain Node), copied into each dataset by `/init` so it's self-contained and portable to whatever repo the dataset ends up in. It has a real test suite (`npm test`, Node's built-in test runner, fixtures in `scripts/fixtures/`) — the first actually-tested piece of this project. Still open: this validates *structure* (schema declared, types present, license/source recorded) — it does not check the *data* against its declared schema (e.g. that every `year` cell really parses as a year). That's real type-level validation and is still undecided — plausibly a job for the `structure` skill's build script rather than `/validate` itself, since DuckDB's `try_cast` already does this at build time.
 3. **DuckDB cleanup idioms** — a cheat-sheet of SQL patterns for common messy-data problems (currency symbols, date formats, whitespace, encoding), plus a clear rule of thumb for "stay in SQL" vs "drop to a script," so `structure` doesn't reinvent this per dataset.
 
 ## Proposed build order
@@ -100,3 +100,12 @@ These block finalizing a *reusable* `story` skill, but not `capture`/`archive`/`
 - Whether the TS escape hatch is genuinely the right call vs. Rust, or something else, long-term
 - Whether DataHub gets extended to render story markdown, or stories live somewhere else
 - Any monitoring/scheduling mechanism
+
+## What's actually tested (and what isn't)
+
+Worth being blunt about, since it's easy to assume more rigor exists than does. As of this pass:
+
+- **`scripts/validate-datapackage.mjs` is tested** — real fixtures, real assertions, `npm test`. This is the only code in the repo, and the only thing with a test suite.
+- **`/init`, `/push`, and the rest of `/validate`'s fallback path are prompts, not code.** An LLM reads English instructions and decides what to do each run. There's no meaningful way to unit-test that the way you'd test a function — the closest available tool is skill evals (see the `skill-creator` skill's "benchmark skill performance" capability), which hasn't been applied here. That's a real, separate gap, not a solved one.
+- **The `capture`/`archive`/`structure`/`enrich`/`story` playbooks don't exist yet**, so there's nothing to test for them yet — that's expected at this stage, not a gap.
+- **Once `structure.md` exists**, the reproducibility rule already in `AGENTS.md` (a checked-in `build.sql`/`build.ts` per dataset) doubles as that dataset's test: re-running the build script against the raw snapshot and diffing the output is the closest thing to a test a wrangling step gets. No dataset in this project currently has one — the 20+ published datasets were wrangled ad hoc, before this rule existed.

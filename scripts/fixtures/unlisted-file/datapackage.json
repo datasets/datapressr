@@ -1,0 +1,9 @@
+{
+  "name": "world-gdp",
+  "title": "World GDP",
+  "description": "data/ has a file not listed in resources",
+  "status": "stub",
+  "resources": [
+    { "path": "data/gdp.csv", "name": "gdp", "mediatype": "text/csv" }
+  ]
+}

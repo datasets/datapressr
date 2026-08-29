@@ -1,0 +1,7 @@
+{
+  "name": "empty-package",
+  "title": "Empty Package",
+  "description": "Has no resources",
+  "status": "stub",
+  "resources": []
+}

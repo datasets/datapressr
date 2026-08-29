@@ -1,0 +1,24 @@
+{
+  "name": "world-gdp",
+  "title": "World GDP",
+  "description": "GDP by country, sample fixture",
+  "status": "structured",
+  "licenses": [{ "name": "CC0-1.0", "title": "CC0", "path": "https://creativecommons.org/publicdomain/zero/1.0/" }],
+  "sources": [{ "title": "Example Source", "path": "https://example.com/gdp" }],
+  "resources": [
+    {
+      "path": "data/gdp.csv",
+      "name": "gdp",
+      "title": "GDP by Country",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "type": "string" },
+          { "name": "year", "type": "year" },
+          { "name": "gdp_usd", "type": "number" }
+        ],
+        "primaryKey": ["country_code", "year"]
+      }
+    }
+  ]
+}

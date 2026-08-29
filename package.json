@@ -1,0 +1,9 @@
+{
+  "name": "datapressr",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate-datapackage.mjs"
+  }
+}

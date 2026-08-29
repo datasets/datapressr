@@ -1,0 +1,9 @@
+{
+  "name": "missing-file-package",
+  "title": "Missing File",
+  "description": "References a resource path that does not exist on disk",
+  "status": "stub",
+  "resources": [
+    { "path": "data/does-not-exist.csv", "name": "ghost", "mediatype": "text/csv" }
+  ]
+}

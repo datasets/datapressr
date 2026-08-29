@@ -44,20 +44,23 @@ Creates:
 
 ```
 world-gdp/
-  datapackage.json   # dataset metadata and resource list
-  data/              # data files go here
-  .datahubignore     # gitignore-style exclusions for dh push
-  AGENTS.md          # AI assistant context
+  datapackage.json              # dataset metadata and resource list
+  data/                         # data files go here
+  .datahubignore                # gitignore-style exclusions for dh push
+  AGENTS.md                     # AI assistant context
+  scripts/validate-datapackage.mjs   # the deterministic check /validate runs
 ```
 
 ### `/validate`
 
 Check `datapackage.json` for common issues before pushing.
 
-Reports errors (must fix) and warnings (worth fixing):
+Runs `scripts/validate-datapackage.mjs` (copied in by `/init`, zero dependencies, plain Node — no `package.json` needed to run it) and reports its output: errors (must fix) and warnings (worth fixing).
 
-- **Errors**: missing file, invalid JSON, unsafe name, empty resources
-- **Warnings**: missing title/description/status, unlisted files in `data/`, large files, missing `licenses`/`sources`, resources with no typed `schema` or no `primaryKey`
+- **Errors**: missing file, invalid JSON, unsafe name, empty resources, a resource path that doesn't exist
+- **Warnings**: missing title/description/status, unlisted files in `data/`, large files, missing `licenses`/`sources` past `stub`, resources with no typed `schema` or no `primaryKey`
+
+The script itself has a test suite in the `datapressr` repo (`npm test`, using Node's built-in test runner against fixture datapackages in `scripts/fixtures/`) — it's the one piece of this project's tooling that's actually tested, rather than being an LLM re-deriving a checklist from prose each run.
 
 ### `/push`
 

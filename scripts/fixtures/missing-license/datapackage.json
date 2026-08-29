@@ -1,0 +1,21 @@
+{
+  "name": "world-gdp",
+  "title": "World GDP",
+  "description": "Past stub with no licenses/sources",
+  "status": "structured",
+  "resources": [
+    {
+      "path": "data/gdp.csv",
+      "name": "gdp",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "type": "string" },
+          { "name": "year", "type": "year" },
+          { "name": "gdp_usd", "type": "number" }
+        ],
+        "primaryKey": ["country_code", "year"]
+      }
+    }
+  ]
+}
