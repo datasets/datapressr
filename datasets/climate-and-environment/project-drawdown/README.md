@@ -36,9 +36,13 @@ https://drawdown.org/solutions/table-of-solutions
 
 Project Drawdown redesigned `/solutions/table-of-solutions` in 2025 (the "Drawdown
 Explorer" / 2025 solutions framework). The live page no longer publishes the
-two-scenario 2020 table in this form. `archive/table-of-solutions-live-2026-08-30.html`
-is the live page as retrieved on 2026-08-30 for reference; the structured data here
-is the 2020 review, taken from the community mirror at
-[datasets/commons#329](https://github.com/datasets/commons/issues/329). A separate
-dataset for the 2025 framework would be new work (and faces the same licensing
-question).
+two-scenario 2020 table in this form, so the structured data here is the 2020
+review, taken from the community mirror at
+[datasets/commons#329](https://github.com/datasets/commons/issues/329)
+(`archive/commons-329-project-drawdown-snapshot.md`). A separate dataset for the
+2025 framework would be new work (and rests on the same facts-aren't-copyrightable
+basis as this one).
+
+The retrieved-on-2026-08-30 HTML of the live page is deliberately **not** archived
+here: it embeds third-party API tokens (Mapbox) from Project Drawdown's site
+scaffolding, which have no place in a data repo.
