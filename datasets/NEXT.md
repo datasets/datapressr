@@ -18,7 +18,7 @@ What's actionable right now, for a clean handoff to a fresh session. Kept short 
 
 - [x] **Ship the site** — **official** (git-autosync from `site/` on every push to `main`): <https://datapressr-2-rufuspollock.flowershow.me>. **Preview** (manual, for checking before push): `fl site --name datapressr-preview --yes` → <https://datapressr-preview-rufuspollock.flowershow.me>. (Still open in [#7](https://github.com/datasets/datapressr/issues/7): fold `docs/` in.)
 - [x] **Wrangle co2-ppm from source** — done, `datasets/climate-and-environment/co2-ppm/`. `/validate` clean, deterministic. README compares against the community `datasets/co2-ppm` (whose monthly file is currently mislabelled after an unfollowed NOAA column change). [#8](https://github.com/datasets/datapressr/issues/8)
-- [x] **Data story #1** — [The Keeling Curve](https://datapressr-2-rufuspollock.flowershow.me/stories/keeling-curve). Restructured after feedback to be about the data not the wrangling (chart first, wrangling demoted to a short "how this was made"), and built from a committed [outline](https://datapressr-2-rufuspollock.flowershow.me/stories/keeling-curve.outline). [#9](https://github.com/datasets/datapressr/issues/9)
+- [x] **Data story #1** — [The Keeling Curve](https://datapressr-2-rufuspollock.flowershow.me/stories/keeling-curve). Restructured after feedback to be about the data not the wrangling (chart first, wrangling demoted to a short "how this was made"), and built from a committed [outline](https://datapressr-2-rufuspollock.flowershow.me/stories/keeling-curve-outline). [#9](https://github.com/datasets/datapressr/issues/9)
 
 ### Next AI-doable
 

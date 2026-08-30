@@ -9,7 +9,7 @@ description: The measured rise of atmospheric carbon dioxide — the longest con
 
 *Annual mean atmospheric CO₂ measured at Mauna Loa Observatory, Hawaii. Data:
 [co2-ppm](../datasets.md), from NOAA. Data story #1 — written by hand from
-[an outline](keeling-curve.outline.md); the `story` skill comes after a couple of
+[an outline](keeling-curve-outline.md); the `story` skill comes after a couple of
 these.*
 
 ## The record
