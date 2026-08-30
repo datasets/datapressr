@@ -1,0 +1,72 @@
+{
+  "name": "project-drawdown",
+  "title": "Project Drawdown — Table of Solutions (2020)",
+  "description": "Project Drawdown's ranked climate solutions from its 2020 review. For each of 82 solutions, the total atmospheric CO2-equivalent reduction (gigatons, cumulative 2020-2050) under two scenarios, plus the sector(s) each solution belongs to. Scenario 1 is roughly consistent with limiting warming to 2 degrees C; Scenario 2 is a more ambitious pathway roughly consistent with 1.5 degrees C. Six solutions were named but not yet modelled in 2020 and have no value.",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "LicenseRef-ProjectDrawdown-ToU",
+      "title": "Project Drawdown Terms of Use - all rights reserved; use, reproduction, modification, distribution or storage of content for any purpose other than using drawdown.org is prohibited without prior written consent. No open licence is offered. Redistribution of this dataset is NOT cleared - see README.md.",
+      "path": "https://drawdown.org/terms-of-use"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Project Drawdown - Table of Solutions (2020 review)",
+      "path": "https://drawdown.org/solutions/table-of-solutions"
+    },
+    {
+      "title": "Community mirror of the table - datasets/commons issue 329",
+      "path": "https://github.com/datasets/commons/issues/329"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/solutions.csv",
+      "name": "solutions",
+      "title": "Solutions by scenario",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "solution",
+            "type": "string",
+            "description": "Solution name as published by Project Drawdown."
+          },
+          {
+            "name": "scenario",
+            "type": "integer",
+            "description": "Drawdown scenario: 1 (roughly 2 degrees C pathway) or 2 (more ambitious, roughly 1.5 degrees C)."
+          },
+          {
+            "name": "co2_eq_reduction_gt_2020_2050",
+            "type": "number",
+            "description": "Total atmospheric CO2-equivalent reduction attributed to the solution, in gigatons, cumulative over 2020-2050. Empty for solutions named but not modelled in the 2020 review. Can be negative (a solution that on net increases emissions under that scenario)."
+          }
+        ],
+        "primaryKey": ["solution", "scenario"]
+      }
+    },
+    {
+      "path": "data/solution_sectors.csv",
+      "name": "solution_sectors",
+      "title": "Solution-to-sector links",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "solution",
+            "type": "string",
+            "description": "Solution name; joins to solutions.solution."
+          },
+          {
+            "name": "sector",
+            "type": "string",
+            "description": "One of Project Drawdown's nine sectors. A solution can belong to more than one; each pairing is its own row."
+          }
+        ],
+        "primaryKey": ["solution", "sector"]
+      }
+    }
+  ]
+}
