@@ -58,4 +58,4 @@ Full decision history: [`docs/skills-vision.md`](https://github.com/datasets/dat
 
 ---
 
-<sub>This site is `site/` in [`datasets/datapressr`](https://github.com/datasets/datapressr), published with the Flowershow CLI (`fl site --name datapressr --yes`). Live at <https://datapressr-rufuspollock.flowershow.me>.</sub>
+<sub>This site is `site/` in [`datasets/datapressr`](https://github.com/datasets/datapressr). The official site at <https://datapressr-2-rufuspollock.flowershow.me> git-autosyncs from `site/` on every push to `main`; a preview site (`fl site --name datapressr-preview --yes`) is for checking changes first.</sub>

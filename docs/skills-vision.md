@@ -82,6 +82,11 @@ Direction (not a final decision): fenced code-block chart specs inside the markd
 
 **Corrected ordering, on review**: the first draft of this plan put a charting research spike *before* a single story had been written by hand — which is precisely the mistake this project already learned not to make once (`SHARING.md`: "don't design the system before you've felt the workflow. Ten manual posts will teach more than ten hours of architecture" — that was about publishing datasets; it applies just as much to stories). Fixed below: write 2–3 stories completely by hand — plain markdown, embed a static chart image or raw Vega-Lite JSON if needed, whatever's fastest — *before* spending any time deciding on a standard chart-block syntax. Let real friction pick the tool instead of guessing at it.
 
+**Story #1 written (2026-08-30): the Keeling Curve** (`site/stories/keeling-curve.md`, on the co2-ppm dataset). First-draft feedback produced two concrete direction-setters, now tracked in [#10](https://github.com/datasets/datapressr/issues/10):
+
+- **A data story is about the data, not the wrangling.** Lead with the finished chart (above the fold if possible), then explain what it shows; the "how it was wrangled" material comes late, framed as a tutorial ("here's the cake, now here's the recipe"), or not at all. The first draft inverted this — opened on the messy source file — and read as an article about ETL rather than about CO₂.
+- **The skill should separate outline → visualisation plan → prose** as three committed, independently reviewable steps, so the argument can be signed off before prose effort, the prose can be regenerated/re-voiced from the outline, and the charting choice slots into the middle step. This is the intended shape of the `story` skill (and probably `enrich`).
+
 ## Open research spikes
 
 These block finalizing a *reusable* `story` skill, but not `capture`/`archive`/`structure`, and not writing individual stories by hand right now.

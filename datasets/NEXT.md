@@ -16,20 +16,22 @@ What's actionable right now, for a clean handoff to a fresh session. Kept short 
 
 ## AI can do now (in this order — one piece, committed + pushed, before the next)
 
-- [x] **Ship the site** — live at <https://datapressr-rufuspollock.flowershow.me>. Update with `fl site --name datapressr --yes`. (Still open in [#7](https://github.com/datasets/datapressr/issues/7): fold `docs/` in.)
+- [x] **Ship the site** — **official** (git-autosync from `site/` on every push to `main`): <https://datapressr-2-rufuspollock.flowershow.me>. **Preview** (manual, for checking before push): `fl site --name datapressr-preview --yes` → <https://datapressr-preview-rufuspollock.flowershow.me>. (Still open in [#7](https://github.com/datasets/datapressr/issues/7): fold `docs/` in.)
 - [x] **Wrangle co2-ppm from source** — done, `datasets/climate-and-environment/co2-ppm/`. `/validate` clean, deterministic. README compares against the community `datasets/co2-ppm` (whose monthly file is currently mislabelled after an unfollowed NOAA column change). [#8](https://github.com/datasets/datapressr/issues/8)
-- [x] **Data story #1** — [The Keeling Curve](https://datapressr-rufuspollock.flowershow.me/stories/keeling-curve), `site/stories/`. Friction note: charting was hand-rolled SVG — **next: pick a declarative chart block (Vega-Lite / Observable Plot) and confirm the site renders it** (roadmap step 3). [#9](https://github.com/datasets/datapressr/issues/9)
+- [x] **Data story #1** — [The Keeling Curve](https://datapressr-2-rufuspollock.flowershow.me/stories/keeling-curve). Restructured after feedback to be about the data not the wrangling (chart first, wrangling demoted to a short "how this was made"), and built from a committed [outline](https://datapressr-2-rufuspollock.flowershow.me/stories/keeling-curve.outline). [#9](https://github.com/datasets/datapressr/issues/9)
 
 ### Next AI-doable
 
-- [ ] **Charting spike** — decide the chart syntax for stories, from the Keeling-curve friction. Then it unblocks `enrich` / `story` skills.
+- [ ] **Charting spike** — pick the declarative chart syntax for stories (Vega-Lite / Observable Plot), confirm Flowershow renders it, replace the hand-rolled SVGs. This is the "visualisation plan" step of [#10](https://github.com/datasets/datapressr/issues/10) and unblocks `enrich` / `story`.
+- [ ] **Write story #2 the new way** (outline → viz plan → prose), e.g. Planetary Boundaries ([#4](https://github.com/datasets/datapressr/issues/4)), before generalising into the `story` skill. [#10](https://github.com/datasets/datapressr/issues/10)
 - [ ] **co2-ppm follow-ups** — add the global series + growth rates (easy), and/or wire it to a schedule once `monitor` exists ([#6](https://github.com/datasets/datapressr/issues/6)).
+- [ ] Consider renaming the official Flowershow site off the `datapressr-2` URL (needs delete + recreate + re-do git integration in the dashboard — a human step).
 
 ## Needs human input first
 
 - [ ] **Relocate Project Drawdown to its catalog repo and push** — structured and validated, now on `main` at `datasets/climate-and-environment/project-drawdown/`. Licensing decided: facts, not per se copyrightable → PDDL-1.0 with attribution to Project Drawdown (see the dataset's README → Licensing). Move it into the real `datasets/climate-and-environment` repo and `dh push` when ready. [#3](https://github.com/datasets/datapressr/issues/3)
 - [ ] **Triage the inbox** — half a dozen small finds with no clear next step yet. [#2](https://github.com/datasets/datapressr/issues/2)
-- [ ] **Look at the Keeling Curve story and say what felt right/wrong** — the human read that skills-vision.md says is needed before generalising `enrich`/`story`. A second story (Planetary Boundaries, [#4](https://github.com/datasets/datapressr/issues/4)) is the other candidate.
+- [ ] **Re-read the restructured Keeling Curve story** — first-draft feedback is captured (data-first not wrangling-first; outline→viz→prose as separable steps, [#10](https://github.com/datasets/datapressr/issues/10)). Worth another look before story #2, plus a "sounds like me" voice pass is the human's to run.
 
 ## Later (blocked on the above, not urgent)
 
@@ -42,8 +44,8 @@ What's actionable right now, for a clean handoff to a fresh session. Kept short 
 
 Everything is on `main`. GitHub renders Markdown and shows CSVs as sortable tables — no local checkout or DataHub needed.
 
-- **Live site:** <https://datapressr-rufuspollock.flowershow.me> — start here; landing → "what to review now" → datasets → the Keeling Curve story.
-- **Data story #1:** <https://datapressr-rufuspollock.flowershow.me/stories/keeling-curve> — read this and say what felt right/wrong.
+- **Live site:** <https://datapressr-2-rufuspollock.flowershow.me> — start here; landing → "what to review now" → datasets → the Keeling Curve story.
+- **Data story #1:** <https://datapressr-2-rufuspollock.flowershow.me/stories/keeling-curve> — read this and say what felt right/wrong.
 - **Everything since the session started, one diff:** <https://github.com/datasets/datapressr/compare/7eca8eb...main>
 - **co2-ppm dataset:** [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/co2-ppm) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/README.md) (has the comparison vs the community version)
 - **Project Drawdown dataset:** [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/project-drawdown) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/project-drawdown/README.md)
@@ -54,7 +56,7 @@ Everything is on `main`. GitHub renders Markdown and shows CSVs as sortable tabl
 **2026-08-30:**
 - Skills made portable — `.claude/skills/*` → `skills/*`, `init`/`push`/`validate` converted to `SKILL.md`, `.claude/skills/` now symlinks, `npx skills` layout, docs updated, `npm test` green. ([#5](https://github.com/datasets/datapressr/issues/5), merged to `main`)
 - Project Drawdown structured — reproducible `build.ts`, tidy typed CSVs, `/validate` clean, licensing settled (PDDL-1.0 + attribution). Needs relocating to its catalog repo. ([#3](https://github.com/datasets/datapressr/issues/3))
-- Site live at <https://datapressr-rufuspollock.flowershow.me> (Flowershow, `fl site`); issues [#6](https://github.com/datasets/datapressr/issues/6)–[#9](https://github.com/datasets/datapressr/issues/9) opened to track the road to v1.
+- Site live: official <https://datapressr-2-rufuspollock.flowershow.me> (git-autosync from `site/`), preview <https://datapressr-preview-rufuspollock.flowershow.me> (manual `fl`); issues [#6](https://github.com/datasets/datapressr/issues/6)–[#9](https://github.com/datasets/datapressr/issues/9) opened to track the road to v1.
 - **co2-ppm wrangled from NOAA source** — first real end-to-end `structure` run on a messy primary source; README diffs it against the community `datasets/co2-ppm`. ([#8](https://github.com/datasets/datapressr/issues/8))
 - **Data story #1: The Keeling Curve** — first hand-written story, on the site; charting was hand-rolled SVG → charting-syntax decision is now the top open item. ([#9](https://github.com/datasets/datapressr/issues/9))
 - `structure` skill gained a "government/scientific text data" idioms note (comment lines, negative sentinels, assert-the-header) from the co2-ppm run.
