@@ -5,9 +5,9 @@
   "status": "structured",
   "licenses": [
     {
-      "name": "LicenseRef-ProjectDrawdown-ToU",
-      "title": "Project Drawdown Terms of Use - all rights reserved; use, reproduction, modification, distribution or storage of content for any purpose other than using drawdown.org is prohibited without prior written consent. No open licence is offered. Redistribution of this dataset is NOT cleared - see README.md.",
-      "path": "https://drawdown.org/terms-of-use"
+      "name": "PDDL-1.0",
+      "title": "Open Data Commons Public Domain Dedication and License. The values here are facts (measured/modelled emissions-impact estimates) and are not per se copyrightable; this tidy compilation is dedicated to the public domain. Project Drawdown is the source and must be attributed - see sources and README.md. drawdown.org's own site Terms of Use are all-rights-reserved and are not the licence of this data.",
+      "path": "https://opendatacommons.org/licenses/pddl/"
     }
   ],
   "sources": [

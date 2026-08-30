@@ -13,7 +13,10 @@ Code, which keeps working through symlinks. The three last-mile commands (`init`
 
 Project Drawdown's 2020 Table of Solutions was run through `structure`: a
 reproducible `build.ts`, two tidy typed CSVs (82 solutions × 2 scenarios; the
-solution-to-sector links), validation clean. It is **not cleared to publish** —
-drawdown.org's Terms of Use reserve all rights and require written consent to
-redistribute, with no open licence offered. The structured dataset is committed so
-that call can be made quickly, but a human has to make it.
+solution-to-sector links), validation clean. drawdown.org's own site terms are
+all-rights-reserved, but the dataset is just the numbers — measured and modelled
+emissions-impact estimates, which are facts and not per se copyrightable —
+restructured into tidy tables, not the prose or figures. We release the
+compilation as PDDL-1.0 and attribute Project Drawdown as the source. It still
+needs relocating into the `datasets/climate-and-environment` catalog repo before
+it goes live.

@@ -10,11 +10,11 @@
 //            retrieval date — NOTE: Project Drawdown redesigned this page in 2025 and no
 //            longer publishes the two-scenario table in this form; see README.md)
 //
-// LICENSE:   Project Drawdown Terms of Use — "all rights reserved"; redistribution of
-//            content requires prior written consent (https://drawdown.org/terms-of-use).
-//            There is NO open license. This build produces the structured dataset so a
-//            human can decide whether publication is possible; it is NOT cleared to ship.
-//            See README.md.
+// LICENSE:   The values are facts (measured/modelled emissions-impact estimates) and are
+//            not per se copyrightable; this tidy compilation is released as PDDL-1.0.
+//            Project Drawdown is the source and is attributed. drawdown.org's own site
+//            Terms of Use are all-rights-reserved and are not the licence of this data.
+//            See README.md → Licensing.
 //
 // Run:  node build.ts   (Node 22+, native TS, no build step, no dependencies)
 //

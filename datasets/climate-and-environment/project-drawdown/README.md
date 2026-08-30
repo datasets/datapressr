@@ -11,20 +11,26 @@ two scenarios, plus the sector(s) each belongs to.
 - `build.ts` — reproduces both CSVs deterministically from
   `archive/commons-329-project-drawdown-snapshot.md`. Run: `node build.ts`.
 
-## ⚠️ Publication is NOT cleared — licensing blocker
+## Licensing
 
-Project Drawdown's [Terms of Use](https://drawdown.org/terms-of-use) reserve all
-rights and prohibit "use, reproduction, modification, distribution or storage of
-any Content for any purpose other than using the Services … without prior written
-consent." There is **no Creative Commons or other open licence**.
+Project Drawdown's own [Terms of Use](https://drawdown.org/terms-of-use) reserve
+all rights and offer no Creative Commons or other open licence for the site's
+content.
 
-The underlying numbers are facts (not themselves copyrightable in the US), but the
-selection and arrangement, plus the explicit site terms, mean redistributing this
-as an open dataset on DataHub is a judgement call for a human — not something this
-automated pass can decide. The structuring work is done and validated so that
-decision can be made quickly; **do not `dh push` this dataset until the licence
-question is resolved** (e.g. written permission from Project Drawdown, or a
-considered fair-use / factual-data position).
+Our position: **the values in this dataset are facts** — measured and modelled
+estimates of emissions impact — and facts are not per se copyrightable. What this
+dataset reproduces is those numbers, restructured into tidy tables; it does not
+copy Project Drawdown's prose, figures, or presentation. On that basis we treat
+the data as freely reusable and release this compilation into the public domain
+(PDDL-1.0).
+
+We attribute Project Drawdown as the source, clearly and unambiguously — see
+`sources` in `datapackage.json` and the citation below. Anyone reusing this data
+should do the same. If Project Drawdown ever objects to redistribution, we'll
+revisit.
+
+**Citation:** Project Drawdown, *The Drawdown Review 2020* — Table of Solutions.
+https://drawdown.org/solutions/table-of-solutions
 
 ## Source moved on
 
