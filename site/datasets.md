@@ -11,7 +11,7 @@ Datasets produced with the DataPressr skills. Status follows the lifecycle:
 | Dataset | Status | Source | Licence | Links |
 |---------|--------|--------|---------|-------|
 | **Project Drawdown — Table of Solutions (2020)** | structured | Project Drawdown, 2020 review (via community mirror) | PDDL-1.0 (facts) + attribution | [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/project-drawdown) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/project-drawdown/README.md) |
-| **CO2 concentration — Mauna Loa (Keeling Curve)** | *in progress* | NOAA GML | Public domain (US gov) | [#8](https://github.com/datasets/datapressr/issues/8) |
+| **CO₂ concentration — Mauna Loa (Keeling Curve)** | structured | NOAA GML | PDDL-1.0 (US-gov public domain) + citation | [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/co2-ppm) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/README.md) · [story](stories/keeling-curve.md) |
 
 ## Project Drawdown — notes
 
@@ -32,5 +32,7 @@ Caveats worth knowing before reuse:
 
 ## Data stories
 
-None yet. [#9](https://github.com/datasets/datapressr/issues/9) — the Keeling Curve
-before/after — is the first, and will appear here once written.
+- **[The Keeling Curve](stories/keeling-curve.md)** — from a NOAA text file to the
+  single most important line in climate science, and what the line says. The first
+  hand-written story; its friction notes feed the charting decision and the future
+  `enrich` / `story` skills.

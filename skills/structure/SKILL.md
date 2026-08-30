@@ -82,6 +82,12 @@ The moment fields can contain commas or quotes, hand-rolling breaks silently —
 
 **`scripts/wrangling-idioms.mjs`** in this repo (`npm test` covers it, `scripts/wrangling-idioms.test.mjs`) — `cleanNumber`, `toIsoDate`, `fillForwardSections`, `makeSlugger`, `cellValue`, `toCsv`. Copy whichever functions a given dataset's `build.ts` actually needs into that file — datasets are independent repos (catalog-as-repo), so this isn't meant to be a live cross-repo import, it's a tested source to copy from. Read the file directly for the implementations; don't re-derive them from memory.
 
+**Government / scientific text data — two shapes to expect** (worked example: `datasets/climate-and-environment/co2-ppm`, NOAA Mauna Loa CO₂):
+
+- **Comment / preamble lines.** Many `.txt`/`.csv` government sources start with dozens of `#`-prefixed lines (provenance, method notes, contact). Strip lines that are blank or start with `#` before parsing; don't hand-count how many to `tail` past.
+- **Negative sentinels instead of blanks.** Sources often encode "no information" as an out-of-range number (`-1`, `-9.99`, `-99.99`) rather than an empty field. Normalise these to empty cells — a `num(raw, sentinels)` helper that takes the per-column sentinel list keeps it to one line each and stops a `-9.99` sailing through as a real measurement.
+- **Assert the source header.** When you build from an archived snapshot of a source that still updates upstream, have the script check the header row it expects and throw if it changed — otherwise a column the source adds or reorders silently shifts every downstream value (this is exactly how the older community `co2-ppm` dataset ended up with `ndays` published under a `Trend` heading).
+
 **When to reach for DuckDB instead**: if the transform is naturally *one SQL query* — joining several files on a key, a groupby/aggregate, reshaping a genuinely wide table (dozens of year-columns) to long format — DuckDB will be less error-prone than hand-rolled loops. If it's mostly row-by-row string/date/number cleaning on a single source, a plain script is simpler and is what this playbook defaults to. Don't reach for DuckDB by default; reach for it when the problem is actually relational.
 
 ### 4. Fill in `datapackage.json`

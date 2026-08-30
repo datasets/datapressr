@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">
+<line x1="56" y1="310.4" x2="704" y2="310.4" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="48" y="314.4" text-anchor="end" fill="#6b7280">320</text>
+<line x1="56" y1="259.2" x2="704" y2="259.2" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="48" y="263.2" text-anchor="end" fill="#6b7280">340</text>
+<line x1="56" y1="208" x2="704" y2="208" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="48" y="212" text-anchor="end" fill="#6b7280">360</text>
+<line x1="56" y1="156.79999999999998" x2="704" y2="156.79999999999998" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="48" y="160.79999999999998" text-anchor="end" fill="#6b7280">380</text>
+<line x1="56" y1="105.60000000000002" x2="704" y2="105.60000000000002" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="48" y="109.60000000000002" text-anchor="end" fill="#6b7280">400</text>
+<line x1="56" y1="54.39999999999998" x2="704" y2="54.39999999999998" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="48" y="58.39999999999998" text-anchor="end" fill="#6b7280">420</text>
+<text x="65.81818181818181" y="356" text-anchor="middle" fill="#6b7280">1960</text>
+<text x="213.0909090909091" y="356" text-anchor="middle" fill="#6b7280">1975</text>
+<text x="360.3636363636364" y="356" text-anchor="middle" fill="#6b7280">1990</text>
+<text x="507.6363636363637" y="356" text-anchor="middle" fill="#6b7280">2005</text>
+<text x="654.9090909090909" y="356" text-anchor="middle" fill="#6b7280">2020</text>
+<text x="380" y="374" text-anchor="middle" fill="#6b7280">Year</text>
+<text transform="translate(14 176) rotate(-90)" text-anchor="middle" fill="#6b7280">CO₂ (ppm)</text>
+<line x1="56" y1="233.6" x2="704" y2="233.6" stroke="#16a34a" stroke-dasharray="4 4" stroke-opacity="0.8"/>
+<text x="700" y="228.6" text-anchor="end" fill="#16a34a">350 ppm</text>
+<line x1="56" y1="105.60000000000002" x2="704" y2="105.60000000000002" stroke="#dc2626" stroke-dasharray="4 4" stroke-opacity="0.8"/>
+<text x="700" y="100.60000000000002" text-anchor="end" fill="#dc2626">400 ppm (crossed 2015)</text>
+<path d="M56.0 320.7 L65.8 318.3 L75.6 316.4 L85.5 314.4 L95.3 313.0 L105.1 311.4 L114.9 310.3 L124.7 306.9 L134.5 304.8 L144.4 302.6 L154.2 298.6 L164.0 295.9 L173.8 294.2 L183.6 291.3 L193.5 285.6 L203.3 284.3 L213.1 281.9 L222.9 279.6 L232.7 275.0 L242.5 271.0 L252.4 267.3 L262.2 262.4 L272.0 258.9 L281.8 255.4 L291.6 251.1 L301.5 246.7 L311.3 242.9 L321.1 239.7 L330.9 235.4 L340.7 229.3 L350.5 225.4 L360.4 222.2 L370.2 219.0 L380.0 216.9 L389.8 215.1 L399.6 210.7 L409.5 205.5 L419.3 201.0 L429.1 198.1 L438.9 190.5 L448.7 186.1 L458.5 183.1 L468.4 179.0 L478.2 173.6 L488.0 167.1 L497.8 162.7 L507.6 156.9 L517.5 151.4 L527.3 146.5 L537.1 141.9 L546.9 137.2 L556.7 130.9 L566.5 126.5 L576.4 120.8 L586.2 113.9 L596.0 108.6 L605.8 103.0 L615.6 94.3 L625.5 88.3 L635.3 83.3 L645.1 75.8 L654.9 69.2 L664.7 63.6 L674.5 58.2 L684.4 51.6 L694.2 42.6 L704.0 35.6" fill="none" stroke="#2563eb" stroke-width="2"/>
+</svg>
