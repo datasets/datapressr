@@ -3,7 +3,7 @@ created: 2026-02-18
 superseded: 2026-08-29
 ---
 
-**This file no longer tracks active candidates** — new/open ones live as [GitHub issues](https://github.com/datasets/datapressr/issues), with `datasets/NEXT.md` as the short "what's actionable now" view. Kept below as the historical record of what was sourced from the commons issue tracker and what got published from it — genuinely useful as a changelog, not as a live backlog.
+**This file no longer tracks active candidates** — new/open ones live as [GitHub issues](https://github.com/datasets/datapressr/issues), with `NEXT.md` (repo root) as the short "what's actionable now" view. Kept below as the historical record of what was sourced from the commons issue tracker and what got published from it — genuinely useful as a changelog, not as a live backlog.
 
 Candidates mined from commons GitHub issues: https://github.com/datasets/commons
 

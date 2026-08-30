@@ -20,7 +20,7 @@ Per `docs/lifecyle.md`'s "Capture" stage: prevent loss, preserve intent, near-ze
 
    No validation. No downloading. No deciding if it's *good* — that's a later stage's job.
 
-3. Update `datasets/NEXT.md` only if this capture changes what's actionable *right now* — most captures don't. `NEXT.md` is deliberately short; don't let capture inflate it back into a second backlog. If in doubt, leave `NEXT.md` alone and let the issue speak for itself.
+3. Update `NEXT.md` only if this capture changes what's actionable *right now* — most captures don't. `NEXT.md` is deliberately short; don't let capture inflate it back into a second backlog. If in doubt, leave `NEXT.md` alone and let the issue speak for itself.
 
 ## What this replaced
 

@@ -17,7 +17,7 @@ Already established (see `docs/`):
 - **Hierarchy**: catalog → dataset → data file (`docs/data-hierarchy.md`)
 - **Catalog-as-repo**: one portal/collection = one repo = one DataHub publication (`docs/pattern-catalog-as-repo.md`)
 - **Skills**: `/init`, `/validate`, `/push` — all at the `structured → published` end
-- **Capture layer**: GitHub issues + `datasets/NEXT.md` (was plain markdown in `datasets/BACKLOG.md`/`INBOX.md`/`DASHBOARDS.md` — retired, see the build order below)
+- **Capture layer**: GitHub issues + `NEXT.md` (was plain markdown in `datasets/BACKLOG.md`/`INBOX.md`/`DASHBOARDS.md` — retired, see the build order below)
 - Proof this works end to end: 20+ datasets already published to DataHub from the backlog
 
 ## The gap
@@ -101,7 +101,7 @@ These block finalizing a *reusable* `story` skill, but not `capture`/`archive`/`
 ## Proposed build order
 
 1. ~~**`structure.md`**~~ — done: `skills/structure/SKILL.md`. Node/TS-first (see the reversed engine decision above), grounded in two real datasets (`precious-metals-prices` for the simple case, `millennium-macroeconomic-data-uk`'s 27MB multi-sheet xlsx for the messy one). Cleanup idioms aren't just prose in the playbook — they're a tested module, `scripts/wrangling-idioms.mjs` + `scripts/wrangling-idioms.test.mjs`, so the skill's code examples can't silently drift out of correctness the way most playbook prose can.
-2. ~~**`capture.md`** + **`archive.md`**~~ — done: `skills/capture/SKILL.md`, `skills/archive/SKILL.md`. Along the way, `datasets/BACKLOG.md`/`INBOX.md`/`DASHBOARDS.md` were actually retired, not just described as informal precedent — freeform markdown doesn't scale as a queue (no search, no triage state). Replaced with [GitHub issues](https://github.com/datasets/datapressr/issues) (one consolidated Inbox issue for small finds, individual issues once something's substantive) and `datasets/NEXT.md` as the short "what's actionable now" view. (Beads was evaluated as an alternative — installs fine, but its real cross-session continuity needs a Dolt remote, not just the JSONL export its own docs call "not the source of truth." More infrastructure than this project's backlog needs right now; plain issues won.)
+2. ~~**`capture.md`** + **`archive.md`**~~ — done: `skills/capture/SKILL.md`, `skills/archive/SKILL.md`. Along the way, `datasets/BACKLOG.md`/`INBOX.md`/`DASHBOARDS.md` were actually retired, not just described as informal precedent — freeform markdown doesn't scale as a queue (no search, no triage state). Replaced with [GitHub issues](https://github.com/datasets/datapressr/issues) (one consolidated Inbox issue for small finds, individual issues once something's substantive) and `NEXT.md` as the short "what's actionable now" view. (Beads was evaluated as an alternative — installs fine, but its real cross-session continuity needs a Dolt remote, not just the JSONL export its own docs call "not the source of truth." More infrastructure than this project's backlog needs right now; plain issues won.)
 3. **Write 2–3 stories by hand**, no skill, no standard chart syntax — plain markdown, whatever charting gets it done fastest.
 4. **Charting research spike** (timeboxed), informed by what actually caused friction in step 3 → then **`enrich.md`** and **`story.md`**.
 5. **`monitor.md`** — later, once a living source actually needs it.

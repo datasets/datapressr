@@ -10,4 +10,4 @@ DataPressr moves from three thin publishing commands to the start of an actual, 
 
 Every dataset now also needs a recorded license and source before it's more than a stub — see [AGENTS.md](https://github.com/datasets/datapressr/blob/main/AGENTS.md) for the full set of conventions and [the `structure` skill](https://github.com/datasets/datapressr/blob/main/skills/structure/SKILL.md) for the playbook.
 
-Separately: `BACKLOG.md`, `INBOX.md`, and `DASHBOARDS.md` are retired in favour of [GitHub issues](https://github.com/datasets/datapressr/issues) and a short `datasets/NEXT.md` — a queue that can actually be searched, instead of a growing markdown file.
+Separately: `BACKLOG.md`, `INBOX.md`, and `DASHBOARDS.md` are retired in favour of [GitHub issues](https://github.com/datasets/datapressr/issues) and a short `NEXT.md` — a queue that can actually be searched, instead of a growing markdown file.

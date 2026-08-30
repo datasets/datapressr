@@ -31,4 +31,4 @@ Active work is in GitHub issues so nothing gets lost:
 [#7](https://github.com/datasets/datapressr/issues/7) this site ·
 [#8](https://github.com/datasets/datapressr/issues/8) wrangle co2-ppm ·
 [#9](https://github.com/datasets/datapressr/issues/9) first data story.
-Short "what's actionable" view: [`datasets/NEXT.md`](https://github.com/datasets/datapressr/blob/main/datasets/NEXT.md).
+Short "what's actionable" view: [`NEXT.md`](https://github.com/datasets/datapressr/blob/main/NEXT.md).
