@@ -44,8 +44,8 @@ and nothing more.
 | 1 | Line, annual mean, 1959–2025, with 350 & 400 ppm reference lines | `co2-annual-mlo.csv` | The headline. Monotonic rise, accelerating. Above the fold. |
 | 2 | Line, monthly value + deseasonalized trend, 2010–present | `co2-monthly-mlo.csv` | Show the seasonal sawtooth riding a rising trend. |
 
-Both currently rendered by `make-charts.mjs` (hand-rolled SVG). Replace with a
-declarative chart block once that's chosen.
+Both rendered by `make-charts.mjs` (hand-rolled SVG) — fine for now; the standard
+chart mechanism is a later question ([#11](https://github.com/datasets/datapressr/issues/11)).
 
 ## Voice
 

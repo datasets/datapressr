@@ -22,8 +22,8 @@ What's actionable right now, for a clean handoff to a fresh session. Kept short 
 
 ### Next AI-doable
 
-- [ ] **Charting spike** — pick the declarative chart syntax for stories (Vega-Lite / Observable Plot), confirm Flowershow renders it, replace the hand-rolled SVGs. This is the "visualisation plan" step of [#10](https://github.com/datasets/datapressr/issues/10) and unblocks `enrich` / `story`.
 - [ ] **Write story #2 the new way** (outline → viz plan → prose), e.g. Planetary Boundaries ([#4](https://github.com/datasets/datapressr/issues/4)), before generalising into the `story` skill. [#10](https://github.com/datasets/datapressr/issues/10)
+- [ ] **Charts: just make them look good** — near-term policy ([#11](https://github.com/datasets/datapressr/issues/11)): hand-rolled SVG / standalone HTML / JS-in-head all fine, iterate on look and feel, don't block on a standard. Picking a standard DataHub/Flowershow support natively is a separate longer investigation, deferred.
 - [ ] **co2-ppm follow-ups** — add the global series + growth rates (easy), and/or wire it to a schedule once `monitor` exists ([#6](https://github.com/datasets/datapressr/issues/6)).
 - [ ] Consider renaming the official Flowershow site off the `datapressr-2` URL (needs delete + recreate + re-do git integration in the dashboard — a human step).
 

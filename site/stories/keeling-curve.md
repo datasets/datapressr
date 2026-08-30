@@ -60,12 +60,13 @@ changed the file), are in the
 
 For the future `story` / charting skills:
 
-- **Charting was the awkward part.** The chart syntax for stories isn't decided
-  yet, so both charts here are produced by a hand-written SVG generator,
-  [`make-charts.mjs`](https://github.com/datasets/datapressr/blob/main/site/stories/make-charts.mjs).
-  Reproducible, renders fine — but not how story #3 should be made. Next step:
-  choose a declarative chart block (Vega-Lite / Observable Plot) and confirm the
-  site renders it. Tracked in
-  [#10](https://github.com/datasets/datapressr/issues/10).
+- **Charting.** Both charts here are produced by a hand-written SVG generator,
+  [`make-charts.mjs`](https://github.com/datasets/datapressr/blob/main/site/stories/make-charts.mjs)
+  — reproducible, renders anywhere, and total control over the look. For now
+  that's the policy: make charts that look good by whatever's easiest (inline
+  SVG, standalone HTML, JS in the page head — Flowershow serves all three), and
+  iterate. Settling a single standard that DataHub / Flowershow support natively
+  is a separate, later investigation
+  ([#11](https://github.com/datasets/datapressr/issues/11)).
 - **What worked:** the clean typed dataset meant each chart was a three-line
   "read CSV, map two columns". The mess was all upstream of the story.
