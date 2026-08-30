@@ -1,0 +1,126 @@
+{
+  "name": "co2-ppm",
+  "title": "CO₂ concentration at Mauna Loa (the Keeling Curve)",
+  "description": "Atmospheric carbon dioxide concentration measured at Mauna Loa Observatory, Hawaii — the longest continuous record of atmospheric CO₂, begun by C. David Keeling in March 1958 and maintained by NOAA and Scripps. Monthly means from 1958 and annual means from 1959, in parts per million (ppm) of dry air.",
+  "homepage": "https://gml.noaa.gov/ccgg/trends/",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "PDDL-1.0",
+      "title": "Open Data Commons Public Domain Dedication and License. NOAA GML data are a US Government work, made freely available to the public; NOAA asks that the data providers be cited. The Mauna Loa record is a joint NOAA / Scripps (C. D. Keeling) effort - see sources and README for citation.",
+      "path": "https://opendatacommons.org/licenses/pddl/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NOAA GML — Trends in Atmospheric Carbon Dioxide, Mauna Loa monthly mean",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv"
+    },
+    {
+      "title": "NOAA GML — Trends in Atmospheric Carbon Dioxide, Mauna Loa annual mean",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.csv"
+    },
+    {
+      "title": "Data landing page and full documentation",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/co2-monthly-mlo.csv",
+      "name": "co2-monthly-mlo",
+      "title": "Monthly mean CO₂ at Mauna Loa",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "date",
+            "description": "First day of the month the mean refers to (YYYY-MM-01). NOAA reports monthly values corrected to the centre of the month using the average seasonal cycle."
+          },
+          {
+            "name": "decimal_date",
+            "type": "number",
+            "description": "Mid-month date as a decimal year, as supplied by NOAA."
+          },
+          {
+            "name": "co2_ppm",
+            "type": "number",
+            "description": "Monthly mean CO₂ mole fraction in parts per million (ppm) of dry air. Missing months are filled by NOAA with an interpolated value (flagged by an empty std_dev / uncertainty)."
+          },
+          {
+            "name": "co2_ppm_deseasonalized",
+            "type": "number",
+            "description": "The monthly mean with the average seasonal cycle removed (NOAA's 'deseasonalized' column; previously labelled 'trend')."
+          },
+          {
+            "name": "num_days",
+            "type": "integer",
+            "description": "Number of daily means used to compute the monthly mean. Empty where NOAA has no information (all data before May 1974, sourced from Scripps, and interpolated months). NOAA's -1 sentinel is normalised to an empty cell."
+          },
+          {
+            "name": "std_dev",
+            "type": "number",
+            "description": "Standard deviation of the daily means within the month (ppm). Empty where unknown; NOAA's -9.99 sentinel is normalised to an empty cell."
+          },
+          {
+            "name": "uncertainty",
+            "type": "number",
+            "description": "Estimated uncertainty of the monthly mean (ppm). Empty where unknown; NOAA's -0.99 sentinel is normalised to an empty cell."
+          }
+        ],
+        "primaryKey": ["date"]
+      }
+    },
+    {
+      "path": "data/co2-annual-mlo.csv",
+      "name": "co2-annual-mlo",
+      "title": "Annual mean CO₂ at Mauna Loa",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "year",
+            "description": "Calendar year."
+          },
+          {
+            "name": "co2_ppm_mean",
+            "type": "number",
+            "description": "Annual mean CO₂ mole fraction in parts per million (ppm) of dry air, from the Mauna Loa record."
+          },
+          {
+            "name": "uncertainty",
+            "type": "number",
+            "description": "Estimated uncertainty in the annual mean (ppm), taken as the standard deviation of annual means determined independently by NOAA/ESRL and Scripps."
+          }
+        ],
+        "primaryKey": ["year"]
+      }
+    }
+  ],
+  "views": [
+    {
+      "name": "keeling-curve-annual",
+      "title": "The Keeling Curve — annual mean CO₂ at Mauna Loa",
+      "specType": "simple",
+      "resources": ["co2-annual-mlo"],
+      "spec": {
+        "type": "line",
+        "group": "year",
+        "series": ["co2_ppm_mean"]
+      }
+    },
+    {
+      "name": "monthly-with-trend",
+      "title": "Monthly CO₂ and its deseasonalized trend",
+      "specType": "simple",
+      "resources": ["co2-monthly-mlo"],
+      "spec": {
+        "type": "line",
+        "group": "date",
+        "series": ["co2_ppm", "co2_ppm_deseasonalized"]
+      }
+    }
+  ]
+}
