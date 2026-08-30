@@ -1,6 +1,6 @@
 ---
 name: archive
-description: Use this skill when a captured source has been decided worth pursuing and needs its raw form saved safely before wrangling starts — moving a dataset from stub to status: archived. Downloads/saves the raw source into archive/ with provenance (source URL, retrieval date, license if known), separate from data/ which holds the cleaned output. Precedes structure — read .claude/skills/structure/SKILL.md next once this is done.
+description: Use this skill when a captured source has been decided worth pursuing and needs its raw form saved safely before wrangling starts — moving a dataset from stub to status: archived. Downloads/saves the raw source into archive/ with provenance (source URL, retrieval date, license if known), separate from data/ which holds the cleaned output. Precedes structure — read skills/structure/SKILL.md next once this is done.
 ---
 
 # Archive: get the raw bytes safely stored, with provenance
@@ -37,7 +37,7 @@ The step between "worth pursuing" and "worth cleaning." Once this is done, the r
 
 5. **Set `"status": "archived"`** in `datapackage.json`.
 
-6. **Hand off to `structure`** (`.claude/skills/structure/SKILL.md`) to turn the raw snapshot into a clean, typed dataset. Don't do both in one undifferentiated pass if the source is at all messy — archiving first means there's always a stable raw copy to re-run the build script against, even if the live source later changes or disappears.
+6. **Hand off to `structure`** (`skills/structure/SKILL.md`) to turn the raw snapshot into a clean, typed dataset. Don't do both in one undifferentiated pass if the source is at all messy — archiving first means there's always a stable raw copy to re-run the build script against, even if the live source later changes or disappears.
 
 ## What this doesn't cover
 

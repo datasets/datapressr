@@ -2,7 +2,7 @@
 
 What's actionable right now, for a clean handoff to a fresh session. Kept short on purpose — detail lives in the linked issues and `docs/skills-vision.md`, not duplicated here. Update this file, don't let it grow into a second backlog.
 
-**Start here:** `AGENTS.md` (data conventions, definition of done), `docs/skills-vision.md` (full decision history — why Node/TS not DuckDB, why GitHub issues not BACKLOG.md, what's tested and what isn't), `.claude/skills/{capture,archive,structure}/SKILL.md` (the skills themselves).
+**Start here:** `AGENTS.md` (data conventions, definition of done), `docs/skills-vision.md` (full decision history — why Node/TS not DuckDB, why GitHub issues not BACKLOG.md, what's tested and what isn't), `skills/{capture,archive,structure}/SKILL.md` (the skills themselves).
 
 ## AI can do now
 

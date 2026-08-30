@@ -4,7 +4,10 @@ Datapressr is a skills repo — instead of a CLI, it provides AI assistant instr
 
 ## Quick start
 
+Install the skills into your agent once, then start a session:
+
 ```sh
+npx skills add datasets/datapressr
 mkdir world-gdp && cd world-gdp && claude
 ```
 
@@ -16,6 +19,9 @@ Then inside the session:
 
 Your AI assistant will scaffold the directory, create `datapackage.json`, and explain next steps.
 
+(Claude Code in this repo also picks the skills up directly via `.claude/skills/`
+symlinks — no `npx skills` step needed when working inside `datapressr` itself.)
+
 ## AGENTS.md
 
 Every dataset directory should contain `AGENTS.md` — a knowledge file that gives your AI assistant immediate context about dataset structure, conventions, and the publish workflow. The `/init` command copies it automatically.
@@ -24,13 +30,17 @@ Every dataset directory should contain `AGENTS.md` — a knowledge file that giv
 
 | Tool | Reads |
 |------|-------|
-| Claude Code | `AGENTS.md` + `.claude/commands/` |
-| Codex CLI | `AGENTS.md` |
-| Gemini CLI | `AGENTS.md` |
+| Claude Code | `AGENTS.md` + `skills/` (via `.claude/skills/` symlinks) |
+| Codex CLI | `AGENTS.md` + `skills/` (via `npx skills add`) |
+| Gemini CLI | `AGENTS.md` + `skills/` (via `npx skills add`) |
 
-## Claude Code slash commands
+## Skills
 
-When using Claude Code in this repo, the following slash commands are available:
+The `skills/` directory holds one `SKILL.md` playbook per step, in the flat layout
+[`npx skills`](https://github.com/vercel-labs/skills) expects — so they install
+into any agent, not just Claude Code. See `skills/README.md`. In Claude Code the
+judgement-heavy playbooks (`capture`, `archive`, `structure`) and the mechanical
+last-mile steps below are all invocable as `/<name>` slash commands:
 
 ### `/init <name>`
 
@@ -55,7 +65,7 @@ world-gdp/
 
 Check `datapackage.json` for common issues before pushing.
 
-Runs `scripts/validate-datapackage.mjs` (copied in by `/init`, zero dependencies, plain Node — no `package.json` needed to run it) and reports its output: errors (must fix) and warnings (worth fixing).
+Runs `scripts/validate-datapackage.mjs` (copied into the dataset by `/init`, zero dependencies, plain Node — no `package.json` needed to run it) and reports its output: errors (must fix) and warnings (worth fixing).
 
 - **Errors**: missing file, invalid JSON, unsafe name, empty resources, a resource path that doesn't exist
 - **Warnings**: missing title/description/status, unlisted files in `data/`, large files, missing `licenses`/`sources` past `stub`, resources with no typed `schema` or no `primaryKey`

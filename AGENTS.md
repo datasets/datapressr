@@ -168,15 +168,25 @@ dh delete <name>
 
 ---
 
-## Claude Code skills
+## Skills
 
-If using Claude Code, the following slash commands are available in this repo:
+Playbooks live in `skills/<name>/SKILL.md` (repo root) — the flat layout
+[`npx skills`](https://github.com/vercel-labs/skills) expects, so they install
+into any agent. `npx skills add datasets/datapressr` to install; see
+`skills/README.md`.
 
-| Command | What it does |
-|---------|-------------|
-| `/init <name>` | Scaffold a new dataset directory |
-| `/push` | Push current directory to DataHub |
-| `/validate` | Check datapackage.json for common issues |
+| Skill | What it does |
+|-------|-------------|
+| `capture` | File a URL / idea as a GitHub issue — near-zero friction |
+| `archive` | Snapshot the raw source into `archive/` with provenance |
+| `structure` | Raw → tidy typed CSV(s) + `datapackage.json` (the core wrangling step) |
+| `init` | Scaffold a new dataset directory |
+| `validate` | Check `datapackage.json` for common issues |
+| `push` | Push the current dataset directory to DataHub |
+
+In Claude Code each is also a `/<name>` slash command (`.claude/skills/`
+symlinks point back at `skills/`, so there's one copy and no install step when
+working inside this repo).
 
 ## Changelog
 
