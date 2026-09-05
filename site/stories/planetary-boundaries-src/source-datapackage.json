@@ -1,0 +1,184 @@
+{
+  "name": "planetary-boundaries",
+  "title": "Planetary Boundaries",
+  "description": "The nine planetary boundaries define the environmental limits within which humanity can safely operate. Based on Steffen et al. 2015 (Science) and subsequent updates. The dataset includes boundary definitions with safe-operating-space thresholds and temporal evolution data for each indicator from pre-industrial times to 2025. As of 2023, nine out of twelve tracked indicators have exceeded their boundary values.",
+  "homepage": "https://www.science.org/doi/10.1126/science.1259855",
+  "version": "1.0.0",
+  "status": "active",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
+    }
+  ],
+  "sources": [
+    {
+      "name": "Steffen et al. 2015",
+      "path": "https://www.science.org/doi/10.1126/science.1259855",
+      "title": "Planetary Boundaries: Guiding human development on a changing planet, Science 2015"
+    },
+    {
+      "name": "Richardson et al. 2023",
+      "path": "https://www.science.org/doi/10.1126/sciadv.adh2458",
+      "title": "Earth beyond six of nine planetary boundaries, Science Advances 2023"
+    },
+    {
+      "name": "BastienGauthier/planetary-flag",
+      "path": "https://github.com/BastienGauthier/planetary-flag",
+      "title": "Planetary Flag — temporal evolution data compiled by Bastien Gauthier"
+    }
+  ],
+  "contributors": [
+    {
+      "title": "Bastien Gauthier",
+      "role": "wrangler",
+      "path": "https://github.com/BastienGauthier"
+    }
+  ],
+  "resources": [
+    {
+      "name": "boundaries",
+      "path": "data/boundaries.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Definitions and current status of the nine planetary boundaries (12 sub-indicators). Each row describes one indicator: its safe operating space threshold, zone of uncertainty, and whether the boundary is currently exceeded based on the most recent available data.",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "number",
+            "description": "Indicator ID as used in the Steffen 2015 paper (e.g. 1.0 = climate change, 5.1 = phosphorus cycle)"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "description": "Short English name of the planetary boundary indicator"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Measurement unit for this indicator's value"
+          },
+          {
+            "name": "boundary_value",
+            "type": "number",
+            "description": "The quantitative boundary value (safe operating space limit) as defined in Steffen et al. 2015"
+          },
+          {
+            "name": "boundary_zone_lower",
+            "type": "number",
+            "description": "Lower bound of the zone of uncertainty (below this = clearly safe)"
+          },
+          {
+            "name": "boundary_zone_upper",
+            "type": "number",
+            "description": "Upper bound of the zone of uncertainty (above this = high-risk zone)"
+          },
+          {
+            "name": "boundary_direction",
+            "type": "string",
+            "description": "Whether higher values indicate greater pressure (positive) or lower values indicate greater pressure (negative)"
+          },
+          {
+            "name": "current_value",
+            "type": "number",
+            "description": "Most recent observed value for this indicator"
+          },
+          {
+            "name": "current_year",
+            "type": "integer",
+            "description": "Year of the most recent observation"
+          },
+          {
+            "name": "boundary_exceeded",
+            "type": "boolean",
+            "description": "Whether the current value has exceeded the boundary threshold"
+          }
+        ]
+      }
+    },
+    {
+      "name": "boundary-evolution",
+      "path": "data/boundary-evolution.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "description": "Temporal evolution of each planetary boundary indicator from pre-industrial times to ~2025. Data density varies by indicator: climate change (CO2) has monthly data since 1958, while others have sparse historical anchor points. Values are as observed/reported; no interpolation applied.",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "number",
+            "description": "Year of observation. For climate change (CO2) this is a decimal date (e.g. 1958.2027 = February 1958). For all other indicators this is an integer year."
+          },
+          {
+            "name": "boundary_id",
+            "type": "number",
+            "description": "Indicator ID matching the boundaries table (e.g. 1.0, 5.1)"
+          },
+          {
+            "name": "boundary_name",
+            "type": "string",
+            "description": "Full descriptive name of the boundary indicator including units context"
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Observed value of the indicator in the units specified in the boundaries table"
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "Measurement unit for the value"
+          }
+        ]
+      }
+    }
+  ],
+  "views": [
+    {
+      "name": "boundary-status",
+      "title": "Planetary Boundary Status (ratio to safe limit; excludes Novel Entities where safe limit = 0)",
+      "resources": ["boundaries"],
+      "specType": "vega-lite",
+      "spec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "transform": [
+          {"filter": "datum.boundary_value !== 0"},
+          {"calculate": "datum.current_value / datum.boundary_value", "as": "ratio"},
+          {"calculate": "datum.boundary_exceeded === 'true' ? 'Exceeded' : 'Within safe zone'", "as": "status"}
+        ],
+        "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+        "encoding": {
+          "x": {
+            "field": "name",
+            "type": "nominal",
+            "title": "Planetary Boundary",
+            "sort": "-y",
+            "axis": {"labelAngle": -45}
+          },
+          "y": {
+            "field": "ratio",
+            "type": "quantitative",
+            "title": "Current value as ratio of safe limit (1.0 = boundary)",
+            "axis": {"grid": false}
+          },
+          "color": {
+            "field": "status",
+            "type": "nominal",
+            "scale": {"domain": ["Exceeded", "Within safe zone"], "range": ["#e74c3c", "#2ecc71"]},
+            "title": "Status"
+          },
+          "tooltip": [
+            {"field": "name", "type": "nominal", "title": "Boundary"},
+            {"field": "ratio", "type": "quantitative", "format": ".2f", "title": "Ratio to safe limit"},
+            {"field": "current_value", "type": "quantitative", "title": "Current Value"},
+            {"field": "boundary_value", "type": "quantitative", "title": "Safe Limit"},
+            {"field": "unit", "type": "nominal", "title": "Unit"},
+            {"field": "current_year", "type": "quantitative", "title": "Data Year"}
+          ]
+        }
+      }
+    }
+  ]
+}

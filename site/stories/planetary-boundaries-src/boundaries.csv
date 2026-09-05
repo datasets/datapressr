@@ -1,0 +1,13 @@
+id,name,unit,boundary_value,boundary_zone_lower,boundary_zone_upper,boundary_direction,current_value,current_year,boundary_exceeded
+1.0,Climate change,ppm,350.0,300.0,400.0,positive,428.24,2025,true
+2.0,Ocean acidification,Omega,2.75,2.25,3.25,negative,2.84,2025,false
+3.0,Ozone depletion,DU,276.0,250.0,300.0,negative,285.7,2025,false
+4.0,Atmospheric aerosols,-,0.1,0.03,0.17,positive,0.063,2025,false
+5.1,Phosphate global,Tg / an,6.2,0.0,22.0,positive,18.2,2025,true
+5.2,Nitrogen global,Tg / an,62.0,0.0,124.0,positive,165.0,2025,true
+6.1,Blue water,%,12.9,8.0,12.4,positive,22.6,2025,true
+6.2,Green water,%,12.4,8.0,14.2,positive,22.0,2025,true
+7.0,Land use,%,75.0,50.0,100.0,negative,59.0,2025,true
+8.1,Genetic diversity,E/MSY,10.0,0.0,20.0,positive,150.0,2025,true
+8.2,Functional diversity,%HANPP,10.0,0.0,20.0,positive,30.0,2025,true
+9.0,Novel entities,%,0.0,-10.0,10.0,positive,50.0,2025,true
