@@ -18,7 +18,7 @@ What's actionable right now, for a clean handoff to a fresh session. Kept short 
 
 - [ ] **Story #2 the new way** — outline → viz plan → prose, each committed. Planetary Boundaries ([#4](https://github.com/datasets/datapressr/issues/4)) is the candidate. Then generalise into the `story` skill. [#10](https://github.com/datasets/datapressr/issues/10)
 - [ ] **Polish the story charts** — near-term charting track: typography, axes, inline annotations for the 350/400 ppm crossings, dark-mode colours, maybe an interactive HTML variant. [#12](https://github.com/datasets/datapressr/issues/12)
-- [ ] **co2-ppm follow-ups** — add the global series + growth rates (easy). Scheduling waits on `monitor` ([#6](https://github.com/datasets/datapressr/issues/6)).
+- [x] **co2-ppm follow-ups** — global annual mean + NOAA growth rates (MLO & global) + derived decadal means added 2026-09-05. Still open: global *monthly* series; scheduling waits on `monitor` ([#6](https://github.com/datasets/datapressr/issues/6)).
 
 ## Needs human input first
 

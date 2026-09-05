@@ -1,7 +1,7 @@
 {
   "name": "co2-ppm",
   "title": "CO₂ concentration at Mauna Loa (the Keeling Curve)",
-  "description": "Atmospheric carbon dioxide concentration measured at Mauna Loa Observatory, Hawaii — the longest continuous record of atmospheric CO₂, begun by C. David Keeling in March 1958 and maintained by NOAA and Scripps. Monthly means from 1958 and annual means from 1959, in parts per million (ppm) of dry air.",
+  "description": "Atmospheric carbon dioxide concentration from NOAA GML — the Mauna Loa record (the longest continuous direct measurement of atmospheric CO₂, begun by C. David Keeling in March 1958 and maintained by NOAA and Scripps): monthly means from 1958 and annual means from 1959, in parts per million (ppm) of dry air. Also the NOAA global marine-boundary-layer annual mean (from 1979), and NOAA's published annual growth rates (ppm/yr, Jan 1 to Dec 31) for both Mauna Loa and the global network, with a derived decadal-mean-growth table.",
   "homepage": "https://gml.noaa.gov/ccgg/trends/",
   "status": "structured",
   "licenses": [
@@ -19,6 +19,18 @@
     {
       "title": "NOAA GML — Trends in Atmospheric Carbon Dioxide, Mauna Loa annual mean",
       "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.csv"
+    },
+    {
+      "title": "NOAA GML — Mauna Loa annual mean growth rate",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_mlo.csv"
+    },
+    {
+      "title": "NOAA GML — global annual mean",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_gl.csv"
+    },
+    {
+      "title": "NOAA GML — global annual mean growth rate",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_gr_gl.csv"
     },
     {
       "title": "Data landing page and full documentation",
@@ -97,6 +109,99 @@
         ],
         "primaryKey": ["year"]
       }
+    },
+    {
+      "path": "data/co2-annual-global.csv",
+      "name": "co2-annual-global",
+      "title": "Global annual mean CO₂",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "year",
+            "description": "Calendar year."
+          },
+          {
+            "name": "co2_ppm_mean",
+            "type": "number",
+            "description": "Globally averaged marine-boundary-layer annual mean CO₂ mole fraction (ppm of dry air), from the NOAA GML cooperative air sampling network. Available from 1979."
+          },
+          {
+            "name": "uncertainty",
+            "type": "number",
+            "description": "Estimated uncertainty in the global annual mean (ppm), from a Monte Carlo resampling of the network (see NOAA documentation)."
+          }
+        ],
+        "primaryKey": ["year"]
+      }
+    },
+    {
+      "path": "data/co2-growth-annual.csv",
+      "name": "co2-growth-annual",
+      "title": "Annual CO₂ growth rate (Mauna Loa and global)",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "year",
+            "description": "Calendar year."
+          },
+          {
+            "name": "mlo_ppm_per_year",
+            "type": "number",
+            "description": "CO₂ mole-fraction increase over the year (1 Jan to 31 Dec), ppm, from the Mauna Loa record. NOAA's published value, computed from monthly data — not a difference of annual means. Available from 1959."
+          },
+          {
+            "name": "mlo_uncertainty",
+            "type": "number",
+            "description": "Estimated uncertainty in the Mauna Loa growth rate (ppm/yr)."
+          },
+          {
+            "name": "global_ppm_per_year",
+            "type": "number",
+            "description": "CO₂ mole-fraction increase over the year (1 Jan to 31 Dec), ppm, from the global network. NOAA's published value. Pre-1980 values are approximated from Mauna Loa and the South Pole (see NOAA documentation)."
+          },
+          {
+            "name": "global_uncertainty",
+            "type": "number",
+            "description": "Estimated uncertainty in the global growth rate (ppm/yr)."
+          }
+        ],
+        "primaryKey": ["year"]
+      }
+    },
+    {
+      "path": "data/co2-growth-decadal.csv",
+      "name": "co2-growth-decadal",
+      "title": "Mean annual CO₂ growth rate by decade (derived)",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "decade",
+            "type": "string",
+            "description": "Decade label, e.g. '1960s' (years 1960–1969)."
+          },
+          {
+            "name": "mlo_mean_ppm_per_year",
+            "type": "number",
+            "description": "Mean of the Mauna Loa annual growth rates in the decade (ppm/yr), derived from co2-growth-annual."
+          },
+          {
+            "name": "global_mean_ppm_per_year",
+            "type": "number",
+            "description": "Mean of the global annual growth rates in the decade (ppm/yr), derived from co2-growth-annual."
+          },
+          {
+            "name": "n_years",
+            "type": "integer",
+            "description": "Number of years averaged. Less than 10 for the first and current (partial) decades."
+          }
+        ],
+        "primaryKey": ["decade"]
+      }
     }
   ],
   "views": [
@@ -120,6 +225,17 @@
         "type": "line",
         "group": "date",
         "series": ["co2_ppm", "co2_ppm_deseasonalized"]
+      }
+    },
+    {
+      "name": "growth-by-decade",
+      "title": "CO₂ is rising faster each decade (mean growth rate, ppm/yr)",
+      "specType": "simple",
+      "resources": ["co2-growth-decadal"],
+      "spec": {
+        "type": "bar",
+        "group": "decade",
+        "series": ["mlo_mean_ppm_per_year", "global_mean_ppm_per_year"]
       }
     }
   ]

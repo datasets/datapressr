@@ -1,18 +1,22 @@
 # CO₂ concentration at Mauna Loa (the Keeling Curve)
 
-The longest continuous record of atmospheric carbon dioxide: monthly means from
-March 1958 and annual means from 1959, measured at Mauna Loa Observatory, Hawaii,
-in parts per million (ppm) of dry air.
+The longest continuous record of atmospheric carbon dioxide — the Mauna Loa
+series begun by C. David Keeling in March 1958 — plus the NOAA global mean and
+NOAA's published growth rates, in parts per million (ppm) of dry air.
 
-- `data/co2-monthly-mlo.csv` — one row per month (821 rows, 1958-03 → 2026-07)
-- `data/co2-annual-mlo.csv` — one row per year (67 rows, 1959 → 2025)
-- `build.ts` — reproduces both from the archived NOAA source. Run: `node build.ts`.
+- `data/co2-monthly-mlo.csv` — Mauna Loa monthly mean (821 rows, 1958-03 → 2026-07)
+- `data/co2-annual-mlo.csv` — Mauna Loa annual mean (67 rows, 1959 → 2025)
+- `data/co2-annual-global.csv` — global marine-boundary-layer annual mean (47 rows, 1979 → 2025)
+- `data/co2-growth-annual.csv` — annual growth rate (ppm/yr, 1 Jan → 31 Dec), Mauna Loa and global, as published by NOAA (67 rows, 1959 → 2025)
+- `data/co2-growth-decadal.csv` — mean annual growth per decade, derived from the annual growth series (8 rows)
+- `build.ts` — reproduces all five from the archived NOAA source. Run: `node build.ts`.
 
 ## Source & licence
 
 NOAA Global Monitoring Laboratory, *Trends in Atmospheric Carbon Dioxide*
-(<https://gml.noaa.gov/ccgg/trends/data.html>), files `co2_mm_mlo.csv` and
-`co2_annmean_mlo.csv`, retrieved 2026-08-30 (snapshots in `archive/`).
+(<https://gml.noaa.gov/ccgg/trends/data.html>). Files `co2_mm_mlo.csv` and
+`co2_annmean_mlo.csv` retrieved 2026-08-30; `co2_gr_mlo.csv`, `co2_annmean_gl.csv`
+and `co2_gr_gl.csv` retrieved 2026-09-05 (snapshots in `archive/`).
 
 NOAA GML data are a US Government work, made freely available to the public. The
 Mauna Loa record is a joint **NOAA / Scripps** effort begun by **C. David Keeling**.
@@ -48,10 +52,12 @@ against the existing human-made version. What that turned up:
   emitting shifted columns. The column names here (`co2_ppm`,
   `co2_ppm_deseasonalized`, `num_days`, `std_dev`, `uncertainty`) track NOAA's
   current meanings, not a 2015-era layout.
-- **Scope is narrower on purpose.** The community dataset carries six resources
-  (Mauna Loa + global, monthly + annual + growth-rate). This one is just the
-  Mauna Loa monthly and annual series — the Keeling Curve itself. The global
-  series and growth rates are easy follow-ups if wanted.
+- **Scope now overlaps closely.** As of 2026-09-05 this dataset also carries the
+  global annual mean and NOAA's annual growth rates (Mauna Loa and global), plus
+  a derived decadal-mean-growth table. It still omits the global *monthly* series
+  (`co2_mm_gl.csv`), which is an easy further follow-up. Where the community
+  dataset differences annual means to get a growth rate, this one carries NOAA's
+  own published growth figures (computed from monthly data, Jan 1 → Dec 31).
 - **Where they're better:** it's genuinely *monitored* (auto-updating) and has
   polished `views`. This one is a point-in-time snapshot with a reproducible
   build; wiring it to a schedule is the `monitor` skill's job
