@@ -1,0 +1,9 @@
+{
+  "name": "oil-prices-build",
+  "private": true,
+  "type": "module",
+  "description": "Build script deps for the oil-prices dataset (not published).",
+  "dependencies": {
+    "xlsx": "0.18.5"
+  }
+}

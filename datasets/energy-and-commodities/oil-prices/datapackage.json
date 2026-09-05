@@ -1,0 +1,143 @@
+{
+  "name": "oil-prices",
+  "title": "Crude oil spot prices — Brent and WTI",
+  "description": "Europe Brent and Cushing/OK WTI (West Texas Intermediate) crude oil spot prices in US dollars per barrel (FOB), from the U.S. Energy Information Administration, at daily, weekly, monthly and annual frequency. Brent daily from 20 May 1987; WTI daily from 2 January 1986.",
+  "homepage": "https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "PDDL-1.0",
+      "title": "Open Data Commons Public Domain Dedication and License. The prices are a U.S. Government work (EIA) and are in the public domain; EIA asks for acknowledgement with a publication date. This tidy compilation is dedicated to the public domain. See README.",
+      "path": "https://opendatacommons.org/licenses/pddl/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "EIA — Europe Brent Spot Price FOB, daily",
+      "path": "https://www.eia.gov/dnav/pet/hist_xls/RBRTEd.xls"
+    },
+    {
+      "title": "EIA — Cushing OK WTI Spot Price FOB, daily",
+      "path": "https://www.eia.gov/dnav/pet/hist_xls/RWTCd.xls"
+    },
+    {
+      "title": "EIA — Petroleum & Other Liquids, Spot Prices (landing page; weekly/monthly/annual workbooks linked from here)",
+      "path": "https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/brent-daily.csv",
+      "name": "brent-daily",
+      "title": "Brent crude spot price, daily",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "Date", "type": "date", "description": "Observation date (YYYY-MM-DD)." },
+          { "name": "Price", "type": "number", "description": "Europe Brent spot price FOB, US dollars per barrel." }
+        ],
+        "primaryKey": ["Date"]
+      }
+    },
+    {
+      "path": "data/brent-weekly.csv",
+      "name": "brent-weekly",
+      "title": "Brent crude spot price, weekly",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "Date", "type": "date", "description": "Friday ending the week (YYYY-MM-DD)." },
+          { "name": "Price", "type": "number", "description": "Europe Brent spot price FOB, US dollars per barrel, weekly average." }
+        ],
+        "primaryKey": ["Date"]
+      }
+    },
+    {
+      "path": "data/brent-monthly.csv",
+      "name": "brent-monthly",
+      "title": "Brent crude spot price, monthly",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "Date", "type": "date", "description": "15th of the month (YYYY-MM-DD); represents that month's average." },
+          { "name": "Price", "type": "number", "description": "Europe Brent spot price FOB, US dollars per barrel, monthly average." }
+        ],
+        "primaryKey": ["Date"]
+      }
+    },
+    {
+      "path": "data/brent-year.csv",
+      "name": "brent-year",
+      "title": "Brent crude spot price, annual",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "Date", "type": "date", "description": "30 June of the year (YYYY-MM-DD); represents that year's average." },
+          { "name": "Price", "type": "number", "description": "Europe Brent spot price FOB, US dollars per barrel, annual average." }
+        ],
+        "primaryKey": ["Date"]
+      }
+    },
+    {
+      "path": "data/wti-daily.csv",
+      "name": "wti-daily",
+      "title": "WTI crude spot price, daily",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "Date", "type": "date", "description": "Observation date (YYYY-MM-DD)." },
+          { "name": "Price", "type": "number", "description": "Cushing/OK WTI spot price FOB, US dollars per barrel." }
+        ],
+        "primaryKey": ["Date"]
+      }
+    },
+    {
+      "path": "data/wti-weekly.csv",
+      "name": "wti-weekly",
+      "title": "WTI crude spot price, weekly",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "Date", "type": "date", "description": "Friday ending the week (YYYY-MM-DD)." },
+          { "name": "Price", "type": "number", "description": "Cushing/OK WTI spot price FOB, US dollars per barrel, weekly average." }
+        ],
+        "primaryKey": ["Date"]
+      }
+    },
+    {
+      "path": "data/wti-monthly.csv",
+      "name": "wti-monthly",
+      "title": "WTI crude spot price, monthly",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "Date", "type": "date", "description": "15th of the month (YYYY-MM-DD); represents that month's average." },
+          { "name": "Price", "type": "number", "description": "Cushing/OK WTI spot price FOB, US dollars per barrel, monthly average." }
+        ],
+        "primaryKey": ["Date"]
+      }
+    },
+    {
+      "path": "data/wti-year.csv",
+      "name": "wti-year",
+      "title": "WTI crude spot price, annual",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "Date", "type": "date", "description": "30 June of the year (YYYY-MM-DD); represents that year's average." },
+          { "name": "Price", "type": "number", "description": "Cushing/OK WTI spot price FOB, US dollars per barrel, annual average." }
+        ],
+        "primaryKey": ["Date"]
+      }
+    }
+  ],
+  "views": [
+    {
+      "name": "brent-vs-wti-daily",
+      "title": "Brent vs WTI spot price, daily (USD/barrel)",
+      "specType": "simple",
+      "resources": ["brent-daily"],
+      "spec": { "type": "line", "group": "Date", "series": ["Price"] }
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 .runtime/
 .claude/commands/
 .logs/
+node_modules/
 
 # Flowershow CLI per-folder marker (preview publishing only; official site is git-autosync)
 site/.flowershow
