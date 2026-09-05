@@ -22,7 +22,6 @@ What's actionable right now, for a clean handoff to a fresh session. Kept short 
 
 ## Needs human input first
 
-- [ ] **Relocate Project Drawdown to its catalog repo and push** — structured, validated, on `main` at `datasets/climate-and-environment/project-drawdown/`. Licensing decided (facts → PDDL-1.0 + attribution; see the dataset README). Move it into the real `datasets/climate-and-environment` repo and `dh push` when ready. [#3](https://github.com/datasets/datapressr/issues/3)
 - [ ] **Another look at the Keeling Curve story** — first-draft feedback was given and acted on (data-first not wrangling-first; built from an outline). A "sounds like me" voice pass is yours to run; worth a re-read before story #2.
 - [ ] **Triage the inbox** — half a dozen small finds with no clear next step. [#2](https://github.com/datasets/datapressr/issues/2)
 - [ ] **Rename the official site** off the `datapressr-2` URL if wanted — needs delete + recreate + re-do the git integration in the Flowershow dashboard.
@@ -42,14 +41,14 @@ Everything is on `main`. GitHub renders Markdown and shows CSVs as sortable tabl
 - **Data story #1:** <https://datapressr-2-rufuspollock.flowershow.me/stories/keeling-curve> (and its [outline](https://datapressr-2-rufuspollock.flowershow.me/stories/keeling-curve-outline)).
 - **Everything since the session started, one diff:** <https://github.com/datasets/datapressr/compare/7eca8eb...main>
 - **co2-ppm dataset:** [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/co2-ppm) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/README.md) (comparison vs the community version)
-- **Project Drawdown dataset:** [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/project-drawdown) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/project-drawdown/README.md)
+- **Project Drawdown dataset:** moved to its own repo → <https://github.com/datasets/project-drawdown> (DataHub publish still pending — no `dh` CLI here)
 - **Portable skills:** [`skills/`](https://github.com/datasets/datapressr/tree/main/skills)
 
 ## Already done (context, not action items)
 
 **2026-08-30:**
 - Skills made portable — `.claude/skills/*` → `skills/*`, commands converted to `SKILL.md`, symlinks kept, `npx skills` layout, `npm test` green. ([#5](https://github.com/datasets/datapressr/issues/5))
-- Project Drawdown structured — reproducible `build.ts`, tidy typed CSVs, `/validate` clean, licensing settled. Needs relocating to its catalog repo. ([#3](https://github.com/datasets/datapressr/issues/3))
+- Project Drawdown structured — reproducible `build.ts`, tidy typed CSVs, `/validate` clean, licensing settled. **Moved to its own repo <https://github.com/datasets/project-drawdown> (2026-09-05).** ([#3](https://github.com/datasets/datapressr/issues/3))
 - **Site shipped** — official <https://datapressr-2-rufuspollock.flowershow.me> (git-autosync from `site/`), preview <https://datapressr-preview-rufuspollock.flowershow.me> (`fl site --name datapressr-preview --yes`). (`site/.flowershow` was being committed — removed + gitignored.)
 - **co2-ppm wrangled from NOAA source** — first real end-to-end `structure` run on a messy primary source; README diffs it against the community `datasets/co2-ppm`. ([#8](https://github.com/datasets/datapressr/issues/8))
 - **Data story #1: The Keeling Curve** — first hand-written story; restructured after feedback to lead with the data; built from a committed outline. ([#9](https://github.com/datasets/datapressr/issues/9))

@@ -15,13 +15,13 @@ as sortable tables, so no local checkout or DataHub account is needed.
 
 | Thing | Look at | Why it needs eyes |
 |-------|---------|-------------------|
-| Project Drawdown dataset | [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/project-drawdown) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/project-drawdown/README.md) · [solutions.csv](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/project-drawdown/data/solutions.csv) | Is the tidy shape right? Is the **licensing call** (facts → PDDL-1.0 + attribution) one you're comfortable with? |
+| Project Drawdown dataset | [repo](https://github.com/datasets/project-drawdown) · [README](https://github.com/datasets/project-drawdown/blob/main/README.md) · [solutions.csv](https://github.com/datasets/project-drawdown/blob/main/data/solutions.csv) | Is the tidy shape right? Is the **licensing call** (facts → PDDL-1.0 + attribution) one you're comfortable with? |
 | Portable skills | [`skills/`](https://github.com/datasets/datapressr/tree/main/skills) · [`skills/README.md`](https://github.com/datasets/datapressr/blob/main/skills/README.md) | Do the six skills read consistently? Is the `npx skills` layout what you expected? |
 | This site | [`site/`](https://github.com/datasets/datapressr/tree/main/site) | Is the landing page's framing of the product right? |
 
 ## Open questions parked for you
 
-- **Project Drawdown** still needs relocating into the real `datasets/climate-and-environment` repo before it goes live (it's staged inside `datapressr` for review).
+- **Project Drawdown** now lives in its own repo at <https://github.com/datasets/project-drawdown> (moved out of `datapressr` on 2026-09-05); DataHub publish still pending.
 - **Charting approach** is undecided on purpose — it gets picked from the friction of writing the first data story ([#9](https://github.com/datasets/datapressr/issues/9)), not before.
 
 ## Tracking

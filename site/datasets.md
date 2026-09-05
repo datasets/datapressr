@@ -10,7 +10,7 @@ Datasets produced with the DataPressr skills. Status follows the lifecycle:
 
 | Dataset | Status | Source | Licence | Links |
 |---------|--------|--------|---------|-------|
-| **Project Drawdown — Table of Solutions (2020)** | structured | Project Drawdown, 2020 review (via community mirror) | PDDL-1.0 (facts) + attribution | [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/project-drawdown) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/project-drawdown/README.md) |
+| **Project Drawdown — Table of Solutions (2020)** | structured · own repo | Project Drawdown, 2020 review (via community mirror) | PDDL-1.0 (facts) + attribution | [repo](https://github.com/datasets/project-drawdown) · [README](https://github.com/datasets/project-drawdown/blob/main/README.md) |
 | **CO₂ concentration — Mauna Loa (Keeling Curve)** | structured | NOAA GML | PDDL-1.0 (US-gov public domain) + citation | [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/co2-ppm) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/README.md) · [story](stories/keeling-curve.md) |
 
 ## Project Drawdown — notes
@@ -27,8 +27,9 @@ Caveats worth knowing before reuse:
 - **Vintage.** This is the 2020 review. Project Drawdown redesigned its
   Table of Solutions in 2025 and no longer publishes the two-scenario table in
   this form; the data here comes from a dated community mirror.
-- **Not yet relocated.** It currently sits inside the `datapressr` repo for review;
-  it belongs in the `datasets/climate-and-environment` catalog repo.
+- **Own repo.** Moved out of `datapressr` on 2026-09-05 to
+  <https://github.com/datasets/project-drawdown> (a single dataset, so its own
+  repo rather than a catalog). DataHub publish is still pending.
 
 ## Data stories
 
