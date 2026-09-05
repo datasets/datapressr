@@ -1,7 +1,17 @@
 .runtime/
 .claude/commands/
 .logs/
-.beads/
 
 # Flowershow CLI per-folder marker (preview publishing only; official site is git-autosync)
 site/.flowershow
+
+# Dolt and machine-local Beads files (keep .beads/config.yaml, metadata.json, and hooks committed)
+.dolt/
+*.db
+.beads-credential-key
+.beads/embeddeddolt/
+.beads/proxieddb/
+.beads/dolt-push.log
+.beads/*.sock
+.beads/locks/
+.beads/sync-state.json

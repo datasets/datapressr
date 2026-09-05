@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "datapressr",
+  "project_id": "a93f8b82-400a-4279-987b-3168c993b36d"
+}
