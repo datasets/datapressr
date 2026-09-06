@@ -2,6 +2,8 @@
 
 You are helping wrangle raw data finds into clean, publishable datasets on DataHub.
 
+Do NOT linewrap markdown files.
+
 ## Concepts
 
 ### Data hierarchy
