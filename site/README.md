@@ -7,10 +7,7 @@ description: An opinionated, skill-driven workflow for turning raw data finds in
 
 **Turn a raw data find into a clean, published dataset — the same way every time, whoever (or whichever model) does the work.**
 
-DataPressr is a set of opinionated *skills* (prescriptive playbooks) that carry a
-dataset through its whole lifecycle. `/init`, `/validate` and `/push` already
-covered the last mile — packaging and shipping. The newer skills cover everything
-upstream: the judgement-heavy part that used to be done ad hoc in a chat window.
+DataPressr is a set of opinionated *skills* (prescriptive playbooks) that carry a dataset through its whole lifecycle. `/init`, `/validate` and `/push` already covered the last mile — packaging and shipping. The newer skills cover everything upstream: the judgement-heavy part that used to be done ad hoc in a chat window.
 
 ## The workflow
 
@@ -23,32 +20,21 @@ upstream: the judgement-heavy part that used to be done ad hoc in a chat window.
 | enriched | `enrich` *(planned)* | Descriptive stats + first charts |
 | story | `story` *(planned)* | A narrative write-up from one or more datasets |
 
-The skills live in [`skills/`](https://github.com/datasets/datapressr/tree/main/skills)
-and install into any agent — `npx skills add datasets/datapressr` — not just Claude Code.
+The skills live in [`skills/`](https://github.com/datasets/datapressr/tree/main/skills) and install into any agent — `npx skills add datasets/datapressr` — not just Claude Code.
 
 ## Honest status
 
 - **Solid:** the `validate` script — a real test suite (`npm test`), 24 assertions.
-- **One trial so far:** the `structure` playbook has been run end-to-end exactly
-  once ([Project Drawdown](datasets.md)), and on an easy case. Its cleanup-idiom
-  *module* is unit-tested; the workflow itself needs a genuinely messy source to
-  prove out — [in progress](https://github.com/datasets/datapressr/issues/8).
-- **Written, not yet exercised in anger:** `capture`, `archive`.
-- **No data story exists yet.** [#9](https://github.com/datasets/datapressr/issues/9) is the first.
-- **Not designed:** `enrich`, `story`, `monitor` — deliberately waiting on 1–2
-  hand-written stories first.
+- **`structure` — proven and benchmarked.** Run end-to-end on three real sources: co2-ppm (NOAA text file), Project Drawdown (Markdown table), and oil-prices (eight legacy `.xls` workbooks) — the last diffed against the published community `datasets/oil-prices` and found content-identical. Scored in [`docs/structure-benchmark.md`](https://github.com/datasets/datapressr/blob/main/docs/structure-benchmark.md); five prioritised skill edits filed, not yet applied.
+- **`capture` / `archive` — in use.** `archive` has snapshotted sources with provenance; `capture` files finds as GitHub issues.
+- **Two hand-written data stories:** [The Keeling Curve](stories/keeling-curve.md) ([#9](https://github.com/datasets/datapressr/issues/9)) and [Planetary Boundaries](stories/planetary-boundaries.md) ([#4](https://github.com/datasets/datapressr/issues/4), draft) — each built from a committed outline.
+- **Not designed yet:** `enrich`, `story`, `monitor`. `story`'s intended shape is [#10](https://github.com/datasets/datapressr/issues/10); it gets drafted from the two stories plus [`docs/story-craft.md`](https://github.com/datasets/datapressr/blob/main/docs/story-craft.md).
 
 Full decision history: [`docs/skills-vision.md`](https://github.com/datasets/datapressr/blob/main/docs/skills-vision.md).
 
 ## Roadmap to v1
 
-1. Prove `structure` on one genuinely messy source, from raw → typed dataset, with a committed `build.ts`. ([#8](https://github.com/datasets/datapressr/issues/8))
-2. Write 1–2 data stories by hand — plain Markdown + whatever charts are fastest. ([#9](https://github.com/datasets/datapressr/issues/9))
-3. Decide a charting standard, driven by the friction from step 2.
-4. Write the `enrich` + `story` skills from what steps 2–3 taught.
-5. Ship this site: landing → datasets → stories → docs. ([#7](https://github.com/datasets/datapressr/issues/7))
-
-*Post-v1:* `monitor` + unattended cloud execution ([#6](https://github.com/datasets/datapressr/issues/6)); skill evals for the prompt-only skills.
+Tracked in [epic #14](https://github.com/datasets/datapressr/issues/14). In short: prove the skills by using them for real, then write the missing ones from what that teaches. `structure` is proven and benchmarked, the site is shipped, and two hand-written stories are done (#2 in draft). **v1 is the `enrich` + `story` skills plus a settled near-term charting approach.** Post-v1: `monitor` + unattended cloud execution ([#6](https://github.com/datasets/datapressr/issues/6)); skill evals for the prompt-only skills.
 
 ## Pages
 
