@@ -37,3 +37,7 @@ Caveats worth knowing before reuse:
   single most important line in climate science, and what the line says. The first
   hand-written story; its friction notes feed the charting decision and the future
   `enrich` / `story` skills.
+- **[Planetary Boundaries](stories/planetary-boundaries.md)** — the nine boundaries
+  as a scoreboard: six of nine crossed, and stratospheric ozone the one walked
+  back inside the line. Story #2; first use of a normalised ranged-bar chart, and
+  the friction that argues for a charting library.

@@ -55,6 +55,7 @@ Full decision history: [`docs/skills-vision.md`](https://github.com/datasets/dat
 - **[What to review now](review.md)** — the short list of things that actually need eyes
 - **[Datasets](datasets.md)** — what's been produced, with status and links
 - **[Data story: The Keeling Curve](stories/keeling-curve.md)** — the first hand-written story
+- **[Data story: Planetary Boundaries](stories/planetary-boundaries.md)** — the second hand-written story
 
 ---
 
