@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charting spike — hand-rolled SVG vs Observable Plot</title>
+<meta name="description" content="Both story #2 charts rendered as hand-rolled SVG and as Observable Plot, side by side — the spike behind DataPressr issue #11.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #eef0f3;
+    --surface: #ffffff;
+    --ink: #1a1d21;
+    --ink-dim: #5b626b;
+    --accent: #2563eb;
+    --rule: #dfe2e7;
+    --safe: #157f3c;
+    --exceeded: #c62f26;
+    --chart-bg: #ffffff;
+    --chart-frame: #e4e6ea;
+    --tag-bg: #f2f4f7;
+    --sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #141619;
+      --surface: #1d2024;
+      --ink: #e7e9ec;
+      --ink-dim: #99a0a8;
+      --accent: #6ea0ff;
+      --rule: #2c3037;
+      --safe: #4caf6f;
+      --exceeded: #f0665d;
+      --tag-bg: #262a30;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #141619;
+    --surface: #1d2024;
+    --ink: #e7e9ec;
+    --ink-dim: #99a0a8;
+    --accent: #6ea0ff;
+    --rule: #2c3037;
+    --safe: #4caf6f;
+    --exceeded: #f0665d;
+    --tag-bg: #262a30;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 4rem 1.5rem 6rem; }
+  .measure { max-width: 680px; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin: 0 0 1rem;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 2rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    margin: 0 0 1rem;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 1.2rem;
+    letter-spacing: -0.005em;
+    margin: 3.5rem 0 0.25rem;
+  }
+  h2 .n {
+    font-family: var(--mono);
+    font-weight: 500;
+    color: var(--accent);
+    font-size: 0.85em;
+    margin-right: 0.6em;
+  }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); }
+  .lead { font-size: 1.06rem; color: var(--ink); }
+  .dim { color: var(--ink-dim); }
+
+  .facts {
+    margin: 2rem 0 0;
+    padding: 1.25rem 1.4rem;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    display: grid;
+    gap: 0.7rem;
+  }
+  .facts div {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+  .facts dt {
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-top: 0.15rem;
+  }
+  .facts dd { margin: 0; }
+
+  .panel {
+    margin-top: 1.5rem;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .panel > header {
+    padding: 0.9rem 1.2rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--ink-dim);
+  }
+  .panel > header b { color: var(--ink); font-weight: 500; }
+
+  .pair { display: grid; gap: 1px; background: var(--rule); }
+  @media (min-width: 880px) { .pair { grid-template-columns: 1fr 1fr; } }
+  .cell { background: var(--surface); padding: 1.1rem 1.1rem 1.3rem; }
+  .cell .tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+  }
+  .cell .tag .loc { color: var(--accent); }
+  .chart-frame {
+    background: var(--chart-bg);
+    border: 1px solid var(--chart-frame);
+    border-radius: 8px;
+    padding: 0.6rem;
+  }
+  .chart-frame svg { width: 100%; height: auto; display: block; }
+
+  .diff {
+    margin: 1.25rem 0 0;
+    padding: 1.1rem 1.3rem;
+    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem;
+  }
+  .diff ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+  .diff li { margin: 0.35rem 0; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; font-size: 0.93rem; }
+  th, td {
+    text-align: left;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+  thead th {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    font-weight: 500;
+  }
+  tbody th { font-weight: 400; color: var(--ink-dim); width: 34%; }
+  td.same { color: var(--safe); }
+
+  .verdict {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  @media (min-width: 720px) { .verdict { grid-template-columns: 1fr 1fr; } }
+  .verdict > div { background: var(--surface); padding: 1.1rem 1.3rem; }
+  .verdict h3 {
+    margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    font-family: var(--mono);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .verdict .chosen h3 { color: var(--safe); }
+  .verdict .other h3 { color: var(--ink-dim); }
+  .verdict p { margin: 0; font-size: 0.95rem; }
+
+  code {
+    font-family: var(--mono);
+    font-size: 0.88em;
+    background: var(--tag-bg);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+  }
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--ink-dim);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">DataPressr · charting spike · issue #11</p>
+  <h1>Hand-rolled SVG, or Observable Plot?</h1>
+  <div class="measure">
+    <p class="lead">Both story&nbsp;#2 charts, rendered the way they were (a hand-written SVG generator) and the way the <a href="https://github.com/datasets/line-charts">line-charts bake-off</a> recommends (Observable Plot). Same data, same palette, same deployment: a committed <code>.svg</code> file embedded as a Markdown image. Plot is rendered to that SVG in Node at build time — no JavaScript runs on the published page.</p>
+    <p class="dim"><strong>Outcome:</strong> Plot wins. It is now the near-term standard for story and <code>enrich</code> charts — see <a href="https://github.com/datasets/datapressr/blob/main/docs/charting.md"><code>docs/charting.md</code></a>. This page is kept as the record of the comparison.</p>
+  </div>
+
+  <dl class="facts">
+    <div><dt>Same</dt><dd>data, computed values, palette, sort order, the <code>16.6×</code> clip, the "beyond" row, the deploy model</dd></div>
+    <div><dt>New cost</dt><dd><code>@observablehq/plot</code> + <code>jsdom</code>, build-only, scoped to <code>site/stories/package.json</code></dd></div>
+    <div><dt>Code</dt><dd>scoreboard generator: ~120 lines hand-rolled → ~45 with Plot</dd></div>
+    <div><dt>Rough edge</dt><dd>Plot's Node render estimates text width (no browser layout) — tick margins can be a few px off a real browser</dd></div>
+  </dl>
+
+  <h2><span class="n">01</span>The scoreboard</h2>
+  <p class="measure dim">Twelve indicators, framework-normalised so the pre-industrial state is 0 and the boundary is 1×. Six of nine boundaries crossed; genetic diversity runs off the axis at 16.6×.</p>
+  <div class="panel">
+    <header><b>planetary-boundaries-scoreboard</b> — horizontal bars, reference rule at 1×, tinted safe zone, rows sorted by overshoot</header>
+    <div class="pair">
+      <div class="cell">
+        <div class="tag"><span>was — hand-rolled</span><span class="loc">~120 loc</span></div>
+        <div class="chart-frame">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784 434" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">
+<rect x="176" y="34" width="133.33333333333337" height="360" fill="#16a34a" fill-opacity="0.08"/>
+<line x1="226" y1="34" x2="226" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="226" y="412" text-anchor="middle" fill="#6b7280">0×</text>
+<line x1="309.33333333333337" y1="34" x2="309.33333333333337" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="309.33333333333337" y="412" text-anchor="middle" fill="#6b7280">1×</text>
+<line x1="392.6666666666667" y1="34" x2="392.6666666666667" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="392.6666666666667" y="412" text-anchor="middle" fill="#6b7280">2×</text>
+<line x1="476.00000000000006" y1="34" x2="476.00000000000006" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="476.00000000000006" y="412" text-anchor="middle" fill="#6b7280">3×</text>
+<line x1="559.3333333333333" y1="34" x2="559.3333333333333" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="559.3333333333333" y="412" text-anchor="middle" fill="#6b7280">4×</text>
+<line x1="642.6666666666667" y1="34" x2="642.6666666666667" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="642.6666666666667" y="412" text-anchor="middle" fill="#6b7280">5×</text>
+<line x1="726" y1="34" x2="726" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="726" y="412" text-anchor="middle" fill="#6b7280">6×</text>
+<text x="164" y="53" text-anchor="end" fill="#111827">Novel entities</text>
+<rect x="309.33333333333337" y="41" width="416.66666666666663" height="16" fill="#dc2626" fill-opacity="0.16"/>
+<text x="317.33333333333337" y="53" fill="#dc2626">beyond — boundary is zero, extent not quantified</text>
+<text x="164" y="83" text-anchor="end" fill="#111827">Biosphere: genetic diversity</text>
+<rect x="226" y="71" width="500" height="16" rx="1.5" fill="#dc2626"/>
+<text x="733" y="83" fill="#dc2626">→ 16.6×</text>
+<text x="164" y="113" text-anchor="end" fill="#111827">Freshwater: green water</text>
+<rect x="226" y="101" width="391.0256410256411" height="16" rx="1.5" fill="#dc2626"/>
+<text x="624.0256410256411" y="113" fill="#dc2626">4.7×</text>
+<text x="164" y="143" text-anchor="end" fill="#111827">Freshwater: blue water</text>
+<rect x="226" y="131" width="314.28571428571433" height="16" rx="1.5" fill="#dc2626"/>
+<text x="547.2857142857143" y="143" fill="#dc2626">3.8×</text>
+<text x="164" y="173" text-anchor="end" fill="#111827">Biosphere: functional diversity</text>
+<rect x="226" y="161" width="295.55808656036425" height="16" rx="1.5" fill="#dc2626"/>
+<text x="528.5580865603642" y="173" fill="#dc2626">3.5×</text>
+<text x="164" y="203" text-anchor="end" fill="#111827">Biogeochemical: phosphorus</text>
+<rect x="226" y="191" width="244.6236559139785" height="16" rx="1.5" fill="#dc2626"/>
+<text x="477.6236559139785" y="203" fill="#dc2626">2.9×</text>
+<text x="164" y="233" text-anchor="end" fill="#111827">Biogeochemical: nitrogen</text>
+<rect x="226" y="221" width="221.77419354838707" height="16" rx="1.5" fill="#dc2626"/>
+<text x="454.7741935483871" y="233" fill="#dc2626">2.7×</text>
+<text x="164" y="263" text-anchor="end" fill="#111827">Climate change</text>
+<rect x="226" y="251" width="176.47619047619048" height="16" rx="1.5" fill="#dc2626"/>
+<text x="409.4761904761905" y="263" fill="#dc2626">2.1×</text>
+<text x="164" y="293" text-anchor="end" fill="#111827">Land-system change</text>
+<rect x="226" y="281" width="136.66666666666663" height="16" rx="1.5" fill="#dc2626"/>
+<text x="369.66666666666663" y="293" fill="#dc2626">1.6×</text>
+<text x="164" y="323" text-anchor="end" fill="#111827">Ocean acidification</text>
+<rect x="226" y="311" width="73.02249779862518" height="16" rx="1.5" fill="#16a34a"/>
+<text x="306.0224977986252" y="323" fill="#16a34a">0.9×</text>
+<text x="164" y="353" text-anchor="end" fill="#111827">Atmospheric aerosols</text>
+<rect x="226" y="341" width="39.28571428571428" height="16" rx="1.5" fill="#16a34a"/>
+<text x="272.2857142857143" y="353" fill="#16a34a">0.5×</text>
+<text x="164" y="383" text-anchor="end" fill="#111827">Stratospheric ozone</text>
+<rect x="215.3410852713182" y="371" width="10.658914728681793" height="16" rx="1.5" fill="#16a34a"/>
+<text x="222.3410852713182" y="383" fill="#16a34a">-0.1×</text>
+<line x1="309.33333333333337" y1="26" x2="309.33333333333337" y2="394" stroke="#111827" stroke-width="1.5"/>
+<text x="309.33333333333337" y="22" text-anchor="middle" fill="#111827">planetary boundary (1×)</text>
+<text x="180" y="412" fill="#16a34a">← safe operating space</text>
+</svg>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="tag"><span>now — Observable Plot</span><span class="loc">~45 loc</span></div>
+        <div class="chart-frame">
+<svg class="plot-scoreboard" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="780" height="434" viewBox="0 0 780 434" style="font-size: 12px; font-family: ui-sans-serif, system-ui, sans-serif;" xmlns="http://www.w3.org/2000/svg"><style>:where(.plot-scoreboard) { --plot-background: white; display: block; height: auto; max-width: 100%; } :where(.plot-scoreboard text), :where(.plot-scoreboard tspan) { white-space: pre; }</style><g aria-label="y-axis tick label" text-anchor="end" transform="translate(-9,9.5)"><text y="0.32em" transform="translate(184,41)">Novel entities</text><text y="0.32em" transform="translate(184,70)">Biosphere: genetic diversity</text><text y="0.32em" transform="translate(184,99)">Freshwater: green water</text><text y="0.32em" transform="translate(184,128)">Freshwater: blue water</text><text y="0.32em" transform="translate(184,157)">Biosphere: functional diversity</text><text y="0.32em" transform="translate(184,186)">Biogeochemical: phosphorus</text><text y="0.32em" transform="translate(184,215)">Biogeochemical: nitrogen</text><text y="0.32em" transform="translate(184,244)">Climate change</text><text y="0.32em" transform="translate(184,273)">Land-system change</text><text y="0.32em" transform="translate(184,302)">Ocean acidification</text><text y="0.32em" transform="translate(184,331)">Atmospheric aerosols</text><text y="0.32em" transform="translate(184,360)">Stratospheric ozone</text></g><g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor"><path transform="translate(233.0909090909091,390)" d="M0,0L0,6"></path><path transform="translate(314.90909090909093,390)" d="M0,0L0,6"></path><path transform="translate(396.72727272727275,390)" d="M0,0L0,6"></path><path transform="translate(478.54545454545456,390)" d="M0,0L0,6"></path><path transform="translate(560.3636363636364,390)" d="M0,0L0,6"></path><path transform="translate(642.1818181818182,390)" d="M0,0L0,6"></path><path transform="translate(724,390)" d="M0,0L0,6"></path></g><g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)"><text y="0.71em" transform="translate(233.0909090909091,390)">0×</text><text y="0.71em" transform="translate(314.90909090909093,390)">1×</text><text y="0.71em" transform="translate(396.72727272727275,390)">2×</text><text y="0.71em" transform="translate(478.54545454545456,390)">3×</text><text y="0.71em" transform="translate(560.3636363636364,390)">4×</text><text y="0.71em" transform="translate(642.1818181818182,390)">5×</text><text y="0.71em" transform="translate(724,390)">6×</text></g><g aria-label="x-axis label" transform="translate(0,41)"><text transform="translate(454,390)">distance from the pre-industrial state, in boundary units  (1× = the boundary)</text></g><g aria-label="rect" fill="#16a34a" fill-opacity="0.08"><rect x="184" y="30" width="130.90909090909093" height="360"></rect></g><g aria-label="text" fill="#16a34a" text-anchor="start" font-size="11" transform="translate(4,20)"><text transform="translate(184,390)">safe operating space</text></g><clipPath id="plot-clip-1"><rect x="184" y="30" width="540" height="360"></rect></clipPath><g aria-label="bar" clip-path="url(#plot-clip-1)"><g><rect x="233.0909090909091" width="1354.545454545455" y="70" height="19" rx="1.5" fill="#dc2626"></rect><rect x="233.0909090909091" width="383.91608391608395" y="99" height="19" rx="1.5" fill="#dc2626"></rect><rect x="233.0909090909091" width="308.57142857142856" y="128" height="19" rx="1.5" fill="#dc2626"></rect><rect x="233.0909090909091" width="290.1843031683576" y="157" height="19" rx="1.5" fill="#dc2626"></rect><rect x="233.0909090909091" width="240.17595307917887" y="186" height="19" rx="1.5" fill="#dc2626"></rect><rect x="233.0909090909091" width="217.74193548387095" y="215" height="19" rx="1.5" fill="#dc2626"></rect><rect x="233.0909090909091" width="173.26753246753256" y="244" height="19" rx="1.5" fill="#dc2626"></rect><rect x="233.0909090909091" width="134.18181818181816" y="273" height="19" rx="1.5" fill="#dc2626"></rect><rect x="233.0909090909091" width="71.69481602046838" y="302" height="19" rx="1.5" fill="#16a34a"></rect><rect x="233.0909090909091" width="38.571428571428584" y="331" height="19" rx="1.5" fill="#16a34a"></rect><rect x="222.6257928118397" width="10.465116279069406" y="360" height="19" rx="1.5" fill="#16a34a"></rect></g></g><g aria-label="text" text-anchor="start" transform="translate(6,9.5)"><text y="0.32em" transform="translate(724,70)" fill="#dc2626">→ 16.6×</text><text y="0.32em" transform="translate(617.0069930069931,99)" fill="#dc2626">4.7×</text><text y="0.32em" transform="translate(541.6623376623377,128)" fill="#dc2626">3.8×</text><text y="0.32em" transform="translate(523.2752122592667,157)" fill="#dc2626">3.5×</text><text y="0.32em" transform="translate(473.26686217008796,186)" fill="#dc2626">2.9×</text><text y="0.32em" transform="translate(450.83284457478004,215)" fill="#dc2626">2.7×</text><text y="0.32em" transform="translate(406.35844155844165,244)" fill="#dc2626">2.1×</text><text y="0.32em" transform="translate(367.27272727272725,273)" fill="#dc2626">1.6×</text><text y="0.32em" transform="translate(304.7857251113775,302)" fill="#16a34a">0.9×</text><text y="0.32em" transform="translate(271.6623376623377,331)" fill="#16a34a">0.5×</text><text y="0.32em" transform="translate(222.6257928118397,360)" fill="#16a34a">-0.1×</text></g><g aria-label="text" fill="#dc2626" text-anchor="start" transform="translate(6,9.5)"><text y="0.32em" transform="translate(314.90909090909093,41)">beyond — boundary is zero, extent not quantified</text></g><g aria-label="rule" stroke="#111827" stroke-width="1.5"><line x1="314.90909090909093" x2="314.90909090909093" y1="30" y2="390"></line></g><g aria-label="text" fill="#111827" transform="translate(0,-14)"><text y="0.71em" transform="translate(314.90909090909093,30)">planetary boundary</text></g></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="diff measure">
+    <strong>What Plot changed</strong>
+    <ul>
+      <li>The x-axis, ticks, gridlines, sorted rows and the tinted safe zone are all declarative — that is where ~75 lines went.</li>
+      <li>Bar thickness, the reference rule, the clipped-bar treatment and the "safe operating space" caption carried over with one setting each.</li>
+      <li>Plot puts its axis label along the bottom centre rather than as a caption; values and colours are identical.</li>
+    </ul>
+  </div>
+
+  <h2><span class="n">02</span>Ozone</h2>
+  <p class="measure dim">Seven benchmark years from the source compilation. The line dips toward the 276&nbsp;DU boundary around 1990, then recovers after the Montreal Protocol.</p>
+  <div class="panel">
+    <header><b>planetary-boundaries-ozone</b> — line + points, boundary rule, shaded exceedance band, event marker</header>
+    <div class="pair">
+      <div class="cell">
+        <div class="tag"><span>was — hand-rolled</span><span class="loc">~50 loc</span></div>
+        <div class="chart-frame">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">
+<rect x="64" y="272" width="640" height="64" fill="#dc2626" fill-opacity="0.06"/>
+<line x1="64" y1="336" x2="704" y2="336" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="340" text-anchor="end" fill="#6b7280">270</text>
+<line x1="64" y1="272" x2="704" y2="272" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="276" text-anchor="end" fill="#6b7280">276</text>
+<line x1="64" y1="208" x2="704" y2="208" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="212" text-anchor="end" fill="#6b7280">282</text>
+<line x1="64" y1="144" x2="704" y2="144" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="148" text-anchor="end" fill="#6b7280">288</text>
+<line x1="64" y1="80" x2="704" y2="80" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="84" text-anchor="end" fill="#6b7280">294</text>
+<line x1="64" y1="16" x2="704" y2="16" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="20" text-anchor="end" fill="#6b7280">300</text>
+<text x="64" y="356" text-anchor="middle" fill="#6b7280">1900</text>
+<text x="211.6923076923077" y="356" text-anchor="middle" fill="#6b7280">1930</text>
+<text x="359.3846153846154" y="356" text-anchor="middle" fill="#6b7280">1960</text>
+<text x="507.0769230769231" y="356" text-anchor="middle" fill="#6b7280">1990</text>
+<text x="654.7692307692308" y="356" text-anchor="middle" fill="#6b7280">2020</text>
+<text x="384" y="374" text-anchor="middle" fill="#6b7280">Year</text>
+<text transform="translate(16 176) rotate(-90)" text-anchor="middle" fill="#6b7280">Stratospheric ozone (Dobson units)</text>
+<line x1="492.30769230769226" y1="16" x2="492.30769230769226" y2="336" stroke="#6b7280" stroke-dasharray="3 3"/>
+<text x="497.30769230769226" y="28" fill="#6b7280">Montreal Protocol</text>
+<line x1="64" y1="272" x2="704" y2="272" stroke="#dc2626" stroke-dasharray="4 4" stroke-opacity="0.85"/>
+<text x="700" y="267" text-anchor="end" fill="#dc2626">boundary — 276 DU</text>
+<path d="M64.0 122.7 L408.6 101.3 L507.1 208.0 L600.6 197.3 L669.5 180.3 L679.4 168.5" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="64.0" cy="122.7" r="3" fill="#2563eb"/>
+<circle cx="408.6" cy="101.3" r="3" fill="#2563eb"/>
+<circle cx="507.1" cy="208.0" r="3" fill="#2563eb"/>
+<circle cx="600.6" cy="197.3" r="3" fill="#2563eb"/>
+<circle cx="669.5" cy="180.3" r="3" fill="#2563eb"/>
+<circle cx="679.4" cy="168.5" r="3" fill="#2563eb"/>
+</svg>
+        </div>
+      </div>
+      <div class="cell">
+        <div class="tag"><span>now — Observable Plot</span><span class="loc">~30 loc</span></div>
+        <div class="chart-frame">
+<svg class="plot-ozone" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="720" height="380" viewBox="0 0 720 380" style="font-size: 12px; font-family: ui-sans-serif, system-ui, sans-serif;" xmlns="http://www.w3.org/2000/svg"><style>:where(.plot-ozone) { --plot-background: white; display: block; height: auto; max-width: 100%; } :where(.plot-ozone text), :where(.plot-ozone tspan) { white-space: pre; }</style><g aria-label="y-grid" aria-hidden="true" stroke="currentColor" stroke-opacity="0.1"><line x1="52" x2="700" y1="340" y2="340"></line><line x1="52" x2="700" y1="277.6" y2="277.6"></line><line x1="52" x2="700" y1="215.2" y2="215.2"></line><line x1="52" x2="700" y1="152.8" y2="152.8"></line><line x1="52" x2="700" y1="90.39999999999999" y2="90.39999999999999"></line><line x1="52" x2="700" y1="28" y2="28"></line></g><g aria-label="y-axis tick" aria-hidden="true" fill="none" stroke="currentColor"><path transform="translate(52,340)" d="M0,0L-6,0"></path><path transform="translate(52,277.6)" d="M0,0L-6,0"></path><path transform="translate(52,215.2)" d="M0,0L-6,0"></path><path transform="translate(52,152.8)" d="M0,0L-6,0"></path><path transform="translate(52,90.39999999999999)" d="M0,0L-6,0"></path><path transform="translate(52,28)" d="M0,0L-6,0"></path></g><g aria-label="y-axis tick label" text-anchor="end" font-variant="tabular-nums" transform="translate(-9,0)"><text y="0.32em" transform="translate(52,340)">270</text><text y="0.32em" transform="translate(52,277.6)">276</text><text y="0.32em" transform="translate(52,215.2)">282</text><text y="0.32em" transform="translate(52,152.8)">288</text><text y="0.32em" transform="translate(52,90.39999999999999)">294</text><text y="0.32em" transform="translate(52,28)">300</text></g><g aria-label="y-axis label" text-anchor="start" transform="translate(-49,-25)"><text y="0.71em" transform="translate(52,28)">Stratospheric ozone (Dobson units)</text></g><g aria-label="x-axis tick" aria-hidden="true" fill="none" stroke="currentColor"><path transform="translate(52,340)" d="M0,0L0,6"></path><path transform="translate(201.53846153846155,340)" d="M0,0L0,6"></path><path transform="translate(351.0769230769231,340)" d="M0,0L0,6"></path><path transform="translate(500.6153846153846,340)" d="M0,0L0,6"></path><path transform="translate(650.1538461538462,340)" d="M0,0L0,6"></path></g><g aria-label="x-axis tick label" font-variant="tabular-nums" transform="translate(0,9)"><text y="0.71em" transform="translate(52,340)">1900</text><text y="0.71em" transform="translate(201.53846153846155,340)">1930</text><text y="0.71em" transform="translate(351.0769230769231,340)">1960</text><text y="0.71em" transform="translate(500.6153846153846,340)">1990</text><text y="0.71em" transform="translate(650.1538461538462,340)">2020</text></g><g aria-label="x-axis label" text-anchor="end" transform="translate(17,37)"><text transform="translate(700,340)">Year</text></g><g aria-label="rect" fill="#dc2626" fill-opacity="0.06"><rect x="52" y="277.6" width="648" height="62.39999999999998"></rect></g><g aria-label="rule" stroke="#dc2626" stroke-dasharray="4 4"><line x1="52" x2="700" y1="277.6" y2="277.6"></line></g><g aria-label="text" fill="#dc2626" text-anchor="end" transform="translate(-4,-6)"><text y="0.32em" transform="translate(700,277.6)">boundary — 276 DU</text></g><g aria-label="rule" stroke="#6b7280" stroke-dasharray="3 3"><line x1="485.66153846153844" x2="485.66153846153844" y1="28" y2="340"></line></g><g aria-label="text" fill="#6b7280" text-anchor="start" transform="translate(5,4)"><text y="0.71em" transform="translate(485.66153846153844,28)">Montreal Protocol</text></g><g aria-label="line" fill="none" stroke="#2563eb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M52,132L400.923,111.2L500.615,215.2L595.323,204.8L665.108,188.16L675.077,176.72"></path></g><g aria-label="dot" fill="#2563eb"><circle cx="52" cy="132" r="3"></circle><circle cx="400.9230769230769" cy="111.20000000000002" r="3"></circle><circle cx="500.6153846153846" cy="215.2" r="3"></circle><circle cx="595.3230769230769" cy="204.79999999999998" r="3"></circle><circle cx="665.1076923076922" cy="188.15999999999974" r="3"></circle><circle cx="675.0769230769231" cy="176.7200000000001" r="3"></circle></g></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="diff measure">
+    <strong>What Plot changed</strong>
+    <ul>
+      <li>The y-ticks are named (270, 276, 282 …) so the 276&nbsp;DU boundary lands on a gridline, same as before.</li>
+      <li>Axis titles sit at the top-left and bottom-right — Plot's placement — rather than a rotated y-title. The direction arrows Plot adds by default are switched off.</li>
+      <li>Gridlines, the line join and the point markers come for free and match.</li>
+    </ul>
+  </div>
+
+  <h2><span class="n">03</span>The trade</h2>
+  <table>
+    <thead><tr><th>&nbsp;</th><th>Hand-rolled SVG</th><th>Observable Plot</th></tr></thead>
+    <tbody>
+      <tr><th>Scoreboard generator</th><td>~120 lines</td><td>~45 lines</td></tr>
+      <tr><th>Axis / ticks / grid / sort</th><td>written by hand each time</td><td>declarative, free</td></tr>
+      <tr><th>Pixel-level control</th><td>total</td><td>Plot's defaults, then override</td></tr>
+      <tr><th>Axis-label placement</th><td>fully yours</td><td>Plot's, unless overridden</td></tr>
+      <tr><th>New dependency</th><td>none</td><td><code>@observablehq/plot</code> + <code>jsdom</code>, build-only</td></tr>
+      <tr><th>Published page</th><td class="same">static SVG, no JS</td><td class="same">static SVG, no JS</td></tr>
+      <tr><th>Chart types ahead (ranged bars, small multiples, dot plots for <code>enrich</code>)</th><td>each one hand-built</td><td>one mark call</td></tr>
+    </tbody>
+  </table>
+
+  <div class="verdict">
+    <div class="chosen">
+      <h3>Chosen — Observable Plot</h3>
+      <p>Near-term standard for story and <code>enrich</code> charts, rendered to static SVG at build time. <code>planetary-boundaries-make-charts.mjs</code> is the reference. Closes the near-term half of <a href="https://github.com/datasets/datapressr/issues/11">#11</a>.</p>
+    </div>
+    <div class="other">
+      <h3>Still hand-rolled</h3>
+      <p>A genuinely bespoke one-off visual, where fighting Plot's grammar costs more than writing the SVG. And the Keeling Curve charts, until they're next touched (<a href="https://github.com/datasets/datapressr/issues/12">#12</a>).</p>
+    </div>
+  </div>
+
+  <footer>
+    DataPressr · spike for <a href="https://github.com/datasets/datapressr/issues/11">issue&nbsp;#11</a> · charts from the archived <code>planetary-boundaries</code> snapshot, framework normalisation after Steffen et&nbsp;al. (2015) and Richardson et&nbsp;al. (2023). See <a href="https://github.com/datasets/datapressr/blob/main/docs/charting.md"><code>docs/charting.md</code></a>.
+  </footer>
+</div>
+</body>
+</html>
