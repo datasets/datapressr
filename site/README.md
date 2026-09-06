@@ -17,8 +17,8 @@ DataPressr is a set of opinionated *skills* (prescriptive playbooks) that carry 
 | archived | `archive` | The raw source is snapshotted with provenance (URL, date, licence) |
 | structured | `structure` | Raw → tidy, typed CSV(s) + a real `datapackage.json` schema |
 | — | `init` / `validate` / `push` | Scaffold, deterministic checks, publish to DataHub |
-| enriched | `enrich` *(planned)* | Descriptive stats + first charts |
-| story | `story` *(planned)* | A narrative write-up from one or more datasets |
+| enriched | `enrich` *(draft)* | Descriptive stats + first charts |
+| story | `story` *(draft)* | A narrative write-up from one or more datasets |
 
 The skills live in [`skills/`](https://github.com/datasets/datapressr/tree/main/skills) and install into any agent — `npx skills add datasets/datapressr` — not just Claude Code.
 
@@ -28,8 +28,8 @@ The skills live in [`skills/`](https://github.com/datasets/datapressr/tree/main/
 - **`structure` — proven and benchmarked.** Run end-to-end on three real sources: co2-ppm (NOAA text file), Project Drawdown (Markdown table), and oil-prices (eight legacy `.xls` workbooks) — the last diffed against the published community `datasets/oil-prices` and found content-identical. Scored in [`docs/structure-benchmark.md`](https://github.com/datasets/datapressr/blob/main/docs/structure-benchmark.md); five prioritised skill edits filed, not yet applied.
 - **`capture` / `archive` — in use.** `archive` has snapshotted sources with provenance; `capture` files finds as GitHub issues.
 - **Two hand-written data stories:** [The Keeling Curve](stories/keeling-curve.md) ([#9](https://github.com/datasets/datapressr/issues/9)) and [Planetary Boundaries](stories/planetary-boundaries.md) ([#4](https://github.com/datasets/datapressr/issues/4), draft) — each built from a committed outline.
-- **`story` — first draft written** ([`skills/story/SKILL.md`](https://github.com/datasets/datapressr/blob/main/skills/story/SKILL.md)), from the two hand-made stories plus the craft docs ([`story-craft.md`](https://github.com/datasets/datapressr/blob/main/docs/story-craft.md), [`voice-guide.md`](https://github.com/datasets/datapressr/blob/main/docs/voice-guide.md), [`charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md)). Not activated yet — it needs a real run.
-- **Not designed yet:** `enrich`, `monitor`.
+- **`story` and `enrich` — first drafts written** ([`skills/story/SKILL.md`](https://github.com/datasets/datapressr/blob/main/skills/story/SKILL.md) from the two hand-made stories; [`skills/enrich/SKILL.md`](https://github.com/datasets/datapressr/blob/main/skills/enrich/SKILL.md) from one hand rep on co2-ppm), plus the craft docs ([`story-craft.md`](https://github.com/datasets/datapressr/blob/main/docs/story-craft.md), [`voice-guide.md`](https://github.com/datasets/datapressr/blob/main/docs/voice-guide.md), [`charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md)). Neither activated yet — each needs a real run.
+- **Not designed yet:** `monitor`.
 
 Full decision history: [`docs/skills-vision.md`](https://github.com/datasets/datapressr/blob/main/docs/skills-vision.md).
 
