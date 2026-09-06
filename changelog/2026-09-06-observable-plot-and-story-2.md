@@ -1,11 +1,13 @@
 ---
 date: 2026-09-06
-title: Charting settled on Observable Plot; story #2 drafted; NEXT.md trimmed
+title: Observable Plot for charts; story #2 drafted; structure benchmark applied; story skill drafted
 promote: false
 ---
 
-A session that closed three loose ends: the charting-tool question, the story #2
-draft, and a `NEXT.md` that had grown into a second backlog.
+A session that pushed most of the way to v1: settled the charting tool, finished
+the story #2 draft, applied the `structure` benchmark's findings, and wrote a
+first draft of the `story` skill. Also trimmed a `NEXT.md` that had grown into a
+second backlog.
 
 **Charting: Observable Plot.** The near-term half of
 [#11](https://github.com/datasets/datapressr/issues/11) is decided. The
@@ -40,6 +42,35 @@ pre-industrial)`, boundary = 1×. Six of nine boundaries crossed; the counter-no
 is stratospheric ozone, dipping toward the boundary through the twentieth century
 and recovering after the Montreal Protocol. Left: the author's "sounds like me"
 voice pass. [#4](https://github.com/datasets/datapressr/issues/4).
+
+**`structure` benchmark findings applied.** All eight edits from
+[`docs/structure-benchmark.md`](https://github.com/datasets/datapressr/blob/main/docs/structure-benchmark.md)
+(benchmark v1, 2026-09-05) landed. In
+[`scripts/wrangling-idioms.mjs`](https://github.com/datasets/datapressr/blob/main/scripts/wrangling-idioms.mjs)
+(tests 24 → 28): `excelSerialToIsoDate()` — an offset-free Excel-serial → ISO
+date converter, because reading a spreadsheet date through a JS `Date` shifts it
+a day in positive-UTC zones and silently turned `1987-05-20` into `1987-05-19` in
+the oil-prices build; `num(raw, sentinels)` — a strict numeric parser with a
+per-column "no data" sentinel list; and `toCsv()` upgraded to real RFC 4180
+quoting. In `skills/structure/SKILL.md`: `exceljs` vs SheetJS `xlsx` for legacy
+`.xls`, the timezone-naive-date rule, naming conventions vs a published dataset,
+LF line endings with no Frictionless `dialect` block, and a "build needs a
+dependency ⇒ its own `package.json`" section. `AGENTS.md` picked up the
+`exceljs`/SheetJS split and the dependency rule.
+
+**`story` skill — first draft.**
+[`skills/story/SKILL.md`](https://github.com/datasets/datapressr/blob/main/skills/story/SKILL.md),
+from the two hand-made stories plus the craft docs
+([`story-craft.md`](https://github.com/datasets/datapressr/blob/main/docs/story-craft.md),
+[`voice-guide.md`](https://github.com/datasets/datapressr/blob/main/docs/voice-guide.md),
+[`charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md)).
+It is the *workflow* — three committed, independently reviewable artefacts
+(outline + chart plan → charts → prose), the outline template lifted from the two
+stories, a definition of done, and the "sounds like me" voice pass kept as a
+separate human stage — and it references the craft docs rather than restating
+them. Deliberately not symlinked into `.claude/skills/`: it is there for review,
+not activation, until it has been run on a real story
+([#10](https://github.com/datasets/datapressr/issues/10)).
 
 **`NEXT.md` trimmed; roadmap moved to an epic.** The "Roadmap to v1" arc and a
 growing "Already done" log had turned `NEXT.md` into a second backlog plus a
