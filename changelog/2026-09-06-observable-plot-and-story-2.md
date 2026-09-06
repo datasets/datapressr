@@ -1,13 +1,13 @@
 ---
 date: 2026-09-06
-title: Observable Plot for charts; story #2 drafted; structure benchmark applied; story skill drafted
+title: Observable Plot for charts; story #2 drafted; structure benchmark applied; story + enrich skills drafted
 promote: false
 ---
 
-A session that pushed most of the way to v1: settled the charting tool, finished
-the story #2 draft, applied the `structure` benchmark's findings, and wrote a
-first draft of the `story` skill. Also trimmed a `NEXT.md` that had grown into a
-second backlog.
+A session that got the drafting work for v1 done: settled the charting tool,
+finished the story #2 draft, applied the `structure` benchmark's findings, ran a
+first `enrich` rep, and wrote first drafts of both the `story` and `enrich`
+skills. Also trimmed a `NEXT.md` that had grown into a second backlog.
 
 **Charting: Observable Plot.** The near-term half of
 [#11](https://github.com/datasets/datapressr/issues/11) is decided. The
@@ -71,6 +71,22 @@ separate human stage — and it references the craft docs rather than restating
 them. Deliberately not symlinked into `.claude/skills/`: it is there for review,
 not activation, until it has been run on a real story
 ([#10](https://github.com/datasets/datapressr/issues/10)).
+
+**`enrich` skill — first draft, after one hand rep.** The rep:
+[`enrich.ts`](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/enrich.ts)
++ [`SUMMARY.md`](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/SUMMARY.md)
+for `co2-ppm` — a reproducible zero-dependency stats script (per-resource `n` /
+`missing` / `min` / `max` / `mean` / `median` / std dev, skipping time-encoding
+identifier columns) that rewrites only a fenced block in `SUMMARY.md`, plus a
+hand-written "What stands out" (the Mauna Loa uncertainty columns are constant
+and carry no information; the growth rate is never negative; the rise is
+accelerating; two decadal rows are partial) and "See also". `status` bumped
+`structured` → `enriched`. The skill
+([`skills/enrich/SKILL.md`](https://github.com/datasets/datapressr/blob/main/skills/enrich/SKILL.md))
+generalises that: `enrich.ts` + fenced `SUMMARY.md` + one to three declarative
+`views` for first charts (not Observable Plot SVGs — those stay a story's job) +
+the status bump. Also DRAFT, also unsymlinked, pending a second rep (oil-prices,
+to settle how parallel same-schema resources are summarised).
 
 **`NEXT.md` trimmed; roadmap moved to an epic.** The "Roadmap to v1" arc and a
 growing "Already done" log had turned `NEXT.md` into a second backlog plus a
