@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">
+<rect x="64" y="272" width="640" height="64" fill="#dc2626" fill-opacity="0.06"/>
+<line x1="64" y1="336" x2="704" y2="336" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="340" text-anchor="end" fill="#6b7280">270</text>
+<line x1="64" y1="272" x2="704" y2="272" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="276" text-anchor="end" fill="#6b7280">276</text>
+<line x1="64" y1="208" x2="704" y2="208" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="212" text-anchor="end" fill="#6b7280">282</text>
+<line x1="64" y1="144" x2="704" y2="144" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="148" text-anchor="end" fill="#6b7280">288</text>
+<line x1="64" y1="80" x2="704" y2="80" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="84" text-anchor="end" fill="#6b7280">294</text>
+<line x1="64" y1="16" x2="704" y2="16" stroke="#9ca3af" stroke-opacity="0.25"/>
+<text x="56" y="20" text-anchor="end" fill="#6b7280">300</text>
+<text x="64" y="356" text-anchor="middle" fill="#6b7280">1900</text>
+<text x="211.6923076923077" y="356" text-anchor="middle" fill="#6b7280">1930</text>
+<text x="359.3846153846154" y="356" text-anchor="middle" fill="#6b7280">1960</text>
+<text x="507.0769230769231" y="356" text-anchor="middle" fill="#6b7280">1990</text>
+<text x="654.7692307692308" y="356" text-anchor="middle" fill="#6b7280">2020</text>
+<text x="384" y="374" text-anchor="middle" fill="#6b7280">Year</text>
+<text transform="translate(16 176) rotate(-90)" text-anchor="middle" fill="#6b7280">Stratospheric ozone (Dobson units)</text>
+<line x1="492.30769230769226" y1="16" x2="492.30769230769226" y2="336" stroke="#6b7280" stroke-dasharray="3 3"/>
+<text x="497.30769230769226" y="28" fill="#6b7280">Montreal Protocol</text>
+<line x1="64" y1="272" x2="704" y2="272" stroke="#dc2626" stroke-dasharray="4 4" stroke-opacity="0.85"/>
+<text x="700" y="267" text-anchor="end" fill="#dc2626">boundary — 276 DU</text>
+<path d="M64.0 122.7 L408.6 101.3 L507.1 208.0 L600.6 197.3 L669.5 180.3 L679.4 168.5" fill="none" stroke="#2563eb" stroke-width="2"/>
+<circle cx="64.0" cy="122.7" r="3" fill="#2563eb"/>
+<circle cx="408.6" cy="101.3" r="3" fill="#2563eb"/>
+<circle cx="507.1" cy="208.0" r="3" fill="#2563eb"/>
+<circle cx="600.6" cy="197.3" r="3" fill="#2563eb"/>
+<circle cx="669.5" cy="180.3" r="3" fill="#2563eb"/>
+<circle cx="679.4" cy="168.5" r="3" fill="#2563eb"/>
+</svg>

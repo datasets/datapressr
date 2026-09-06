@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 784 434" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">
+<rect x="176" y="34" width="133.33333333333337" height="360" fill="#16a34a" fill-opacity="0.08"/>
+<line x1="226" y1="34" x2="226" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="226" y="412" text-anchor="middle" fill="#6b7280">0×</text>
+<line x1="309.33333333333337" y1="34" x2="309.33333333333337" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="309.33333333333337" y="412" text-anchor="middle" fill="#6b7280">1×</text>
+<line x1="392.6666666666667" y1="34" x2="392.6666666666667" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="392.6666666666667" y="412" text-anchor="middle" fill="#6b7280">2×</text>
+<line x1="476.00000000000006" y1="34" x2="476.00000000000006" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="476.00000000000006" y="412" text-anchor="middle" fill="#6b7280">3×</text>
+<line x1="559.3333333333333" y1="34" x2="559.3333333333333" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="559.3333333333333" y="412" text-anchor="middle" fill="#6b7280">4×</text>
+<line x1="642.6666666666667" y1="34" x2="642.6666666666667" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="642.6666666666667" y="412" text-anchor="middle" fill="#6b7280">5×</text>
+<line x1="726" y1="34" x2="726" y2="394" stroke="#9ca3af" stroke-opacity="0.18"/>
+<text x="726" y="412" text-anchor="middle" fill="#6b7280">6×</text>
+<text x="164" y="53" text-anchor="end" fill="#111827">Novel entities</text>
+<rect x="309.33333333333337" y="41" width="416.66666666666663" height="16" fill="#dc2626" fill-opacity="0.16"/>
+<text x="317.33333333333337" y="53" fill="#dc2626">beyond — boundary is zero, extent not quantified</text>
+<text x="164" y="83" text-anchor="end" fill="#111827">Biosphere: genetic diversity</text>
+<rect x="226" y="71" width="500" height="16" rx="1.5" fill="#dc2626"/>
+<text x="733" y="83" fill="#dc2626">→ 16.6×</text>
+<text x="164" y="113" text-anchor="end" fill="#111827">Freshwater: green water</text>
+<rect x="226" y="101" width="391.0256410256411" height="16" rx="1.5" fill="#dc2626"/>
+<text x="624.0256410256411" y="113" fill="#dc2626">4.7×</text>
+<text x="164" y="143" text-anchor="end" fill="#111827">Freshwater: blue water</text>
+<rect x="226" y="131" width="314.28571428571433" height="16" rx="1.5" fill="#dc2626"/>
+<text x="547.2857142857143" y="143" fill="#dc2626">3.8×</text>
+<text x="164" y="173" text-anchor="end" fill="#111827">Biosphere: functional diversity</text>
+<rect x="226" y="161" width="295.55808656036425" height="16" rx="1.5" fill="#dc2626"/>
+<text x="528.5580865603642" y="173" fill="#dc2626">3.5×</text>
+<text x="164" y="203" text-anchor="end" fill="#111827">Biogeochemical: phosphorus</text>
+<rect x="226" y="191" width="244.6236559139785" height="16" rx="1.5" fill="#dc2626"/>
+<text x="477.6236559139785" y="203" fill="#dc2626">2.9×</text>
+<text x="164" y="233" text-anchor="end" fill="#111827">Biogeochemical: nitrogen</text>
+<rect x="226" y="221" width="221.77419354838707" height="16" rx="1.5" fill="#dc2626"/>
+<text x="454.7741935483871" y="233" fill="#dc2626">2.7×</text>
+<text x="164" y="263" text-anchor="end" fill="#111827">Climate change</text>
+<rect x="226" y="251" width="176.47619047619048" height="16" rx="1.5" fill="#dc2626"/>
+<text x="409.4761904761905" y="263" fill="#dc2626">2.1×</text>
+<text x="164" y="293" text-anchor="end" fill="#111827">Land-system change</text>
+<rect x="226" y="281" width="136.66666666666663" height="16" rx="1.5" fill="#dc2626"/>
+<text x="369.66666666666663" y="293" fill="#dc2626">1.6×</text>
+<text x="164" y="323" text-anchor="end" fill="#111827">Ocean acidification</text>
+<rect x="226" y="311" width="73.02249779862518" height="16" rx="1.5" fill="#16a34a"/>
+<text x="306.0224977986252" y="323" fill="#16a34a">0.9×</text>
+<text x="164" y="353" text-anchor="end" fill="#111827">Atmospheric aerosols</text>
+<rect x="226" y="341" width="39.28571428571428" height="16" rx="1.5" fill="#16a34a"/>
+<text x="272.2857142857143" y="353" fill="#16a34a">0.5×</text>
+<text x="164" y="383" text-anchor="end" fill="#111827">Stratospheric ozone</text>
+<rect x="215.3410852713182" y="371" width="10.658914728681793" height="16" rx="1.5" fill="#16a34a"/>
+<text x="222.3410852713182" y="383" fill="#16a34a">-0.1×</text>
+<line x1="309.33333333333337" y1="26" x2="309.33333333333337" y2="394" stroke="#111827" stroke-width="1.5"/>
+<text x="309.33333333333337" y="22" text-anchor="middle" fill="#111827">planetary boundary (1×)</text>
+<text x="180" y="412" fill="#16a34a">← safe operating space</text>
+</svg>
