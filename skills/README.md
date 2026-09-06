@@ -13,9 +13,11 @@ install into any agent, not just Claude Code.
 | `init` | — | Scaffold a new dataset directory |
 | `validate` | — | Run the deterministic `datapackage.json` checks before pushing |
 | `push` | → published | `dh push` the dataset to DataHub |
+| `story` | → story | **DRAFT** — one or more published datasets → a short data story (outline → charts → prose). Not symlinked into `.claude/skills/` yet; review only. |
 
-`enrich`, `story`, and `monitor` are planned but not built — see
-`docs/skills-vision.md`.
+`enrich` and `monitor` are planned but not built; `story` is a first draft
+(`skills/story/SKILL.md`) awaiting a real run — see `docs/skills-vision.md` and
+the craft docs (`docs/story-craft.md`, `docs/voice-guide.md`, `docs/charting.md`).
 
 ## Install
 
