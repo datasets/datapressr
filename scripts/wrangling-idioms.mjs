@@ -1,5 +1,5 @@
 // Reference implementations for the cleanup idioms described in
-// .claude/skills/structure/SKILL.md. Zero dependencies — copy whichever of
+// skills/structure/SKILL.md. Zero dependencies — copy whichever of
 // these a given dataset's build.ts actually needs; datasets are independent
 // repos (catalog-as-repo) so this file isn't meant to be a runtime import
 // across repos, it's a tested source to copy from.
@@ -20,6 +20,25 @@ export function cleanNumber(raw) {
   return Number.isFinite(n) ? n : undefined;
 }
 
+/**
+ * Strict numeric parser that treats a per-column list of sentinel *values* as
+ * missing — for clean scientific/government text where "no measurement" is
+ * encoded as an out-of-range number (`-1`, `-9.99`, `-99.99`) rather than a
+ * blank, and where a genuinely non-numeric cell means the parse is wrong.
+ * Unlike `cleanNumber` it does not strip currency/percent and it throws on
+ * garbage rather than swallowing it.
+ * @param {unknown} raw @param {number[]} [sentinels]
+ * @returns {number | undefined}
+ */
+export function num(raw, sentinels = []) {
+  if (raw === null || raw === undefined) return undefined;
+  const s = String(raw).trim();
+  if (s === "") return undefined;
+  const n = Number(s);
+  if (!Number.isFinite(n)) throw new Error(`non-numeric value: ${JSON.stringify(raw)}`);
+  return sentinels.includes(n) ? undefined : n;
+}
+
 /** @param {unknown} raw @returns {string | undefined} */
 export function toIsoDate(raw) {
   if (raw instanceof Date) return raw.toISOString().slice(0, 10);
@@ -28,6 +47,33 @@ export function toIsoDate(raw) {
     if (!Number.isNaN(d.getTime())) return d.toISOString().slice(0, 10);
   }
   return undefined;
+}
+
+/**
+ * Excel serial date -> ISO `yyyy-mm-dd`, with no timezone shift.
+ *
+ * Spreadsheet dates are timezone-naive. Reading them as JS `Date` objects
+ * (e.g. SheetJS `cellDates:true`, or `new Date(serial * 86400000)`) shifts
+ * every date by the runner's UTC offset — this silently turned `1987-05-20`
+ * into `1987-05-19` in the oil-prices build. Do the arithmetic through the
+ * UTC epoch instead: Excel's day 0 is 1899-12-30, which is 25569 days before
+ * the Unix epoch. Valid for any real-world date (>= 1900-03-01); it does not
+ * reproduce Excel's fictional 1900-02-29. If the build already depends on
+ * `xlsx`, `XLSX.SSF.parse_date_code(serial)` does the same job.
+ *
+ * Always spot-check the first converted date against the source's documented
+ * start before trusting the column.
+ * @param {unknown} serial @returns {string | undefined}
+ */
+export function excelSerialToIsoDate(serial) {
+  if (typeof serial !== "number" || !Number.isFinite(serial)) return undefined;
+  // Serials past 60 are inflated by one because Excel counts a 1900-02-29 that
+  // never existed; drop it, then measure from the Unix epoch (Excel serial
+  // 25569, once corrected, is 1970-01-01).
+  const corrected = serial > 60 ? serial - 1 : serial;
+  const d = new Date(Math.round((corrected - 25568) * 86400000));
+  if (Number.isNaN(d.getTime())) return undefined;
+  return d.toISOString().slice(0, 10);
 }
 
 /**
@@ -86,12 +132,19 @@ export function cellValue(v) {
 }
 
 /**
+ * Deterministic RFC 4180 CSV writer. Quotes any field containing a comma,
+ * double-quote, CR or LF, doubling embedded quotes; empty for null/undefined.
+ * Writes LF line endings and a trailing newline — `structure`'s house format.
  * @param {Record<string, unknown>[]} rows
  * @param {string[]} columns
  * @returns {string}
  */
 export function toCsv(rows, columns) {
-  const esc = (v) => (v === undefined || v === null ? "" : String(v));
+  const esc = (v) => {
+    if (v === undefined || v === null) return "";
+    const s = String(v);
+    return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+  };
   const lines = [columns.join(",")];
   for (const row of rows) lines.push(columns.map((c) => esc(row[c])).join(","));
   return lines.join("\n") + "\n";

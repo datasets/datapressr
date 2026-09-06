@@ -44,10 +44,13 @@ If the source is a live URL you'll re-fetch (not a one-off file), `build.ts` can
 - One row per observation. If the source is wide (one column per year, or per category), you're almost always reshaping to long format.
 - Pick the primary key up front — usually an entity + a time period (`country_code, year`; `variable_id, period`). Name it in your head before you write the schema.
 - Decide the one missing-value representation now (empty cell) and the one date format now (ISO 8601) so you're not retrofitting it after the fact.
+- **Column and resource names: use our conventions by default** — `snake_case`, units where ambiguous, uniform resource names (`brent-daily`, `brent-weekly`, `brent-monthly` — not the source's `brent-week`/`brent-month`). Deviate *only* when you are deliberately re-wrangling a specific published dataset for a ground-truth comparison and matching its field names makes the diff meaningful — and when you do, record the deviation and why in the dataset README. It should be a conscious, written choice, never drift.
 
 ### 3. Write `build.ts`
 
 Plain Node, run directly (`node build.ts`, no build step — verified working: Node's built-in TS support handles type annotations, interfaces, and generics with zero flags on Node 22+). Default to built-ins; reach for one targeted package only when the source format needs it.
+
+**When the build needs a dependency** (a parser like `xlsx` or `csv-parse`): the dataset gets its own `package.json` (`"private": true`, pin exact versions, a one-line `description` noting it's build-only and not published) and its own `package-lock.json`, both committed. The README's run line becomes `npm install && node build.ts`. `.datahubignore` must exclude `node_modules/` and `package.json`/`package-lock.json` so they don't get published. Worked example: `datasets/energy-and-commodities/oil-prices/`.
 
 **Fetching and snapshotting a live source** — built-in `fetch`, no dependency:
 
@@ -76,16 +79,21 @@ function parseSimpleCsv(text: string): string[][] {
 
 The moment fields can contain commas or quotes, hand-rolling breaks silently — don't try to out-clever RFC 4180 by hand. Reach for a small, focused package (`csv-parse`) rather than a hand-rolled regex.
 
-**Parsing xlsx** — `exceljs` (pure JS, no native bindings, installs instantly). One gotcha worth knowing before you hit it: cells computed by a spreadsheet formula don't come back as plain values — `cell.value` returns `{formula, result, ...}` for the master cell of a shared formula and `{result, sharedFormula}` for the rest. Verified directly against a real 27MB source with formula-computed year columns (`datasets/economic-history/millennium-macroeconomic-data-uk`) — without unwrapping, every year column silently comes back `[object Object]`. Python's `openpyxl` sidesteps this with `data_only=True` (reads cached computed values); ExcelJS has no equivalent flag, so unwrap by hand — see `cellValue()` below.
+**Parsing xlsx / xls** — the format on disk decides the package:
+
+- **Modern `.xlsx`** (Office Open XML, a zip) — `exceljs` (pure JS, no native bindings, installs instantly). One gotcha worth knowing before you hit it: cells computed by a spreadsheet formula don't come back as plain values — `cell.value` returns `{formula, result, ...}` for the master cell of a shared formula and `{result, sharedFormula}` for the rest. Verified directly against a real 27MB source with formula-computed year columns (`datasets/economic-history/millennium-macroeconomic-data-uk`) — without unwrapping, every year column silently comes back `[object Object]`. Python's `openpyxl` sidesteps this with `data_only=True` (reads cached computed values); ExcelJS has no equivalent flag, so unwrap by hand — see `cellValue()` below.
+- **Legacy `.xls`** (BIFF8 / OLE2 — anything Excel saved as "Excel 97-2003", and what a lot of government portals still hand out) — `exceljs` **cannot open these**; use SheetJS `xlsx`. ESM gotcha: `import XLSX from "xlsx"` (default import) — `import * as XLSX from "xlsx"` gives a namespace object with no `readFile`. Worked example: `datasets/energy-and-commodities/oil-prices` (eight EIA `.xls` workbooks).
+
+**Spreadsheet dates are timezone-naive — never round-trip them through a JS `Date`.** An Excel date cell is a serial day number with no zone. Reading it as a `Date` (SheetJS `cellDates:true`, or `new Date(serial * 86400000)`) materialises it at the *runner's* local midnight, and a later `.toISOString()` then rolls it back a day in any positive-offset zone — this silently turned `1987-05-20` into `1987-05-19` in the `oil-prices` build. Read the raw serial (`raw: true` / `cellDates:false`) and convert offset-free: `excelSerialToIsoDate()` in the idioms module, or `XLSX.SSF.parse_date_code(serial)` if you already depend on `xlsx`. Then **spot-check the first converted date against the source's documented start** before trusting the column.
 
 **Cleanup idioms** — missing-value normalization, date parsing, fill-forward section headers, slug generation with dedup, the ExcelJS formula unwrap above, and a deterministic CSV writer. Drawn from real messy sources in `datasets/economic-history`, not hypothetical, and — unlike prose examples in most playbooks — these are a real, tested module rather than copy that can quietly drift out of date:
 
-**`scripts/wrangling-idioms.mjs`** in this repo (`npm test` covers it, `scripts/wrangling-idioms.test.mjs`) — `cleanNumber`, `toIsoDate`, `fillForwardSections`, `makeSlugger`, `cellValue`, `toCsv`. Copy whichever functions a given dataset's `build.ts` actually needs into that file — datasets are independent repos (catalog-as-repo), so this isn't meant to be a live cross-repo import, it's a tested source to copy from. Read the file directly for the implementations; don't re-derive them from memory.
+**`scripts/wrangling-idioms.mjs`** in this repo (`npm test` covers it, `scripts/wrangling-idioms.test.mjs`) — `cleanNumber` (lenient: strips `$£€,%`, maps text tokens to empty), `num` (strict: throws on garbage, takes a per-column list of numeric "no data" sentinels like `-99.99`), `toIsoDate`, `excelSerialToIsoDate`, `fillForwardSections`, `makeSlugger`, `cellValue`, `toCsv` (RFC 4180, LF endings). Copy whichever functions a given dataset's `build.ts` actually needs into that file — datasets are independent repos (catalog-as-repo), so this isn't meant to be a live cross-repo import, it's a tested source to copy from. Read the file directly for the implementations; don't re-derive them from memory.
 
 **Government / scientific text data — two shapes to expect** (worked example: `datasets/climate-and-environment/co2-ppm`, NOAA Mauna Loa CO₂):
 
-- **Comment / preamble lines.** Many `.txt`/`.csv` government sources start with dozens of `#`-prefixed lines (provenance, method notes, contact). Strip lines that are blank or start with `#` before parsing; don't hand-count how many to `tail` past.
-- **Negative sentinels instead of blanks.** Sources often encode "no information" as an out-of-range number (`-1`, `-9.99`, `-99.99`) rather than an empty field. Normalise these to empty cells — a `num(raw, sentinels)` helper that takes the per-column sentinel list keeps it to one line each and stops a `-9.99` sailing through as a real measurement.
+- **Comment / preamble lines.** Many `.txt`/`.csv` government sources start with dozens of `#`-prefixed lines (provenance, method notes, contact). Strip lines that are blank or start with `#` before parsing; don't hand-count how many to `tail` past. Preamble is not always `#`-prefixed text — in a spreadsheet it can be *structured rows* above the header (the EIA `.xls` in `oil-prices` has a title row, a "Sourcekey" row, then the header). Same rule: find the header, don't assume the row offset.
+- **Negative sentinels instead of blanks.** Sources often encode "no information" as an out-of-range number (`-1`, `-9.99`, `-99.99`) rather than an empty field. Normalise these to empty cells — the `num(raw, sentinels)` helper takes the per-column sentinel list, keeps it to one line each, and stops a `-9.99` sailing through as a real measurement.
 - **Assert the source header.** When you build from an archived snapshot of a source that still updates upstream, have the script check the header row it expects and throw if it changed — otherwise a column the source adds or reorders silently shifts every downstream value (this is exactly how the older community `co2-ppm` dataset ended up with `ndays` published under a `Trend` heading).
 
 **When to reach for DuckDB instead**: if the transform is naturally *one SQL query* — joining several files on a key, a groupby/aggregate, reshaping a genuinely wide table (dozens of year-columns) to long format — DuckDB will be less error-prone than hand-rolled loops. If it's mostly row-by-row string/date/number cleaning on a single source, a plain script is simpler and is what this playbook defaults to. Don't reach for DuckDB by default; reach for it when the problem is actually relational.
@@ -93,6 +101,8 @@ The moment fields can contain commas or quotes, hand-rolling breaks silently —
 ### 4. Fill in `datapackage.json`
 
 Schema with typed fields and a `primaryKey`, `licenses`, `sources`, `status: "structured"`. See `AGENTS.md`'s minimal example for the shape.
+
+**CSV format:** write `data/*.csv` with **LF** line endings and a trailing newline (the `toCsv` idiom does this). **Do not** add a Frictionless `dialect` block per resource — comma delimiter, `"` quote char, LF are the defaults, and an explicit `dialect` is just more surface to drift. (Some long-running community datasets carry a full `dialect` with `"lineTerminator": "\r\n"`; that's their choice, not one to copy.)
 
 ### 5. Validate
 
@@ -113,10 +123,12 @@ node build.ts && diff -r data/ /tmp/run1/  # should be empty
 
 If it isn't empty, something in the script is non-deterministic (unsorted rows, a `Date.now()` timestamp, iteration order over an object) — fix that before calling the dataset structured. This is the closest thing a wrangling step gets to a test, per the "What's actually tested" note in `docs/skills-vision.md`.
 
-## Two real worked examples
+## Real worked examples
 
 - **Simple case** — `datasets/energy-and-commodities/precious-metals-prices`: fetch a CSV from an API, filter by date, write out. No parsing library needed at all, source and output are both already tidy. This is the common case — don't over-build for it.
-- **Messy case** — `datasets/economic-history/millennium-macroeconomic-data-uk`: 27MB multi-sheet xlsx, sparse section headers needing fill-forward, formula-computed cells, three different grains (annual/quarterly/monthly) reshaped to long format. This is what justifies the cleanup idioms above — they're not hypothetical, they're what this source actually needed.
+- **Government text + sentinels** — `datasets/climate-and-environment/co2-ppm`: NOAA plain-text CSV, ~40 `#` comment lines, `-99.99`/`-1`/`-9.99` "no data" markers, date split across year/month columns. Uses `num(raw, sentinels)` and assert-the-header.
+- **Legacy `.xls` + spreadsheet dates** — `datasets/energy-and-commodities/oil-prices`: eight EIA BIFF8 `.xls` workbooks (`exceljs` can't read them → SheetJS `xlsx`, own `package.json`), a 3-row structured preamble, and timezone-naive serial dates converted offset-free. Output is content-identical to the long-running community `datasets/oil-prices` — the `structure` benchmark's ground-truth rep (`docs/structure-benchmark.md`).
+- **Messy xlsx** — `datasets/economic-history/millennium-macroeconomic-data-uk`: 27MB multi-sheet xlsx, sparse section headers needing fill-forward, formula-computed cells, three different grains (annual/quarterly/monthly) reshaped to long format. This is what justifies the cleanup idioms above — they're not hypothetical, they're what this source actually needed.
 
 ## Common mistakes
 

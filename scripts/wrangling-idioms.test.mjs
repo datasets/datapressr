@@ -2,7 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   cleanNumber,
+  num,
   toIsoDate,
+  excelSerialToIsoDate,
   fillForwardSections,
   makeSlugger,
   cellValue,
@@ -28,6 +30,25 @@ test("cleanNumber passes plain finite numbers through, rejects NaN/Infinity", ()
   assert.equal(cleanNumber(42), 42);
   assert.equal(cleanNumber(NaN), undefined);
   assert.equal(cleanNumber(Infinity), undefined);
+});
+
+test("num treats listed sentinel values as missing", () => {
+  assert.equal(num("-99.99", [-99.99]), undefined);
+  assert.equal(num("-1", [-1]), undefined);
+  assert.equal(num("415.2", [-99.99]), 415.2);
+  assert.equal(num("", [-1]), undefined);
+});
+
+test("num throws on a genuinely non-numeric cell", () => {
+  assert.throws(() => num("n/a"), /non-numeric/);
+});
+
+test("excelSerialToIsoDate converts serials with no timezone shift", () => {
+  assert.equal(excelSerialToIsoDate(36526), "2000-01-01"); // canonical Excel serial
+  assert.equal(excelSerialToIsoDate(31917), "1987-05-20"); // EIA Brent start; naive Date gives -05-19 in UTC+ zones
+  assert.equal(excelSerialToIsoDate(25569), "1970-01-01");
+  assert.equal(excelSerialToIsoDate(1), "1900-01-01");
+  assert.equal(excelSerialToIsoDate("x"), undefined);
 });
 
 test("toIsoDate handles Date objects and ISO strings", () => {
@@ -90,4 +111,15 @@ test("toCsv writes undefined/null as empty cells", () => {
     ["a", "b"],
   );
   assert.equal(csv, "a,b\n1,\n2,x\n");
+});
+
+test("toCsv quotes fields containing commas, quotes or newlines (RFC 4180)", () => {
+  const csv = toCsv(
+    [
+      { name: "Smith, John", note: 'say "hi"' },
+      { name: "line\nbreak", note: "plain" },
+    ],
+    ["name", "note"],
+  );
+  assert.equal(csv, 'name,note\n"Smith, John","say ""hi"""\n"line\nbreak",plain\n');
 });

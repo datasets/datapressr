@@ -85,6 +85,13 @@ Second-order observations from the diff:
 
 Filed individually in beads; summarised here.
 
+> **Applied 2026-09-06.** All eight landed: 1, 4, 8 → `scripts/wrangling-idioms.mjs`
+> (`excelSerialToIsoDate`, `num`, RFC-4180 `toCsv`) with tests; 1, 2, 3, 5, 6, 7 →
+> `skills/structure/SKILL.md` (xlsx vs legacy `.xls`; timezone-naive dates;
+> naming-vs-published rule; LF + no `dialect`; structured preamble; dependency ⇒
+> own `package.json`); the `exceljs`/`.xls` and reproducibility notes also went
+> into `AGENTS.md`. Beads `datapressr-{pao,dlc,jbz,31i,ejh}` closed.
+
 1. **Excel/spreadsheet dates are timezone-naive — never parse via `Date`.**
    High priority. Reading Excel serials as JS `Date` (e.g. SheetJS
    `cellDates:true`) shifts every date by the runner's UTC offset; it silently
