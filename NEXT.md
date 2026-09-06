@@ -8,8 +8,9 @@ A concise pointer to what's actionable now, for a clean handoff to a fresh sessi
 
 - [ ] **Story #2 — voice pass + review.** Planetary Boundaries draft is complete: [outline](site/stories/planetary-boundaries-outline.md), [charts](site/stories/planetary-boundaries-make-charts.mjs), [prose](site/stories/planetary-boundaries.md) all committed the [#10](https://github.com/datasets/datapressr/issues/10) way. Left: the author's "sounds like me" voice pass (human), and a read-through. Scoreboard normalisation was changed from the outline's `current/boundary` to the framework's own — see the story's friction notes. [#4](https://github.com/datasets/datapressr/issues/4), Beads `datapressr-tzh`.
 - [ ] **Apply the `structure` benchmark findings.** `docs/structure-benchmark.md` + 5 Beads issues (`bd list`, label `track-a`). P1s: Excel-serial-date timezone bug; `exceljs` can't read legacy `.xls` (use SheetJS). Then re-run the benchmark with a JSON/API source + a multi-file join (Beads `datapressr-gy3`).
-- [ ] **Polish the story #1 charts** — [#12](https://github.com/datasets/datapressr/issues/12). First candidate for trying Observable Plot (per `docs/story-craft.md` + the `line-charts` bake-off) instead of more hand-rolled SVG.
-- [ ] **Draft `story` + `enrich` skills** from stories #1 + #2 + `docs/story-craft.md` + `docs/voice-guide.md`, following outline -> viz plan -> prose. Mark DRAFT. [#10](https://github.com/datasets/datapressr/issues/10)
+- [ ] **Draft `story` + `enrich` skills** from stories #1 + #2 + `docs/story-craft.md` + `docs/voice-guide.md` + `docs/charting.md`, following outline -> viz plan -> prose. Mark DRAFT. [#10](https://github.com/datasets/datapressr/issues/10) — the roadmap's own gate (benchmark ✓, craft research ✓, two stories ✓, charting settled ✓) is now met.
+- [ ] **`enrich` needs reps first** — before/alongside drafting the skill, do 1-2 "descriptive stats + first charts" passes by hand on co2-ppm and oil-prices, with Observable Plot (per `docs/charting.md`).
+- [ ] **Port the story #1 (Keeling) charts to Observable Plot** — [#12](https://github.com/datasets/datapressr/issues/12). Now that Plot is the standard (`docs/charting.md`); `site/stories/make-charts.mjs` is still hand-rolled SVG.
 - [ ] **Two `project-drawdown` datasets now exist in the `datasets` org** — our 2020-vintage [repo](https://github.com/datasets/project-drawdown) and a 2024-vintage one in `datasets/climate-and-environment/project-drawdown`. Different scope, licence, vintage. Decide: rename, cross-reference, or merge.
 
 ## Needs human input first
@@ -33,6 +34,7 @@ Everything is on `main`. GitHub renders Markdown and shows CSVs as sortable tabl
 - **Story #2 outline:** [`site/stories/planetary-boundaries-outline.md`](site/stories/planetary-boundaries-outline.md)
 - **`structure` benchmark:** [`docs/structure-benchmark.md`](docs/structure-benchmark.md)
 - **Story craft + voice:** [`docs/story-craft.md`](docs/story-craft.md), [`docs/voice-guide.md`](docs/voice-guide.md)
+- **Charting decision:** [`docs/charting.md`](docs/charting.md) (Observable Plot, near-term) + the [side-by-side](site/charting-spike.html) behind it ([#11](https://github.com/datasets/datapressr/issues/11))
 - **co2-ppm dataset:** [folder](datasets/climate-and-environment/co2-ppm) · [README](datasets/climate-and-environment/co2-ppm/README.md) (diffs vs the community version)
 - **oil-prices dataset:** [folder](datasets/energy-and-commodities/oil-prices) — the benchmark's ground-truth rep; content-identical to community `datasets/oil-prices`.
 - **Portable skills:** [`skills/`](skills/)
