@@ -3,7 +3,7 @@
   "title": "CO₂ concentration at Mauna Loa (the Keeling Curve)",
   "description": "Atmospheric carbon dioxide concentration from NOAA GML — the Mauna Loa record (the longest continuous direct measurement of atmospheric CO₂, begun by C. David Keeling in March 1958 and maintained by NOAA and Scripps): monthly means from 1958 and annual means from 1959, in parts per million (ppm) of dry air. Also the NOAA global marine-boundary-layer annual mean (from 1979), and NOAA's published annual growth rates (ppm/yr, Jan 1 to Dec 31) for both Mauna Loa and the global network, with a derived decadal-mean-growth table.",
   "homepage": "https://gml.noaa.gov/ccgg/trends/",
-  "status": "structured",
+  "status": "enriched",
   "licenses": [
     {
       "name": "PDDL-1.0",
