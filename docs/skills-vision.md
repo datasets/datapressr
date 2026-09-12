@@ -1,5 +1,7 @@
 # DataPressr Skill Suite — Vision & Outline
 
+> Historical planning and decision context. As of 2026-09-12, current work and dependencies live in Beads; read [the handoff](next-session-brief.md) and [migration audit](next-audit.md). Later completed work supersedes the pending/draft claims below. Do not execute this historical sequence as a current assignment.
+
 *Outline only — no stage skills implemented yet. This records the plan and the decisions behind it so we can build against it.*
 
 *Revised after a rigor pass (2026-08-28): the first draft was strategy without a data-quality bar. The actual tidy-data conventions, reproducibility rule, and license/provenance requirement now live in `AGENTS.md` — the file every wrangling session actually reads — rather than being duplicated here. This doc also reordered the charting spike to come after manual stories, not before, per the project's own founding insight (see `SHARING.md`: "ten manual posts will teach more than ten hours of architecture") — the first draft of this plan violated that for the `story` skill specifically.*
@@ -17,7 +19,7 @@ Already established (see `docs/`):
 - **Hierarchy**: catalog → dataset → data file (`docs/data-hierarchy.md`)
 - **Catalog-as-repo**: one portal/collection = one repo = one DataHub publication (`docs/pattern-catalog-as-repo.md`)
 - **Skills**: `/init`, `/validate`, `/push` — all at the `structured → published` end
-- **Capture layer**: GitHub issues + `NEXT.md` (was plain markdown in `datasets/BACKLOG.md`/`INBOX.md`/`DASHBOARDS.md` — retired, see the build order below)
+- **Capture layer**: GitHub issues + Beads (`bd ready`) (was plain markdown in `datasets/BACKLOG.md`/`INBOX.md`/`DASHBOARDS.md` — retired, see the build order below)
 - Proof this works end to end: 20+ datasets already published to DataHub from the backlog
 
 ## The gap
@@ -101,7 +103,7 @@ These block finalizing a *reusable* `story` skill, but not `capture`/`archive`/`
 ## Proposed build order
 
 1. ~~**`structure.md`**~~ — done: `skills/structure/SKILL.md`. Node/TS-first (see the reversed engine decision above), grounded in two real datasets (`precious-metals-prices` for the simple case, `millennium-macroeconomic-data-uk`'s 27MB multi-sheet xlsx for the messy one). Cleanup idioms aren't just prose in the playbook — they're a tested module, `scripts/wrangling-idioms.mjs` + `scripts/wrangling-idioms.test.mjs`, so the skill's code examples can't silently drift out of correctness the way most playbook prose can.
-2. ~~**`capture.md`** + **`archive.md`**~~ — done: `skills/capture/SKILL.md`, `skills/archive/SKILL.md`. Along the way, `datasets/BACKLOG.md`/`INBOX.md`/`DASHBOARDS.md` were actually retired, not just described as informal precedent — freeform markdown doesn't scale as a queue (no search, no triage state). Replaced with [GitHub issues](https://github.com/datasets/datapressr/issues) (one consolidated Inbox issue for small finds, individual issues once something's substantive) and `NEXT.md` as the short "what's actionable now" view. (Beads was evaluated as an alternative — installs fine, but its real cross-session continuity needs a Dolt remote, not just the JSONL export its own docs call "not the source of truth." More infrastructure than this project's backlog needs right now; plain issues won.)
+2. ~~**`capture.md`** + **`archive.md`**~~ — done: `skills/capture/SKILL.md`, `skills/archive/SKILL.md`. Along the way, `datasets/BACKLOG.md`/`INBOX.md`/`DASHBOARDS.md` were actually retired, not just described as informal precedent — freeform markdown doesn't scale as a queue (no search, no triage state). Replaced with [GitHub issues](https://github.com/datasets/datapressr/issues) (one consolidated Inbox issue for small finds, individual issues once something's substantive) and Beads (`bd ready`) as the short "what's actionable now" view. (Historical decision: GitHub issues were initially preferred. Beads now has a configured Dolt remote and is the execution queue; lightweight capture remains in GitHub.)
 3. **Write 2–3 stories by hand**, no skill, no standard chart syntax — plain markdown, whatever charting gets it done fastest.
 4. **Charting research spike** (timeboxed), informed by what actually caused friction in step 3 → then **`enrich.md`** and **`story.md`**.
 5. **`monitor.md`** — later, once a living source actually needs it.

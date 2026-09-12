@@ -193,6 +193,8 @@ working inside this repo).
 
 ## Task tracking (beads)
 
+Beads is the source of truth for actionable work, dependencies and completion evidence. Start with [NEXT.md](NEXT.md), the reusable session prompt for selecting and executing `bd ready` tasks; [docs/next-session-brief.md](docs/next-session-brief.md) holds the detailed protocol and [docs/next-audit.md](docs/next-audit.md) holds the dated migration evidence. Keep NEXT.md as instructions, not a Markdown task queue. Read the full assigned Bead, claim it, and record verification and handoff notes before closing it.
+
 This repo uses [beads](https://github.com/steveyegge/beads) (`bd`) for task tracking — see `.beads/README.md` and the sync playbook at `~/src/rufuspollock/agent-skills/beads-sync-playbook.md` for setup/sync mechanics.
 
 **Labeling convention for a dataset-wrangling idea that hasn't been triaged yet:**

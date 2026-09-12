@@ -20,7 +20,7 @@ Per `docs/lifecyle.md`'s "Capture" stage: prevent loss, preserve intent, near-ze
 
    No validation. No downloading. No deciding if it's *good* — that's a later stage's job.
 
-3. Update `NEXT.md` only if this capture changes what's actionable *right now* — most captures don't. `NEXT.md` is deliberately short; don't let capture inflate it back into a second backlog. If in doubt, leave `NEXT.md` alone and let the issue speak for itself.
+3. Beads (`bd ready`) is the actionable work queue; see `docs/next-session-brief.md` for handoff instructions. Keep lightweight captures in GitHub under this skill. For dataset-shaped work tracked in Beads, follow AGENTS.md's labeling convention and do not duplicate the same idea in both trackers.
 
 ## What this replaced
 

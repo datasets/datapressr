@@ -1,121 +1,44 @@
----
-title: Next session brief — unattended, planned 2026-09-05
-date: 2026-09-05
----
+# Agent handoff: execute the Beads plan
 
-# Next session brief
+Beads is the source of truth for current work, dependencies, acceptance criteria and completion evidence. This document is the execution protocol, not a second backlog. The dated [migration audit](next-audit.md) records what was verified on 2026-09-12. Historical roadmaps must not override current Beads tasks or AGENTS.md.
 
-You are running **unattended** — no one is available to answer questions. When
-you hit a decision you'd normally ask about, make the reasonable call, write down
-what you assumed, and keep moving. Commit small and often, straight to `main`
-(nothing depends on this work).
+Start from the repository root:
 
-**Read first:** [`docs/skills-roadmap.md`](./skills-roadmap.md) — the full plan.
-Then `AGENTS.md`, `docs/skills-vision.md`, and the relevant `skills/*/SKILL.md`.
+```sh
+git status --short --branch
+bd dolt pull
+bd ready
+bd show datapressr-9up
+bd show <assigned-issue-id>
+bd update <assigned-issue-id> --claim
+```
 
-## Ground rules
+Read AGENTS.md and the assigned issue's full description and acceptance criteria, then its named skill and source files. Check prerequisites are closed with evidence. Choose a task, not an umbrella epic. Use a unique worker identity for shared Beads. Claiming coordinates ownership; it does not isolate files.
 
-- **Log your work in beads** (`bd`). At the start, `bd create` one issue per
-  workstream you attempt (A benchmark, B1 research, B2 story #2, C1/C2/C3). Mark
-  them in-progress / closed as you go. Put findings that need human review into
-  their own beads issues rather than only in prose.
-- **Commit per unit** to `main`. Conventional short messages. End every commit
-  message with the `Claude-Session` trailer from this session's attribution.
-- **Stop rule:** if a wrangling sample won't come clean in ~25 minutes, write
-  down why it's hard and move on — a documented failure is a useful benchmark
-  result. If a source is unreachable, skip it and note it.
-- **Don't** rewrite `skills/structure/SKILL.md`, finalise `story`/`enrich`, or
-  touch the charting-standard decision. Collect evidence and propose; leave edits
-  for review.
-- At the end: write a `changelog/2026-09-05-*.md` entry for anything that
-  shipped, update `NEXT.md`, and leave a session report as a beads issue
-  (`bd create --type note` or similar) summarising what landed, what didn't, and
-  the recommended next moves.
+Planning defaults: oil-prices for story #3; an independent reviewing AI agent signs off the outline; author voice passes remain human. These optional choices do not block execution or require repeated confirmation. This is not approval of an unwritten outline. Update affected Beads if the owner changes either choice.
 
-## Order of work
+## Dispatch and order
 
-Do these in order. It's fine to not finish — each is independently valuable.
+Select current work from `bd ready` using [NEXT.md](../NEXT.md); the issue IDs below describe the initial plan, not a fixed current queue. Work sequentially unless parallel execution is requested. Initially independent tasks are datapressr-q96 (oil enrichment), datapressr-cq6 (JSON benchmark), and datapressr-rvi (join benchmark). Assign distinct dataset paths if dispatching benchmark workers in parallel. Additional independent work: datapressr-8rk (Keeling charts) or datapressr-jh6 (Drawdown comparison). v1 has priority over benchmarks.
 
-### 1. C1 — Project Drawdown → its own repo (~35 min)
+The v1 chain is datapressr-q96 → datapressr-7mc → datapressr-0cp → datapressr-ogt → datapressr-1li → datapressr-9qc → datapressr-blj. The benchmark chain is datapressr-cq6 + datapressr-rvi → datapressr-rlb, under existing epic datapressr-gy3. Beads has blocking edges; parent-child hierarchy alone does not enforce order.
 
-- The dataset is at `datasets/climate-and-environment/project-drawdown/`,
-  structured and `/validate`-clean.
-- `git init` a new sibling repo at `../project-drawdown` (i.e.
-  `/Users/rgrp/src/datasets/project-drawdown`). Move the dataset's contents to
-  the repo root. Keep `build.ts`, `archive/`, `data/`, `datapackage.json`,
-  `README.md`, `AGENTS.md`, `scripts/`.
-- `gh repo create datasets/project-drawdown --public --source . --remote origin
-  --description "Project Drawdown — ranked climate solutions (2020 Table of
-  Solutions), tidy typed data"`. Push `main`.
-- `dh push` is **not** available (no `dh` CLI, no `DATAHUB_*` env) — skip it,
-  note in the new repo's README that DataHub publish is pending.
-- Back in datapressr: replace the dataset dir with a short `README.md` pointer to
-  the new repo (or remove it and mention the move in the changelog). Update
-  `NEXT.md` — the "Relocate Project Drawdown" item is done.
+Give bounded enrichment, chart and prose tasks to execution agents. Assign argument review, skill graduation, benchmark synthesis and release review to a coordinator or stronger reviewer: these require judgment across artifacts. Benchmark source selection is research first; the worker records the chosen source, license and paths before implementation. Pass the full Bead and this protocol, not just its title.
 
-### 2. C2 — co2-ppm follow-ups (~30 min)
+Use separate worktrees/checkouts for simultaneous edits when supported, with the coordinator managing shared Beads and integration. Shared files (AGENTS.md, skills/README.md, site/stories/package*.json, site/README.md, site/datasets.md, docs/structure-benchmark.md) have one editor at a time. Chart workers reuse current Plot/jsdom dependencies; graduation owns skill catalogs; synthesis owns the benchmark report. Integrate prerequisites before dispatching dependents. Preserve unrelated work.
 
-- In `datasets/climate-and-environment/co2-ppm/`, extend `build.ts` to also
-  produce:
-  - a **global** annual mean CO₂ series from NOAA GML
-    (`https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_gl.csv` and the
-    growth-rate file `co2_gr_gl.csv` / `co2_gr_mlo.csv`), as its own resource(s);
-  - **growth-rate** columns: year-on-year ppm change for the MLO annual series,
-    plus a small decadal-mean-growth resource.
-- Add the new resources + typed schemas + `primaryKey` to `datapackage.json`.
-  Add the new source URLs to `sources`.
-- `node build.ts`, then `/validate` — must be clean, no warnings.
-- Update the co2-ppm `README.md` (the comparison-vs-community section too if the
-  new series changes anything).
+## Verification and review
 
-### 3. Track A — `structure` benchmark (~90 min)
+For each task: inspect inputs, implement only its scope, run named checks, inspect the diff, record results. Root regression check is `npm test`; dataset check is `node scripts/validate-datapackage.mjs <dataset-directory>`. Zero-warning metadata validation does not prove CSV values satisfy types or keys. Reproducibility checks use the archived snapshot without new network fetches, compare hashes across two runs, and preserve handwritten sections.
 
-Follow `docs/skills-roadmap.md` Track A. Concretely:
+The outline reviewer records APPROVED, identity, reproduced numbers and exact reviewed revision in datapressr-0cp. Corrections return to the outline owner. Prose consumes approved outline and checked charts. Do not treat elapsed time as approval.
 
-- Choose 3–4 finds from `datasets/commons-issues/` spanning: clean CSV, messy
-  multi-sheet xlsx, HTML table, JSON/API. Good candidates to look at first:
-  `17-gold-prices.md`, `72-natural-gas-prices.md`, `35-euribor.md`,
-  `179-gini-index.md`, `332-lazard-levelized-cost-of-energy-*.md`,
-  `333-bp-statistical-review-of-world-energy.md` — but pick for source-format
-  spread, not topic.
-- **Plus one ground-truth rep:** re-wrangle `datasets/oil-prices` (or
-  `gold-prices` / `natural-gas` — whichever has the cleanest primary source)
-  from its *primary* source using `structure`, then `git clone` or fetch the
-  published `datasets/<name>` and diff `data/*.csv` + `datapackage.json` schema
-  against ours. Record each difference and a verdict (ours better / theirs
-  better / neutral).
-- For each rep, capture in notes: playbook gaps, recurring idioms, unguided
-  judgment calls.
-- Write **`docs/structure-benchmark.md`**: sample set + what each exercised;
-  the rubric from the roadmap; scored results; the ground-truth diff; a
-  prioritised list of proposed `skills/structure/SKILL.md` edits (as a list, not
-  applied). File the top 3–5 proposed edits as individual beads issues.
-- Datasets you build here can live under `datasets/<catalog>/<name>/` on `main`
-  as normal, at whatever lifecycle stage you reach (`stub` / `archived` /
-  `structured`) — a half-finished one is fine, just set `status` honestly.
+Human-only and post-v1 tasks are deferred. Explicitly reopen with `bd update <id> --status open` when the owner/coordinator chooses to schedule them. Do not execute them just because a broad listing shows them.
 
-### 4. B1 — Story craft research (~60 min)
+## Closing and handing off
 
-Per roadmap Track B1. Write `docs/story-craft.md` and `docs/voice-guide.md`.
-Concrete, example-driven, opinionated — not a link dump. Ground the voice guide
-in the Keeling outline's stated preferences and in story #1's prose.
+Append outcome, paths, commit IDs if committed, exact commands/results, source/version/hash evidence, reviewer verdict, assumptions and remaining blockers to the issue with `bd update <id> --append-notes '...'`. Then use `bd close <id> --reason 'Specific verified outcome'`. Leave blocked work unfinished with the exact missing input. Put new work in scoped Beads. Close epics only when every acceptance gate passes.
 
-### 5. B2 — Story #2: Planetary Boundaries (if time)
+Run `bd dolt push` and confirm success at handoff. Dolt remote synchronization is the continuity mechanism; JSONL is not the backup. Use the playbook linked in AGENTS.md for bootstrap/sync recovery; never delete or reinitialize Beads as a routine fix. Commit owned repository changes when authorized. External issue messages, publishing, dashboard deletion/recreation and cross-repository renames require their own authorized scope; this plan does not authorize them. Skip DataHub push when credentials are absent.
 
-Per roadmap Track B2. Minimum deliverable: `archive` step done +
-`site/stories/planetary-boundaries-outline.md` committed. Then a viz plan
-section, then prose — each its own commit. Don't rush prose; a committed outline
-+ viz plan is a good stopping point.
-
-### 6. C3 chart polish / B3 skill drafts — only if all the above landed
-
-Per roadmap Track C3 / B3.
-
-## Wrap-up checklist
-
-- [ ] `changelog/2026-09-05-*.md` entry for what shipped
-- [ ] `NEXT.md` updated (Project Drawdown done; benchmark + research added as
-      context; new next-ups)
-- [ ] beads issues closed / updated; session-report note filed
-- [ ] `npm test` still green
-- [ ] everything committed to `main`
+The former unattended brief, including instructions to maintain a Markdown queue, commit directly to main, and use a Claude-specific trailer, is retired and recoverable in Git history. NEXT.md is now the stable session entry point; task state stays in Beads.

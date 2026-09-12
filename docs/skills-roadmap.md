@@ -5,6 +5,8 @@ date: 2026-09-05
 
 # Skills Roadmap
 
+> Historical planning and decision context. As of 2026-09-12, current work and dependencies live in Beads; read [the handoff](next-session-brief.md) and [migration audit](next-audit.md). Later completed work supersedes the pending/draft claims below. Do not execute this historical sequence as a current assignment.
+
 Planning doc for the next phase of work. Supersedes the "Proposed build order"
 section of [`skills-vision.md`](./skills-vision.md) — that doc still holds the
 decision history and the vision; this one is the *what next, in what order*.
@@ -126,7 +128,7 @@ to install.
   lives in its own repo now) or leave a pointer. [#3](https://github.com/datasets/datapressr/issues/3)
 - **C2 — co2-ppm follow-ups.** Add the NOAA global mean CO₂ series and a
   growth-rate resource (annual ppm change, and decadal mean growth). Regenerate
-  via `build.ts`, re-validate, update the README. [NEXT.md]
+  via `build.ts`, re-validate, update the README. [Beads handoff](next-session-brief.md)
 - **C3 — Chart polish** ([#12](https://github.com/datasets/datapressr/issues/12)).
   The two Keeling SVGs in `site/stories/make-charts.mjs`: consistent type scale,
   cleaner axis ticks, inline callouts for the 350 ppm (~1988) and 400 ppm (2015)
