@@ -1,20 +1,31 @@
 // Regenerate the SVG charts embedded in keeling-curve.md.
-//   node make-charts.mjs
-// Reads the committed CSVs from the co2-ppm dataset; writes *.svg next to this file.
-// Hand-rolled SVG on purpose — see the "friction" note at the end of keeling-curve.md.
+//   cd site/stories && npm install && node make-charts.mjs
+//
+// Authored with Observable Plot, rendered to static SVG in Node (jsdom supplies
+// the DOM). The published page embeds the .svg as a Markdown image — no
+// JavaScript runs on it. See docs/charting.md for why Plot. Ported from the
+// original hand-rolled SVG generator (datapressr-8rk) — filenames and the
+// annual/seasonal split are unchanged.
+//
+// Reads the committed CSVs from the co2-ppm dataset directly (this repo's own
+// dataset, not a snapshot — same as story #1 originally did).
 
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { JSDOM } from "jsdom";
+import * as Plot from "@observablehq/plot";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const DATA = join(HERE, "..", "..", "datasets", "climate-and-environment", "co2-ppm", "data");
+const { window } = new JSDOM("");
+const document = window.document;
 
 const LINE = "#2563eb";
 const LINE2 = "#9ca3af";
-const TEXT = "#6b7280";
-const REF = "#dc2626";
-const REF2 = "#16a34a";
+const INK = "#111827";
+const SAFE = "#16a34a";
+const EXCEEDED = "#dc2626";
 
 function parseCsv(file) {
   const [head, ...rows] = readFileSync(join(DATA, file), "utf8").trim().split("\n");
@@ -22,88 +33,149 @@ function parseCsv(file) {
   return rows.map((r) => Object.fromEntries(r.split(",").map((v, i) => [cols[i], v])));
 }
 
-/** Generic line chart. series: [{points:[[x,y]...], stroke, width}]. refs: [{y,label,color}]. */
-function svgLineChart({ width = 720, height = 380, series, xDomain, yDomain, xTicks, yTicks, xLabel, yLabel, refs = [] }) {
-  const m = { t: 16, r: 16, b: 44, l: 56 };
-  const iw = width - m.l - m.r;
-  const ih = height - m.t - m.b;
-  const [x0, x1] = xDomain;
-  const [y0, y1] = yDomain;
-  const sx = (x) => m.l + ((x - x0) / (x1 - x0)) * iw;
-  const sy = (y) => m.t + ih - ((y - y0) / (y1 - y0)) * ih;
-
-  const parts = [];
-  parts.push(
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" font-family="ui-sans-serif,system-ui,sans-serif" font-size="12">`,
-  );
-  // y grid + ticks
-  for (const t of yTicks) {
-    parts.push(`<line x1="${m.l}" y1="${sy(t)}" x2="${m.l + iw}" y2="${sy(t)}" stroke="${LINE2}" stroke-opacity="0.25"/>`);
-    parts.push(`<text x="${m.l - 8}" y="${sy(t) + 4}" text-anchor="end" fill="${TEXT}">${t}</text>`);
+/** Render a Plot figure/svg node to a standalone SVG string. */
+function toSvg(node) {
+  const svg = node.tagName.toLowerCase() === "svg" ? node : node.querySelector("svg");
+  if (svg !== node) {
+    const style = node.querySelector("style");
+    if (style && !svg.contains(style)) svg.insertBefore(style, svg.firstChild);
   }
-  // x ticks
-  for (const t of xTicks) {
-    parts.push(`<text x="${sx(t)}" y="${m.t + ih + 20}" text-anchor="middle" fill="${TEXT}">${t}</text>`);
-  }
-  // axis labels
-  parts.push(`<text x="${m.l + iw / 2}" y="${height - 6}" text-anchor="middle" fill="${TEXT}">${xLabel}</text>`);
-  parts.push(
-    `<text transform="translate(14 ${m.t + ih / 2}) rotate(-90)" text-anchor="middle" fill="${TEXT}">${yLabel}</text>`,
-  );
-  // reference lines
-  for (const r of refs) {
-    parts.push(
-      `<line x1="${m.l}" y1="${sy(r.y)}" x2="${m.l + iw}" y2="${sy(r.y)}" stroke="${r.color}" stroke-dasharray="4 4" stroke-opacity="0.8"/>`,
-    );
-    parts.push(`<text x="${m.l + iw - 4}" y="${sy(r.y) - 5}" text-anchor="end" fill="${r.color}">${r.label}</text>`);
-  }
-  // series
-  for (const s of series) {
-    const d = s.points.map(([x, y], i) => `${i ? "L" : "M"}${sx(x).toFixed(1)} ${sy(y).toFixed(1)}`).join(" ");
-    parts.push(`<path d="${d}" fill="none" stroke="${s.stroke}" stroke-width="${s.width}"/>`);
-  }
-  parts.push("</svg>");
-  return parts.join("\n");
+  svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  return svg.outerHTML;
 }
 
-// --- Chart 1: annual Keeling curve, 1959-2025 -------------------------------
+// --- Chart 1: annual Keeling curve, with crossings computed from this series -
 {
-  const rows = parseCsv("co2-annual-mlo.csv").map((r) => [Number(r.year), Number(r.co2_ppm_mean)]);
-  const svg = svgLineChart({
-    series: [{ points: rows, stroke: LINE, width: 2 }],
-    xDomain: [1959, 2025],
-    yDomain: [310, 435],
-    xTicks: [1960, 1975, 1990, 2005, 2020],
-    yTicks: [320, 340, 360, 380, 400, 420],
-    xLabel: "Year",
-    yLabel: "CO₂ (ppm)",
-    refs: [
-      { y: 350, label: "350 ppm", color: REF2 },
-      { y: 400, label: "400 ppm (crossed 2015)", color: REF },
+  const rows = parseCsv("co2-annual-mlo.csv").map((r) => ({
+    year: Number(r.year),
+    ppm: Number(r.co2_ppm_mean),
+  }));
+  const firstYear = rows[0].year;
+  const lastYear = rows.at(-1).year;
+
+  // Crossing = the first *annual mean* at or above the threshold. Computed from
+  // this plotted series, not asserted — and labelled "annual mean" explicitly:
+  // Mauna Loa first recorded a single *month* at these levels earlier (350 ppm
+  // in May 1986, 400 ppm in May 2013) than the annual mean did, so an
+  // unqualified date on this chart would be read against the wrong milestone.
+  const crossing = (threshold) => rows.find((r) => r.ppm >= threshold);
+  const c350 = crossing(350);
+  const c400 = crossing(400);
+
+  const fig = Plot.plot({
+    document,
+    width: 720,
+    height: 380,
+    marginLeft: 52,
+    marginRight: 16,
+    marginTop: 16,
+    marginBottom: 40,
+    style: { fontSize: "12px", fontFamily: "ui-sans-serif, system-ui, sans-serif" },
+    x: {
+      domain: [firstYear, lastYear],
+      label: "Year",
+      labelArrow: "none",
+      tickFormat: "d",
+    },
+    y: {
+      domain: [310, 435],
+      label: "CO₂ (ppm)",
+      labelArrow: "none",
+      grid: true,
+    },
+    marks: [
+      Plot.ruleY([c350.ppm], { stroke: SAFE, strokeDasharray: "4 4" }),
+      Plot.text([{ l: `350 ppm — annual mean, crossed ${c350.year}` }], {
+        x: lastYear,
+        y: c350.ppm,
+        text: "l",
+        textAnchor: "end",
+        dy: -6,
+        fill: SAFE,
+      }),
+      Plot.ruleY([c400.ppm], { stroke: EXCEEDED, strokeDasharray: "4 4" }),
+      Plot.text([{ l: `400 ppm — annual mean, crossed ${c400.year}` }], {
+        x: lastYear,
+        y: c400.ppm,
+        text: "l",
+        textAnchor: "end",
+        dy: -6,
+        fill: EXCEEDED,
+      }),
+      Plot.line(rows, { x: "year", y: "ppm", stroke: LINE, strokeWidth: 2 }),
     ],
   });
-  writeFileSync(join(HERE, "keeling-annual.svg"), svg + "\n");
+  writeFileSync(join(HERE, "keeling-annual.svg"), toSvg(fig) + "\n");
 }
 
-// --- Chart 2: monthly sawtooth vs trend, 2010-present ----------------------
+// --- Chart 2: monthly sawtooth vs trend, 2010-present, seasonal extrema marked
 {
-  const all = parseCsv("co2-monthly-mlo.csv").filter((r) => r.date >= "2010-01");
-  const toX = (d) => Number(d.slice(0, 4)) + (Number(d.slice(5, 7)) - 0.5) / 12;
-  const monthly = all.map((r) => [toX(r.date), Number(r.co2_ppm)]);
-  const trend = all.map((r) => [toX(r.date), Number(r.co2_ppm_deseasonalized)]);
-  const svg = svgLineChart({
-    series: [
-      { points: monthly, stroke: LINE2, width: 1 },
-      { points: trend, stroke: LINE, width: 2 },
+  const all = parseCsv("co2-monthly-mlo.csv")
+    .filter((r) => r.date >= "2010-01")
+    .map((r) => ({
+      date: r.date,
+      year: Number(r.date.slice(0, 4)) + (Number(r.date.slice(5, 7)) - 0.5) / 12,
+      ppm: Number(r.co2_ppm),
+      trend: Number(r.co2_ppm_deseasonalized),
+    }));
+  const lastFullYear = String(Number(all.at(-1).date.slice(0, 4)) - (all.at(-1).date.slice(5, 7) === "12" ? 0 : 1));
+  const cycle = all.filter((r) => r.date.startsWith(lastFullYear));
+  const seasonalHigh = cycle.reduce((a, b) => (b.ppm > a.ppm ? b : a));
+  const seasonalLow = cycle.reduce((a, b) => (b.ppm < a.ppm ? b : a));
+  const monthName = (d) =>
+    new Date(`${d}T00:00:00Z`).toLocaleDateString("en-GB", { month: "short", timeZone: "UTC" });
+
+  const fig = Plot.plot({
+    document,
+    width: 720,
+    height: 380,
+    marginLeft: 52,
+    marginRight: 16,
+    marginTop: 16,
+    marginBottom: 40,
+    style: { fontSize: "12px", fontFamily: "ui-sans-serif, system-ui, sans-serif" },
+    x: {
+      domain: [2010, Math.ceil(all.at(-1).year) + 1],
+      label: "Year",
+      labelArrow: "none",
+      tickFormat: "d",
+    },
+    y: {
+      domain: [385, 435],
+      label: "CO₂ (ppm)",
+      labelArrow: "none",
+      grid: true,
+    },
+    marks: [
+      Plot.line(all, { x: "year", y: "ppm", stroke: LINE2, strokeWidth: 1 }),
+      Plot.line(all, { x: "year", y: "trend", stroke: LINE, strokeWidth: 2 }),
+      // Anchored "end" with a negative dx rather than centred: the marked point
+      // is always the most recent full year, i.e. always near the right edge of
+      // a chart that keeps extending rightwards as data is added, so a
+      // centred label would eventually run past the frame.
+      Plot.dot([seasonalHigh], { x: "year", y: "ppm", fill: INK, r: 3 }),
+      Plot.text([{ ...seasonalHigh, l: `seasonal high — ${monthName(seasonalHigh.date)} ${lastFullYear}` }], {
+        x: "year",
+        y: "ppm",
+        text: "l",
+        dy: -10,
+        dx: -6,
+        textAnchor: "end",
+        fill: INK,
+      }),
+      Plot.dot([seasonalLow], { x: "year", y: "ppm", fill: INK, r: 3 }),
+      Plot.text([{ ...seasonalLow, l: `seasonal low — ${monthName(seasonalLow.date)} ${lastFullYear}` }], {
+        x: "year",
+        y: "ppm",
+        text: "l",
+        dy: 14,
+        dx: -6,
+        textAnchor: "end",
+        fill: INK,
+      }),
     ],
-    xDomain: [2010, 2027],
-    yDomain: [385, 435],
-    xTicks: [2011, 2015, 2019, 2023, 2027],
-    yTicks: [390, 400, 410, 420, 430],
-    xLabel: "Year",
-    yLabel: "CO₂ (ppm)",
   });
-  writeFileSync(join(HERE, "keeling-seasonal.svg"), svg + "\n");
+  writeFileSync(join(HERE, "keeling-seasonal.svg"), toSvg(fig) + "\n");
 }
 
 console.log("wrote keeling-annual.svg, keeling-seasonal.svg");
