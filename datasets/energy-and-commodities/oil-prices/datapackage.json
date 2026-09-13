@@ -3,7 +3,7 @@
   "title": "Crude oil spot prices — Brent and WTI",
   "description": "Europe Brent and Cushing/OK WTI (West Texas Intermediate) crude oil spot prices in US dollars per barrel (FOB), from the U.S. Energy Information Administration, at daily, weekly, monthly and annual frequency. Brent daily from 20 May 1987; WTI daily from 2 January 1986.",
   "homepage": "https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm",
-  "status": "structured",
+  "status": "enriched",
   "licenses": [
     {
       "name": "PDDL-1.0",
@@ -133,10 +133,17 @@
   ],
   "views": [
     {
-      "name": "brent-vs-wti-daily",
-      "title": "Brent vs WTI spot price, daily (USD/barrel)",
+      "name": "brent-daily",
+      "title": "Brent crude spot price, daily (USD/barrel)",
       "specType": "simple",
       "resources": ["brent-daily"],
+      "spec": { "type": "line", "group": "Date", "series": ["Price"] }
+    },
+    {
+      "name": "wti-daily",
+      "title": "WTI crude spot price, daily (USD/barrel)",
+      "specType": "simple",
+      "resources": ["wti-daily"],
       "spec": { "type": "line", "group": "Date", "series": ["Price"] }
     }
   ]

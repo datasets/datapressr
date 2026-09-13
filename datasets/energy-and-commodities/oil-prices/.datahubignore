@@ -1,6 +1,8 @@
 archive/
 scripts/
 build.ts
+enrich.ts
+enrich.test.mjs
 AGENTS.md
 node_modules/
 package.json
