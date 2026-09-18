@@ -42,4 +42,4 @@ Caveats worth knowing before reuse:
   as a scoreboard: six of nine crossed, and stratospheric ozone the one walked
   back inside the line. Story #2; first use of a normalised ranged-bar chart, and
   the friction that argues for a charting library.
-- **[WTI Went Negative. Brent Didn't.](stories/oil-prices.md)** — on 20 April 2020 the WTI spot price was -$36.98 a barrel, the only negative value in the oil-prices dataset; Brent was $17.36. Story #3; the first written with the draft `story` skill, from an independently reviewed outline. Author's voice pass outstanding.
+- **[WTI Went Negative. Brent Didn't.](stories/oil-prices.md)** — on 20 April 2020 the WTI spot price was -$36.98 a barrel, the only negative value in the oil-prices dataset; Brent was $17.36. Story #3; the first written with the `story` skill, from an independently reviewed outline. Author's voice pass outstanding.
