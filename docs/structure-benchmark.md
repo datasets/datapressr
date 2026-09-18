@@ -151,3 +151,43 @@ reproduction of a mature community dataset on the first try. The gaps are at the
 edges: spreadsheet dates, dependency handling, and a handful of naming/format
 micro-decisions that currently rely on the runner's taste. Items 1–3 above are
 the ones worth doing before the next real wrangle.
+
+## Round 2 (2026-09-18) — JSON/API and relational join
+
+Round 1 left two source shapes untested; round 2 covers both. Full reports: [JSON/API](benchmarks/round-2-json.md) · [relational join](benchmarks/round-2-join.md).
+
+| # | Dataset | Source shape | Why it's here | Built |
+|---|---------|--------------|---------------|-------|
+| 4 | `population-growth` | World Bank Indicators API v2 — paginated JSON (18 pages, 17,490 rows), nested objects, `null` values, plus country metadata | First JSON/REST API source; pagination and snapshot consistency | 2026-09-18 |
+| 5 | `airports` | OurAirports — four linked CSVs (airports, countries, regions, runways; 86,094 / 249 / 3,987 / 48,248 rows) | First genuine relational join: three many-to-one lookups and a per-airport aggregate | 2026-09-18 |
+
+### Scores
+
+| Check | 4 `population-growth` | 5 `airports` |
+|-------|:-:|:-:|
+| **Reproducible** | ✅ (offline `build.ts`; network isolated in `fetch.ts`) | ✅ (`npm install && node build.ts`, one pinned dep) |
+| **Typed schema + `primaryKey`** | ✅ (+ `foreignKey`) | ✅ |
+| **`licenses` + `sources`** | ✅ `CC-BY-4.0` | ✅ `PDDL-1.0` |
+| **Tidy** | ✅ | ✅ |
+| **Validator clean, no warnings** | ✅ | ✅ |
+| **Low unguided judgment** | ⚠️ 11 unguided | ⚠️ 8 unguided (1 against the skill's wording) |
+
+Both hit every hard bar on the first build, as round 1 did. Unguided judgment went *up* (11 and 8 vs 3–4 in round 1). The skill has no JSON/API or join guidance, so every decision in those areas was the runner's own.
+
+### Engine finding
+
+The skill says to reach for DuckDB for "joining several files on a key". The airports join was built in plain Node (`Map` lookups plus one group-by), because the valuable part was the per-key assertions (uniqueness, orphans, row counts, cross-table agreement), which are one line each in Node and a separate anti-join query each in SQL. DuckDB remains the right tool for many-to-many joins, window functions or wide reshapes; the skill's threshold should say that rather than "several files".
+
+### What round 1's fixes did in round 2
+
+No regressions. Both builds used the closed round-1 decisions unprompted: `toCsv` copied from `scripts/wrangling-idioms.mjs` (`datapressr-jbz`), LF endings and no `dialect` block (`datapressr-ejh`), snake_case by default (`datapressr-31i`), and a dependency ⇒ its own `package.json` + `.datahubignore` entries (`datapressr-ejh`). The date and `.xls` fixes (`datapressr-pao`, `datapressr-dlc`) weren't exercised; neither source had spreadsheet dates.
+
+### Prioritised gaps (findings, not applied)
+
+Each is a separate Bead (`datapressr-i3m`, `datapressr-ozk`, `datapressr-eec` in order); none has been applied to the skill yet.
+
+1. **No JSON/REST API guidance** (sample 4; high). Separate `fetch.ts` from an offline `build.ts`; archive raw response bytes with a hashed manifest; paginate to `pages` and assert summed rows = `total`; assert the snapshot marker is stable across pages; check error payloads, not just the HTTP status; bounded timeout, retries and pacing. The same fetch/manifest pattern was reused unguided in sample 5.
+2. **Keys and joins are assumed, not verified** (samples 4 and 5; high). An "obvious" ISO key was blank for 5 entities (66 duplicate keys). Add a checklist: profile candidate keys for blanks and duplicates before declaring `primaryKey`; for joins, record cardinality and orphan policy up front, assert one-side uniqueness, count orphans, assert row counts before/after, and check redundant columns agree. Refine the DuckDB threshold (engine finding above).
+3. **Value semantics beyond numeric sentinels** (samples 4 and 5; medium). Text placeholders (`"NA"`/`"Aggregates"` in World Bank metadata, trailing whitespace) should become empty; legitimate values that tools read as missing (`NA` = North America / Namibia) stay verbatim with a warning in the field description; statistical portals mix aggregates with units, so flag them (`is_aggregate`); keep source precision and treat display hints (`decimal`) as metadata.
+
+Declined: a shared paged-fetch helper in `wrangling-idioms.mjs`. Only one paginated source so far; write the guidance first and extract code when a second API source repeats the pattern.
