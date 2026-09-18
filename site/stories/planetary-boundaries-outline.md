@@ -91,7 +91,7 @@ as story #1 — see friction notes.
 
 ## Voice
 
-Plain and factual, per [`docs/voice-guide.md`](../../docs/voice-guide.md). Let the
+Plain and factual, per [`docs/voice-guide.md`](https://github.com/datasets/datapressr/blob/main/docs/voice-guide.md). Let the
 count — six of nine — carry it. No "humanity on the brink", no "tipping point"
 unless the source uses it precisely. The ozone section is allowed to note the
 recovery plainly; it is not allowed to become uplift. A "sounds like me" pass is a
