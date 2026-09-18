@@ -1,7 +1,7 @@
 {
   "name": "tesla-quarterly-deliveries",
   "title": "Tesla quarterly vehicle production and deliveries by model group",
-  "description": "Vehicles produced and delivered per quarter by reported model group, from Q2 2019 to Q2 2026 (29 quarters, 174 rows), taken from Exhibit 99.1 of Tesla's quarterly Production & Deliveries Form 8-K filed with the SEC. Tesla reports grouped models, not individual ones, and the grouping has changed twice (Model S/X + Model 3 → Model S/X + Model 3/Y → Model 3/Y + Other Models); groups are kept exactly as reported and are never split or re-combined. Each quarter carries its component rows plus the reported Total, flagged by is_total — do not sum a Total row with its components. Coverage starts at Q2 2019 because that is the first release to publish a table; the 20 earlier releases back to Q1 2013 state their figures in prose only and are listed in source-filings.csv as discovered but not extracted. Missing values are empty cells and are distinct from a genuine 0 (Tesla produced no Model S/X in Q1 2021). Snapshot taken 2026-09-18; rebuilt offline by build.ts from the archived filings.",
+  "description": "Vehicles produced and delivered per quarter by reported model group, from Q2 2019 to Q2 2026 (29 quarters, 174 rows), taken from Exhibit 99.1 of Tesla's quarterly Production & Deliveries Form 8-K filed with the SEC. Across this range Tesla reports grouped models rather than individual ones (the earlier prose releases did give per-model figures), and the grouping has changed twice (Model S/X + Model 3 → Model S/X + Model 3/Y → Model 3/Y + Other Models); groups are kept exactly as reported and are never split or re-combined. Each quarter carries its component rows plus the reported Total, flagged by is_total — do not sum a Total row with its components. Coverage starts at Q2 2019 because that is the first release to publish a table. 19 earlier releases, covering 18 quarters between Q1 2013 and Q1 2019 and not contiguous (no delivery 8-K was filed for Q2 2013 through Q4 2014), state their figures in prose only and are listed in source-filings.csv as discovered but not extracted. Missing values are empty cells and are distinct from a genuine 0 (Tesla produced no Model S/X in Q1 2021). Snapshot taken 2026-09-18; rebuilt offline by build.ts from the archived filings.",
   "status": "structured",
   "licenses": [
     {
@@ -21,7 +21,7 @@
     },
     {
       "title": "SEC — accessing EDGAR data (declared User-Agent and request-rate terms)",
-      "path": "https://www.sec.gov/os/webmaster-faq#developers"
+      "path": "https://www.sec.gov/search-filings/edgar-search-assistance/accessing-edgar-data"
     }
   ],
   "resources": [
@@ -34,16 +34,13 @@
         "fields": [
           { "name": "period_start", "type": "date", "description": "First day of the reported calendar quarter." },
           { "name": "period_end", "type": "date", "description": "Last day of the reported calendar quarter." },
-          { "name": "vehicle_group", "type": "string", "description": "Model grouping exactly as the release labels it: Model S/X, Model 3, Model 3/Y, Other Models, or Total. Tesla does not report individual models, and a combined group is never split here. Which groups appear changes over time — see README.md." },
-          { "name": "is_total", "type": "boolean", "description": "true for the release's own Total row, false for a component row. The components of one quarter and metric sum to its Total; summing a Total with its components double-counts." },
+          { "name": "vehicle_group", "type": "string", "description": "Model grouping exactly as the release labels it: Model S/X, Model 3, Model 3/Y, Other Models, or Total. Over this range Tesla reports only grouped models, and a combined group is never split here. Which groups appear changes over time — see README.md." },
+          { "name": "is_total", "type": "boolean", "description": "true for the release's own Total row, false for a component row. The components of one quarter and metric sum to its Total wherever the release printed a figure for every group; summing a Total with its components double-counts." },
           { "name": "metric", "type": "string", "description": "production (vehicles built) or deliveries (vehicles transferred to a customer with paperwork complete). Tesla reports these as two separate measures; they are never equal and neither is revenue." },
-          { "name": "vehicles", "type": "integer", "description": "Vehicle count as reported. Empty means the release did not give a figure; 0 means it reported none built or delivered (Model S/X production in Q1 2021). Deliveries figures are described by Tesla as slightly conservative and subject to revision of up to about 0.5%." },
+          { "name": "vehicles", "type": "integer", "description": "Vehicle count as reported. Empty means the release did not give a figure; 0 means it reported none built or delivered (Model S/X production in Q1 2021). Releases through Q4 2021 described the delivery count as slightly conservative and said final numbers could vary by up to 0.5% or more; releases from Q1 2022 onward drop that language." },
           { "name": "source_id", "type": "string", "description": "SEC accession number of the 8-K the figure was read from; joins to source-filings.csv." }
         ],
-        "primaryKey": ["period_start", "period_end", "vehicle_group", "metric"],
-        "foreignKeys": [
-          { "fields": ["source_id"], "reference": { "resource": "source-filings", "fields": ["source_id"] } }
-        ]
+        "primaryKey": ["period_start", "period_end", "vehicle_group", "metric"]
       }
     },
     {
@@ -58,13 +55,10 @@
           { "name": "vehicle_group", "type": "string", "description": "Model grouping exactly as the release labels it, on the same terms as the quarterly resource." },
           { "name": "is_total", "type": "boolean", "description": "true for the release's own Total row, false for a component row." },
           { "name": "metric", "type": "string", "description": "production or deliveries, as in the quarterly resource." },
-          { "name": "vehicles", "type": "integer", "description": "Vehicle count for the full year as recapped in the Q4 release. This is not always the sum of the four quarters as first reported — Tesla restates — so the two resources are kept separate rather than reconciled. See README.md." },
+          { "name": "vehicles", "type": "integer", "description": "Vehicle count for the full year as recapped in the Q4 release. Covers 2020-2025: the Q4 2019 release carried no full-year recap, so the series starts a year after the quarterly one. This is not always the sum of the four quarters as first reported — Tesla restates — so the two resources are kept separate rather than reconciled. See README.md." },
           { "name": "source_id", "type": "string", "description": "SEC accession number of the Q4 8-K the recap was read from; joins to source-filings.csv." }
         ],
-        "primaryKey": ["period_start", "period_end", "vehicle_group", "metric"],
-        "foreignKeys": [
-          { "fields": ["source_id"], "reference": { "resource": "source-filings", "fields": ["source_id"] } }
-        ]
+        "primaryKey": ["period_start", "period_end", "vehicle_group", "metric"]
       }
     },
     {
@@ -76,7 +70,7 @@
         "fields": [
           { "name": "source_id", "type": "string", "description": "SEC accession number of the 8-K." },
           { "name": "filing_date", "type": "date", "description": "Date the 8-K was filed with the SEC." },
-          { "name": "period_label", "type": "string", "description": "Calendar quarter the filing reports on, derived from the filing date and cross-checked against the release's own headline." },
+          { "name": "period_label", "type": "string", "description": "Calendar quarter the filing reports on, derived from the filing date and, for extracted filings, cross-checked against the release's own headline. Empty for an exhibit that is not a delivery release, which reports on no quarter." },
           { "name": "layout", "type": "string", "description": "table where the figures are in an HTML table and were extracted; prose where the release states them in narrative text only; not-a-production-and-deliveries-release for an exhibit filed in the same window that is something else." },
           { "name": "extracted", "type": "boolean", "description": "Whether rows from this filing appear in the other two resources. false is a record of what exists and was not used, not an omission." },
           { "name": "exhibit_file", "type": "string", "description": "Filename of the archived snapshot under archive/exhibits/." },

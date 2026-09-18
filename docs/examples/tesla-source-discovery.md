@@ -15,7 +15,7 @@ An agent was given a data question, not a source: *Tesla quarterly sales by vehi
 cd datasets/transport/tesla-quarterly-deliveries
 SEC_USER_AGENT="<project> <your-email>" node fetch.ts   # ~100 requests, paced; writes archive/
 node build.ts                                           # offline; archive/ → data/
-node --test                                             # 25 tests
+node --test                                             # 31 tests
 node ../../../scripts/validate-datapackage.mjs .
 ```
 
@@ -38,7 +38,7 @@ That last point is the generalisable one: **prefer the source that tells you how
 
 `https://data.sec.gov/submissions/CIK0001318605.json` plus its pre-2018 overflow file lists all 1,750 Tesla filings with form type, filing date and the 8-K item numbers. The quarterly delivery release is an 8-K reporting under **Item 2.02** filed in the first days of January, April, July or October. That rule — item `2.02`, filed in month 1/4/7/10 on day ≤ 10 — selects 49 filings and is what `fetch.ts` runs. The window is deliberately loose; `build.ts` decides what is actually a production-and-deliveries release, and records the ones that are not.
 
-The rule is also visibly imperfect, which is worth stating: it misses the Q4 2013 release (filed 2014-01-15) and anything else Tesla filed outside the window. 49 filings, 50 exhibits, 1.2 MB — well inside small-data.
+The rule is also visibly imperfect, which is worth stating: it misses the Q4 2013 release, filed 2014-01-15, and anything else Tesla filed outside the window. Checking the archived submissions index, though, most of the early gap is the source's and not the rule's — Tesla filed no item-2.02 8-K at all in Jul or Oct 2013, Apr, Jul or Oct 2014, or Jan 2015. 49 filings, 50 exhibits, 1.2 MB — well inside small-data.
 
 ## What the source actually supports
 
@@ -47,7 +47,7 @@ Recorded **before** any parsing, from reading a sample of the filings:
 - **Deliveries and production are two measures, not one.** Both are reported; they are never equal; neither is revenue. They are kept as separate `metric` values and production is never relabelled as sales.
 - **Model groups, never individual models.** `Model S/X`, `Model 3`, `Model 3/Y`, `Other Models` — the grouping changes twice across the series. Labels are preserved verbatim. A combined group is never split; groups are never re-combined across regimes.
 - **Totals sit alongside components.** Every table has the release's own `Total` row. Flagged `is_total` rather than dropped, so the reader can filter instead of double-counting.
-- **Two layouts.** From the Q2 2019 release the figures are in an HTML table. The 20 earlier releases, back to Q1 2013, state them in prose whose wording changes each time.
+- **Two layouts.** From the Q2 2019 release the figures are in an HTML table. 19 earlier releases, covering 18 quarters between Q1 2013 and Q1 2019, state them in prose whose wording changes each time — and those *do* break out individual models.
 
 The schema fell out of that: `period_start, period_end, vehicle_group, is_total, metric, vehicles, source_id`, keyed on `(period_start, period_end, vehicle_group, metric)`.
 
@@ -56,12 +56,12 @@ The schema fell out of that: `period_start, period_end, vehicle_group, is_total,
 | Range | Filings | Status |
 |---|--:|---|
 | Q2 2019 – Q2 2026 | 29 | **Extracted.** Table layout, no gaps in the run. |
-| Q1 2013 – Q1 2019 | 20 | **Discovered, not extracted.** Prose layout. |
-| Same-window exhibits that are not delivery releases | 1 | Recorded as such (an all-staff email filed 2018-10-01). |
-| Q4 2013 (filed 2014-01-15) and any other out-of-window release | — | **Not discovered** by the selection rule. |
+| Q1 2013 – Q1 2019 | 19 | **Discovered, not extracted.** Prose layout, 18 distinct quarters (Q2 2017 was filed twice). |
+| Same-window exhibits that are not delivery releases | 2 | Recorded as such: an all-staff email filed 2018-10-01, and an Investor Day announcement filed alongside the Q4 2022 release. |
+| Q2 2013 – Q4 2014 | — | **No delivery 8-K exists** for six of these seven quarters; Q4 2013 was filed 2014-01-15, outside the selection window. |
 | Q3 2026 onwards | — | Quarter had not ended at the 2026-09-18 cutoff. |
 
-The 20 prose releases were left unextracted on purpose. Each would need its own pattern, and a regex that silently matches the wrong number in a paragraph produces a plausible figure with no way to tell. Extracting them is a real follow-up, not an oversight — and either way `data/source-filings.csv` lists all 50 exhibits with a `layout` and an `extracted` flag, so the gap is visible in the data rather than only in prose.
+The 19 prose releases were left unextracted on purpose. Each would need its own pattern, and a regex that silently matches the wrong number in a paragraph produces a plausible figure with no way to tell. Extracting them is a real follow-up, not an oversight — and either way `data/source-filings.csv` lists all 50 exhibits with a `layout` and an `extracted` flag, so the gap is visible in the data rather than only in prose.
 
 ## Sample results, checked against the filings
 
@@ -80,7 +80,7 @@ Three things the data turned up that the question did not anticipate:
 2. **A number broken by markup.** Q2 2022's total production is marked up as `258,5 8 0` across separate spans. Stripping whitespace repairs it — and the component sum (16,411 + 242,169 = 258,580) is what proves the repair rather than the repair being trusted on sight.
 3. **The annual recap does not match the four quarters.** 2020 deliveries sum to 498,920 across the quarterly releases; the Q4 2020 recap says 499,550. 2021: 935,950 against 936,172. Tesla restates and does not reissue the press releases. Both figures are kept, in separate resources, and `build.ts` prints the difference on every run instead of reconciling it away.
 
-Everything above is asserted in `build.ts` or covered by one of the 25 tests. The checks that earn their keep: components sum to the reported Total for every quarter and metric; the quarter derived from the filing date matches the quarter the release's own headline claims; the extracted quarters form an unbroken sequence; the primary key is unique; every archived file matches its manifest SHA-256 before it is parsed.
+Everything above is asserted in `build.ts` or covered by one of its tests. The checks that earn their keep: components sum to the reported Total for every quarter and metric where the release printed a figure for every group, and never exceed it where one is dashed; no table is ragged and no group label is unrecognised; the quarter derived from the filing date matches the quarter the release's own headline claims; the extracted quarters form an unbroken sequence and the newest filing actually produced rows; the primary key is unique; every archived file matches its manifest SHA-256 before it is parsed.
 
 ## Autonomy log
 
@@ -110,7 +110,7 @@ All three are the same failure: **a selection heuristic that returns fewer rows 
 
 ## Follow-ups worth filing
 
-- **Extract the 20 prose releases (Q1 2013 – Q1 2019).** The safe approach is the one already proven here: parse to component figures, then require them to sum to the total the same paragraph states, and fail rather than guess where they don't. Roughly doubles the series.
+- **Extract the 19 prose releases (18 quarters, Q1 2013 – Q1 2019).** The safe approach is the one already proven here: parse to component figures, then require them to sum to the total the same paragraph states, and fail rather than guess where they don't. Adds 18 quarters to 29, and — because the prose breaks out `Model S`, `Model X` and `Model 3` separately — adds *finer* granularity than the table era has, which is the more interesting half.
 - **Widen the discovery rule** to catch out-of-window releases like Q4 2013 (filed 2014-01-15), and assert one release per quarter across the whole range so a future gap is an error rather than a silent absence.
 - **Decide whether the lease-accounting percentage deserves its own resource.** It is in every table from Q3 2019 and currently discarded.
 - **Re-run and diff.** The build is deterministic against a pinned snapshot; running `fetch.ts --refresh` after a new quarter and diffing the CSVs would show whether Tesla has restated anything, which is currently only visible via the annual recap.

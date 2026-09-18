@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { parseCount, parseTable, metricColumns, resolveAndCheck, quarterOf, statedQuarter, tablesIn, plainText } from "./build.ts";
+import { parseCount, parseTable, metricColumns, resolveAndCheck, quarterOf, statedQuarter, tablesIn, plainText, isDeliveryRelease } from "./build.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const manifest = JSON.parse(readFileSync(join(here, "archive", "manifest.json"), "utf8"));
@@ -94,6 +94,47 @@ test("parseTable ignores a table with no Total row", () => {
   assert.equal(parseTable([["Production", "Deliveries"], ["Model 3", "1", "2"]]), null);
 });
 
+test("a ragged table fails rather than silently dropping a metric", () => {
+  // If the Total row is one cell short, that metric would otherwise vanish from the
+  // output entirely — rows and sum check together — with a zero exit code.
+  assert.throws(
+    () =>
+      parseTable([
+        ["Production", "Deliveries"],
+        ["Model 3/Y", "100", "90"],
+        ["Other Models", "10", "9"],
+        ["Total", "110"],
+      ]),
+    /deliveries is reported for 2 of 3 rows/,
+  );
+});
+
+test("an unrecognised vehicle group fails rather than being dropped", () => {
+  // A new model line must not disappear. Note the sum check cannot catch this one: the
+  // unknown row is zero, so the remaining components still add up to the Total.
+  assert.throws(
+    () =>
+      parseTable([
+        ["Production", "Deliveries"],
+        ["Model 3/Y", "100", "90"],
+        ["Cybertruck", "0", "0"],
+        ["Total", "100", "90"],
+      ]),
+    /unrecognised vehicle group\(s\) "Cybertruck"/,
+  );
+});
+
+test("a row that is not a data row is still ignored, not treated as an unknown group", () => {
+  const table = parseTable([
+    ["Production", "Deliveries"],
+    ["Model 3/Y", "100", "90"],
+    ["Total", "100", "90"],
+    ["Subject to operating lease accounting", "2%"],
+  ]);
+  assert.ok(table);
+  assert.deepEqual(table.groups.map((g) => g.label), ["Model 3/Y", "Total"]);
+});
+
 // --- resolve and check ------------------------------------------------------
 
 test("a component sum that disagrees with the reported Total fails the build", () => {
@@ -116,6 +157,19 @@ test("a single dash becomes a real zero only when the arithmetic confirms it", (
   const got = Object.fromEntries(resolveAndCheck(table, "test").map((r) => [`${r.label}|${r.metric}`, r.value]));
   assert.equal(got["Model S/X|production"], 0, "no Model S/X was produced, and the total proves it");
   assert.equal(got["Model S/X|deliveries"], 2020);
+});
+
+test("the sum check is not skipped just because a dash is present", () => {
+  // The exact sum is unavailable when a group is dashed, but the known components can
+  // still never exceed the reported Total. Without this the dash branch published every
+  // component unchecked — which is the branch most likely to be misaligned.
+  const table = parseTable([
+    ["Production", "Deliveries"],
+    ["Model 3/Y", "999,999", "90"],
+    ["Other Models", "-", "9"],
+    ["Total", "110", "99"],
+  ]);
+  assert.throws(() => resolveAndCheck(table, "test"), /components already sum to 999999, more than the reported Total 110/);
 });
 
 test("a dash stays missing when the remainder is not zero — missing is not zero", () => {
@@ -247,12 +301,34 @@ test("every quarter's component rows sum to its Total row, in both metrics", () 
     const k = `${r.period_start}|${r.metric}`;
     (byPeriodMetric.get(k) ?? byPeriodMetric.set(k, []).get(k)).push(r);
   }
+  assert.equal(byPeriodMetric.size, 58, "29 quarters x 2 metrics");
   for (const [k, group] of byPeriodMetric) {
     const total = group.find((r) => r.is_total === "true");
     assert.ok(total, `${k} has no Total row`);
-    const sum = group.filter((r) => r.is_total === "false").reduce((a, r) => a + Number(r.vehicles), 0);
+    const components = group.filter((r) => r.is_total === "false");
+    // An empty cell would coerce to 0 and make this pass vacuously over missing data.
+    assert.ok(components.every((r) => r.vehicles !== ""), `${k} has a missing component`);
+    const sum = components.reduce((a, r) => a + Number(r.vehicles), 0);
     assert.equal(sum, Number(total.vehicles), k);
   }
+});
+
+test("the coverage table's layout classification matches the exhibits", () => {
+  const coverage = readCsv("source-filings.csv");
+  const counts = {};
+  for (const c of coverage) counts[c.layout] = (counts[c.layout] ?? 0) + 1;
+  assert.deepEqual(counts, { table: 29, prose: 19, "not-a-production-and-deliveries-release": 2 });
+  // An exhibit that is not a delivery release reports on no quarter, so it claims none.
+  for (const c of coverage) {
+    if (c.layout === "not-a-production-and-deliveries-release") assert.equal(c.period_label, "");
+    else assert.match(c.period_label, /^20\d\d Q[1-4]$/);
+  }
+});
+
+test("isDeliveryRelease needs a figure, not just the word", () => {
+  assert.equal(isDeliveryRelease("Tesla Announces Date for 2023 Investor Day. We will cover production plans."), false);
+  assert.equal(isDeliveryRelease("TESLA DELIVERS 11,507 VEHICLES IN Q2 OF 2015"), true);
+  assert.equal(isDeliveryRelease("In the second quarter, we produced over 450,000 vehicles"), true);
 });
 
 test("the coverage table accounts for every archived exhibit", () => {

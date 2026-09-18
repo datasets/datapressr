@@ -15,7 +15,7 @@ source_id,filing_date,period_label,layout,extracted,exhibit_file,exhibit_url
 0001564590-18-000054,2018-01-03,2017 Q4,prose,false,0001564590-18-000054-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459018000054/tsla-ex991_6.htm
 0001564590-18-007463,2018-04-03,2018 Q1,prose,false,0001564590-18-007463-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459018007463/tsla-ex991_6.htm
 0001564590-18-016465,2018-07-02,2018 Q2,prose,false,0001564590-18-016465-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459018016465/tsla-ex991_6.htm
-0001564590-18-023716,2018-10-01,2018 Q3,not-a-production-and-deliveries-release,false,0001564590-18-023716-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459018023716/tsla-ex991_6.htm
+0001564590-18-023716,2018-10-01,,not-a-production-and-deliveries-release,false,0001564590-18-023716-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459018023716/tsla-ex991_6.htm
 0001564590-18-023815,2018-10-02,2018 Q3,prose,false,0001564590-18-023815-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459018023815/tsla-ex991_6.htm
 0001564590-19-000013,2019-01-02,2018 Q4,prose,false,0001564590-19-000013-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459019000013/tsla-ex991_6.htm
 0001564590-19-010743,2019-04-04,2019 Q1,prose,false,0001564590-19-010743-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459019010743/tsla-ex991_6.htm
@@ -34,7 +34,7 @@ source_id,filing_date,period_label,layout,extracted,exhibit_file,exhibit_url
 0001564590-22-025153,2022-07-05,2022 Q2,table,true,0001564590-22-025153-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459022025153/tsla-ex991_6.htm
 0001564590-22-033053,2022-10-03,2022 Q3,table,true,0001564590-22-033053-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459022033053/tsla-ex991_6.htm
 0001564590-23-000002,2023-01-03,2022 Q4,table,true,0001564590-23-000002-tsla-ex991_6.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459023000002/tsla-ex991_6.htm
-0001564590-23-000002,2023-01-03,2022 Q4,prose,false,0001564590-23-000002-tsla-ex992_7.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459023000002/tsla-ex992_7.htm
+0001564590-23-000002,2023-01-03,,not-a-production-and-deliveries-release,false,0001564590-23-000002-tsla-ex992_7.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459023000002/tsla-ex992_7.htm
 0001564590-23-005126,2023-04-03,2023 Q1,table,true,0001564590-23-005126-tsla-ex991_7.htm,https://www.sec.gov/Archives/edgar/data/1318605/000156459023005126/tsla-ex991_7.htm
 0000950170-23-031241,2023-07-03,2023 Q2,table,true,0000950170-23-031241-tsla-ex99_1.htm,https://www.sec.gov/Archives/edgar/data/1318605/000095017023031241/tsla-ex99_1.htm
 0000950170-23-050938,2023-10-02,2023 Q3,table,true,0000950170-23-050938-tsla-ex99_1.htm,https://www.sec.gov/Archives/edgar/data/1318605/000095017023050938/tsla-ex99_1.htm

@@ -6,13 +6,15 @@
 //          after each quarter ends.
 //            submissions index: https://data.sec.gov/submissions/CIK0001318605.json
 //            filing directory:  https://www.sec.gov/Archives/edgar/data/1318605/<accession>/index.json
-// License: U.S. government work. Filings submitted to EDGAR are public records and
-//          EDGAR data is not subject to copyright (17 U.S.C. 105 covers the government's
-//          own work; the underlying press-release text is Tesla's). See README.md —
-//          this dataset publishes the extracted numeric facts, not the press-release prose.
+// License: no redistribution licence is granted for the filings themselves, and none was
+//          found. What this dataset publishes is the extracted numeric facts, which US
+//          copyright does not cover; the press-release prose is Tesla's and is not
+//          republished. See README.md — archive/ holds the retrieved documents as
+//          evidence for the build.
 //
 // Access:  SEC requires a declared User-Agent identifying the requester, and asks for
-//          no more than 10 requests/second. This script REFUSES TO RUN without one:
+//          no more than 10 requests/second. This script REFUSES TO FETCH without one
+//          (with a snapshot already in archive/ it reuses it and never asks):
 //
 //            SEC_USER_AGENT="datapressr hello@datahub.io" node fetch.ts
 //
@@ -20,7 +22,8 @@
 //          to plain HTTP clients; EDGAR is the primary source that does not.
 //
 // Run:  node fetch.ts            reuse existing snapshot if archive/manifest.json exists
-//       node fetch.ts --refresh  re-download (overwrites archive/)
+//       node fetch.ts --refresh  re-download (overwrites the files it fetches; it does
+//                                not delete stale ones, so remove archive/ for a clean pull)
 //
 // Only networked script; build.ts reads archive/ only. Every response is saved
 // byte-for-byte and recorded in archive/manifest.json with URL, retrieval time,
@@ -71,7 +74,7 @@ function userAgent(): string {
     throw new Error(
       "SEC_USER_AGENT is not set. The SEC requires requests to declare who is making them.\n" +
         '  Run: SEC_USER_AGENT="<project> <contact-email>" node fetch.ts\n' +
-        "  See https://www.sec.gov/os/webmaster-faq#developers",
+        "  See https://www.sec.gov/search-filings/edgar-search-assistance/accessing-edgar-data",
     );
   }
   if (!ua.includes("@")) {

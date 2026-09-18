@@ -158,6 +158,19 @@ interface ParsedTable {
 }
 
 /** Column index of each metric among a header row's cells, or null if this isn't a header. */
+/**
+ * Whether an exhibit is a production-and-deliveries release at all.
+ *
+ * Testing the headline for the words alone is not enough: the Q4 2022 filing carries a
+ * second exhibit announcing Investor Day, whose opening paragraph happens to contain
+ * "production". A release always states a figure next to the verb — "Q1 production totaled
+ * 34,494 vehicles", "TESLA DELIVERS 11,507 VEHICLES IN Q2 OF 2015", "we produced over
+ * 450,000 vehicles" — so require a count of at least four digits near the word.
+ */
+export function isDeliveryRelease(text: string): boolean {
+  return /(deliver|produc)\w*\b[^.]{0,60}?\b\d{1,3}(?:,\d{3})+\b/i.test(text.slice(0, 2000));
+}
+
 export function metricColumns(cells: string[]): Partial<Record<Metric, number>> | null {
   const cols: Partial<Record<Metric, number>> = {};
   cells.forEach((c, i) => {
@@ -178,6 +191,7 @@ export function metricColumns(cells: string[]): Partial<Record<Metric, number>> 
 export function parseTable(rows: string[][]): ParsedTable | null {
   let cols: Partial<Record<Metric, number>> | null = null;
   const groups: ParsedTable["groups"] = [];
+  const unknownLabels: string[] = [];
   for (const cells of rows) {
     if (cells.length === 0) continue;
     if (!cols) {
@@ -185,7 +199,16 @@ export function parseTable(rows: string[][]): ParsedTable | null {
       continue;
     }
     const label = cells[0];
-    if (!GROUPS.includes(label)) continue;
+    if (!GROUPS.includes(label)) {
+      // A row that looks like data under a label we don't know is a new model group, not
+      // noise — throw rather than drop it. Dropping is invisible: the sum check can still
+      // pass if the unknown row is zero, and the published series just quietly loses a
+      // group. Only rows whose remaining cells are all counts qualify.
+      const rest = cells.slice(1);
+      const looksLikeData = label !== "" && rest.length >= 2 && rest.every((c) => /^[\d,\s ​]+$|^%|%$/.test(c));
+      if (looksLikeData) unknownLabels.push(label);
+      continue;
+    }
     const values: Partial<Record<Metric, number | "dash">> = {};
     for (const metric of METRICS) {
       const idx = cols[metric]! + 1; // +1: the row's first cell is the label
@@ -200,6 +223,20 @@ export function parseTable(rows: string[][]): ParsedTable | null {
   }
   if (!cols || groups.length === 0) return null;
   if (!groups.some((g) => g.label === TOTAL_LABEL)) return null;
+  if (unknownLabels.length > 0) {
+    throw new Error(
+      `unrecognised vehicle group(s) ${unknownLabels.map((l) => JSON.stringify(l)).join(", ")} — ` +
+        `add them to GROUPS after checking what the release means by them`,
+    );
+  }
+  // Every metric must be present on every row of the table or on none of them. A Total row
+  // one cell short otherwise deletes that whole metric from the output without an error.
+  for (const metric of METRICS) {
+    const present = groups.filter((g) => g.values[metric] !== undefined).length;
+    if (present !== 0 && present !== groups.length) {
+      throw new Error(`${metric} is reported for ${present} of ${groups.length} rows — the table is ragged`);
+    }
+  }
   return { groups };
 }
 
@@ -224,6 +261,15 @@ export function resolveAndCheck(table: ParsedTable, where: string): { label: str
     const dashes = components.filter((c) => c.values[metric] === "dash");
     const knownSum = known.reduce((a, c) => a + (c.values[metric] as number), 0);
 
+    // The known components can never add up to more than the reported Total, dash or no
+    // dash. This is the check that proves the column alignment and any whitespace repair,
+    // so it must not be skipped on exactly the rows that are already irregular.
+    if (knownSum > reportedTotal) {
+      throw new Error(
+        `${where}: ${metric} components already sum to ${knownSum}, more than the reported Total ${reportedTotal}`,
+      );
+    }
+
     const resolved = new Map<string, number | "">();
     if (dashes.length === 0) {
       if (knownSum !== reportedTotal) {
@@ -233,7 +279,10 @@ export function resolveAndCheck(table: ParsedTable, where: string): { label: str
       // The one dashed line accounts for exactly nothing: a real zero, not an unknown.
       resolved.set(dashes[0].label, 0);
     } else {
-      // Can't attribute the remainder — leave every dash genuinely missing.
+      // Can't attribute the remainder — leave every dash genuinely missing. The exact
+      // sum check is unavailable here by construction, so the row-count and upper-bound
+      // checks above are all that stands behind these values; that is why the README
+      // scopes its "components sum to the Total" claim to quarters with no dash.
       for (const d of dashes) resolved.set(d.label, "");
     }
 
@@ -257,7 +306,7 @@ function main(): void {
   const annual: Row[] = [];
   const coverage: Record<string, string | number | boolean>[] = [];
   // period key -> the filing that supplied it, so a later filing can supersede an earlier one
-  const claimedBy = new Map<string, { accession: string; filing_date: string }>();
+  const claimedBy = new Map<string, { accession: string; filing_date: string; exhibit_file: string }>();
 
   for (const ex of exhibits) {
     const buf = readFileSync(join(HERE, ex.path));
@@ -281,29 +330,31 @@ function main(): void {
       .filter((t): t is ParsedTable => t !== null);
 
     const exhibitFile = ex.path.split("/").pop()!;
-    // Headlines run either "Tesla Q3 2017 Vehicle Production and Deliveries" or, in the
-    // early years, "TESLA DELIVERS 11,507 VEHICLES IN Q2 OF 2015" — match the stems.
-    const isPressRelease = /produc|deliver/i.test(text.slice(0, 1200));
+    const isPressRelease = isDeliveryRelease(text);
+
+    // The quarter derived from the filing date is cross-checked against the release's own
+    // headline for every exhibit, extracted or not — the non-extracted rows carry a
+    // period_label too, and it should be as trustworthy as the extracted ones.
+    const stated = statedQuarter(text);
+    if (stated && (stated.year !== year || stated.quarter !== quarter) && candidates.length > 0) {
+      throw new Error(
+        `${filingDate} ${accession}: filing date implies ${year} Q${quarter} but the release says ${stated.year} Q${stated.quarter}`,
+      );
+    }
 
     if (candidates.length === 0) {
       coverage.push({
         source_id: accession,
         filing_date: filingDate,
-        period_label: `${year} Q${quarter}`,
+        // An exhibit that isn't a delivery release reports on no quarter at all; giving it
+        // one would invent a period the document does not claim.
+        period_label: isPressRelease ? `${year} Q${quarter}` : "",
         layout: isPressRelease ? "prose" : "not-a-production-and-deliveries-release",
         extracted: false,
         exhibit_file: exhibitFile,
         exhibit_url: ex.url,
       });
       continue;
-    }
-
-    // Cross-check the date-derived quarter against the release's own headline.
-    const stated = statedQuarter(text);
-    if (stated && (stated.year !== year || stated.quarter !== quarter)) {
-      throw new Error(
-        `${filingDate} ${accession}: filing date implies ${year} Q${quarter} but the release says ${stated.year} Q${stated.quarter}`,
-      );
     }
 
     // A Q4 release carries the quarter's table first and a full-year recap second.
@@ -332,27 +383,42 @@ function main(): void {
       for (const arr of [quarterly, annual]) {
         for (let i = arr.length - 1; i >= 0; i--) if (arr[i].source_id === prior.accession) arr.splice(i, 1);
       }
-      const superseded = coverage.find((c) => c.source_id === prior.accession);
+      // Match on the exhibit as well as the accession: one filing can carry two exhibits
+      // (the Q4 2022 filing does), so accession alone can flip the wrong coverage row.
+      const superseded = coverage.find((c) => c.source_id === prior.accession && c.exhibit_file === prior.exhibit_file);
       if (superseded) superseded.extracted = false;
     }
-    claimedBy.set(key, { accession, filing_date: filingDate });
+    claimedBy.set(key, { accession, filing_date: filingDate, exhibit_file: exhibitFile });
 
     const [qStart, qEnd] = QUARTER_DATES[quarter];
-    for (const r of resolveAndCheck(quarterTable, `${filingDate} ${accession} quarter table`)) {
-      quarterly.push({
-        period_start: `${year}-${qStart}`,
-        period_end: `${year}-${qEnd}`,
-        vehicle_group: r.label,
-        is_total: r.label === TOTAL_LABEL,
-        metric: r.metric,
-        vehicles: r.value,
-        source_id: accession,
-      });
-    }
+    const quarterRows: Row[] = resolveAndCheck(quarterTable, `${filingDate} ${accession} quarter table`).map((r) => ({
+      period_start: `${year}-${qStart}`,
+      period_end: `${year}-${qEnd}`,
+      vehicle_group: r.label,
+      is_total: r.label === TOTAL_LABEL,
+      metric: r.metric,
+      vehicles: r.value,
+      source_id: accession,
+    }));
+    quarterly.push(...quarterRows);
 
     if (rest.length === 1) {
       if (quarter !== 4) throw new Error(`${filingDate} ${accession}: a second table outside a Q4 release`);
-      for (const r of resolveAndCheck(rest[0], `${filingDate} ${accession} annual table`)) {
+      const annualRows = resolveAndCheck(rest[0], `${filingDate} ${accession} annual table`);
+      // Document order is assumed to be quarter first, full-year recap second. Prove it
+      // rather than trust it: a year must be at least as large as the quarter inside it,
+      // and if the order ever flips, every other check in this build still passes while
+      // the Q4 row silently carries annual figures.
+      for (const metric of METRICS) {
+        const q = quarterRows.find((r) => r.vehicle_group === TOTAL_LABEL && r.metric === metric)?.vehicles;
+        const a = annualRows.find((r) => r.label === TOTAL_LABEL && r.metric === metric)?.value;
+        if (typeof q === "number" && typeof a === "number" && a < q) {
+          throw new Error(
+            `${filingDate} ${accession}: the second table's ${metric} Total (${a}) is below the first table's (${q}) — the quarter and full-year tables look swapped`,
+          );
+        }
+      }
+      for (const r of annualRows) {
         annual.push({
           period_start: `${year}-01-01`,
           period_end: `${year}-12-31`,
@@ -385,6 +451,20 @@ function main(): void {
     keys.add(k);
   }
 
+  // The newest filing must have produced rows. Without this, a parse failure on the most
+  // recent release truncates the series at the far end, leaves no gap for the check below
+  // to find, and exits 0 — the series just silently stops a quarter early.
+  const pressReleases = coverage.filter((c) => c.layout !== "not-a-production-and-deliveries-release");
+  const newest = pressReleases[pressReleases.length - 1];
+  if (newest && newest.layout === "table" && newest.extracted === false) {
+    throw new Error(`the most recent filing ${newest.source_id} has a table but produced no rows`);
+  }
+  if (newest && newest.layout === "prose" && quarterly.length > 0) {
+    throw new Error(
+      `the most recent filing ${newest.source_id} (${newest.filing_date}) parsed as prose — the table layout may have changed`,
+    );
+  }
+
   // Every quarter between the first and last extracted must be present — a gap means a
   // filing was missed, not that Tesla skipped a quarter.
   const periods = [...new Set(quarterly.map((r) => r.period_start))].sort();
@@ -394,7 +474,7 @@ function main(): void {
     if (periods[i] !== expected) throw new Error(`gap in coverage: ${periods[i - 1]} is followed by ${periods[i]}`);
   }
 
-  if (quarterly.some((r) => typeof r.vehicles === "number" && r.vehicles < 0)) {
+  if ([...quarterly, ...annual].some((r) => typeof r.vehicles === "number" && r.vehicles < 0)) {
     throw new Error("a negative vehicle count");
   }
 
