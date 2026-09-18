@@ -1,0 +1,13 @@
+---
+date: 2026-09-18
+title: "Tesla quarterly deliveries, found without being given a source"
+promote: true
+---
+
+**A new dataset: [Tesla quarterly vehicle production and deliveries](https://github.com/datasets/datapressr/tree/main/datasets/transport/tesla-quarterly-deliveries).** 29 quarters, Q2 2019 to Q2 2026, by reported model group. What makes it worth a note is that the run started from a question — *Tesla quarterly sales by vehicle over time* — and no source. Tesla's own investor-relations site and the Business Wire copies of the press release both refuse plain HTTP clients; SEC EDGAR serves the identical Exhibit 99.1 as a public record, documents how it wants to be accessed, and publishes an index of its own filings, which is what makes the coverage auditable rather than merely plausible.
+
+The question turned out not to be answerable as asked, and saying so is most of the value. Tesla reports production and deliveries as two separate measures, and reports grouped models rather than individual ones, with the grouping changing twice across the range. The dataset preserves those groups exactly as each release writes them and never splits or re-combines them. Three things the data turned up that the question did not anticipate: a dash that is a real zero (no Model S/X was built in Q1 2021), a total broken up by the page's own markup as `258,5 8 0`, and full-year figures that do not reconcile with the four quarters as first reported — 2020 deliveries are 630 higher, 2021 are 222 higher, because Tesla restates without reissuing the releases. Both figures are published; the build prints the difference on every run rather than quietly picking one.
+
+The 19 earlier releases, back to 2013, state their numbers in prose instead of a table. They are archived and listed as found-and-not-extracted rather than pulled out by one-off patterns whose failures would be silent. The [walkthrough](https://github.com/datasets/datapressr/blob/main/docs/examples/tesla-source-discovery.md) records the route, including the three bugs along the way — all three the same shape, a selection rule that returned fewer rows instead of an error.
+
+**The `structure` skill gained two sections**, both from the second benchmark round. *Joining tables* says to write down cardinality and orphan policy before coding, and to assert one-side uniqueness, orphan counts and row counts rather than trusting them; the DuckDB threshold is reversed where the benchmark found it wrong, so a keyed many-to-one join across several files is now plain Node's job. *Values that lie* covers the two ways text misleads in opposite directions — placeholders that look like data, and real values like `NA` for North America or Namibia that every default CSV reader treats as missing.
