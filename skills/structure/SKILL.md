@@ -69,6 +69,16 @@ async function fetchAndArchive(): Promise<string> {
 }
 ```
 
+**JSON / REST API sources** — paginated, keyed or not, the parsing is trivial (`JSON.parse`); the work is proving the download is complete and hasn't changed underneath you. Worked example: `datasets/demographics/population-growth` (World Bank Indicators API, 18 pages).
+
+- **Two scripts.** `fetch.ts` is the only networked script; `build.ts` reads `archive/` and nothing else, so the build is provably offline. `fetch.ts` reuses an existing snapshot unless run with `--refresh`.
+- **Archive the raw bytes, per response**, not a merged or re-serialised JSON. Write `archive/manifest.json` listing each file's URL, retrieval time, byte size and SHA-256.
+- **Pagination completeness.** Loop to the `pages` the API reports, then assert the rows summed across pages equal its `total`. Re-check both from the archive in `build.ts`.
+- **Snapshot consistency.** If responses carry a version marker (`lastupdated`, an ETag, a dataset version), assert it is identical on every page — otherwise the source changed mid-download and pages may overlap or skip rows.
+- **Errors can arrive as HTTP 200.** Check the payload shape, not just the status (the World Bank API returns `[{"message": …}]` with a 200).
+- **Be polite and bounded.** An explicit timeout (`AbortSignal.timeout`), a small retry cap with backoff, and a pause between requests.
+- **Flatten deliberately.** Keep the nested fields you need, and assert-then-drop fields that are constant across every row rather than publishing them as columns.
+
 **Parsing CSV** — Node has no built-in CSV parser (Python's stdlib does; this is the one place Node needs something extra even for the "simple" case). For an unquoted, comma-only source, a plain `.split()` is fine and needs nothing installed:
 
 ```ts
@@ -128,6 +138,7 @@ If it isn't empty, something in the script is non-deterministic (unsorted rows, 
 - **Simple case** — `datasets/energy-and-commodities/precious-metals-prices`: fetch a CSV from an API, filter by date, write out. No parsing library needed at all, source and output are both already tidy. This is the common case — don't over-build for it.
 - **Government text + sentinels** — `datasets/climate-and-environment/co2-ppm`: NOAA plain-text CSV, ~40 `#` comment lines, `-99.99`/`-1`/`-9.99` "no data" markers, date split across year/month columns. Uses `num(raw, sentinels)` and assert-the-header.
 - **Legacy `.xls` + spreadsheet dates** — `datasets/energy-and-commodities/oil-prices`: eight EIA BIFF8 `.xls` workbooks (`exceljs` can't read them → SheetJS `xlsx`, own `package.json`), a 3-row structured preamble, and timezone-naive serial dates converted offset-free. Output is content-identical to the long-running community `datasets/oil-prices` — the `structure` benchmark's ground-truth rep (`docs/structure-benchmark.md`).
+- **Paginated JSON API** — `datasets/demographics/population-growth`: World Bank Indicators API, 18 pages × 1,000, nested objects, `null` values. Separate `fetch.ts` with a hashed manifest and completeness/consistency checks; offline `build.ts`. Scored in `docs/benchmarks/round-2-json.md`.
 - **Messy xlsx** — `datasets/economic-history/millennium-macroeconomic-data-uk`: 27MB multi-sheet xlsx, sparse section headers needing fill-forward, formula-computed cells, three different grains (annual/quarterly/monthly) reshaped to long format. This is what justifies the cleanup idioms above — they're not hypothetical, they're what this source actually needed.
 
 ## Common mistakes

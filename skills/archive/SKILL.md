@@ -25,6 +25,8 @@ The step between "worth pursuing" and "worth cleaning." Once this is done, the r
 
    For a file the user already has locally, just copy it in.
 
+   For a **paginated API** or anything needing more than one request, use a separate `fetch.ts` that saves each raw response and writes a hashed `archive/manifest.json` — see `structure` → "JSON / REST API sources".
+
 4. **Record provenance right away** — this is the step most likely to get skipped and regretted later (see the rigor pass in `docs/skills-vision.md`: shipping a dataset with no recorded source/license is a real liability, not a nice-to-have). At minimum, a comment at the top of wherever `build.ts` will live:
 
    ```ts
