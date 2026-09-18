@@ -116,3 +116,5 @@ All three are the same failure: **a selection heuristic that returns fewer rows 
 - **Re-run and diff.** The build is deterministic against a pinned snapshot; running `fetch.ts --refresh` after a new quarter and diffing the CSVs would show whether Tesla has restated anything, which is currently only visible via the annual recap.
 
 No generic scraping framework is proposed. Three sources into this repo, the reusable parts are the fetch/build split, the hashed manifest and the coverage table — all of which are now guidance in [`skills/structure/SKILL.md`](../../skills/structure/SKILL.md), not a framework.
+
+The discovery rules this run produced are written up separately in [`docs/source-discovery-playbook.md`](../source-discovery-playbook.md), which replays them against the failure log above and is explicit about which are tested by this one case and which are not.
