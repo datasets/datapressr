@@ -1,0 +1,57 @@
+{
+  "name": "airports",
+  "title": "Airports with country, region and runway summary (OurAirports)",
+  "description": "Every airport, heliport, seaplane base and balloonport in OurAirports (86,094 rows, including closed sites), joined to its country and region names and summarised with its runways: total runway count, open runway count and longest open runway. Built by joining four OurAirports tables (airports, countries, regions, runways) with every key and foreign key checked. Missing values are empty cells. Note: the literal value NA is data, not missing — continent NA is North America and iso_country NA is Namibia. Snapshot taken 2026-09-18; rebuilt offline by build.ts from the archived CSVs.",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "PDDL-1.0",
+      "title": "Open Data Commons Public Domain Dedication and License. OurAirports releases all its data to the public domain; this compilation is dedicated to the public domain on the same terms.",
+      "path": "https://opendatacommons.org/licenses/pddl/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "OurAirports — open data downloads (airports, countries, regions, runways); \"All data is released to the Public Domain\"",
+      "path": "https://ourairports.com/data/"
+    },
+    {
+      "title": "OurAirports data dictionary",
+      "path": "https://ourairports.com/help/data-dictionary.html"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/airports.csv",
+      "name": "airports",
+      "title": "Airports with country, region and runway summary",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "id", "type": "integer", "description": "OurAirports internal airport id (stable)." },
+          { "name": "ident", "type": "string", "description": "OurAirports identifier: the ICAO code where one exists, otherwise a local or OurAirports-assigned code." },
+          { "name": "type", "type": "string", "description": "One of large_airport, medium_airport, small_airport, heliport, seaplane_base, balloonport, closed." },
+          { "name": "name", "type": "string", "description": "Official airport name." },
+          { "name": "latitude_deg", "type": "number", "description": "Latitude, decimal degrees (WGS84)." },
+          { "name": "longitude_deg", "type": "number", "description": "Longitude, decimal degrees (WGS84)." },
+          { "name": "elevation_ft", "type": "integer", "description": "Elevation above mean sea level, feet; empty where unknown." },
+          { "name": "continent", "type": "string", "description": "Continent code: AF, AN, AS, EU, NA (North America — not missing), OC, SA." },
+          { "name": "iso_country", "type": "string", "description": "ISO 3166-1 alpha-2 country code (NA = Namibia — not missing)." },
+          { "name": "country_name", "type": "string", "description": "Country name, joined from OurAirports countries.csv on iso_country." },
+          { "name": "iso_region", "type": "string", "description": "Region code (ISO 3166-2 where available, otherwise an OurAirports code)." },
+          { "name": "region_name", "type": "string", "description": "Region name, joined from OurAirports regions.csv on iso_region." },
+          { "name": "municipality", "type": "string", "description": "Primary municipality served; empty where not given." },
+          { "name": "scheduled_service", "type": "boolean", "description": "true if the airport currently has scheduled airline service." },
+          { "name": "icao_code", "type": "string", "description": "ICAO code; empty where none." },
+          { "name": "iata_code", "type": "string", "description": "IATA code; empty where none." },
+          { "name": "gps_code", "type": "string", "description": "Code used in GPS databases; empty where none." },
+          { "name": "local_code", "type": "string", "description": "Local country code (e.g. FAA LID in the US); empty where none." },
+          { "name": "runway_count", "type": "integer", "description": "Runways listed for this airport in runways.csv, including closed ones (helipads count as runways at heliports). 0 when none are listed." },
+          { "name": "open_runway_count", "type": "integer", "description": "Runways not marked closed." },
+          { "name": "longest_open_runway_ft", "type": "integer", "description": "Longest open runway length, feet. Empty when there is no open runway or no open runway has a recorded length." }
+        ],
+        "primaryKey": ["id"]
+      }
+    }
+  ]
+}

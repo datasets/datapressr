@@ -1,0 +1,41 @@
+{
+  "source": "https://ourairports.com/data/",
+  "files": [
+    {
+      "name": "airports",
+      "url": "https://davidmegginson.github.io/ourairports-data/airports.csv",
+      "path": "archive/airports.csv",
+      "last_modified": "Fri, 18 Sep 2026 01:54:08 GMT",
+      "retrieved_at": "2026-09-18T15:00:42.212Z",
+      "bytes": 12724965,
+      "sha256": "e52f4e19b23c5368009303f8479ad02b6d8f025832323e38a88a5d02ffb06e53"
+    },
+    {
+      "name": "countries",
+      "url": "https://davidmegginson.github.io/ourairports-data/countries.csv",
+      "path": "archive/countries.csv",
+      "last_modified": "Fri, 18 Sep 2026 01:54:08 GMT",
+      "retrieved_at": "2026-09-18T15:00:42.750Z",
+      "bytes": 24583,
+      "sha256": "2a9dbee691125b0cdb8ceb5fe227c48c903f99c488963b8e53e2ab366521c639"
+    },
+    {
+      "name": "regions",
+      "url": "https://davidmegginson.github.io/ourairports-data/regions.csv",
+      "path": "archive/regions.csv",
+      "last_modified": "Fri, 18 Sep 2026 01:54:08 GMT",
+      "retrieved_at": "2026-09-18T15:00:43.390Z",
+      "bytes": 485253,
+      "sha256": "63bc8012a4e5449867b81ab510a722f5f98cedd8ea56fe09e113c9d630cd21b4"
+    },
+    {
+      "name": "runways",
+      "url": "https://davidmegginson.github.io/ourairports-data/runways.csv",
+      "path": "archive/runways.csv",
+      "last_modified": "Fri, 18 Sep 2026 01:54:08 GMT",
+      "retrieved_at": "2026-09-18T15:00:44.031Z",
+      "bytes": 3964801,
+      "sha256": "2c69ae226f3b4b3f4316ceb3a2971620b5e32d57161095b165d0f5d621334b23"
+    }
+  ]
+}

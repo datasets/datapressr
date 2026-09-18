@@ -1,0 +1,9 @@
+{
+  "name": "airports-build",
+  "private": true,
+  "type": "module",
+  "description": "Build-only dependency for build.ts (quoted CSV parsing). Not published.",
+  "dependencies": {
+    "csv-parse": "7.0.2"
+  }
+}
