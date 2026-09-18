@@ -92,6 +92,20 @@ Beads state read from `.beads/issues.jsonl` at `630e92a` (`bd` is not installed 
 - **The finding worth carrying forward:** the coverage resource that this playbook holds up as *the* artefact against silent under-selection **was itself wrong**. The misclassified Investor Day exhibit put 20 prose filings in the documentation where there were 19, and the count did not catch it because the row count was right and only the labels were wrong. A reviewer caught it. The rule is now "the count is necessary, not sufficient — have something other than the thing that produced the count check it", and the limitations section says plainly that every "Yes" in the replay table is retrospective.
 - **Blockers:** none.
 
+### Queue status at the end of the run
+
+Every open, unblocked, non-human, non-epic task in `.beads/issues.jsonl` was completed: `datapressr-ozk`, `datapressr-eec`, `datapressr-ub1`, `datapressr-03u.1`, `datapressr-d8r`, `datapressr-h7d`, `datapressr-u3m`. **No actionable work is left in the queue.**
+
+Still open in the JSONL, and deliberately not touched:
+
+- `datapressr-03u` — the Tesla epic. Its only execution child, `03u.1`, is now done, so the epic has no open children and looks closeable; that is the owner's call, since closing an epic is an acceptance judgement.
+- `datapressr-7fs`, `d6n`, `46c`, `5yq`, `ck8` — status `deferred`, post-v1.
+- `datapressr-77e`, `23l`, `aw1` — human-only or owner decisions.
+
+Because `bd` could not sync, **none of these Beads has been updated in Beads itself**. The seven completed tasks above still read `open` in `.beads/issues.jsonl`; the evidence for closing each is in its section of this file.
+
+Final verification across the repository: `npm test` 78/78, and `node scripts/validate-datapackage.mjs` returns 0 errors and 0 warnings for all five datasets (`co2-ppm`, `population-growth`, `oil-prices`, `airports`, `tesla-quarterly-deliveries`). Working tree clean, everything pushed to `main`.
+
 ### New work found during the run (for the owner to file as Beads)
 
 1. **The DuckDB guidance is now stale outside `skills/structure/SKILL.md`.** `AGENTS.md:101` still reads "DuckDB is fine for a genuinely relational transform (multi-file joins, heavy reshaping)", and that line is copied verbatim into four per-dataset `AGENTS.md` files (`oil-prices`, `co2-ppm`, `population-growth`, `airports`). `docs/skills-vision.md:64` says the same. All five now contradict the refined threshold in the skill. Left untouched because `datapressr-ozk` limits work to the skill file. Small, mechanical, and worth doing before the next benchmark round.
