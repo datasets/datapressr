@@ -183,6 +183,8 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 | `capture` | File a URL / idea as a GitHub issue — near-zero friction |
 | `archive` | Snapshot the raw source into `archive/` with provenance |
 | `structure` | Raw → tidy typed CSV(s) + `datapackage.json` (the core wrangling step) |
+| `enrich` | Structured → enriched: consolidated stats, first `views`, a "What stands out" note |
+| `story` | Finished dataset(s) → a short data story: reviewed outline → Plot charts → prose |
 | `init` | Scaffold a new dataset directory |
 | `validate` | Check `datapackage.json` for common issues |
 | `push` | Push the current dataset directory to DataHub |

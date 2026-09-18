@@ -9,7 +9,9 @@ The near-term decision from [#11](https://github.com/datasets/datapressr/issues/
 
 ## Decision
 
-**Story and `enrich` charts are authored with [Observable Plot](https://observablehq.com/plot/) and rendered to static SVG at build time.** The published page embeds the `.svg` as a Markdown image — no JavaScript runs on it, same as when the charts were hand-rolled.
+**Story charts are authored with [Observable Plot](https://observablehq.com/plot/) and rendered to static SVG at build time.** The published page embeds the `.svg` as a Markdown image — no JavaScript runs on it, same as when the charts were hand-rolled.
+
+**`enrich` does not use Plot.** Its first charts are declarative `views` in `datapackage.json`, rendered on the dataset page with no build step (`AGENTS.md` → "Adding charts (views)"). An annotated chart is a story's job.
 
 Why Plot:
 
@@ -17,11 +19,11 @@ Why Plot:
 - Both stories' friction notes pointed the same way. Story #2's scoreboard — a normalised ranged-bar chart with a clipped outlier — was about the ceiling of what hand-rolled SVG is comfortable for.
 - Rendered server-side it keeps the existing deployment model exactly: a committed `.svg`, no client JS, works in Flowershow and on GitHub.
 
-The [Keeling Curve](../site/stories/keeling-curve.md) charts (story #1) are still hand-rolled SVG; port them if they get touched ([#12](https://github.com/datasets/datapressr/issues/12)).
+All three stories' charts now use this pattern: the [Keeling Curve](../site/stories/keeling-curve.md) charts were ported from hand-rolled SVG ([#12](https://github.com/datasets/datapressr/issues/12)), and [story #3](../site/stories/oil-prices.md) was built with it from the start. The `story` skill packages this guidance in `skills/story/references/charting.md`, with a starter script.
 
 ## The pattern
 
-A `*-make-charts.mjs` next to the story. See [`site/stories/planetary-boundaries-make-charts.mjs`](../site/stories/planetary-boundaries-make-charts.mjs) for the reference.
+A `*-make-charts.mjs` next to the story. See [`site/stories/oil-prices-make-charts.mjs`](../site/stories/oil-prices-make-charts.mjs) or [`planetary-boundaries-make-charts.mjs`](../site/stories/planetary-boundaries-make-charts.mjs) for working examples.
 
 - `import * as Plot from "@observablehq/plot"` and `import { JSDOM } from "jsdom"` — Plot needs a DOM; jsdom supplies one in Node.
 - `Plot.plot({ document, ... })`, then serialise the returned node with `.outerHTML` (pull Plot's scoped `<style>` into the `<svg>` if Plot wrapped it in a `<figure>`).

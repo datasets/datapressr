@@ -13,13 +13,10 @@ install into any agent, not just Claude Code.
 | `init` | — | Scaffold a new dataset directory |
 | `validate` | — | Run the deterministic `datapackage.json` checks before pushing |
 | `push` | → published | `dh push` the dataset to DataHub |
-| `enrich` | → enriched | **DRAFT** — structured dataset → descriptive stats + first charts + commentary (`enrich.ts` + `SUMMARY.md` + `views`). Review only, not symlinked. |
-| `story` | → story | **DRAFT** — one or more published datasets → a short data story (outline → charts → prose). Review only, not symlinked. |
+| `enrich` | → enriched | Structured dataset → consolidated descriptive stats + first charts + commentary (`enrich.ts` + `SUMMARY.md` + `views`). Bundles a working `enrich.ts` template in `references/`. |
+| `story` | → story | One or more finished datasets → a short data story: outline (independently reviewed) → Observable Plot charts → prose. Bundles its craft, voice and charting guides in `references/`. |
 
-`monitor` is planned but not built. `enrich` (`skills/enrich/SKILL.md`) and
-`story` (`skills/story/SKILL.md`) are first drafts awaiting a real run — see
-`docs/skills-vision.md` and the craft docs (`docs/story-craft.md`,
-`docs/voice-guide.md`, `docs/charting.md`).
+`monitor` is planned but not built. `enrich` and `story` were activated after real runs (enrich on co2-ppm and oil-prices; story on three data stories). Each carries what it needs in its own `references/` folder, so an installed copy works without this repo; `docs/story-craft.md`, `docs/voice-guide.md` and `docs/charting.md` hold the background and decision history.
 
 ## Install
 
