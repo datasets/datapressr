@@ -11,7 +11,7 @@ This skill is the **workflow**. The craft travels with it in `references/` — r
 - [`references/voice-guide.md`](references/voice-guide.md) — the house voice.
 - [`references/charting.md`](references/charting.md) — how charts are made (Observable Plot → static SVG at build time), with [`references/make-charts-template.mjs`](references/make-charts-template.mjs) to start from.
 
-Proven on three stories: Keeling Curve (one time series), Planetary Boundaries (multi-indicator scoreboard) and "WTI Went Negative. Brent Didn't." (two resources compared at one moment — the first run of this skill as written, with an independent outline review).
+Proven on three stories: Keeling Curve (one time series), Planetary Boundaries (multi-indicator scoreboard) and "WTI Went Negative. Brent Didn't." (two resources compared at one moment — the first story written with the skill, in draft, with an independent outline review).
 
 ## What a story is
 
