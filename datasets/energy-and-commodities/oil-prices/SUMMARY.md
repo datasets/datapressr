@@ -23,7 +23,7 @@ One row per resource + measurement. Standard deviation is the population statist
 ## What stands out
 
 - **Both benchmarks peak on the same day.** `brent-daily` and `wti-daily` both hit their maximum on 2008-07-03 (Brent $143.95, WTI $145.31) — the run-up just before the 2008 financial crisis.
-- **WTI's daily minimum is the widely reported negative-price day.** -$36.98 on 2020-04-20, when the expiring May futures contract met a storage glut. It is a one-day anomaly, not a sustained dip: 2020-04-17 was $18.31 and 2020-04-21 was $8.91. It also disappears once averaged — `wti-weekly` (min $3.32), `wti-monthly` ($11.35) and `wti-year` ($14.42) never go negative.
+- **WTI's daily minimum is the widely reported negative-price day.** -$36.98 on 2020-04-20. EIA attributes it to the expiring May futures contract and scarce storage at Cushing ([Today in Energy, 27 Apr 2020](https://www.eia.gov/todayinenergy/detail.php?id=43495)); the price data itself shows only that it happened. It is a one-day anomaly, not a sustained dip: 2020-04-17 was $18.31 and 2020-04-21 was $8.91. It also disappears once averaged — `wti-weekly` (min $3.32), `wti-monthly` ($11.35) and `wti-year` ($14.42) never go negative.
 - **Brent's daily minimum is $9.10 on 1998-12-10** — the 1998 oil-glut low. Outside the 2020 anomaly, WTI's low across weekly/monthly/annual ($3.32/$11.35/$14.42) sits in a similar range to Brent's.
 - **Brent trades at a slight premium on average** (mean ≈$51.4–51.5 across frequencies vs WTI's ≈$48.1–48.7), even though WTI briefly traded *above* Brent at their shared 2008 peak — consistent with the Brent–WTI spread that became persistent after 2010–11.
 - **No missing values anywhere.** All eight series report `missing = 0`; EIA's spot-price data has no gaps to note.
@@ -32,7 +32,7 @@ One row per resource + measurement. Standard deviation is the population statist
 
 - **Source:** U.S. Energy Information Administration, *Petroleum & Other Liquids — Spot Prices* — see `datapackage.json` `sources` and `README.md`.
 - **Community comparison:** `README.md` → "Relationship to `datasets/oil-prices`" and `docs/structure-benchmark.md` in the repo root.
-- **Story:** oil-prices is the planned source for story #3 (see `NEXT.md`); no outline exists yet, so no link here until one does.
+- **Story:** [WTI Went Negative. Brent Didn't.](../../../site/stories/oil-prices.md) — data story #3, built on this dataset's daily series and the consolidated stats table above ([outline](../../../site/stories/oil-prices-outline.md)).
 
 ## Trial notes
 
