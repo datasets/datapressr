@@ -43,6 +43,7 @@ Tracked in [epic #14](https://github.com/datasets/datapressr/issues/14). In shor
 - **[Datasets](datasets.md)** — what's been produced, with status and links
 - **[Data story: The Keeling Curve](stories/keeling-curve.md)** — the first hand-written story
 - **[Data story: Planetary Boundaries](stories/planetary-boundaries.md)** — the second hand-written story
+- **[Data story: WTI Went Negative. Brent Didn't.](stories/oil-prices.md)** — the third story, the first written with the draft `story` skill
 
 ---
 

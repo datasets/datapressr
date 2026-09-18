@@ -12,6 +12,7 @@ Datasets produced with the DataPressr skills. Status follows the lifecycle:
 |---------|--------|--------|---------|-------|
 | **Project Drawdown — Table of Solutions (2020)** | structured · own repo | Project Drawdown, 2020 review (via community mirror) | PDDL-1.0 (facts) + attribution | [repo](https://github.com/datasets/project-drawdown) · [README](https://github.com/datasets/project-drawdown/blob/main/README.md) |
 | **CO₂ concentration — Mauna Loa (Keeling Curve)** | structured | NOAA GML | PDDL-1.0 (US-gov public domain) + citation | [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/co2-ppm) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/README.md) · [story](stories/keeling-curve.md) |
+| **Crude oil spot prices — Brent and WTI** | enriched | U.S. EIA | PDDL-1.0 (US-gov public domain) + acknowledgement | [folder](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/oil-prices) · [README](https://github.com/datasets/datapressr/blob/main/datasets/energy-and-commodities/oil-prices/README.md) · [story](stories/oil-prices.md) |
 
 ## Project Drawdown — notes
 
@@ -41,3 +42,4 @@ Caveats worth knowing before reuse:
   as a scoreboard: six of nine crossed, and stratospheric ozone the one walked
   back inside the line. Story #2; first use of a normalised ranged-bar chart, and
   the friction that argues for a charting library.
+- **[WTI Went Negative. Brent Didn't.](stories/oil-prices.md)** — on 20 April 2020 the WTI spot price was -$36.98 a barrel, the only negative value in the oil-prices dataset; Brent was $17.36. Story #3; the first written with the draft `story` skill, from an independently reviewed outline. Author's voice pass outstanding.
