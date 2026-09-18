@@ -1,0 +1,72 @@
+{
+  "name": "population-growth",
+  "title": "Population growth (annual %) by country and region, 1960–2025",
+  "description": "World Bank World Development Indicators series SP.POP.GROW: the exponential rate of growth of midyear population from year t-1 to t, as a percentage, for 217 economies and 48 World Bank aggregates (regions, income groups, World), 1960–2025. Aggregates are flagged with is_aggregate — do not sum them with countries. An empty population_growth_pct means the World Bank publishes no estimate for that entity and year. Snapshot of the World Bank Indicators API taken 2026-09-18 (WDI last updated 2026-07-13); rebuilt offline by build.ts from the archived JSON responses.",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0 International",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "World Bank, World Development Indicators — Population growth (annual %) (SP.POP.GROW), via the Indicators API v2",
+      "path": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.GROW?format=json&per_page=1000"
+    },
+    {
+      "title": "World Bank Data Catalog — World Development Indicators (licence: CC BY 4.0)",
+      "path": "https://datacatalog.worldbank.org/search/dataset/0037712/world-development-indicators"
+    },
+    {
+      "title": "Upstream: United Nations Population Division, World Population Prospects; national statistical offices; Eurostat; UN Statistics Division (as listed in the indicator metadata)",
+      "path": "https://api.worldbank.org/v2/indicator/SP.POP.GROW?format=json"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/population-growth.csv",
+      "name": "population-growth",
+      "title": "Population growth (annual %) by entity and year",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "type": "string", "description": "World Bank 3-letter entity code (ISO 3166-1 alpha-3 for countries; World Bank codes such as WLD, HIC, SSF for aggregates)." },
+          { "name": "country_name", "type": "string", "description": "World Bank entity name." },
+          { "name": "is_aggregate", "type": "boolean", "description": "true for regions, income groups and other World Bank aggregates; false for individual economies." },
+          { "name": "year", "type": "year", "description": "Calendar year t." },
+          { "name": "population_growth_pct", "type": "number", "description": "Annual population growth, percent: exponential growth rate of midyear population from year t-1 to t. Empty where the World Bank publishes no estimate." }
+        ],
+        "primaryKey": ["country_code", "year"],
+        "foreignKeys": [
+          { "fields": ["country_code"], "reference": { "resource": "countries", "fields": ["country_code"] } }
+        ]
+      }
+    },
+    {
+      "path": "data/countries.csv",
+      "name": "countries",
+      "title": "World Bank entities (economies and aggregates)",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "type": "string", "description": "World Bank 3-letter entity code." },
+          { "name": "iso2_code", "type": "string", "description": "World Bank 2-letter code (ISO 3166-1 alpha-2 for economies; World Bank codes for aggregates, e.g. XD = High income)." },
+          { "name": "country_name", "type": "string", "description": "World Bank entity name (trailing spaces in the API trimmed)." },
+          { "name": "is_aggregate", "type": "boolean", "description": "true when the API places the entity in the placeholder region \"Aggregates\"." },
+          { "name": "region_code", "type": "string", "description": "World Bank region code; empty for aggregates." },
+          { "name": "region_name", "type": "string", "description": "World Bank region name; empty for aggregates." },
+          { "name": "income_level_code", "type": "string", "description": "World Bank income group code; empty for aggregates." },
+          { "name": "income_level_name", "type": "string", "description": "World Bank income group name; empty for aggregates." },
+          { "name": "lending_type_code", "type": "string", "description": "World Bank lending type code; empty for aggregates." },
+          { "name": "lending_type_name", "type": "string", "description": "World Bank lending type name; empty for aggregates." },
+          { "name": "capital_city", "type": "string", "description": "Capital city; empty where not given." },
+          { "name": "longitude", "type": "number", "description": "Capital city longitude, decimal degrees; empty where not given." },
+          { "name": "latitude", "type": "number", "description": "Capital city latitude, decimal degrees; empty where not given." }
+        ],
+        "primaryKey": ["country_code"]
+      }
+    }
+  ]
+}
