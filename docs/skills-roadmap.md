@@ -7,6 +7,8 @@ date: 2026-09-05
 
 > Historical planning and decision context. As of 2026-09-12, current work and dependencies live in Beads; read [the handoff](next-session-brief.md) and [migration audit](next-audit.md). Later completed work supersedes the pending/draft claims below. Do not execute this historical sequence as a current assignment.
 
+> **Current status (2026-09-18): v1 complete locally.** `enrich` and `story` are active skills (symlinked in `.claude/skills/`, guidance bundled in each skill's `references/`), resolved from real runs: enrich on co2-ppm and oil-prices, story on three data stories, the third written with the skill and an independently reviewed outline ([WTI Went Negative. Brent Didn't.](../site/stories/oil-prices.md)). Near-term charting is Observable Plot for stories, declarative `views` for enrich ([charting.md](charting.md)). Still outstanding and non-blocking: the author's voice passes on the stories, benchmark round 2, and GitHub issue updates.
+
 Planning doc for the next phase of work. Supersedes the "Proposed build order"
 section of [`skills-vision.md`](./skills-vision.md) — that doc still holds the
 decision history and the vision; this one is the *what next, in what order*.
