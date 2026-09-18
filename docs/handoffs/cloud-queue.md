@@ -34,6 +34,40 @@ Beads state read from `.beads/issues.jsonl` at `630e92a` (`bd` is not installed 
 - **Decisions:** the child-table-aggregate bullet is proposed edit 4 from `docs/benchmarks/round-2-join.md`, one item beyond this Bead's enumerated content list. Kept, because it is join guidance the checklist would be incomplete without — recorded here as the scope note the Bead asks for rather than dropped.
 - **Blockers:** none.
 
+### datapressr-eec — structure: value semantics (text placeholders, literal NA, aggregate flags, precision) — **done**
+
+- **Changed paths:** `skills/structure/SKILL.md`
+- **Commit:** `148ef01`
+- **What changed:** a new **Values that lie** block between "Government / scientific text data" and "Joining tables", covering the two opposite failure modes the sentinel rule doesn't reach — values that look like data and aren't, and values that look like missing and aren't. Six bullets: decide by what the row is rather than what the string looks like; placeholder lists are per column, never global, and `cleanNumber`'s `MISSING_TOKENS` is named as the specific trap; trim whitespace centrally; legitimate values that tools read as missing stay verbatim with a warning in the field description; aggregates mixed in with units get an `is_aggregate` flag; keep source precision and treat a display hint as metadata. The "mixing missing-value conventions" bullet under **Common mistakes** was also qualified, because it otherwise now reads as forbidding the literal-`NA` case.
+- **Commands and results:** `npm test` → 47/47. `git diff --check` clean. No hard-wrapping.
+- **Independent check:** a fresh subagent re-derived every figure from `datasets/demographics/population-growth/archive/` and `datasets/transport/airports/archive/` and caught **three real errors before commit**. (1) `"Not classified"` was listed as a placeholder to empty; it is a genuine World Bank lending type (`LNX`) held by 72 economies and published verbatim by `population-growth` — the guidance would have destroyed 72 real values. (2) The stated test — "does this column have a code list, and is the token in it" — gives the *wrong* answer for the block's own World Bank example, since `NA` **is** in the region code list; replaced with a test about what the row is. (3) "Both are real ISO codes" was wrong for `continent`, since ISO defines no continent codes. Also corrected: the lending-type placeholder id (empty, not `NA`), and the entity counts (48 of 265 in the series; 295 entities / 78 aggregates in the full list).
+- **Decisions:** **AGENTS.md was deliberately not touched.** The Bead makes its "Missing values" line conditional on the owner agreeing, and the owner is away. Proposed wording, if the owner wants it, is one clause on the existing bullet: *"…Don't mix `NA`, `N/A`, `-`, `0`, and empty string for 'missing' within one column — and note the converse: where a literal `NA` is a real code (North America, Namibia), keep it verbatim and say so in the field description."*
+- **Blockers:** none.
+
+### datapressr-h7d — evidence and owner choices for the seven legacy inbox finds — **done**
+
+- **Changed paths:** `docs/inbox-triage.md` (new)
+- **Commit:** `815dae9`
+- **What changed:** each of the seven unchecked items in GitHub issue #2, with what the primary source actually says as of 2026-09-18 and a proceed/clarify/drop recommendation. All seven preserved.
+- **Commands and results:** primary sources fetched read-only — HRMI download page, `github.com/fivethirtyeight/data`, `fivethirtyeight.com` (301 → `abcnews.com/538`), PubMed E-utilities for PMID 17142547, `ourworldindata.org/famines`, UNEP's fast-fashion page. The AAP full text returned **HTTP 403**, so the citation is confirmed but the sentence carrying the 40,000 figure was not read; that limitation is stated in the document rather than papered over.
+- **Decisions:** recommendations are proceed (#5 causes-of-death comparison), clarify (#1 HRMI, #2 FiveThirtyEight, #3 "Wiser metrics"), drop (#4 *The Great Wave*, #6 the TV-commercials factoid, #7 the fashion ranking). The fashion ranking is not restated as fact anywhere in the document — UNEP gives 2–8% of global carbon emissions and makes no such ranking; the only ranking it makes is about textile *dyeing* and water specifically.
+- **Nothing was sent.** No GitHub comment, no issue-body edit, no external message. Checking or striking the boxes in #2 is the owner's.
+- **Owner input needed on three:** does this catalog publish non-commercial data (HRMI is CC BY-NC 4.0, which would be the first non-open licence here)? What did the FiveThirtyEight note mean? What is "Wiser metrics"? With those answered, the other four close immediately.
+- **Blockers:** none for the analysis; the three questions above block closing the issue.
+
+### datapressr-u3m — reconcile legacy GitHub issue status with the Beads audit — **done**
+
+- **Changed paths:** `docs/github-issue-reconciliation.md` (new)
+- **Commit:** `09acfda`
+- **What changed:** exact proposed text for the six issues `docs/next-audit.md` flags — #3, #4, #7, #10, #11, #14 — plus a summary table of what to do with each of #2–#14. Recommends closing #10 (the `story` skill exists and is active), rewriting #14's step list (the v1 gate is met), ticking four of #7's five boxes, and leaving #3, #4 and #11 open for the parts that are genuinely unresolved.
+- **Commands and results:** GitHub issues #2–#14 read read-only via the API (13 issues). All fourteen cited Bead IDs verified against `.beads/issues.jsonl` for existence and status; every repository claim checked against the working tree (`.claude/skills/` symlinks, `site/` contents, `docs/charting.md`, the changelog entry).
+- **Nothing was sent.** Draft text only, as the Bead requires.
+- **Flagged for the owner:** #7's "first publish" box is proposed as ticked on the strength of the URL recorded in `site/README.md` (<https://datapressr-2-rufuspollock.flowershow.me>), **not** a fresh check of the live site — `docs/next-audit.md` explicitly left the deployment unrevalidated. Worth loading the site before posting that one. Whether to close #14 is also explicitly left to the owner.
+- **Blockers:** none. Posting any of it needs the owner's authorisation.
+
 ### New work found during the run (for the owner to file as Beads)
 
 1. **The DuckDB guidance is now stale outside `skills/structure/SKILL.md`.** `AGENTS.md:101` still reads "DuckDB is fine for a genuinely relational transform (multi-file joins, heavy reshaping)", and that line is copied verbatim into four per-dataset `AGENTS.md` files (`oil-prices`, `co2-ppm`, `population-growth`, `airports`). `docs/skills-vision.md:64` says the same. All five now contradict the refined threshold in the skill. Left untouched because `datapressr-ozk` limits work to the skill file. Small, mechanical, and worth doing before the next benchmark round.
+2. **`scripts/wrangling-idioms.mjs` has no `cleanString`,** though `skills/structure/SKILL.md` referred to one under **Common mistakes**. Removed from that line as part of `datapressr-eec` since the line was being edited anyway. Either add the helper or check for other references; this was the only one found.
+3. **`skills/structure/SKILL.md` cites `datasets/economic-history/millennium-macroeconomic-data-uk` as a repo-relative path, but that dataset lives in the sibling `datasets/economic-history` repo,** not here. Pre-existing, in two places (the xlsx parsing note and the worked-example list). Cosmetic, but it is the kind of link a reader will try to follow.
+4. **`docs/` is drifting into a second backlog.** This run added three documents whose whole content is "what the owner should decide" — `docs/inbox-triage.md`, `docs/github-issue-reconciliation.md`, and this file. Each was asked for by its Bead, so none is wrong, but together they are a queue living outside Beads, which is what `docs/next-session-brief.md` warns against. Worth a pass once the owner has acted on them: fold the decisions into Beads and delete the documents rather than letting them accumulate.
