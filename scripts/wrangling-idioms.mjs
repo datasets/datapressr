@@ -40,6 +40,46 @@ export function num(raw, sentinels = []) {
   return sentinels.includes(n) ? undefined : n;
 }
 
+/**
+ * Normalize a string value you intend to keep: collapse every run of
+ * whitespace — including the zero-width space, which `\s` does not match — to
+ * a single space, trim the ends, and treat what is left of an empty cell as
+ * missing.
+ *
+ * Do this once, centrally, rather than per column when a mismatch surprises
+ * you: in population-growth four entity names in `countries.json` carry a
+ * trailing space, and for two of them (SSF/ZG, LCN/ZJ) that makes the metadata
+ * name disagree with the name that entity's own observations use —
+ * `"Sub-Saharan Africa "` and `"Sub-Saharan Africa"` are two keys for one real
+ * region.
+ *
+ * Three things it does not do. It does not decode HTML entities: the
+ * tesla-quarterly-deliveries build's `cellText` runs its own `decodeEntities`
+ * first, and this character class is for the literal U+00A0 and U+200B those
+ * filings still carry afterwards. It collapses newlines and tabs, so call it
+ * per cell and never on a block you mean to keep line-broken — that same
+ * build's `plainText` splits on "\n" first and collapses each line separately,
+ * exactly to preserve the line structure its headline checks read. And it is
+ * not for a build that republishes a source's free text verbatim: an internal
+ * double space in a place name is a real difference, and `airports` keeps 154
+ * of them.
+ *
+ * Deliberately takes no placeholder list, unlike `num(raw, sentinels)`. A
+ * string placeholder list would still have to be per column — `NA` is Namibia
+ * in OurAirports' `iso_country` and a "not applicable" marker in the World
+ * Bank's region field — and in practice the answer comes from the row rather
+ * than the column: population-growth empties its `region_*` fields off one
+ * row-level aggregate flag. A `=== "NA" ? undefined : ...` at the call site
+ * keeps that decision where the row is still in scope. See "Values that lie"
+ * in skills/structure/SKILL.md.
+ * @param {unknown} raw @returns {string | undefined}
+ */
+export function cleanString(raw) {
+  if (raw === null || raw === undefined) return undefined;
+  const s = String(raw).replace(/[\s\u00a0\u200b]+/g, " ").trim();
+  return s === "" ? undefined : s;
+}
+
 /** @param {unknown} raw @returns {string | undefined} */
 export function toIsoDate(raw) {
   if (raw instanceof Date) return raw.toISOString().slice(0, 10);

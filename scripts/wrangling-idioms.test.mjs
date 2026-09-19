@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   cleanNumber,
   num,
+  cleanString,
   toIsoDate,
   excelSerialToIsoDate,
   fillForwardSections,
@@ -41,6 +42,33 @@ test("num treats listed sentinel values as missing", () => {
 
 test("num throws on a genuinely non-numeric cell", () => {
   assert.throws(() => num("n/a"), /non-numeric/);
+});
+
+test("cleanString trims the ends so one region is one key", () => {
+  assert.equal(cleanString("Sub-Saharan Africa "), "Sub-Saharan Africa");
+  assert.equal(cleanString("Sub-Saharan Africa"), "Sub-Saharan Africa");
+});
+
+test("cleanString collapses non-breaking and zero-width whitespace from HTML", () => {
+  assert.equal(cleanString("Model\u00a03/Y"), "Model 3/Y");
+  assert.equal(cleanString("Model\u200b \u00a0Y"), "Model Y");
+  assert.equal(cleanString("total\n\tproduction"), "total production");
+});
+
+test("cleanString treats a blank or whitespace-only cell as missing", () => {
+  for (const blank of ["", "   ", "\u00a0", "\t\n"]) {
+    assert.equal(cleanString(blank), undefined, `expected ${JSON.stringify(blank)} to be missing`);
+  }
+  assert.equal(cleanString(null), undefined);
+  assert.equal(cleanString(undefined), undefined);
+});
+
+test("cleanString keeps a token that means missing elsewhere — that call is the row's", () => {
+  // NA is Namibia in iso_country and North America in continent; emptying it
+  // here would delete a country. See "Values that lie" in structure/SKILL.md.
+  assert.equal(cleanString("NA"), "NA");
+  assert.equal(cleanString(" Aggregates "), "Aggregates");
+  assert.equal(cleanString("-"), "-");
 });
 
 test("excelSerialToIsoDate converts serials with no timezone shift", () => {
