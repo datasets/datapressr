@@ -114,3 +114,97 @@ Final verification across the repository: `npm test` 78/78, and `node scripts/va
 4. **Second source-discovery rep, for the playbook.** `docs/source-discovery-playbook.md` recommends not graduating discovery into a skill until two more runs exist against structurally different sources — ideally one with **no machine-readable index** (the rules that lean on one would simply not apply) and one where the **licence question does not resolve cleanly** (the blocked-publication path is currently the least-tested rule in the document). If the rules survive both, graduate them.
 5. **A changelog entry covering the run's skill work only.** `changelog/2026-09-18-tesla-quarterly-deliveries.md` covers the Tesla dataset and the two `structure` sections together. If the owner would rather the skill guidance stood on its own, it is easy to split.
 6. **`docs/` is drifting into a second backlog.** This run added three documents whose whole content is "what the owner should decide" — `docs/inbox-triage.md`, `docs/github-issue-reconciliation.md`, and this file. Each was asked for by its Bead, so none is wrong, but together they are a queue living outside Beads, which is what `docs/next-session-brief.md` warns against. Worth a pass once the owner has acted on them: fold the decisions into Beads and delete the documents rather than letting them accumulate.
+
+*Items 1, 2 and 3 above were done by the run of 2026-09-19 below. Items 4, 5 and 6 were not — see that run's closing section for why.*
+
+---
+
+## Run 2026-09-19T02:20Z
+
+Beads state read from `.beads/issues.jsonl` at `1204f89`. `bd` is still not installed here and the Dolt remote still does not authenticate from the cloud sandbox; nothing was initialised or recreated. Working directly on `main` per the run's standing authorisation.
+
+**The Beads queue had no actionable work at the start of this run.** Every open, unblocked, non-human, non-epic task in the JSONL — `ozk`, `eec`, `ub1`, `03u.1`, `d8r`, `h7d`, `u3m` — is recorded **done** in the 2026-09-18 section above, which this file's own reading rule says to honour. They still read `open` in the JSONL only because `bd` cannot sync from here. So this run took the follow-ups the previous run filed, which are repository defects rather than owner decisions, and two more defects found while checking that work.
+
+Root checks at the start and after every commit: `npm test` (78 before the new tests, 82 after, 0 failures) and `node scripts/validate-datapackage.mjs` on all five datasets (0 errors, 0 warnings each). All five builds were re-run from their archives and reproduce `data/` byte-for-byte; `airports` and `oil-prices` need `npm install` in the dataset directory first, which is what `AGENTS.md` documents and not a regression.
+
+### Follow-up 1 — the stale DuckDB threshold in `AGENTS.md` — **done**
+
+- **Changed paths:** `AGENTS.md` and all five per-dataset copies (`oil-prices`, `co2-ppm`, `population-growth`, `airports`, `tesla-quarterly-deliveries`)
+- **Commit:** `a11de5f`
+- **What changed:** one sentence in the reproducibility bullet. "DuckDB is fine for a genuinely relational transform (multi-file joins, heavy reshaping)" became "DuckDB earns its place when the transform is genuinely one SQL query — many-to-many joins, window functions, or reshaping a wide table to long across dozens of columns — not for keyed lookups and group-bys, which stay plain Node even across several files, and not for 'clean up one messy source.'" That is the threshold `skills/structure/SKILL.md:128` now sets, with `airports` as its calibration point.
+- **Scope note:** the previous run counted four copies; there are five, because `tesla-quarterly-deliveries` was created by that same run and inherited the line.
+- **Decision — `docs/skills-vision.md:64` deliberately left alone.** The previous run listed it as a fifth stale site. It is a historical planning document whose own banner at line 3 says later completed work supersedes its claims and that it must not be executed as a current assignment. Editing its record of a past decision to match a present one is worse than the contradiction the banner already covers.
+- **Blockers:** none.
+
+### Follow-up 3 — skill files citing datasets that live in sibling repos — **done**
+
+- **Changed paths:** `skills/structure/SKILL.md` (four places), `skills/archive/SKILL.md`, `scripts/wrangling-idioms.mjs` (header comment)
+- **Commit:** `9a65050`
+- **What changed:** `millennium-macroeconomic-data-uk` and `precious-metals-prices` now link to their real homes and name the repo they are in, instead of reading as paths in this repo.
+- **Scope note:** the previous run flagged two places and only the millennium dataset. There were five places, and `precious-metals-prices` has the same defect — and is the worse trap of the two, because `datasets/energy-and-commodities/` *does* exist here (it holds `oil-prices`), so the path looks resolvable right up until you try it.
+- **Commands and results:** a repo-wide scan resolves every `datasets/<x>/<y>` citation in `skills/` and `scripts/` against the working tree — all now resolve or are absolute URLs. The four worked examples that really are in this repo keep their relative paths.
+- **Blockers:** none.
+
+### Follow-up 2 — `cleanString` — **done, by adding the helper**
+
+- **Changed paths:** `scripts/wrangling-idioms.mjs`, `scripts/wrangling-idioms.test.mjs`, `skills/structure/SKILL.md` (two places)
+- **Commit:** `faac8ca`
+- **Which branch of the follow-up:** the previous run offered "either add the helper or check for other references". Both. The reference check found none outside this file. The helper was added because the skill's "Values that lie" block tells you to trim every string you keep once, centrally, and named a helper that did not exist — and because `num(raw, sentinels)` already exists as its numeric counterpart.
+- **What it does:** collapses whitespace runs including U+00A0 and U+200B to a single space, trims, and returns `undefined` for what is left of a blank. The character class is the one `tesla-quarterly-deliveries/build.ts` arrived at by hand; `population-growth` and `co2-ppm` hand-roll the trim half. Four tests, 82 total passing.
+- **Design decision:** it takes no placeholder list, on purpose. A string placeholder list would have to be per column, and in practice the answer comes from the row — which is what the skill says two bullets earlier.
+- **Independent check — four corrections applied before commit, all verified here against the sources rather than taken on trust:**
+  1. **The escapes were written as literal invisible characters**, in the one file whose stated purpose is being copy-pasted. `od -c` confirmed raw `302 240` and `342 200 213` bytes. A U+200B that does not survive a paste leaves a function that still compiles and silently stops doing the only thing `\s` cannot do. Now ` ` and `​`, in the tests too.
+  2. **The population-growth claim was backwards** — and so was the line `skills/structure/SKILL.md:114` already carried, written by the previous run. Measured from the archive: four entity names in `countries.json` carry a trailing space, **zero** of 17,490 observation `country.value` strings do. So it is the metadata name that disagrees with the name the entity's own observations use, not the other way round. `population-growth/build.ts:27` says as much in its own header. Both the docstring and the skill line are corrected.
+  3. **It does not decode HTML entities**, so describing it as handling `&nbsp;` was wrong. The tesla build decodes first, in `decodeEntities`; this character class is for the literal characters those filings still carry afterwards.
+  4. **It is not a drop-in for that build's `plainText`**, which splits on newlines before collapsing, on purpose, so its headline checks keep the line structure they read; and it is wrong for a build that republishes free text verbatim. Verified independently: applying it to `airports/archive/airports.csv` would alter 165 non-empty cells of 1,156,775, 154 of them internal double spaces inside real place names. All three caveats are now in the docstring and the skill.
+- **One reviewer note was checked and is right, though my first check of it was wrong:** it flagged the same literal-invisible bug in `tesla-quarterly-deliveries/build.ts`. I initially read that as a false positive because I truncated the line before the character. A full codepoint scan confirms it. Fixed separately below.
+- **Blockers:** none.
+
+### Found this run — literal invisible characters in the Tesla build — **done**
+
+- **Changed paths:** `datasets/transport/tesla-quarterly-deliveries/build.ts`, `build.test.mjs`
+- **Commit:** `9e886d0`
+- **What changed:** a raw U+00A0 and U+200B inside a character class in `build.ts`, and both inside a test string in `build.test.mjs`, written as ` ` and `​`. The test was the worse of the two: had its U+200B degraded to a plain space it would still have passed, and stopped testing the thing it exists to test.
+- **Commands and results:** all 82 tests pass, the build reproduces `data/` byte-for-byte against the pre-change hashes, and `validate-datapackage.mjs` still returns 0 errors and 0 warnings. Behaviour is identical by construction — same characters, different spelling.
+- **Blockers:** none.
+
+### Found this run — root-relative links in the copied `AGENTS.md` — **done**
+
+- **Changed paths:** `AGENTS.md`, `population-growth/AGENTS.md`, `airports/AGENTS.md`, `tesla-quarterly-deliveries/AGENTS.md`
+- **Commit:** `c2de724`
+- **What changed:** the task-tracking paragraph linked `NEXT.md`, `docs/next-session-brief.md` and `docs/next-audit.md` as root-relative paths. `AGENTS.md` is copied into every dataset directory by design, so all three links were dead in every copy carrying that section — nine broken links. Now absolute `github.com` URLs, the pattern `datapressr-ub1` settled on for `site/` links that escape their directory, which keeps every copy byte-identical to the root file.
+- **How it was found:** a repo-wide check of local Markdown links. The 15 it still reports are all either illustrative filenames inside backticks (`chart.svg` in `docs/charting.md`, `<slug>-chart.svg` in `skills/story/SKILL.md`), quoted link *patterns* in this file's prose describing the `ub1` fix, or scheme-less and `ftp://` URLs in the archived `datasets/commons-issues/` copies of upstream issues. All left alone; the last group is a record of what an upstream issue said, not our text.
+- **Blockers:** none.
+
+### Found this run — two per-dataset `AGENTS.md` copies had drifted — **done**
+
+- **Changed paths:** `co2-ppm/AGENTS.md`, `oil-prices/AGENTS.md`
+- **Commit:** `6ecf457`
+- **What changed:** both were an older revision, missing "Do NOT linewrap markdown files", the `enrich` and `story` rows in the skills table, and the whole task-tracking section. The linewrap rule is a convention an agent working in those directories needs and was not being given. Both files were a strict subset of the root file — verified, nothing unique in either — so they were replaced with it. All six copies are now byte-identical, which is what "copy this `AGENTS.md` into the new directory" is meant to produce.
+- **Blockers:** none.
+
+### Changelog
+
+`changelog/2026-09-19-cleanstring-idiom.md`, `promote: false`. It covers the `cleanString` idiom and, at more length, the corrected claim — the skill's own evidence for a rule having been stated backwards is the part a reader of the skill would want to know. The four link, escape and sync commits are tidying and are not in it.
+
+### Follow-ups from 2026-09-18 that this run deliberately did NOT take
+
+- **Item 4, a second source-discovery rep.** Not started, and this is a judgement the owner may want to overturn. It is real agent work needing no owner input in principle, but the playbook names the least-tested path as the one where *the licence question does not resolve cleanly* — and that is exactly the question still open on the first rep. `datapressr-03u.1`'s licence position (PDDL-1.0 on the compilation, no redistribution licence claimed for the press-release text) is flagged in the section above as needing the owner's eye and has not had it. Building a second dataset whose defining feature is an unresolved licence, on top of a first whose licence stance is unratified, would compound the one decision that is genuinely the owner's. Worth doing as soon as that position is confirmed or corrected.
+- **Item 5, splitting the changelog entry.** It is explicitly an owner preference about an already-published entry, not a defect.
+- **Item 6, the `docs/` backlog drift.** Explicitly conditioned on the owner having acted on `docs/inbox-triage.md` and `docs/github-issue-reconciliation.md`. They have not been acted on, and this run added a section to this file rather than reducing the pile — so the item stands and is now slightly worse.
+
+### Queue status at the end of the run
+
+No actionable Beads work remains, and none of the six follow-ups this run completed exists as a Bead — they live in this file only. **None of the seven tasks the previous run completed, nor any of this run's work, has been recorded in Beads itself**, because `bd` cannot sync from here. The evidence for closing each is in its section.
+
+Still open in the JSONL and deliberately untouched, unchanged from the previous run: `datapressr-03u` (the Tesla epic, whose only execution child is done — closing it is an acceptance judgement and the owner's); `7fs`, `d6n`, `46c`, `5yq`, `ck8` (status `deferred`, post-v1); `77e`, `23l`, `aw1` (human-only or owner decisions).
+
+**What needs the owner, in priority order:** (1) the `tesla-quarterly-deliveries` licence position, which now also gates item 4 above; (2) the three questions in `docs/inbox-triage.md` (does this catalog publish non-commercial data; what the FiveThirtyEight note meant; what "Wiser metrics" is); (3) whether to post any of `docs/github-issue-reconciliation.md`, and whether to close `datapressr-03u` and issue #14.
+
+Final verification: `npm test` 82/82; `validate-datapackage.mjs` 0 errors and 0 warnings on all five datasets; all five builds byte-reproducible from their archives; no literal invisible characters left in any tracked `.ts`/`.mjs` source; working tree clean, everything pushed to `main`.
+
+### New work found during this run (for the owner to file as Beads)
+
+1. **The `skills/` worked-example paths are still repo-relative, and the skills are installed elsewhere.** This run made the two cross-repo citations absolute. The four that point inside this repo (`co2-ppm`, `oil-prices`, `population-growth`, `airports`) are correct for a contributor reading the file here, and dead for anyone who installed the skill with `npx skills add datasets/datapressr`, which is the documented way to get it. Making them absolute too would fix that; leaving them relative keeps them clickable in the repo. A real choice, not a defect — worth the owner picking one.
+2. **Nothing enforces the absence of literal invisible characters.** Two separate places had the bug, written months apart, and both passed review by eye. The scan that found them is four lines of Node over tracked `.ts`/`.mjs` files. It could be a test in `scripts/`, which would also stop the next copy-paste from reintroducing it. Not added here because it is a new repo-level check rather than a fix to existing work.
+3. **The per-dataset `AGENTS.md` copies carry repo-level task-tracking instructions.** This run made them byte-identical to the root file, which is what the convention says. But a dataset directory that becomes its own repo does not need the Beads section, and that section is the reason the links needed absolutising in the first place. If the owner would rather the copies were a dataset-relevant subset, that is a different and defensible convention — it just needs deciding, because the two rules pull opposite ways.
