@@ -2,6 +2,8 @@
 
 You are helping wrangle raw data finds into clean, publishable datasets on DataHub.
 
+Do NOT linewrap markdown files.
+
 ## Concepts
 
 ### Data hierarchy
@@ -181,6 +183,8 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 | `capture` | File a URL / idea as a GitHub issue — near-zero friction |
 | `archive` | Snapshot the raw source into `archive/` with provenance |
 | `structure` | Raw → tidy typed CSV(s) + `datapackage.json` (the core wrangling step) |
+| `enrich` | Structured → enriched: consolidated stats, first `views`, a "What stands out" note |
+| `story` | Finished dataset(s) → a short data story: reviewed outline → Plot charts → prose |
 | `init` | Scaffold a new dataset directory |
 | `validate` | Check `datapackage.json` for common issues |
 | `push` | Push the current dataset directory to DataHub |
@@ -188,6 +192,27 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 In Claude Code each is also a `/<name>` slash command (`.claude/skills/`
 symlinks point back at `skills/`, so there's one copy and no install step when
 working inside this repo).
+
+## Task tracking (beads)
+
+Beads is the source of truth for actionable work, dependencies and completion evidence. Start with [NEXT.md](https://github.com/datasets/datapressr/blob/main/NEXT.md), the reusable session prompt for selecting and executing `bd ready` tasks; [docs/next-session-brief.md](https://github.com/datasets/datapressr/blob/main/docs/next-session-brief.md) holds the detailed protocol and [docs/next-audit.md](https://github.com/datasets/datapressr/blob/main/docs/next-audit.md) holds the dated migration evidence. Keep NEXT.md as instructions, not a Markdown task queue. Read the full assigned Bead, claim it, and record verification and handoff notes before closing it.
+
+This repo uses [beads](https://github.com/steveyegge/beads) (`bd`) for task tracking — see `.beads/README.md` and the sync playbook at `~/src/rufuspollock/agent-skills/beads-sync-playbook.md` for setup/sync mechanics.
+
+**Labeling convention for a dataset-wrangling idea that hasn't been triaged yet:**
+
+```sh
+bd create --title="dataset: <short description>" \
+  --description="<what it is, why it might be worth wrangling, any known sources>" \
+  --type=task --priority=3 --labels="dataset,inbox,story-candidate"
+```
+
+- `dataset` — marks it as wrangling work (as opposed to skill/tooling/meta work)
+- `inbox` — unprioritized, not yet researched for sources/feasibility (mirrors the `capture`/`stub` end of the [dataset lifecycle](#dataset-lifecycle))
+- `story-candidate` — optional; add only if a written piece seems likely once the dataset exists
+- `priority=3` — backlog, until triaged
+
+Note: the `capture` skill above files similar "worth remembering" ideas as GitHub issues. Use beads (`bd create` with these labels) when the idea is dataset-shaped and you want it tracked alongside other repo work in the same tool as everything else in `bd ready`/`bd list`; use `capture` when it's a lighter-weight note that doesn't need beads' dependency/status machinery. Don't file the same idea in both.
 
 ## Changelog
 
