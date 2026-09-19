@@ -44,7 +44,9 @@ export function num(raw, sentinels = []) {
  * Normalize a string value you intend to keep: collapse every run of
  * whitespace — including the zero-width space, which `\s` does not match — to
  * a single space, trim the ends, and treat what is left of an empty cell as
- * missing.
+ * missing. The U+00A0 in the character class below is redundant (`\s` does
+ * match the no-break space) and is spelled out anyway, so the class reads as
+ * the list of characters this function exists to handle.
  *
  * Do this once, centrally, rather than per column when a mismatch surprises
  * you: in population-growth four entity names in `countries.json` carry a
