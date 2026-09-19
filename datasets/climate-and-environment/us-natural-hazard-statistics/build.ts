@@ -25,7 +25,22 @@ import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
+
+// pdfjs-dist is loaded on first use, in parseYear, rather than imported at the top: the pure
+// helpers below and the tests of them (`npm test` from the repo root) then load without an
+// `npm install` in this directory. Only reading the PDFs — running the build — needs it.
+type PdfDocument = Awaited<ReturnType<typeof import("pdfjs-dist/legacy/build/pdf.mjs").getDocument>["promise"]>;
+
+async function loadPdfjs() {
+  try {
+    return await import("pdfjs-dist/legacy/build/pdf.mjs");
+  } catch (e) {
+    if ((e as NodeJS.ErrnoException)?.code === "ERR_MODULE_NOT_FOUND") {
+      throw new Error("pdfjs-dist is not installed: run `npm install` in this directory, then `node build.ts` (see README.md)");
+    }
+    throw e;
+  }
+}
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ARCHIVE = join(HERE, "archive");
@@ -205,7 +220,7 @@ function median(values: number[]): number {
 }
 
 /** Text runs on a page, grouped into rows by baseline and sorted left to right. */
-async function pageRows(doc: Awaited<ReturnType<typeof getDocument>["promise"]>, p: number): Promise<Item[][]> {
+async function pageRows(doc: PdfDocument, p: number): Promise<Item[][]> {
   const content = await (await doc.getPage(p)).getTextContent();
   const rows: Map<number, Item[]> = new Map();
   for (const it of content.items as { str: string; width: number; transform: number[] }[]) {
@@ -369,6 +384,7 @@ export async function parseYear(
   pdf: Buffer,
   document: string,
 ): Promise<{ layout: "legacy" | "modern"; rows: HazardRow[] }> {
+  const { getDocument } = await loadPdfjs();
   const doc = await getDocument({ data: new Uint8Array(pdf), useSystemFonts: false, verbosity: 0 }).promise;
   const rows: Item[][] = [];
   for (let p = 1; p <= doc.numPages; p++) rows.push(...(await pageRows(doc, p)));
