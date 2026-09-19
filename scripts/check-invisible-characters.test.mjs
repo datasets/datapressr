@@ -3,7 +3,8 @@
 // cannot be the thing that reintroduces the bug they exist to catch.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -18,6 +19,18 @@ import {
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..");
+const cli = join(here, "check-invisible-characters.mjs");
+
+/** A throwaway tree with exactly one finding in scope, and two out of it. */
+function makeTree() {
+  const dir = mkdtempSync(join(tmpdir(), "invisible-tree-"));
+  mkdirSync(join(dir, "src"), { recursive: true });
+  mkdirSync(join(dir, "archive"), { recursive: true });
+  writeFileSync(join(dir, "src", "build.ts"), `// header\nconst a = "x\u00a0y";\n`);
+  writeFileSync(join(dir, "notes.md"), `prose with a \u200b in it\n`);
+  writeFileSync(join(dir, "archive", "old.ts"), `const b = "z\u00a0";\n`);
+  return dir;
+}
 
 test("finds a zero-width space and reports its escape", () => {
   const [hit, ...rest] = findInvisible(`const re = /[\u200b]/g;`);
@@ -82,6 +95,24 @@ test("source extensions are in scope", () => {
   }
 });
 
+test("extension matching ignores case", () => {
+  assert.ok(isSourcePath("BUILD.TS"));
+  assert.ok(isSourcePath("src/Enrich.MJS"));
+});
+
+test("an astral code point gets the braced escape, not a four-digit one", () => {
+  // The four-digit spelling would parse as U+E004 followed by a stray "1" — a different, visible character.
+  const [hit] = findInvisible(String.fromCodePoint(0xe0041));
+  assert.equal(hit.name, "TAG CHARACTER");
+  assert.equal(hit.escape, "\\u{e0041}");
+});
+
+test("a variation selector is a finding", () => {
+  const [hit] = findInvisible(`flag \ufe0f here`);
+  assert.equal(hit.name, "VARIATION SELECTOR");
+  assert.equal(hit.escape, "\\ufe0f");
+});
+
 test("data, prose and archived sources are out of scope", () => {
   for (const p of [
     "data/gdp.csv",
@@ -126,6 +157,52 @@ test("the no-git fallback walks the tree and skips what git would have skipped",
 test("no tracked source file contains a literal invisible character", () => {
   const findings = scanRepo(repoRoot);
   assert.deepEqual(findings, [], formatReport(findings));
+});
+
+// The clean-repo assertion above would still pass if scanRepo returned [] for
+// any reason at all. This is the control that proves it can fail, and that the
+// exclusions hold at the scanRepo level and not only in isSourcePath.
+test("scanRepo reports a literal on disk, and skips prose and archived sources", () => {
+  const dir = makeTree();
+  assert.deepEqual(
+    scanRepo(dir).map((f) => [f.file, f.line, f.column, f.codePoint]),
+    [["src/build.ts", 2, 13, 0x00a0]],
+  );
+});
+
+test("scanRepo skips a tracked file deleted from the working tree", () => {
+  // `git ls-files --cached` still lists it; reading it throws ENOENT.
+  const dir = makeTree();
+  execFileSync("git", ["-C", dir, "init", "-q"]);
+  execFileSync("git", ["-C", dir, "add", "-A"]);
+  execFileSync("git", ["-C", dir, "-c", "user.email=t@t", "-c", "user.name=t", "commit", "-qm", "x"]);
+  writeFileSync(join(dir, "src", "other.ts"), `const b = "y\u200b";\n`);
+  rmSync(join(dir, "src", "build.ts"));
+  assert.deepEqual(
+    scanRepo(dir).map((f) => [f.file, f.codePoint]),
+    [["src/other.ts", 0x200b]],
+  );
+});
+
+test("a root that is not a directory is an error, not a stack trace", () => {
+  assert.throws(() => sourceFiles(join(tmpdir(), "definitely-not-here-9f3a")), /is not a directory/);
+});
+
+test("the CLI exits 1 and names the finding, and 0 on a clean tree", () => {
+  const dirty = makeTree();
+  const clean = mkdtempSync(join(tmpdir(), "invisible-clean-"));
+  writeFileSync(join(clean, "ok.ts"), "export const a = 1;\n");
+  const run = (root) => {
+    try {
+      return { status: 0, out: execFileSync(process.execPath, [cli, root], { encoding: "utf8" }) };
+    } catch (e) {
+      return { status: e.status, out: e.stdout };
+    }
+  };
+  const bad = run(dirty);
+  assert.equal(bad.status, 1);
+  assert.match(bad.out, /src\/build\.ts:2:13 {2}U\+00A0 NO-BREAK SPACE/);
+  assert.equal(run(clean).status, 0);
 });
 
 test("the clean report says so", () => {
