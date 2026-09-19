@@ -257,7 +257,9 @@ export function formatReport(findings) {
 // directory with a space or a non-ASCII character in it makes the two spellings
 // differ. A check that prints nothing and exits 0 reads as "clean", which is the
 // worst thing this file could do.
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+// (argv[1] is undefined when the module is imported from `node -e`, and
+// pathToFileURL throws on undefined — so test for it before converting.)
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const root = process.argv[2] || ".";
   try {
     const findings = scanRepo(root);

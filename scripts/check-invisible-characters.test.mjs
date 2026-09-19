@@ -7,7 +7,7 @@ import { execFileSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   findInvisible,
   formatReport,
@@ -182,6 +182,13 @@ test("scanRepo skips a tracked file deleted from the working tree", () => {
     scanRepo(dir).map((f) => [f.file, f.codePoint]),
     [["src/other.ts", 0x200b]],
   );
+});
+
+test("importing the module without a script path does not throw", () => {
+  // pathToFileURL(undefined) throws, and process.argv[1] is undefined under
+  // `node -e`; the CLI guard must not take the whole module down with it.
+  const src = `import("${pathToFileURL(cli).href}").then((m) => console.log(m.INVISIBLE.size));`;
+  assert.match(execFileSync(process.execPath, ["-e", src], { encoding: "utf8" }), /^\d+$/m);
 });
 
 test("a root that is not a directory is an error, not a stack trace", () => {
