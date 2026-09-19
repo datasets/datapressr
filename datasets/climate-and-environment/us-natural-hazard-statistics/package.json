@@ -1,0 +1,9 @@
+{
+  "name": "us-natural-hazard-statistics-build",
+  "private": true,
+  "type": "module",
+  "description": "Build script deps for the us-natural-hazard-statistics dataset (not published).",
+  "dependencies": {
+    "pdfjs-dist": "5.4.530"
+  }
+}

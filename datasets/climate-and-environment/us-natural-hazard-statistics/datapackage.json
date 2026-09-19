@@ -1,0 +1,70 @@
+{
+  "name": "us-natural-hazard-statistics",
+  "title": "U.S. weather-related fatalities, injuries and damage by hazard type",
+  "description": "Deaths, injuries and property and crop damage caused by weather in the United States, by event type, for each year from 1997 to 2025 (29 years, 788 rows), taken from the National Weather Service's annual Summary of U.S. Natural Hazard Statistics. One row per year and event type, with the source's own total row for each year flagged by is_total — do not sum a total row with its components. Figures cover the 50 states, Puerto Rico, Guam and the Virgin Islands and are compiled by the NWS from Storm Data. Damage is in millions of nominal US dollars of the year reported, never inflation-adjusted; hurricane rows count wind damage only, with storm surge, rainfall flooding and tornadoes counted under their own event types, so no row is a complete cost for a named storm. The event vocabulary changes over the range: Rip Current is reported from 2002, Small Stream/Urban Flood only to 2006, and two labels are re-spelled in 2007 (Tstm Wind becomes Thunderstorm Wind, Tropical Storm/Hurricane gains spaces) — hazard keeps the source's label verbatim and hazard_id folds those two spelling changes only. The source has no machine-readable index: the 31 annual documents are PDFs listed nowhere but a hand-maintained menu on one HTML page, which offers a 1995 summary the server does not have. source-documents.csv accounts for all 31, including the 1995 document that 404s and the 1996 one that is page images with no extractable text. The most recent year is preliminary and earlier years are revised without notice — the source's own Report generated footers show 2007-2015 regenerated in 2016, 2019 in 2021 and 2024 in 2026 — and there is no change feed, so only re-fetching and diffing can reveal a restatement. Snapshot taken 2026-09-19; rebuilt offline by build.ts from the archived PDFs.",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "PDDL-1.0",
+      "title": "Open Data Commons Public Domain Dedication and License. The source states its own position: \"The information on National Weather Service (NWS) Web pages are in the public domain, unless specifically noted otherwise, and may be used without charge for any lawful purpose\" (NWS Disclaimer, retrieved 2026-09-19, archived at archive/disclaimer.html). The NWS asks that its material not be claimed as your own, not be used to imply NOAA/NWS endorsement, and not be modified and then presented as official government material; this dataset attributes the source and is a derived compilation, not an official NWS product. As 17 U.S.C. section 403 and the NWS page ask of a work consisting predominantly of NWS material: the figures here are extracted from National Weather Service publications and that NWS material is not subject to copyright protection. This compilation is dedicated to the public domain on the same terms. See README.",
+      "path": "https://opendatacommons.org/licenses/pddl/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NWS Weather Related Fatality and Injury Statistics — the hub page whose menu is the only listing of the annual summaries",
+      "path": "https://www.weather.gov/hazstat/"
+    },
+    {
+      "title": "NWS Summary of U.S. Natural Hazard Statistics, annual PDF (2025 shown; sum<yy>.pdf for other years)",
+      "path": "https://www.weather.gov/media/hazstat/sum25.pdf"
+    },
+    {
+      "title": "NWS Disclaimer — the access and reuse terms quoted above",
+      "path": "https://www.weather.gov/disclaimer"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/hazard-statistics.csv",
+      "name": "hazard-statistics",
+      "title": "U.S. weather-related fatalities, injuries and damage by year and event type",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "year", "type": "year", "description": "Calendar year the summary reports on." },
+          { "name": "hazard_category", "type": "string", "description": "The grouping the source prints the event under: Convection, Extreme Temperatures, Flood, Marine, Tropical Cyclones, Winter or Other. Empty on the year's total row, which sits under no category." },
+          { "name": "hazard", "type": "string", "description": "Event type exactly as the source labels it, including its changes of spelling: Tstm Wind to 2006 and Thunderstorm Wind from 2007, Tropical Storm/Hurricane to 2006 and Tropical Storm / Hurricane from 2007. The total row's label is likewise verbatim and is spelled TOTALS, TOTAL or Total depending on the year." },
+          { "name": "hazard_id", "type": "string", "description": "This dataset's slug for the event type, so a series does not break where the source merely re-typed a name. It folds the two spelling changes above and nothing else: Small Stream/Urban Flood (to 2006) and Rip Current (from 2002) keep their own ids, because where those events were counted outside their own years is not stated anywhere. Empty on the total row." },
+          { "name": "is_total", "type": "boolean", "description": "true for the year's own total row as the source prints it, false for an event row. The event rows of a year sum exactly to its total row for fatalities and injuries; summing a total with its components double-counts." },
+          { "name": "fatalities", "type": "integer", "description": "Direct and indirect weather-related deaths attributed to the event type, as compiled by the NWS from Storm Data. A 0 is a reported zero, not a missing value; there are no missing values in this column. The CDC, not the NWS, is the official US source of cause of death." },
+          { "name": "injuries", "type": "integer", "description": "Weather-related injuries attributed to the event type. A 0 is a reported zero." },
+          { "name": "property_damage_musd", "type": "number", "description": "Property damage in millions of US dollars of the year reported — nominal, never inflation-adjusted, and not comparable across years without deflating. Reported to one decimal place to 2006 and two from 2007." },
+          { "name": "crop_damage_musd", "type": "number", "description": "Crop damage in millions of nominal US dollars of the year reported, on the same basis as property damage." },
+          { "name": "total_damage_musd", "type": "number", "description": "The source's own property-plus-crop total for the row. It equals the two components in every published row; the build stops if it does not." },
+          { "name": "source_document", "type": "string", "description": "Filename of the archived annual PDF the row was read from; joins to source-documents.csv via year." }
+        ],
+        "primaryKey": ["year", "hazard"]
+      }
+    },
+    {
+      "path": "data/source-documents.csv",
+      "name": "source-documents",
+      "title": "Every annual summary the source lists, and what became of it",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "year", "type": "year", "description": "Year the candidate document reports on, as the hub page's menu labels it." },
+          { "name": "url", "type": "string", "description": "The document's address, as the hub page's menu gives it." },
+          { "name": "archived_path", "type": "string", "description": "Where the retrieved bytes are kept, relative to the dataset directory. Empty where nothing was retrieved." },
+          { "name": "http_status", "type": "integer", "description": "What the server answered when the snapshot was taken on 2026-09-19. 404 for the 1995 summary, which the hub page's menu offers and the server does not have. archive/manifest.json carries the same field for every request the fetch made, including the robots.txt and sitemap.xml probes that establish this source has no machine-readable index." },
+          { "name": "layout", "type": "string", "description": "legacy (1997-2006: damage headed Damage (M), one decimal place, a braced Flood subtotal on the River Flood line) or modern (2007-2025: damage headed (million $), two decimal places). Read from the header the document itself prints, never inferred from the year. Otherwise: 'not served' or 'scanned image'." },
+          { "name": "extracted", "type": "boolean", "description": "Whether rows for this year appear in hazard-statistics.csv." },
+          { "name": "event_rows", "type": "integer", "description": "Event rows published for this year, excluding the year's own total row. 26 in most years; 27 in 2002-2006, when Rip Current and Small Stream/Urban Flood are both reported. Empty, not 0, where nothing was extracted — a year with no rows is a different thing from a year with zero events." },
+          { "name": "note", "type": "string", "description": "Why a candidate was not extracted. Empty where it was." }
+        ],
+        "primaryKey": ["year"]
+      }
+    }
+  ]
+}

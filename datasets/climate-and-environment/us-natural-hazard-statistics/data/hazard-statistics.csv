@@ -1,0 +1,789 @@
+year,hazard_category,hazard,hazard_id,is_total,fatalities,injuries,property_damage_musd,crop_damage_musd,total_damage_musd,source_document
+1997,Winter,Avalanche,avalanche,false,4,0,0,0,0,sum97.pdf
+1997,Marine,Coastal Storm,coastal-storm,false,22,13,0.7,0,0.7,sum97.pdf
+1997,Extreme Temperatures,Cold,cold,false,51,9,4.1,304.3,308.4,sum97.pdf
+1997,Other,Drought,drought,false,0,0,24,253,277,sum97.pdf
+1997,Other,Dust Devil,dust-devil,false,0,2,0,0,0,sum97.pdf
+1997,Other,Dust Storm,dust-storm,false,0,36,0.3,0,0.3,sum97.pdf
+1997,Other,Fire Weather,fire-weather,false,1,7,33.1,10,43.1,sum97.pdf
+1997,Flood,Flash Flood,flash-flood,false,86,463,864.2,25.8,890,sum97.pdf
+1997,Other,Fog,fog,false,10,103,1.7,0,1.7,sum97.pdf
+1997,Convection,Hail,hail,false,0,5,202.1,198.9,401,sum97.pdf
+1997,Extreme Temperatures,Heat,heat,false,81,530,0,0,0,sum97.pdf
+1997,Other,High Wind,high-wind,false,38,126,41.1,3,44.1,sum97.pdf
+1997,Winter,Ice,ice,false,6,43,0.4,0,0.4,sum97.pdf
+1997,Convection,Lightning,lightning,false,42,306,40.3,0.3,40.6,sum97.pdf
+1997,Other,Miscellaneous,miscellaneous,false,0,0,0,1,1,sum97.pdf
+1997,Other,Mud Slide,mud-slide,false,5,1,0,0,0,sum97.pdf
+1997,Other,Rain,rain,false,33,29,11.4,0.7,12.1,sum97.pdf
+1997,Flood,River Flood,river-flood,false,29,60,6016.1,91,6107.1,sum97.pdf
+1997,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,3,2,30.3,0.1,30.4,sum97.pdf
+1997,Convection,Tornado,tornado,false,67,1033,730.7,5.8,736.5,sum97.pdf
+1997,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,1,32,667.6,207.8,875.4,sum97.pdf
+1997,Convection,Tstm Wind,thunderstorm-wind,false,37,425,200.7,41.4,242.1,sum97.pdf
+1997,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum97.pdf
+1997,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum97.pdf
+1997,Other,Waterspout,waterspout,false,0,1,0.1,0,0.1,sum97.pdf
+1997,Winter,Winter Storm,winter-storm,false,84,573,688.6,85,773.6,sum97.pdf
+1997,,TOTALS,,true,600,3799,9557.5,1228.1,10785.6,sum97.pdf
+1998,Winter,Avalanche,avalanche,false,9,15,0.1,0,0.1,sum98.pdf
+1998,Marine,Coastal Storm,coastal-storm,false,23,32,117.3,0,117.3,sum98.pdf
+1998,Extreme Temperatures,Cold,cold,false,11,27,0.6,682.6,683.2,sum98.pdf
+1998,Other,Drought,drought,false,0,0,40,2142,2182,sum98.pdf
+1998,Other,Dust Devil,dust-devil,false,0,0,0,0,0,sum98.pdf
+1998,Other,Dust Storm,dust-storm,false,0,20,0.2,0,0.2,sum98.pdf
+1998,Other,Fire Weather,fire-weather,false,0,92,398.5,83,481.5,sum98.pdf
+1998,Flood,Flash Flood,flash-flood,false,118,4578,909.1,140.9,1050,sum98.pdf
+1998,Other,Fog,fog,false,6,152,2.4,0,2.4,sum98.pdf
+1998,Convection,Hail,hail,false,1,45,1348.4,166,1514.4,sum98.pdf
+1998,Extreme Temperatures,Heat,heat,false,173,633,0,0,0,sum98.pdf
+1998,Other,High Wind,high-wind,false,24,95,63.7,20.4,84.1,sum98.pdf
+1998,Winter,Ice,ice,false,4,223,0.8,0,0.8,sum98.pdf
+1998,Convection,Lightning,lightning,false,44,283,38,3.1,41.1,sum98.pdf
+1998,Other,Miscellaneous,miscellaneous,false,1,0,0.2,5,5.2,sum98.pdf
+1998,Other,Mud Slide,mud-slide,false,0,0,0,0,0,sum98.pdf
+1998,Other,Rain,rain,false,11,24,45.3,321.1,366.4,sum98.pdf
+1998,Flood,River Flood,river-flood,false,14,1856,1400.9,169.2,1570.1,sum98.pdf
+1998,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,4,6,14.8,8,22.8,sum98.pdf
+1998,Convection,Tornado,tornado,false,130,1868,1714.2,22,1736.2,sum98.pdf
+1998,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,9,77,3546.6,581.3,4127.9,sum98.pdf
+1998,Convection,Tstm Wind,thunderstorm-wind,false,41,860,1435.7,161.6,1597.3,sum98.pdf
+1998,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum98.pdf
+1998,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum98.pdf
+1998,Other,Waterspout,waterspout,false,0,0,0,0,0,sum98.pdf
+1998,Winter,Winter Storm,winter-storm,false,64,285,525.9,1.6,527.5,sum98.pdf
+1998,,TOTALS,,true,687,11171,11602.7,4507.8,16110.5,sum98.pdf
+1999,Winter,Avalanche,avalanche,false,26,10,0.1,0,0.1,sum99.pdf
+1999,Marine,Coastal Storm,coastal-storm,false,28,42,0.7,0,0.7,sum99.pdf
+1999,Extreme Temperatures,Cold,cold,false,7,32,1.7,155.5,157.2,sum99.pdf
+1999,Other,Drought,drought,false,0,0,0.1,1332.9,1333,sum99.pdf
+1999,Other,Dust Devil,dust-devil,false,0,0,0,0,0,sum99.pdf
+1999,Other,Dust Storm,dust-storm,false,1,49,0.6,0.1,0.7,sum99.pdf
+1999,Other,Fire Weather,fire-weather,false,2,127,141,1.6,142.6,sum99.pdf
+1999,Flood,Flash Flood,flash-flood,false,60,290,1201.8,357.2,1559,sum99.pdf
+1999,Other,Fog,fog,false,3,84,0.9,0,0.9,sum99.pdf
+1999,Convection,Hail,hail,false,0,46,443,157.8,600.8,sum99.pdf
+1999,Extreme Temperatures,Heat,heat,false,502,1477,3.3,0,3.3,sum99.pdf
+1999,Other,High Wind,high-wind,false,33,148,86.7,5.3,92,sum99.pdf
+1999,Winter,Ice,ice,false,2,86,0.3,0,0.3,sum99.pdf
+1999,Convection,Lightning,lightning,false,46,243,32.5,0,32.5,sum99.pdf
+1999,Other,Miscellaneous,miscellaneous,false,1,3,3.7,5,8.7,sum99.pdf
+1999,Other,Mud Slide,mud-slide,false,0,0,0,0,0,sum99.pdf
+1999,Other,Rain,rain,false,8,7,30.3,0,30.3,sum99.pdf
+1999,Flood,River Flood,river-flood,false,5,0,214.7,14.5,229.2,sum99.pdf
+1999,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,3,11,4.2,0,4.2,sum99.pdf
+1999,Convection,Tornado,tornado,false,94,1842,1989.9,8.3,1998.2,sum99.pdf
+1999,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,19,10,4190.1,1418.7,5608.8,sum99.pdf
+1999,Convection,Tstm Wind,thunderstorm-wind,false,29,325,313.5,75.2,388.7,sum99.pdf
+1999,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum99.pdf
+1999,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum99.pdf
+1999,Other,Waterspout,waterspout,false,0,0,0.3,0,0.3,sum99.pdf
+1999,Winter,Winter Storm,winter-storm,false,39,316,61.9,0,61.9,sum99.pdf
+1999,,TOTAL,,true,908,5148,8721.3,3532.1,12253.4,sum99.pdf
+2000,Winter,Avalanche,avalanche,false,16,17,0.8,0,0.8,sum00.pdf
+2000,Marine,Coastal Storm,coastal-storm,false,29,23,0.4,0,0.4,sum00.pdf
+2000,Extreme Temperatures,Cold,cold,false,26,0,0.6,8.6,9.2,sum00.pdf
+2000,Other,Drought,drought,false,0,0,0.7,2438.1,2438.8,sum00.pdf
+2000,Other,Dust Devil,dust-devil,false,0,0,0,0,0,sum00.pdf
+2000,Other,Dust Storm,dust-storm,false,1,29,0.2,0,0.2,sum00.pdf
+2000,Other,Fire Weather,fire-weather,false,3,100,2109.2,7.1,2116.3,sum00.pdf
+2000,Flood,Flash Flood,flash-flood,false,30,36,785.7,73.6,859.3,sum00.pdf
+2000,Other,Fog,fog,false,10,118,1.8,0,1.8,sum00.pdf
+2000,Convection,Hail,hail,false,2,57,446,124.9,570.9,sum00.pdf
+2000,Extreme Temperatures,Heat,heat,false,158,469,0,0,0,sum00.pdf
+2000,Other,High Wind,high-wind,false,26,162,48.9,1.2,50.1,sum00.pdf
+2000,Winter,Ice,ice,false,0,0,0.3,0,0.3,sum00.pdf
+2000,Convection,Lightning,lightning,false,51,364,39.8,0.1,39.9,sum00.pdf
+2000,Other,Miscellaneous,miscellaneous,false,3,11,0.1,0,0.1,sum00.pdf
+2000,Other,Mud Slide,mud-slide,false,0,0,0.5,0,0.5,sum00.pdf
+2000,Other,Rain,rain,false,4,38,4.4,4.1,8.5,sum00.pdf
+2000,Flood,River Flood,river-flood,false,3,2,467.5,605.7,1073.2,sum00.pdf
+2000,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,5,9,1.9,0,1.9,sum00.pdf
+2000,Convection,Tornado,tornado,false,41,882,423.6,6.9,430.5,sum00.pdf
+2000,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,0,1,8.1,0.1,8.2,sum00.pdf
+2000,Convection,Tstm Wind,thunderstorm-wind,false,25,296,245.2,58.8,304,sum00.pdf
+2000,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum00.pdf
+2000,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum00.pdf
+2000,Other,Waterspout,waterspout,false,2,0,0.1,0,0.1,sum00.pdf
+2000,Winter,Winter Storm,winter-storm,false,41,182,1035.3,0,1035.3,sum00.pdf
+2000,,TOTAL,,true,476,2796,5621.1,3329.2,8950.3,sum00.pdf
+2001,Winter,Avalanche,avalanche,false,15,6,0,0,0,sum01.pdf
+2001,Marine,Coastal Storm,coastal-storm,false,53,96,17.7,0,17.7,sum01.pdf
+2001,Extreme Temperatures,Cold,cold,false,4,0,0,132.2,132.2,sum01.pdf
+2001,Other,Drought,drought,false,0,0,0,1273.9,1273.9,sum01.pdf
+2001,Other,Dust Devil,dust-devil,false,0,1,0,0,0,sum01.pdf
+2001,Other,Dust Storm,dust-storm,false,0,5,0.2,0,0.2,sum01.pdf
+2001,Other,Fire Weather,fire-weather,false,5,46,45.2,0,45.2,sum01.pdf
+2001,Flood,Flash Flood,flash-flood,false,35,265,856.7,41,897.7,sum01.pdf
+2001,Other,Fog,fog,false,7,67,1.3,0,1.3,sum01.pdf
+2001,Convection,Hail,hail,false,0,32,2368.3,270.4,2638.7,sum01.pdf
+2001,Extreme Temperatures,Heat,heat,false,166,445,0,0,0,sum01.pdf
+2001,Other,High Wind,high-wind,false,14,98,63.8,2.2,66,sum01.pdf
+2001,Winter,Ice,ice,false,0,0,0.4,0,0.4,sum01.pdf
+2001,Convection,Lightning,lightning,false,44,371,43.6,2,45.6,sum01.pdf
+2001,Other,Miscellaneous,miscellaneous,false,6,9,0.2,0,0.2,sum01.pdf
+2001,Other,Mud Slide,mud-slide,false,0,0,1.3,0,1.3,sum01.pdf
+2001,Other,Rain,rain,false,3,1,20.7,21.5,42.2,sum01.pdf
+2001,Flood,River Flood,river-flood,false,11,6,362,1.9,363.9,sum01.pdf
+2001,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,2,6,1.6,0.1,1.7,sum01.pdf
+2001,Convection,Tornado,tornado,false,40,743,630.1,7.4,637.5,sum01.pdf
+2001,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,24,7,5187.8,2.7,5190.5,sum01.pdf
+2001,Convection,Tstm Wind,thunderstorm-wind,false,17,341,317.8,61,378.8,sum01.pdf
+2001,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum01.pdf
+2001,Other,Volcanic Ash,volcanic-ash,false,0,0,0.5,0,0.5,sum01.pdf
+2001,Other,Waterspout,waterspout,false,0,0,0,0,0,sum01.pdf
+2001,Winter,Winter Storm,winter-storm,false,18,173,103.6,0.1,103.7,sum01.pdf
+2001,,TOTAL,,true,464,2718,10022.8,1816.4,11839.2,sum01.pdf
+2002,Winter,Avalanche,avalanche,false,15,11,0,0,0,sum02.pdf
+2002,Marine,Coastal Storm,coastal-storm,false,11,8,0.3,0,0.3,sum02.pdf
+2002,Extreme Temperatures,Cold,cold,false,11,0,0.3,70.4,70.7,sum02.pdf
+2002,Other,Drought,drought,false,0,0,0,737.6,737.6,sum02.pdf
+2002,Other,Dust Devil,dust-devil,false,0,1,0,0,0,sum02.pdf
+2002,Other,Dust Storm,dust-storm,false,2,45,0.4,0,0.4,sum02.pdf
+2002,Other,Fire Weather,fire-weather,false,1,138,200.8,2,202.8,sum02.pdf
+2002,Flood,Flash Flood,flash-flood,false,38,74,329.6,44.8,374.4,sum02.pdf
+2002,Other,Fog,fog,false,19,143,3.5,0,3.5,sum02.pdf
+2002,Convection,Hail,hail,false,0,125,325.2,153.8,479,sum02.pdf
+2002,Extreme Temperatures,Heat,heat,false,167,378,0,0,0,sum02.pdf
+2002,Other,High Wind,high-wind,false,28,129,82.9,33.5,116.4,sum02.pdf
+2002,Winter,Ice,ice,false,0,0,0.1,0,0.1,sum02.pdf
+2002,Convection,Lightning,lightning,false,51,256,43.5,0,43.5,sum02.pdf
+2002,Other,Miscellaneous,miscellaneous,false,2,0,0,0,0,sum02.pdf
+2002,Other,Mud Slide,mud-slide,false,0,0,0,0,0,sum02.pdf
+2002,Other,Rain,rain,false,1,1,0.8,1.1,1.9,sum02.pdf
+2002,Marine,Rip Current,rip-current,false,43,60,0.1,0,0.1,sum02.pdf
+2002,Flood,River Flood,river-flood,false,7,5,322.8,37.7,360.5,sum02.pdf
+2002,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,4,9,2.6,0,2.6,sum02.pdf
+2002,Convection,Tornado,tornado,false,55,968,801.3,0.8,802.1,sum02.pdf
+2002,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,51,346,1104.4,278,1382.4,sum02.pdf
+2002,Convection,Tstm Wind,thunderstorm-wind,false,17,287,289.8,54.7,344.5,sum02.pdf
+2002,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum02.pdf
+2002,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum02.pdf
+2002,Other,Waterspout,waterspout,false,0,1,0,0,0,sum02.pdf
+2002,Winter,Winter Storm,winter-storm,false,17,105,752,0,752,sum02.pdf
+2002,,TOTALS,,true,540,3090,4260.4,1414.4,5674.8,sum02.pdf
+2003,Winter,Avalanche,avalanche,false,9,7,0,0,0,sum03.pdf
+2003,Marine,Coastal Storm,coastal-storm,false,14,6,11.4,0,11.4,sum03.pdf
+2003,Extreme Temperatures,Cold,cold,false,20,14,0.9,28.2,29.1,sum03.pdf
+2003,Other,Drought,drought,false,0,0,645.2,572.5,1217.7,sum03.pdf
+2003,Other,Dust Devil,dust-devil,false,1,3,0.1,0,0.1,sum03.pdf
+2003,Other,Dust Storm,dust-storm,false,2,91,0.3,0,0.3,sum03.pdf
+2003,Other,Fire Weather,fire-weather,false,0,2,2331.6,0,2331.6,sum03.pdf
+2003,Flood,Flash Flood,flash-flood,false,67,61,2123.9,18.3,2142.2,sum03.pdf
+2003,Other,Fog,fog,false,0,0,0,0,0,sum03.pdf
+2003,Convection,Hail,hail,false,0,121,522.5,110,632.5,sum03.pdf
+2003,Extreme Temperatures,Heat,heat,false,36,174,0,0,0,sum03.pdf
+2003,Other,High Wind,high-wind,false,24,156,166.2,41,207.2,sum03.pdf
+2003,Winter,Ice,ice,false,0,0,0,0,0,sum03.pdf
+2003,Convection,Lightning,lightning,false,43,236,25.7,0,25.7,sum03.pdf
+2003,Other,Miscellaneous,miscellaneous,false,27,289,7.8,31.2,39,sum03.pdf
+2003,Other,Mud Slide,mud-slide,false,15,16,5.6,0,5.6,sum03.pdf
+2003,Other,Rain,rain,false,5,34,8.4,69.8,78.2,sum03.pdf
+2003,Marine,Rip Current,rip-current,false,41,47,0,0,0,sum03.pdf
+2003,Flood,River Flood,river-flood,false,18,5,418.7,139.8,558.5,sum03.pdf
+2003,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,1,4,0.5,0,0.5,sum03.pdf
+2003,Convection,Tornado,tornado,false,54,1087,1265.6,15.9,1281.5,sum03.pdf
+2003,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,14,233,1879.5,40.8,1920.3,sum03.pdf
+2003,Convection,Tstm Wind,thunderstorm-wind,false,19,226,355.8,66.5,422.3,sum03.pdf
+2003,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum03.pdf
+2003,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum03.pdf
+2003,Other,Waterspout,waterspout,false,0,0,0,0,0,sum03.pdf
+2003,Winter,Winter Storm,winter-storm,false,28,112,499.4,8.6,508,sum03.pdf
+2003,,TOTALS,,true,438,2924,10269.1,1142.6,11411.7,sum03.pdf
+2004,Winter,Avalanche,avalanche,false,12,6,0.1,0,0.1,sum04.pdf
+2004,Marine,Coastal Storm,coastal-storm,false,30,29,0.5,0,0.5,sum04.pdf
+2004,Extreme Temperatures,Cold,cold,false,27,2,0.7,0,0.7,sum04.pdf
+2004,Other,Drought,drought,false,0,0,0,1.2,1.2,sum04.pdf
+2004,Other,Dust Devil,dust-devil,false,0,5,0,0,0,sum04.pdf
+2004,Other,Dust Storm,dust-storm,false,0,11,0.1,0,0.1,sum04.pdf
+2004,Other,Fire Weather,fire-weather,false,0,0,16.9,0,16.9,sum04.pdf
+2004,Flood,Flash Flood,flash-flood,false,58,29,856.7,12.2,868.9,sum04.pdf
+2004,Other,Fog,fog,false,1,45,1.6,0,1.6,sum04.pdf
+2004,Convection,Hail,hail,false,0,4,463,73,536,sum04.pdf
+2004,Extreme Temperatures,Heat,heat,false,6,74,0,0,0,sum04.pdf
+2004,Other,High Wind,high-wind,false,26,68,3312.8,340.5,3653.3,sum04.pdf
+2004,Winter,Ice,ice,false,0,0,0,0,0,sum04.pdf
+2004,Convection,Lightning,lightning,false,32,280,26.1,0,26.1,sum04.pdf
+2004,Other,Miscellaneous,miscellaneous,false,0,63,2.8,0.3,3.1,sum04.pdf
+2004,Other,Mud Slide,mud-slide,false,4,11,32.3,0,32.3,sum04.pdf
+2004,Other,Rain,rain,false,4,9,3.6,0.5,4.1,sum04.pdf
+2004,Marine,Rip Current,rip-current,false,32,23,0,0,0,sum04.pdf
+2004,Flood,River Flood,river-flood,false,24,99,839.5,329.2,1168.7,sum04.pdf
+2004,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,0,0,0,0,0,sum04.pdf
+2004,Convection,Tornado,tornado,false,35,396,537.1,12.1,549.2,sum04.pdf
+2004,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,34,840,18901.8,667.3,19569.1,sum04.pdf
+2004,Convection,Tstm Wind,thunderstorm-wind,false,16,244,167.3,15.6,182.9,sum04.pdf
+2004,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum04.pdf
+2004,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum04.pdf
+2004,Other,Waterspout,waterspout,false,0,0,0,0,0,sum04.pdf
+2004,Winter,Winter Storm,winter-storm,false,28,190,183.5,0.2,183.7,sum04.pdf
+2004,,TOTALS,,true,369,2428,25346.4,1452.1,26798.5,sum04.pdf
+2005,Winter,Avalanche,avalanche,false,11,16,0.2,0,0.2,sum05.pdf
+2005,Marine,Coastal Storm,coastal-storm,false,6,12,2.2,0,2.2,sum05.pdf
+2005,Extreme Temperatures,Cold,cold,false,24,1,0.1,139.2,139.3,sum05.pdf
+2005,Other,Drought,drought,false,0,0,77.4,1311.1,1388.5,sum05.pdf
+2005,Other,Dust Devil,dust-devil,false,0,0,0,0,0,sum05.pdf
+2005,Other,Dust Storm,dust-storm,false,0,32,0.1,0,0.1,sum05.pdf
+2005,Other,Fire Weather,fire-weather,false,0,0,40.7,0,40.7,sum05.pdf
+2005,Flood,Flash Flood,flash-flood,false,28,22,293.2,35.3,328.5,sum05.pdf
+2005,Other,Fog,fog,false,0,0,0,0,0,sum05.pdf
+2005,Convection,Hail,hail,false,1,8,480.5,56.1,536.6,sum05.pdf
+2005,Extreme Temperatures,Heat,heat,false,158,298,3,0,3,sum05.pdf
+2005,Other,High Wind,high-wind,false,7,43,58.5,21.9,80.4,sum05.pdf
+2005,Winter,Ice,ice,false,0,0,0,0,0,sum05.pdf
+2005,Convection,Lightning,lightning,false,38,309,52.4,0.4,52.8,sum05.pdf
+2005,Other,Miscellaneous,miscellaneous,false,5,94,1.6,0.2,1.8,sum05.pdf
+2005,Other,Mud Slide,mud-slide,false,11,11,91.5,0,91.5,sum05.pdf
+2005,Other,Rain,rain,false,8,39,264.2,228.6,492.8,sum05.pdf
+2005,Marine,Rip Current,rip-current,false,35,9,0,0,0,sum05.pdf
+2005,Flood,River Flood,river-flood,false,15,16,1244.5,68.9,1313.4,sum05.pdf
+2005,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,0,0,0,0,0,sum05.pdf
+2005,Convection,Tornado,tornado,false,38,537,421.8,82.1,503.9,sum05.pdf
+2005,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,1016,130,93064.4,2075.2,95139.6,sum05.pdf
+2005,Convection,Tstm Wind,thunderstorm-wind,false,16,185,398.7,11.9,410.6,sum05.pdf
+2005,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum05.pdf
+2005,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum05.pdf
+2005,Other,Waterspout,waterspout,false,0,0,0,0,0,sum05.pdf
+2005,Winter,Winter Storm,winter-storm,false,34,72,293.8,0.1,293.9,sum05.pdf
+2005,,TOTALS,,true,1451,1834,96788.8,4031,100819.8,sum05.pdf
+2006,Winter,Avalanche,avalanche,false,11,6,0,0,0,sum06.pdf
+2006,Marine,Coastal Storm,coastal-storm,false,7,16,55.1,0,55.1,sum06.pdf
+2006,Extreme Temperatures,Cold,cold,false,2,5,0,11.9,11.9,sum06.pdf
+2006,Other,Drought,drought,false,0,4,138,2498.1,2636.1,sum06.pdf
+2006,Other,Dust Devil,dust-devil,false,0,1,0,0,0,sum06.pdf
+2006,Other,Dust Storm,dust-storm,false,2,22,0.7,2.3,3,sum06.pdf
+2006,Other,Fire Weather,fire-weather,false,0,0,192.4,0,192.4,sum06.pdf
+2006,Flood,Flash Flood,flash-flood,false,59,18,2136.6,104.9,2241.5,sum06.pdf
+2006,Other,Fog,fog,false,0,0,0,0,0,sum06.pdf
+2006,Convection,Hail,hail,false,0,18,1569.4,132.9,1702.3,sum06.pdf
+2006,Extreme Temperatures,Heat,heat,false,253,1513,0.2,492.5,492.7,sum06.pdf
+2006,Other,High Wind,high-wind,false,26,133,195,15.2,210.2,sum06.pdf
+2006,Winter,Ice,ice,false,0,0,0,0,0,sum06.pdf
+2006,Convection,Lightning,lightning,false,48,246,63.8,0,63.8,sum06.pdf
+2006,Other,Miscellaneous,miscellaneous,false,17,126,157.3,232.7,390,sum06.pdf
+2006,Other,Mud Slide,mud-slide,false,3,2,58.9,20,78.9,sum06.pdf
+2006,Other,Rain,rain,false,1,4,52.4,49.7,102.1,sum06.pdf
+2006,Marine,Rip Current,rip-current,false,23,24,0,0,0,sum06.pdf
+2006,Flood,River Flood,river-flood,false,17,5,1631.1,95.2,1726.3,sum06.pdf
+2006,Flood,Small Stream/Urban Flood,small-stream-urban-flood,false,0,0,0,0,0,sum06.pdf
+2006,Convection,Tornado,tornado,false,67,990,752.3,6.7,759,sum06.pdf
+2006,Tropical Cyclones,Tropical Storm/Hurricane,tropical-storm-hurricane,false,0,1,2.4,43.3,45.7,sum06.pdf
+2006,Convection,Tstm Wind,thunderstorm-wind,false,14,249,408,31.1,439.1,sum06.pdf
+2006,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum06.pdf
+2006,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum06.pdf
+2006,Other,Waterspout,waterspout,false,0,0,0,0,0,sum06.pdf
+2006,Winter,Winter Storm,winter-storm,false,17,109,571,0,571,sum06.pdf
+2006,,TOTALS,,true,567,3492,7984.6,3736.5,11721.1,sum06.pdf
+2007,Winter,Avalanche,avalanche,false,18,12,0,0,0,sum07.pdf
+2007,Marine,Coastal Storm,coastal-storm,false,0,6,93.37,0,93.37,sum07.pdf
+2007,Extreme Temperatures,Cold,cold,false,47,174,3.04,2386.59,2389.64,sum07.pdf
+2007,Other,Drought,drought,false,0,0,3.43,1528.66,1532.08,sum07.pdf
+2007,Other,Dust Devil,dust-devil,false,0,0,0,0,0,sum07.pdf
+2007,Other,Dust Storm,dust-storm,false,0,4,0.95,0,0.95,sum07.pdf
+2007,Other,Fire Weather,fire-weather,false,19,225,1370.19,43.61,1413.8,sum07.pdf
+2007,Flood,Flash Flood,flash-flood,false,71,51,1231.27,49.89,1281.16,sum07.pdf
+2007,Other,Fog,fog,false,0,0,0.45,0,0.45,sum07.pdf
+2007,Convection,Hail,hail,false,0,25,558.76,154.67,713.42,sum07.pdf
+2007,Extreme Temperatures,Heat,heat,false,105,1886,0,0,0,sum07.pdf
+2007,Other,High Wind,high-wind,false,16,76,257.42,1.22,258.64,sum07.pdf
+2007,Winter,Ice,ice,false,7,11,1379.81,0,1379.81,sum07.pdf
+2007,Convection,Lightning,lightning,false,45,138,82.06,0.06,82.12,sum07.pdf
+2007,Other,Miscellaneous,miscellaneous,false,0,0,0,0,0,sum07.pdf
+2007,Other,Mud Slide,mud-slide,false,3,3,51.15,0,51.15,sum07.pdf
+2007,Other,Rain,rain,false,2,8,78.57,2.05,80.62,sum07.pdf
+2007,Marine,Rip Current,rip-current,false,63,16,7.57,0,7.57,sum07.pdf
+2007,Flood,River Flood,river-flood,false,18,8,512.37,518.41,1030.78,sum07.pdf
+2007,Convection,Thunderstorm Wind,thunderstorm-wind,false,18,256,238.17,191.42,429.6,sum07.pdf
+2007,Convection,Tornado,tornado,false,81,617,1348.83,6.77,1355.6,sum07.pdf
+2007,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,1,13,38.8,0.01,38.8,sum07.pdf
+2007,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum07.pdf
+2007,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum07.pdf
+2007,Other,Waterspout,waterspout,false,0,0,0.07,0,0.07,sum07.pdf
+2007,Winter,Winter Storm,winter-storm,false,9,159,101,0.23,101.23,sum07.pdf
+2007,,Total,,true,523,3688,7357.27,4883.58,12240.85,sum07.pdf
+2008,Winter,Avalanche,avalanche,false,26,15,1.13,0,1.13,sum08.pdf
+2008,Marine,Coastal Storm,coastal-storm,false,15,0,9926.62,0.85,9927.47,sum08.pdf
+2008,Extreme Temperatures,Cold,cold,false,44,0,0.04,140.99,141.03,sum08.pdf
+2008,Other,Drought,drought,false,0,0,0.1,1.59,1.69,sum08.pdf
+2008,Other,Dust Devil,dust-devil,false,1,14,0.06,0,0.06,sum08.pdf
+2008,Other,Dust Storm,dust-storm,false,0,0,0,0,0,sum08.pdf
+2008,Other,Fire Weather,fire-weather,false,3,35,236.59,2.06,238.65,sum08.pdf
+2008,Flood,Flash Flood,flash-flood,false,58,30,1289.13,912.95,2202.08,sum08.pdf
+2008,Other,Fog,fog,false,0,0,6.64,0,6.64,sum08.pdf
+2008,Convection,Hail,hail,false,1,13,464.34,173.61,637.95,sum08.pdf
+2008,Extreme Temperatures,Heat,heat,false,71,217,0.05,0.5,0.55,sum08.pdf
+2008,Other,High Wind,high-wind,false,42,122,1222.79,172.18,1394.97,sum08.pdf
+2008,Winter,Ice,ice,false,0,0,104.14,0,104.14,sum08.pdf
+2008,Convection,Lightning,lightning,false,27,216,60.11,0.1,60.21,sum08.pdf
+2008,Other,Miscellaneous,miscellaneous,false,0,0,0.18,0,0.18,sum08.pdf
+2008,Other,Mud Slide,mud-slide,false,0,0,2.43,0,2.43,sum08.pdf
+2008,Other,Rain,rain,false,2,16,7.15,4.5,11.65,sum08.pdf
+2008,Marine,Rip Current,rip-current,false,68,79,10.63,0,10.63,sum08.pdf
+2008,Flood,River Flood,river-flood,false,24,16,2116.59,1264.95,3381.54,sum08.pdf
+2008,Convection,Thunderstorm Wind,thunderstorm-wind,false,28,271,1261.5,29.66,1291.16,sum08.pdf
+2008,Convection,Tornado,tornado,false,126,1714,1845.6,20,1865.6,sum08.pdf
+2008,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,12,24,7619.12,473.66,8092.77,sum08.pdf
+2008,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum08.pdf
+2008,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum08.pdf
+2008,Other,Waterspout,waterspout,false,0,0,0.01,0,0.01,sum08.pdf
+2008,Winter,Winter Storm,winter-storm,false,21,121,931.89,19.7,951.59,sum08.pdf
+2008,,Total,,true,569,2903,27106.82,3217.3,30324.12,sum08.pdf
+2009,Winter,Avalanche,avalanche,false,7,3,1,0,1,sum09.pdf
+2009,Marine,Coastal Storm,coastal-storm,false,0,0,275.69,0,275.69,sum09.pdf
+2009,Extreme Temperatures,Cold,cold,false,33,4,0.09,189.05,189.14,sum09.pdf
+2009,Other,Drought,drought,false,0,0,0.05,49.58,49.63,sum09.pdf
+2009,Other,Dust Devil,dust-devil,false,0,3,0.23,0,0.23,sum09.pdf
+2009,Other,Dust Storm,dust-storm,false,5,0,0.76,5.75,6.51,sum09.pdf
+2009,Other,Fire Weather,fire-weather,false,2,109,110.82,1.38,112.2,sum09.pdf
+2009,Flood,Flash Flood,flash-flood,false,33,17,442.49,9.05,451.54,sum09.pdf
+2009,Other,Fog,fog,false,0,0,2.76,0,2.76,sum09.pdf
+2009,Convection,Hail,hail,false,0,70,1440,349.67,1789.67,sum09.pdf
+2009,Extreme Temperatures,Heat,heat,false,45,204,4.06,0,4.06,sum09.pdf
+2009,Other,High Wind,high-wind,false,25,68,199.52,0.03,199.55,sum09.pdf
+2009,Winter,Ice,ice,false,7,5,1170.96,0,1170.96,sum09.pdf
+2009,Convection,Lightning,lightning,false,34,201,43.86,0.01,43.87,sum09.pdf
+2009,Other,Miscellaneous,miscellaneous,false,0,0,0.06,0,0.06,sum09.pdf
+2009,Other,Mud Slide,mud-slide,false,0,9,48.89,0,48.89,sum09.pdf
+2009,Other,Rain,rain,false,6,9,5.65,0.16,5.81,sum09.pdf
+2009,Marine,Rip Current,rip-current,false,55,53,31.86,0,31.86,sum09.pdf
+2009,Flood,River Flood,river-flood,false,23,10,607.78,29.23,637.01,sum09.pdf
+2009,Convection,Thunderstorm Wind,thunderstorm-wind,false,22,190,1398.02,32.57,1430.59,sum09.pdf
+2009,Convection,Tornado,tornado,false,21,397,566.46,18.48,584.94,sum09.pdf
+2009,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,2,1,0.92,0.01,0.93,sum09.pdf
+2009,Marine,Tsunami,tsunami,false,32,129,81,0.02,81.02,sum09.pdf
+2009,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum09.pdf
+2009,Other,Waterspout,waterspout,false,0,0,0.01,0,0.01,sum09.pdf
+2009,Winter,Winter Storm,winter-storm,false,21,394,341.06,0.5,341.56,sum09.pdf
+2009,,Total,,true,373,1876,6773.98,685.49,7459.47,sum09.pdf
+2010,Winter,Avalanche,avalanche,false,22,20,0.2,0,0.2,sum10.pdf
+2010,Marine,Coastal Storm,coastal-storm,false,0,0,8.16,0,8.16,sum10.pdf
+2010,Extreme Temperatures,Cold,cold,false,34,1,28.58,746.59,775.17,sum10.pdf
+2010,Other,Drought,drought,false,0,0,0.5,52.54,53.04,sum10.pdf
+2010,Other,Dust Devil,dust-devil,false,0,0,0.06,0,0.06,sum10.pdf
+2010,Other,Dust Storm,dust-storm,false,0,0,0.14,0,0.14,sum10.pdf
+2010,Other,Fire Weather,fire-weather,false,2,24,244.89,1.93,246.82,sum10.pdf
+2010,Flood,Flash Flood,flash-flood,false,67,188,833.8,85.18,918.98,sum10.pdf
+2010,Other,Fog,fog,false,0,0,1.27,0,1.27,sum10.pdf
+2010,Convection,Hail,hail,false,0,42,3404.11,99.82,3503.93,sum10.pdf
+2010,Extreme Temperatures,Heat,heat,false,138,592,3.93,0.38,4.31,sum10.pdf
+2010,Other,High Wind,high-wind,false,18,63,60.17,1.16,61.33,sum10.pdf
+2010,Winter,Ice,ice,false,1,1,29.74,0,29.74,sum10.pdf
+2010,Convection,Lightning,lightning,false,29,182,71.14,0.45,71.59,sum10.pdf
+2010,Other,Miscellaneous,miscellaneous,false,0,0,0,0,0,sum10.pdf
+2010,Other,Mud Slide,mud-slide,false,0,0,17.4,0,17.4,sum10.pdf
+2010,Other,Rain,rain,false,0,7,5.09,3.6,8.69,sum10.pdf
+2010,Marine,Rip Current,rip-current,false,64,70,50.96,0,50.96,sum10.pdf
+2010,Flood,River Flood,river-flood,false,36,127,3093.92,1101.8,4195.72,sum10.pdf
+2010,Convection,Thunderstorm Wind,thunderstorm-wind,false,15,325,214.38,10.56,224.94,sum10.pdf
+2010,Convection,Tornado,tornado,false,45,699,1136.92,27.64,1164.57,sum10.pdf
+2010,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,0,0,14.87,4.01,18.88,sum10.pdf
+2010,Marine,Tsunami,tsunami,false,0,0,0.31,0,0.31,sum10.pdf
+2010,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum10.pdf
+2010,Other,Waterspout,waterspout,false,0,0,0,0,0,sum10.pdf
+2010,Winter,Winter Storm,winter-storm,false,20,33,333.31,15,348.31,sum10.pdf
+2010,,Total,,true,491,2374,9553.84,2150.66,11704.5,sum10.pdf
+2011,Winter,Avalanche,avalanche,false,11,8,0.06,0,0.06,sum11.pdf
+2011,Marine,Coastal Storm,coastal-storm,false,4,1,281.32,0,281.32,sum11.pdf
+2011,Extreme Temperatures,Cold,cold,false,29,8,19.45,338.95,358.4,sum11.pdf
+2011,Other,Drought,drought,false,0,0,810.14,1815.33,2625.47,sum11.pdf
+2011,Other,Dust Devil,dust-devil,false,0,8,0.03,0,0.03,sum11.pdf
+2011,Other,Dust Storm,dust-storm,false,0,4,0.85,0,0.85,sum11.pdf
+2011,Other,Fire Weather,fire-weather,false,6,138,667.22,19.02,686.24,sum11.pdf
+2011,Flood,Flash Flood,flash-flood,false,69,30,1356.25,86.44,1442.69,sum11.pdf
+2011,Other,Fog,fog,false,2,0,0.68,0,0.68,sum11.pdf
+2011,Convection,Hail,hail,false,0,31,450.53,81.85,532.38,sum11.pdf
+2011,Extreme Temperatures,Heat,heat,false,206,2430,9.89,0.1,9.99,sum11.pdf
+2011,Other,High Wind,high-wind,false,20,79,182.01,74.86,256.86,sum11.pdf
+2011,Winter,Ice,ice,false,1,0,36.01,0.28,36.29,sum11.pdf
+2011,Convection,Lightning,lightning,false,26,187,45.37,0.11,45.49,sum11.pdf
+2011,Other,Miscellaneous,miscellaneous,false,0,0,0.02,0,0.02,sum11.pdf
+2011,Other,Mud Slide,mud-slide,false,1,0,22.01,0.02,22.03,sum11.pdf
+2011,Other,Rain,rain,false,1,1,11.88,20.71,32.59,sum11.pdf
+2011,Marine,Rip Current,rip-current,false,41,39,0.26,0,0.26,sum11.pdf
+2011,Flood,River Flood,river-flood,false,44,10,6621.69,152.72,6774.41,sum11.pdf
+2011,Convection,Thunderstorm Wind,thunderstorm-wind,false,56,384,376.02,137.48,513.5,sum11.pdf
+2011,Convection,Tornado,tornado,false,553,5483,9684.15,29.6,9713.75,sum11.pdf
+2011,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,9,3,343.87,309.81,653.68,sum11.pdf
+2011,Marine,Tsunami,tsunami,false,1,0,57.55,0,57.55,sum11.pdf
+2011,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum11.pdf
+2011,Other,Waterspout,waterspout,false,0,0,5.11,0,5.11,sum11.pdf
+2011,Winter,Winter Storm,winter-storm,false,16,15,132.88,0.19,133.06,sum11.pdf
+2011,,Total,,true,1096,8859,21115.23,3067.46,24182.69,sum11.pdf
+2012,Winter,Avalanche,avalanche,false,23,7,0,0,0,sum12.pdf
+2012,Marine,Coastal Storm,coastal-storm,false,45,1,21605.5,0.75,21606.25,sum12.pdf
+2012,Extreme Temperatures,Cold,cold,false,8,0,15.9,221.71,237.61,sum12.pdf
+2012,Other,Drought,drought,false,0,0,239.83,5706.12,5945.95,sum12.pdf
+2012,Other,Dust Devil,dust-devil,false,0,2,0.27,0,0.27,sum12.pdf
+2012,Other,Dust Storm,dust-storm,false,0,0,1.53,0,1.53,sum12.pdf
+2012,Other,Fire Weather,fire-weather,false,10,76,1460.09,4.47,1464.56,sum12.pdf
+2012,Flood,Flash Flood,flash-flood,false,19,17,379.17,2.26,381.43,sum12.pdf
+2012,Other,Fog,fog,false,0,0,6.51,0,6.51,sum12.pdf
+2012,Convection,Hail,hail,false,0,54,2408.8,93.91,2502.71,sum12.pdf
+2012,Extreme Temperatures,Heat,heat,false,156,1062,0.76,11.8,12.56,sum12.pdf
+2012,Other,High Wind,high-wind,false,54,40,4061.75,5.88,4067.63,sum12.pdf
+2012,Winter,Ice,ice,false,1,1,7.02,0,7.02,sum12.pdf
+2012,Convection,Lightning,lightning,false,28,139,47.89,0.45,48.34,sum12.pdf
+2012,Other,Miscellaneous,miscellaneous,false,2,22,0.11,0,0.11,sum12.pdf
+2012,Other,Mud Slide,mud-slide,false,1,0,1.74,0,1.74,sum12.pdf
+2012,Other,Rain,rain,false,6,18,2.86,0,2.86,sum12.pdf
+2012,Marine,Rip Current,rip-current,false,42,35,120.12,0,120.12,sum12.pdf
+2012,Flood,River Flood,river-flood,false,10,8,119.05,4.97,124.02,sum12.pdf
+2012,Convection,Thunderstorm Wind,thunderstorm-wind,false,50,332,312.14,10.3,322.44,sum12.pdf
+2012,Convection,Tornado,tornado,false,69,822,1648.7,1.06,1649.75,sum12.pdf
+2012,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,4,5,174.78,0.11,174.89,sum12.pdf
+2012,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum12.pdf
+2012,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum12.pdf
+2012,Other,Waterspout,waterspout,false,0,1,0,0,0,sum12.pdf
+2012,Winter,Winter Storm,winter-storm,false,10,11,178.08,20,198.08,sum12.pdf
+2012,,Total,,true,538,2653,32792.6,6083.78,38876.37,sum12.pdf
+2013,Winter,Avalanche,avalanche,false,21,21,0,0,0,sum13.pdf
+2013,Marine,Coastal Storm,coastal-storm,false,0,0,23.94,0,23.94,sum13.pdf
+2013,Extreme Temperatures,Cold,cold,false,24,2,159.96,459.35,619.31,sum13.pdf
+2013,Other,Drought,drought,false,0,0,15.09,3705.99,3721.08,sum13.pdf
+2013,Other,Dust Devil,dust-devil,false,0,6,0.05,0,0.05,sum13.pdf
+2013,Other,Dust Storm,dust-storm,false,0,0,2.29,0,2.29,sum13.pdf
+2013,Other,Fire Weather,fire-weather,false,20,24,355.81,0.39,356.2,sum13.pdf
+2013,Flood,Flash Flood,flash-flood,false,60,25,957.03,22.45,979.48,sum13.pdf
+2013,Other,Fog,fog,false,1,1,3.06,0,3.06,sum13.pdf
+2013,Convection,Hail,hail,false,0,4,1245.72,75.07,1320.79,sum13.pdf
+2013,Extreme Temperatures,Heat,heat,false,92,1519,2.08,0,2.08,sum13.pdf
+2013,Other,High Wind,high-wind,false,19,15,77.86,4.4,82.26,sum13.pdf
+2013,Winter,Ice,ice,false,0,0,89.74,0.01,89.74,sum13.pdf
+2013,Convection,Lightning,lightning,false,23,145,23.9,0.06,23.96,sum13.pdf
+2013,Other,Miscellaneous,miscellaneous,false,3,2,0,0,0,sum13.pdf
+2013,Other,Mud Slide,mud-slide,false,1,0,7.15,0,7.15,sum13.pdf
+2013,Other,Rain,rain,false,5,10,3.81,0.05,3.86,sum13.pdf
+2013,Marine,Rip Current,rip-current,false,63,57,10,0,10,sum13.pdf
+2013,Flood,River Flood,river-flood,false,22,8,1215.71,49.41,1265.12,sum13.pdf
+2013,Convection,Thunderstorm Wind,thunderstorm-wind,false,17,120,626.93,51.04,677.96,sum13.pdf
+2013,Convection,Tornado,tornado,false,55,756,3642.17,6.6,3648.76,sum13.pdf
+2013,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,1,0,10.11,0.2,10.31,sum13.pdf
+2013,Marine,Tsunami,tsunami,false,0,2,0,0,0,sum13.pdf
+2013,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum13.pdf
+2013,Other,Waterspout,waterspout,false,0,0,0,0,0,sum13.pdf
+2013,Winter,Winter Storm,winter-storm,false,21,50,345,0,345,sum13.pdf
+2013,,Total,,true,448,2767,8817.39,4375,13192.39,sum13.pdf
+2014,Winter,Avalanche,avalanche,false,21,18,0.32,0,0.32,sum14.pdf
+2014,Marine,Coastal Storm,coastal-storm,false,0,0,5.19,0,5.19,sum14.pdf
+2014,Extreme Temperatures,Cold,cold,false,43,0,7.85,10.45,18.3,sum14.pdf
+2014,Other,Drought,drought,false,0,0,10.12,1513.84,1523.95,sum14.pdf
+2014,Other,Dust Devil,dust-devil,false,0,0,0.06,0,0.06,sum14.pdf
+2014,Other,Dust Storm,dust-storm,false,0,16,0.79,0,0.79,sum14.pdf
+2014,Other,Fire Weather,fire-weather,false,2,38,323.84,1.19,325.03,sum14.pdf
+2014,Flood,Flash Flood,flash-flood,false,31,16,2476.87,5.22,2482.09,sum14.pdf
+2014,Other,Fog,fog,false,1,1,3.31,0,3.31,sum14.pdf
+2014,Convection,Hail,hail,false,0,23,1416.88,294.34,1711.21,sum14.pdf
+2014,Extreme Temperatures,Heat,heat,false,20,107,0,0,0,sum14.pdf
+2014,Other,High Wind,high-wind,false,24,30,37.56,0.52,38.08,sum14.pdf
+2014,Winter,Ice,ice,false,0,2,29.81,0,29.81,sum14.pdf
+2014,Convection,Lightning,lightning,false,26,154,30.22,0.01,30.23,sum14.pdf
+2014,Other,Miscellaneous,miscellaneous,false,6,4,0.08,0,0.08,sum14.pdf
+2014,Other,Mud Slide,mud-slide,false,46,12,63.07,0,63.07,sum14.pdf
+2014,Other,Rain,rain,false,3,4,2.27,62.5,64.77,sum14.pdf
+2014,Marine,Rip Current,rip-current,false,57,26,40.15,0,40.15,sum14.pdf
+2014,Flood,River Flood,river-flood,false,9,4,148.98,137.41,286.4,sum14.pdf
+2014,Convection,Thunderstorm Wind,thunderstorm-wind,false,31,233,232.57,143.38,375.95,sum14.pdf
+2014,Convection,Tornado,tornado,false,47,641,622.07,14.25,636.32,sum14.pdf
+2014,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,0,0,3.49,0.2,3.69,sum14.pdf
+2014,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum14.pdf
+2014,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum14.pdf
+2014,Other,Waterspout,waterspout,false,0,0,0,0,0,sum14.pdf
+2014,Winter,Winter Storm,winter-storm,false,21,874,56.24,0,56.24,sum14.pdf
+2014,,Total,,true,388,2203,5511.72,2183.3,7695.02,sum14.pdf
+2015,Winter,Avalanche,avalanche,false,8,5,0,0,0,sum15.pdf
+2015,Marine,Coastal Storm,coastal-storm,false,0,1,15.89,0.1,15.99,sum15.pdf
+2015,Extreme Temperatures,Cold,cold,false,53,3,2.84,0,2.84,sum15.pdf
+2015,Other,Drought,drought,false,0,0,0.09,10.67,10.76,sum15.pdf
+2015,Other,Dust Devil,dust-devil,false,0,4,0.04,0,0.04,sum15.pdf
+2015,Other,Dust Storm,dust-storm,false,2,15,0.03,0,0.03,sum15.pdf
+2015,Other,Fire Weather,fire-weather,false,7,25,22.9,0.05,22.94,sum15.pdf
+2015,Flood,Flash Flood,flash-flood,false,129,42,1827.6,296.82,2124.41,sum15.pdf
+2015,Other,Fog,fog,false,0,0,0.23,0,0.23,sum15.pdf
+2015,Convection,Hail,hail,false,0,0,586.02,132.97,718.99,sum15.pdf
+2015,Extreme Temperatures,Heat,heat,false,45,640,0,0,0,sum15.pdf
+2015,Other,High Wind,high-wind,false,24,62,65.47,0.24,65.71,sum15.pdf
+2015,Winter,Ice,ice,false,0,0,59.43,0,59.43,sum15.pdf
+2015,Convection,Lightning,lightning,false,27,130,16.31,0,16.31,sum15.pdf
+2015,Other,Miscellaneous,miscellaneous,false,1,3,0.1,0,0.1,sum15.pdf
+2015,Other,Mud Slide,mud-slide,false,4,0,3.48,0,3.49,sum15.pdf
+2015,Other,Rain,rain,false,8,1,11.37,0,11.37,sum15.pdf
+2015,Marine,Rip Current,rip-current,false,56,54,0,0,0,sum15.pdf
+2015,Flood,River Flood,river-flood,false,47,8,449.8,174.31,624.1,sum15.pdf
+2015,Convection,Thunderstorm Wind,thunderstorm-wind,false,41,159,251.99,15.79,267.79,sum15.pdf
+2015,Convection,Tornado,tornado,false,36,924,316.78,3.64,320.42,sum15.pdf
+2015,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,14,50,41.46,10.51,51.97,sum15.pdf
+2015,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum15.pdf
+2015,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum15.pdf
+2015,Other,Waterspout,waterspout,false,0,0,0,0,0,sum15.pdf
+2015,Winter,Winter Storm,winter-storm,false,20,17,530.19,0,530.19,sum15.pdf
+2015,,Total,,true,522,2143,4202.01,645.11,4847.12,sum15.pdf
+2016,Winter,Avalanche,avalanche,false,18,3,0,0,0,sum16.pdf
+2016,Marine,Coastal Storm,coastal-storm,false,1,0,220.94,0,220.94,sum16.pdf
+2016,Extreme Temperatures,Cold,cold,false,31,6,0,0.37,0.37,sum16.pdf
+2016,Other,Drought,drought,false,0,0,1.74,6.16,7.9,sum16.pdf
+2016,Other,Dust Devil,dust-devil,false,0,0,0.05,0,0.05,sum16.pdf
+2016,Other,Dust Storm,dust-storm,false,3,1,1.29,0,1.29,sum16.pdf
+2016,Other,Fire Weather,fire-weather,false,4,17,181.5,2.42,183.92,sum16.pdf
+2016,Flood,Flash Flood,flash-flood,false,86,25,3641.3,22.28,3663.58,sum16.pdf
+2016,Other,Fog,fog,false,0,0,0.19,0,0.19,sum16.pdf
+2016,Convection,Hail,hail,false,0,21,3512.67,23.73,3536.4,sum16.pdf
+2016,Extreme Temperatures,Heat,heat,false,94,411,0,0,0,sum16.pdf
+2016,Other,High Wind,high-wind,false,23,87,95.8,1.54,97.34,sum16.pdf
+2016,Winter,Ice,ice,false,0,0,9.62,0,9.62,sum16.pdf
+2016,Convection,Lightning,lightning,false,38,120,23.02,0.01,23.03,sum16.pdf
+2016,Other,Miscellaneous,miscellaneous,false,1,4,0,0,0,sum16.pdf
+2016,Other,Mud Slide,mud-slide,false,0,3,0.62,0,0.62,sum16.pdf
+2016,Other,Rain,rain,false,0,0,4.38,0,4.38,sum16.pdf
+2016,Marine,Rip Current,rip-current,false,58,34,32.48,0,32.48,sum16.pdf
+2016,Flood,River Flood,river-flood,false,40,6,7066.22,176.94,7243.16,sum16.pdf
+2016,Convection,Thunderstorm Wind,thunderstorm-wind,false,20,116,144.89,4.48,149.37,sum16.pdf
+2016,Convection,Tornado,tornado,false,18,325,181.16,2.32,183.48,sum16.pdf
+2016,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,11,8,3053.92,3.05,3056.97,sum16.pdf
+2016,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum16.pdf
+2016,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum16.pdf
+2016,Other,Waterspout,waterspout,false,0,0,0.02,0,0.02,sum16.pdf
+2016,Winter,Winter Storm,winter-storm,false,12,89,22.92,0,22.92,sum16.pdf
+2016,,Total,,true,458,1276,18194.7,243.29,18438,sum16.pdf
+2017,Winter,Avalanche,avalanche,false,3,4,0.04,0,0.04,sum17.pdf
+2017,Marine,Coastal Storm,coastal-storm,false,3,0,596.19,0,596.19,sum17.pdf
+2017,Extreme Temperatures,Cold,cold,false,26,3,0,954.13,954.13,sum17.pdf
+2017,Other,Drought,drought,false,0,0,0.05,0.31,0.36,sum17.pdf
+2017,Other,Dust Devil,dust-devil,false,0,0,0.06,0,0.06,sum17.pdf
+2017,Other,Dust Storm,dust-storm,false,0,0,0.35,0,0.35,sum17.pdf
+2017,Other,Fire Weather,fire-weather,false,20,44,155.41,1.8,157.21,sum17.pdf
+2017,Flood,Flash Flood,flash-flood,false,103,8,59118.68,62.13,59180.81,sum17.pdf
+2017,Other,Fog,fog,false,0,0,0.38,0,0.38,sum17.pdf
+2017,Convection,Hail,hail,false,0,14,1722.23,59.52,1781.76,sum17.pdf
+2017,Extreme Temperatures,Heat,heat,false,107,176,0.01,0,0.01,sum17.pdf
+2017,Other,High Wind,high-wind,false,20,65,601.2,5.17,606.37,sum17.pdf
+2017,Winter,Ice,ice,false,1,6,64.61,0,64.61,sum17.pdf
+2017,Convection,Lightning,lightning,false,16,86,16.09,0,16.09,sum17.pdf
+2017,Other,Miscellaneous,miscellaneous,false,3,2,0.1,0,0.1,sum17.pdf
+2017,Other,Mud Slide,mud-slide,false,0,0,30.58,0.01,30.58,sum17.pdf
+2017,Other,Rain,rain,false,2,1,118,0.34,118.33,sum17.pdf
+2017,Marine,Rip Current,rip-current,false,70,55,0.16,1,1.16,sum17.pdf
+2017,Flood,River Flood,river-flood,false,13,11,1457.53,61.26,1518.78,sum17.pdf
+2017,Convection,Thunderstorm Wind,thunderstorm-wind,false,30,148,236.36,30.4,266.76,sum17.pdf
+2017,Convection,Tornado,tornado,false,35,516,631.87,17.31,649.18,sum17.pdf
+2017,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,43,62,22383.47,719.85,23103.32,sum17.pdf
+2017,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum17.pdf
+2017,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum17.pdf
+2017,Other,Waterspout,waterspout,false,3,0,0,0,0,sum17.pdf
+2017,Winter,Winter Storm,winter-storm,false,10,4,244.14,0,244.14,sum17.pdf
+2017,,Total,,true,508,1205,87377.5,1913.21,89290.72,sum17.pdf
+2018,Winter,Avalanche,avalanche,false,6,12,0,0,0,sum18.pdf
+2018,Marine,Coastal Storm,coastal-storm,false,6,0,1090.59,0,1090.59,sum18.pdf
+2018,Extreme Temperatures,Cold,cold,false,36,3,0,150.02,150.02,sum18.pdf
+2018,Other,Drought,drought,false,0,0,0,0.11,0.11,sum18.pdf
+2018,Other,Dust Devil,dust-devil,false,0,1,0.53,0,0.53,sum18.pdf
+2018,Other,Dust Storm,dust-storm,false,0,5,0.9,0,0.9,sum18.pdf
+2018,Other,Fire Weather,fire-weather,false,98,103,19109.01,0,19109.01,sum18.pdf
+2018,Flood,Flash Flood,flash-flood,false,54,20,674.1,51.49,725.59,sum18.pdf
+2018,Other,Fog,fog,false,0,0,0.34,0,0.34,sum18.pdf
+2018,Convection,Hail,hail,false,0,11,722.78,87.44,810.22,sum18.pdf
+2018,Extreme Temperatures,Heat,heat,false,108,503,0.02,0,0.02,sum18.pdf
+2018,Other,High Wind,high-wind,false,34,42,61.13,0.03,61.16,sum18.pdf
+2018,Winter,Ice,ice,false,0,0,0.59,0,0.59,sum18.pdf
+2018,Convection,Lightning,lightning,false,20,82,16.06,0,16.06,sum18.pdf
+2018,Other,Miscellaneous,miscellaneous,false,3,0,0,0,0,sum18.pdf
+2018,Other,Mud Slide,mud-slide,false,22,168,619.77,0,619.77,sum18.pdf
+2018,Other,Rain,rain,false,1,5,3.23,0,3.23,sum18.pdf
+2018,Marine,Rip Current,rip-current,false,71,34,0.03,0,0.03,sum18.pdf
+2018,Flood,River Flood,river-flood,false,26,1,513.6,404.4,918,sum18.pdf
+2018,Convection,Thunderstorm Wind,thunderstorm-wind,false,24,155,139.36,16.5,155.86,sum18.pdf
+2018,Convection,Tornado,tornado,false,10,199,670.25,2.07,672.32,sum18.pdf
+2018,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,7,3,12145.49,4390.08,16535.57,sum18.pdf
+2018,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum18.pdf
+2018,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum18.pdf
+2018,Other,Waterspout,waterspout,false,0,0,0,0,0,sum18.pdf
+2018,Winter,Winter Storm,winter-storm,false,4,31,81.55,0.4,81.95,sum18.pdf
+2018,,Total,,true,530,1378,35849.32,5102.54,40951.86,sum18.pdf
+2019,Winter,Avalanche,avalanche,false,14,3,0.21,0,0.21,sum19.pdf
+2019,Marine,Coastal Storm,coastal-storm,false,0,0,58.47,0,58.47,sum19.pdf
+2019,Extreme Temperatures,Cold,cold,false,35,1,0.16,0,0.16,sum19.pdf
+2019,Other,Drought,drought,false,0,0,0.2,16.77,16.97,sum19.pdf
+2019,Other,Dust Devil,dust-devil,false,0,5,0.07,0,0.07,sum19.pdf
+2019,Other,Dust Storm,dust-storm,false,0,0,0.1,0,0.1,sum19.pdf
+2019,Other,Fire Weather,fire-weather,false,3,64,28.13,0.07,28.2,sum19.pdf
+2019,Flood,Flash Flood,flash-flood,false,43,28,1440.92,116.04,1556.96,sum19.pdf
+2019,Other,Fog,fog,false,0,0,0.52,0,0.52,sum19.pdf
+2019,Convection,Hail,hail,false,0,1,177.66,19.27,196.93,sum19.pdf
+2019,Extreme Temperatures,Heat,heat,false,187,165,1.5,0,1.5,sum19.pdf
+2019,Other,High Wind,high-wind,false,13,34,109.5,0.09,109.58,sum19.pdf
+2019,Winter,Ice,ice,false,0,0,29.04,0,29.04,sum19.pdf
+2019,Convection,Lightning,lightning,false,20,100,41.15,0.01,41.16,sum19.pdf
+2019,Other,Miscellaneous,miscellaneous,false,2,0,0.01,0,0.01,sum19.pdf
+2019,Other,Mud Slide,mud-slide,false,1,0,25.03,0,25.03,sum19.pdf
+2019,Other,Rain,rain,false,0,0,1.02,15,16.02,sum19.pdf
+2019,Marine,Rip Current,rip-current,false,74,19,0.01,0.01,0.02,sum19.pdf
+2019,Flood,River Flood,river-flood,false,49,17,977.45,1215.39,2192.84,sum19.pdf
+2019,Convection,Thunderstorm Wind,thunderstorm-wind,false,38,202,173.04,14.63,187.67,sum19.pdf
+2019,Convection,Tornado,tornado,false,42,537,3102.5,5.68,3108.18,sum19.pdf
+2019,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,0,2,24.08,0,24.08,sum19.pdf
+2019,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum19.pdf
+2019,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum19.pdf
+2019,Other,Waterspout,waterspout,false,0,0,0.01,0,0.01,sum19.pdf
+2019,Winter,Winter Storm,winter-storm,false,13,61,61.06,2.23,63.29,sum19.pdf
+2019,,Total,,true,534,1239,6251.83,1405.19,7657.01,sum19.pdf
+2020,Winter,Avalanche,avalanche,false,23,6,0,0,0,sum20.pdf
+2020,Marine,Coastal Storm,coastal-storm,false,5,2,236.96,0,236.96,sum20.pdf
+2020,Extreme Temperatures,Cold,cold,false,13,1,0,31.2,31.2,sum20.pdf
+2020,Other,Drought,drought,false,0,0,1.76,108.62,110.38,sum20.pdf
+2020,Other,Dust Devil,dust-devil,false,0,0,0.02,0,0.02,sum20.pdf
+2020,Other,Dust Storm,dust-storm,false,1,6,0.51,0,0.51,sum20.pdf
+2020,Other,Fire Weather,fire-weather,false,45,182,458.73,0.53,459.26,sum20.pdf
+2020,Flood,Flash Flood,flash-flood,false,39,8,471.4,96.2,567.59,sum20.pdf
+2020,Other,Fog,fog,false,0,0,0.26,0,0.26,sum20.pdf
+2020,Convection,Hail,hail,false,1,7,226.31,54.4,280.71,sum20.pdf
+2020,Extreme Temperatures,Heat,heat,false,350,79,6,0,6,sum20.pdf
+2020,Other,High Wind,high-wind,false,19,45,4746.81,0.98,4747.78,sum20.pdf
+2020,Winter,Ice,ice,false,0,0,0.33,0,0.33,sum20.pdf
+2020,Convection,Lightning,lightning,false,17,53,19.08,0.01,19.08,sum20.pdf
+2020,Other,Miscellaneous,miscellaneous,false,0,0,0.01,0,0.01,sum20.pdf
+2020,Other,Mud Slide,mud-slide,false,2,2,34.01,0,34.01,sum20.pdf
+2020,Other,Rain,rain,false,0,1,1.91,0.01,1.92,sum20.pdf
+2020,Marine,Rip Current,rip-current,false,82,31,5.05,0.01,5.05,sum20.pdf
+2020,Flood,River Flood,river-flood,false,18,1,442.27,3.14,445.41,sum20.pdf
+2020,Convection,Thunderstorm Wind,thunderstorm-wind,false,36,238,158.02,5.49,163.52,sum20.pdf
+2020,Convection,Tornado,tornado,false,76,733,2504.03,27.26,2531.3,sum20.pdf
+2020,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,24,27,17482.92,181.4,17664.32,sum20.pdf
+2020,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum20.pdf
+2020,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum20.pdf
+2020,Other,Waterspout,waterspout,false,0,0,0,0,0,sum20.pdf
+2020,Winter,Winter Storm,winter-storm,false,6,4,5.62,0,5.62,sum20.pdf
+2020,,Total,,true,757,1426,26802.01,509.24,27311.25,sum20.pdf
+2021,Winter,Avalanche,avalanche,false,24,12,0.25,0,0.25,sum21.pdf
+2021,Marine,Coastal Storm,coastal-storm,false,1,0,3579.55,2,3581.55,sum21.pdf
+2021,Extreme Temperatures,Cold,cold,false,106,1,246.85,466.5,713.35,sum21.pdf
+2021,Other,Drought,drought,false,0,0,0,146.67,146.67,sum21.pdf
+2021,Other,Dust Devil,dust-devil,false,0,0,0,0,0,sum21.pdf
+2021,Other,Dust Storm,dust-storm,false,9,10,0.67,0,0.67,sum21.pdf
+2021,Other,Fire Weather,fire-weather,false,8,41,2094.98,0.06,2095.04,sum21.pdf
+2021,Flood,Flash Flood,flash-flood,false,134,57,2425.2,30.59,2455.79,sum21.pdf
+2021,Other,Fog,fog,false,0,0,1.54,0,1.54,sum21.pdf
+2021,Convection,Hail,hail,false,0,6,1025.66,38.24,1063.89,sum21.pdf
+2021,Extreme Temperatures,Heat,heat,false,375,67,0.05,0.05,0.1,sum21.pdf
+2021,Other,High Wind,high-wind,false,16,40,241.73,2.22,243.94,sum21.pdf
+2021,Winter,Ice,ice,false,2,1,22.21,0,22.21,sum21.pdf
+2021,Convection,Lightning,lightning,false,11,69,10.08,0.03,10.11,sum21.pdf
+2021,Other,Miscellaneous,miscellaneous,false,2,0,0,0,0,sum21.pdf
+2021,Other,Mud Slide,mud-slide,false,2,2,164.42,0.02,164.43,sum21.pdf
+2021,Other,Rain,rain,false,0,1,4.02,55.58,59.6,sum21.pdf
+2021,Marine,Rip Current,rip-current,false,111,27,0.11,1.2,1.31,sum21.pdf
+2021,Flood,River Flood,river-flood,false,12,3,554.18,2.73,556.91,sum21.pdf
+2021,Convection,Thunderstorm Wind,thunderstorm-wind,false,41,95,233.92,102.08,336,sum21.pdf
+2021,Convection,Tornado,tornado,false,104,878,232.75,2.24,234.99,sum21.pdf
+2021,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,12,0,8597.54,2,8599.54,sum21.pdf
+2021,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum21.pdf
+2021,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum21.pdf
+2021,Other,Waterspout,waterspout,false,0,0,0,0,0,sum21.pdf
+2021,Winter,Winter Storm,winter-storm,false,14,121,72.95,0,72.95,sum21.pdf
+2021,,Total,,true,984,1431,19508.65,852.19,20360.85,sum21.pdf
+2022,Winter,Avalanche,avalanche,false,11,6,0,0,0,sum22.pdf
+2022,Marine,Coastal Storm,coastal-storm,false,3,0,555.32,0.01,555.33,sum22.pdf
+2022,Extreme Temperatures,Cold,cold,false,22,0,5.51,0,5.51,sum22.pdf
+2022,Other,Drought,drought,false,0,350,15.67,797.38,813.05,sum22.pdf
+2022,Other,Dust Devil,dust-devil,false,0,6,0.15,0,0.15,sum22.pdf
+2022,Other,Dust Storm,dust-storm,false,0,1,0.44,0,0.44,sum22.pdf
+2022,Other,Fire Weather,fire-weather,false,13,42,630.66,1.1,631.76,sum22.pdf
+2022,Flood,Flash Flood,flash-flood,false,73,10,1165.86,1.99,1167.85,sum22.pdf
+2022,Other,Fog,fog,false,0,0,2.93,0,2.93,sum22.pdf
+2022,Convection,Hail,hail,false,0,8,135.47,208.88,344.34,sum22.pdf
+2022,Extreme Temperatures,Heat,heat,false,383,205,0,0,0,sum22.pdf
+2022,Other,High Wind,high-wind,false,23,13,56.15,0.31,56.46,sum22.pdf
+2022,Winter,Ice,ice,false,1,0,0.89,0,0.89,sum22.pdf
+2022,Convection,Lightning,lightning,false,19,53,11.69,0,11.7,sum22.pdf
+2022,Other,Miscellaneous,miscellaneous,false,1,1,0,0,0,sum22.pdf
+2022,Other,Mud Slide,mud-slide,false,3,0,9.77,0,9.77,sum22.pdf
+2022,Other,Rain,rain,false,3,2,2.81,0.01,2.81,sum22.pdf
+2022,Marine,Rip Current,rip-current,false,69,56,0.32,0.01,0.33,sum22.pdf
+2022,Flood,River Flood,river-flood,false,20,2,1600.92,1.66,1602.58,sum22.pdf
+2022,Convection,Thunderstorm Wind,thunderstorm-wind,false,32,95,220.44,110.63,331.08,sum22.pdf
+2022,Convection,Tornado,tornado,false,23,314,698.28,5.54,703.82,sum22.pdf
+2022,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,116,5,15442.95,0.5,15443.45,sum22.pdf
+2022,Marine,Tsunami,tsunami,false,0,0,9.5,0,9.5,sum22.pdf
+2022,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum22.pdf
+2022,Other,Waterspout,waterspout,false,0,0,0.01,0,0.01,sum22.pdf
+2022,Winter,Winter Storm,winter-storm,false,54,31,110.67,0,110.67,sum22.pdf
+2022,,Total,,true,869,1200,20676.4,1128.02,21804.42,sum22.pdf
+2023,Winter,Avalanche,avalanche,false,18,16,0.71,0,0.71,sum23.pdf
+2023,Marine,Coastal Storm,coastal-storm,false,0,1,25.24,0,25.24,sum23.pdf
+2023,Extreme Temperatures,Cold,cold,false,11,8,0.01,7.28,7.28,sum23.pdf
+2023,Other,Drought,drought,false,0,0,0.95,566.45,567.4,sum23.pdf
+2023,Other,Dust Devil,dust-devil,false,0,0,0.01,0,0.01,sum23.pdf
+2023,Other,Dust Storm,dust-storm,false,11,37,0.23,0,0.23,sum23.pdf
+2023,Other,Fire Weather,fire-weather,false,103,39,5913.09,1.07,5914.16,sum23.pdf
+2023,Flood,Flash Flood,flash-flood,false,39,12,1590.72,3.19,1593.91,sum23.pdf
+2023,Other,Fog,fog,false,0,5,6.93,0,6.93,sum23.pdf
+2023,Convection,Hail,hail,false,0,93,2201.95,107.4,2309.36,sum23.pdf
+2023,Extreme Temperatures,Heat,heat,false,555,1862,0,0,0,sum23.pdf
+2023,Other,High Wind,high-wind,false,35,47,101.17,0.5,101.67,sum23.pdf
+2023,Winter,Ice,ice,false,1,0,55.01,0,55.01,sum23.pdf
+2023,Convection,Lightning,lightning,false,14,56,29.89,0.95,30.84,sum23.pdf
+2023,Other,Miscellaneous,miscellaneous,false,0,1,0,0,0,sum23.pdf
+2023,Other,Mud Slide,mud-slide,false,6,4,5.74,0,5.74,sum23.pdf
+2023,Other,Rain,rain,false,1,1,0.37,0,0.37,sum23.pdf
+2023,Marine,Rip Current,rip-current,false,91,61,1.03,0,1.03,sum23.pdf
+2023,Flood,River Flood,river-flood,false,31,2,497.05,8.36,505.4,sum23.pdf
+2023,Convection,Thunderstorm Wind,thunderstorm-wind,false,36,164,605.98,42.73,648.71,sum23.pdf
+2023,Convection,Tornado,tornado,false,86,918,1371.37,7.3,1378.67,sum23.pdf
+2023,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,3,8,4085.34,347.5,4432.84,sum23.pdf
+2023,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum23.pdf
+2023,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum23.pdf
+2023,Other,Waterspout,waterspout,false,0,0,0,0,0,sum23.pdf
+2023,Winter,Winter Storm,winter-storm,false,9,29,136,0,136,sum23.pdf
+2023,,Total,,true,1050,3364,16628.79,1092.74,17721.52,sum23.pdf
+2024,Winter,Avalanche,avalanche,false,11,13,0.06,0,0.06,sum24.pdf
+2024,Marine,Coastal Storm,coastal-storm,false,0,1,1025.4,0.05,1025.45,sum24.pdf
+2024,Extreme Temperatures,Cold,cold,false,46,24,0,0,0,sum24.pdf
+2024,Other,Drought,drought,false,0,0,0,25.14,25.14,sum24.pdf
+2024,Other,Dust Devil,dust-devil,false,2,3,0.01,0,0.01,sum24.pdf
+2024,Other,Dust Storm,dust-storm,false,0,4,1.13,0,1.13,sum24.pdf
+2024,Other,Fire Weather,fire-weather,false,9,98,1113.57,64.82,1178.39,sum24.pdf
+2024,Flood,Flash Flood,flash-flood,false,119,18,3148.36,101.58,3249.94,sum24.pdf
+2024,Other,Fog,fog,false,1,0,1.09,0,1.09,sum24.pdf
+2024,Convection,Hail,hail,false,0,15,227.65,142.86,370.51,sum24.pdf
+2024,Extreme Temperatures,Heat,heat,false,529,223,0.01,0.02,0.04,sum24.pdf
+2024,Other,High Wind,high-wind,false,32,46,132.86,112.64,245.51,sum24.pdf
+2024,Winter,Ice,ice,false,7,11,37.33,0,37.33,sum24.pdf
+2024,Convection,Lightning,lightning,false,14,41,20.22,2.5,22.72,sum24.pdf
+2024,Other,Miscellaneous,miscellaneous,false,3,1,10,0,10,sum24.pdf
+2024,Other,Mud Slide,mud-slide,false,16,3,16.18,0,16.18,sum24.pdf
+2024,Other,Rain,rain,false,0,2,0.56,0,0.56,sum24.pdf
+2024,Marine,Rip Current,rip-current,false,74,53,0.19,0,0.19,sum24.pdf
+2024,Flood,River Flood,river-flood,false,30,0,649.25,4.91,654.16,sum24.pdf
+2024,Convection,Thunderstorm Wind,thunderstorm-wind,false,39,145,413.66,29.06,442.72,sum24.pdf
+2024,Convection,Tornado,tornado,false,52,655,1724.15,8.53,1732.68,sum24.pdf
+2024,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,78,88,7549.35,1763.01,9312.36,sum24.pdf
+2024,Marine,Tsunami,tsunami,false,0,0,0,0,0,sum24.pdf
+2024,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum24.pdf
+2024,Other,Waterspout,waterspout,false,0,0,0,0,0,sum24.pdf
+2024,Winter,Winter Storm,winter-storm,false,22,38,36.12,5.5,41.62,sum24.pdf
+2024,,Total,,true,1084,1482,16107.15,2260.61,18367.76,sum24.pdf
+2025,Winter,Avalanche,avalanche,false,10,6,0.02,0,0.02,sum25.pdf
+2025,Marine,Coastal Storm,coastal-storm,false,1,1,2.72,0,2.72,sum25.pdf
+2025,Extreme Temperatures,Cold,cold,false,25,1,0.01,0,0.01,sum25.pdf
+2025,Other,Drought,drought,false,0,0,37.13,2.37,39.5,sum25.pdf
+2025,Other,Dust Devil,dust-devil,false,0,1,0,0,0,sum25.pdf
+2025,Other,Dust Storm,dust-storm,false,0,0,2.29,0,2.29,sum25.pdf
+2025,Other,Fire Weather,fire-weather,false,61,39,776.94,193.79,970.73,sum25.pdf
+2025,Flood,Flash Flood,flash-flood,false,209,14,1349.24,2.79,1352.02,sum25.pdf
+2025,Other,Fog,fog,false,0,0,0.09,0,0.09,sum25.pdf
+2025,Convection,Hail,hail,false,0,6,60.58,2.3,62.88,sum25.pdf
+2025,Extreme Temperatures,Heat,heat,false,100,377,0,0,0,sum25.pdf
+2025,Other,High Wind,high-wind,false,18,20,15.08,0.36,15.43,sum25.pdf
+2025,Winter,Ice,ice,false,0,0,3.21,1.04,4.25,sum25.pdf
+2025,Convection,Lightning,lightning,false,20,96,22.6,0.02,22.62,sum25.pdf
+2025,Other,Miscellaneous,miscellaneous,false,4,2,0,0,0,sum25.pdf
+2025,Other,Mud Slide,mud-slide,false,3,0,51.33,0.01,51.34,sum25.pdf
+2025,Other,Rain,rain,false,4,1,0.91,0.01,0.92,sum25.pdf
+2025,Marine,Rip Current,rip-current,false,55,61,0.57,0,0.58,sum25.pdf
+2025,Flood,River Flood,river-flood,false,21,5,159.05,2.5,161.55,sum25.pdf
+2025,Convection,Thunderstorm Wind,thunderstorm-wind,false,37,133,221.97,58.74,280.71,sum25.pdf
+2025,Convection,Tornado,tornado,false,67,260,1945.16,3.37,1948.53,sum25.pdf
+2025,Tropical Cyclones,Tropical Storm / Hurricane,tropical-storm-hurricane,false,0,0,0,0,0,sum25.pdf
+2025,Marine,Tsunami,tsunami,false,0,0,1.02,0,1.02,sum25.pdf
+2025,Other,Volcanic Ash,volcanic-ash,false,0,0,0,0,0,sum25.pdf
+2025,Other,Waterspout,waterspout,false,0,0,0,0,0,sum25.pdf
+2025,Winter,Winter Storm,winter-storm,false,10,15,10.16,8.17,18.32,sum25.pdf
+2025,,Total,,true,645,1038,4660.08,275.46,4935.54,sum25.pdf

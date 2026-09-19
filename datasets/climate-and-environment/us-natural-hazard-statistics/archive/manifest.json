@@ -1,0 +1,325 @@
+{
+  "source": "National Weather Service, \"Weather Related Fatality and Injury Statistics\" (hazstat)",
+  "hub": "https://www.weather.gov/hazstat/",
+  "selection": "every year offered by the \"U.S. Summaries\" <select> on the hub page; there is no machine-readable index (no API, feed, sitemap or bulk download) for this source",
+  "user_agent": "datapressr hello@datahub.io",
+  "candidate_years": 31,
+  "retrieved_years": 30,
+  "files": [
+    {
+      "source_id": "hub",
+      "url": "https://www.weather.gov/hazstat/",
+      "path": "archive/hazstat.html",
+      "retrieved_at": "2026-09-19T12:53:29.351Z",
+      "http_status": 200,
+      "bytes": 31541,
+      "sha256": "216988940734e6c5db91ef6ef4fee06e3c6abab1c6866a995d86bd351957f2aa"
+    },
+    {
+      "source_id": "terms",
+      "url": "https://www.weather.gov/disclaimer",
+      "path": "archive/disclaimer.html",
+      "retrieved_at": "2026-09-19T12:53:31.329Z",
+      "http_status": 200,
+      "bytes": 41596,
+      "sha256": "a5b9172dc5add762e42f5fc1e3d2f6f954723a93e13d9916a204d1dd74f6a207"
+    },
+    {
+      "source_id": "index-probe:robots.txt",
+      "url": "https://www.weather.gov/robots.txt",
+      "path": null,
+      "retrieved_at": "2026-09-19T12:53:37.354Z",
+      "http_status": 404,
+      "bytes": null,
+      "sha256": null
+    },
+    {
+      "source_id": "index-probe:sitemap.xml",
+      "url": "https://www.weather.gov/sitemap.xml",
+      "path": null,
+      "retrieved_at": "2026-09-19T12:53:39.101Z",
+      "http_status": 404,
+      "bytes": null,
+      "sha256": null
+    },
+    {
+      "source_id": "1995",
+      "url": "https://www.weather.gov/media/hazstat/sum95.pdf",
+      "path": null,
+      "retrieved_at": "2026-09-19T12:53:40.751Z",
+      "http_status": 404,
+      "bytes": null,
+      "sha256": null
+    },
+    {
+      "source_id": "1996",
+      "url": "https://www.weather.gov/media/hazstat/sum96.pdf",
+      "path": "archive/summaries/sum96.pdf",
+      "retrieved_at": "2026-09-19T12:53:42.420Z",
+      "http_status": 200,
+      "bytes": 76671,
+      "sha256": "a89b197013149abba07af15c9e09a2207e34611db452c2ffddbe2fdf2da7f045"
+    },
+    {
+      "source_id": "1997",
+      "url": "https://www.weather.gov/media/hazstat/sum97.pdf",
+      "path": "archive/summaries/sum97.pdf",
+      "retrieved_at": "2026-09-19T12:53:44.119Z",
+      "http_status": 200,
+      "bytes": 19146,
+      "sha256": "3d369979ae316df5371a60e2af28b550f508f890cb1864110a14ae96e2268bea"
+    },
+    {
+      "source_id": "1998",
+      "url": "https://www.weather.gov/media/hazstat/sum98.pdf",
+      "path": "archive/summaries/sum98.pdf",
+      "retrieved_at": "2026-09-19T12:53:45.982Z",
+      "http_status": 200,
+      "bytes": 25226,
+      "sha256": "6815bc4c3bec3d50400e9de993faec9029e2ab78ae3b3398bf26c9404c78a27e"
+    },
+    {
+      "source_id": "1999",
+      "url": "https://www.weather.gov/media/hazstat/sum99.pdf",
+      "path": "archive/summaries/sum99.pdf",
+      "retrieved_at": "2026-09-19T12:53:47.650Z",
+      "http_status": 200,
+      "bytes": 26853,
+      "sha256": "e2034d66bee416797a518d1d4aebd3485147a8d5dd4dcfd7183d71261a50306d"
+    },
+    {
+      "source_id": "2000",
+      "url": "https://www.weather.gov/media/hazstat/sum00.pdf",
+      "path": "archive/summaries/sum00.pdf",
+      "retrieved_at": "2026-09-19T12:53:49.485Z",
+      "http_status": 200,
+      "bytes": 24236,
+      "sha256": "d2ce0814a4adbc3e5ad3ba0b9e1b5553f2937a57c5489b283bfb03c35e3c8af2"
+    },
+    {
+      "source_id": "2001",
+      "url": "https://www.weather.gov/media/hazstat/sum01.pdf",
+      "path": "archive/summaries/sum01.pdf",
+      "retrieved_at": "2026-09-19T12:53:51.258Z",
+      "http_status": 200,
+      "bytes": 25538,
+      "sha256": "8f93f0d080478c4772beaa8ffc72977b5b131f4b67220092f2c4ab51d4da4f64"
+    },
+    {
+      "source_id": "2002",
+      "url": "https://www.weather.gov/media/hazstat/sum02.pdf",
+      "path": "archive/summaries/sum02.pdf",
+      "retrieved_at": "2026-09-19T12:53:52.897Z",
+      "http_status": 200,
+      "bytes": 26141,
+      "sha256": "b93fbdec71a02a0ea888e751ca43ee2b64c624fd7e4e5a88cc1de2eadb7e5f5f"
+    },
+    {
+      "source_id": "2003",
+      "url": "https://www.weather.gov/media/hazstat/sum03.pdf",
+      "path": "archive/summaries/sum03.pdf",
+      "retrieved_at": "2026-09-19T12:53:54.524Z",
+      "http_status": 200,
+      "bytes": 25571,
+      "sha256": "e353eba12226f81448d61b8bc2ed201fe8ed7a508b2488fd4bbe2d535737757b"
+    },
+    {
+      "source_id": "2004",
+      "url": "https://www.weather.gov/media/hazstat/sum04.pdf",
+      "path": "archive/summaries/sum04.pdf",
+      "retrieved_at": "2026-09-19T12:53:56.240Z",
+      "http_status": 200,
+      "bytes": 29561,
+      "sha256": "7c11e567bdf8833abbda333137fbc406780de30de170057d9240583e2ffa868b"
+    },
+    {
+      "source_id": "2005",
+      "url": "https://www.weather.gov/media/hazstat/sum05.pdf",
+      "path": "archive/summaries/sum05.pdf",
+      "retrieved_at": "2026-09-19T12:53:57.945Z",
+      "http_status": 200,
+      "bytes": 33099,
+      "sha256": "70a92de0fedd81ef563b1cd7156d1e5c290e50229b253ffbb6be590b281c5904"
+    },
+    {
+      "source_id": "2006",
+      "url": "https://www.weather.gov/media/hazstat/sum06.pdf",
+      "path": "archive/summaries/sum06.pdf",
+      "retrieved_at": "2026-09-19T12:53:59.580Z",
+      "http_status": 200,
+      "bytes": 68971,
+      "sha256": "aaac5e567ed3f41402312127217f80ee6ee7ccff9579c5620ab43a7ffff3f703"
+    },
+    {
+      "source_id": "2007",
+      "url": "https://www.weather.gov/media/hazstat/sum07.pdf",
+      "path": "archive/summaries/sum07.pdf",
+      "retrieved_at": "2026-09-19T12:54:01.303Z",
+      "http_status": 200,
+      "bytes": 116613,
+      "sha256": "31d2f869f12e990b2c032c7edde8bb08280421543f2a53b5f05527b3d7abb40e"
+    },
+    {
+      "source_id": "2008",
+      "url": "https://www.weather.gov/media/hazstat/sum08.pdf",
+      "path": "archive/summaries/sum08.pdf",
+      "retrieved_at": "2026-09-19T12:54:02.969Z",
+      "http_status": 200,
+      "bytes": 121649,
+      "sha256": "5d5d2984121f860698349c4ae8d1112d85ad7129b057ed825ca0cfbb297f4b03"
+    },
+    {
+      "source_id": "2009",
+      "url": "https://www.weather.gov/media/hazstat/sum09.pdf",
+      "path": "archive/summaries/sum09.pdf",
+      "retrieved_at": "2026-09-19T12:54:04.663Z",
+      "http_status": 200,
+      "bytes": 120209,
+      "sha256": "981ccefe31300c02678c485744f5954b96ef50ae30ee83db08d8b1d1331624dd"
+    },
+    {
+      "source_id": "2010",
+      "url": "https://www.weather.gov/media/hazstat/sum10.pdf",
+      "path": "archive/summaries/sum10.pdf",
+      "retrieved_at": "2026-09-19T12:54:06.538Z",
+      "http_status": 200,
+      "bytes": 114782,
+      "sha256": "3885c64c59a3ce595d6a09d5aac6b0734c81a71c5cf650ee89e89586bd5365b6"
+    },
+    {
+      "source_id": "2011",
+      "url": "https://www.weather.gov/media/hazstat/sum11.pdf",
+      "path": "archive/summaries/sum11.pdf",
+      "retrieved_at": "2026-09-19T12:54:08.338Z",
+      "http_status": 200,
+      "bytes": 107826,
+      "sha256": "096200d3301bc730ccf8867b75063b1cb762dde05e5dce26fc5c735de07dae19"
+    },
+    {
+      "source_id": "2012",
+      "url": "https://www.weather.gov/media/hazstat/sum12.pdf",
+      "path": "archive/summaries/sum12.pdf",
+      "retrieved_at": "2026-09-19T12:54:10.062Z",
+      "http_status": 200,
+      "bytes": 110209,
+      "sha256": "86c0d69bed9278bf315d7a4289083de7215c52196cba57cc7bfb8221473ae436"
+    },
+    {
+      "source_id": "2013",
+      "url": "https://www.weather.gov/media/hazstat/sum13.pdf",
+      "path": "archive/summaries/sum13.pdf",
+      "retrieved_at": "2026-09-19T12:54:11.712Z",
+      "http_status": 200,
+      "bytes": 114298,
+      "sha256": "d5917be541281ec06a409a443ecfe44a326bac8c0b3039740d814e723c5c6398"
+    },
+    {
+      "source_id": "2014",
+      "url": "https://www.weather.gov/media/hazstat/sum14.pdf",
+      "path": "archive/summaries/sum14.pdf",
+      "retrieved_at": "2026-09-19T12:54:13.489Z",
+      "http_status": 200,
+      "bytes": 119965,
+      "sha256": "2073c5001dc905c99f46357aca9ea11cf0fc1a366831e8a07a746d1fbe995275"
+    },
+    {
+      "source_id": "2015",
+      "url": "https://www.weather.gov/media/hazstat/sum15.pdf",
+      "path": "archive/summaries/sum15.pdf",
+      "retrieved_at": "2026-09-19T12:54:15.268Z",
+      "http_status": 200,
+      "bytes": 120124,
+      "sha256": "4d0e9c56b09e7b716b9add71f8754bf71c27f7f31d7a785cb4875c0331914488"
+    },
+    {
+      "source_id": "2016",
+      "url": "https://www.weather.gov/media/hazstat/sum16.pdf",
+      "path": "archive/summaries/sum16.pdf",
+      "retrieved_at": "2026-09-19T12:54:16.915Z",
+      "http_status": 200,
+      "bytes": 144111,
+      "sha256": "00254fce6c0f4012e040bf9a7781a6b0a405938e92d6ee3e843b13be0a20c9a0"
+    },
+    {
+      "source_id": "2017",
+      "url": "https://www.weather.gov/media/hazstat/sum17.pdf",
+      "path": "archive/summaries/sum17.pdf",
+      "retrieved_at": "2026-09-19T12:54:18.671Z",
+      "http_status": 200,
+      "bytes": 109643,
+      "sha256": "ffbf39cd3745cfee68eb349d42397ba4674e99b2b4713bc3463c53d45e581103"
+    },
+    {
+      "source_id": "2018",
+      "url": "https://www.weather.gov/media/hazstat/sum18.pdf",
+      "path": "archive/summaries/sum18.pdf",
+      "retrieved_at": "2026-09-19T12:54:20.373Z",
+      "http_status": 200,
+      "bytes": 116566,
+      "sha256": "2d6953c289cf0da6219f5199ec550588656343e18ebffc6230887fb34089e493"
+    },
+    {
+      "source_id": "2019",
+      "url": "https://www.weather.gov/media/hazstat/sum19.pdf",
+      "path": "archive/summaries/sum19.pdf",
+      "retrieved_at": "2026-09-19T12:54:22.100Z",
+      "http_status": 200,
+      "bytes": 114546,
+      "sha256": "42815cd70a7d32730a8e72d5bb92bcf8f5587d986d4a3bd6aa7a11b7e942dadd"
+    },
+    {
+      "source_id": "2020",
+      "url": "https://www.weather.gov/media/hazstat/sum20.pdf",
+      "path": "archive/summaries/sum20.pdf",
+      "retrieved_at": "2026-09-19T12:54:23.782Z",
+      "http_status": 200,
+      "bytes": 113002,
+      "sha256": "dca19ae36b77bbbcd4235bb058bedbfcf631b29a7d1c538a2167c0b2f9f9e318"
+    },
+    {
+      "source_id": "2021",
+      "url": "https://www.weather.gov/media/hazstat/sum21.pdf",
+      "path": "archive/summaries/sum21.pdf",
+      "retrieved_at": "2026-09-19T12:54:25.542Z",
+      "http_status": 200,
+      "bytes": 113769,
+      "sha256": "abe88b409e7afdd8ca232148b1bdc96b337c92a13f119db0fdf90c1583dcdba8"
+    },
+    {
+      "source_id": "2022",
+      "url": "https://www.weather.gov/media/hazstat/sum22.pdf",
+      "path": "archive/summaries/sum22.pdf",
+      "retrieved_at": "2026-09-19T12:54:27.201Z",
+      "http_status": 200,
+      "bytes": 111125,
+      "sha256": "57eb45d0fe17dac848df4b8754121b3752fb7ff55f034a1d17aea45791f52f6e"
+    },
+    {
+      "source_id": "2023",
+      "url": "https://www.weather.gov/media/hazstat/sum23.pdf",
+      "path": "archive/summaries/sum23.pdf",
+      "retrieved_at": "2026-09-19T12:54:28.890Z",
+      "http_status": 200,
+      "bytes": 106113,
+      "sha256": "0458584f6deada14597de4475a1eb98f3f2d25d81bc1bc14bb12c119a2ae6e09"
+    },
+    {
+      "source_id": "2024",
+      "url": "https://www.weather.gov/media/hazstat/sum24.pdf",
+      "path": "archive/summaries/sum24.pdf",
+      "retrieved_at": "2026-09-19T12:54:30.572Z",
+      "http_status": 200,
+      "bytes": 112739,
+      "sha256": "103d4548593689d94ce2004d5c87059cdb766137c85a7a588e14058c93477157"
+    },
+    {
+      "source_id": "2025",
+      "url": "https://www.weather.gov/media/hazstat/sum25.pdf",
+      "path": "archive/summaries/sum25.pdf",
+      "retrieved_at": "2026-09-19T12:54:32.272Z",
+      "http_status": 200,
+      "bytes": 109807,
+      "sha256": "d88d5f83ea977f1b2f5f5a5a043510f960991936602757328a8377ebc7f92715"
+    }
+  ]
+}
