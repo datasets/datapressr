@@ -4,6 +4,7 @@
 // on purpose — this should stay something anyone can run without an install step.
 import { readFileSync, existsSync, statSync, readdirSync } from "node:fs";
 import { join, dirname, relative } from "node:path";
+import { pathToFileURL } from "node:url";
 
 const LARGE_FILE_BYTES = 50 * 1024 * 1024;
 const NAME_RE = /^[a-z0-9-]+$/;
@@ -122,7 +123,11 @@ function formatReport(dir, { errors, warnings }) {
   return lines.join("\n");
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// pathToFileURL, not a `file://` template: process.argv[1] is a raw path, so a
+// directory with a space or a non-ASCII character in it makes the two spellings
+// differ and the CLI silently does nothing and exits 0 — which reads as "passed".
+// The guard on argv[1] is for `node -e`, where it is undefined.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const dir = process.argv[2] || ".";
   const result = validateDatapackage(dir);
   console.log(formatReport(dir, result));

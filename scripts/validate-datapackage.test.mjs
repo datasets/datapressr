@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+import { copyFileSync, mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -39,6 +40,25 @@ test("missing datapackage.json entirely is an error, not a crash", () => {
   const empty = mkdtempSync(join(tmpdir(), "validate-test-"));
   const { errors } = validateDatapackage(empty);
   assert.ok(errors.some((e) => e.includes("not found")), errors.join("\n"));
+});
+
+test("the CLI reports and exits 1 even when its own path contains a space", () => {
+  // A `file://${process.argv[1]}` guard compares an encoded URL against a raw
+  // path, so from a spaced directory the CLI printed nothing and exited 0 —
+  // which reads as "passed" on a package that has errors.
+  const dir = mkdtempSync(join(tmpdir(), "validate cli "));
+  const copy = join(dir, "validate-datapackage.mjs");
+  copyFileSync(join(here, "validate-datapackage.mjs"), copy);
+  let status = 0;
+  let out = "";
+  try {
+    out = execFileSync(process.execPath, [copy, fixture("bad-name")], { encoding: "utf8" });
+  } catch (e) {
+    status = e.status;
+    out = e.stdout;
+  }
+  assert.equal(status, 1);
+  assert.match(out, /not URL-safe/);
 });
 
 test("invalid JSON is reported as an error, not a thrown exception", () => {
