@@ -5,7 +5,8 @@
 // across repos, it's a tested source to copy from.
 
 // Missing-value tokens Excel and financial sources actually use, verified
-// against datasets/economic-history/millennium-macroeconomic-data-uk.
+// against millennium-macroeconomic-data-uk in the sibling
+// datasets/economic-history repo.
 // Normalize all of them to the same thing: undefined (-> empty cell on write).
 const MISSING_TOKENS = new Set(["#N/A", "N/A", "NA", "-", "", "#VALUE!", "#REF!", "#DIV/0!"]);
 

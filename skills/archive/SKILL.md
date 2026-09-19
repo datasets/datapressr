@@ -13,7 +13,7 @@ The step between "worth pursuing" and "worth cleaning." Once this is done, the r
 
 2. **If the dataset directory doesn't exist yet**, scaffold it first — `/init <name>` (creates `datapackage.json` with `status: "stub"`, `data/`, `AGENTS.md`, the validator script).
 
-3. **Save the raw file(s) into `archive/`** at the dataset root, sibling to `data/` — not inside it. This is real precedent from `datasets/economic-history/millennium-macroeconomic-data-uk/archive/`, not an invented convention. For a live URL:
+3. **Save the raw file(s) into `archive/`** at the dataset root, sibling to `data/` — not inside it. This is real precedent from [`millennium-macroeconomic-data-uk`](https://github.com/datasets/economic-history/tree/main/millennium-macroeconomic-data-uk), in the sibling `datasets/economic-history` repo, not an invented convention. For a live URL:
 
    ```ts
    import { writeFile } from "node:fs/promises";
