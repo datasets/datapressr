@@ -9,6 +9,8 @@ Unattended cloud runs work the Beads queue without a Dolt remote (the Beads remo
 
 **Reading this file:** a task marked **done** or **blocked** here is treated as done or blocked by later runs, unless a later section says the blocker was resolved. Beads itself remains the source of truth once the owner syncs these notes in.
 
+**Transferred into Beads on 2026-09-19 (local session, working `bd`):** the seven tasks recorded done in the 2026-09-18 section (`ozk`, `eec`, `ub1`, `03u.1`, `d8r`, `h7d`, `u3m`) are now closed in Beads with this file's evidence attached. The epic `datapressr-03u` is deliberately left open for the owner. The "New work found" and "What needs the owner" items became Beads: `datapressr-dzo` (Tesla licence position), `78h` (inbox-triage questions), `mpy` (posting the GitHub reconciliation), `zwt` (four convention choices), `07t` (extend the invisible-character check to `.json`/`.yaml`), `b6w` (second source-discovery rep, in progress in a cloud routine), `jn8` (third rep, blocked on `dzo`), `vkk` (retire the decision documents), and `e2t` (a symlink bug in the CLI entry guard found while re-verifying: `npm test` is 107/108 on macOS). From here, read the queue from `.beads/issues.jsonl`; sections below are history and only need an entry for work that Beads cannot yet record.
+
 ---
 
 ## Run 2026-09-18T20:38Z
