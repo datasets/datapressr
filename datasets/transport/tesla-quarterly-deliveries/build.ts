@@ -205,7 +205,7 @@ export function parseTable(rows: string[][]): ParsedTable | null {
       // pass if the unknown row is zero, and the published series just quietly loses a
       // group. Only rows whose remaining cells are all counts qualify.
       const rest = cells.slice(1);
-      const looksLikeData = label !== "" && rest.length >= 2 && rest.every((c) => /^[\d,\s ​]+$|^%|%$/.test(c));
+      const looksLikeData = label !== "" && rest.length >= 2 && rest.every((c) => /^[\d,\s\u00a0\u200b]+$|^%|%$/.test(c));
       if (looksLikeData) unknownLabels.push(label);
       continue;
     }

@@ -51,7 +51,7 @@ test("parseCount repairs a number broken up by stray whitespace", () => {
   // Q2 2022's total production is marked up as "258,5 8 0".
   assert.equal(parseCount("258,5 8 0"), 258580);
   assert.equal(parseCount("1 2 3"), 123);
-  assert.equal(parseCount(" 104,891​"), 104891);
+  assert.equal(parseCount("\u00a0104,891\u200b"), 104891);
 });
 
 test("parseCount reports a dash rather than guessing zero or missing", () => {
