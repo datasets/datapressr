@@ -2,7 +2,7 @@
 // Deterministic checks behind the /validate skill. See .claude/commands/validate.md
 // and AGENTS.md "Data conventions" for the rules this encodes. Zero dependencies,
 // on purpose — this should stay something anyone can run without an install step.
-import { readFileSync, existsSync, statSync, readdirSync } from "node:fs";
+import { readFileSync, existsSync, statSync, readdirSync, realpathSync } from "node:fs";
 import { join, dirname, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -123,11 +123,22 @@ function formatReport(dir, { errors, warnings }) {
   return lines.join("\n");
 }
 
-// pathToFileURL, not a `file://` template: process.argv[1] is a raw path, so a
-// directory with a space or a non-ASCII character in it makes the two spellings
-// differ and the CLI silently does nothing and exits 0 — which reads as "passed".
-// The guard on argv[1] is for `node -e`, where it is undefined.
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+// Is this file the entry point? Compare import.meta.url with the *realpath* of
+// argv[1]: Node resolves symlinks for import.meta.url but leaves process.argv[1]
+// as typed, so a symlinked directory (macOS's /tmp and tmpdir, or a checkout
+// reached through a linked parent) makes the two differ and the CLI silently
+// does nothing and exits 0 — which reads as "passed". pathToFileURL, not a
+// `file://` template, for the same reason with spaces and non-ASCII characters.
+// realpathSync throws for the undefined argv[1] of `node -e` and for a path that
+// does not exist; both mean "imported, not run".
+const isEntryPoint = (() => {
+  try {
+    return import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href;
+  } catch {
+    return false;
+  }
+})();
+if (isEntryPoint) {
   const dir = process.argv[2] || ".";
   const result = validateDatapackage(dir);
   console.log(formatReport(dir, result));

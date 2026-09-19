@@ -31,7 +31,7 @@
 // scalar does take the escape — add the extension here when this repo grows a
 // workflow file worth protecting.
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -253,13 +253,21 @@ export function formatReport(findings) {
   return lines.join("\n");
 }
 
-// pathToFileURL, not a `file://` template: process.argv[1] is a raw path, and a
-// directory with a space or a non-ASCII character in it makes the two spellings
-// differ. A check that prints nothing and exits 0 reads as "clean", which is the
-// worst thing this file could do.
-// (argv[1] is undefined when the module is imported from `node -e`, and
-// pathToFileURL throws on undefined — so test for it before converting.)
-if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+// Is this file the entry point? Compare import.meta.url with the *realpath* of
+// argv[1]: Node resolves symlinks for import.meta.url but leaves process.argv[1]
+// as typed, so a symlinked directory makes the two differ, and a check that
+// prints nothing and exits 0 reads as "clean" — the worst thing this file could
+// do. pathToFileURL, not a `file://` template, for the same reason with spaces
+// and non-ASCII characters. realpathSync throws for the undefined argv[1] of
+// `node -e` and for a path that does not exist; both mean "imported, not run".
+const isEntryPoint = (() => {
+  try {
+    return import.meta.url === pathToFileURL(realpathSync(process.argv[1])).href;
+  } catch {
+    return false;
+  }
+})();
+if (isEntryPoint) {
   const root = process.argv[2] || ".";
   try {
     const findings = scanRepo(root);

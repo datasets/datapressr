@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { copyFileSync, mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -210,6 +210,28 @@ test("the CLI exits 1 and names the finding, and 0 on a clean tree", () => {
   assert.equal(bad.status, 1);
   assert.match(bad.out, /src\/build\.ts:2:13 {2}U\+00A0 NO-BREAK SPACE/);
   assert.equal(run(clean).status, 0);
+});
+
+test("the CLI exits 1 when reached through a symlinked directory", () => {
+  // Node resolves symlinks for import.meta.url but leaves process.argv[1] as
+  // typed, so a guard comparing the two prints nothing and exits 0 — "clean" —
+  // on a tree that has findings.
+  const dir = mkdtempSync(join(tmpdir(), "invisible link "));
+  const real = join(dir, "real dir");
+  mkdirSync(real);
+  copyFileSync(cli, join(real, "check-invisible-characters.mjs"));
+  const link = join(dir, "link");
+  symlinkSync(real, link, "dir");
+  let status = 0;
+  let out = "";
+  try {
+    out = execFileSync(process.execPath, [join(link, "check-invisible-characters.mjs"), makeTree()], { encoding: "utf8" });
+  } catch (e) {
+    status = e.status;
+    out = e.stdout;
+  }
+  assert.equal(status, 1);
+  assert.match(out, /U\+00A0 NO-BREAK SPACE/);
 });
 
 test("the clean report says so", () => {

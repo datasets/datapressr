@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { copyFileSync, mkdtempSync } from "node:fs";
+import { copyFileSync, mkdirSync, mkdtempSync, symlinkSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -42,6 +42,14 @@ test("missing datapackage.json entirely is an error, not a crash", () => {
   assert.ok(errors.some((e) => e.includes("not found")), errors.join("\n"));
 });
 
+const runCli = (script, dir) => {
+  try {
+    return { status: 0, out: execFileSync(process.execPath, [script, dir], { encoding: "utf8" }) };
+  } catch (e) {
+    return { status: e.status, out: e.stdout };
+  }
+};
+
 test("the CLI reports and exits 1 even when its own path contains a space", () => {
   // A `file://${process.argv[1]}` guard compares an encoded URL against a raw
   // path, so from a spaced directory the CLI printed nothing and exited 0 —
@@ -49,14 +57,23 @@ test("the CLI reports and exits 1 even when its own path contains a space", () =
   const dir = mkdtempSync(join(tmpdir(), "validate cli "));
   const copy = join(dir, "validate-datapackage.mjs");
   copyFileSync(join(here, "validate-datapackage.mjs"), copy);
-  let status = 0;
-  let out = "";
-  try {
-    out = execFileSync(process.execPath, [copy, fixture("bad-name")], { encoding: "utf8" });
-  } catch (e) {
-    status = e.status;
-    out = e.stdout;
-  }
+  const { status, out } = runCli(copy, fixture("bad-name"));
+  assert.equal(status, 1);
+  assert.match(out, /not URL-safe/);
+});
+
+test("the CLI reports and exits 1 when reached through a symlinked directory", () => {
+  // Node resolves symlinks for import.meta.url but leaves process.argv[1] as
+  // typed, so comparing the two silently does nothing and exits 0 when the
+  // script is invoked through a symlink (macOS's tmpdir and /tmp are both
+  // symlinks, as is any checkout reached through a linked parent directory).
+  const dir = mkdtempSync(join(tmpdir(), "validate link "));
+  const real = join(dir, "real dir");
+  mkdirSync(real);
+  copyFileSync(join(here, "validate-datapackage.mjs"), join(real, "validate-datapackage.mjs"));
+  const link = join(dir, "link");
+  symlinkSync(real, link, "dir");
+  const { status, out } = runCli(join(link, "validate-datapackage.mjs"), fixture("bad-name"));
   assert.equal(status, 1);
   assert.match(out, /not URL-safe/);
 });
