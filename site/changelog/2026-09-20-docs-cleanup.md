@@ -4,4 +4,4 @@ title: Clearer documentation
 promote: false
 ---
 
-The [docs](../docs/README.md) now guide readers through setup, source discovery and storytelling, with internal planning and handoff notes kept out of the published guides.
+The [homepage](../README.md) now puts installation and a first dataset workflow up front, with a monospace theme and [docs](../docs/README.md) organised around setup, source discovery and storytelling.

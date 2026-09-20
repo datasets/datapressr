@@ -1,5 +1,6 @@
 {
   "siteName": "DataPressr",
+  "theme": "monospace",
   "description": "An opinionated, skill-driven workflow for turning raw data finds into clean, published datasets — and data stories.",
   "logo": "🍇",
   "favicon": "🍇",
