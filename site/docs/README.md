@@ -7,6 +7,29 @@ description: Learn how to find, structure, publish and tell stories with data us
 
 DataPressr provides AI assistant skills for turning a data question or raw source into a reproducible dataset, then a data story. Start with the setup guide, or pick the step you need below.
 
+## From a question to a story
+
+```text
+  Find a source
+  capture + discovery guide
+       |
+       v
+  Build a clean dataset
+  archive + structure + validate
+       |
+       v
+  Explore the findings
+  enrich
+       |
+       v
+  Tell a data story
+  story
+```
+
+The labels show where DataPressr helps your AI assistant: preserving sources, making data reproducible, checking the package, exploring findings and turning an argument into charts and prose. Start with your question or idea; you review the source, the numbers and the story's claims.
+
+You can stop at a useful dataset. Use `init` to scaffold it and `push` to publish it to DataHub when ready; publication is optional and does not require a story. If you already have clean data, start at **Explore the findings**. The [source-discovery guide](source-discovery-playbook.md) helps you find evidence before the extraction skills begin.
+
 ## Get started
 
 1. [Set up your AI assistant](cli.md) — install the skills, create a dataset, validate it and publish to DataHub.

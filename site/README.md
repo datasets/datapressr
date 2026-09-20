@@ -7,7 +7,7 @@ description: AI agent skills for turning messy source data into reproducible dat
 
 **From messy source data to a dataset someone else can use.**
 
-DataPressr is a library of skills for AI coding assistants. Give your agent a source file or URL, and use the skills to archive the original, build tidy CSVs, document the schema and licence, and check the result. Then add analysis, charts or a data story.
+DataPressr is an open-source library of skills for AI coding assistants. Give your agent a source file or URL, and use the skills to archive the original, build tidy CSVs, document the schema and licence, and check the result. Then add analysis, charts or a data story.
 
 The output is yours: ordinary files, readable metadata and scripts you can rerun when the source changes. Built by [Rufus Pollock](https://rufuspollock.com) and [Datopian](https://datopian.com), drawing on more than 20 years of data wrangling and open data experience.
 
@@ -105,3 +105,5 @@ All eight skills above are available. The wrangling workflow has been exercised 
 ## Built by
 
 [Rufus Pollock](https://rufuspollock.com) and [Datopian](https://datopian.com) — bringing more than 20 years of experience in data wrangling, open data and publishing data people can use.
+
+The DataPressr skills, code and accompanying documentation are open source under the [MIT licence](https://github.com/datasets/datapressr/blob/main/LICENSE). Datasets and archived source material retain their own licences, recorded in each dataset’s metadata.
