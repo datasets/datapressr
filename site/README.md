@@ -42,7 +42,7 @@ Tracked in [epic #14](https://github.com/datasets/datapressr/issues/14). **v1 �
 - **[What to review now](review.md)** — the short list of things that actually need eyes
 - **[Datasets](datasets.md)** — what's been produced, with status and links
 - **[Changelog](changelog/)** — what has shipped, newest first
-- **[Docs](docs/)** — the decision history, playbooks, benchmarks and handoff notes
+- **Docs** — the decision history and playbooks: [skills roadmap](docs/skills-roadmap.md), [source-discovery playbook](docs/source-discovery-playbook.md), [structure benchmark](docs/structure-benchmark.md), [charting](docs/charting.md), and more under `docs/`
 - **[Data story: The Keeling Curve](stories/keeling-curve.md)** — the first hand-written story
 - **[Data story: Planetary Boundaries](stories/planetary-boundaries.md)** — the second hand-written story
 - **[Data story: WTI Went Negative. Brent Didn't.](stories/oil-prices.md)** — the third story, the first written with the `story` skill
