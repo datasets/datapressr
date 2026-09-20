@@ -16,6 +16,17 @@
   "social": [
     { "label": "github", "href": "https://github.com/datasets/datapressr" }
   ],
+  "footer": {
+    "navigation": [
+      {
+        "title": "Built by",
+        "links": [
+          { "name": "Rufus Pollock", "href": "https://rufuspollock.com" },
+          { "name": "Datopian", "href": "https://datopian.com" }
+        ]
+      }
+    ]
+  },
   "showEditLink": true,
   "contentHide": ["/changelog"]
 }
