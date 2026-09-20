@@ -9,18 +9,19 @@
     <circle cx="52" cy="183" r="7"/>
     <circle cx="52" cy="250" r="7" fill="#766183"/>
   </g>
-  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace">
+  <g font-family="'Courier New', Courier, monospace">
     <g fill="#242127" font-size="19" font-weight="600">
       <text x="82" y="46">Find a source</text>
       <text x="82" y="113">Build a clean dataset</text>
       <text x="82" y="180">Explore the findings</text>
       <text x="82" y="247">Tell a data story</text>
     </g>
-    <g fill="#62566b" font-size="15">
-      <text x="82" y="69">capture + discovery guide</text>
-      <text x="82" y="136">archive + structure + validate</text>
-      <text x="82" y="203">enrich</text>
-      <text x="82" y="270">story</text>
+    <g fill="#6b427c" font-size="15">
+      <text x="82" y="69">DataPressr skills: capture</text>
+      <text x="82" y="89" fill="#62566b" font-size="13">Also: source-discovery guide</text>
+      <text x="82" y="136">DataPressr skills: archive + structure + validate</text>
+      <text x="82" y="203">DataPressr skills: enrich</text>
+      <text x="82" y="270">DataPressr skills: story</text>
     </g>
   </g>
 </svg>

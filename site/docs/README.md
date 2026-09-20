@@ -9,7 +9,7 @@ DataPressr provides AI assistant skills for turning a data question or raw sourc
 
 ## From a question to a story
 
-![Find a source → build a clean dataset → explore the findings → tell a data story. DataPressr skills are shown beneath each step.](images/data-workflow.svg)
+![Find a source → build a clean dataset → explore the findings → tell a data story. DataPressr skills are labelled in purple beneath each step; source discovery is a separate guide.](images/data-workflow.svg)
 
 The labels show where DataPressr helps your AI assistant: preserving sources, making data reproducible, checking the package, exploring findings and turning an argument into charts and prose. Start with your question or idea; you review the source, the numbers and the story's claims.
 
