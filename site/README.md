@@ -26,7 +26,7 @@ The skills live in [`skills/`](https://github.com/datasets/datapressr/tree/main/
 
 - **Solid:** the `validate` script and the shared wrangling idioms — a real test suite (`npm test`, 47 tests).
 - **`structure` — proven and benchmarked.** Run end-to-end on three real sources: co2-ppm (NOAA text file), Project Drawdown (Markdown table), and oil-prices (eight legacy `.xls` workbooks) — the last diffed against the published community `datasets/oil-prices` and found content-identical. Scored in [`docs/structure-benchmark.md`](docs/structure-benchmark.md); eight prioritised skill edits, all applied 2026-09-06.
-- **`capture` / `archive` — in use.** `archive` has snapshotted sources with provenance; `capture` files finds as GitHub issues.
+- **`capture` / `archive` — in use.** `archive` has snapshotted sources with provenance; `capture` files finds in an Inbox issue, or as a bead once substantive.
 - **Three data stories:** [The Keeling Curve](stories/keeling-curve.md) ([#9](https://github.com/datasets/datapressr/issues/9)) and [Planetary Boundaries](stories/planetary-boundaries.md) ([#4](https://github.com/datasets/datapressr/issues/4)), written by hand, and [WTI Went Negative. Brent Didn't.](stories/oil-prices.md), the first written with the `story` skill. Each was built from a committed outline. The author's voice pass is outstanding on all three.
 - **`story` and `enrich` — active.** Both were drafted from hand-made examples and graduated after real runs: `enrich` on co2-ppm and oil-prices, `story` on three stories, with an independent review gate on the outline. Each skill bundles its guidance in `references/` ([`skills/story/`](https://github.com/datasets/datapressr/tree/main/skills/story), [`skills/enrich/`](https://github.com/datasets/datapressr/tree/main/skills/enrich)). Stories chart with Observable Plot ([`charting.md`](docs/charting.md)).
 - **Not designed yet:** `monitor`.
@@ -35,7 +35,7 @@ Full decision history: [`docs/skills-vision.md`](docs/skills-vision.md).
 
 ## Roadmap to v1
 
-Tracked in [epic #14](https://github.com/datasets/datapressr/issues/14). **v1 — the `enrich` + `story` skills plus a settled near-term charting approach — is complete** (2026-09-18): both skills are active and proven on real runs, and charting is settled on Observable Plot for stories. Still open, not blocking: the author's voice passes, `structure` benchmark round 2, and updating the GitHub issues to match. Post-v1: `monitor` + unattended cloud execution ([#6](https://github.com/datasets/datapressr/issues/6)); skill evals for the prompt-only skills.
+Tracked in Beads (`bd ready`); the original roadmap issue, [#14](https://github.com/datasets/datapressr/issues/14), is closed. **v1 — the `enrich` + `story` skills plus a settled near-term charting approach — is complete** (2026-09-18): both skills are active and proven on real runs, and charting is settled on Observable Plot for stories. Still open, not blocking: the author's voice passes. Post-v1: `monitor` + unattended cloud execution ([#6](https://github.com/datasets/datapressr/issues/6)); skill evals for the prompt-only skills; the [full plan](docs/skills-roadmap.md).
 
 ## Pages
 

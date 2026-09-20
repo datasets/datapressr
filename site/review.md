@@ -34,9 +34,5 @@ as sortable tables, so no local checkout or DataHub account is needed.
 
 ## Tracking
 
-Active work is tracked in Beads (`bd ready`). These GitHub issues preserve the earlier discussion:
-[#6](https://github.com/datasets/datapressr/issues/6) cloud execution ·
-[#7](https://github.com/datasets/datapressr/issues/7) this site ·
-[#8](https://github.com/datasets/datapressr/issues/8) wrangle co2-ppm ·
-[#9](https://github.com/datasets/datapressr/issues/9) first data story.
+All work is tracked in Beads (`bd ready`); GitHub issues are kept only for the [inbox](https://github.com/datasets/datapressr/issues/2) and two open research questions, [#6](https://github.com/datasets/datapressr/issues/6) cloud execution and [#11](https://github.com/datasets/datapressr/issues/11) charting. The earlier issues are closed and preserve the discussion.
 Start a working session with [NEXT.md](https://github.com/datasets/datapressr/blob/main/NEXT.md), which selects ready work from Beads.

@@ -180,7 +180,7 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 
 | Skill | What it does |
 |-------|-------------|
-| `capture` | File a URL / idea as a GitHub issue — near-zero friction |
+| `capture` | File a URL / idea in the Inbox issue (or a bead once substantive) — near-zero friction |
 | `archive` | Snapshot the raw source into `archive/` with provenance |
 | `structure` | Raw → tidy typed CSV(s) + `datapackage.json` (the core wrangling step) |
 | `enrich` | Structured → enriched: consolidated stats, first `views`, a "What stands out" note |
@@ -216,7 +216,7 @@ bd create --title="dataset: <short description>" \
 - `story-candidate` — optional; add only if a written piece seems likely once the dataset exists
 - `priority=3` — backlog, until triaged
 
-Note: the `capture` skill above files similar "worth remembering" ideas as GitHub issues. Use beads (`bd create` with these labels) when the idea is dataset-shaped and you want it tracked alongside other repo work in the same tool as everything else in `bd ready`/`bd list`; use `capture` when it's a lighter-weight note that doesn't need beads' dependency/status machinery. Don't file the same idea in both.
+**One tracker.** Beads is the only place work is tracked; GitHub issues are not a second backlog. The exceptions are the Inbox issue (the `capture` skill's low-friction surface, for sessions without `bd`) and the public research threads that want outside comment. When a captured idea becomes substantive, turn it into a bead with the labels above and tick or close its Inbox line, rather than opening its own GitHub issue. `external_ref` on a bead is provenance only. When a bead linked to an open GitHub issue closes, close the issue in the same session with a comment pointing at Beads.
 
 ## Changelog
 
