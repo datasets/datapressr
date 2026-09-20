@@ -44,7 +44,7 @@ and recovering after the Montreal Protocol. Left: the author's "sounds like me"
 voice pass. [#4](https://github.com/datasets/datapressr/issues/4).
 
 **`structure` benchmark findings applied.** All eight edits from
-[`docs/structure-benchmark.md`](../docs/structure-benchmark.md)
+[`docs/structure-benchmark.md`](https://github.com/datasets/datapressr/blob/main/docs/structure-benchmark.md)
 (benchmark v1, 2026-09-05) landed. In
 [`scripts/wrangling-idioms.mjs`](https://github.com/datasets/datapressr/blob/main/scripts/wrangling-idioms.mjs)
 (tests 24 → 28): `excelSerialToIsoDate()` — an offset-free Excel-serial → ISO

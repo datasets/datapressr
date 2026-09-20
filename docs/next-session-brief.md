@@ -25,7 +25,7 @@ The v1 chain is datapressr-q96 → datapressr-7mc → datapressr-0cp → datapre
 
 Give bounded enrichment, chart and prose tasks to execution agents. Assign argument review, skill graduation, benchmark synthesis and release review to a coordinator or stronger reviewer: these require judgment across artifacts. Benchmark source selection is research first; the worker records the chosen source, license and paths before implementation. Pass the full Bead and this protocol, not just its title.
 
-Use separate worktrees/checkouts for simultaneous edits when supported, with the coordinator managing shared Beads and integration. Shared files (AGENTS.md, skills/README.md, site/stories/package*.json, site/README.md, site/datasets.md, site/docs/structure-benchmark.md) have one editor at a time. Chart workers reuse current Plot/jsdom dependencies; graduation owns skill catalogs; synthesis owns the benchmark report. Integrate prerequisites before dispatching dependents. Preserve unrelated work.
+Use separate worktrees/checkouts for simultaneous edits when supported, with the coordinator managing shared Beads and integration. Shared files (AGENTS.md, skills/README.md, site/stories/package*.json, site/README.md, site/datasets.md, docs/structure-benchmark.md) have one editor at a time. Chart workers reuse current Plot/jsdom dependencies; graduation owns skill catalogs; synthesis owns the benchmark report. Integrate prerequisites before dispatching dependents. Preserve unrelated work.
 
 ## Verification and review
 

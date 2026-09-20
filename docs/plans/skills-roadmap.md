@@ -5,9 +5,9 @@ date: 2026-09-05
 
 # Skills Roadmap
 
-> Historical planning and decision context. As of 2026-09-12, current work and dependencies live in Beads; read [the handoff](next-session-brief.md) and [migration audit](next-audit.md). Later completed work supersedes the pending/draft claims below. Do not execute this historical sequence as a current assignment.
+> Historical planning and decision context. As of 2026-09-12, current work and dependencies live in Beads; read [the handoff](../next-session-brief.md) and [migration audit](../next-audit.md). Later completed work supersedes the pending/draft claims below. Do not execute this historical sequence as a current assignment.
 
-> **Current status (2026-09-18): v1 complete locally.** `enrich` and `story` are active skills (symlinked in `.claude/skills/`, guidance bundled in each skill's `references/`), resolved from real runs: enrich on co2-ppm and oil-prices, story on three data stories, the third written with the skill and an independently reviewed outline ([WTI Went Negative. Brent Didn't.](../stories/oil-prices.md)). Near-term charting is Observable Plot for stories, declarative `views` for enrich ([charting.md](charting.md)). Still outstanding and non-blocking: the author's voice passes on the stories, benchmark round 2, and GitHub issue updates.
+> **Current status (2026-09-18): v1 complete locally.** `enrich` and `story` are active skills (symlinked in `.claude/skills/`, guidance bundled in each skill's `references/`), resolved from real runs: enrich on co2-ppm and oil-prices, story on three data stories, the third written with the skill and an independently reviewed outline ([WTI Went Negative. Brent Didn't.](../../site/stories/oil-prices.md)). Near-term charting is Observable Plot for stories, declarative `views` for enrich ([charting.md](../../site/docs/charting.md)). Still outstanding and non-blocking: the author's voice passes on the stories, benchmark round 2, and GitHub issue updates.
 
 Planning doc for the next phase of work. Supersedes the "Proposed build order"
 section of [`skills-vision.md`](skills-vision.md) — that doc still holds the
@@ -69,7 +69,7 @@ concrete `skills/structure/SKILL.md` edits.
 3. **For each rep, log:** every point where the playbook was silent, ambiguous,
    or wrong; every cleanup idiom that recurred (candidate for
    `scripts/wrangling-idioms.mjs`); every judgment call made with no guidance.
-4. **Write `site/docs/structure-benchmark.md`:** the sample set and what each
+4. **Write `docs/structure-benchmark.md`:** the sample set and what each
    exercised; a rubric (reproducible build? typed schema + `primaryKey`?
    `licenses` + `sources` filled? tidy per `AGENTS.md`? `/validate` clean with
    no warnings? how much unguided human judgment leaked in?); scored results;
@@ -130,7 +130,7 @@ to install.
   lives in its own repo now) or leave a pointer. [#3](https://github.com/datasets/datapressr/issues/3)
 - **C2 — co2-ppm follow-ups.** Add the NOAA global mean CO₂ series and a
   growth-rate resource (annual ppm change, and decadal mean growth). Regenerate
-  via `build.ts`, re-validate, update the README. [Beads handoff](next-session-brief.md)
+  via `build.ts`, re-validate, update the README. [Beads handoff](../next-session-brief.md)
 - **C3 — Chart polish** ([#12](https://github.com/datasets/datapressr/issues/12)).
   The two Keeling SVGs in `site/stories/make-charts.mjs`: consistent type scale,
   cleaner axis ticks, inline callouts for the 350 ppm (~1988) and 400 ppm (2015)

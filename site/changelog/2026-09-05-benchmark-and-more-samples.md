@@ -7,7 +7,7 @@ promote: false
 A session aimed at getting the skills better by benchmarking them and adding
 samples, not just adding features.
 
-**`structure` benchmark.** [`docs/structure-benchmark.md`](../docs/structure-benchmark.md)
+**`structure` benchmark.** [`docs/structure-benchmark.md`](https://github.com/datasets/datapressr/blob/main/docs/structure-benchmark.md)
 scores the wrangling skill across three real runs — the NOAA text file (comment
 lines, sentinels), the Project Drawdown markdown table, and a new one: eight
 legacy `.xls` workbooks of EIA oil prices. The oil-prices build is a

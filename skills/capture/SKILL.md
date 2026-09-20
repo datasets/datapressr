@@ -20,7 +20,7 @@ Per `site/docs/lifecyle.md`'s "Capture" stage: prevent loss, preserve intent, ne
 
    No validation. No downloading. No deciding if it's *good* — that's a later stage's job.
 
-3. Beads (`bd ready`) is the actionable work queue; see `site/docs/next-session-brief.md` for handoff instructions. Lightweight captures go in the Inbox issue under this skill; anything substantive is tracked in Beads only, following AGENTS.md's labeling convention. Never file the same idea in both.
+3. Beads (`bd ready`) is the actionable work queue; see `docs/next-session-brief.md` for handoff instructions. Lightweight captures go in the Inbox issue under this skill; anything substantive is tracked in Beads only, following AGENTS.md's labeling convention. Never file the same idea in both.
 
 ## What this replaced
 

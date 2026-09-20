@@ -1,6 +1,6 @@
 # DataPressr Skill Suite — Vision & Outline
 
-> Historical planning and decision context. As of 2026-09-12, current work and dependencies live in Beads; read [the handoff](next-session-brief.md) and [migration audit](next-audit.md). Later completed work supersedes the pending/draft claims below. Do not execute this historical sequence as a current assignment.
+> Historical planning and decision context. As of 2026-09-12, current work and dependencies live in Beads; read [the handoff](../next-session-brief.md) and [migration audit](../next-audit.md). Later completed work supersedes the pending/draft claims below. Do not execute this historical sequence as a current assignment.
 
 *Outline only — no stage skills implemented yet. This records the plan and the decisions behind it so we can build against it.*
 

@@ -195,13 +195,15 @@ working inside this repo).
 
 ## Docs
 
-Project docs (decision history, playbooks, benchmarks, handoff notes) live in `site/docs/`, so they publish on the site alongside `site/changelog/`. They used to be a top-level `docs/` folder; some older Bead text and dated evidence still says `docs/<name>.md`, so read that as `site/docs/<name>.md`. Everything in `site/docs/` is currently published. Nothing is excluded yet; add a new doc there only if it is fine to be public.
+Published user documentation lives in `site/docs/`: setup, dataset conventions, reusable how-to guides and worked examples. Keep it current and useful to someone working with data. Its curated index is `site/docs/README.md`; add a descriptive link there when adding a user guide.
 
-The site's navbar, favicon, sidebar and edit-link settings are in `site/config.json` (Flowershow reads it from the root of the published folder; reference: https://flowershow.app/docs/reference/config-file.md). `site/docs/README.md` and `site/stories/README.md` are the landing pages the navbar links to; they list their folders automatically, so a new doc or story needs no index edit.
+Internal project material lives in root `docs/`, outside the published `site/` folder: implementation plans and Superpowers design documents in `docs/plans/`, benchmark runs in `docs/benchmarks/`, agent handoffs in `docs/handoffs/`, and audits, decision records and the session protocol in `docs/`. See `docs/README.md` for the classification. These files remain public in the GitHub repository but are not published as site pages. Beads remains the only actionable task queue. Older Bead paths may predate the split; consult the docs index rather than assuming every `docs/` path means `site/docs/`.
+
+The site's navbar, favicon, sidebar and edit-link settings are in `site/config.json` (Flowershow reads it from the root of the published folder; reference: https://flowershow.app/docs/reference/config-file.md). `site/docs/README.md` and `site/stories/README.md` are the landing pages the navbar links to; the docs index is curated, while stories are listed automatically.
 
 ## Task tracking (beads)
 
-Beads is the source of truth for actionable work, dependencies and completion evidence. Start with [NEXT.md](https://github.com/datasets/datapressr/blob/main/NEXT.md), the reusable session prompt for selecting and executing `bd ready` tasks; [site/docs/next-session-brief.md](https://github.com/datasets/datapressr/blob/main/site/docs/next-session-brief.md) holds the detailed protocol and [site/docs/next-audit.md](https://github.com/datasets/datapressr/blob/main/site/docs/next-audit.md) holds the dated migration evidence. Keep NEXT.md as instructions, not a Markdown task queue. Read the full assigned Bead, claim it, and record verification and handoff notes before closing it.
+Beads is the source of truth for actionable work, dependencies and completion evidence. Start with [NEXT.md](https://github.com/datasets/datapressr/blob/main/NEXT.md), the reusable session prompt for selecting and executing `bd ready` tasks; [docs/next-session-brief.md](https://github.com/datasets/datapressr/blob/main/docs/next-session-brief.md) holds the detailed protocol and [docs/next-audit.md](https://github.com/datasets/datapressr/blob/main/docs/next-audit.md) holds the dated migration evidence. Keep NEXT.md as instructions, not a Markdown task queue. Read the full assigned Bead, claim it, and record verification and handoff notes before closing it.
 
 This repo uses [beads](https://github.com/steveyegge/beads) (`bd`) for task tracking — see `.beads/README.md` and the sync playbook at `~/src/rufuspollock/agent-skills/beads-sync-playbook.md` for setup/sync mechanics.
 

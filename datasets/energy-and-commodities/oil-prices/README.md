@@ -47,4 +47,4 @@ This is an independent re-wrangle of the same EIA source as the community
 DataPressr `structure` skill as a benchmark. The eight output CSVs are
 **content-identical** to the published dataset (same rows, same coverage); the
 only difference is the line terminator (LF here, CRLF there). See
-`site/docs/structure-benchmark.md` in `datasets/datapressr` for the full comparison.
+`docs/structure-benchmark.md` in `datasets/datapressr` for the full comparison.

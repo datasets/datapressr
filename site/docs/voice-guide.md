@@ -1,14 +1,11 @@
 ---
-title: DataPressr voice guide (draft)
+title: DataPressr voice guide
 date: 2026-09-05
 ---
 
-# Voice guide (draft)
+# Voice guide
 
-How DataPressr data stories should sound. Drafted from the stated preferences in
-the Keeling Curve outline and the prose of story #1; will firm up after story #2.
-A "sounds like me" pass by the author is always a separate, final stage — this
-guide is the floor, not that.
+How DataPressr data stories should sound. Use this during the prose pass, after the outline and charts have been checked. A final voice pass by the author remains a separate step.
 
 ## The one rule
 

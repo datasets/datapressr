@@ -1,16 +1,11 @@
 ---
-title: What makes a good data story (draft)
+title: What makes a good data story
 date: 2026-09-05
 ---
 
-# What makes a good data story (draft)
+# What makes a good data story
 
-Research notes for the future `story` skill, per
-[`skills-roadmap.md`](skills-roadmap.md) Track B1. Drawn from how the best
-practitioners (FT Visual & Data Journalism, NYT / The Upshot, The Pudding, Our
-World in Data, Reuters Graphics, The Economist, FiveThirtyEight, Financial Times
-Alphaville-style explainers) structure this work, and from what story #1 (the
-Keeling Curve) taught. Opinionated on purpose; revisit after story #2.
+Use this guide alongside the `story` skill to turn checked findings into a short, readable argument. For wording, see the [voice guide](voice-guide.md); for reproducible charts, see [charting](charting.md).
 
 ## What a data story is
 
@@ -39,8 +34,7 @@ accelerating rise"; chart 2 = "a seasonal cycle rides that trend". Nothing else.
 
 Direct-label lines. Mark the moments the prose refers to (the 350/400 ppm
 crossings, a recession, a policy change) *on the chart*, where the eye is. A
-legend is a lookup table; an annotation is the point. (This is the main gap in
-story #1's current charts — [#12](https://github.com/datasets/datapressr/issues/12).)
+legend is a lookup table; an annotation is the point.
 
 ### 4. Prose and chart say the same thing, in their own medium
 
@@ -65,9 +59,7 @@ The shape story #1 converged on, and a reasonable default:
 Stepped, scroll-driven animation (NYT/Reuters style) is powerful for a *process*
 or a *sequence of states*, and expensive to build and maintain. For a single
 time series it's overkill. Default to a static chart (or a light hover-readout);
-reach for scrolly only when the story genuinely has steps. The near-term charting
-policy ([#11](https://github.com/datasets/datapressr/issues/11)) already says:
-hand-rolled SVG / small HTML, iterate freely, don't over-engineer.
+reach for scrolly only when the story genuinely has steps. Use [Observable Plot and static SVG](charting.md) for story charts.
 
 ### 7. Honesty about limits is part of the craft
 
@@ -91,28 +83,9 @@ turns "trust me" into "check it". Cheap, and rare enough to be distinctive.
   data is noise.
 - **Fake precision.** "427.31 ppm" when the uncertainty is ±0.1.
 
-## Visualisation approach — interim, and the trigger to change it
+## Choose the charting approach
 
-Three options are on the table for how a story's charts are authored:
-
-| Option | State | Verdict |
-|--------|-------|---------|
-| `datapackage.json` `views` array | works today on the dataset page | Fine for a quick chart *on a dataset*; too thin for a story (no annotation, no direct labelling, one chart type list). Keep using it for dataset pages, not stories. |
-| Hand-rolled inline SVG (`site/stories/make-charts.mjs`) | what story #1 uses | Total control, reproducible, renders anywhere, zero dependencies. Costs the most per chart. Right for now, while the count is low and the look is still being figured out ([#12](https://github.com/datasets/datapressr/issues/12)). |
-| A charting library | not yet adopted | The sibling [`line-charts`](https://github.com/datasets/line-charts) bake-off already did the legwork: **Observable Plot** is its pick for "a data story or a one-off analytical chart — best-looking chart per line of code", **Vega-Lite** when the chart needs to be a *published, diffable spec* a non-developer can review. |
-
-**Interim policy (unchanged from [#11](https://github.com/datasets/datapressr/issues/11)):**
-make charts that look good by whatever's fastest — hand-rolled SVG now — and
-iterate on look and feel. Don't block a story on a charting decision.
-
-**Trigger to adopt a standard:** once (a) the `line-charts` and `tables-bakeoff`
-repos are finalised and (b) 2–3 more hand-made stories have shown what actually
-recurs (annotation, dark mode, hover readout, small multiples). At that point the
-`story` skill's **viz-plan step** names one tool — most likely Observable Plot for
-rendering, with Vega-Lite as the "spec you can commit" option — and the skill
-carries a small shared chart helper (palette, theme, annotation) rather than each
-story re-deriving it. Table embedding in a story follows `tables-bakeoff`'s pick
-the same way; it's a rendering detail, decided later, not a blocker.
+Use declarative `datapackage.json` views for initial charts on dataset pages. For an annotated story chart, build static SVG with Observable Plot. Keep the script with the story so the chart can be reproduced. The [charting guide](charting.md) covers the pattern and when a bespoke SVG or interactive page is appropriate.
 
 ## How this maps onto the `story` skill
 
@@ -128,13 +101,3 @@ up directly with the patterns above:
 Each step is committed and independently reviewable. The argument can be signed
 off before any prose effort; the prose can be regenerated or re-voiced from the
 outline + viz plan without re-litigating the argument.
-
-## Open questions for story #2
-
-- Does the "finding → what it is → what it says → wrinkle → method" shape hold
-  for a *multi-indicator* story (Planetary Boundaries: nine boundaries, not one
-  series)? Or does a small-multiples / dashboard story need a different spine?
-- Where does a comparison across boundaries (which are crossed, by how much) sit
-  — is that the headline chart, or a table?
-- How much of the framework's conceptual background (the "safe operating space")
-  is needed before the finding, without becoming setup-heavy?
