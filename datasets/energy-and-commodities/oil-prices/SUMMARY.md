@@ -31,7 +31,7 @@ One row per resource + measurement. Standard deviation is the population statist
 ## See also
 
 - **Source:** U.S. Energy Information Administration, *Petroleum & Other Liquids — Spot Prices* — see `datapackage.json` `sources` and `README.md`.
-- **Community comparison:** `README.md` → "Relationship to `datasets/oil-prices`" and `docs/structure-benchmark.md` in the repo root.
+- **Community comparison:** `README.md` → "Relationship to `datasets/oil-prices`" and `site/docs/structure-benchmark.md` in the repo root.
 - **Story:** [WTI Went Negative. Brent Didn't.](https://github.com/datasets/datapressr/blob/main/site/stories/oil-prices.md) — data story #3, built on this dataset's daily series and the consolidated stats table above ([outline](https://github.com/datasets/datapressr/blob/main/site/stories/oil-prices-outline.md)).
 
 ## Trial notes

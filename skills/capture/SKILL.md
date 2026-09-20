@@ -5,7 +5,7 @@ description: Use this skill when the user shares a URL, dataset idea, or loose f
 
 # Capture: get it out of the conversation and somewhere durable
 
-Per `docs/lifecyle.md`'s "Capture" stage: prevent loss, preserve intent, near-zero friction. This is bookmarking plus a one-line reason, not research.
+Per `site/docs/lifecyle.md`'s "Capture" stage: prevent loss, preserve intent, near-zero friction. This is bookmarking plus a one-line reason, not research.
 
 ## Where it goes
 
@@ -13,14 +13,14 @@ Per `docs/lifecyle.md`'s "Capture" stage: prevent loss, preserve intent, near-ze
    - **Not yet substantive** (a URL with no clear dataset shape yet, a factoid, a vague idea) → add one checklist line to the open **"Inbox — quick finds to triage"** issue in `datasets/datapressr`. Find it with `search_issues` (query: `Inbox quick finds to triage`) rather than a hardcoded issue number — it could be recreated or renumbered.
    - **Already substantive** (clear source, some readiness signal — an existing scraper, an attached file, a known API) → its own issue instead. Title it `Wrangle and publish: <name>` (dataset) or `Data story: <name>` (a story/dashboard idea), same pattern as the existing Project Drawdown / Planetary Boundaries issues.
 
-2. Keep the entry to what `docs/lifecyle.md` asks for — no more:
+2. Keep the entry to what `site/docs/lifecyle.md` asks for — no more:
    - What it is (title or URL)
    - Why it's interesting, in one line
    - What data might exist, if known
 
    No validation. No downloading. No deciding if it's *good* — that's a later stage's job.
 
-3. Beads (`bd ready`) is the actionable work queue; see `docs/next-session-brief.md` for handoff instructions. Keep lightweight captures in GitHub under this skill. For dataset-shaped work tracked in Beads, follow AGENTS.md's labeling convention and do not duplicate the same idea in both trackers.
+3. Beads (`bd ready`) is the actionable work queue; see `site/docs/next-session-brief.md` for handoff instructions. Keep lightweight captures in GitHub under this skill. For dataset-shaped work tracked in Beads, follow AGENTS.md's labeling convention and do not duplicate the same idea in both trackers.
 
 ## What this replaced
 

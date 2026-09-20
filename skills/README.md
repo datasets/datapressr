@@ -16,7 +16,7 @@ install into any agent, not just Claude Code.
 | `enrich` | → enriched | Structured dataset → consolidated descriptive stats + first charts + commentary (`enrich.ts` + `SUMMARY.md` + `views`). Bundles a working `enrich.ts` template in `references/`. |
 | `story` | → story | One or more finished datasets → a short data story: outline (independently reviewed) → Observable Plot charts → prose. Bundles its craft, voice and charting guides in `references/`. |
 
-`monitor` is planned but not built. `enrich` and `story` were activated after real runs (enrich on co2-ppm and oil-prices; story on three data stories). Each carries what it needs in its own `references/` folder, so an installed copy works without this repo; `docs/story-craft.md`, `docs/voice-guide.md` and `docs/charting.md` hold the background and decision history.
+`monitor` is planned but not built. `enrich` and `story` were activated after real runs (enrich on co2-ppm and oil-prices; story on three data stories). Each carries what it needs in its own `references/` folder, so an installed copy works without this repo; `site/docs/story-craft.md`, `site/docs/voice-guide.md` and `site/docs/charting.md` hold the background and decision history.
 
 ## Install
 

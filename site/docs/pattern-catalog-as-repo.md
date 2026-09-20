@@ -2,7 +2,7 @@
 
 ## Example
 
-**EH.net Economic History Datasets** — [`datasets/commons-issues/91-ehnet-datasets.md`](../datasets/commons-issues/91-ehnet-datasets.md)
+**EH.net Economic History Datasets** — [`datasets/commons-issues/91-ehnet-datasets.md`](https://github.com/datasets/datapressr/blob/main/datasets/commons-issues/91-ehnet-datasets.md)
 
 Source http://eh.net/databases/ is a portal containing many datasets. It is a catalog, not a single dataset. The original issue noted: *"maybe we need a datasets-history org"*.
 

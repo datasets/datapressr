@@ -30,7 +30,7 @@ as sortable tables, so no local checkout or DataHub account is needed.
 ## Open questions parked for you
 
 - **Project Drawdown** now lives in its own repo at <https://github.com/datasets/project-drawdown> (moved out of `datapressr` on 2026-09-05); DataHub publish still pending.
-- **Charting approach** is decided for the near term: Observable Plot rendered to static SVG for stories, declarative `views` for dataset pages ([`docs/charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md)). A DataHub-native charting standard is still deferred.
+- **Charting approach** is decided for the near term: Observable Plot rendered to static SVG for stories, declarative `views` for dataset pages ([`docs/charting.md`](docs/charting.md)). A DataHub-native charting standard is still deferred.
 
 ## Tracking
 

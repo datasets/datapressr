@@ -6,7 +6,7 @@ date: 2026-09-05
 # What makes a good data story (draft)
 
 Research notes for the future `story` skill, per
-[`skills-roadmap.md`](./skills-roadmap.md) Track B1. Drawn from how the best
+[`skills-roadmap.md`](skills-roadmap.md) Track B1. Drawn from how the best
 practitioners (FT Visual & Data Journalism, NYT / The Upshot, The Pudding, Our
 World in Data, Reuters Graphics, The Economist, FiveThirtyEight, Financial Times
 Alphaville-style explainers) structure this work, and from what story #1 (the

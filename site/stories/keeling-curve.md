@@ -60,6 +60,6 @@ changed the file), are in the
 
 For the future `story` / charting skills:
 
-- **Charting.** Both charts here are produced by [`make-charts.mjs`](https://github.com/datasets/datapressr/blob/main/site/stories/make-charts.mjs) with [Observable Plot](https://observablehq.com/plot/), rendered to static SVG at build time and embedded with no client-side JavaScript — the decision recorded in [`docs/charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md); these two charts were originally hand-rolled SVG before being ported ([#12](https://github.com/datasets/datapressr/issues/12)).
+- **Charting.** Both charts here are produced by [`make-charts.mjs`](https://github.com/datasets/datapressr/blob/main/site/stories/make-charts.mjs) with [Observable Plot](https://observablehq.com/plot/), rendered to static SVG at build time and embedded with no client-side JavaScript — the decision recorded in [`docs/charting.md`](../docs/charting.md); these two charts were originally hand-rolled SVG before being ported ([#12](https://github.com/datasets/datapressr/issues/12)).
 - **What worked:** the clean typed dataset meant each chart was a three-line
   "read CSV, map two columns". The mess was all upstream of the story.

@@ -23,7 +23,7 @@ Issues #5, #8 and #9 are closed and accurate; they need nothing. #13 is a live o
 
 > **Update 2026-09-18.** The wrangling and relocation are done — see `datapressr-61n` (closed). What is left is not a `structure` pass:
 >
-> - Compare the two external Project Drawdown packages and prepare a recommendation — `datapressr-jh6`. Working notes: [`docs/project-drawdown-comparison.md`](https://github.com/datasets/datapressr/blob/main/docs/project-drawdown-comparison.md).
+> - Compare the two external Project Drawdown packages and prepare a recommendation — `datapressr-jh6`. Working notes: [`docs/project-drawdown-comparison.md`](project-drawdown-comparison.md).
 > - Decide naming and publication — `datapressr-aw1`. **This one is the owner's**, and it is deferred until the comparison is in front of them.
 >
 > Keeping this issue open as the public thread for the Drawdown question; the execution detail lives in Beads.
@@ -73,11 +73,11 @@ Issues #5, #8 and #9 are closed and accurate; they need nothing. #13 is a live o
 
 ## #11 — Charting approach: near-term policy + longer investigation
 
-**Stale because** the issue presents the near-term policy as open ("hand-rolled inline SVG … raw HTML … pick whatever gets a good-looking chart fastest"). It is decided and written down: [`docs/charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md) (2026-09-06) settles on Observable Plot rendered to static SVG at build time for stories, and declarative `views` for dataset pages. All three stories now follow it; the Keeling charts were ported from hand-rolled SVG (`datapressr-8rk`). The issue's *second* track — a chart mechanism DataHub or Flowershow support natively — is genuinely still open and is `datapressr-7fs` (deferred, post-v1).
+**Stale because** the issue presents the near-term policy as open ("hand-rolled inline SVG … raw HTML … pick whatever gets a good-looking chart fastest"). It is decided and written down: [`docs/charting.md`](charting.md) (2026-09-06) settles on Observable Plot rendered to static SVG at build time for stories, and declarative `views` for dataset pages. All three stories now follow it; the Keeling charts were ported from hand-rolled SVG (`datapressr-8rk`). The issue's *second* track — a chart mechanism DataHub or Flowershow support natively — is genuinely still open and is `datapressr-7fs` (deferred, post-v1).
 
 **Proposed addition:**
 
-> **Update 2026-09-18.** The near-term track is **decided and no longer open to mix-and-match**: Observable Plot rendered to static SVG at build time for stories, declarative `views` for dataset pages. Written up in [`docs/charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md). All three stories follow it, and the Keeling charts were ported over from hand-rolled SVG (`datapressr-8rk`).
+> **Update 2026-09-18.** The near-term track is **decided and no longer open to mix-and-match**: Observable Plot rendered to static SVG at build time for stories, declarative `views` for dataset pages. Written up in [`docs/charting.md`](charting.md). All three stories follow it, and the Keeling charts were ported over from hand-rolled SVG (`datapressr-8rk`).
 >
 > The longer investigation — a standard DataHub/Flowershow renders natively — is still open and still deferred: `datapressr-7fs`, post-v1.
 >
@@ -89,9 +89,9 @@ Issues #5, #8 and #9 are closed and accurate; they need nothing. #13 is a live o
 
 **Proposed step-list replacement:**
 
-> 1. ~~Prove `structure` in anger~~ — done (#8, co2-ppm); benchmarked twice ([`docs/structure-benchmark.md`](https://github.com/datasets/datapressr/blob/main/docs/structure-benchmark.md)) — round 1 across three sources with eight fixes applied, round 2 across a JSON/REST API source and a relational multi-file join.
+> 1. ~~Prove `structure` in anger~~ — done (#8, co2-ppm); benchmarked twice ([`docs/structure-benchmark.md`](structure-benchmark.md)) — round 1 across three sources with eight fixes applied, round 2 across a JSON/REST API source and a relational multi-file join.
 > 2. ~~Write 1–2 data stories by hand~~ — done, three of them: [Keeling Curve](https://github.com/datasets/datapressr/blob/main/site/stories/keeling-curve.md), [Planetary Boundaries](https://github.com/datasets/datapressr/blob/main/site/stories/planetary-boundaries.md), [WTI Went Negative. Brent Didn't.](https://github.com/datasets/datapressr/blob/main/site/stories/oil-prices.md).
-> 3. ~~Charting~~ — near-term decided: Observable Plot → static SVG for stories, `views` for dataset pages ([`docs/charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md)). Native support remains deferred (#11).
+> 3. ~~Charting~~ — near-term decided: Observable Plot → static SVG for stories, `views` for dataset pages ([`docs/charting.md`](charting.md)). Native support remains deferred (#11).
 > 4. ~~Write `enrich` + `story` skills~~ — both written and **active**, after real runs: `enrich` on two datasets, `story` on three stories, with an independent review gate on the outline.
 > 5. ~~Ship the site~~ — done (#7; one follow-up open: fold `docs/` onto the site).
 >

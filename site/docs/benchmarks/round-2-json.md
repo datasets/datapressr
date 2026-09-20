@@ -9,7 +9,7 @@ Sample 4 for the [`structure` benchmark](../structure-benchmark.md), and the fir
 
 ## Source selection
 
-Picked from `datasets/commons-issues/` — [#143 Population growth rate](../../datasets/commons-issues/143-population-growth-rate.md). The issue points at UN Population Division Excel files whose terms require permission to reuse. The same indicator is republished openly by the World Bank as WDI series `SP.POP.GROW` (derived from UN WPP, national statistical offices, Eurostat and UNSD), through a keyless JSON API.
+Picked from `datasets/commons-issues/` — [#143 Population growth rate](https://github.com/datasets/datapressr/blob/main/datasets/commons-issues/143-population-growth-rate.md). The issue points at UN Population Division Excel files whose terms require permission to reuse. The same indicator is republished openly by the World Bank as WDI series `SP.POP.GROW` (derived from UN WPP, national statistical offices, Eurostat and UNSD), through a keyless JSON API.
 
 | Criterion | Result |
 |---|---|

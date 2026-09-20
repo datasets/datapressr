@@ -9,7 +9,7 @@ The second [source-discovery](../source-discovery-playbook.md) run, deliberately
 
 The first run ([Tesla quarterly deliveries](tesla-source-discovery.md)) used SEC EDGAR, which publishes a machine-readable index of its own holdings. Half the playbook's rules lean on that. This run was about finding out which of them survive without one. The result is written up rule by rule in the [playbook](../source-discovery-playbook.md); this documents the route, including the four candidate sources that were rejected and the two bugs that got as far as the CSV.
 
-The dataset is [`datasets/climate-and-environment/us-natural-hazard-statistics`](../../datasets/climate-and-environment/us-natural-hazard-statistics).
+The dataset is [`datasets/climate-and-environment/us-natural-hazard-statistics`](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/us-natural-hazard-statistics).
 
 ## The question
 
@@ -130,7 +130,7 @@ Discovered and deliberately not extracted: the per-state summaries, the nine per
 
 ## What this run adds to the playbook
 
-Written up properly in [`docs/source-discovery-playbook.md`](../source-discovery-playbook.md), rule by rule. The short version:
+Written up properly in [`site/docs/source-discovery-playbook.md`](../source-discovery-playbook.md), rule by rule. The short version:
 
 - **§2 "find indexes, not documents" did not apply, and the workflow survived it** — but only because a *substitute* selection rule was available (a hand-maintained menu) and could be checked against reality (a 404). Where no listing at all exists, this run still says nothing.
 - **§6 "count what you selected" held, and was again necessary and not sufficient** — for the second time in two runs, the thing it failed to catch was a *label*, and the thing that caught it was a person reading the output.

@@ -9,8 +9,8 @@ How to get from *a data question* to *a source-backed extraction plan* — the s
 
 **Evidence base: two cases.** Everything here is derived from two worked examples:
 
-1. **Tesla quarterly deliveries** ([walkthrough](examples/tesla-source-discovery.md), [dataset](../datasets/transport/tesla-quarterly-deliveries)) — SEC EDGAR, which publishes a machine-readable index of its own holdings.
-2. **U.S. natural hazard statistics** ([walkthrough](examples/nws-hazard-source-discovery.md), [dataset](../datasets/climate-and-environment/us-natural-hazard-statistics)) — the National Weather Service, chosen deliberately because it has **no machine-readable index at all**: no API, no feed, no sitemap, no dataset listing, no bulk download, and the only listing of its documents anywhere is a hand-maintained HTML menu that turns out to be wrong.
+1. **Tesla quarterly deliveries** ([walkthrough](examples/tesla-source-discovery.md), [dataset](https://github.com/datasets/datapressr/tree/main/datasets/transport/tesla-quarterly-deliveries)) — SEC EDGAR, which publishes a machine-readable index of its own holdings.
+2. **U.S. natural hazard statistics** ([walkthrough](examples/nws-hazard-source-discovery.md), [dataset](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/us-natural-hazard-statistics)) — the National Weather Service, chosen deliberately because it has **no machine-readable index at all**: no API, no feed, no sitemap, no dataset listing, no bulk download, and the only listing of its documents anywhere is a hand-maintained HTML menu that turns out to be wrong.
 
 Rules are marked **[tested]** with what tested them, or **[untested]** where they remain extrapolation. Where run 2 tested a rule the first run could not, the rule says so; where run 2 could not test a rule *because there was no index*, it says **[did not apply]** and what stood in its place. Tags are promoted and demoted on evidence only — several rules below are still **[untested]** after two runs, and one has now failed the same way twice. See [Limitations](#limitations-of-learning-from-two-cases).
 
@@ -18,10 +18,10 @@ Rules are marked **[tested]** with what tested them, or **[untested]** where the
 
 | Skill | Starts from | Produces |
 |---|---|---|
-| [`capture`](../skills/capture/SKILL.md) | A passing thought, a URL, a factoid | A remembered question, filed and not yet researched |
+| [`capture`](https://github.com/datasets/datapressr/blob/main/skills/capture/SKILL.md) | A passing thought, a URL, a factoid | A remembered question, filed and not yet researched |
 | **source discovery** (this document) | A question, and no source | A named source, terms evidence, a coverage statement and a schema proposal |
-| [`archive`](../skills/archive/SKILL.md) | A known source | Raw bytes in `archive/` with provenance |
-| [`structure`](../skills/structure/SKILL.md) | An archived snapshot | Typed, tidy `data/*.csv` + `datapackage.json` |
+| [`archive`](https://github.com/datasets/datapressr/blob/main/skills/archive/SKILL.md) | A known source | Raw bytes in `archive/` with provenance |
+| [`structure`](https://github.com/datasets/datapressr/blob/main/skills/structure/SKILL.md) | An archived snapshot | Typed, tidy `data/*.csv` + `datapackage.json` |
 
 The boundaries that matter. `capture` remembers a question without judging it; discovery is what happens when someone decides to pursue it. `archive` saves a source you have already chosen; discovery is choosing it, and produces the manifest `archive` then fills. `structure` transforms a snapshot; discovery decides what the snapshot should even contain. The handoff between discovery and `archive` is the **source manifest** — without one, `archive` is guessing at scope.
 
@@ -283,14 +283,14 @@ Two further reasons, on top of the unmet condition:
 
 ## The original recommendation, from run 1: keep this a document
 
-Three options were on the table — leave it as a document, extend [`archive`](../skills/archive/SKILL.md) to cover discovery, or draft a distinct `discover` skill.
+Three options were on the table — leave it as a document, extend [`archive`](https://github.com/datasets/datapressr/blob/main/skills/archive/SKILL.md) to cover discovery, or draft a distinct `discover` skill.
 
 **Keep the document.** The boundary argument is what decides it: `archive`'s job is *save this source faithfully*, and it is good precisely because it is narrow. Discovery's job is *choose a source and prove it is the right one*, which is a research activity with judgement calls, escalation conditions and dead ends. Folding a research loop into a save-this-file skill would blur both.
 
-**Don't draft a `discover` skill yet, and the reason is this project's own rule.** [`docs/skills-vision.md`](skills-vision.md) holds the principle — don't design the system before you've felt the workflow — and [`docs/skills-roadmap.md`](skills-roadmap.md) records what it cost in practice: `enrich` was resolved from two runs (co2-ppm and oil-prices), and `story` from two hand-written stories before the third was written *with* the skill. That patience is visibly why they are good. Discovery had **one** run when this was written. Writing the skill then would have encoded SEC EDGAR's shape as though it were the shape of source discovery.
+**Don't draft a `discover` skill yet, and the reason is this project's own rule.** [`site/docs/skills-vision.md`](skills-vision.md) holds the principle — don't design the system before you've felt the workflow — and [`site/docs/skills-roadmap.md`](skills-roadmap.md) records what it cost in practice: `enrich` was resolved from two runs (co2-ppm and oil-prices), and `story` from two hand-written stories before the third was written *with* the skill. That patience is visibly why they are good. Discovery had **one** run when this was written. Writing the skill then would have encoded SEC EDGAR's shape as though it were the shape of source discovery.
 
 **The condition for revisiting:** two more discovery runs against structurally different sources — ideally one with no index at all, and one where the licence question does *not* resolve cleanly, since that path is the least tested rule here. If the same rules survive, graduate them into a skill.
 
 *Where that stands after run 2: the no-index rep is done, the licence-ambiguous rep is not, and the verdict is still no — see [the section above](#graduating-discovery-into-a-skill-not-yet-and-the-missing-rep-is-a-specific-one).*
 
-Meanwhile this document is linked from both worked examples, [Tesla](examples/tesla-source-discovery.md) and [NWS hazard statistics](examples/nws-hazard-source-discovery.md). Two of the generalisable extraction lessons — the fetch/build split and the hashed manifest — are already guidance in [`skills/structure/SKILL.md`](../skills/structure/SKILL.md). The coverage table is **not** yet, and on the evidence of §6 across two runs it is the one most worth adding.
+Meanwhile this document is linked from both worked examples, [Tesla](examples/tesla-source-discovery.md) and [NWS hazard statistics](examples/nws-hazard-source-discovery.md). Two of the generalisable extraction lessons — the fetch/build split and the hashed manifest — are already guidance in [`skills/structure/SKILL.md`](https://github.com/datasets/datapressr/blob/main/skills/structure/SKILL.md). The coverage table is **not** yet, and on the evidence of §6 across two runs it is the one most worth adding.

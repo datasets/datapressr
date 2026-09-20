@@ -1,6 +1,6 @@
 # Start here
 
-Read `AGENTS.md` and [the handoff protocol](docs/next-session-brief.md), then execute ready work from Beads. Beads owns the task list, priorities, dependencies, acceptance criteria and completion evidence; this file is a reusable session prompt.
+Read `AGENTS.md` and [the handoff protocol](site/docs/next-session-brief.md), then execute ready work from Beads. Beads owns the task list, priorities, dependencies, acceptance criteria and completion evidence; this file is a reusable session prompt.
 
 1. Inspect `git status --short --branch`, preserve existing changes, run `bd dolt pull`, then `bd ready`.
 2. Select the highest-priority ready task that you can execute (P1 before P2 before P3). Read its full details with `bd show <id>` and check prerequisite evidence. Skip umbrella epics, human-only tasks, deferred work and tasks already owned by another worker. Do not ask the user which task to pick when the queue provides a clear choice.

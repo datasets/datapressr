@@ -193,9 +193,13 @@ In Claude Code each is also a `/<name>` slash command (`.claude/skills/`
 symlinks point back at `skills/`, so there's one copy and no install step when
 working inside this repo).
 
+## Docs
+
+Project docs (decision history, playbooks, benchmarks, handoff notes) live in `site/docs/`, so they publish on the site alongside `site/changelog/`. They used to be a top-level `docs/` folder; some older Bead text and dated evidence still says `docs/<name>.md`, so read that as `site/docs/<name>.md`. Everything in `site/docs/` is currently published. Nothing is excluded yet; add a new doc there only if it is fine to be public.
+
 ## Task tracking (beads)
 
-Beads is the source of truth for actionable work, dependencies and completion evidence. Start with [NEXT.md](https://github.com/datasets/datapressr/blob/main/NEXT.md), the reusable session prompt for selecting and executing `bd ready` tasks; [docs/next-session-brief.md](https://github.com/datasets/datapressr/blob/main/docs/next-session-brief.md) holds the detailed protocol and [docs/next-audit.md](https://github.com/datasets/datapressr/blob/main/docs/next-audit.md) holds the dated migration evidence. Keep NEXT.md as instructions, not a Markdown task queue. Read the full assigned Bead, claim it, and record verification and handoff notes before closing it.
+Beads is the source of truth for actionable work, dependencies and completion evidence. Start with [NEXT.md](https://github.com/datasets/datapressr/blob/main/NEXT.md), the reusable session prompt for selecting and executing `bd ready` tasks; [site/docs/next-session-brief.md](https://github.com/datasets/datapressr/blob/main/site/docs/next-session-brief.md) holds the detailed protocol and [site/docs/next-audit.md](https://github.com/datasets/datapressr/blob/main/site/docs/next-audit.md) holds the dated migration evidence. Keep NEXT.md as instructions, not a Markdown task queue. Read the full assigned Bead, claim it, and record verification and handoff notes before closing it.
 
 This repo uses [beads](https://github.com/steveyegge/beads) (`bd`) for task tracking — see `.beads/README.md` and the sync playbook at `~/src/rufuspollock/agent-skills/beads-sync-playbook.md` for setup/sync mechanics.
 

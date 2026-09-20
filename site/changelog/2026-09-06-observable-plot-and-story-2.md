@@ -15,7 +15,7 @@ skills. Also trimmed a `NEXT.md` that had grown into a second backlog.
 best chart-per-line-of-code for a data story, and both hand-written stories'
 friction notes pointed the same way — story #2's normalised ranged-bar
 scoreboard was about the ceiling of what hand-rolled inline SVG is comfortable
-for. [`docs/charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md)
+for. [`docs/charting.md`](../docs/charting.md)
 records the decision and the pattern: Plot authored in a `*-make-charts.mjs`,
 rendered to static SVG in Node (jsdom for the DOM), committed and embedded as a
 Markdown image — no JavaScript on the published page, same deployment as before.
@@ -44,7 +44,7 @@ and recovering after the Montreal Protocol. Left: the author's "sounds like me"
 voice pass. [#4](https://github.com/datasets/datapressr/issues/4).
 
 **`structure` benchmark findings applied.** All eight edits from
-[`docs/structure-benchmark.md`](https://github.com/datasets/datapressr/blob/main/docs/structure-benchmark.md)
+[`docs/structure-benchmark.md`](../docs/structure-benchmark.md)
 (benchmark v1, 2026-09-05) landed. In
 [`scripts/wrangling-idioms.mjs`](https://github.com/datasets/datapressr/blob/main/scripts/wrangling-idioms.mjs)
 (tests 24 → 28): `excelSerialToIsoDate()` — an offset-free Excel-serial → ISO
@@ -61,9 +61,9 @@ dependency ⇒ its own `package.json`" section. `AGENTS.md` picked up the
 **`story` skill — first draft.**
 [`skills/story/SKILL.md`](https://github.com/datasets/datapressr/blob/main/skills/story/SKILL.md),
 from the two hand-made stories plus the craft docs
-([`story-craft.md`](https://github.com/datasets/datapressr/blob/main/docs/story-craft.md),
-[`voice-guide.md`](https://github.com/datasets/datapressr/blob/main/docs/voice-guide.md),
-[`charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md)).
+([`story-craft.md`](../docs/story-craft.md),
+[`voice-guide.md`](../docs/voice-guide.md),
+[`charting.md`](../docs/charting.md)).
 It is the *workflow* — three committed, independently reviewable artefacts
 (outline + chart plan → charts → prose), the outline template lifted from the two
 stories, a definition of done, and the "sounds like me" voice pass kept as a

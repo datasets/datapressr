@@ -1,6 +1,6 @@
 # Charting for stories — Observable Plot → static SVG
 
-Packaged with the `story` skill so it works from an installed copy. The DataPressr repo's `docs/charting.md` records why this was chosen (a seven-library bake-off; Plot gave the best chart per line of code for a one-off annotated chart).
+Packaged with the `story` skill so it works from an installed copy. The DataPressr repo's `site/docs/charting.md` records why this was chosen (a seven-library bake-off; Plot gave the best chart per line of code for a one-off annotated chart).
 
 ## The decision
 

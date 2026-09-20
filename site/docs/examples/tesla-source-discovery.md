@@ -5,7 +5,7 @@ date: 2026-09-18
 
 # Worked example — autonomous source discovery: Tesla quarterly deliveries
 
-An agent was given a data question, not a source: *Tesla quarterly sales by vehicle over time*. This records what it did to turn that into [`datasets/transport/tesla-quarterly-deliveries`](../../datasets/transport/tesla-quarterly-deliveries) — which sources it tried, which it rejected and why, what the source turned out to actually support, and where it got things wrong before getting them right. The dataset's own [README](../../datasets/transport/tesla-quarterly-deliveries/README.md) documents the result; this documents the route.
+An agent was given a data question, not a source: *Tesla quarterly sales by vehicle over time*. This records what it did to turn that into [`datasets/transport/tesla-quarterly-deliveries`](https://github.com/datasets/datapressr/tree/main/datasets/transport/tesla-quarterly-deliveries) — which sources it tried, which it rejected and why, what the source turned out to actually support, and where it got things wrong before getting them right. The dataset's own [README](https://github.com/datasets/datapressr/blob/main/datasets/transport/tesla-quarterly-deliveries/README.md) documents the result; this documents the route.
 
 `archive` and `structure` both start from a source you already have. This example is about the step before them, and the finding that matters most is that **discovery changed the question**. The question said "sales by vehicle". The source supports *production and deliveries by model group*, where the grouping changes twice and no individual model is ever reported. Half the work was establishing that, and the rest was not quietly papering over it.
 
@@ -115,6 +115,6 @@ All three are the same failure: **a selection heuristic that returns fewer rows 
 - **Decide whether the lease-accounting percentage deserves its own resource.** It is in every table from Q3 2019 and currently discarded.
 - **Re-run and diff.** The build is deterministic against a pinned snapshot; running `fetch.ts --refresh` after a new quarter and diffing the CSVs would show whether Tesla has restated anything, which is currently only visible via the annual recap.
 
-No generic scraping framework is proposed. Three sources into this repo, the reusable parts are the fetch/build split, the hashed manifest and the coverage table — all of which are now guidance in [`skills/structure/SKILL.md`](../../skills/structure/SKILL.md), not a framework.
+No generic scraping framework is proposed. Three sources into this repo, the reusable parts are the fetch/build split, the hashed manifest and the coverage table — all of which are now guidance in [`skills/structure/SKILL.md`](https://github.com/datasets/datapressr/blob/main/skills/structure/SKILL.md), not a framework.
 
-The discovery rules this run produced are written up separately in [`docs/source-discovery-playbook.md`](../source-discovery-playbook.md), which replays them against the failure log above and is explicit about which are tested by this one case and which are not.
+The discovery rules this run produced are written up separately in [`site/docs/source-discovery-playbook.md`](../source-discovery-playbook.md), which replays them against the failure log above and is explicit about which are tested by this one case and which are not.

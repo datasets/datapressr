@@ -3,7 +3,7 @@
 //
 // Authored with Observable Plot, rendered to static SVG in Node (jsdom supplies
 // the DOM). The published page embeds the .svg as a Markdown image — no
-// JavaScript runs on it. See docs/charting.md for why Plot.
+// JavaScript runs on it. See site/docs/charting.md for why Plot.
 //
 // Reads the committed CSVs from the oil-prices dataset directly (this repo's
 // own dataset, not a snapshot). Implements the chart plan in

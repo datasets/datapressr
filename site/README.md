@@ -25,13 +25,13 @@ The skills live in [`skills/`](https://github.com/datasets/datapressr/tree/main/
 ## Honest status
 
 - **Solid:** the `validate` script and the shared wrangling idioms — a real test suite (`npm test`, 47 tests).
-- **`structure` — proven and benchmarked.** Run end-to-end on three real sources: co2-ppm (NOAA text file), Project Drawdown (Markdown table), and oil-prices (eight legacy `.xls` workbooks) — the last diffed against the published community `datasets/oil-prices` and found content-identical. Scored in [`docs/structure-benchmark.md`](https://github.com/datasets/datapressr/blob/main/docs/structure-benchmark.md); eight prioritised skill edits, all applied 2026-09-06.
+- **`structure` — proven and benchmarked.** Run end-to-end on three real sources: co2-ppm (NOAA text file), Project Drawdown (Markdown table), and oil-prices (eight legacy `.xls` workbooks) — the last diffed against the published community `datasets/oil-prices` and found content-identical. Scored in [`docs/structure-benchmark.md`](docs/structure-benchmark.md); eight prioritised skill edits, all applied 2026-09-06.
 - **`capture` / `archive` — in use.** `archive` has snapshotted sources with provenance; `capture` files finds as GitHub issues.
 - **Three data stories:** [The Keeling Curve](stories/keeling-curve.md) ([#9](https://github.com/datasets/datapressr/issues/9)) and [Planetary Boundaries](stories/planetary-boundaries.md) ([#4](https://github.com/datasets/datapressr/issues/4)), written by hand, and [WTI Went Negative. Brent Didn't.](stories/oil-prices.md), the first written with the `story` skill. Each was built from a committed outline. The author's voice pass is outstanding on all three.
-- **`story` and `enrich` — active.** Both were drafted from hand-made examples and graduated after real runs: `enrich` on co2-ppm and oil-prices, `story` on three stories, with an independent review gate on the outline. Each skill bundles its guidance in `references/` ([`skills/story/`](https://github.com/datasets/datapressr/tree/main/skills/story), [`skills/enrich/`](https://github.com/datasets/datapressr/tree/main/skills/enrich)). Stories chart with Observable Plot ([`charting.md`](https://github.com/datasets/datapressr/blob/main/docs/charting.md)).
+- **`story` and `enrich` — active.** Both were drafted from hand-made examples and graduated after real runs: `enrich` on co2-ppm and oil-prices, `story` on three stories, with an independent review gate on the outline. Each skill bundles its guidance in `references/` ([`skills/story/`](https://github.com/datasets/datapressr/tree/main/skills/story), [`skills/enrich/`](https://github.com/datasets/datapressr/tree/main/skills/enrich)). Stories chart with Observable Plot ([`charting.md`](docs/charting.md)).
 - **Not designed yet:** `monitor`.
 
-Full decision history: [`docs/skills-vision.md`](https://github.com/datasets/datapressr/blob/main/docs/skills-vision.md).
+Full decision history: [`docs/skills-vision.md`](docs/skills-vision.md).
 
 ## Roadmap to v1
 
@@ -42,6 +42,7 @@ Tracked in [epic #14](https://github.com/datasets/datapressr/issues/14). **v1 �
 - **[What to review now](review.md)** — the short list of things that actually need eyes
 - **[Datasets](datasets.md)** — what's been produced, with status and links
 - **[Changelog](changelog/)** — what has shipped, newest first
+- **[Docs](docs/)** — the decision history, playbooks, benchmarks and handoff notes
 - **[Data story: The Keeling Curve](stories/keeling-curve.md)** — the first hand-written story
 - **[Data story: Planetary Boundaries](stories/planetary-boundaries.md)** — the second hand-written story
 - **[Data story: WTI Went Negative. Brent Didn't.](stories/oil-prices.md)** — the third story, the first written with the `story` skill

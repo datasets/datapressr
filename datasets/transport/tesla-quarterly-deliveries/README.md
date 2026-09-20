@@ -2,7 +2,7 @@
 
 Vehicles produced and delivered each quarter by reported model group, **Q2 2019 to Q2 2026** — 29 quarters, 174 rows — read from Exhibit 99.1 of Tesla's quarterly Production & Deliveries Form 8-K filed with the SEC.
 
-The walkthrough of how the source was found and built is [`docs/examples/tesla-source-discovery.md`](https://github.com/datasets/datapressr/blob/main/docs/examples/tesla-source-discovery.md).
+The walkthrough of how the source was found and built is [`site/docs/examples/tesla-source-discovery.md`](https://github.com/datasets/datapressr/blob/main/site/docs/examples/tesla-source-discovery.md).
 
 ## Rebuild
 

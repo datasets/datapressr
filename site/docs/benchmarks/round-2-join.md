@@ -9,7 +9,7 @@ Sample 5 for the [`structure` benchmark](../structure-benchmark.md): the first s
 
 ## Source selection
 
-[OurAirports](https://ourairports.com/data/) — the community-maintained airport database behind commons issue [#26 Airport Codes](../../datasets/commons-issues/26-airport-codes.md). "All data is released to the Public Domain" (ourairports.com/data). Four CSVs, snapshotted 2026-09-18 (all `Last-Modified: 2026-09-18 01:54:08 GMT`):
+[OurAirports](https://ourairports.com/data/) — the community-maintained airport database behind commons issue [#26 Airport Codes](https://github.com/datasets/datapressr/blob/main/datasets/commons-issues/26-airport-codes.md). "All data is released to the Public Domain" (ourairports.com/data). Four CSVs, snapshotted 2026-09-18 (all `Last-Modified: 2026-09-18 01:54:08 GMT`):
 
 | Table | Rows | Bytes | Key |
 |---|--:|--:|---|

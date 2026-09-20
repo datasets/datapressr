@@ -1,6 +1,6 @@
 # NEXT.md migration audit — 2026-09-12
 
-This is dated evidence, not a live queue. Current status and detailed work instructions live in Beads. Start with [NEXT.md](../NEXT.md) and [the handoff](next-session-brief.md). Following the migration, the owner requested retaining NEXT.md as a reusable session prompt that selects ready Beads; its former task list remains migrated below.
+This is dated evidence, not a live queue. Current status and detailed work instructions live in Beads. Start with [NEXT.md](https://github.com/datasets/datapressr/blob/main/NEXT.md) and [the handoff](next-session-brief.md). Following the migration, the owner requested retaining NEXT.md as a reusable session prompt that selects ready Beads; its former task list remains migrated below.
 
 ## Completed versus remaining
 

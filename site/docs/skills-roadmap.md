@@ -7,10 +7,10 @@ date: 2026-09-05
 
 > Historical planning and decision context. As of 2026-09-12, current work and dependencies live in Beads; read [the handoff](next-session-brief.md) and [migration audit](next-audit.md). Later completed work supersedes the pending/draft claims below. Do not execute this historical sequence as a current assignment.
 
-> **Current status (2026-09-18): v1 complete locally.** `enrich` and `story` are active skills (symlinked in `.claude/skills/`, guidance bundled in each skill's `references/`), resolved from real runs: enrich on co2-ppm and oil-prices, story on three data stories, the third written with the skill and an independently reviewed outline ([WTI Went Negative. Brent Didn't.](../site/stories/oil-prices.md)). Near-term charting is Observable Plot for stories, declarative `views` for enrich ([charting.md](charting.md)). Still outstanding and non-blocking: the author's voice passes on the stories, benchmark round 2, and GitHub issue updates.
+> **Current status (2026-09-18): v1 complete locally.** `enrich` and `story` are active skills (symlinked in `.claude/skills/`, guidance bundled in each skill's `references/`), resolved from real runs: enrich on co2-ppm and oil-prices, story on three data stories, the third written with the skill and an independently reviewed outline ([WTI Went Negative. Brent Didn't.](../stories/oil-prices.md)). Near-term charting is Observable Plot for stories, declarative `views` for enrich ([charting.md](charting.md)). Still outstanding and non-blocking: the author's voice passes on the stories, benchmark round 2, and GitHub issue updates.
 
 Planning doc for the next phase of work. Supersedes the "Proposed build order"
-section of [`skills-vision.md`](./skills-vision.md) — that doc still holds the
+section of [`skills-vision.md`](skills-vision.md) — that doc still holds the
 decision history and the vision; this one is the *what next, in what order*.
 
 ## North star
@@ -69,7 +69,7 @@ concrete `skills/structure/SKILL.md` edits.
 3. **For each rep, log:** every point where the playbook was silent, ambiguous,
    or wrong; every cleanup idiom that recurred (candidate for
    `scripts/wrangling-idioms.mjs`); every judgment call made with no guidance.
-4. **Write `docs/structure-benchmark.md`:** the sample set and what each
+4. **Write `site/docs/structure-benchmark.md`:** the sample set and what each
    exercised; a rubric (reproducible build? typed schema + `primaryKey`?
    `licenses` + `sources` filled? tidy per `AGENTS.md`? `/validate` clean with
    no warnings? how much unguided human judgment leaked in?); scored results;
@@ -81,13 +81,13 @@ concrete `skills/structure/SKILL.md` edits.
 
 ### B1 — Craft research (write-ups)
 
-- **`docs/story-craft.md`** — what makes a good data story. Survey exemplars
+- **`site/docs/story-craft.md`** — what makes a good data story. Survey exemplars
   (FT, NYT / The Upshot, The Pudding, Our World in Data, Reuters Graphics,
   FiveThirtyEight). Extract repeatable patterns: lead with the finding; one
   chart, one idea; annotation over legend; when scrollytelling earns its weight
   vs a static piece; length; how the "how it was made" material is handled
   (late, as a tutorial, or not at all — the Keeling lesson).
-- **`docs/voice-guide.md`** — DataPressr's house voice. The Keeling outline
+- **`site/docs/voice-guide.md`** — DataPressr's house voice. The Keeling outline
   already gestures at it ("plain and factual, let the numbers carry it; no
   'most important line in climate science', no 'the planet's breathing'").
   Collect good and bad samples, write do / don't rules, and give before/after

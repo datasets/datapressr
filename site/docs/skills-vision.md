@@ -15,9 +15,9 @@ The goal is a small set of opinionated skills, in the spirit of the "immaculate"
 ## Where we are
 
 Already established (see `docs/`):
-- **Lifecycle**: capture → stub → archived → structured → enriched → monitored (`docs/lifecyle.md`)
-- **Hierarchy**: catalog → dataset → data file (`docs/data-hierarchy.md`)
-- **Catalog-as-repo**: one portal/collection = one repo = one DataHub publication (`docs/pattern-catalog-as-repo.md`)
+- **Lifecycle**: capture → stub → archived → structured → enriched → monitored (`site/docs/lifecyle.md`)
+- **Hierarchy**: catalog → dataset → data file (`site/docs/data-hierarchy.md`)
+- **Catalog-as-repo**: one portal/collection = one repo = one DataHub publication (`site/docs/pattern-catalog-as-repo.md`)
 - **Skills**: `/init`, `/validate`, `/push` — all at the `structured → published` end
 - **Capture layer**: GitHub issues + Beads (`bd ready`) (was plain markdown in `datasets/BACKLOG.md`/`INBOX.md`/`DASHBOARDS.md` — retired, see the build order below)
 - Proof this works end to end: 20+ datasets already published to DataHub from the backlog

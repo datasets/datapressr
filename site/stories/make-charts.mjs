@@ -3,7 +3,7 @@
 //
 // Authored with Observable Plot, rendered to static SVG in Node (jsdom supplies
 // the DOM). The published page embeds the .svg as a Markdown image — no
-// JavaScript runs on it. See docs/charting.md for why Plot. Ported from the
+// JavaScript runs on it. See site/docs/charting.md for why Plot. Ported from the
 // original hand-rolled SVG generator (datapressr-8rk) — filenames and the
 // annual/seasonal split are unchanged.
 //

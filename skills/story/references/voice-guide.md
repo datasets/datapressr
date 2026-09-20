@@ -1,7 +1,7 @@
 
 # Voice guide
 
-How DataPressr data stories should sound. Packaged with the `story` skill so it works from an installed copy (the DataPressr repo keeps the original at `docs/voice-guide.md`). A "sounds like me" pass by the author is always a separate, final stage — this guide is the floor, not that.
+How DataPressr data stories should sound. Packaged with the `story` skill so it works from an installed copy (the DataPressr repo keeps the original at `site/docs/voice-guide.md`). A "sounds like me" pass by the author is always a separate, final stage — this guide is the floor, not that.
 
 ## The one rule
 

@@ -6,7 +6,7 @@ date: 2026-09-05
 # `structure` skill — benchmark v1
 
 First scored pass over the `structure` skill (`skills/structure/SKILL.md`), per
-[`skills-roadmap.md`](./skills-roadmap.md) Track A. Purpose: find where the
+[`skills-roadmap.md`](skills-roadmap.md) Track A. Purpose: find where the
 playbook is silent, ambiguous, or wrong, and turn that into a prioritised edit
 list — **not** to rewrite the skill yet.
 

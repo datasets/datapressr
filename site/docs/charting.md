@@ -19,11 +19,11 @@ Why Plot:
 - Both stories' friction notes pointed the same way. Story #2's scoreboard — a normalised ranged-bar chart with a clipped outlier — was about the ceiling of what hand-rolled SVG is comfortable for.
 - Rendered server-side it keeps the existing deployment model exactly: a committed `.svg`, no client JS, works in Flowershow and on GitHub.
 
-All three stories' charts now use this pattern: the [Keeling Curve](../site/stories/keeling-curve.md) charts were ported from hand-rolled SVG ([#12](https://github.com/datasets/datapressr/issues/12)), and [story #3](../site/stories/oil-prices.md) was built with it from the start. The `story` skill packages this guidance in `skills/story/references/charting.md`, with a starter script.
+All three stories' charts now use this pattern: the [Keeling Curve](../stories/keeling-curve.md) charts were ported from hand-rolled SVG ([#12](https://github.com/datasets/datapressr/issues/12)), and [story #3](../stories/oil-prices.md) was built with it from the start. The `story` skill packages this guidance in `skills/story/references/charting.md`, with a starter script.
 
 ## The pattern
 
-A `*-make-charts.mjs` next to the story. See [`site/stories/oil-prices-make-charts.mjs`](../site/stories/oil-prices-make-charts.mjs) or [`planetary-boundaries-make-charts.mjs`](../site/stories/planetary-boundaries-make-charts.mjs) for working examples.
+A `*-make-charts.mjs` next to the story. See [`site/stories/oil-prices-make-charts.mjs`](../stories/oil-prices-make-charts.mjs) or [`planetary-boundaries-make-charts.mjs`](../stories/planetary-boundaries-make-charts.mjs) for working examples.
 
 - `import * as Plot from "@observablehq/plot"` and `import { JSDOM } from "jsdom"` — Plot needs a DOM; jsdom supplies one in Node.
 - `Plot.plot({ document, ... })`, then serialise the returned node with `.outerHTML` (pull Plot's scoped `<style>` into the `<svg>` if Plot wrapped it in a `<figure>`).
@@ -36,7 +36,7 @@ Shared palette (also used by the story SVGs): line `#2563eb`, safe `#16a34a`, ex
 ## When not to use Plot
 
 - **A genuinely bespoke, one-of-a-kind visual** — hand-rolled SVG is still fine. Don't fight Plot's grammar to get a picture that isn't a chart.
-- **An interactive or exploratory piece** — Flowershow serves raw HTML pages (drop the `.html` in `site/`, ship its JS and data alongside). [`site/charting-spike.html`](../site/charting-spike.html) is an example of a shipped standalone page.
+- **An interactive or exploratory piece** — Flowershow serves raw HTML pages (drop the `.html` in `site/`, ship its JS and data alongside). [`site/charting-spike.html`](../charting-spike.html) is an example of a shipped standalone page.
 
 ## Still deferred
 
