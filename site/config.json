@@ -1,0 +1,20 @@
+{
+  "siteName": "DataPressr",
+  "description": "An opinionated, skill-driven workflow for turning raw data finds into clean, published datasets — and data stories.",
+  "logo": "🍇",
+  "favicon": "🍇",
+  "nav": {
+    "title": "DataPressr",
+    "links": [
+      { "name": "Datasets", "href": "/datasets" },
+      { "name": "Stories", "href": "/stories" },
+      { "name": "Docs", "href": "/docs" },
+      { "name": "Changelog", "href": "/changelog" }
+    ]
+  },
+  "social": [
+    { "label": "github", "href": "https://github.com/datasets/datapressr" }
+  ],
+  "showEditLink": true,
+  "contentHide": ["/changelog"]
+}
