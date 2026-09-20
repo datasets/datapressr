@@ -9,13 +9,13 @@ description: On 20 April 2020 the WTI spot price was -$36.98 a barrel, the only 
 
 *Daily spot prices, US dollars per barrel, not adjusted for inflation. Data: [oil-prices](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/oil-prices), from the U.S. Energy Information Administration (EIA). Data story #3 — written from [an outline](oil-prices-outline.md).*
 
-On 20 April 2020 the WTI spot price was **-$36.98 a barrel**. Brent, the other main crude benchmark, was **$17.36** that day. The WTI figure is the only negative value in 25,415 daily, weekly, monthly and annual Brent and WTI prices going back to 1986.
+On 20 April 2020 the WTI spot price **was -$36.98 a barrel**. Brent, the other main crude benchmark, **was $17.36** that day. The WTI figure is the only negative value in 25,415 daily, weekly, monthly and annual Brent and WTI prices going back to 1986.
 
 ## What these numbers are
 
 Both series are EIA's daily spot prices, "free on board": Brent for North Sea crude, WTI for crude delivered at Cushing, Oklahoma, a landlocked pipeline and storage hub. They are two different crudes at two different places, not one commodity priced twice.
 
-They are also spot prices, not futures. The widely reported **-$37.63** is the settlement price of the May 2020 WTI futures contract on NYMEX that day, according to the [CFTC](https://www.cftc.gov/PressRoom/PressReleases/8315-20). The spot figure here, -$36.98, is related but not the same number.
+They are also spot prices, not futures. The widely reported -$37.63 is the settlement price of the May 2020 WTI futures contract on NYMEX that day, according to the [CFTC](https://www.cftc.gov/PressRoom/PressReleases/8315-20). The spot figure here, -$36.98, is related but not the same number.
 
 ## What the data says
 
