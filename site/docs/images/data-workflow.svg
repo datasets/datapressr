@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" role="img" aria-labelledby="title desc">
+  <title id="title">From a source to a data story</title>
+  <desc id="desc">Find a source with capture and the discovery guide. Build a clean dataset with archive, structure and validate. Explore findings with enrich. Tell a data story with story.</desc>
+  <rect width="720" height="300" rx="12" fill="#f7f6f4"/>
+  <path d="M52 49V250" fill="none" stroke="#d8d3dd" stroke-width="2"/>
+  <g fill="#f7f6f4" stroke="#766183" stroke-width="2">
+    <circle cx="52" cy="49" r="7"/>
+    <circle cx="52" cy="116" r="7"/>
+    <circle cx="52" cy="183" r="7"/>
+    <circle cx="52" cy="250" r="7" fill="#766183"/>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace">
+    <g fill="#242127" font-size="19" font-weight="600">
+      <text x="82" y="46">Find a source</text>
+      <text x="82" y="113">Build a clean dataset</text>
+      <text x="82" y="180">Explore the findings</text>
+      <text x="82" y="247">Tell a data story</text>
+    </g>
+    <g fill="#62566b" font-size="15">
+      <text x="82" y="69">capture + discovery guide</text>
+      <text x="82" y="136">archive + structure + validate</text>
+      <text x="82" y="203">enrich</text>
+      <text x="82" y="270">story</text>
+    </g>
+  </g>
+</svg>
