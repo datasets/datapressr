@@ -9,9 +9,25 @@ DataPressr provides AI assistant skills for turning a data question or raw sourc
 
 ## From a question to a story
 
-![Find a source → build a clean dataset → explore the findings → tell a data story. DataPressr skills are labelled in purple beneath each step; source discovery is a separate guide.](images/data-workflow.svg)
+```text
+┌───────────────────────┐
+│ Find a source         │   datapressr: capture + discovery guide
+└───────────┬───────────┘
+            ↓
+┌───────────────────────┐
+│ Build a clean dataset │   datapressr: archive + structure + validate
+└───────────┬───────────┘
+            ↓
+┌───────────────────────┐
+│ Explore the findings  │   datapressr: enrich
+└───────────┬───────────┘
+            ↓
+┌───────────────────────┐
+│ Tell a data story     │   datapressr: story
+└───────────────────────┘
+```
 
-The labels show where DataPressr helps your AI assistant: preserving sources, making data reproducible, checking the package, exploring findings and turning an argument into charts and prose. Start with your question or idea; you review the source, the numbers and the story's claims.
+The labels name the DataPressr skills (plus the discovery guide) that help your AI assistant: preserving sources, making data reproducible, checking the package, exploring findings and turning an argument into charts and prose. Start with your question or idea; you review the source, the numbers and the story's claims.
 
 You can stop at a useful dataset. Use `init` to scaffold it and `push` to publish it to DataHub when ready; publication is optional and does not require a story. If you already have clean data, start at **Explore the findings**. The [source-discovery guide](source-discovery-playbook.md) helps you find evidence before the extraction skills begin.
 
