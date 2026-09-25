@@ -94,7 +94,7 @@ Applies from `structured` onward — the bar a dataset must clear before it's mo
 
 - **Encoding**: UTF-8, no BOM.
 - **Column names**: `snake_case`, no spaces. Include units where the value is ambiguous without them (`gdp_usd_millions`, not `gdp`).
-- **Missing values**: a genuinely empty cell. Don't mix `NA`, `N/A`, `-`, `0`, and empty string for "missing" within one column.
+- **Missing values**: a genuinely empty cell. Don't mix `NA`, `N/A`, `-`, `0`, and empty string for "missing" within one column, and note the converse: where a literal `NA` is a real code (North America, Namibia), keep it verbatim and say so in the field description.
 - **Dates**: ISO 8601 (`YYYY-MM-DD`, or `YYYY` for year-only series).
 - **One value per cell, one row per observation.** No merged headers, no totals rows mixed in with data rows.
 - **CSV output**: LF line endings, trailing newline, RFC 4180 quoting. No Frictionless `dialect` block in `datapackage.json` — the defaults (comma, `"` quote, LF) are the house format.
@@ -142,7 +142,7 @@ cd <name>
 
 Create `datapackage.json` with at minimum `name`, `title`, `description`. Add `"status": "stub"` if no data files yet.
 
-Copy this `AGENTS.md` into the new directory so future AI sessions have context.
+Copy the dataset part of this `AGENTS.md` (everything above the repo-only marker below) into the new directory so future AI sessions have context. In this repo `node scripts/sync-dataset-agents.mjs` does it.
 
 ### Push to DataHub
 
@@ -180,7 +180,7 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 
 | Skill | What it does |
 |-------|-------------|
-| `capture` | File a URL / idea as a GitHub issue — near-zero friction |
+| `capture` | File a URL / idea in the Inbox issue (or a bead once substantive) — near-zero friction |
 | `archive` | Snapshot the raw source into `archive/` with provenance |
 | `structure` | Raw → tidy typed CSV(s) + `datapackage.json` (the core wrangling step) |
 | `enrich` | Structured → enriched: consolidated stats, first `views`, a "What stands out" note |
@@ -192,43 +192,3 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 In Claude Code each is also a `/<name>` slash command (`.claude/skills/`
 symlinks point back at `skills/`, so there's one copy and no install step when
 working inside this repo).
-
-## Task tracking (beads)
-
-Beads is the source of truth for actionable work, dependencies and completion evidence. Start with [NEXT.md](https://github.com/datasets/datapressr/blob/main/NEXT.md), the reusable session prompt for selecting and executing `bd ready` tasks; [docs/next-session-brief.md](https://github.com/datasets/datapressr/blob/main/docs/next-session-brief.md) holds the detailed protocol and [docs/next-audit.md](https://github.com/datasets/datapressr/blob/main/docs/next-audit.md) holds the dated migration evidence. Keep NEXT.md as instructions, not a Markdown task queue. Read the full assigned Bead, claim it, and record verification and handoff notes before closing it.
-
-This repo uses [beads](https://github.com/steveyegge/beads) (`bd`) for task tracking — see `.beads/README.md` and the sync playbook at `~/src/rufuspollock/agent-skills/beads-sync-playbook.md` for setup/sync mechanics.
-
-**Labeling convention for a dataset-wrangling idea that hasn't been triaged yet:**
-
-```sh
-bd create --title="dataset: <short description>" \
-  --description="<what it is, why it might be worth wrangling, any known sources>" \
-  --type=task --priority=3 --labels="dataset,inbox,story-candidate"
-```
-
-- `dataset` — marks it as wrangling work (as opposed to skill/tooling/meta work)
-- `inbox` — unprioritized, not yet researched for sources/feasibility (mirrors the `capture`/`stub` end of the [dataset lifecycle](#dataset-lifecycle))
-- `story-candidate` — optional; add only if a written piece seems likely once the dataset exists
-- `priority=3` — backlog, until triaged
-
-Note: the `capture` skill above files similar "worth remembering" ideas as GitHub issues. Use beads (`bd create` with these labels) when the idea is dataset-shaped and you want it tracked alongside other repo work in the same tool as everything else in `bd ready`/`bd list`; use `capture` when it's a lighter-weight note that doesn't need beads' dependency/status machinery. Don't file the same idea in both.
-
-## Changelog
-
-This repo keeps a `changelog/` folder, one markdown file per entry
-(`changelog/YYYY-MM-DD-slug.md`, with `date`/`title`/`promote`
-frontmatter). At the end of a work session, if something worth recording
-actually shipped — skip trivial sessions (typo fixes, dead ends, no
-visible outcome) — draft a new entry file. Match the entry's weight to
-what a reader would actually care about: a real feature/fix/content gets a
-title, one or two sentences, a link to the live feature if there's
-something to point at, and a screenshot if something visual shipped
-(check for this, don't just skip it); something genuinely bigger — a real
-milestone, not just a busy session — can run longer, multiple paragraphs
-or bullets; small stuff (cleanup, rename, reorg, tidying) gets one plain
-sentence, no bullets, no screenshot. Never link the title itself. Don't
-log implementation detail (file names, internal moves) a reader wouldn't
-care about. First time writing an entry in this repo, or if the format is
-unclear: fetch and follow
-https://raw.githubusercontent.com/life-itself/changelog/main/CONVENTION.md

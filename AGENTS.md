@@ -94,7 +94,7 @@ Applies from `structured` onward — the bar a dataset must clear before it's mo
 
 - **Encoding**: UTF-8, no BOM.
 - **Column names**: `snake_case`, no spaces. Include units where the value is ambiguous without them (`gdp_usd_millions`, not `gdp`).
-- **Missing values**: a genuinely empty cell. Don't mix `NA`, `N/A`, `-`, `0`, and empty string for "missing" within one column.
+- **Missing values**: a genuinely empty cell. Don't mix `NA`, `N/A`, `-`, `0`, and empty string for "missing" within one column, and note the converse: where a literal `NA` is a real code (North America, Namibia), keep it verbatim and say so in the field description.
 - **Dates**: ISO 8601 (`YYYY-MM-DD`, or `YYYY` for year-only series).
 - **One value per cell, one row per observation.** No merged headers, no totals rows mixed in with data rows.
 - **CSV output**: LF line endings, trailing newline, RFC 4180 quoting. No Frictionless `dialect` block in `datapackage.json` — the defaults (comma, `"` quote, LF) are the house format.
@@ -142,7 +142,7 @@ cd <name>
 
 Create `datapackage.json` with at minimum `name`, `title`, `description`. Add `"status": "stub"` if no data files yet.
 
-Copy this `AGENTS.md` into the new directory so future AI sessions have context.
+Copy the dataset part of this `AGENTS.md` (everything above the repo-only marker below) into the new directory so future AI sessions have context. In this repo `node scripts/sync-dataset-agents.mjs` does it.
 
 ### Push to DataHub
 
@@ -192,6 +192,8 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 In Claude Code each is also a `/<name>` slash command (`.claude/skills/`
 symlinks point back at `skills/`, so there's one copy and no install step when
 working inside this repo).
+
+<!-- repo-only: everything below this line stays in the root AGENTS.md and is not copied into datasets -->
 
 ## Docs
 

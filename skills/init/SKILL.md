@@ -26,7 +26,7 @@ uppercase, slugify it and say what you used.
    }
    ```
 
-3. Copy the repo's `AGENTS.md` into `<name>/AGENTS.md` so future AI sessions have context.
+3. Copy the dataset conventions from the repo's `AGENTS.md` into `<name>/AGENTS.md` so future AI sessions have context: everything above its `<!-- repo-only: ... -->` marker line, not the repo-only sections below it. Inside the DataPressr repo, run `node scripts/sync-dataset-agents.mjs` instead, which does exactly that for every dataset (and `npm test` fails if a copy goes stale).
 
 4. Copy the repo's `scripts/validate-datapackage.mjs` into
    `<name>/scripts/validate-datapackage.mjs` — it's what the `validate` skill runs.
