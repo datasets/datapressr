@@ -1,6 +1,6 @@
 ---
 name: init
-description: Use this skill to scaffold a new dataset directory — the starting point for any new DataPressr dataset, before archive/structure. Creates datapackage.json (status stub), data/, .datahubignore, and copies in AGENTS.md and the validator script. Invoked as `/init <name>` in Claude Code, or by name with the dataset name as the argument.
+description: "Use this skill to scaffold a new dataset directory — the starting point for any new DataPressr dataset, before archive/structure. Creates datapackage.json (status stub), data/, .datahubignore, and copies in AGENTS.md and the validator script. Invoked as `/init <name>` in Claude Code, or by name with the dataset name as the argument."
 ---
 
 # Init: scaffold a new dataset directory

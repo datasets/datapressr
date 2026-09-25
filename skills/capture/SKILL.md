@@ -1,6 +1,6 @@
 ---
 name: capture
-description: Use this skill when the user shares a URL, dataset idea, or loose factoid they want tracked but haven't decided to act on yet — "worth remembering" not "let's build this now". Files it as a checklist line in the Inbox GitHub issue, or as a Beads task if it's already substantive and the repo uses Beads, replacing the old datasets/INBOX.md and datasets/BACKLOG.md markdown-file workflow. Near-zero friction is the point — no validation, no downloading, no judgment about whether it's good enough.
+description: "Use this skill when the user shares a URL, dataset idea, or loose factoid they want tracked but haven't decided to act on yet — \"worth remembering\" not \"let's build this now\". Files it as a checklist line in the Inbox GitHub issue, or as a Beads task if it's already substantive and the repo uses Beads, replacing the old datasets/INBOX.md and datasets/BACKLOG.md markdown-file workflow. Near-zero friction is the point — no validation, no downloading, no judgment about whether it's good enough."
 ---
 
 # Capture: get it out of the conversation and somewhere durable

@@ -1,6 +1,6 @@
 ---
 name: structure
-description: Use this skill when turning a raw or archived data source (a downloaded file, scraped page, or API response) into a clean, typed, publishable dataset — moving a DataPressr dataset from archived to status: structured. Covers writing the reproducible build script, tidy-data conventions, concrete cleanup idioms for messy real-world sources (missing-value tokens, currency/date parsing, sparse Excel headers, formula cells), and when to reach for DuckDB instead of a plain script. Trigger whenever wrangling raw data into data/*.csv + datapackage.json for a dataset in this project.
+description: "Use this skill when turning a raw or archived data source (a downloaded file, scraped page, or API response) into a clean, typed, publishable dataset — moving a DataPressr dataset from archived to status: structured. Covers writing the reproducible build script, tidy-data conventions, concrete cleanup idioms for messy real-world sources (missing-value tokens, currency/date parsing, sparse Excel headers, formula cells), and when to reach for DuckDB instead of a plain script. Trigger whenever wrangling raw data into data/*.csv + datapackage.json for a dataset in this project."
 ---
 
 # Structure: raw source → clean, typed dataset

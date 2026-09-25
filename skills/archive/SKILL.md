@@ -1,6 +1,6 @@
 ---
 name: archive
-description: Use this skill when a captured source has been decided worth pursuing and needs its raw form saved safely before wrangling starts — moving a dataset from stub to status: archived. Downloads/saves the raw source into archive/ with provenance (source URL, retrieval date, license if known), separate from data/ which holds the cleaned output. Precedes structure — read skills/structure/SKILL.md next once this is done.
+description: "Use this skill when a captured source has been decided worth pursuing and needs its raw form saved safely before wrangling starts — moving a dataset from stub to status: archived. Downloads/saves the raw source into archive/ with provenance (source URL, retrieval date, license if known), separate from data/ which holds the cleaned output. Precedes structure — read skills/structure/SKILL.md next once this is done."
 ---
 
 # Archive: get the raw bytes safely stored, with provenance

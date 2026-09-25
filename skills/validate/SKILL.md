@@ -1,6 +1,6 @@
 ---
 name: validate
-description: Use this skill to check a dataset's datapackage.json for common issues before pushing to DataHub — missing/invalid fields, unsafe name, empty or broken resources, missing schema/licenses/sources. Runs the deterministic dependency-free validator script. Invoked as `/validate` in Claude Code, or by name; operates on the dataset in the current directory.
+description: "Use this skill to check a dataset's datapackage.json for common issues before pushing to DataHub — missing/invalid fields, unsafe name, empty or broken resources, missing schema/licenses/sources. Runs the deterministic dependency-free validator script. Invoked as `/validate` in Claude Code, or by name; operates on the dataset in the current directory."
 ---
 
 # Validate: check datapackage.json before pushing

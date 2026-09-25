@@ -1,6 +1,6 @@
 ---
 name: push
-description: Use this skill to publish the current dataset directory to DataHub with the `dh` CLI. Checks datapackage.json and required DATAHUB_* env vars first; skips cleanly if credentials aren't configured (committing to git is enough on its own). Invoked as `/push` in Claude Code, or by name; operates on the dataset in the current directory.
+description: "Use this skill to publish the current dataset directory to DataHub with the `dh` CLI. Checks datapackage.json and required DATAHUB_* env vars first; skips cleanly if credentials aren't configured (committing to git is enough on its own). Invoked as `/push` in Claude Code, or by name; operates on the dataset in the current directory."
 ---
 
 # Push: publish the current dataset to DataHub
