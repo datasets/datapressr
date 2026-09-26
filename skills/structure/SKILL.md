@@ -16,6 +16,7 @@ A dataset is done with `structure` when, per `AGENTS.md`:
 - Encoding is UTF-8, columns are `snake_case` with units where ambiguous, missing values are genuinely empty cells (one convention, not three), dates are ISO 8601
 - A checked-in `build.ts` reproduces `data/*.csv` deterministically from the raw snapshot
 - `node scripts/validate-datapackage.mjs .` passes with no errors (aim for no warnings)
+- If the build has a custom parser or draws on many source documents, an independent reviewer has returned `APPROVED` (step 7)
 
 If you can't tick all of these, the dataset isn't structured yet — don't set `status: structured` prematurely.
 
@@ -130,7 +131,7 @@ The moment fields can contain commas or quotes, hand-rolling breaks silently —
 
 ### 4. Fill in `datapackage.json`
 
-Schema with typed fields and a `primaryKey`, `licenses`, `sources`, `status: "structured"`. See `AGENTS.md`'s minimal example for the shape.
+Schema with typed fields and a `primaryKey`, `licenses`, `sources`, `status: "structured"` (for a dataset that needs the step 7 review, set `structured` only after an `APPROVED` round, and re-hash). See `AGENTS.md`'s minimal example for the shape.
 
 **CSV format:** write `data/*.csv` with **LF** line endings and a trailing newline (the `toCsv` idiom does this). **Do not** add a Frictionless `dialect` block per resource — comma delimiter, `"` quote char, LF are the defaults, and an explicit `dialect` is just more surface to drift. (Some long-running community datasets carry a full `dialect` with `"lineTerminator": "\r\n"`; that's their choice, not one to copy.)
 
@@ -153,6 +154,30 @@ node build.ts && diff -r data/ /tmp/run1/  # should be empty
 
 If it isn't empty, something in the script is non-deterministic (unsorted rows, a `Date.now()` timestamp, iteration order over an object) — fix that before calling the dataset structured. This is the closest thing a wrangling step gets to a test, per the "What's actually tested" note in `docs/plans/skills-vision.md`.
 
+### 7. Adversarial review — *gate*
+
+Someone with no hand in the build tries to prove the dataset wrong before it is marked `structured`: a human, or a fresh agent given only the dataset directory and the brief, never the author's transcript.
+
+**When.** Required when either holds:
+
+- the build has a **custom parser** for a non-tabular or layout-dependent source: PDF, HTML scrape, prose or Markdown extraction, a spreadsheet with a preamble, sparse headers or several layout eras;
+- the records come from **many source documents** that can differ in layout (many filings or annual reports, not pages of one API response).
+
+Recommended otherwise, most of all when a heuristic selects or classifies records or the build joins tables. Not needed for a single-file CSV or JSON source read without a custom parser that passes the validator (`co2-ppm`).
+
+**The brief** (full text to paste into the reviewer: [`references/adversarial-review.md`](https://github.com/datasets/datapressr/blob/main/skills/structure/references/adversarial-review.md)). In order, in about 30 to 60 minutes:
+
+1. **Re-derive values** from the archive with the reviewer's own scan, not `build.ts`: at least one row per resource, per layout era, the min and max, and the newest record, each with its location in the source.
+2. **Read the names**: print every distinct value of every categorical column (coverage resource included) and read the list.
+3. **Break the build**: in a scratch copy, at least three mutations (swap two same-typed columns for one era, drop a zero-valued record, truncate the last document, corrupt a label) and say which check fired. A mutation nothing catches is a finding.
+4. **Check anchoring**: at least one literal read off the source by hand per layout era, asserted in a test.
+5. **Run the gates**: validator, double build with identical hashes, `npm test`.
+6. **Verdict**: `APPROVED`, or numbered findings with `file:line`.
+
+**Record it** like the `story` outline review: in the dataset README under `## Review` (or the Bead's close notes), one block per round with the reviewer's identity, the commit and SHA-256 of `datapackage.json` and each data file, the re-derived values and their source locations, each mutation and what caught it, the gate results and the verdict. Findings go back to the author, each fix with a check that fails without it; the new revision gets a new round. Elapsed time is not approval.
+
+Why: in both source-discovery runs the most valuable finding came from a fresh reviewer. Tesla's shipped two wrong coverage rows with the right row count; the NWS build's figures were all correct, yet a reviewer showed that swapping the modern era's columns or dropping a category passed every check, because every check was derived from the extraction it was checking ([source discovery playbook](https://github.com/datasets/datapressr/blob/main/site/docs/source-discovery-playbook.md)).
+
 ## Real worked examples
 
 - **Simple case** — [`precious-metals-prices`](https://github.com/datasets/energy-and-commodities/tree/main/precious-metals-prices), in the sibling `datasets/energy-and-commodities` repo: fetch a CSV from an API, filter by date, write out. No parsing library needed at all, source and output are both already tidy. This is the common case — don't over-build for it.
@@ -167,4 +192,5 @@ If it isn't empty, something in the script is non-deterministic (unsorted rows, 
 - Wrangling interactively in a chat session with no `build.ts` — can't be re-run, can't be reviewed, violates the reproducibility rule in `AGENTS.md`.
 - Mixing missing-value conventions (`NA` **as a missing-value token** in one column, empty string in another) — pick one, apply it everywhere via a single `cleanNumber` helper, not ad hoc per column. This is about how you *represent* missing; where a literal `NA` is real data, see **Values that lie** above.
 - Setting `status: structured` before `/validate` passes with no errors.
+- Marking a parsed or many-document dataset `structured` without the adversarial review, or reviewing it yourself. Checks derived from your own extraction move with it.
 - Forgetting `licenses`/`sources` because they felt like a publishing-time concern — capture them in step 0, before the wrangling gets interesting and they get forgotten.

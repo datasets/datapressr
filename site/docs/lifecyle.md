@@ -40,6 +40,7 @@ Use `structure` to produce tidy CSVs and document coverage, units and assumption
 - Recorded sources and licences.
 - A checked-in build script that reproduces the outputs from the archived snapshot.
 - A clean `/validate` result with no warnings.
+- For a build with a custom parser (PDF, HTML, prose, or a spreadsheet with a preamble or several layouts) or records drawn from many source documents: an independent adversarial review that re-derives values from the source, reads every category value and tries to break the build, recorded with an `APPROVED` verdict. It is recommended for other datasets too. The `structure` skill has the [reviewer brief](https://github.com/datasets/datapressr/blob/main/skills/structure/references/adversarial-review.md).
 
 See [assistant setup and commands](cli.md) for validation and publication. These workflows assume small data that fits comfortably in memory, well under roughly 1 GB raw; larger sources need a different approach.
 
