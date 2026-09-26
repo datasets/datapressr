@@ -1,7 +1,9 @@
 {
   "name": "empty-package",
   "title": "Empty Package",
-  "description": "Has no resources",
-  "status": "stub",
+  "description": "Archived but has no resources",
+  "status": "archived",
+  "licenses": [{ "name": "CC0-1.0" }],
+  "sources": [{ "title": "Example", "path": "https://example.org/" }],
   "resources": []
 }

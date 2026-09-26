@@ -24,18 +24,21 @@ Validate the dataset in the current directory.
    **Errors (must fix before pushing):**
    - `datapackage.json` exists and is valid JSON
    - `name` is present and URL-safe (lowercase, hyphens only — no spaces, dots, or uppercase)
-   - `resources` array is present and non-empty
+   - `resources` array is present and non-empty (not required while `status` is `capture` or `stub`)
    - Every resource `path` exists on disk
 
    **Warnings (ok to push, worth fixing):**
-   - `title` is present
-   - `description` is present
-   - Files exist in `data/` that are not listed in `resources`
+   - `title` is present (see Notes for a blank `""` at `capture`/`stub`)
+   - `description` is present (likewise)
+   - Files exist in `data/` that are not listed in `resources` (dotfiles such as `.gitkeep` are ignored)
    - Any resource file is very large (>50MB) — flag as approaching the small-data ceiling this workflow assumes
-   - `status` field is not set
+   - `status` is not set or is not a lifecycle stage (`capture`, `stub`, `archived`, `structured`, `enriched`, `monitored`); either way the dataset is treated as past `stub`
    - `licenses` is missing or empty (required once `status` is past `stub` — see `AGENTS.md`)
    - `sources` is missing or empty (required once `status` is past `stub`)
    - Any resource has no `schema`, or a `schema` with fields missing a `type`
    - A resource with an obvious identifying column (e.g. named `id`, or the first column) has no `schema.primaryKey` declared
 
-   Print a clear summary with ✓ for passing checks, ✗ for errors, and ⚠ for warnings.
+   **Notes (don't count as warnings):**
+   - `title` or `description` is the blank `""` placeholder `/init` scaffolds, while `status` is `capture` or `stub`
+
+   Print a clear summary with ✓ for passing checks, ✗ for errors, ⚠ for warnings and · for notes.

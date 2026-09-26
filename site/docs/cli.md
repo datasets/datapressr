@@ -65,10 +65,11 @@ world-gdp/
 
 Check `datapackage.json` for common issues before publishing.
 
-Runs `scripts/validate-datapackage.mjs` (copied into the dataset by `/init`, zero dependencies, plain Node — no `package.json` needed to run it) and reports its output: errors (must fix) and warnings (worth fixing).
+Runs `scripts/validate-datapackage.mjs` (copied into the dataset by `/init`, zero dependencies, plain Node — no `package.json` needed to run it) and reports its output: errors (must fix), warnings (worth fixing) and notes (reminders that don't count as warnings).
 
-- **Errors**: missing file, invalid JSON, unsafe name, empty resources, a resource path that doesn't exist
-- **Warnings**: missing title/description/status, unlisted files in `data/`, large files, missing `licenses`/`sources` past `stub`, resources with no typed `schema` or no `primaryKey`
+- **Errors**: missing file, invalid JSON, unsafe name, empty resources (allowed while `status` is `capture` or `stub`), a resource path that doesn't exist
+- **Warnings**: missing title/description, missing or unknown status, unlisted files in `data/`, large files, missing `licenses`/`sources` past `stub`, resources with no typed `schema` or no `primaryKey`
+- **Notes**: a blank `""` title/description (the `/init` placeholder) on a `capture` or `stub`
 
 The script itself has a test suite in the `datapressr` repo (`npm test`, using Node's built-in test runner against fixture datapackages in `scripts/fixtures/`) — it's the one piece of this project's tooling that's actually tested, rather than being an LLM re-deriving a checklist from prose each run.
 
