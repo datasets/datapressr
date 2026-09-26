@@ -12,7 +12,7 @@ install into any agent, not just Claude Code.
 | `structure` | → structured | The core wrangling step: raw → tidy typed CSV(s) + `datapackage.json` |
 | `init` | — | Scaffold a new dataset directory |
 | `validate` | — | Run the deterministic `datapackage.json` checks before pushing |
-| `push` | → published | `dh push` the dataset to DataHub |
+| `push` | → published | Publish the dataset to DataHub with `dh publish` |
 | `enrich` | → enriched | Structured dataset → consolidated descriptive stats + first charts + commentary (`enrich.ts` + `SUMMARY.md` + `views`). Bundles a working `enrich.ts` template in `references/`. |
 | `story` | → story | One or more finished datasets → a short data story: outline (independently reviewed) → Observable Plot charts → prose. Bundles its craft, voice and charting guides in `references/`. |
 

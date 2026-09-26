@@ -74,7 +74,7 @@ You get an outline, chart-building scripts, SVG charts and a Markdown story. Rev
 | `validate` | Check metadata, resource paths and schema declarations |
 | `enrich` | Add summary statistics, initial charts and a note on the findings |
 | `story` | Develop one argument through a reviewed outline, charts and prose |
-| `push` | Publish the dataset to DataHub when credentials are configured |
+| `push` | Publish the dataset to DataHub with `dh publish`, once you've signed in with `dh login` |
 
 Use one skill for a specific job, or combine them for the full workflow. Publication is optional: the dataset can live in your own Git repository.
 

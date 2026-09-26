@@ -39,7 +39,7 @@ Every dataset is a directory:
 <name>/
   datapackage.json   # metadata and resource list (required)
   data/              # data files go here
-  .datahubignore     # gitignore-style exclusions for dh push
+  .datahubignore     # gitignore-style exclusions for dh publish
   AGENTS.md          # this file (copy into new datasets)
 ```
 
@@ -125,7 +125,7 @@ Add a `views` array to `datapackage.json` to render charts on the dataset page:
 }
 ```
 
-Supported chart types: `line`, `bar`, `lines-and-points`. Only CSV and GeoJSON resources can be visualised. `group` is the x-axis field, `series` is the list of y-axis fields.
+Supported chart types: `line`, `bar`, `lines-and-points`. Only CSV and GeoJSON resources can be visualised. `group` is the x-axis field, `series` is the list of y-axis fields. On DataHub, simple `bar` and `lines-and-points` charts need `group` and `series[0]` typed `year`, `yearmonth`, `date` or `number` (not `integer` or `string`) and plot only `series[0]`; use `line` for several series, or `"specType": "vega-lite"` or `"plot"` otherwise.
 
 ---
 
@@ -144,29 +144,27 @@ Create `datapackage.json` with at minimum `name`, `title`, `description`. Add `"
 
 Copy the dataset part of this `AGENTS.md` (everything above the repo-only marker below) into the new directory so future AI sessions have context. In this repo `node scripts/sync-dataset-agents.mjs` does it.
 
-### Push to DataHub
+### Publish to DataHub
 
-**Skip this step if credentials are not configured.** Commit and push to GitHub — that is sufficient. Do not attempt `dh push` and do not treat missing credentials as an error.
+**Skip this step if `dh` or credentials are not set up.** Commit and push to GitHub — that is sufficient. Do not treat missing credentials as an error, and never run `dh login` on the user's behalf (it needs them in a browser).
 
-If credentials are configured:
+The DataHub CLI command is `dh publish` (renamed from `push`, which now fails). The `push` skill runs it:
 
 ```sh
-dh push .
+dh publish . --publication datapressr
 ```
 
-Requires env vars:
-```sh
-export DATAHUB_API_URL=https://datahub.io
-export DATAHUB_API_TOKEN=<your-token>
-export DATAHUB_PUBLICATION=<your-publication-slug>
-```
+- **Credentials:** `dh login` (a one-off browser sign-in that saves a token locally) is the normal path. `DATAHUB_API_TOKEN` plus `DATAHUB_API_URL=https://datahub.io` is the CI path.
+- **Always pass `--publication` explicitly.** Use `$DATAHUB_PUBLICATION` if set, otherwise `datapressr`. Never publish to `core`, and stop if `$DATAHUB_PUBLICATION` is `core`: `core` datasets (e.g. co2-ppm, oil-prices, airport-codes) git-sync from `github.com/datasets/*`, and the next sync can overwrite a direct upload.
+- **A root `README.md` is required.** Without one the dataset page is a 404.
+- **Publishing is an upsert, not a sync.** Files deleted locally stay on DataHub, and the `title` and `description` of an existing dataset are not updated.
 
-`dh` is the DataHub CLI — install from [datopian/datahub-next](https://github.com/datopian/datahub-next/tree/staging/cli).
+`dh` is a Go binary from the private repo [datopian/datahub-next](https://github.com/datopian/datahub-next/tree/staging/cli): `gh release download v0.1.0 -R datopian/datahub-next -p 'dh_<os>_<arch>.tar.gz'`, extract it and put `dh` on your `PATH`. The `push` skill has the full checklist.
 
 ### Delete a dataset
 
 ```sh
-dh delete <name>
+dh delete <name> -p datapressr
 ```
 
 ---
@@ -187,7 +185,7 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 | `story` | Finished dataset(s) → a short data story: reviewed outline → Plot charts → prose |
 | `init` | Scaffold a new dataset directory |
 | `validate` | Check `datapackage.json` for common issues |
-| `push` | Push the current dataset directory to DataHub |
+| `push` | Publish the current dataset directory to DataHub (`dh publish`) |
 
 In Claude Code each is also a `/<name>` slash command (`.claude/skills/`
 symlinks point back at `skills/`, so there's one copy and no install step when
