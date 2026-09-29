@@ -14,6 +14,7 @@ This directory holds maintainer and agent material outside the published `site/`
 
 ## Planning and evidence
 
+- [Visual data workspace assessment, 2026-09-29](plans/2026-09-29-visual-data-workspace-assessment.md): initial comparison of BB and Zed extensions, OpenDesign customization or a fork, and a standalone application for agent-assisted data work.
 - [Next phase plan, 2026-09-25](plans/2026-09-25-next-phase.md): current direction, epics, order and delegated decisions, with its [research reports](plans/2026-09-25-research/).
 - [Skills roadmap](plans/skills-roadmap.md) and [skills vision](plans/skills-vision.md): historical planning; current assignments live in Beads.
 - [Structure benchmark](structure-benchmark.md): overall findings, with [JSON/API](benchmarks/round-2-json.md) and [relational join](benchmarks/round-2-join.md) reports.
