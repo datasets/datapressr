@@ -2,6 +2,8 @@
 
 Date: 2026-09-29. Status: initial research assessment, not an approved implementation plan. Tracking: `datapressr-rh1`.
 
+**2026-09-30 clarification and experiment:** the agreed scope is read-only previews of datasets, README/documentation, charts, and data stories beside an agent using the DataPressr skills. Direct editing is excluded; selection/annotation and rich inspection tools are not initial requirements. The decisive gate is autonomous AI development and visual testing. A small local BB plugin has now passed that gate: see the [development experiment and evidence](2026-09-30-bb-preview-development-gate.md). The analysis below records the broader initial hypotheses; the follow-up supersedes its suggested selection-to-conversation acceptance criterion and its “no plugin built” evidence status.
+
 ## Intent
 
 Explore an experience for DataPressr that combines Claude Code or Codex with a substantial visual output area beside the conversation. The reference is OpenDesign: chat on the left, rendered artifact on the right, with iteration happening while the output is visible. “Canvas” here means this output workspace; an infinite spatial canvas is not a requirement.
