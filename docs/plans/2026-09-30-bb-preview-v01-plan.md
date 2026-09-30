@@ -12,7 +12,7 @@ Date: 2026-09-30. Planning scope authorized by the user; implementation starts i
 
 The user wants the OpenDesign interaction pattern for a dataset **or a data story**, including dataset documentation such as README files. Conversation and rendered outputs stay visible together. Changes are requested through the agent. Direct editing is excluded from v0.1, as are cell selection-to-prompt, annotations, profiling dashboards, a new chart editor, publishing controls, and a new agent harness.
 
-The [initial assessment](2026-09-29-visual-data-workspace-assessment.md) favored BB. The [development gate](2026-09-30-bb-preview-development-gate.md) proved that the assistant can launch BB, build/install/reload a plugin, inspect the native and browser interfaces, observe file changes, and test error recovery without asking the user to perform manual QA. Source code is in `experiments/bb-preview/bb-plugin-datapressr-preview/`.
+The [initial assessment](2026-09-29-visual-data-workspace-assessment.md) favored BB. The [development gate](2026-09-30-bb-preview-development-gate.md) proved that the assistant can launch BB, build/install/reload a plugin, inspect the native and browser interfaces, observe file changes, and test error recovery without asking the user to perform manual QA. Source code is in `desktop-app/experiments/bb-preview/bb-plugin-datapressr-preview/`.
 
 Situation: the working PoC has the desired shape. Complication: every panel reads the same fixed fixture directory, and its HTML demo does not exercise DataPressr's real Markdown stories with local SVG charts. The implementation question is how to turn that proof into a reliable, installable viewer for actual work while preserving the proven autonomous development loop.
 
@@ -44,7 +44,7 @@ Open two threads using different worktrees, with the same relative README path b
 
 ## Component boundaries
 
-Final package location: `plugins/bb-plugin-datapressr-preview/`. Keep root dataset tooling and package dependencies unchanged.
+Product directory and final package location: `desktop-app/`. This names the mini app; BB is its initial implementation host. Keep root dataset tooling and package dependencies unchanged. The PoC now lives under `desktop-app/experiments/bb-preview/bb-plugin-datapressr-preview/`; preserve the separately installed PoC worktree path until explicitly reinstalling. Keep BB-specific code behind `src/bb-workspace.ts` and related adapters so the product directory remains appropriate if the host changes.
 
 ```text
 BB thread ID → BB adapter → actual local workspace identity
@@ -115,7 +115,7 @@ Epic: `datapressr-49p`. Related completed gate: `datapressr-01n`.
 
 ### 1. Establish production package and workspace adapter
 
-Files: create `plugins/bb-plugin-datapressr-preview/{package.json,package-lock.json,tsconfig.json,app.tsx,server.ts,src/bb-workspace.ts,tests/bb-workspace.test.ts}` from the proven minimal scaffold; retain the experiment. Remove the hard-coded fixture setting from the new package. The first visual state may simply show the resolved workspace and an empty artifact list.
+Files: create `desktop-app/{package.json,package-lock.json,tsconfig.json,app.tsx,server.ts,src/bb-workspace.ts,tests/bb-workspace.test.ts}` from the proven minimal scaffold; retain the experiment. Remove the hard-coded fixture setting from the new package. The first visual state may simply show the resolved workspace and an empty artifact list.
 
 Test first: two thread IDs resolving to different worktrees; missing/deleted environment; remote host; unavailable BB service. Implement the adapter with public SDK contracts, then exercise it in running BB. Acceptance: each test thread reports its actual local directory; unsupported contexts are explicit; existing PoC remains runnable. Record BB/SDK versions and any experimental surface used. Commit package and adapter together.
 
@@ -191,12 +191,26 @@ Plan for roughly **10–20 focused engineering hours**, often spread over severa
 
 Three checkpoints make progress reviewable: workspace-bound picker and reads (Tasks 1–3); complete artifact viewing with refresh (Tasks 4–6); actual skill runs and reproducible installation (Tasks 7–9). BB is the preferred route. Consider a simple standalone viewer only if a reproduced BB limitation prevents reliable workspace access, document asset rendering, or autonomous QA, and record that evidence before changing architecture.
 
+## AI assignment and session choice
+
+Start a fresh implementation session in this repository with **GPT-6 Astra, high reasoning**, beginning at `datapressr-49p.1`. A fresh session is recommended because the vision, decisions and evidence are now captured; it is not technically required. Staying on Astra high for the entire implementation is the simplest option.
+
+Each child has advisory `ai-level:`, `model:`, and `reasoning:` labels. They describe the recommended developer model, not the Claude Code/Codex provider being tested inside BB, and do not automatically switch the running model or authorize parallel delegation.
+
+| Tasks | Recommended model | Reasoning | Rationale |
+| --- | --- | --- | --- |
+| 1, 3, 5, 6, 7, 8 | GPT-6 Astra (`gpt-6-astra`), `ai-level:frontier` | high | Workspace boundaries, asset rendering, asynchronous state, provider integration, and autonomous visual QA require judgment across components. |
+| 2, 4 | GPT-6 Sol (`gpt-6-sol`), `ai-level:standard` | high | Bounded artifact discovery and CSV rendering have detailed contracts and focused acceptance tests. Astra is also suitable. |
+| 9 | GPT-6 Sol (`gpt-6-sol`), `ai-level:standard` | medium | Packaging and documentation after the integrated behavior is verified. Escalate if clean installation exposes architectural defects. |
+
+These task assignments are engineering recommendations, not benchmark results. Official documentation describes [Astra](https://developers.openai.com/api/docs/models/gpt-6-astra) for demanding coding and computer use and [Sol](https://developers.openai.com/api/docs/models/gpt-6-sol) as a capable alternative; checked 2026-09-30. Use the model names available in the session's picker; account availability is not established by API documentation. Do not choose a cheaper model at the expense of reliable computer control and visual inspection. If staying in one sequential session, keep Astra high rather than switching at every Bead.
+
 ## Next-session handoff
 
 Start with `datapressr-49p.1`; use `bd ready --parent datapressr-49p` to select subsequent ready children. Do not claim the umbrella epic as an implementation task or switch to unrelated repository backlog work. Current priorities are scoped to this v0.1 effort.
 
 ```text
-Implement DataPressr BB preview v0.1, epic datapressr-49p. Read AGENTS.md, docs/plans/2026-09-30-bb-preview-v01-plan.md, and docs/plans/2026-09-30-bb-preview-development-gate.md. Run bd dolt pull, then bd ready --parent datapressr-49p. Start by reading and claiming datapressr-49p.1. Use an isolated worktree; preserve the installed PoC worktree. Execute ready children sequentially, record tests and real UI evidence, and commit each bounded change. You must run and visually test BB yourself; do not depend on the user for routine QA. Preview-only: datasets, READMEs, charts and stories; no direct editing. Resolve the actual thread workspace. Existing skills are canonical. Follow their review/publishing gates and do not log in or publish on the user's behalf. At handoff, record tested revisions and remaining gates in Beads and run bd dolt push.
+Implement the DataPressr desktop app v0.1 using BB, epic datapressr-49p. Work in desktop-app/; the PoC is under desktop-app/experiments/. Recommended session model: GPT-6 Astra, high reasoning. Read AGENTS.md, docs/plans/2026-09-30-bb-preview-v01-plan.md, and docs/plans/2026-09-30-bb-preview-development-gate.md. Run bd dolt pull, then bd ready --parent datapressr-49p. Start by reading and claiming datapressr-49p.1. Use an isolated worktree; preserve the installed PoC worktree. Execute ready children sequentially, record tests and real UI evidence, and commit each bounded change. You must run and visually test BB yourself; do not depend on the user for routine QA. Preview-only: datasets, READMEs, charts and stories; no direct editing. Resolve the actual thread workspace. Existing skills are canonical. Follow their review/publishing gates and do not log in or publish on the user's behalf. At handoff, record tested revisions and remaining gates in Beads and run bd dolt push.
 ```
 
 The plan and task graph are prepared for implementation; no v0.1 code has been written in this planning session. Use the executing-plans and verification workflows when implementation begins. Changes to scope should update this document and affected Beads together.

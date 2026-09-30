@@ -44,7 +44,9 @@ The decisive platform requirement is that the developing AI can run the host, bu
 
 ## Reproduction and handoff
 
-The committed [experiment README](../../experiments/bb-preview/bb-plugin-datapressr-preview/README.md) contains exact setup and repeatable check commands. The installed plugin points to `/Users/rgrp/.config/superpowers/worktrees/datapressr/bb-preview-spike/experiments/bb-preview/bb-plugin-datapressr-preview`; preserve this worktree while using that installation. The native application and browser UI share the server at `http://127.0.0.1:38886` on this computer. The development watcher is stopped; the plugin remains enabled for inspection.
+Repository layout update: the committed PoC now lives in `desktop-app/experiments/bb-preview/bb-plugin-datapressr-preview/`. The original installed worktree path below remains valid and was deliberately left in place.
+
+The committed [experiment README](../../desktop-app/experiments/bb-preview/bb-plugin-datapressr-preview/README.md) contains exact setup and repeatable check commands. The installed plugin points to `/Users/rgrp/.config/superpowers/worktrees/datapressr/bb-preview-spike/experiments/bb-preview/bb-plugin-datapressr-preview`; preserve this worktree while using that installation. The native application and browser UI share the server at `http://127.0.0.1:38886` on this computer. The development watcher is stopped; the plugin remains enabled for inspection.
 
 The screenshot saved in the repository shows only the fixture preview page. The native split-view screenshot was inspected in the session but not committed, to avoid including an unrelated existing conversation in the repository.
 
