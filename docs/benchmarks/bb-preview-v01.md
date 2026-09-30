@@ -34,3 +34,11 @@ Task `datapressr-49p.3`: 19 tests pass, typecheck/build pass. Real-filesystem ch
 Transport uses BB's existing authenticated RPC facility. No new HTTP endpoint, exposed token, or authentication override is introduced. The returned base64 asset URLs render inside `sandbox=""` frames with restrictive CSP and no scripts. In native BB, opened acceptance B's `site/stories/keeling-annual.svg` and visually confirmed the real chart, axis labels and threshold annotations. CSS delivery is covered by filesystem tests; document-relative HTML/CSS rendering is exercised by Task 5.
 
 ![Keeling SVG delivered into an isolated preview](images/bb-v01-asset.png)
+
+## CSV renderer — 2026-09-30
+
+Task `datapressr-49p.4`: 24 tests pass, typecheck/build pass. Native checks showed the CO₂ annual global table (47 rows, three columns), Brent daily sample (first 200 rows, explicitly not a total), and both split and expanded panel layouts. A malformed CSV fixture showed a parser error; choosing valid CO₂ data restored the table without a reload. No rows from the previous selection remained. The live test initially caught a Node-only csv-parse import; switching to its official browser ESM build fixed plugin loading and was rechecked in the same UI.
+
+![CO₂ CSV in the split panel](images/bb-v01-csv-co2.png)
+
+![Brent CSV in the expanded panel](images/bb-v01-csv-wide.png)

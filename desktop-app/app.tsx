@@ -26,9 +26,9 @@ function Preview({threadId}:PluginThreadPanelProps) {
     <h1 className="text-xl font-semibold">DataPressr Preview</h1>
     <p className="mb-5 text-sm text-muted-foreground">Read-only workspace preview</p>
     {!result ? <p role="status">Resolving conversation workspace…</p> : !result.ok ? <div role="alert"><p>{result.message}</p><button className="mt-3 rounded border px-3 py-2" onClick={() => setRetry(n => n+1)}>Retry</button></div> : <>
-      <h2 className="mb-2 font-semibold">Conversation workspace</h2>
+      <details><summary className="cursor-pointer text-xs text-muted-foreground">Conversation workspace</summary>
       <p className="break-all rounded border p-3 font-mono text-sm">{result.workspace.rootPath}</p>
-      <dl className="my-4 text-xs text-muted-foreground"><dt>Environment</dt><dd>{result.workspace.environmentId}</dd><dt className="mt-2">Host</dt><dd>{result.workspace.hostId}</dd></dl>
+      <dl className="my-4 text-xs text-muted-foreground"><dt>Environment</dt><dd>{result.workspace.environmentId}</dd><dt className="mt-2">Host</dt><dd>{result.workspace.hostId}</dd></dl></details>
       {catalog && <ArtifactPicker catalog={catalog} onSelect={setSelected}/>}
       {selected && <div className="border-t pt-4"><p className="break-all font-mono text-sm">{selected.path}</p><FilePreview key={`${threadId}:${selected.path}`} threadId={threadId} path={selected.path}/></div>}
     </>}
