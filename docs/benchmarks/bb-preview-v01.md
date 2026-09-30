@@ -109,3 +109,13 @@ The clean source installed under the same `datapressr-preview` ID with status `r
 ![Real story from the clean source installation](images/bb-v01-clean-install.png)
 
 Unsupported in v0.1: remote hosts, files outside the conversation workspace, inputs over 10 MiB, arbitrary JavaScript/remote assets, XLSX/Parquet/PDF, and automatic rendering of `datapackage.json.views`. Only the configured Codex and Claude Code providers above were exercised. No marketplace release, publishing, new account setup or human QA was used.
+
+## Release and handoff — 2026-09-30
+
+Task `datapressr-49p.9`: release source commit `75b3f2e`, package version 0.1.0. Exported that exact commit into a second fresh directory and executed the documented commands from `desktop-app/`: `npm ci --ignore-scripts`, `npm test` (38/38), `npm run typecheck`, `npm run build`, `npm run skills:check`, and `bb plugin install . --yes`. All passed. Native Cmd-R preserved the selected real CO₂ README and rendered it from this clean installation. Local documentation links resolve and `git diff --check` passes.
+
+The supported final installation is `path:/Users/rgrp/.config/superpowers/worktrees/datapressr/bb-v01/desktop-app` on branch `feat/bb-v01`. Reinstalled there after the clean-export checks; BB reports `datapressr-preview` 0.1.0 running. The original PoC worktree is preserved. The implementation worktree is intentionally retained because BB loads its source from that location; merging the branch later does not require deleting it. Temporary clean-export directories are not the active source.
+
+All five dedicated BB test agents were stopped to release their runtimes. No test-only server or development watcher is left running. Useful preview tabs remain available: A has the real CO₂ README, the Codex thread has its edited disposable README, the Claude thread has its rebuilt chart story, and the fresh-install thread has the real Keeling story. The disposable acceptance worktree and fixtures remain for reproducing the evidence; source datasets were not changed. The temporary identity fixture in the implementation worktree was removed after restoring A's real README selection.
+
+The indexed [user guide](../../site/docs/bb-preview.md), package README and screenshot-backed changelog cover installation, skill setup, limits, updating, disabling and troubleshooting. All nine implementation gates are complete; remote-host support and broader standalone skill portability remain outside v0.1.
