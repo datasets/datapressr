@@ -26,3 +26,11 @@ The test threads are idle and the preview tabs remain available. No development 
 Task `datapressr-49p.2`: five new tests passed (14 total), with typecheck and build passing. Native BB acceptance B discovered 465 artifacts. Searched `co2-ppm`, opened the grouped README and `data/co2-annual-global.csv`, then used direct relative-path entry for `site/stories/keeling-curve.md`. Exact selected paths and kinds were visible. Rendering is intentionally deferred to Tasks 4–5. Discovery reads no remote URLs, skips symlinks and excluded directories, bounds traversal at 10,000 entries and limits metadata reads to 1 MiB. Tests include the real repository paths and malformed metadata fixtures.
 
 ![Artifact picker with a selected story](images/bb-v01-picker.png)
+
+## Bounded file and asset transport — 2026-09-30
+
+Task `datapressr-49p.3`: 19 tests pass, typecheck/build pass. Real-filesystem checks cover quoted/Unicode paths, valid parents, absolute/encoded traversal, file and directory symlink escape, missing/non-file/unsupported/oversized inputs, content hashes, CSS/SVG data URLs, and different contents in separate roots. Every RPC resolves the thread environment on the server; its strict input rejects a client-supplied root. Reads stop at 10 MiB even if a writer grows the file during reading.
+
+Transport uses BB's existing authenticated RPC facility. No new HTTP endpoint, exposed token, or authentication override is introduced. The returned base64 asset URLs render inside `sandbox=""` frames with restrictive CSP and no scripts. In native BB, opened acceptance B's `site/stories/keeling-annual.svg` and visually confirmed the real chart, axis labels and threshold annotations. CSS delivery is covered by filesystem tests; document-relative HTML/CSS rendering is exercised by Task 5.
+
+![Keeling SVG delivered into an isolated preview](images/bb-v01-asset.png)

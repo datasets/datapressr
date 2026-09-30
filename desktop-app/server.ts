@@ -1,3 +1,6 @@
+import { readAsset } from './src/asset-routes.ts';
+import { readWorkspaceFile, PreviewError } from './src/files.ts';
+import { LIMITS } from './src/limits.ts';
 import { defineRpcContract, type BbPluginApi } from '@get-bb/plugin-sdk';
 import { z } from 'zod';
 import { discoverArtifacts } from './src/artifacts.ts';
@@ -6,6 +9,14 @@ import { bbWorkspaceServices, resolveWorkspace } from './src/bb-workspace.ts';
 const workspaceSchema = z.object({threadId:z.string(), environmentId:z.string(), hostId:z.string(), rootPath:z.string()});
 const errorSchema = z.object({ok:z.literal(false), code:z.string(), message:z.string()});
 export const rpcContract = defineRpcContract({
+  file: {
+    input:z.object({threadId:z.string().min(1),path:z.string().min(1)}).strict(),
+    output:z.discriminatedUnion('ok',[errorSchema,z.object({ok:z.literal(true),workspace:workspaceSchema,path:z.string(),mediaType:z.string(),revision:z.string(),content:z.string(),dataUrl:z.string(),limitBytes:z.number()})]),
+  },
+  asset: {
+    input:z.object({threadId:z.string().min(1),documentPath:z.string().min(1),reference:z.string().min(1)}).strict(),
+    output:z.discriminatedUnion('ok',[errorSchema,z.object({ok:z.literal(true),workspace:workspaceSchema,path:z.string(),revision:z.string(),dataUrl:z.string()})]),
+  },
   catalog: {
     input: z.object({threadId:z.string().min(1)}).strict(),
     output: z.discriminatedUnion('ok', [errorSchema, z.object({ok:z.literal(true),workspace:workspaceSchema,catalog:z.object({
@@ -23,6 +34,15 @@ export const rpcContract = defineRpcContract({
 });
 export default function plugin(bb:BbPluginApi) {
   bb.rpc.register(rpcContract, {
+    file: async ({threadId,path}) => {
+      const result=await resolveWorkspace(bbWorkspaceServices(bb),threadId);if(!result.ok)return result;
+      try {const file=await readWorkspaceFile(result.workspace.rootPath,path);return {...result,path:file.path,mediaType:file.mediaType,revision:file.revision,content:file.mediaType.startsWith('text/')?file.bytes.toString('utf8'):'',dataUrl:`data:${file.mediaType};base64,${file.bytes.toString('base64')}`,limitBytes:LIMITS.fileBytes};}
+      catch(cause) {return fileError(cause);}
+    },
+    asset: async ({threadId,documentPath,reference}) => {
+      const result=await resolveWorkspace(bbWorkspaceServices(bb),threadId);if(!result.ok)return result;
+      try {return {ok:true as const,...await readAsset(result.workspace,documentPath,reference)};} catch(cause) {return fileError(cause);}
+    },
     workspace: ({threadId}) => resolveWorkspace(bbWorkspaceServices(bb), threadId),
     catalog: async ({threadId}) => {
       const result = await resolveWorkspace(bbWorkspaceServices(bb),threadId);
@@ -32,3 +52,5 @@ export default function plugin(bb:BbPluginApi) {
   });
   bb.log.info('DataPressr workspace preview loaded');
 }
+
+function fileError(cause:unknown) {return {ok:false as const,code:cause instanceof PreviewError?cause.code:'file_unavailable',message:cause instanceof PreviewError?cause.message:'Preview unavailable.'};}

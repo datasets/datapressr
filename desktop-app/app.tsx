@@ -1,3 +1,4 @@
+import { FilePreview } from './src/file-preview';
 import { ArtifactPicker } from './src/artifact-picker';
 import type { Catalog } from './src/artifacts';
 import type { ArtifactRef } from './src/types';
@@ -29,7 +30,7 @@ function Preview({threadId}:PluginThreadPanelProps) {
       <p className="break-all rounded border p-3 font-mono text-sm">{result.workspace.rootPath}</p>
       <dl className="my-4 text-xs text-muted-foreground"><dt>Environment</dt><dd>{result.workspace.environmentId}</dd><dt className="mt-2">Host</dt><dd>{result.workspace.hostId}</dd></dl>
       {catalog && <ArtifactPicker catalog={catalog} onSelect={setSelected}/>}
-      {selected && <div className="border-t pt-4"><p className="break-all font-mono text-sm">{selected.path}</p><p className="mt-2 text-sm text-muted-foreground">Selected {selected.kind} · rendering will appear here.</p></div>}
+      {selected && <div className="border-t pt-4"><p className="break-all font-mono text-sm">{selected.path}</p><FilePreview key={`${threadId}:${selected.path}`} threadId={threadId} path={selected.path}/></div>}
     </>}
   </section>;
 }
