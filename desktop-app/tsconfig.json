@@ -19,13 +19,15 @@
     },
     "noEmit": true,
     "skipLibCheck": false,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "allowJs": true
   },
   "include": [
     "server.ts",
     "app.tsx",
     "src/**/*.ts",
     "src/**/*.tsx",
-    "tests/**/*.ts"
+    "tests/**/*.ts",
+    "scripts/*.mjs"
   ]
 }

@@ -13,7 +13,10 @@
       "icon": "Table"
     },
     "server": "./server.ts",
-    "app": "./app.tsx"
+    "app": "./app.tsx",
+    "skills": [
+      "generated-skills"
+    ]
   },
   "dependencies": {
     "csv-parse": "^7.0.3",
@@ -54,6 +57,8 @@
   "scripts": {
     "test": "node --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "build": "bb plugin build ."
+    "build": "npm run skills:sync && bb plugin build .",
+    "skills:sync": "node scripts/prepare-skills.mjs",
+    "skills:check": "node scripts/prepare-skills.mjs --check"
   }
 }
