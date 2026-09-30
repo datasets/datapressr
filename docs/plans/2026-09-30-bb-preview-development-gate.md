@@ -40,7 +40,7 @@ The decisive platform requirement is that the developing AI can run the host, bu
 | Reader checks | Two Node tests initially failed against the unimplemented reader, then passed for quoted CSV, subsequent file changes, Markdown/HTML content, unsupported artifact IDs, and the file-size cap. |
 | Static checks | TypeScript check and BB build passed. Final npm install audit reported zero vulnerabilities. |
 
-![BB showing the DataPressr story preview](images/2026-09-30-bb-preview.png)
+![BB showing the DataPressr story preview](images/2026-09-30-bb-preview.jpg)
 
 ## Reproduction and handoff
 
