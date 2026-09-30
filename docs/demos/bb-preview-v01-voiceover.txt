@@ -1,0 +1,15 @@
+When you work with an AI on a dataset, you need to see what changed. DataPressr Preview puts your data, documentation and charts beside the conversation, inside BB. Here’s the workflow.
+
+Open DataPressr Preview from the conversation’s right panel. Search the workspace, choose a dataset resource, or enter a relative file path. The panel follows this conversation’s actual worktree, so you can see which file you’re looking at.
+
+Switch to a CSV to inspect the column names and values. Large tables use a clearly labeled sample, keeping the preview manageable. The viewer is read-only: changes happen through the agent and the files in your project.
+
+The existing DataPressr skills are available in BB. Here, Codex has run the validate skill on a disposable dataset copy. The result is visible in the conversation: no errors and no warnings. The same workflow was also tested with Claude Code.
+
+Now ask for a small documentation change. The agent edits the README, and the open preview refreshes automatically. In this test, the requested sentence appears beside the conversation. You can check the result while you continue discussing the work.
+
+The preview also renders Markdown stories with their local chart images. This is the existing Keeling Curve story, with its annual trend and seasonal cycle. You can read the explanation and inspect the charts in the same workspace as the agent.
+
+Chart updates work too. In this simple test fixture, the agent changes an input and rebuilds the SVG. The embedded chart updates even though the surrounding Markdown has not changed.
+
+That’s DataPressr Preview v0.1: work through the conversation, inspect the files, and see the results together. Follow the linked tutorial to install it in your local BB setup.

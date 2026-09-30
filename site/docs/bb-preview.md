@@ -136,3 +136,7 @@ bb plugin install . --yes
 `bb plugin dev .` rebuilds/reloads during development; stop it before testing content refresh. Use dedicated test conversations and a disposable worktree. Verify actual rendered README/CSV/story output, provider edits, chart-only rebuilds, missing-file recovery, two-worktree isolation, reopen/reload and clean installation yourself. Do not substitute unit tests for visual inspection.
 
 The [acceptance evidence](https://github.com/datasets/datapressr/blob/main/docs/benchmarks/bb-preview-v01.md) records commands, tested versions, provider transcripts, screenshots and limitations. The [source README](https://github.com/datasets/datapressr/blob/main/desktop-app/README.md) describes the adapter and document isolation.
+
+## Make a demo video
+
+The [demo script and screenshot storyboard](https://github.com/datasets/datapressr/blob/feat/bb-v01/docs/demos/bb-preview-v01.md) provides a roughly two-minute introduction, exact narration, existing still-image assets and prompts for a live recording. It is a production script; a rendered video is not included.

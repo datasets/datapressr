@@ -12,6 +12,10 @@ This directory holds maintainer and agent material outside the published `site/`
 | Agent handoff logs | `docs/handoffs/` | Execution evidence and continuity |
 | Session protocol, audits and owner decision material | `docs/` | Maintainer reference |
 
+## Demo production
+
+- [BB Preview v0.1 video script](demos/bb-preview-v01.md): timed narration, existing screenshot assets, still-image editing instructions and repeatable live demo prompts.
+
 ## Planning and evidence
 
 - [BB preview v0.1 implementation plan](plans/2026-09-30-bb-preview-v01-plan.md): scope, component contracts, dependency-linked Beads, acceptance checks, effort estimate, and next-session prompt for the usable plugin.
