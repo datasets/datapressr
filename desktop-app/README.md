@@ -1,16 +1,19 @@
-# DataPressr desktop app
+# DataPressr desktop app v0.1.0
 
-Work in progress toward BB preview v0.1. The production package currently resolves and displays a conversation's actual local workspace. Artifact discovery and rendering are subsequent tasks under `datapressr-49p`.
+A read-only BB panel for real CSV datasets, README files, Markdown stories, static HTML and local chart images. Previews follow the conversation's actual local worktree, refresh automatically, and remember the selection. The eight canonical DataPressr skills are available to Codex and Claude Code.
+
+Start with the [installation and user guide](../site/docs/bb-preview.md). v0.1 has been installed and visually tested in native BB, including real provider validation/edit runs; see the [acceptance evidence](../docs/benchmarks/bb-preview-v01.md).
 
 ## Develop locally
 
-Requires BB 0.44.0 and Node with native TypeScript execution. The plugin SDK is pinned to 0.5.29. From this directory:
+Tested with BB 0.44.0 and Node 25.8.1 (requires Node 22.18+ for native TypeScript execution). The plugin SDK is pinned to 0.5.29. From this directory:
 
 ```sh
 npm ci --ignore-scripts
 npm test
 npm run typecheck
 npm run build
+npm run skills:check
 bb plugin install . --yes
 ```
 
@@ -38,3 +41,9 @@ The BB 0.44 Markdown component was tried with its public experimental document c
 `npm run build` regenerates `generated-skills/` from the eight canonical directories in the repository's `skills/`. The generated folder is ignored by Git; never edit it. Every reference file is copied. `npm run skills:check` detects altered, missing or extra bundle files. BB imports this directory through the supported `bb.skills` manifest field; no global installation or absolute machine path is needed. Keep the checkout's `skills/` alongside `desktop-app/` when building.
 
 Open a new conversation after installing/updating the plugin. Both Codex and Claude Code expose `archive`, `capture`, `enrich`, `init`, `push`, `story`, `structure`, and `validate` through BB's skill commands. These retain the canonical review and publishing gates. v0.1 supports repository-scoped workflows; it does not repair skills for arbitrary empty projects. Existing `.claude/skills/` symlinks can remain: on tested BB 0.44.0 they were absent from the command listings, and the plugin supplies one entry per skill. Inspect your environment if another installation already supplies these names.
+
+## Operational limits
+
+CSV displays at most 200 rows and 100 columns, with explicit sample labels. Discovery visits at most 10,000 entries, skips hidden/archive/dependency/build folders, and lists at most 100 matches at once. Use direct relative-path entry for omitted files. Only mounted, visible previews poll; catalog rescans are manual. Temporary errors clear stale content and retry. Selection persistence uses BB KV keyed by thread and environment; saves are ordered across panel reopening and rescans. The viewer never writes project files.
+
+To update, repeat the build/install steps from this directory. `bb plugin disable datapressr-preview` unloads the viewer and its skills while retaining preferences; `bb plugin enable datapressr-preview` restores it. `bb plugin source datapressr-preview` identifies the installed path. Do not remove it before installing another source. Remote hosts, arbitrary JavaScript/remote resources, application servers, XLSX/Parquet/PDF and `datapackage.json.views` rendering are unsupported.

@@ -214,3 +214,7 @@ Implement the DataPressr desktop app v0.1 using BB, epic datapressr-49p. Work in
 ```
 
 The plan and task graph are prepared for implementation; no v0.1 code has been written in this planning session. Use the executing-plans and verification workflows when implementation begins. Changes to scope should update this document and affected Beads together.
+
+## Implementation evidence
+
+See [v0.1 acceptance evidence](../benchmarks/bb-preview-v01.md) for the completed implementation, tested revisions, actual provider runs, native screenshots, clean installation and remaining platform limits. Beads remains the source of completion status.

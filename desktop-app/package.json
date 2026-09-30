@@ -4,7 +4,8 @@
   "type": "module",
   "engines": {
     "bb": ">=0.44",
-    "bbPluginSdk": ">=0.5.29"
+    "bbPluginSdk": ">=0.5.29",
+    "node": ">=22.18"
   },
   "bb": {
     "name": "DataPressr Preview",
@@ -60,5 +61,7 @@
     "build": "npm run skills:sync && bb plugin build .",
     "skills:sync": "node scripts/prepare-skills.mjs",
     "skills:check": "node scripts/prepare-skills.mjs --check"
-  }
+  },
+  "description": "Read-only dataset, documentation and chart previews beside BB conversations.",
+  "private": true
 }

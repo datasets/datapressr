@@ -37,6 +37,8 @@ You can stop at a useful dataset. Use `init` to scaffold it and `push` to publis
 2. [Understand the dataset lifecycle](lifecyle.md) — move from a saved idea to archived, structured and enriched data, with a clear quality bar at each stage.
 3. [Choose the right structure](data-hierarchy.md) — distinguish catalogs, datasets and data files. For a source containing many datasets, use the [catalog-as-repository pattern](pattern-catalog-as-repo.md).
 
+[Preview datasets and stories in BB](bb-preview.md) — install the desktop viewer and work with CSV, documentation and charts beside Codex or Claude Code.
+
 ## Find and prepare a source
 
 Use the [source-discovery playbook](source-discovery-playbook.md) to turn a question into an extraction plan: compare sources, check licensing, establish coverage and record gaps before building.
