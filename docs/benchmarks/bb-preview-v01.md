@@ -54,3 +54,13 @@ Native visual checks: existing Keeling Markdown prose and both SVG charts; real 
 ![Seasonal chart in the story](images/bb-v01-story-seasonal.png)
 
 ![Static HTML with local CSS and image](images/bb-v01-html.png)
+
+## Refresh, persistence and recovery — 2026-09-30
+
+Task `datapressr-49p.6`: 35 tests pass; typecheck/build pass. The poll controller permits one request at a time, suppresses disposed responses, retries errors, and cancels timers. Real filesystem checks include atomic replacement and deletion/restoration; parser checks include partial CSV and incomplete Markdown frontmatter. Selection is stored in BB KV by thread and environment; catalog rescans are explicit.
+
+With no development watcher, native acceptance B observed a CSV value edit after 989 ms and an SVG-only story change after 1,071 ms. Renaming the selected CSV away cleared its old rows and showed an unavailable state; restoring it recovered automatically. Closing the preview stopped requests (handler count 4,888 remained unchanged); selecting Info while keeping the preview tab open also stopped requests (5,144 remained unchanged). Reopening B restored `preview-fixtures/chart-story.md`. A independently retained the CO₂ README across an application reload (Cmd-R); returning to B still showed its own chart selection. The embedded chart visibly changed from green/version one to blue/version two while the Markdown remained unchanged.
+
+An independent code review found two document issues: repeated data URLs could exceed the expanded bundle budget, and inline CSS was being dropped. Both were fixed with regression tests: expanded content is capped at 30 MiB and inline styles receive the same bounded local-asset rewriting as stylesheets. The reviewer returned APPROVED after rerunning the document tests and typecheck.
+
+![Chart-only refresh without a development watcher](images/bb-v01-chart-refresh.png)

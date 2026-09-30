@@ -1,3 +1,5 @@
+import { selectionKey } from './src/refresh.ts';
+import { selectArtifact } from './src/artifact-selection.ts';
 import { renderDocument } from './src/documents.ts';
 import { readAsset } from './src/asset-routes.ts';
 import { readWorkspaceFile, PreviewError } from './src/files.ts';
@@ -10,6 +12,10 @@ import { bbWorkspaceServices, resolveWorkspace } from './src/bb-workspace.ts';
 const workspaceSchema = z.object({threadId:z.string(), environmentId:z.string(), hostId:z.string(), rootPath:z.string()});
 const errorSchema = z.object({ok:z.literal(false), code:z.string(), message:z.string()});
 export const rpcContract = defineRpcContract({
+  select: {
+    input:z.object({threadId:z.string().min(1),environmentId:z.string().min(1),path:z.string().min(1)}).strict(),
+    output:z.discriminatedUnion('ok',[errorSchema,z.object({ok:z.literal(true)})]),
+  },
   document: {
     input:z.object({threadId:z.string().min(1),path:z.string().min(1)}).strict(),
     output:z.discriminatedUnion('ok',[errorSchema,z.object({ok:z.literal(true),workspace:workspaceSchema,path:z.string(),html:z.string(),revision:z.string(),warnings:z.array(z.string())})]),
@@ -24,7 +30,7 @@ export const rpcContract = defineRpcContract({
   },
   catalog: {
     input: z.object({threadId:z.string().min(1)}).strict(),
-    output: z.discriminatedUnion('ok', [errorSchema, z.object({ok:z.literal(true),workspace:workspaceSchema,catalog:z.object({
+    output: z.discriminatedUnion('ok', [errorSchema, z.object({ok:z.literal(true),workspace:workspaceSchema,selectedPath:z.string().nullable(),catalog:z.object({
       artifacts:z.array(z.object({path:z.string(),kind:z.enum(['csv','markdown','html','image']),label:z.string(),datasetPath:z.string().optional()})),
       datasets:z.array(z.object({path:z.string(),title:z.string()})),warnings:z.array(z.string()),scanned:z.number(),incomplete:z.boolean(),
     })})]),
@@ -39,6 +45,11 @@ export const rpcContract = defineRpcContract({
 });
 export default function plugin(bb:BbPluginApi) {
   bb.rpc.register(rpcContract, {
+    select: async ({threadId,environmentId,path})=>{
+      const result=await resolveWorkspace(bbWorkspaceServices(bb),threadId);if(!result.ok)return result;
+      if(result.workspace.environmentId!==environmentId)return {ok:false as const,code:'workspace_changed',message:'The conversation workspace changed. Reopen the preview.'};
+      try {const selected=selectArtifact(path);await bb.storage.kv.set(selectionKey(threadId,environmentId),selected.path);return {ok:true as const};}catch(cause){return fileError(cause);}
+    },
     document: async ({threadId,path})=>{
       const result=await resolveWorkspace(bbWorkspaceServices(bb),threadId);if(!result.ok)return result;
       try{return {...result,path,...await renderDocument(result.workspace,path)};}catch(cause){return fileError(cause);}
@@ -56,7 +67,7 @@ export default function plugin(bb:BbPluginApi) {
     catalog: async ({threadId}) => {
       const result = await resolveWorkspace(bbWorkspaceServices(bb),threadId);
       if (!result.ok) return result;
-      return {...result,catalog:await discoverArtifacts(result.workspace.rootPath)};
+      return {...result,selectedPath:await bb.storage.kv.get<string>(selectionKey(threadId,result.workspace.environmentId))??null,catalog:await discoverArtifacts(result.workspace.rootPath)};
     },
   });
   bb.log.info('DataPressr workspace preview loaded');

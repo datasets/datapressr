@@ -32,3 +32,8 @@ test('symlinks within workspace work; escaping file and directory symlinks fail'
   await symlink(join(outside,'a.csv'),join(root,'escape.csv'));await symlink(outside,join(root,'escape'));
   for(const path of ['escape.csv','escape/a.csv']) await assert.rejects(readWorkspaceFile(root,path),{code:'outside_workspace'});
 });
+test('atomic replacement and deletion/restoration are read afresh',async t=>{
+  const {rename}=await import('node:fs/promises');const root=await fixture(t);await writeFile(join(root,'live.csv'),'a\n1\n');const first=await readWorkspaceFile(root,'live.csv');
+  await writeFile(join(root,'next.csv'),'a\n2\n');await rename(join(root,'next.csv'),join(root,'live.csv'));assert.notEqual((await readWorkspaceFile(root,'live.csv')).revision,first.revision);
+  await rename(join(root,'live.csv'),join(root,'hidden.csv'));await assert.rejects(readWorkspaceFile(root,'live.csv'));await rename(join(root,'hidden.csv'),join(root,'live.csv'));assert.equal((await readWorkspaceFile(root,'live.csv')).bytes.toString(),'a\n2\n');
+});

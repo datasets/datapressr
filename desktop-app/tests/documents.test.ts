@@ -29,3 +29,14 @@ test('HTML local CSS and image dependencies are included and child-only changes 
 test('real Keeling story includes two actual local charts',async()=>{
   const result=await renderDocument({rootPath:resolve('..'),threadId:'t',environmentId:'e',hostId:'h'},'site/stories/keeling-curve.md');assert.equal((result.html.match(/data:image\/svg\+xml;base64/g)||[]).length,2);assert.equal(result.warnings.length,0);assert.match(result.html,/The Keeling Curve/);
 });
+test('repeated embedding cannot expand beyond the rendered bundle budget',async t=>{
+  const {workspace,put}=await fixture(t);await put('a.svg','<svg>'+ ' '.repeat(1024*1024)+'</svg>');await put('a.md',Array(30).fill('![Chart](a.svg)').join('\n'));
+  await assert.rejects(renderDocument(workspace,'a.md'),{code:'asset_limit'});
+});
+test('inline styles retain declarations and embed local assets',async t=>{
+  const {workspace,put}=await fixture(t);await put('a.svg','<svg/>');await put('a.html','<h1 style="color:red;background-image:url(a.svg)">Red</h1>');
+  const result=await renderDocument(workspace,'a.html');assert.match(result.html,/style="color:red;background-image:url\(/);assert.match(result.html,/data:image\/svg\+xml;base64/);
+});
+test('partial frontmatter is visibly unavailable then recovers',async t=>{
+  const {workspace,put}=await fixture(t);await put('a.md','---\ntitle: incomplete');await assert.rejects(renderDocument(workspace,'a.md'),{code:'document_updating'});await put('a.md','---\ntitle: ready\n---\n# Ready');assert.match((await renderDocument(workspace,'a.md')).html,/<h1>Ready<\/h1>/);
+});
