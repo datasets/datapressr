@@ -78,6 +78,34 @@ After reinstall, `bb skill list --project proj_echarqvzcz --environment env_459f
 | Provider | Dedicated thread | Actual outcome |
 | --- | --- | --- |
 | Codex, 6.1-Sol / medium | `thr_si64vw29am` | Read bundled validate and both AGENTS files; ran the prescribed command in the disposable dataset; exit 0, zero errors/warnings |
-| Claude Code, Opus 5.5 / high | `thr_eum77mdmei` | Read the same bundled skill and project/dataset conventions; ran the prescribed command; exit 0, zero errors/warnings |
+| Claude Code, Opus 5.5 / medium | `thr_eum77mdmei` | Read the same bundled skill and project/dataset conventions; ran the prescribed command; exit 0, zero errors/warnings |
 
 The disposable `preview-fixtures/provider-dataset/` contains real CO₂ resources/metadata, dataset AGENTS, and the repository's validator under `scripts/`, matching the canonical skill contract. Both transcripts explicitly reported the bundled skill path and verbatim validator output. No credentials were added, no publishing occurred, and neither run changed project files. Bounded documentation edits and rendered results follow in Task 8.
+
+## End-to-end acceptance — 2026-09-30
+
+Task `datapressr-49p.8`, production implementation `532579e` (including selection ordering fix `180d5e1`): 38 tests pass after adding a reproducible chart-build integration fixture; typecheck/build pass. Tested BB 0.44.0, SDK 0.5.29, Node 25.8.1, npm 11.12.1, codex-cli 0.159.2 and Claude Code 2.1.286. Both provider threads used medium reasoning, as recorded in their execution events.
+
+Codex appended the authorized sentence to the disposable README while it was already selected; the preview revision changed from `823f469120b2` to `50dfcab8e27f` and showed the sentence without reload. Claude Code then appended its own sentence, verified it occurred once, and the native preview showed both paragraphs (`6cb32c47f83d`). Both providers' actual command events and final outputs were inspected. Claude then changed only a fixture JSON input and ran its checked-in chart builder: the story stayed unchanged, its chart changed from a green 40/100 bar to a blue 80/100 bar, and the document revision changed from `a1859f192ccd` to `be167de521e2`. No development watcher ran during these checks.
+
+![Codex edit rendered beside its conversation](images/bb-v01-codex-edit.png)
+
+![Claude Code edit rendered beside its conversation](images/bb-v01-claude-edit.png)
+
+![Provider rebuild updated the embedded SVG](images/bb-v01-provider-chart.png)
+
+Two-worktree content isolation was checked with the identical relative path `preview-fixtures/identity.md`: thread A rendered “Only workspace A owns this text” (`644d76061b1e`); B rendered “Only workspace B owns this text” (`17d27bcf3c14`). This supplements the actual environment resolution, distinct selections, missing-file recovery and reload checks above.
+
+![Same path in workspace A](images/bb-v01-isolation-a.png)
+
+![Same path in workspace B](images/bb-v01-isolation-b.png)
+
+### Clean installation and reinstall
+
+Exported commit `532579e` with `git archive` into a new temporary directory, containing no `node_modules/`, `dist/` or generated skill bundle. From its `desktop-app/` directory ran `npm ci --ignore-scripts`, `npm test` (37 tests in that commit), `npm run typecheck`, `npm run build` and `bb plugin install . --yes`. All passed; npm reported zero vulnerabilities. An initial attempt using npm's `--prefix` from another checkout produced a lockfile error; changing into the actual plugin directory, as documented, succeeded without changing either manifest or lockfile.
+
+The clean source installed under the same `datapressr-preview` ID with status `running`. New test thread `thr_paavjkam9u` began with no saved selection, discovered real artifacts, and rendered the Keeling story and chart. Existing A/B selections survived the source replacement. Reinstalled from the supported implementation worktree afterward; the selected story remained visible. Temporary state uses new dedicated thread/environment keys, without clearing existing plugin preferences or unrelated BB state.
+
+![Real story from the clean source installation](images/bb-v01-clean-install.png)
+
+Unsupported in v0.1: remote hosts, files outside the conversation workspace, inputs over 10 MiB, arbitrary JavaScript/remote assets, XLSX/Parquet/PDF, and automatic rendering of `datapackage.json.views`. Only the configured Codex and Claude Code providers above were exercised. No marketplace release, publishing, new account setup or human QA was used.
