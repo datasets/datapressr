@@ -20,3 +20,9 @@ Native BB was launched and operated through computer control. Created dedicated 
 ![Workspace B in BB](images/bb-v01-workspace-b.png)
 
 The test threads are idle and the preview tabs remain available. No development watcher was running during these checks. Remote and absent environment states were tested at the adapter boundary; no remote machine was provisioned. Artifact viewing, refresh, skill execution and release installation acceptance remain open in subsequent Beads. The brief Codex replies do not count as skill integration acceptance.
+
+## Artifact discovery and selection — 2026-09-30
+
+Task `datapressr-49p.2`: five new tests passed (14 total), with typecheck and build passing. Native BB acceptance B discovered 465 artifacts. Searched `co2-ppm`, opened the grouped README and `data/co2-annual-global.csv`, then used direct relative-path entry for `site/stories/keeling-curve.md`. Exact selected paths and kinds were visible. Rendering is intentionally deferred to Tasks 4–5. Discovery reads no remote URLs, skips symlinks and excluded directories, bounds traversal at 10,000 entries and limits metadata reads to 1 MiB. Tests include the real repository paths and malformed metadata fixtures.
+
+![Artifact picker with a selected story](images/bb-v01-picker.png)
