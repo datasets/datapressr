@@ -42,3 +42,15 @@ Task `datapressr-49p.4`: 24 tests pass, typecheck/build pass. Native checks show
 ![CO₂ CSV in the split panel](images/bb-v01-csv-co2.png)
 
 ![Brent CSV in the expanded panel](images/bb-v01-csv-wide.png)
+
+## Documents and charts — 2026-09-30
+
+Task `datapressr-49p.5`: 28 tests pass. BB's native Markdown experimental document context successfully displayed the Keeling chart, but exposes no public image-loader override to enforce bounded local-only assets. The documented fallback uses marked, sanitize-html, PostCSS and isolated script-disabled frames. No private SDK imports are used. Tests cover frontmatter, tables, sibling/parent SVGs, internal/external links, missing/remote assets, scripts/handlers/forms/embeds, CSS imports and child-only revision changes.
+
+Native visual checks: existing Keeling Markdown prose and both SVG charts; real CO₂ README; static HTML with a green heading from local CSS and the actual seasonal SVG; script fixture retained “Scripts stayed disabled”; clicking its relative “Open Keeling story” link changed the selected artifact and rendered the story. All inspected without asking the user for QA.
+
+![Keeling story](images/bb-v01-story.png)
+
+![Seasonal chart in the story](images/bb-v01-story-seasonal.png)
+
+![Static HTML with local CSS and image](images/bb-v01-html.png)

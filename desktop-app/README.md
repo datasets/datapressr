@@ -28,3 +28,7 @@ Installation keeps the `datapressr-preview` plugin ID and explicitly replaces th
 - [Working PoC](experiments/bb-preview/bb-plugin-datapressr-preview/README.md)
 - [Autonomous development gate](../docs/plans/2026-09-30-bb-preview-development-gate.md)
 - [v0.1 acceptance evidence](../docs/benchmarks/bb-preview-v01.md)
+
+## Document rendering
+
+The BB 0.44 Markdown component was tried with its public experimental document context and rendered the Keeling chart. Its public props provide no image loader override for our per-asset bound and no-remote-fetch policy. Documents therefore use `marked` plus `sanitize-html` on the server, CSS URL processing with PostCSS, and a script-disabled iframe. The frame permits same-origin parent access solely for local-link navigation and scroll preservation; it never permits document scripts. CSP denies network resources and forms. Images arrive as data URLs through bounded reads. Local CSS imports and URLs are bundled; unsupported or missing assets are visibly reported. Limits: 10 MiB per input/asset, 100 assets and 30 MiB combined per document. JavaScript, remote resources, fonts and application servers are excluded.

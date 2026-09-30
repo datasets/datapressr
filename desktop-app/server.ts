@@ -1,3 +1,4 @@
+import { renderDocument } from './src/documents.ts';
 import { readAsset } from './src/asset-routes.ts';
 import { readWorkspaceFile, PreviewError } from './src/files.ts';
 import { LIMITS } from './src/limits.ts';
@@ -9,6 +10,10 @@ import { bbWorkspaceServices, resolveWorkspace } from './src/bb-workspace.ts';
 const workspaceSchema = z.object({threadId:z.string(), environmentId:z.string(), hostId:z.string(), rootPath:z.string()});
 const errorSchema = z.object({ok:z.literal(false), code:z.string(), message:z.string()});
 export const rpcContract = defineRpcContract({
+  document: {
+    input:z.object({threadId:z.string().min(1),path:z.string().min(1)}).strict(),
+    output:z.discriminatedUnion('ok',[errorSchema,z.object({ok:z.literal(true),workspace:workspaceSchema,path:z.string(),html:z.string(),revision:z.string(),warnings:z.array(z.string())})]),
+  },
   file: {
     input:z.object({threadId:z.string().min(1),path:z.string().min(1)}).strict(),
     output:z.discriminatedUnion('ok',[errorSchema,z.object({ok:z.literal(true),workspace:workspaceSchema,path:z.string(),mediaType:z.string(),revision:z.string(),content:z.string(),dataUrl:z.string(),limitBytes:z.number()})]),
@@ -34,6 +39,10 @@ export const rpcContract = defineRpcContract({
 });
 export default function plugin(bb:BbPluginApi) {
   bb.rpc.register(rpcContract, {
+    document: async ({threadId,path})=>{
+      const result=await resolveWorkspace(bbWorkspaceServices(bb),threadId);if(!result.ok)return result;
+      try{return {...result,path,...await renderDocument(result.workspace,path)};}catch(cause){return fileError(cause);}
+    },
     file: async ({threadId,path}) => {
       const result=await resolveWorkspace(bbWorkspaceServices(bb),threadId);if(!result.ok)return result;
       try {const file=await readWorkspaceFile(result.workspace.rootPath,path);return {...result,path:file.path,mediaType:file.mediaType,revision:file.revision,content:file.mediaType.startsWith('text/')?file.bytes.toString('utf8'):'',dataUrl:`data:${file.mediaType};base64,${file.bytes.toString('base64')}`,limitBytes:LIMITS.fileBytes};}
