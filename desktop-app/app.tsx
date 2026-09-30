@@ -1,3 +1,4 @@
+import { SelectionSaves } from './src/refresh';
 import { selectArtifact } from './src/artifact-selection';
 import { FilePreview } from './src/file-preview';
 import { ArtifactPicker } from './src/artifact-picker';
@@ -9,8 +10,10 @@ import type { PluginThreadPanelProps } from '@get-bb/plugin-sdk';
 import type { rpcContract } from './server';
 import type { WorkspaceResult } from './src/bb-workspace';
 
+const selectionSaves=new SelectionSaves();
+
 function Preview({threadId}:PluginThreadPanelProps) {
-  const saveQueue=useRef(Promise.resolve());
+  const selectionVersion=useRef(0);
   const [selectionError,setSelectionError]=useState('');
   const rpc = useRpc<typeof rpcContract>();
   const [result, setResult] = useState<WorkspaceResult|null>(null);
@@ -19,17 +22,19 @@ function Preview({threadId}:PluginThreadPanelProps) {
   const [retry, setRetry] = useState(0);
   useEffect(() => {
     let active = true;
-    setResult(null); setCatalog(null); setSelected(null);
-    rpc.call('catalog', {threadId}).then(value => {if (active) {setResult(value); if(value.ok) {setCatalog(value.catalog); if(value.selectedPath) {try{setSelected(selectArtifact(value.selectedPath));}catch{setSelectionError('Saved selection is no longer supported. Choose another file.');}}}}}, () => {
+    selectionVersion.current++;
+    setResult(null); setCatalog(null); setSelected(null);setSelectionError('');
+    selectionSaves.settled(threadId).then(()=>rpc.call('catalog', {threadId})).then(value => {if (active) {setResult(value); if(value.ok) {setCatalog(value.catalog); if(value.selectedPath) {try{setSelected(selectArtifact(value.selectedPath));}catch{setSelectionError('Saved selection is no longer supported. Choose another file.');}}}}}, () => {
       if (active) setResult({ok:false, code:'bb_unavailable', message:'Cannot connect to BB. Try again.'});
     });
-    return () => {active = false;};
+    return () => {active = false;selectionVersion.current++;};
   }, [rpc, threadId, retry]);
   function choose(artifact:ArtifactRef) {
     setSelected(artifact);setSelectionError('');
     if(!result?.ok)return;
     const environmentId=result.workspace.environmentId;
-    saveQueue.current=saveQueue.current.then(async()=>{const saved=await rpc.call('select',{threadId,environmentId,path:artifact.path});if(!saved.ok)setSelectionError(saved.message);}).catch(()=>setSelectionError('Selection could not be saved.'));
+    const version=++selectionVersion.current;
+    void selectionSaves.save(threadId,async()=>{const saved=await rpc.call('select',{threadId,environmentId,path:artifact.path});if(!saved.ok)throw new Error(saved.message);}).catch(()=>{if(selectionVersion.current===version)setSelectionError('Selection could not be saved.');});
   }
   return <section className="h-full overflow-auto p-5">
     <h1 className="text-xl font-semibold">DataPressr Preview</h1>

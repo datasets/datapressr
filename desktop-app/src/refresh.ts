@@ -11,3 +11,18 @@ export function poll<T>(options:PollOptions<T>):()=>void {let stopped=false;let 
   void tick();
   return()=>{stopped=true;if(timer!==undefined)cancel(timer);};}
 export function selectionKey(threadId:string,environmentId:string):string {return `selection:${threadId}:${environmentId}`;}
+
+// Shared across panel mounts so reopen/rescan cannot read an older preference
+// while the previous panel still has a save in flight.
+export class SelectionSaves {
+  private pending=new Map<string,Promise<void>>();
+  save(threadId:string,write:()=>Promise<void>):Promise<void> {
+    const next=(this.pending.get(threadId)??Promise.resolve()).catch(()=>{}).then(write);
+    this.pending.set(threadId,next);
+    void next.finally(()=>{if(this.pending.get(threadId)===next)this.pending.delete(threadId);}).catch(()=>{});
+    return next;
+  }
+  async settled(threadId:string):Promise<void> {
+    while(this.pending.has(threadId)) {await this.pending.get(threadId)!.catch(()=>{});}
+  }
+}

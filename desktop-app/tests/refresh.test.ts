@@ -15,3 +15,15 @@ test('inactive views do not read; errors recover and closure cancels timers',asy
 test('selections are isolated by thread and environment',()=>{
   assert.notEqual(selectionKey('a','e'),selectionKey('b','e'));assert.notEqual(selectionKey('a','e'),selectionKey('a','f'));
 });
+
+test('rescan and reopened panels wait for ordered selection saves',async()=>{
+  const {SelectionSaves}=await import('../src/refresh.ts');
+  const saves=new SelectionSaves();let release!:()=>void;let value='old';let read=false;
+  const first=saves.save('thread',async()=>{await new Promise<void>(r=>release=r);value='first';});
+  const second=saves.save('thread',async()=>{value='second';});
+  const rescan=saves.settled('thread').then(()=>{read=true;assert.equal(value,'second');});
+  await new Promise(r=>setImmediate(r));assert.equal(read,false);
+  release();await Promise.all([first,second,rescan]);assert.equal(read,true);
+  await assert.rejects(saves.save('thread',async()=>{throw new Error('offline');}));
+  await saves.settled('thread');
+});
