@@ -1,0 +1,15 @@
+Your AI says “done.” You’d quite like to see what it did.
+
+DataPressr Preview puts your data, docs and charts beside the conversation in BB.
+
+Open a CSV. Check the actual numbers. Read the README. It’s all there while you work.
+
+For changes, ask Codex or Claude Code. The agent edits the file; the preview updates automatically.
+
+Here’s the request. And here’s the edited paragraph. Less tab tennis.
+
+You can open a whole data story, too. The explanation and the charts, together. This one shows how carbon dioxide changes over time.
+
+That’s the idea: ask for something, then look at what actually changed.
+
+Try DataPressr Preview in BB. It’s an early version, and the setup guide is below.

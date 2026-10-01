@@ -2,6 +2,8 @@
 
 **Format:** approximately 2 minutes 15 seconds, spoken at about 130 words per minute with pauses. **Audience:** someone who works with data and wants to see what the desktop app does. **Purpose:** show the conversation-to-file-to-preview workflow, then send viewers to the tutorial. A narrated 1:59 first cut has been rendered locally using the [Hyperframes project](hyperframes/README.md); this document remains the production storyboard.
 
+For the proposed shorter rewrite, see the [one-minute script and visual assessment](bb-preview-short-demo.md). The script below documents the original rendered cut.
+
 ## Recommended cut
 
 Make the first version from the existing screenshots and voiceover. Use a slow pan or a small zoom to direct attention; reserve cuts for changing tasks. A live recording can follow the same sequence and include the actual edit-to-refresh moment. An installation screencast is better as a separate, longer tutorial: terminal setup would take time away from the main workflow here.
