@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "render": "HYPERFRAMES_NO_TELEMETRY=1 hyperframes render --output output/datapressr-preview-v01.mp4 --fps 24 --quality looks --workers 2"
+    "render": "HYPERFRAMES_NO_TELEMETRY=1 hyperframes render --output output/datapressr-preview-v01.mp4 --fps 24 --quality looks --workers 2",
+    "build:v2": "node build-v2.mjs",
+    "render:v2": "node render-v2.mjs"
   },
   "dependencies": {
     "hyperframes": "0.8.103",

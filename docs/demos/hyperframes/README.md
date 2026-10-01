@@ -55,3 +55,7 @@ curl -fL --retry 2 -o /tmp/datapressr-kokoro.onnx https://github.com/thewh1teagl
 ```
 
 The official [Hyperframes source and guides](https://github.com/heygen-com/hyperframes) supplied the composition contract and CLI commands. Rendering is local; no hosted rendering service or public feedback submission was used.
+
+## Vision and prototype cut
+
+The second cut is isolated from the original: `node build-v2.mjs --speech` stages the new narration and composition under ignored `v2/`, then `npm run render:v2` exports a separately named MP4 into `desktop-app/demos/`. It refuses to overwrite that version’s existing export. See the app’s [SHARING.md](../../../desktop-app/SHARING.md) for both local video links, descriptions and reproduction notes. The original `build.mjs` and original export remain available.

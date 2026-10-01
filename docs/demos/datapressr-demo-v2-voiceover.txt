@@ -1,0 +1,11 @@
+Imagine turning a messy data find into a clean dataset and a story worth sharing, by working through it with an AI. That’s the idea behind DataPressr.
+
+Ask for what you need. See the data, the explanation and the charts as the work takes shape.
+
+We’ve built an early prototype inside BB. Here’s what it looks like. Open a CSV and check the actual numbers.
+
+Ask the agent to change a document. It edits the file, and the preview updates automatically. The conversation and the result, side by side. Less tab tennis.
+
+Open a data story, and you can read the explanation alongside its charts. Here’s the Keeling Curve: carbon dioxide over time.
+
+That’s our first step: making the work visible while you do it. Try the prototype. The setup guide is below.
