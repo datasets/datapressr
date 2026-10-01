@@ -139,4 +139,4 @@ The [acceptance evidence](https://github.com/datasets/datapressr/blob/main/docs/
 
 ## Make a demo video
 
-The [demo script and screenshot storyboard](https://github.com/datasets/datapressr/blob/feat/bb-v01/docs/demos/bb-preview-v01.md) provides a roughly two-minute introduction, exact narration, existing still-image assets and prompts for a live recording. It is a production script; a rendered video is not included.
+The [demo script and screenshot storyboard](https://github.com/datasets/datapressr/blob/feat/bb-v01/docs/demos/bb-preview-v01.md) provides a roughly two-minute introduction, exact narration, existing still-image assets and prompts for a live recording. A narrated 1:59 first cut has also been rendered locally. The [Hyperframes project and rebuild instructions](https://github.com/datasets/datapressr/blob/feat/bb-v01/docs/demos/hyperframes/README.md) produce an MP4 with screenshot motion and captions; the video is not yet hosted publicly.

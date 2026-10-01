@@ -1,0 +1,13 @@
+{
+  "name": "datapressr-preview-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "render": "HYPERFRAMES_NO_TELEMETRY=1 hyperframes render --output output/datapressr-preview-v01.mp4 --fps 24 --quality looks --workers 2"
+  },
+  "dependencies": {
+    "hyperframes": "0.8.103",
+    "gsap": "3.14.2"
+  }
+}

@@ -1,6 +1,6 @@
 # DataPressr Preview v0.1 — video demo script
 
-**Format:** approximately 2 minutes 15 seconds, spoken at about 130 words per minute with pauses. **Audience:** someone who works with data and wants to see what the desktop app does. **Purpose:** show the conversation-to-file-to-preview workflow, then send viewers to the tutorial. This is a production script, not a rendered video.
+**Format:** approximately 2 minutes 15 seconds, spoken at about 130 words per minute with pauses. **Audience:** someone who works with data and wants to see what the desktop app does. **Purpose:** show the conversation-to-file-to-preview workflow, then send viewers to the tutorial. A narrated 1:59 first cut has been rendered locally using the [Hyperframes project](hyperframes/README.md); this document remains the production storyboard.
 
 ## Recommended cut
 

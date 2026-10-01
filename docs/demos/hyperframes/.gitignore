@@ -1,0 +1,9 @@
+node_modules/
+assets/
+output/
+snapshots/
+.hyperframes/
+index.html
+timing.json
+captions.srt
+.venv/
