@@ -29,7 +29,7 @@ The owner’s shorthand is **“like Claude Design, but for data-driven insight.
 
 ## App demo opening
 
-Suggested copy for the next script revision:
+Opening approved by the owner on 2026-10-01:
 
 > If you wrangle data or tell stories with it, we’re building DataPressr for you: skills and tools for working with AI.
 >
@@ -39,7 +39,7 @@ Suggested copy for the next script revision:
 
 Then move immediately to the CSV and the useful edit/result moment. Keep general context short. The demo should let someone understand this specific integrated surface before covering the rest of the suite.
 
-This replaces the positioning direction of the v2 opening, which framed a generic data-to-story ambition as the DataPressr vision. The preserved v2 export and its source remain historical artifacts; this proposed opening has not been recorded or rendered.
+This replaces the positioning direction of the v2 opening, which framed a generic data-to-story ambition as the DataPressr vision. The preserved v2 export and its source remain historical artifacts; the approved opening is used in the [v3 app demo script](demos/datapressr-demo-v3-voiceover.txt).
 
 ## Voice and tone
 

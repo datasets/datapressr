@@ -1,6 +1,6 @@
 # DataPressr demo videos
 
-Local video exports for comparing and sharing the DataPressr prototype. Both MP4s live in this app’s `demos/` directory and are excluded from Git by `.gitignore`. This file and the production sources are versioned. The videos are not uploaded to a public host and will not appear in a fresh clone.
+Local video exports for comparing and sharing the DataPressr prototype. All three MP4s live in this app’s `demos/` directory and are excluded from Git by `.gitignore`. This file and the production sources are versioned. The videos are not uploaded to a public host and will not appear in a fresh clone.
 
 ## Versions
 
@@ -8,20 +8,21 @@ Local video exports for comparing and sharing the DataPressr prototype. Both MP4
 |---|---|---|---|
 | v1 — original walkthrough | [datapressr-demo-v1.mp4](demos/datapressr-demo-v1.mp4) | 1:58.708 | Eight scenes. Detailed BB preview walkthrough: picker, CSV, validation, document edit, story and illustrative chart rebuild. Preserved byte-for-byte from the first export. |
 | v2 — vision and prototype | [datapressr-demo-v2.mp4](demos/datapressr-demo-v2.mp4) | 0:49.750 | Opens with a broad data-to-story ambition; this framing was superseded by the brand clarification below. Introduces the early prototype inside BB once, then shows CSV, a document edit result and the Keeling story. Six scenes, 133 spoken words. |
+| v3 — meet the app | [datapressr-demo-v3.mp4](demos/datapressr-demo-v3.mp4) | 0:50.292 | Uses the approved audience → suite → app opening. Six scenes, 117 words; BB mentioned once. Slower local narration and extra pause after the edit/result scene. |
 
-Both versions use 1920 × 1080 H.264 at 24 fps, AAC audio, local synthetic narration (Kokoro `bf_emma`) and burned-in captions. They are made from actual prototype screenshots with modest motion. The screenshots show recorded results, not a live interaction. No stock footage or music is included.
+All three versions use 1920 × 1080 H.264 at 24 fps, AAC audio, local synthetic narration (Kokoro `bf_emma`) and burned-in captions. They are made from actual prototype screenshots with modest motion. The screenshots show recorded results, not a live interaction. No stock footage or music is included.
 
-The v2 cut uses the existing acceptance-test README edit screenshot. A future customer-facing capture with a useful paragraph change would improve it; the proposed recapture is described in the [visual assessment](../docs/demos/bb-preview-short-demo.md). Its opening uses the earlier broad framing; the following scenes show the current prototype. The video does not demonstrate the complete source-to-published-dataset workflow.
+The v2 and v3 cuts use the existing acceptance-test README edit screenshot. A future customer-facing capture with a useful paragraph change would improve it; the proposed recapture is described in the [visual assessment](../docs/demos/bb-preview-short-demo.md). Its opening uses the earlier broad framing; the following scenes show the current prototype. The video does not demonstrate the complete source-to-published-dataset workflow.
 
 ## Local location
 
-The export pair currently lives in this development checkout:
+The exports currently live in this development checkout:
 
 ```text
 /Users/rgrp/.config/superpowers/worktrees/datapressr/bb-v01/desktop-app/demos/
 ```
 
-Open either relative link above from this checkout, or use:
+Open a relative link above from this checkout, or use:
 
 ```sh
 open desktop-app/demos/datapressr-demo-v1.mp4
@@ -64,12 +65,12 @@ Use that branch guide until the feature is merged and the published tutorial URL
 - Hyperframes v2 checks: no runtime, layout or motion errors; 45/45 contrast checks passed. Eight advisory composition-structure and repeated-image warnings remain.
 - All six scene snapshots and the ending were visually inspected, plus a frame extracted from the encoded MP4. FFmpeg decoded the complete v2 export without errors. Audio signal measured −22.2 dB mean and −1.5 dB peak; this was not a full listening review.
 - Sentence caption timings are estimated from the measured voice clips. For a public final cut, review spoken delivery and caption alignment.
-- Both MP4 paths are ignored by Git. Only source and notes are committed.
+- The MP4 paths are ignored by Git. Only source and notes are committed.
 
 
 ## Positioning revision after v2
 
-The owner clarified that DataPressr is skills and an app for wrangling data and creating data-driven stories in the AI age. This video demonstrates the app: an integrated place to work with an agent and view the data and stories. Start with brief audience context, introduce the suite, then show the app. Mention BB once as the prototype host. The [brand reference](../docs/brand.md) contains the proposed next opening. Neither existing video has been changed.
+The owner clarified that DataPressr is skills and an app for wrangling data and creating data-driven stories in the AI age. This video demonstrates the app: an integrated place to work with an agent and view the data and stories. Start with brief audience context, introduce the suite, then show the app. Mention BB once as the prototype host. The [brand reference](../docs/brand.md) contains the proposed next opening. The existing v1/v2 videos remain unchanged; v3 applies this framing.
 
 ## Narration direction for a future cut
 
@@ -82,3 +83,14 @@ The owner found the current local synthetic voice flat, with insufficient pacing
 5. Finish the narration first, place visual cuts around it, and align captions to the final audio. Our existing builder measures WAV durations, so a new provider can supply audio without replacing Hyperframes. Preserve v1/v2 and export a new version.
 
 Suggested direction for auditioning: “Show a curious colleague what you’ve built. Warm, matter-of-fact, lightly amused. Give the viewer time to look. Let the aside pass naturally.” This is performance direction, not literal spoken text or guaranteed API syntax. Provider capabilities above were checked against official sources on 2026-10-01; no paid service was configured or called.
+
+
+## v3 script and production
+
+The [v3 script](../docs/demos/datapressr-demo-v3-voiceover.txt) uses the owner-approved opening from [brand.md](../docs/brand.md), then shows CSV inspection, the agent’s document edit result and a story with its charts. The narration retains the local Kokoro `bf_emma` voice, at speed 0.92; this is not the future ElevenLabs voice audition. Scene spacing is longer than v2, especially after the edit/result moment.
+
+Build with `node build-v3.mjs --speech`, then `npm run render:v3`, from `docs/demos/hyperframes/`. The builder stages separate files in ignored `v3/` and refuses a composition lasting 60 seconds or more. The render command preserves any existing `datapressr-demo-v3.mp4` instead of overwriting it. v1 and v2 remain unchanged.
+
+### v3 export checks
+
+Rendered on 2026-10-01: 50.291667 seconds, 24,120,072 bytes, 1920 × 1080 H.264 at 24 fps with 48 kHz AAC. SHA-256: `8b2df7ade219f8d5ea88455ef24f14fb4cb6b8dd1999245b160663e3eed07a83`. All six scene snapshots and the ending were visually inspected, plus an encoded frame at 12 seconds. Hyperframes reported no runtime/layout/motion errors and 44/44 contrast checks passed, with eight advisory structure/repeated-image warnings. FFmpeg decoded the whole export without errors; audio signal mean −21.3 dB, peak −1.4 dB. Caption sentence timing is estimated; no full listening review was performed. The v1/v2 hashes still match their preserved originals.

@@ -59,3 +59,8 @@ The official [Hyperframes source and guides](https://github.com/heygen-com/hyper
 ## Vision and prototype cut
 
 The second cut is isolated from the original: `node build-v2.mjs --speech` stages the new narration and composition under ignored `v2/`, then `npm run render:v2` exports a separately named MP4 into `desktop-app/demos/`. It refuses to overwrite that version’s existing export. See the app’s [SHARING.md](../../../desktop-app/SHARING.md) for both local video links, descriptions and reproduction notes. The original `build.mjs` and original export remain available.
+
+
+## App focused cut
+
+Version 3 uses the approved suite-and-app introduction: `node build-v3.mjs --speech`, then `npm run render:v3`. It stages separate assets under ignored `v3/`, enforces a duration below 60 seconds, and writes an exclusively created `desktop-app/demos/datapressr-demo-v3.mp4`. See [SHARING.md](../../../desktop-app/SHARING.md) for the version comparison and local playback links.

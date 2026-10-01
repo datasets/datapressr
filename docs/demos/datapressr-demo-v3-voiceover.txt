@@ -1,0 +1,11 @@
+If you wrangle data or tell stories with it, we’re building DataPressr for you: skills and tools for working with AI.
+
+Today we’re showing the app. Your conversation with an agent, beside the data, documents and charts you’re working on.
+
+We’ve built this prototype inside BB. Let’s open a dataset. Check the column names and the numbers.
+
+Ask the agent to change a document. It edits the file, and the preview updates automatically. You can check the result right beside the conversation. Less tab tennis.
+
+Open a data story, too. The explanation and its charts, together, ready for a closer look.
+
+That’s the app: work with AI, and see what changes. Try the prototype. Setup guide below.
