@@ -8,7 +8,9 @@
     "build:v2": "node build-v2.mjs",
     "render:v2": "node render-v2.mjs",
     "build:v3": "node build-v3.mjs",
-    "render:v3": "node render-v3.mjs"
+    "render:v3": "node render-v3.mjs",
+    "build:v4": "node build-v4.mjs",
+    "render:v4": "node render-v4.mjs"
   },
   "dependencies": {
     "hyperframes": "0.8.103",

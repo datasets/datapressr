@@ -1,6 +1,6 @@
 # DataPressr demo videos
 
-Local video exports for comparing and sharing the DataPressr prototype. All three MP4s live in this app’s `demos/` directory and are excluded from Git by `.gitignore`. This file and the production sources are versioned. The videos are not uploaded to a public host and will not appear in a fresh clone.
+Local video exports for comparing and sharing the DataPressr prototype. All four MP4s live in this app’s `demos/` directory and are excluded from Git by `.gitignore`. This file and the production sources are versioned. The videos are not uploaded to a public host and will not appear in a fresh clone.
 
 ## Versions
 
@@ -9,8 +9,9 @@ Local video exports for comparing and sharing the DataPressr prototype. All thre
 | v1 — original walkthrough | [datapressr-demo-v1.mp4](demos/datapressr-demo-v1.mp4) | 1:58.708 | Eight scenes. Detailed BB preview walkthrough: picker, CSV, validation, document edit, story and illustrative chart rebuild. Preserved byte-for-byte from the first export. |
 | v2 — vision and prototype | [datapressr-demo-v2.mp4](demos/datapressr-demo-v2.mp4) | 0:49.750 | Opens with a broad data-to-story ambition; this framing was superseded by the brand clarification below. Introduces the early prototype inside BB once, then shows CSV, a document edit result and the Keeling story. Six scenes, 133 spoken words. |
 | v3 — meet the app | [datapressr-demo-v3.mp4](demos/datapressr-demo-v3.mp4) | 0:50.292 | Uses the approved audience → suite → app opening. Six scenes, 117 words; BB mentioned once. Slower local narration and extra pause after the edit/result scene. |
+| v4 — silent app walkthrough | [datapressr-demo-v4.mp4](demos/datapressr-demo-v4.mp4) | 0:46.000 | Story cards interleaved with fresh panel/search/CSV captures, an actual useful README edit and story navigation. No narration or music. |
 
-All three versions use 1920 × 1080 H.264 at 24 fps, AAC audio, local synthetic narration (Kokoro `bf_emma`) and burned-in captions. They are made from actual prototype screenshots with modest motion. The screenshots show recorded results, not a live interaction. No stock footage or music is included.
+All four versions use 1920 × 1080 H.264 at 24 fps. v1–v3 have AAC audio, local synthetic narration (Kokoro `bf_emma`) and burned-in captions. v4 is silent, with story cards and fresh captures of real UI actions and their results. These are edited screenshot sequences, not uninterrupted live recordings. No stock footage or music is included.
 
 The v2 and v3 cuts use the existing acceptance-test README edit screenshot. A future customer-facing capture with a useful paragraph change would improve it; the proposed recapture is described in the [visual assessment](../docs/demos/bb-preview-short-demo.md). Its opening uses the earlier broad framing; the following scenes show the current prototype. The video does not demonstrate the complete source-to-published-dataset workflow.
 
@@ -74,6 +75,8 @@ The owner clarified that DataPressr is skills and an app for wrangling data and 
 
 ## Narration direction for a future cut
 
+Deferred: the owner chose to drop narration for v4. These options remain reference material, not a dependency for the silent demo.
+
 The owner found the current local synthetic voice flat, with insufficient pacing. No replacement voice has been generated yet. Recommended production experiment:
 
 1. Audition two or three conversational ElevenLabs voices on the same 15–20 seconds of script. Use its expressive model controls and model-specific prompting; v3/v4 use audio tags and punctuation rather than SSML break tags. See the [official prompting guide](https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices).
@@ -94,3 +97,16 @@ Build with `node build-v3.mjs --speech`, then `npm run render:v3`, from `docs/de
 ### v3 export checks
 
 Rendered on 2026-10-01: 50.291667 seconds, 24,120,072 bytes, 1920 × 1080 H.264 at 24 fps with 48 kHz AAC. SHA-256: `8b2df7ade219f8d5ea88455ef24f14fb4cb6b8dd1999245b160663e3eed07a83`. All six scene snapshots and the ending were visually inspected, plus an encoded frame at 12 seconds. Hyperframes reported no runtime/layout/motion errors and 44/44 contrast checks passed, with eight advisory structure/repeated-image warnings. FFmpeg decoded the whole export without errors; audio signal mean −21.3 dB, peak −1.4 dB. Caption sentence timing is estimated; no full listening review was performed. The v1/v2 hashes still match their preserved originals.
+
+
+## Feedback and v4 production
+
+Read the [feedback and take history](../docs/demos/demo-feedback.md) for the owner’s comments, decisions and the reason behind each version. The current direction is silent visual storytelling with real actions/results and short interleaved cards.
+
+Build v4 from `docs/demos/hyperframes/` with `node build-v4.mjs`, then `npm run render:v4`. It uses the tracked [fresh capture pack](../docs/demos/assets/v4/) and does not require speech generation. Output is isolated under ignored `v4/`, then copied without overwriting an existing export into this app’s `demos/` folder.
+
+The capture sequence uses actual native BB clicks, search, menu selection and scrolling, plus an actual agent edit explaining ppm in the README. The film shows edited states and close-ups; it is not continuous screen footage. The setup beat opens the installed panel, rather than demonstrating installation. Source captures and fixture before/after copies are versioned; the raw local capture directory and MP4 remain ignored.
+
+### v4 export checks
+
+Rendered on 2026-10-01: 46.000 seconds, 12,141,283 bytes, H.264 at 1920 × 1080 / 24 fps. ffprobe confirms a video stream only: no audio track. SHA-256: `63f2e445c0b4114c6ff12d1edaca32d9bfd1b70e7c56fa056d8e6dbed519cba3`. Hyperframes runtime/layout/motion checks passed and 22/22 text contrast checks passed; 20 advisory structure/repeated-image warnings remain. Inspected the scene contact sheets, full-size request/result frames and encoded result/scroll frames. FFmpeg decoded the complete export without errors. v1, v2 and v3 hashes remain unchanged.

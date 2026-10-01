@@ -20,6 +20,10 @@ This directory holds maintainer and agent material outside the published `site/`
 
 - [DataPressr brand](brand.md): the suite, app positioning, demo framing and voice, based on owner clarification.
 
+## Demo production
+
+- [Demo feedback and take history](demos/demo-feedback.md): owner feedback, v1–v4 decisions, and the silent visual direction.
+
 ## Planning and evidence
 
 - [BB preview v0.1 implementation plan](plans/2026-09-30-bb-preview-v01-plan.md): scope, component contracts, dependency-linked Beads, acceptance checks, effort estimate, and next-session prompt for the usable plugin.

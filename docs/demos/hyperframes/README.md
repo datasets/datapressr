@@ -64,3 +64,8 @@ The second cut is isolated from the original: `node build-v2.mjs --speech` stage
 ## App focused cut
 
 Version 3 uses the approved suite-and-app introduction: `node build-v3.mjs --speech`, then `npm run render:v3`. It stages separate assets under ignored `v3/`, enforces a duration below 60 seconds, and writes an exclusively created `desktop-app/demos/datapressr-demo-v3.mp4`. See [SHARING.md](../../../desktop-app/SHARING.md) for the version comparison and local playback links.
+
+
+## Silent app walkthrough
+
+Version 4 uses fresh captures of real UI actions and their resulting states, with short story cards and no audio. Run `node build-v4.mjs`, then `npm run render:v4`. Source PNGs and the capture manifest are in `../assets/v4/`. The composition has 18 beats over 46 seconds. See the [feedback and take history](../demo-feedback.md) for the changed direction and capture limitations.

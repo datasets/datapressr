@@ -4,3 +4,4 @@ generated-skills/
 
 # Local demo exports; notes and source remain versioned.
 demos/*.mp4
+demos/v4-capture/

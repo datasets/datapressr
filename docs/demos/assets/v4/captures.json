@@ -1,0 +1,54 @@
+[
+  {
+    "name": "01-panel-launcher",
+    "capturedAt": "2026-10-01T14:05:19.238Z"
+  },
+  {
+    "name": "02-panel-open",
+    "capturedAt": "2026-10-01T14:05:36.073Z"
+  },
+  {
+    "name": "03-search-csv",
+    "capturedAt": "2026-10-01T14:06:05.606Z"
+  },
+  {
+    "name": "04-csv-choice",
+    "capturedAt": "2026-10-01T14:06:14.109Z"
+  },
+  {
+    "name": "05-csv-open",
+    "capturedAt": "2026-10-01T14:06:37.826Z"
+  },
+  {
+    "name": "06-readme-before",
+    "capturedAt": "2026-10-01T14:07:04.919Z"
+  },
+  {
+    "name": "07-edit-request",
+    "capturedAt": "2026-10-01T14:07:16.850Z"
+  },
+  {
+    "name": "08-edit-sent",
+    "capturedAt": "2026-10-01T14:07:23.452Z"
+  },
+  {
+    "name": "09-edit-result",
+    "capturedAt": "2026-10-01T14:07:49.436Z"
+  },
+  {
+    "name": "10-story-path",
+    "capturedAt": "2026-10-01T14:08:07.725Z"
+  },
+  {
+    "name": "11-story-open",
+    "capturedAt": "2026-10-01T14:08:20.288Z"
+  },
+  {
+    "name": "12-story-scroll",
+    "capturedAt": "2026-10-01T14:08:34.268Z"
+  },
+  {
+    "name": "13-story-seasonal",
+    "capturedAt": "2026-10-01T14:08:56.537Z"
+  }
+]

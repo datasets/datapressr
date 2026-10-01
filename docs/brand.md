@@ -46,3 +46,8 @@ This replaces the positioning direction of the v2 opening, which framed a generi
 Friendly, direct, specific and lightly funny. Explain the product as a colleague showing something useful. Use ordinary language, concrete work and visible results. A small dry aside is enough; jokes should not require additional scenes or explanations. PostHog’s conversational tone is a reference, not a requirement to mimic its vocabulary or persona.
 
 For narration, leave time to inspect the screen. Put pauses around the transition from context to demonstration and before the changed result. A faster read is not automatically a more engaging demo. Select a voice and performance with warmth, varied emphasis and natural pauses; avoid an announcement-style delivery.
+
+
+## Silent demo direction
+
+On 2026-10-01 the owner chose to drop narration for the next app demo and emphasize real actions and results, with short story cards between app views. The approved suite/app framing remains; communicate it briefly on screen, then show the work. See the [demo feedback history](demos/demo-feedback.md).

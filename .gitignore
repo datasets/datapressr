@@ -16,3 +16,6 @@ site/.flowershow
 .beads/*.sock
 .beads/locks/
 .beads/sync-state.json
+
+# Disposable app-demo workspace; source fixture is in docs/demos/assets/v4/.
+/preview-demo-v4/
