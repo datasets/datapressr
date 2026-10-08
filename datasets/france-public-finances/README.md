@@ -1,0 +1,53 @@
+# French public finances
+
+Official snapshots for an investigation of French public debt, persistent deficits, government revenue and what public money buys. The unit is **general government**: central government, local government and social security administrations, with consolidation as defined by the statistical sources.
+
+This is one portable dataset in the DataPressr repository, not a copy of an entire Eurostat or INSEE catalog. It can become a standalone repository later without changing its build. The accompanying story belongs in `site/stories/`; Bead `datapressr-sy2` tracks the investigation.
+
+## Reproduce
+
+Requires a recent Node version with native TypeScript support (tested on Node 26.4.0).
+
+```sh
+npm install
+node build.ts
+node scripts/validate-datapackage.mjs .
+```
+
+The build is offline and verifies every archived file against `archive/manifest.json`. To check or fetch the raw sources, use `node fetch.ts`; an existing valid snapshot is reused. `node fetch.ts --refresh` explicitly replaces the snapshot. Snapshot-specific count and value assertions deliberately require review when accepting new releases.
+
+## Resources and coverage
+
+| Resource | Content | Coverage in this snapshot |
+|---|---|---|
+| `data/fiscal-accounts.csv` | 15 fiscal indicators, millions of current euros and percentage of GDP; France, Germany, Italy, Spain and EU27 | API dimensions 1975–2025; availability varies by geography and indicator; France's main totals start in 1995 |
+| `data/spending-functions.csv` | France: all 10 COFOG divisions and their groups, plus the total, in millions of euros and percentage of GDP | API dimensions 1990–2025; French values 1995–2024; 2025 is entirely missing |
+| `data/quarterly-debt.csv` | French gross and net Maastricht debt in billions of euros, and gross debt/GDP | 2000-Q1–2026-Q2, all from INSEE's 29 September 2026 release |
+
+Empty cells mean the source did not supply an observation. Explicit zeros are retained. The Eurostat files retain the complete selected dimension grids, including missing cells, and original observation flags. The data package documents keys, types, units and definitions for every field. Eurostat's `p` flag means provisional; unflagged data can still be revised.
+
+## Sources, licence and transformations
+
+- [Eurostat government accounts](https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table?lang=en), update 21 July 2026: JSON-stat dimensions flattened to rows, without rounding or filling values.
+- [Eurostat spending by function](https://ec.europa.eu/eurostat/databrowser/view/gov_10a_exp/default/table?lang=en), update 16 September 2026: the same flattening, with hierarchy level and parent codes derived from COFOG codes.
+- [Source: INSEE, quarterly debt release, 29 September 2026](https://www.insee.fr/fr/statistiques/9053525): two caption- and header-checked HTML tables joined by quarter, with quarter-end dates derived. The source gives billions; no conversion to millions is applied.
+
+Eurostat permits reuse of its statistical data with source acknowledgement under its [reuse policy](https://ec.europa.eu/eurostat/help/copyright-notice). This is recorded by its own name rather than assuming its editorial-content CC BY licence is the data licence. INSEE information is under [Licence Ouverte 2.0](https://www.insee.fr/fr/information/2008466). Each manifest entry records the exact request URL, retrieval timestamp, source update where provided, byte count and SHA-256. The raw snapshot is under 1 MB and fits the small-data workflow.
+
+## Interpretation and reconciliation
+
+**Revenue is broader than taxes.** `TR` includes social contributions, sales and other receipts. Net social contributions include imputed contributions. The selected tax and contribution components are not interchangeable with France's published *prélèvements obligatoires* measure; definitions, collection adjustments and tax credits matter. Use `TR - TE = B9` for the total financing balance. A negative `B9` is a deficit.
+
+**Spending classifications overlap.** The COFOG table answers “what purpose?”, while wages, benefits, subsidies and investment in the fiscal table answer “what economic type?”. A teacher's pay is both education and compensation of employees. Do not add the two classifications. Within COFOG, do not add a parent to its children. Social protection excludes health. “Old age” and “survivors” are separate categories; neither should silently be renamed to all pensions.
+
+**Debt is a stock; the deficit is a flow.** Maastricht debt is consolidated gross debt in specified instruments at nominal value. INSEE net debt deducts specified financial assets, not all public assets. Changes in debt also reflect financial transactions and other stock-flow adjustments; they are not an alternative way to measure the annual deficit. The quarterly ratio uses INSEE's annualised GDP methodology, not one quarter's output.
+
+**Retain statistical vintages.** The Eurostat annual snapshot reports 2025 expenditure/revenue as 57.2/52.1% of GDP. INSEE's May 2026 annual account article reports 57.3/52.2%. Both report a 5.1% deficit. Their euro totals also differ slightly. This build preserves each source and does not silently splice them. The quarterly debt release revises earlier quarters: it gives end-2025 debt of 115.7% and Q2 2025 of 115.2%, so a press article's older comparison can differ. Functional spending totals and the main accounts come from different update dates; chart shares use the COFOG table's own total, never a total from the other table.
+
+**Interest definitions need care.** The fiscal resource retains Eurostat `D41PAY` as labelled, including its source values. INSEE's annual article presents interest with a stated FISIM treatment. The two reported 2025 amounts differ (66.6 versus 64.7 billion euros); a causal or primary-balance comparison must name its convention and investigate the difference rather than treating them as identical. The first story can establish the total deficit and spending composition without depending on this unresolved reconciliation.
+
+**Scope of explanation.** A large spending category is not proof that it caused a deficit. The accounts measure the gap; policy choices, economic conditions, indexation and demographics require separate evidence. The archived INSEE annual-account and spending-function articles provide attributed explanations of recent movements, not a causal decomposition of fifty years of fiscal policy.
+
+## Review
+
+The build uses a custom HTML parser for quarterly debt. Independent adversarial review is required before the dataset is labelled structured. Current lifecycle status remains archived until that review returns APPROVED.

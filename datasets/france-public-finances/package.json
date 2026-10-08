@@ -1,0 +1,7 @@
+{
+  "name": "france-public-finances-build",
+  "private": true,
+  "type": "module",
+  "description": "Build-only HTML parser for the archived INSEE debt tables; not published.",
+  "dependencies": { "jsdom": "30.0.1" }
+}

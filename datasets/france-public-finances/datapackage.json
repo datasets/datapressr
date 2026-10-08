@@ -1,0 +1,198 @@
+{
+  "name": "france-public-finances",
+  "title": "French public finances: debt, revenue and spending",
+  "description": "General government debt, fiscal balances, revenue and expenditure, and spending by function. Official statistical snapshots for a DataPressr investigation.",
+  "status": "archived",
+  "licenses": [
+    {
+      "name": "Eurostat reuse policy",
+      "title": "Eurostat statistical data reuse with source acknowledgement",
+      "path": "https://ec.europa.eu/eurostat/help/copyright-notice"
+    },
+    {
+      "name": "etalab-2.0",
+      "title": "Licence Ouverte / Open Licence 2.0 (INSEE)",
+      "path": "https://www.etalab.gouv.fr/licence-ouverte-open-licence/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Eurostat: government revenue, expenditure and main aggregates (gov_10a_main)",
+      "path": "https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table?lang=en"
+    },
+    {
+      "title": "Eurostat: general government expenditure by function (gov_10a_exp)",
+      "path": "https://ec.europa.eu/eurostat/databrowser/view/gov_10a_exp/default/table?lang=en"
+    },
+    {
+      "title": "INSEE: quarterly Maastricht debt, Q2 2026, release 29 September 2026",
+      "path": "https://www.insee.fr/fr/statistiques/9053525"
+    }
+  ],
+  "resources": [
+    {
+      "name": "fiscal-accounts",
+      "title": "Annual government revenue, expenditure and balances",
+      "path": "data/fiscal-accounts.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "country_code",
+            "type": "string",
+            "description": "Eurostat geography: FR, DE, ES, IT or EU27_2020. The EU is an aggregate, not another country to add to the others."
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "description": "Official geography label."
+          },
+          {
+            "name": "year",
+            "type": "year",
+            "description": "Annual accounting period."
+          },
+          {
+            "name": "indicator",
+            "type": "string",
+            "description": "ESA 2010 code. TE expenditure; TR total revenue; B9 balance (negative is deficit); D41PAY interest; D2REC, D5REC, D91REC taxes; D61REC net social contributions; D995REC collection adjustment. Other indicators describe economic types of spending and overlap with functional spending."
+          },
+          {
+            "name": "indicator_label",
+            "type": "string",
+            "description": "Eurostat indicator label; components and aggregates must not all be summed together."
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "MIO_EUR: millions of current euros; PC_GDP: percentage of GDP. Never sum across units."
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Official observation; empty means not supplied, never zero. Values retain source precision."
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "Eurostat observation flag, preserved verbatim; p indicates provisional, b a break in series, e estimated. Empty means no flag was supplied, not necessarily final data."
+          },
+          {
+            "name": "source_updated",
+            "type": "string",
+            "description": "Eurostat dataset update timestamp, as supplied; denotes the snapshot vintage, not an observation date."
+          }
+        ],
+        "primaryKey": [
+          "country_code",
+          "year",
+          "indicator",
+          "unit"
+        ]
+      }
+    },
+    {
+      "name": "spending-functions",
+      "title": "French public spending by function (COFOG)",
+      "path": "data/spending-functions.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "year",
+            "type": "year",
+            "description": "Annual accounting period; 2025 appears in the API dimension but has no French observations in this snapshot."
+          },
+          {
+            "name": "function_code",
+            "type": "string",
+            "description": "COFOG code, with TOTAL plus division and group codes."
+          },
+          {
+            "name": "function_name",
+            "type": "string",
+            "description": "Official function label. Social protection excludes health in COFOG."
+          },
+          {
+            "name": "level",
+            "type": "integer",
+            "description": "0 total; 1 division; 2 group. Sum only mutually exclusive categories at the same level."
+          },
+          {
+            "name": "parent_code",
+            "type": "string",
+            "description": "Parent COFOG code, empty for TOTAL."
+          },
+          {
+            "name": "unit",
+            "type": "string",
+            "description": "MIO_EUR: millions of current euros; PC_GDP: percentage of GDP. Never sum across units."
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "description": "Official observation; empty means not supplied, never zero. Values retain source precision."
+          },
+          {
+            "name": "status_flag",
+            "type": "string",
+            "description": "Eurostat observation flag, preserved verbatim; p indicates provisional, b a break in series, e estimated. Empty means no flag was supplied, not necessarily final data."
+          },
+          {
+            "name": "source_updated",
+            "type": "string",
+            "description": "Eurostat dataset update timestamp, as supplied; denotes the snapshot vintage, not an observation date."
+          }
+        ],
+        "primaryKey": [
+          "year",
+          "function_code",
+          "unit"
+        ]
+      }
+    },
+    {
+      "name": "quarterly-debt",
+      "title": "French Maastricht debt, quarterly (latest INSEE vintage)",
+      "path": "data/quarterly-debt.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "period",
+            "type": "string",
+            "description": "Quarter in YYYY-Qn format."
+          },
+          {
+            "name": "period_end",
+            "type": "date",
+            "description": "Quarter-end date; debt is a stock, not an annual spending flow."
+          },
+          {
+            "name": "gross_debt_eur_billions",
+            "type": "number",
+            "description": "Consolidated general government Maastricht gross debt, nominal billions of euros."
+          },
+          {
+            "name": "net_debt_eur_billions",
+            "type": "number",
+            "description": "INSEE net debt: gross debt less financial assets in the corresponding instruments; not net worth and not net of all public assets."
+          },
+          {
+            "name": "gross_debt_pct_gdp",
+            "type": "number",
+            "description": "Gross debt as percentage of annual GDP, using INSEE quarterly denominator methodology; not percentage of one quarter GDP."
+          },
+          {
+            "name": "source_release_date",
+            "type": "date",
+            "description": "Date of the INSEE release containing the full revised series."
+          }
+        ],
+        "primaryKey": [
+          "period"
+        ]
+      }
+    }
+  ]
+}

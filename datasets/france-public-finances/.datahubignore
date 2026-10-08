@@ -1,0 +1,9 @@
+archive/
+scripts/
+fetch.ts
+build.ts
+AGENTS.md
+RESEARCH.md
+node_modules/
+package.json
+package-lock.json

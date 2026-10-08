@@ -1,0 +1,78 @@
+{
+  "files": [
+    {
+      "file": "fiscal.json",
+      "dataset": "gov_10a_main",
+      "licence": "https://ec.europa.eu/eurostat/help/copyright-notice",
+      "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_main?lang=EN&geo=FR&geo=DE&geo=IT&geo=ES&geo=EU27_2020&sector=S13&unit=MIO_EUR&unit=PC_GDP&na_item=TE&na_item=TR&na_item=B9&na_item=D41PAY&na_item=D2REC&na_item=D5REC&na_item=D61REC&na_item=D91REC&na_item=D995REC&na_item=D1PAY&na_item=P2&na_item=D3PAY&na_item=D62PAY&na_item=D632PAY&na_item=P51G",
+      "retrieved_at": "2026-10-08T17:40:46.927Z",
+      "bytes": 67323,
+      "sha256": "482f823a1aa6418d2e0ca5407dd14d2870dd7a229c494feeb1c332e0ba9c7205",
+      "source_updated": "2026-07-21T11:00:00+0200"
+    },
+    {
+      "file": "functions.json",
+      "dataset": "gov_10a_exp",
+      "licence": "https://ec.europa.eu/eurostat/help/copyright-notice",
+      "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?lang=EN&geo=FR&sector=S13&unit=MIO_EUR&unit=PC_GDP&na_item=TE",
+      "retrieved_at": "2026-10-08T17:40:47.244Z",
+      "bytes": 70372,
+      "sha256": "24e04200aef4468eca52d1d17121896d94a370bb2058b43a2f1591133196dd78",
+      "source_updated": "2026-09-16T23:00:00+0200"
+    },
+    {
+      "file": "insee-quarterly-debt.html",
+      "licence": "https://www.insee.fr/fr/information/2008466",
+      "url": "https://www.insee.fr/fr/statistiques/9053525",
+      "retrieved_at": "2026-10-08T17:40:47.603Z",
+      "bytes": 185827,
+      "sha256": "cc7c3dfe575d76ac541d9b78bd54a58732c4cf74c84851f144b210634f7757df",
+      "source_updated": null
+    },
+    {
+      "file": "insee-annual-accounts.html",
+      "licence": "https://www.insee.fr/fr/information/2008466",
+      "url": "https://www.insee.fr/fr/statistiques/8997691",
+      "retrieved_at": "2026-10-08T17:40:47.878Z",
+      "bytes": 143460,
+      "sha256": "362b206541eba1e0aa01dc6e538b09c98c4732af5609079b4c0c38921fec000b",
+      "source_updated": null
+    },
+    {
+      "file": "insee-spending-functions.html",
+      "licence": "https://www.insee.fr/fr/information/2008466",
+      "url": "https://www.insee.fr/fr/statistiques/8735252",
+      "retrieved_at": "2026-10-08T17:40:48.267Z",
+      "bytes": 160162,
+      "sha256": "12a532188b6e42fad7aaff15909178a31c9d1d1dcd5b02d960c80faa4f245411",
+      "source_updated": null
+    },
+    {
+      "file": "insee-accounting-explainer.html",
+      "licence": "https://www.insee.fr/fr/information/2008466",
+      "url": "https://blog.insee.fr/depenses-et-recettes-des-comptes-publics/",
+      "retrieved_at": "2026-10-08T17:40:48.946Z",
+      "bytes": 170759,
+      "sha256": "ca59e2335f22dd0a16f615065632ff46478d6c6bbff88bbd139c8a203020cec1",
+      "source_updated": null
+    },
+    {
+      "file": "eurostat-reuse.html",
+      "licence": "https://ec.europa.eu/eurostat/help/copyright-notice",
+      "url": "https://ec.europa.eu/eurostat/help/copyright-notice",
+      "retrieved_at": "2026-10-08T17:40:49.251Z",
+      "bytes": 178945,
+      "sha256": "4cc370e90b5a080aa183a8d28ede05e6e54907f82aa3ee0c9d3d7657dea5259c",
+      "source_updated": null
+    },
+    {
+      "file": "insee-reuse.html",
+      "licence": "https://www.insee.fr/fr/information/2008466",
+      "url": "https://www.insee.fr/fr/information/2008466",
+      "retrieved_at": "2026-10-08T17:40:49.519Z",
+      "bytes": 55588,
+      "sha256": "b24d448882fade5083b5a7a381793d8c91bb16e41579e03224386393ffbadeac",
+      "source_updated": null
+    }
+  ]
+}
