@@ -35,3 +35,7 @@ The most important remaining reader question is causal: how much ageing, benefit
 ## Optional editorial refinements
 
 “The economy grew faster” could become “nominal GDP grew faster” if a technically explicit wording is preferred; the surrounding current-euro comparison and GDP-share sentence already establish the intended meaning. “Opening it up changes the picture” is a disposable transition if an even leaner voice is wanted. Neither affects approval.
+
+## Final source confirmation
+
+**APPROVED** for final source commit `0f8f164f87bde80fb5c0079bd9c45d891089c1cb`; prose SHA-256 `281f81f39fea4bc196cebdd07fed7d9be2504ff99776b9acf0323a4fcaa7085f`. The two optional editorial changes were accepted: the disposable transition was removed and “the economy grew faster” became “nominal GDP grew faster”. Both preserve the reviewed argument and numbers. The separate font-only correction at `683b6e2` changes inherited SVG font sizing, with no data changes. The parent reports that extraction of the portable bundle reproduced all three CSVs and seven SVGs byte-for-byte, all 173 root tests passed, validation returned zero errors and zero warnings, and mobile inspection found no page overflow. Those execution/layout results are recorded as parent-reported evidence; this append verifies the final prose edits without repeating the independent review.
