@@ -50,4 +50,6 @@ Eurostat permits reuse of its statistical data with source acknowledgement under
 
 ## Review
 
-The build uses a custom HTML parser for quarterly debt. Independent adversarial review is required before the dataset is labelled structured. Current lifecycle status remains archived until that review returns APPROVED.
+The build uses a custom HTML parser for quarterly debt. Independent reviewer `/root/review_france_data`, with no hand in the build, returned **APPROVED** on 8 October 2026 for commit `fddb127fffe63c9af2f74978678a8fc535b20623`. Lifecycle status was then advanced from archived to structured; data values were unchanged.
+
+Round 1 at `47e8631` reproduced sampled source values and extrema, but a deliberately corrupted COFOG label passed. A reviewed 110-label source contract and a regression test now reject that mutation even if the source manifest checksum is updated. Round 2 caught all four mutations: corrupt label, dropped zero, truncated HTML and swapped debt columns. Validation returned 0 errors/0 warnings; two offline builds were byte-identical; root tests passed 173/173. The [round 1 report](https://github.com/datasets/datapressr/blob/main/docs/reviews/france-public-finances-data-round1.md) and [round 2 report](https://github.com/datasets/datapressr/blob/main/docs/reviews/france-public-finances-data-round2.md) contain the independent derivations, source locations, names checked and exact metadata/data SHA-256 hashes.

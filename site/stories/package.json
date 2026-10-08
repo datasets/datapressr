@@ -5,6 +5,7 @@
   "description": "Chart-build deps for the data stories (not published). Observable Plot rendered to static SVG at build time; jsdom supplies the DOM.",
   "dependencies": {
     "@observablehq/plot": "0.6.17",
+    "d3-dsv": "3.0.1",
     "jsdom": "30.0.1"
   }
 }

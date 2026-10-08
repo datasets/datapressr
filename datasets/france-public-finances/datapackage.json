@@ -2,7 +2,7 @@
   "name": "france-public-finances",
   "title": "French public finances: debt, revenue and spending",
   "description": "General government debt, fiscal balances, revenue and expenditure, and spending by function. Official statistical snapshots for a DataPressr investigation.",
-  "status": "archived",
+  "status": "structured",
   "licenses": [
     {
       "name": "Eurostat reuse policy",
