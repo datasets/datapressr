@@ -7,7 +7,7 @@ import * as Plot from '@observablehq/plot';
 import { hierarchy, treemap } from 'd3-hierarchy';
 import { fiscal, functions, debt, facts, fiscalValue, functionValue } from './france-public-finances-data.mjs';
 const document = new JSDOM('').window.document;
-const BLUE = '#2563eb', GREEN = '#147d64', GREY = '#8794a5', INK = '#17212e';
+const BLUE = '#2563eb', ORANGE = '#b65d16', RED = '#c83232', REVENUE = '#242424', GREY = '#8794a5', INK = '#17212e';
 const base = { document, width: 900, height: 350, marginTop: 24, marginBottom: 40, marginLeft: 56, marginRight: 160, style: { fontFamily: 'system-ui, sans-serif', fontSize: 14, background: 'white', color: INK } };
 const one = n => n.toFixed(1);
 const whole = n => Math.round(n).toLocaleString('en-GB');
@@ -53,9 +53,9 @@ save('gap', Plot.plot({ ...base,
   x: { label: null, domain: [1995, 2025], tickFormat: d => String(d), ticks: 7 },
   y: { label: '% of GDP', labelArrow: 'none', domain: [45, 64], grid: true },
   marks: [
-    Plot.line(spending, { x: 'year', y: 'value', stroke: BLUE, strokeWidth: 2.7 }),
-    Plot.line(revenue, { x: 'year', y: 'value', stroke: GREEN, strokeWidth: 2.7 }),
-    ...[[spending, BLUE, 'Spending'], [revenue, GREEN, 'Revenue']].flatMap(([rows, colour, label]) => [
+    Plot.line(spending, { x: 'year', y: 'value', stroke: RED, strokeWidth: 2.7 }),
+    Plot.line(revenue, { x: 'year', y: 'value', stroke: REVENUE, strokeWidth: 2.7 }),
+    ...[[spending, RED, 'Spending'], [revenue, REVENUE, 'Revenue']].flatMap(([rows, colour, label]) => [
       Plot.dot([rows.at(-1)], { x: 'year', y: 'value', r: 4, fill: colour }),
       Plot.text([rows.at(-1)], { x: 'year', y: 'value', text: d => `${label} ${one(d.value)}%`, dx: 12, textAnchor: 'start', fill: colour, fontWeight: 'bold' }),
     ]),
@@ -74,7 +74,7 @@ save('spending', Plot.plot({ ...base, height: 440, marginLeft: 278, marginRight:
   x: { domain: [0, 750], label: 'Billions of euros, current prices', labelArrow: 'none', grid: true, ticks: 5 },
   y: { label: null, domain: mix.map(r => r.name), tickSize: 0 },
   marks: [
-    Plot.barX(mix, { x: 'eur_billions', y: 'name', fill: d => d.code === 'GF10' ? BLUE : d.code === 'GF07' ? GREEN : GREY }),
+    Plot.barX(mix, { x: 'eur_billions', y: 'name', fill: d => d.code === 'GF10' ? RED : d.code === 'GF07' ? INK : GREY }),
     Plot.ruleX([0]),
     Plot.text(mix, { x: 'eur_billions', y: 'name', text: d => `€${whole(d.eur_billions)}bn · ${one(d.share_pct)}%`, dx: 7, textAnchor: 'start' }),
   ],
@@ -90,7 +90,7 @@ save('deficits', Plot.plot({ ...base, height: 280, marginRight: 35,
   x: { label: null, type: 'band', tickFormat: d => String(d) },
   y: { label: 'Deficit, % of GDP', labelArrow: 'none', domain: [0, 10], grid: true },
   marks: [
-    Plot.barY(facts.deficits, { x: 'year', y: 'deficit_pct_gdp', fill: d => d.year === 2025 ? BLUE : GREY, insetLeft: 16, insetRight: 16 }),
+    Plot.barY(facts.deficits, { x: 'year', y: 'deficit_pct_gdp', fill: d => d.year === 2025 ? RED : GREY, insetLeft: 16, insetRight: 16 }),
     Plot.ruleY([0]),
     Plot.text(facts.deficits, { x: 'year', y: 'deficit_pct_gdp', text: d => one(d.deficit_pct_gdp) + '%', dy: -12, fontWeight: 'bold' }),
   ],
@@ -122,7 +122,7 @@ save('debt', Plot.plot({ ...base, height: 345, marginRight: 190,
 
 
 // 5. A compact, zero-based visual comparison; geometry uses unrounded source totals.
-const snapshot = [{ name: 'Revenue', value: latest.revenue_eur_billions / 1000, colour: GREEN }, { name: 'Spending', value: latest.spending_eur_billions / 1000, colour: BLUE }];
+const snapshot = [{ name: 'Revenue', value: latest.revenue_eur_billions / 1000, colour: REVENUE }, { name: 'Spending', value: latest.spending_eur_billions / 1000, colour: RED }];
 const coverage = latest.revenue_eur_billions / latest.spending_eur_billions * 100;
 save('snapshot', Plot.plot({ ...base, width: 600, height: 138, marginTop: 10, marginBottom: 25, marginLeft: 94, marginRight: 94, style: { ...base.style, fontSize: 17 },
   x: { domain: [0, 1.8], axis: null }, y: { domain: ['Revenue', 'Spending'], label: null, tickSize: 0 },
@@ -169,28 +169,86 @@ const aggregate=Plot.plot({ ...base,height:270,marginRight:195,
   x:{domain:[1995,2024],tickFormat:String,label:null,ticks:7}, y:{domain:[0,30],label:'% of GDP',labelArrow:'none',grid:true},
   marks:[
     Plot.line(socialHistory,{x:'year',y:'value',stroke:BLUE,strokeWidth:2.8}),
-    Plot.line(healthHistory,{x:'year',y:'value',stroke:GREEN,strokeWidth:2.8}),
-    ...[[socialHistory,BLUE,'Social protection'],[healthHistory,GREEN,'Health']].flatMap(([rows,colour,name])=>[
+    Plot.line(healthHistory,{x:'year',y:'value',stroke:INK,strokeWidth:2.8}),
+    ...[[socialHistory,BLUE,'Social protection'],[healthHistory,INK,'Health']].flatMap(([rows,colour,name])=>[
       Plot.dot(rows.filter(r=>[1995,2014,2020,2024].includes(r.year)),{x:'year',y:'value',fill:colour,r:3}),
       ...rows.filter(r=>[1995,2014,2020].includes(r.year)).map(r=>Plot.text([r],{x:'year',y:'value',text:d=>`${d.year}: ${one(d.value)}%`,dy:name==='Health'?20:-15,dx:r.year===1995?4:0,textAnchor:r.year===1995?'start':'middle',fill:colour,fontSize:13})),
       Plot.text([rows.at(-1)],{x:'year',y:'value',text:d=>`${name} ${one(d.value)}%`,dx:8,textAnchor:'start',fill:colour,fontWeight:'bold'}),
     ]),
   ],
 });
-const subgroup = children.sort((a,b)=>b.value-a.value).map(r=>({name:r.name,before:functionValue(2014,r.function_code,'PC_GDP'),after:functionValue(2024,r.function_code,'PC_GDP')}));
-const compare=Plot.plot({...base,height:345,marginTop:30,marginLeft:195,marginRight:165,
-  x:{domain:[0,15],label:'% of GDP',labelArrow:'none',grid:true,ticks:6},y:{domain:subgroup.map(r=>r.name),label:null,tickSize:0},
-  marks:[Plot.ruleY(subgroup,{y:'name',x1:'before',x2:'after',stroke:'#9ba8b6',strokeWidth:3}),Plot.dot(subgroup,{x:'before',y:'name',r:5,fill:'white',stroke:GREY,strokeWidth:2}),Plot.dot(subgroup,{x:'after',y:'name',r:3.5,fill:BLUE}),Plot.text(subgroup,{x:()=>15,y:'name',text:d=>`${one(d.before)} → ${one(d.after)}%`,dx:12,textAnchor:'start'})],
-});
-const combined=document.createElementNS('http://www.w3.org/2000/svg','svg');combined.setAttribute('width','900');combined.setAttribute('height','670');
-aggregate.setAttribute('y','0');aggregate.style.fontSize='14px';combined.append(aggregate);
-const subheading=document.createElementNS(combined.namespaceURI,'text');subheading.setAttribute('x','20');subheading.setAttribute('y','300');subheading.setAttribute('font-family','system-ui, sans-serif');subheading.setAttribute('font-size','16');subheading.setAttribute('font-weight','bold');subheading.textContent='Inside social protection · 2014 ○ → 2024 ● · share of GDP';combined.append(subheading);
-compare.setAttribute('y','315');compare.style.fontSize='14px';combined.append(compare);
+const subgroup = [...children].sort((a,b)=>b.value-a.value).map((r,row)=>({name:r.name,row,before:functionValue(2014,r.function_code,'PC_GDP'),after:functionValue(2024,r.function_code,'PC_GDP'),beforeEuro:functionValue(2014,r.function_code)/1000,afterEuro:r.amount}));
+function compareYears(unit) {
+  const euros=unit==='euros', max=euros?420:15;
+  const rows=subgroup.map(r=>({...r,before:euros?r.beforeEuro:r.before,after:euros?r.afterEuro:r.after}));
+  return Plot.plot({...base,height:340,marginTop:28,marginLeft:210,marginRight:190,
+    x:{domain:[0,max],label:euros?'Billions of euros, current prices':'% of GDP',labelArrow:'none',grid:true,ticks:euros?5:6},
+    y:{domain:[-.5,rows.length-.5],reverse:true,ticks:rows.map(r=>r.row),tickFormat:i=>rows[i]?.name||'',label:null,tickSize:0},
+    marks:[
+      Plot.link(rows,{x1:'before',x2:'after',y1:d=>d.row-.13,y2:d=>d.row+.13,stroke:'#a7adb6',strokeWidth:1.8}),
+      Plot.dot(rows,{x:'before',y:d=>d.row-.13,r:4.5,fill:ORANGE}),
+      Plot.dot(rows,{x:'after',y:d=>d.row+.13,r:4.5,fill:BLUE}),
+      Plot.text(rows,{x:()=>max,y:'row',text:d=>euros?one(d.before):one(d.before)+'%',dx:30,textAnchor:'start',fill:ORANGE,fontWeight:'bold'}),
+      Plot.text(rows,{x:()=>max,y:'row',text:d=>euros?one(d.after):one(d.after)+'%',dx:110,textAnchor:'start',fill:BLUE,fontWeight:'bold'}),
+    ],
+  });
+}
+const combined=document.createElementNS('http://www.w3.org/2000/svg','svg');combined.setAttribute('width','900');combined.setAttribute('height','1075');
+function attach(parent,chart,y){chart.setAttribute('y',String(y));chart.style.fontSize='14px';chart.style.fontFamily='system-ui,sans-serif';parent.append(chart);}
+function svgText(parent,text,x,y,fill=INK,size=17,weight='bold'){
+  const el=document.createElementNS(parent.namespaceURI,'text');
+  for(const [key,value]of Object.entries({x,y,fill,'font-family':'system-ui,sans-serif','font-size':size,'font-weight':weight}))el.setAttribute(key,String(value));
+  el.textContent=text;parent.append(el);
+}
+function yearKey(parent,y){
+ for(const [x,colour,year]of [[729,ORANGE,'2014'],[809,BLUE,'2024']]){
+  const c=document.createElementNS(parent.namespaceURI,'circle');c.setAttribute('cx',String(x));c.setAttribute('cy',String(y-5));c.setAttribute('r','4.5');c.setAttribute('fill',colour);parent.append(c);
+  svgText(parent,year,x+10,y,colour,14);
+ }
+}
+attach(combined,aggregate,0);
+svgText(combined,'More euros spent · social protection categories',20,303);
+svgText(combined,'Amounts at current prices; not adjusted for inflation',20,326,'#536173',13,'normal');yearKey(combined,326);
+attach(combined,compareYears('euros'),338);
+svgText(combined,'But mostly smaller shares of GDP · the same categories',20,723);
+svgText(combined,'Spending can rise while its GDP share falls if nominal GDP grows faster',20,746,'#536173',13,'normal');yearKey(combined,746);
+attach(combined,compareYears('gdp'),758);
+combined.setAttribute('height','1110');
 const nominalChange=functionValue(2024,'GF10')-functionValue(2014,'GF10');
 const oldChange=functionValue(2024,'GF1002')-functionValue(2014,'GF1002');
-save('evolution',combined,'More euros does not always mean a larger share of the economy','France · annual spending as a share of GDP · full history and a ten-year comparison',[
+save('evolution',combined,'Spending rose in euros; its share of GDP mostly fell','France · blue = 2024, orange = 2014 in the comparisons below · equal-sized markers',[
   `2014 → 2024: social protection €${whole(functionValue(2014,'GF10')/1000)}bn → €${whole(functionValue(2024,'GF10')/1000)}bn (+${whole(nominalChange/functionValue(2014,'GF10')*100)}%, current prices).`,
-  `Old age accounts for €${whole(oldChange/1000)}bn (${whole(oldChange/nominalChange*100)}%) of the €${whole(nominalChange/1000)}bn nominal increase.`,
-  'GDP shares are not inflation-adjusted spending volumes. Source: Eurostat COFOG, September 2026 snapshot.',
+  `Old age: €${whole(functionValue(2014,'GF1002')/1000)}bn → €${whole(functionValue(2024,'GF1002')/1000)}bn; ${one(functionValue(2014,'GF1002','PC_GDP'))}% → ${one(functionValue(2024,'GF1002','PC_GDP'))}% of GDP.`,
+  `Old age supplies ${whole(oldChange/nominalChange*100)}% of the nominal social-protection increase. Markers offset vertically for visibility.`,
+  'Source: Eurostat COFOG. GDP shares are not inflation-adjusted spending volumes.',
 ]);
-console.log('Built seven French public finance charts.');
+
+// 8. Changes, not levels: split protection into old age and the rest, without double counting.
+function growthRows(startYear) {
+  const rows=mix.filter(r=>r.code!=='GF10').map(r=>({name:r.name,code:r.code,change:r.eur_billions-functionValue(startYear,r.code)/1000}));
+  const old=(functionValue(2024,'GF1002')-functionValue(startYear,'GF1002'))/1000;
+  rows.push({name:'Old age',code:'GF1002',change:old},{name:'Other social protection',code:'GF10-rest',change:(functionValue(2024,'GF10')-functionValue(startYear,'GF10'))/1000-old});
+  assert.equal(rows.length,11);assert(rows.every(r=>Number.isFinite(r.change)));
+  const total=(functionValue(2024,'TOTAL')-functionValue(startYear,'TOTAL'))/1000;
+  assert(Math.abs(rows.reduce((s,r)=>s+r.change,0)-total)<.002);
+  return {rows:rows.sort((a,b)=>b.change-a.change),total};
+}
+const growth=document.createElementNS('http://www.w3.org/2000/svg','svg');growth.setAttribute('width','900');growth.setAttribute('height','920');
+for(const [start,y,domain]of [[2014,0,[-5,110]],[2023,465,[-15,30]]]){
+ const {rows,total}=growthRows(start);
+ svgText(growth,`${start} → 2024 · total increase €${one(total)}bn`,20,y+22);
+ const chart=Plot.plot({...base,height:402,marginLeft:280,marginRight:95,marginTop:15,
+   x:{domain,label:'Change in billions of euros, current prices',labelArrow:'none',grid:true,ticks:5},
+   y:{domain:rows.map(r=>r.name),label:null,tickSize:0},
+   marks:[Plot.barX(rows,{x:'change',y:'name',fill:d=>d.change<0?INK:d.code==='GF1002'?RED:GREY}),Plot.ruleX([0],{stroke:INK}),
+     ...[true,false].map(positive=>Plot.text(rows.filter(r=>(r.change>=0)===positive),{x:positive?'change':()=>0,y:'name',text:d=>(d.change>=0?'+':'−')+'€'+one(Math.abs(d.change))+'bn',dx:7,textAnchor:'start'})),
+   ],
+ });
+ attach(growth,chart,y+38);
+}
+save('growth',growth,'Old-age support and health lead the extra euro spending','France · two periods, different horizontal scales · these are nominal increases, not real growth',[
+  'Old age + other social protection = the social-protection total. No parent category is counted twice.',
+  'All 11 groups shown here rose over the decade; economic affairs fell in the latest year.',
+  'Source: Eurostat COFOG, September 2026 snapshot. Differences use unrounded source amounts.',
+]);
+console.log('Built eight French public finance charts.');
