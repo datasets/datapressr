@@ -36,3 +36,27 @@ Keep the existing canonical dataset in datasets/france-public-finances and the D
 ## Completion evidence
 
 The revision's final review and task record will record which recommendations were implemented and which reader questions remain outside the evidence.
+
+## Round 2: colour, meaning and growth
+
+Verbatim user feedback:
+
+> colors are poor here (blue and greeN). let's have black-ish for revenue and red for expenditure or something ...
+>
+> also round 2 feedback:
+>
+> what is old ager ... i want to dig down ...
+>
+> what does that mean ... and is that because of ageing population.
+>
+> Overall show me what is growing
+>
+> also graph showing in side social progtection: the empty large circles are unclear what is 2024 and what is 2014? color both circles and make clear the more recent is solid blue i think (same size ...)
+
+The user then supplied a screenshot of the subgroup GDP-share chart and asked:
+
+> and how could social protection hade grown if in almost every area it shrnak
+
+Interpretation for skill improvement: explicitly separate euro amounts, inflation-adjusted volumes and shares of GDP. A technically labelled GDP chart is not enough if the surrounding story calls spending “growing”. Show euro changes alongside GDP-share changes, identify the denominator before the reader has to infer it, and use identical marker sizes with actual coloured year keys rather than unmatched hollow/filled glyphs. Explain source category labels such as old age in everyday terms; where a reader asks why, seek demographic and pension-policy evidence instead of repeating a data limitation. Record uncertainty without using it as a substitute for investigation.
+
+Revision direction: black-ish revenue and red expenditure; blue for 2024 and orange for 2014 in comparison charts, equal-sized solid dots and coloured column labels; direct growth ranking in euros for both the past decade and latest year; plain-language old-age definition and attributed evidence about more recipients, pension indexation and retirement-age rules. Underlying source amounts stay unchanged.
