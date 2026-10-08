@@ -60,3 +60,7 @@ The user then supplied a screenshot of the subgroup GDP-share chart and asked:
 Interpretation for skill improvement: explicitly separate euro amounts, inflation-adjusted volumes and shares of GDP. A technically labelled GDP chart is not enough if the surrounding story calls spending “growing”. Show euro changes alongside GDP-share changes, identify the denominator before the reader has to infer it, and use identical marker sizes with actual coloured year keys rather than unmatched hollow/filled glyphs. Explain source category labels such as old age in everyday terms; where a reader asks why, seek demographic and pension-policy evidence instead of repeating a data limitation. Record uncertainty without using it as a substitute for investigation.
 
 Revision direction: black-ish revenue and red expenditure; blue for 2024 and orange for 2014 in comparison charts, equal-sized solid dots and coloured column labels; direct growth ranking in euros for both the past decade and latest year; plain-language old-age definition and attributed evidence about more recipients, pension indexation and retirement-age rules. Underlying source amounts stay unchanged.
+
+The supplied chart screenshot is preserved for visual comparison:
+
+![Original GDP-share-only comparison with mismatched hollow and filled circles](france-public-finances-feedback-round2.png)

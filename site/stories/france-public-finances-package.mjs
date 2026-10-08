@@ -26,7 +26,10 @@ copy(join(dataset,'datapackage.json'),join(bundle,'datapackage.json'));
 for(const f of files) { copy(join(dataset,'data',f),join(bundle,'data',f)); copy(join(dataset,'data',f),join(dist,'data',f)); }
 for(const f of readdirSync(stories).filter(f=>f.startsWith(slug)&&f.endsWith('.svg'))) { copy(join(stories,f),join(bundle,f)); copy(join(stories,f),join(dist,f)); }
 cpSync(dataset,join(bundle,'sources/datasets',slug),{recursive:true,filter:src=>!src.split('/').includes('node_modules')});
-for(const f of readdirSync(stories).filter(f=>f.startsWith(slug)||['package.json','package-lock.json'].includes(f)))copy(join(stories,f),join(bundle,'sources/site/stories',f));
+for(const f of readdirSync(stories).filter(f=>f.startsWith(slug)||['package.json','package-lock.json'].includes(f))) {
+  const target=join(bundle,'sources/site/stories',f);mkdirSync(dirname(target),{recursive:true});
+  cpSync(join(stories,f),target,{recursive:true});
+}
 for(const f of readdirSync(join(root,'docs/reviews')).filter(f=>f.startsWith(slug)))copy(join(root,'docs/reviews',f),join(bundle,'sources/docs/reviews',f));
 copy(join(root,'docs',slug+'-investigation.md'),join(bundle,'sources/docs',slug+'-investigation.md'));
 write(join(bundle,'REPRODUCE.md'),'# Reproduce\n\nThe source tree preserves repository-relative paths. Requires Node with native TypeScript support (tested with Node 26) and npm. The dataset build runs offline after installing dependencies.\n\n```sh\ncd sources/datasets/france-public-finances\nnpm ci\nnode build.ts\nnode scripts/validate-datapackage.mjs .\ncd ../../site/stories\nnpm ci\nnode france-public-finances-make-charts.mjs\n```\n\nThe regenerated CSVs are in sources/datasets/france-public-finances/data. Chart SVGs are in sources/site/stories. Raw snapshots, timestamps, hashes and source licences are under the dataset archive directory. DATA.md explains units, missing observations, classifications and revision dates. The article is a reviewed working draft; the author voice pass remains outstanding.\n');
@@ -39,6 +42,7 @@ write(join(dist,'data.html'),page('<h1>Data behind the story</h1><p>Three CSVs, 
 copy(join(dataset,'build.ts'),join(dist,'build.ts'));copy(join(dataset,'datapackage.json'),join(dist,'datapackage.json'));
 copy(join(stories,slug+'-make-charts.mjs'),join(dist,slug+'-make-charts.mjs'));
 for(const [name,src] of [['research',join(root,'docs',slug+'-investigation.md')],['outline',join(stories,slug+'-outline.md')]])write(join(dist,name+'.html'),page(rewrite(marked.parse(strip(readFileSync(src,'utf8'))))));
+for(const f of readdirSync(join(root,'docs/reviews')).filter(f=>f.startsWith(slug)&&f.endsWith('.png')))copy(join(root,'docs/reviews',f),join(dist,'reviews',f));
 let links='';
 for(const f of readdirSync(join(root,'docs/reviews')).filter(f=>f.startsWith(slug)&&f.endsWith('.md'))) { const md=readFileSync(join(root,'docs/reviews',f),'utf8');write(join(dist,'reviews',f),md);write(join(dist,'reviews',f.replace(/\.md$/,'.html')),page(marked.parse(md)));links+=`<li><a href="reviews/${f.replace(/\.md$/,'.html')}">${md.split('\n')[0].replace(/^# /,'')}</a></li>`; }
 write(join(dist,'editorial.html'),page('<h1>Editorial record</h1><p>Working draft. The author’s voice pass remains outstanding. Reader feedback is retained verbatim to inform future story-skill improvements.</p><p><a href="outline.html">Reviewed outline</a> · <a href="research.html">Research note</a></p><ul>'+links+'</ul>'));

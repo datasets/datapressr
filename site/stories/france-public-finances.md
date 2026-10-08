@@ -1,58 +1,62 @@
 ---
 title: Where France’s public money goes
-description: Inside France’s biggest spending commitments—and why rising euro bills are only part of the deficit story.
+description: What is growing, what old-age spending means, and why bigger euro bills can coexist with falling GDP shares.
 ---
 
 # Where France’s public money goes
 
-![France’s 2025 revenue was €1.56 trillion and expenditure €1.71 trillion. The €153 billion deficit meant receipts covered about €91 of every €100 spent.](france-public-finances-snapshot.svg)
+![France’s 2025 revenue, in near-black, was €1.56 trillion; expenditure, in red, was €1.71 trillion. The €153 billion deficit meant receipts covered about €91 of every €100 spent.](france-public-finances-snapshot.svg)
 
-France spent **€1.7 trillion** in 2025, about **€153 billion more than it raised**. Where did that money go—and which bills are growing?
+France spent **€1.7 trillion** in 2025, about **€153 billion more than it raised**. These figures cover central government, local government and social security; receipts include taxes, social contributions and other income.
 
-These figures include central government, local government and social security. Receipts include taxes, social contributions and other income.
+## Where the money goes
 
-## The biggest commitment is social protection
+![France’s 2024 spending by purpose: social protection €693bn, 41.5%; health €261bn, 15.6%. All ten categories are shown.](france-public-finances-spending.svg)
 
-![France’s 2024 spending by purpose: social protection €693 billion, 41.5%; health €261 billion, 15.6%. All ten categories are shown, with whole-billion amounts and spending shares.](france-public-finances-spending.svg)
+Social protection and health take **57.1% of public spending**. The latest detailed breakdown is for 2024, a year behind the headline accounts. But “social protection” is a broad label. What is inside it?
 
-Social protection and health together take **57.1% of public spending**. The latest detailed breakdown is for 2024, a year behind the headline accounts.
+![Social protection in 2024: old age €392bn; sickness and disability €84bn; family and children €67bn; unemployment €49bn; survivors €41bn; social exclusion €36bn; housing support €21bn; other €3.7bn; research zero.](france-public-finances-social.svg)
 
-“Social protection” bundles together very different commitments.
+## “Old age” means retirement income and support for older people
 
-![Treemap of social protection in 2024: old age €392bn; sickness and disability €84bn; family and children €67bn; unemployment €49bn; survivors €41bn; social exclusion €36bn; housing support €21bn; other €3.7bn; research zero. Old age is 57% of social protection and 23% of all public spending.](france-public-finances-social.svg)
+The **€392 billion** old-age category includes retirement pensions, care allowances, accommodation, home help and administration of those schemes. The [UN’s classification](https://unstats.un.org/unsd/classifications/Econ/Structure/Detail/en/4/10_2_0) also explicitly includes government-employee and military pension schemes.
 
-**Old age alone accounts for €392 billion**: more than half of social protection, and almost a quarter of all public spending. Unemployment support is a much smaller component. Survivors’ benefits are counted separately; the old-age category should not be read as a total for every kind of pension.
+Survivors’ benefits have a separate category. Healthcare for older people belongs under health. Salaries run across these purposes; adding them as another slice would double-count spending.
 
-Sickness and disability support is separate from healthcare. Housing support here is also distinct from housing and community amenities in the overall budget. These are spending purposes: salaries run across them, rather than forming an extra slice to add on top.
+**Does ageing explain the growth? Partly.** [DREES links rising pensioner numbers](https://www.drees.solidarites-sante.gouv.fr/sites/default/files/2026-03/La%20protection%20sociale%20en%20France%20et%20en%20Europe%20en%202024.pdf#page=36) to baby-boom retirements and longer lives, while retirement-age reforms slow that growth. Pension costs depend on both how many people receive payments and how much they receive.
 
-## Bigger bills, but not always a bigger share of the economy
+For 2024, [DREES identifies inflation-linked pension increases as the main driver](https://www.drees.solidarites-sante.gouv.fr/sites/default/files/2026-03/La%20protection%20sociale%20en%20France%20et%20en%20Europe%20en%202024.pdf#page=54). Basic pension rates were uprated by **5.3%** from January; the general scheme (CNAV)’s year-end direct-pension recipient count rose **1.0%**. These are different measures, not percentages to add together. They show why ageing alone is an incomplete explanation; they do not apportion the whole old-age budget’s growth.
 
-![Social protection rose from €528bn in 2014 to €693bn in 2024, while falling from 24.5% to 23.7% of GDP. Health rose from 8.3% to 8.9%. The full 1995–2024 history and all nine social-protection subgroup comparisons are shown.](france-public-finances-evolution.svg)
+## What is growing?
 
-Social protection cost **31% more euros** in 2024 than in 2014. Old age accounted for **60% of that nominal increase**. Yet nominal GDP grew faster than the total social-protection bill: its GDP share fell from **24.5% to 23.7%**.
+![Changes in nominal spending: 2014–2024 total +€414.1bn, led by old age +€99.2bn, health +€81.6bn and other social protection +€65.8bn. In 2023–2024 total spending rose €64.4bn, while economic affairs fell €11.5bn. The panels use different scales.](france-public-finances-growth.svg)
 
-That decade is not the whole history. Social protection took **22% of GDP in 1995**, so its share has risen over the longer period. Health has grown on both comparisons: from **6.9% in 1995** to **8.3% in 2014** and **8.9% in 2024**.
+Over the decade, **old-age support and health made the largest additions to the euro bill**. The latest year is more mixed: economic-affairs spending fell as [energy-price support was withdrawn](https://www.insee.fr/fr/statistiques/8735252).
 
-Neither euro growth nor a GDP ratio measures extra services delivered. Prices, benefit levels and the number of recipients all matter. For the recent increases, [INSEE points to inflation-linked pension uprating and rising healthcare prices and volumes](https://www.insee.fr/fr/statistiques/8735252). These accounts cannot separate the long-run effects of ageing from policy changes.
+These are euros at the prices of each year. Some growth buys more services or supports more people; some pays higher prices or raises benefit amounts. The chart does not measure inflation-adjusted growth.
 
-## The deficit also has a revenue side
+## More euros can still mean a smaller share of GDP
 
-![Spending exceeded receipts in every year from 1995 to 2025. Between 2022 and 2024, receipts fell from 53.7% to 51.2% of GDP, while spending fell from 58.4% to 57.0%.](france-public-finances-gap.svg)
+![Separate comparisons of social-protection euro amounts and GDP shares. Orange filled dots and columns are 2014; equally sized blue dots and columns are 2024. Total protection rose €528bn to €693bn, but fell from 24.5% to 23.7% of GDP. Old age rose €293bn to €392bn, but fell from 13.6% to 13.4% of GDP.](france-public-finances-evolution.svg)
 
-The deficit widened between 2022 and 2024 even though spending fell relative to GDP. **Receipts fell further.** [INSEE attributes the 2023 weakness](https://www.insee.fr/fr/statistiques/8194620) to slower taxable bases, including corporate profits and property transactions, and tax reductions.
+Social protection grew from **€528bn to €693bn—up 31%** between 2014 and 2024. Yet its GDP share fell from **24.5% to 23.7%**, because nominal GDP grew faster. A falling share here does **not** mean fewer euros were spent.
 
-The mismatch predates those years: spending exceeded receipts throughout this 31-year record. Interest is not the whole explanation. The [IMF estimates that France’s 2025 deficit before interest was still 3% of GDP](https://www.imf.org/en/news/articles/2026/07/22/pr26255-france-imf-executive-board-concludes-2026-article-iv-consultation). Its cycle-adjusted assessment also finds a persistent gap.
+Old age illustrates the distinction: **€293bn became €392bn**, while **13.6% of GDP became 13.4%**. Health grew on both measures. The longer history also matters: social protection’s GDP share remains above its **22% in 1995**.
 
-![Annual deficits: 2019 2.4%, 2020 8.9%, 2021 6.6%, 2022 4.7%, 2023 5.4%, 2024 5.8%, 2025 5.1% of GDP.](france-public-finances-deficits.svg)
+## The deficit has a revenue side, too
 
-There was an improvement in 2025: the deficit narrowed to **5.1% of GDP**, with [stronger receipts and slower spending growth](https://www.insee.fr/fr/statistiques/8997691). Large commitments help explain the budget’s scale; their size alone does not explain each change in the gap.
+![Revenue is near-black and expenditure red. Both fell relative to GDP between 2022 and 2024, but revenue fell further: 53.7% to 51.2%, against spending’s 58.4% to 57.0%.](france-public-finances-gap.svg)
 
-## Repeated gaps accumulate into debt
+The deficit widened between 2022 and 2024 even though spending fell relative to GDP: **receipts fell further**. [INSEE points to weaker taxable bases and tax reductions](https://www.insee.fr/fr/statistiques/8194620). Spending exceeded receipts throughout this 31-year record. Nor is interest the whole problem: the [IMF estimates a 2025 deficit before interest of 3% of GDP](https://www.imf.org/en/news/articles/2026/07/22/pr26255-france-imf-executive-board-concludes-2026-article-iv-consultation).
 
-![French gross public debt reached €3.6 trillion, or 119% of GDP, in June 2026. The debt ratio fell after the pandemic before rising again.](france-public-finances-debt.svg)
+![Annual deficits, 2019–2025: 2.4%, 8.9%, 6.6%, 4.7%, 5.4%, 5.8% and 5.1% of GDP.](france-public-finances-deficits.svg)
 
-By June 2026, public debt stood at **€3.6 trillion**, or **119% of GDP**. Deficits add to that stock, though financial transactions also change debt and GDP growth changes the ratio. This history establishes a financing problem; it does not predict default or identify which programmes should be cut.
+The deficit improved to **5.1% of GDP in 2025**, with [stronger receipts and slower spending growth](https://www.insee.fr/fr/statistiques/8997691). A large spending category is not automatically the cause of each deterioration.
+
+![Gross debt reached €3.6 trillion, or 119% of GDP, in June 2026; the ratio fell after the pandemic before rising again.](france-public-finances-debt.svg)
+
+By June 2026, debt stood at **€3.6 trillion**, or **119% of GDP**. Deficits add to the debt stock; financial transactions and GDP growth also affect the ratio. These accounts do not predict default.
 
 ## How this was made
 
-Three [CSV datasets and definitions](https://github.com/datasets/datapressr/tree/main/datasets/france-public-finances), an [offline data build](https://github.com/datasets/datapressr/blob/main/datasets/france-public-finances/build.ts) and a [chart script](https://github.com/datasets/datapressr/blob/main/site/stories/france-public-finances-make-charts.mjs) reproduce the figures from archived Eurostat and INSEE releases. Source precision is retained in the data; displayed amounts are rounded. Annual accounts, spending detail and quarterly debt use their own release dates and remain subject to revision.
+The [three CSVs and definitions](https://github.com/datasets/datapressr/tree/main/datasets/france-public-finances), [offline data build](https://github.com/datasets/datapressr/blob/main/datasets/france-public-finances/build.ts) and [chart script](https://github.com/datasets/datapressr/blob/main/site/stories/france-public-finances-make-charts.mjs) reproduce the figures from archived Eurostat and INSEE releases. Amounts are rounded only for display. DREES supplies pension context, not replacement totals: its accounting scope differs. Release dates vary and figures remain subject to revision.
