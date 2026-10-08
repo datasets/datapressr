@@ -10,6 +10,7 @@ Datasets produced with the DataPressr skills. Status follows the lifecycle:
 
 | Dataset | Status | Source | Licence | Links |
 |---------|--------|--------|---------|-------|
+| **French public finances** | structured | Eurostat and INSEE | Eurostat reuse policy + Licence Ouverte 2.0 | [folder](https://github.com/datasets/datapressr/tree/main/datasets/france-public-finances) · [README](https://github.com/datasets/datapressr/blob/main/datasets/france-public-finances/README.md) · [draft story](stories/france-public-finances.md) |
 | **Project Drawdown — Table of Solutions (2020)** | structured · own repo | Project Drawdown, 2020 review (via community mirror) | PDDL-1.0 (facts) + attribution | [repo](https://github.com/datasets/project-drawdown) · [README](https://github.com/datasets/project-drawdown/blob/main/README.md) |
 | **CO₂ concentration — Mauna Loa (Keeling Curve)** | structured | NOAA GML | PDDL-1.0 (US-gov public domain) + citation | [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/co2-ppm) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/README.md) · [story](stories/keeling-curve.md) |
 | **Crude oil spot prices — Brent and WTI** | enriched | U.S. EIA | PDDL-1.0 (US-gov public domain) + acknowledgement | [folder](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/oil-prices) · [README](https://github.com/datasets/datapressr/blob/main/datasets/energy-and-commodities/oil-prices/README.md) · [story](stories/oil-prices.md) |
@@ -34,6 +35,7 @@ Caveats worth knowing before reuse:
 
 ## Data stories
 
+- **[Where France’s public money goes](stories/france-public-finances.md)** — debt, deficits and the spending mix, with four charts from official data. Dataset, outline and prose independently reviewed; author’s voice pass outstanding.
 - **[The Keeling Curve](stories/keeling-curve.md)** — from a NOAA text file to the
   single most important line in climate science, and what the line says. The first
   hand-written story; its friction notes feed the charting decision and the future

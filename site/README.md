@@ -63,6 +63,8 @@ You get an outline, chart-building scripts, SVG charts and a Markdown story. Rev
 
 [Read the finished example: WTI Went Negative. Brent Didn't.](stories/oil-prices.md) The chart above is the actual generated SVG: sharp at any size and reproducible from the dataset.
 
+[Where France’s public money goes](stories/france-public-finances.md) uses Eurostat and INSEE data to examine debt, persistent deficits and the spending mix. Four charts and a reproducible dataset; first draft, with the author’s voice pass still to come.
+
 ## What you can do
 
 | Skill | Use it to… |
