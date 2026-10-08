@@ -16,6 +16,8 @@ const billions = n => n.toLocaleString('en-GB', { minimumFractionDigits: 1, maxi
 function save(name, plot, title, subtitle, notes, width = 900) {
   const chart = plot.tagName.toLowerCase() === 'svg' ? plot : plot.querySelector('svg');
   assert(chart);
+  chart.style.fontFamily = 'system-ui, sans-serif';
+  chart.style.fontSize = width === 600 ? '17px' : '14px';
   const style = plot.querySelector('style');
   if (style && !chart.contains(style)) chart.prepend(style);
   const chartHeight = Number(chart.getAttribute('height'));
