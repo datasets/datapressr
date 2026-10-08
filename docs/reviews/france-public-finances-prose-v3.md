@@ -34,3 +34,7 @@ Revenue is consistently near-black `#242424` and expenditure red `#c83232` in th
 ## Optional precision improvement
 
 The source's recipient measure is an end-of-year stock. The phrase “the general scheme’s direct-pension recipient count rose 1.0% over the year” is accurate, but “CNAV’s year-end direct-pension recipient count rose 1.0%” would name the scheme and make its timing immediately explicit. Similarly, “basic pension rates were uprated by 5.3%” is slightly more exact than “basic pensions rose 5.3%”. These are optional clarity edits, not approval blockers; the present context already identifies indexation and distinct measures.
+
+## Final source confirmation
+
+**APPROVED** at final source commit `48ef13a9d7b59ed0c3a088ba7f1af2b7043e58ac`. Prose SHA-256: `b95806f209d12f4fcc866758c3d4706b20170dc3eb728ee296feb33571c08e4a`. Verified against the reviewed working-tree hash by reversing only two subsequent edits: the optional refinement now specifies basic-pension rate uprating and CNAV’s year-end direct-pension recipient count; the care-home comparison sentence was removed. Reversing those changes reproduces the exact previously reviewed hash. Both edits preserve the approved findings and improve precision or concision; no full re-review was needed.
