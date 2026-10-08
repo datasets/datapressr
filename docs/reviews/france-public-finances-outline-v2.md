@@ -46,3 +46,7 @@ Keeping seven chart blocks may still feel long. This is an editorial considerati
 - `data/fiscal-accounts.csv`: `5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733`
 - `data/spending-functions.csv`: `2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494`
 - `data/quarterly-debt.csv`: `bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307`
+
+## Correction verification and final verdict
+
+**APPROVED** at commit `a2a318ca4b1a53204e8fbb303aef52951eca6816`. Outline SHA-256: `ba37614d2cd560b0706b28f7c69e71aabb575ee97b6ff98e4040e2dd31576bfc`. The diff changes only the two requested percentages, to `57.0755257%` and `23.4451342%`; both agree with the independent calculations to the displayed precision. All earlier checks remain applicable. This approval covers the revised outline, not charts or prose yet to be implemented.
