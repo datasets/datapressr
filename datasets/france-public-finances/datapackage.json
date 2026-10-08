@@ -75,7 +75,7 @@
           {
             "name": "status_flag",
             "type": "string",
-            "description": "Eurostat observation flag, preserved verbatim; p indicates provisional, b a break in series, e estimated. Empty means no flag was supplied, not necessarily final data."
+            "description": "Eurostat observation flag, preserved verbatim; p indicates provisional, m missing value, b a break in series, e estimated. Empty means no flag was supplied, not necessarily final data."
           },
           {
             "name": "source_updated",
@@ -136,7 +136,7 @@
           {
             "name": "status_flag",
             "type": "string",
-            "description": "Eurostat observation flag, preserved verbatim; p indicates provisional, b a break in series, e estimated. Empty means no flag was supplied, not necessarily final data."
+            "description": "Eurostat observation flag, preserved verbatim; p indicates provisional, m missing value, b a break in series, e estimated. Empty means no flag was supplied, not necessarily final data."
           },
           {
             "name": "source_updated",

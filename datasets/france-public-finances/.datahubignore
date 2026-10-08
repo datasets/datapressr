@@ -7,3 +7,5 @@ RESEARCH.md
 node_modules/
 package.json
 package-lock.json
+source-labels.json
+build.test.mjs

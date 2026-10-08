@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { JSDOM } from 'jsdom';
 process.chdir(fileURLToPath(new URL('.', import.meta.url)));
 const manifest = JSON.parse(readFileSync('archive/manifest.json', 'utf8'));
+const sourceLabels = JSON.parse(readFileSync('source-labels.json', 'utf8'));
 for (const source of manifest.files) {
   const bytes = readFileSync('archive/' + source.file);
   assert.equal(bytes.length, source.bytes, source.file + ': size');
@@ -37,6 +38,9 @@ function decode(file, ids) {
   const j = JSON.parse(readFileSync('archive/' + file, 'utf8'));
   assert.equal(j.class, 'dataset'); assert.deepEqual(j.id, ids);
   assert.equal(j.updated, manifest.files.find(f => f.file === file).source_updated);
+  for (const [dimension, labels] of Object.entries(sourceLabels[file])) {
+    assert.deepEqual(j.dimension[dimension].category.label, labels, 'Source category labels changed: ' + file + '/' + dimension);
+  }
   const dimensions = j.id.map((id, axis) => {
     const c = j.dimension[id].category;
     const entries = Array.isArray(c.index) ? c.index.map((v, i) => [v, i]) : Object.entries(c.index);
@@ -138,7 +142,7 @@ for (let i = 0; i < debt.length; i++) {
   assert(debt[i].net_debt_eur_billions <= debt[i].gross_debt_eur_billions);
 }
 function field(name, type, description) { return { name, type, description }; }
-const eurostatValueFields = [field('unit', 'string', 'MIO_EUR: millions of current euros; PC_GDP: percentage of GDP. Never sum across units.'), field('value', 'number', 'Official observation; empty means not supplied, never zero. Values retain source precision.'), field('status_flag', 'string', 'Eurostat observation flag, preserved verbatim; p indicates provisional, b a break in series, e estimated. Empty means no flag was supplied, not necessarily final data.'), field('source_updated', 'string', 'Eurostat dataset update timestamp, as supplied; denotes the snapshot vintage, not an observation date.')];
+const eurostatValueFields = [field('unit', 'string', 'MIO_EUR: millions of current euros; PC_GDP: percentage of GDP. Never sum across units.'), field('value', 'number', 'Official observation; empty means not supplied, never zero. Values retain source precision.'), field('status_flag', 'string', 'Eurostat observation flag, preserved verbatim; p indicates provisional, m missing value, b a break in series, e estimated. Empty means no flag was supplied, not necessarily final data.'), field('source_updated', 'string', 'Eurostat dataset update timestamp, as supplied; denotes the snapshot vintage, not an observation date.')];
 const resources = [
   { name: 'fiscal-accounts', title: 'Annual government revenue, expenditure and balances', path: 'data/fiscal-accounts.csv', mediatype: 'text/csv', schema: { fields: [field('country_code', 'string', 'Eurostat geography: FR, DE, ES, IT or EU27_2020. The EU is an aggregate, not another country to add to the others.'), field('country', 'string', 'Official geography label.'), field('year', 'year', 'Annual accounting period.'), field('indicator', 'string', 'ESA 2010 code. TE expenditure; TR total revenue; B9 balance (negative is deficit); D41PAY interest; D2REC, D5REC, D91REC taxes; D61REC net social contributions; D995REC collection adjustment. Other indicators describe economic types of spending and overlap with functional spending.'), field('indicator_label', 'string', 'Eurostat indicator label; components and aggregates must not all be summed together.'), ...eurostatValueFields], primaryKey: fiscalKey } },
   { name: 'spending-functions', title: 'French public spending by function (COFOG)', path: 'data/spending-functions.csv', mediatype: 'text/csv', schema: { fields: [field('year', 'year', 'Annual accounting period; 2025 appears in the API dimension but has no French observations in this snapshot.'), field('function_code', 'string', 'COFOG code, with TOTAL plus division and group codes.'), field('function_name', 'string', 'Official function label. Social protection excludes health in COFOG.'), field('level', 'integer', '0 total; 1 division; 2 group. Sum only mutually exclusive categories at the same level.'), field('parent_code', 'string', 'Parent COFOG code, empty for TOTAL.'), ...eurostatValueFields], primaryKey: functionKey } },
