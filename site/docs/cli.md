@@ -100,6 +100,6 @@ tar -xzf dh_darwin_arm64.tar.gz && mv dh ~/bin/
 - **Views DataHub can draw.** Simple `line` charts take several series. Simple `bar` and `lines-and-points` charts need the x (`group`) field and `series[0]` typed `year`, `yearmonth`, `date` or `number`, not `integer` or `string`, and they plot only `series[0]`. For anything else use a `vega-lite` or `plot` view.
 - **`.datahubignore`** excludes `archive/`, scripts, `node_modules/`, `package*.json` and `AGENTS.md`. Every other non-hidden file is uploaded, and every other `.md` file becomes a sub-page.
 
-**Which publication.** The skill always passes `--publication` explicitly: `$DATAHUB_PUBLICATION` if you set it, otherwise `datapressr`. It never publishes to `core` (it refuses if `$DATAHUB_PUBLICATION` is `core`), whose datasets sync from GitHub, so the next sync can overwrite a direct upload.
+**Which publication.** The skill always passes `--publication` explicitly: `$DATAHUB_PUBLICATION` if you set it, otherwise `datapressr` (https://datahub.io/datapressr). It never publishes to `core` (it refuses if `$DATAHUB_PUBLICATION` is `core`), whose datasets sync from GitHub, so the next sync can overwrite a direct upload.
 
 **After publishing**, open the printed URL (`https://datahub.io/<publication>/<name>`) and check the page; it is processed in the background after the upload. Publishing again adds and overwrites files but never deletes them, so a file you removed locally stays online, and an existing dataset's title and description only change in the DataHub dashboard.

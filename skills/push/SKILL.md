@@ -69,4 +69,14 @@ tar -xzf dh_darwin_arm64.tar.gz && mv dh ~/bin/   # any directory on your PATH
 
 Then the person (not the agent) runs `dh login` once in a terminal; it signs in through the browser.
 
+## `dh` command reference (v0.1.0)
+
+Checked against `dh --help` on the v0.1.0 release binary. Commands: `publish`, `login`, `logout`, `delete`, `publication create`, `completion`.
+
+- `dh publish [dir]`: `-p/--publication`, `-n/--name` (default: `datapackage.json` `name`, then the directory name), `-t/--title`, `-d/--description`, `-a/--author` (repeatable). GitHub-link mode (`-g/--github owner/repo`, `--branch`, `--subdir`) is not used here: it ignores `.datahubignore` and would publish `archive/`, build scripts and `AGENTS.md`.
+- `dh delete <name>`: `-p/--publication`.
+- `dh login`: `--api-url` (default `https://datahub.io`). It saves `{apiUrl, token, publication}` to the credentials file with `publication` empty, which is one more reason to always pass `--publication`.
+- `dh publication create <slug>`: `-n/--name` (display name). The `datapressr` publication already exists at https://datahub.io/datapressr, so you don't need this.
+- `--publication` overrides `DATAHUB_PUBLICATION`, which overrides the credentials file.
+
 For CI, run `dh login` once as the publishing user, copy the `token` value from the credentials file into a `DATAHUB_API_TOKEN` secret, and set `DATAHUB_API_URL=https://datahub.io`. Treat that token as highly privileged and keep the secret tightly scoped.
