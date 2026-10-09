@@ -209,33 +209,100 @@
       "name": "keeling-curve-annual",
       "title": "The Keeling Curve — annual mean CO₂ at Mauna Loa",
       "specType": "simple",
-      "resources": ["co2-annual-mlo"],
+      "resources": [
+        "co2-annual-mlo"
+      ],
       "spec": {
         "type": "line",
         "group": "year",
-        "series": ["co2_ppm_mean"]
+        "series": [
+          "co2_ppm_mean"
+        ]
       }
     },
     {
       "name": "monthly-with-trend",
       "title": "Monthly CO₂ and its deseasonalized trend",
       "specType": "simple",
-      "resources": ["co2-monthly-mlo"],
+      "resources": [
+        "co2-monthly-mlo"
+      ],
       "spec": {
         "type": "line",
         "group": "date",
-        "series": ["co2_ppm", "co2_ppm_deseasonalized"]
+        "series": [
+          "co2_ppm",
+          "co2_ppm_deseasonalized"
+        ]
       }
     },
     {
       "name": "growth-by-decade",
       "title": "CO₂ is rising faster each decade (mean growth rate, ppm/yr)",
-      "specType": "simple",
-      "resources": ["co2-growth-decadal"],
+      "description": "Mean of NOAA annual growth rates per decade, Mauna Loa and global. The 1950s is a single year (1959) and the 2020s is partial; n_years in the resource gives the count.",
+      "specType": "vega-lite",
+      "resources": [
+        "co2-growth-decadal"
+      ],
       "spec": {
-        "type": "bar",
-        "group": "decade",
-        "series": ["mlo_mean_ppm_per_year", "global_mean_ppm_per_year"]
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "transform": [
+          {
+            "fold": [
+              "mlo_mean_ppm_per_year",
+              "global_mean_ppm_per_year"
+            ],
+            "as": [
+              "measure",
+              "ppm_per_year"
+            ]
+          },
+          {
+            "calculate": "datum.measure === \"mlo_mean_ppm_per_year\" ? \"Mauna Loa\" : \"Global\"",
+            "as": "series"
+          }
+        ],
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "field": "decade",
+            "type": "nominal",
+            "sort": null,
+            "title": "Decade",
+            "axis": {
+              "labelAngle": 0
+            }
+          },
+          "xOffset": {
+            "field": "series",
+            "type": "nominal"
+          },
+          "y": {
+            "field": "ppm_per_year",
+            "type": "quantitative",
+            "title": "Mean growth (ppm per year)"
+          },
+          "color": {
+            "field": "series",
+            "type": "nominal",
+            "title": null
+          },
+          "tooltip": [
+            {
+              "field": "decade",
+              "type": "nominal"
+            },
+            {
+              "field": "series",
+              "type": "nominal"
+            },
+            {
+              "field": "ppm_per_year",
+              "type": "quantitative",
+              "title": "ppm/yr"
+            }
+          ]
+        }
       }
     }
   ]

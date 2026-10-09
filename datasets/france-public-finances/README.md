@@ -1,5 +1,3 @@
-# French public finances
-
 Official snapshots for an investigation of French public debt, persistent deficits, government revenue and what public money buys. The unit is **general government**: central government, local government and social security administrations, with consolidation as defined by the statistical sources.
 
 This is one portable dataset in the DataPressr repository, not a copy of an entire Eurostat or INSEE catalog. It can become a standalone repository later without changing its build. The accompanying story belongs in `site/stories/`; Bead `datapressr-sy2` tracks the investigation.

@@ -1,5 +1,3 @@
-# U.S. weather-related fatalities, injuries and damage by hazard type
-
 Deaths, injuries and property and crop damage caused by weather in the United States, by event type, for each year from 1997 to 2025 — 29 years, 759 event rows plus the 29 annual totals the source prints itself. Compiled by the National Weather Service from Storm Data and published one PDF per year as the *Summary of U.S. Natural Hazard Statistics*.
 
 Over the 29 years the source counts **18,867** weather-related deaths. Heat is the largest single cause at 5,366, ahead of tornadoes (2,167) and flash floods (2,015). The deadliest year is 2005 (1,451, most of it Hurricane Katrina) and the costliest is also 2005, at about $100.8 billion of nominal property and crop damage.
