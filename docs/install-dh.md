@@ -16,9 +16,9 @@ dh --version
 
 `~/.local/bin` must be on your `PATH` (add `export PATH="$HOME/.local/bin:$PATH"` to `~/.zshrc` if not).
 
-## Machine without `gh` (e.g. a headless box)
+## Machine without `gh`
 
-Download on a machine that has `gh`, then copy the binary across:
+The install steps above work on any machine with `gh` logged in (including `rgrp@headless.local`; note `gh` is only on the PATH in a login shell there). Otherwise, download on a machine that has `gh`, then copy the binary across:
 
 ```sh
 scp ~/.local/bin/dh user@host:.local/bin/dh
@@ -31,7 +31,9 @@ ssh user@host 'chmod 755 ~/.local/bin/dh; xattr -d com.apple.quarantine ~/.local
 dh login
 ```
 
-A one-off browser sign-in that saves a token locally. On a headless machine, either run `dh login` over a session where a browser can open, or use the CI path: `DATAHUB_API_TOKEN` plus `DATAHUB_API_URL=https://datahub.io`.
+A one-off device-code sign-in: it prints a URL and code, you open the URL in any browser (it can be on another machine), sign in to datahub.io with GitHub and click Authorize. The CLI then saves a long-lived token locally. This works fine over SSH on a headless machine.
+
+`DATAHUB_API_TOKEN` is only needed for CI or env-only use. There is no token UI: run `dh login` once, then copy the `token` value from the credentials file it writes into `DATAHUB_API_TOKEN`, with `DATAHUB_API_URL=https://datahub.io`. Treat it as highly privileged; `dh logout` revokes it.
 
 Then see the publishing rules in [AGENTS.md](../AGENTS.md) (always pass `--publication`, never publish to `core`) and the `push` skill.
 
