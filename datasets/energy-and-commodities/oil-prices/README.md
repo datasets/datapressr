@@ -16,7 +16,7 @@ See [`SUMMARY.md`](https://github.com/datasets/datapressr/blob/main/datasets/ene
 ## Source & licence
 
 U.S. Energy Information Administration, *Petroleum & Other Liquids — Spot Prices*
-(<https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm>). Raw `.xls` workbooks and
+([eia.gov/dnav/pet/pet_pri_spt_s1_d.htm](https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm)). Raw `.xls` workbooks and
 retrieval details in `archive/PROVENANCE.md`, retrieved 2026-09-05.
 
 EIA data are a U.S. Government work and in the public domain; EIA asks for an

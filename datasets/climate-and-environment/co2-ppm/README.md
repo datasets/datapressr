@@ -13,7 +13,7 @@ NOAA's published growth rates, in parts per million (ppm) of dry air.
 ## Source & licence
 
 NOAA Global Monitoring Laboratory, *Trends in Atmospheric Carbon Dioxide*
-(<https://gml.noaa.gov/ccgg/trends/data.html>). Files `co2_mm_mlo.csv` and
+([gml.noaa.gov/ccgg/trends/data.html](https://gml.noaa.gov/ccgg/trends/data.html)). Files `co2_mm_mlo.csv` and
 `co2_annmean_mlo.csv` retrieved 2026-08-30; `co2_gr_mlo.csv`, `co2_annmean_gl.csv`
 and `co2_gr_gl.csv` retrieved 2026-09-05 (snapshots in `archive/`).
 
