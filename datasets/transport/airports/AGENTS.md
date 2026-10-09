@@ -159,7 +159,7 @@ dh publish . --publication datapressr
 - **A root `README.md` is required.** Without one the dataset page is a 404.
 - **Publishing is an upsert, not a sync.** Files deleted locally stay on DataHub, and the `title` and `description` of an existing dataset are not updated.
 
-`dh` is a Go binary from the private repo [datopian/datahub-next](https://github.com/datopian/datahub-next/tree/staging/cli): `gh release download v0.1.0 -R datopian/datahub-next -p 'dh_<os>_<arch>.tar.gz'`, extract it and put `dh` on your `PATH`. The `push` skill has the full checklist.
+`dh` is a Go binary from the private repo [datopian/datahub-next](https://github.com/datopian/datahub-next/tree/staging/cli): `gh release download v0.1.0 -R datopian/datahub-next -p 'dh_<os>_<arch>.tar.gz'`, extract it and put `dh` on your `PATH`. Step-by-step install (including headless machines): [docs/install-dh.md](docs/install-dh.md). The `push` skill has the full checklist.
 
 ### Delete a dataset
 
