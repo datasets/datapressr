@@ -1,7 +1,7 @@
 ---
 title: "Story practice: a compounding loop for better data stories"
 date: 2026-10-09
-status: proposal (revised after review, see 2026-10-09-story-practice-review.md)
+status: proposal (revised after review, see 2026-10-09-story-practice-review.md; the case format, runner and beads in sections 3, 7 and 8 are superseded by 2026-10-09-story-harness.md)
 ---
 
 # Story practice — 2026-10-09
@@ -43,6 +43,8 @@ question → blind run → critic → owner (sometimes) → LESSONS.md → skill
 - **Datasets follow stories.** In practice runs the writer may snapshot what it needs into `<slug>-src/` with `PROVENANCE.md` and write a short `DATA.md` (what it searched, chose, licence, vintage). A full `structured` dataset is wrangled only for stories we keep. Discovery lessons feed the existing decision on a `discover` skill (`8no.6`).
 
 ## 3. Case format (minimal)
+
+*Superseded 2026-10-09 by [the harness design](2026-10-09-story-harness.md) sections 2–4, which make the case, run and critique machine-readable and stage blind runs with a script. The loop, the critic shape (section 4) and the question bank (section 5) stand.*
 
 ```
 evals/stories/
@@ -99,9 +101,13 @@ Two uses. **Benchmark references** must answer the same question and be open eno
 
 ## 7. Wrangling uses the same shape
 
+*Superseded 2026-10-09: the harness design, section 9, proposes which `8no` beads to re-parent, amend or supersede so one runner serves both domains.*
+
 The case / critique / `LESSONS.md` shape is skill-agnostic. The wrangling instance is already planned in epic `datapressr-8no` (`8no.2` harness, `8no.3` comparison, `8no.4` judged rubric). `8no.4` should adopt the critic structure in section 4 (generative findings first, checklist second). A scripted runner is built once, by whichever of `8no.2` or story practice needs it first, and only after three manual runs show what is repetitive. No new wrangling beads here.
 
 ## 8. Beads to file now (Phase 0–1)
+
+*Superseded 2026-10-09 by the bead breakdown in [the harness design](2026-10-09-story-harness.md) section 12 and [`2026-10-09-story-harness-beads.json`](2026-10-09-story-harness-beads.json). P1 below survives as bead H9 (`datapressr-hcn.10`); P2–P5 are absorbed into the harness beads (epic `datapressr-hcn`); P6 (pattern library, France decision) is out of the harness scope.*
 
 New epic: **Story practice: blind runs, critique and lessons** (P2, labels `quality, evals, story`).
 
