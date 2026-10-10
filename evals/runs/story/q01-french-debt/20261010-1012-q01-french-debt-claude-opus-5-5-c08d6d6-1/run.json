@@ -1,0 +1,135 @@
+{
+  "run_id": "20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1",
+  "case_id": "q01-french-debt",
+  "domain": "story",
+  "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+  "skill": {
+    "name": "story",
+    "ref": "031eb45985264e917fd491ede9476be2f5547ea9",
+    "tree": "c08d6d659a4db14be9083a46c2d1e56557c66293",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "d6760762299840b6a594f70bb3c736651baae8fb",
+    "dirty": false,
+    "recipe_sha256": "eb5a76ea3d644d9532ebfb98864577d963b711d7a03d1a8a0e39af5036322b87"
+  },
+  "writer": {
+    "vendor": "claude",
+    "model": "claude-opus-5-5",
+    "model_actual": "claude-opus-5-5",
+    "cli_version": "2.1.296",
+    "prompt_sha256": "3fe1ed6d7a88a5b56c202aad28e93d38cacedc57e9635e99d73d34042ecc2575"
+  },
+  "isolation": {
+    "canary_run_id": "20261010-0211-canary-claude-haiku-5-5-1",
+    "network": false,
+    "leaks": [
+      {
+        "tool": "Bash",
+        "path": "/Users/rgrp"
+      },
+      {
+        "tool": "Bash",
+        "path": "../.datahubignore"
+      },
+      {
+        "tool": "Bash",
+        "path": "../../.."
+      },
+      {
+        "tool": "Bash",
+        "path": "../../datasets/france-public-finances/data/"
+      },
+      {
+        "tool": "Bash",
+        "path": "../../datasets/france-public-finances/data/fiscal-accounts.csv"
+      },
+      {
+        "tool": "Bash",
+        "path": "../.."
+      }
+    ]
+  },
+  "started_at": "2026-10-10T10:12:53.695Z",
+  "duration_ms": 601341,
+  "turns": 33,
+  "cost_usd": 2.0749690000000003,
+  "cost_basis": "list",
+  "usage": {
+    "input_tokens": 54,
+    "cache_creation_input_tokens": 99478,
+    "cache_read_input_tokens": 1778545,
+    "output_tokens": 46161,
+    "output_tokens_details": {
+      "thinking_tokens": 15940
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 99478,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1147,
+        "cache_read_input_tokens": 102221,
+        "cache_creation_input_tokens": 2416,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2416
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "artefacts": [
+    {
+      "path": "site/stories/french-debt-balance.svg",
+      "sha256": "bf8aed83fb066100c889d9818bb7bcc7a90a77beb6d0c02685419da5785f7b9c",
+      "bytes": 8297
+    },
+    {
+      "path": "site/stories/french-debt-interest.svg",
+      "sha256": "c9429b849e0eb5f96ed37cb0f450d8d835b76b5e3f94f8b0833bfc9fb278bb56",
+      "bytes": 4875
+    },
+    {
+      "path": "site/stories/french-debt-make-charts.mjs",
+      "sha256": "c8e1352e61020e58c1e948cba0e23ab7cc04344e4d47323a5636cb95cb491342",
+      "bytes": 11065
+    },
+    {
+      "path": "site/stories/french-debt-outline.md",
+      "sha256": "1cffbc39d84da8aee40c035d494206f3c01a0af35566095647836453ce29d7a2",
+      "bytes": 13460
+    },
+    {
+      "path": "site/stories/french-debt-ratio.svg",
+      "sha256": "c1917e103182c939fe001185da117bb22f0a448c217d1ebcda8b7db2701af0eb",
+      "bytes": 7318
+    },
+    {
+      "path": "site/stories/french-debt-revenue-spending.svg",
+      "sha256": "953a06a6a6df643361dab86f2bcb50dc3a520dd280db72b690a522efaac1ea49",
+      "bytes": 9033
+    },
+    {
+      "path": "site/stories/french-debt.md",
+      "sha256": "f416a17083f425f202f181b9e5f1ca3840557c326853fcc8cd22f2817ed80410",
+      "bytes": 7129
+    }
+  ],
+  "transcript_sha256": "5fa9c409cb0aa30a2ea2d220c14e77ae4fa56679b53d83538ab8e1ad0eb6b407",
+  "workspace_sha256": "f11babe5c6b619a0028404f9d70819f22c63ce0dc5eb60e0429960ba85d9afe4",
+  "flags": [
+    "leaked"
+  ]
+}

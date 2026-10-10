@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v2",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "AB",
+  "shown": {
+    "story_1": "A",
+    "story_2": "B"
+  },
+  "preferred": "A",
+  "margin": "clear",
+  "why": "Story 1 answers more of the central, answerable questions: it attributes about half the 2019–24 deterioration to lower revenue, identifies health and old-age spending as major increases, and gives the 2025 deficit excluding interest as 2.9% of GDP; Story 2 omits those findings. Story 2 is stronger on comparative trajectories and explicitly distinguishes fiscal deterioration from evidence of a market crisis, while its debt chart usefully exposes the 2021–23 ratio decline despite rising euro debt. Story 1’s directly labelled spending charts communicate their main comparisons readily, whereas Story 2’s balance chart uses indistinguishable grey country lines and displaced endpoint labels without connectors, making historical comparisons difficult to decode. Story 1’s interest chart needs correction because Italy’s negative bar reaches −3.9 while the adjacent total says 3.1; a separate net-balance marker would resolve this. Both need more precise language about debt staying elevated after shocks, especially Story 2’s claim that it “did not come back down,” which contradicts its own chart and later paragraph, but Story 1 requires fewer substantive additions.",
+  "reader_questions": [
+    {
+      "q": "How large is France’s public debt relative to its economy, how fast is it rising, and what in these data warrants calling it a crisis?",
+      "A": "partly",
+      "B": "yes"
+    },
+    {
+      "q": "How does France’s budget deficit compare with Germany, Italy, Spain and the EU aggregate, and is its recent trajectory unusual?",
+      "A": "partly",
+      "B": "yes"
+    },
+    {
+      "q": "When did France’s debt burden rise most sharply, and have its budget deficits persisted between those episodes?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "Has the recent deterioration in France’s budget balance come mainly from spending rising or revenue falling relative to GDP?",
+      "A": "yes",
+      "B": "no"
+    },
+    {
+      "q": "Which public services and benefits account for the largest shares of spending, and which explain most of its increase relative to GDP?",
+      "A": "yes",
+      "B": "no"
+    },
+    {
+      "q": "How much of the deficit comes from debt interest, how has that burden changed, and how large would the deficit remain without it?",
+      "A": "yes",
+      "B": "partly"
+    },
+    {
+      "q": "Do these sources show whether investors are losing confidence in France’s ability to repay, or would that require evidence beyond the public accounts?",
+      "A": "yes",
+      "B": "yes"
+    }
+  ],
+  "prompt_sha256": "40544f066dec66bec92cc654ca3c2ada652f4be346279068fd7b5619cc1f8460",
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+}

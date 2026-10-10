@@ -1,0 +1,175 @@
+{
+  "rubric": "story/v2",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "How large is France’s debt now, in euros and relative to GDP, and how much has it risen over time?",
+      "answered": "yes",
+      "where": "Opening paragraph and france-debt-ratio.svg: €3.6 trillion and 119.0% of GDP in mid-2026, versus €855bn and 60.5% in 2000."
+    },
+    {
+      "q": "What evidence distinguishes a debt crisis from a high debt burden, and can these data establish that France is in a crisis?",
+      "answered": "set-aside",
+      "where": ""
+    },
+    {
+      "q": "How persistent is the gap between government spending and revenue, and when did it widen most sharply?",
+      "answered": "yes",
+      "where": "“Spending has been above revenue every year” and france-debt-gap.svg establish 31 consecutive deficits and the sharp widening in 2009 and 2020."
+    },
+    {
+      "q": "Is the recent deterioration in France’s budget balance driven mainly by spending rising or revenue falling relative to GDP?",
+      "answered": "yes",
+      "where": "“Two numbers cut against…” attributes about half the 2019–2024 widening to lower revenue; france-debt-gap.svg supplies the spending and revenue endpoints."
+    },
+    {
+      "q": "How do France’s spending, revenue and deficit compare with Germany, Italy, Spain and the EU aggregate?",
+      "answered": "yes",
+      "where": "france-debt-neighbours.svg gives all three measures for all five geographies in 2025."
+    },
+    {
+      "q": "Which public services and benefits account for the largest spending shares, and which explain the biggest increases?",
+      "answered": "partly",
+      "where": "“Where the money goes” and france-debt-functions.svg identify the major functions and long-run changes, but unpack social protection only through old age and leave health undivided."
+    },
+    {
+      "q": "How much does debt interest cost, how has that burden changed, and how large would the budget deficit be without it?",
+      "answered": "yes",
+      "where": "“Interest is rising, but it is not most of the gap” gives the euro cost, GDP share, historical comparisons and 2.9%-of-GDP deficit before interest."
+    },
+    {
+      "q": "What improvement in the budget balance and economic growth would be needed to stabilise debt relative to GDP?",
+      "answered": "no",
+      "where": ""
+    }
+  ],
+  "missed_findings": [
+    "The supplied debt, deficit and GDP ratios permit an illustrative debt-stabilisation calculation under explicit nominal-growth and stock-flow assumptions, but the story never shows what closing enough of the gap would mean.",
+    "Old-age spending rose by 2.4 percentage points of GDP while social protection rose by only 1.7, implying that its other components together fell by about 0.7 points; the story neither draws out this offset nor identifies the benefits responsible.",
+    "The functional data contain groups within health and social protection, but the story does not establish which health services or non-old-age benefits explain their movements.",
+    "The story identifies falling revenue as half the recent deterioration without using the available tax and social-contribution series to investigate which receipts fell."
+  ],
+  "charts": [
+    {
+      "file": "france-debt-ratio.svg",
+      "glance": "French debt has roughly doubled relative to GDP, with pronounced jumps around 2009 and 2020.",
+      "glance_matches_prose": true,
+      "encodings": "The solid blue line represents the single debt series named in the subtitle; equally sized filled red circles identify directly labelled observations. Grey lines are gridlines, and the black horizontal line is zero.",
+      "encodings_clear": true,
+      "shows": "Quarterly gross government debt relative to GDP from 2000 to mid-2026, with selected dates and starting and ending euro amounts.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-debt-gap.svg",
+      "glance": "Spending persistently exceeds revenue, with especially large gaps in 2009 and 2020.",
+      "glance_matches_prose": true,
+      "encodings": "The red solid line and red dots represent spending; the black solid line and black dots represent revenue, identified by endpoint labels. Pink shading represents the deficit. Dark-red bold numbers label deficits, but ordinary red numbers label spending, despite the subtitle saying that red figures mean deficit.",
+      "encodings_clear": false,
+      "shows": "Annual spending and revenue as GDP shares, with selected deficit values across 1995–2025.",
+      "form_fits": true,
+      "fix": "Label the deficit annotations explicitly, and replace the misleading subtitle reference to all “red figures” with a precise key."
+    },
+    {
+      "file": "france-debt-neighbours.svg",
+      "glance": "France has the highest revenue, highest spending and widest deficit among the five comparisons.",
+      "glance_matches_prose": true,
+      "encodings": "Equal-sized filled black dots show revenue and red dots spending, directly labelled on the France row; pale-red connectors show the gap, with deficit values labelled at right. Position gives percentage of GDP.",
+      "encodings_clear": true,
+      "shows": "The 2025 revenue, expenditure and deficit shares for France, Italy, the EU aggregate, Germany and Spain.",
+      "form_fits": true,
+      "fix": "Add a short rounding note explaining why Germany’s displayed endpoints differ by 2.6 points while its reported deficit is 2.7."
+    },
+    {
+      "file": "france-debt-functions.svg",
+      "glance": "Health and social protection had the largest increases, while general public services had the largest decrease.",
+      "glance_matches_prose": true,
+      "encodings": "Red bars extend right for increases and grey bars left for decreases, decoded through the signed axis and endpoint labels. Bar length measures change in GDP share; equal bar heights carry no additional meaning. The black vertical rule marks zero.",
+      "encodings_clear": true,
+      "shows": "Changes in ten spending functions between 1995 and 2024, with their starting and ending GDP shares and two subgroup annotations.",
+      "form_fits": true,
+      "fix": "Add the non-old-age social-protection change alongside old age so the largest category’s offsetting movements are explicit."
+    },
+    {
+      "file": "france-debt-interest.svg",
+      "glance": "Most of France’s deficit precedes interest payments, whereas Italy’s interest bill dominates its balance.",
+      "glance_matches_prose": true,
+      "encodings": "Blue bars show balances before interest and red bars interest costs, directly labelled above France’s row. Left of the black zero rule means deficit; Italy’s blue surplus extends right and is explicitly labelled. Equal bar heights carry no additional meaning.",
+      "encodings_clear": true,
+      "shows": "Primary balances and interest costs in 2025, with total deficits labelled and an annotation comparing French interest payments in euros over time.",
+      "form_fits": false,
+      "fix": "Use a waterfall or separate net-balance marker: Italy’s “total 3.1” is currently positioned at −3.9, the interest endpoint, whereas the other total labels sit at their net balances."
+    }
+  ],
+  "top_change": "Add a short, explicitly conditional debt-stabilisation calculation showing how the required deficit reduction changes with nominal GDP growth; this would turn the account of persistent deficits into an explanation of what makes the debt path sustainable.",
+  "publishable": "with-edits",
+  "lessons": [
+    {
+      "rule": "When explaining rising debt ratios, show a conditional stabilisation benchmark as well as the historical path.",
+      "evidence": "The story explains the annual gap but leaves the reader unable to judge how much improvement would stop the debt ratio rising."
+    },
+    {
+      "rule": "When a large category supports an explanation, show its important internal increases and offsets.",
+      "evidence": "Old age rises more than social protection overall, but the decline elsewhere within social protection is left for the reader to calculate."
+    },
+    {
+      "rule": "Use the exact name of the quantity measured in a comparative claim.",
+      "evidence": "The heading says France “taxes more,” while the supporting chart measures total revenue, which also includes social contributions and other receipts."
+    },
+    {
+      "rule": "When components have opposite signs, make the net result a correctly positioned visual mark.",
+      "evidence": "Italy’s total deficit label is placed at its gross interest endpoint in the diverging stack."
+    },
+    {
+      "rule": "Carry material measurement qualifications from the working notes into the published story.",
+      "evidence": "The outline explains the differing spending-table vintages and rounding discrepancies, but the prose leaves readers to reconcile them."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 2,
+      "why": "The title and opening establish a clear account of persistent deficits and rising debt, and every section contributes evidence to it."
+    },
+    "depth": {
+      "score": 1,
+      "why": "It tests spending-only and interest-only explanations, but leaves major spending categories partly unpacked and supplies no stabilisation benchmark."
+    },
+    "charts": {
+      "score": 1,
+      "why": "The charts largely carry the evidence, but the gap chart’s colour explanation is ambiguous and Italy’s net deficit is misplaced in the interest chart."
+    },
+    "honesty": {
+      "score": 0,
+      "why": "“France taxes more” is asserted using total revenue rather than a tax measure; the outline itself acknowledges that distinction. Crisis-data limits and interest conventions are otherwise disclosed."
+    },
+    "reader_questions": {
+      "score": 1,
+      "why": "Most descriptive questions are answered, but the composition question is only partly answered and debt stabilisation is omitted despite being conditionally calculable."
+    },
+    "prose": {
+      "score": 2,
+      "why": "The prose is direct, generally concise and numerically manageable, with GDP shares providing context for the large euro amounts."
+    }
+  },
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+  "prompt_sha256": "ce5b6b31b88913e2c23bb8d82624ddf52308b48f8f9ceaab208f9422ccbc0beb",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 47560,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2599,
+      "reasoning_output_tokens": 171
+    },
+    "calls": 2
+  }
+}

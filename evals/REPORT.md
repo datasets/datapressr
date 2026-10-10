@@ -11,6 +11,10 @@ Generated from `evals/ledger.jsonl` by `node evals/run.mjs report` (or `npm run 
 - Leaked run 20261010-0514-co2-monthly-claude-opus-5-5-noskill-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-0517-co2-monthly-claude-opus-5-5-noskill-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-0519-co2-monthly-claude-opus-5-5-fbf4d07-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
 
 ## Per skill change
 
@@ -22,15 +26,30 @@ Cases run: structure/co2-monthly (6 runs).
 
 ### story
 
-#### Tree `c08d6d6`, commit `90ea475` site: publish all docs on the site by moving docs/ to site/docs/ (earliest tree with runs)
+#### Tree `d6d4845`, commit `50e166b` Put the owner's France feedback into the story skill (datapressr-hcn.10)
 
 Cases run: story/q01-french-debt (2 runs).
 
+What changed since `c08d6d6`: `git log --oneline 90ea475..50e166b -- skills/story` ([compare](https://github.com/datasets/datapressr/compare/90ea475...50e166b))
+
+- `50e166b` Put the owner's France feedback into the story skill (datapressr-hcn.10)
+
+Pairwise vs `c08d6d6` (rubric story/v2): 4 wins, 0 ties, 0 losses (n=4 pairs).
+
+- 20261010-1044-q01-french-debt-pair-1 on q01-french-debt: win
+- 20261010-1045-q01-french-debt-pair-1 on q01-french-debt: win
+- 20261010-1046-q01-french-debt-pair-1 on q01-french-debt: win
+- 20261010-1047-q01-french-debt-pair-1 on q01-french-debt: win
+
+#### Tree `c08d6d6`, commit `90ea475` site: publish all docs on the site by moving docs/ to site/docs/ (earliest tree with runs)
+
+Cases run: story/q01-french-debt (4 runs).
+
 #### Skill commits with no pairwise comparison on record
 
+- `6203aee` Story DataHub slug and approval fields; bundler gates drafts (datapressr-kh5.3)
 - `20c6d1e` Define the story skill's exempt-number list format (datapressr-hcn.17)
 - `5f62900` Make installed skills self-contained (datapressr-4ly.2)
-- `50e166b` Put the owner's France feedback into the story skill (datapressr-hcn.10)
 
 ### structure
 
@@ -46,12 +65,16 @@ None.
 
 ### story/q01-french-debt
 
-2 runs over 1 skill tree.
+6 runs over 2 skill trees.
 
 #### Writer claude-opus-5-5
 
 | Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
 |---|---|---|---|---|---|---|---|
+| 2026-10-10 10:34 | [20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | pass (6) | 2.36 | 36 | leaked |
+| 2026-10-10 10:24 | [20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | pass (6) | 2.52 | 30 | leaked |
+| 2026-10-10 10:12 | [20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3 (5 pass) | 2.07 | 33 | leaked |
+| 2026-10-10 10:04 | [20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3 (5 pass) | 2.02 | 29 | leaked |
 | 2026-10-10 01:13 | [20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3 (5 pass) | 1.72 | 33 |  |
 | 2026-10-10 01:01 | [20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | pass (6) | 1.46 | 26 |  |
 
@@ -66,8 +89,21 @@ Absolute scores, rubric story/v2 (diagnostic; 0-2):
 
 | Run | Skill tree | Critic | argument | depth | charts | honesty | reader_questions | prose | Publishable |
 |---|---|---|---|---|---|---|---|---|---|
+| 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 | `d6d4845` | codex gpt-6-astra | 2 | 1 | 1 | 1 | 1 | 1 | with-edits |
+| 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 | `d6d4845` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 2 | with-edits |
+| 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 1 | with-edits |
+| 20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 2 | 1 | 1 | 2 | 1 | 1 | with-edits |
 | 20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 1 | with-edits |
 | 20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 1 | with-edits |
+
+Pairwise (blind, judged in both orders; a win only when both orders agree):
+
+| Pair | Rubric | Critic | New | Old | AB | BA | Result | Owner |
+|---|---|---|---|---|---|---|---|---|
+| 20261010-1044-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 | 20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1 | new | new | win for new |  |
+| 20261010-1045-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 | 20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1 | new | new | win for new |  |
+| 20261010-1046-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 | 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 | new | new | win for new |  |
+| 20261010-1047-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 | 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 | new | new | win for new |  |
 
 ### structure/co2-monthly
 
@@ -110,11 +146,18 @@ Absolute scores per skill tree as min-max ranges with n (the latest score per ru
 
 | Skill tree | n | argument | depth | charts | honesty | reader_questions | prose |
 |---|---|---|---|---|---|---|---|
-| `c08d6d6` | 2 | 2 | 1 | 1 | 0 | 1 | 1 |
+| `d6d4845` | 2 | 2 | 1 | 1 | 0-1 | 1 | 1-2 |
+| `c08d6d6` | 4 | 2 | 1 | 1 | 0-2 | 1 | 1 |
+
+| Comparison | argument | depth | charts | honesty | reader_questions | prose |
+|---|---|---|---|---|---|---|
+| `d6d4845` vs `c08d6d6` | no detectable change | no detectable change | no detectable change | no detectable change | no detectable change | no detectable change |
 
 ### Critic-only spread (one run re-scored)
 
-No run has been re-scored yet.
+| Run | Rubric | n | argument | depth | charts | honesty | reader_questions | prose |
+|---|---|---|---|---|---|---|---|---|
+| 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 | story/v2 | 3 | 2 | 1 | 0-1 | 0 | 1 | 1 |
 
 ## Harness quality
 
@@ -135,9 +178,9 @@ No owner-judged pairs yet. The critic's pairwise verdict stands alone for small 
 
 ### Critic and isolation
 
-- Critic fallback: 0 of 24 critiques (absolute and pairwise) used the fallback critic.
-- Critic validation failures: 0 of 18 absolute critiques recorded as critic_failed.
-- Leaks caught: 7 of 15 runs flagged leaked.
+- Critic fallback: 0 of 34 critiques (absolute and pairwise) used the fallback critic.
+- Critic validation failures: 0 of 24 absolute critiques recorded as critic_failed.
+- Leaks caught: 11 of 19 runs flagged leaked.
 
 Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):
 

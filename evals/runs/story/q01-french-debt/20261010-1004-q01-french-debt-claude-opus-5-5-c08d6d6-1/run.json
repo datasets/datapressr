@@ -1,0 +1,139 @@
+{
+  "run_id": "20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1",
+  "case_id": "q01-french-debt",
+  "domain": "story",
+  "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+  "skill": {
+    "name": "story",
+    "ref": "031eb45985264e917fd491ede9476be2f5547ea9",
+    "tree": "c08d6d659a4db14be9083a46c2d1e56557c66293",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "d6760762299840b6a594f70bb3c736651baae8fb",
+    "dirty": false,
+    "recipe_sha256": "eb5a76ea3d644d9532ebfb98864577d963b711d7a03d1a8a0e39af5036322b87"
+  },
+  "writer": {
+    "vendor": "claude",
+    "model": "claude-opus-5-5",
+    "model_actual": "claude-opus-5-5",
+    "cli_version": "2.1.296",
+    "prompt_sha256": "3fe1ed6d7a88a5b56c202aad28e93d38cacedc57e9635e99d73d34042ecc2575"
+  },
+  "isolation": {
+    "canary_run_id": "20261010-0211-canary-claude-haiku-5-5-1",
+    "network": false,
+    "leaks": [
+      {
+        "tool": "Bash",
+        "path": "../../TASK.md"
+      },
+      {
+        "tool": "Bash",
+        "path": "../../../site/stories/.gitignore"
+      },
+      {
+        "tool": "Bash",
+        "path": "../../.."
+      },
+      {
+        "tool": "Bash",
+        "path": "../../../skills/story/references/make-charts-template.mjs"
+      },
+      {
+        "tool": "Bash",
+        "path": "../../datasets/france-public-finances/data"
+      },
+      {
+        "tool": "Bash",
+        "path": "../.."
+      },
+      {
+        "tool": "Bash",
+        "path": "../../datasets/france-public-finances/build.ts"
+      }
+    ]
+  },
+  "started_at": "2026-10-10T10:04:41.905Z",
+  "duration_ms": 407170,
+  "turns": 29,
+  "cost_usd": 2.023863,
+  "cost_basis": "list",
+  "usage": {
+    "input_tokens": 54,
+    "cache_creation_input_tokens": 105239,
+    "cache_read_input_tokens": 1907775,
+    "output_tokens": 40009,
+    "output_tokens_details": {
+      "thinking_tokens": 12375
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 105239,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1053,
+        "cache_read_input_tokens": 109246,
+        "cache_creation_input_tokens": 1152,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1152
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "artefacts": [
+    {
+      "path": "site/stories/french-debt-balance.svg",
+      "sha256": "b29292c47c8135b191122d52de3224a8938a4a9f81d57d65635af82fb655ed84",
+      "bytes": 8045
+    },
+    {
+      "path": "site/stories/french-debt-interest.svg",
+      "sha256": "b7dc28950689bde6db24f66103aba03b75ae8b92bbdb63775c912c7576b51790",
+      "bytes": 5343
+    },
+    {
+      "path": "site/stories/french-debt-make-charts.mjs",
+      "sha256": "80bae9321ff263a9633e18d9e86d274d4cd6b877462ebf11d0d75eb1c79d9e7a",
+      "bytes": 10741
+    },
+    {
+      "path": "site/stories/french-debt-outline.md",
+      "sha256": "6b2258f8ea4074d34e7687862cb56ba59892397f02681901ad7a5b3e74f146e9",
+      "bytes": 14379
+    },
+    {
+      "path": "site/stories/french-debt-ratio.svg",
+      "sha256": "60bc1f8175b8ce6b2f4d76e99e63f36331945e5c4913ffd66459b308edf2b95c",
+      "bytes": 8719
+    },
+    {
+      "path": "site/stories/french-debt-revenue-spending.svg",
+      "sha256": "bf6e2c17e9cd839696738322e44834d6340b38a9e58806260e2875ba4e9ea72c",
+      "bytes": 5913
+    },
+    {
+      "path": "site/stories/french-debt.md",
+      "sha256": "fdac3df55473f60ea0525913b80347005a50afed1689d28386fba4cc16ad525e",
+      "bytes": 6704
+    }
+  ],
+  "transcript_sha256": "c3422cb026e44608fc347120c4dc35e21a1ddb5cc898b06a4a3f4acf737fe4a8",
+  "workspace_sha256": "a07cd40c1ce312a977fce4ae5a032b4cc1677030b8e1bb061663298e97795c0b",
+  "flags": [
+    "leaked"
+  ]
+}

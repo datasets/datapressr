@@ -1,0 +1,162 @@
+{
+  "rubric": "story/v2",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "How large is France’s debt relative to GDP, how fast is it rising, and does the available evidence establish a crisis rather than a longstanding fiscal problem?",
+      "answered": "partly",
+      "where": "Opening paragraph and french-debt-ratio.svg give 119.0% of GDP; the closing paragraph explicitly limits the crisis claim, but neither calculates the recent pace of increase."
+    },
+    {
+      "q": "How persistent is the gap between government spending and revenue, and how does France’s deficit compare with Germany, Italy, Spain and the EU aggregate?",
+      "answered": "yes",
+      "where": "“A deficit in every year” and french-debt-balance.svg show persistence since 1995 and all five balances in 2025."
+    },
+    {
+      "q": "When did France’s debt burden rise most sharply, and has it returned towards its earlier level between those episodes?",
+      "answered": "partly",
+      "where": "“A deficit in every year,” french-debt-ratio.svg and the later denominator paragraph identify the jumps and subsequent partial retreat, but “It did not come back down after either jump” contradicts the documented 2021–2023 fall."
+    },
+    {
+      "q": "Has the recent deterioration in France’s budget balance come mainly from higher spending or lower revenue relative to GDP?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "Which public services and benefits account for the largest spending shares, and which explain the biggest increases, including within social protection?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How much of the deficit comes from interest payments, how has that burden changed, and how large would the deficit remain without it?",
+      "answered": "partly",
+      "where": "“The wrinkle: interest is rising again” and french-debt-interest.svg quantify interest and its history, but never subtract it from the deficit."
+    },
+    {
+      "q": "What change in spending or revenue would close the current deficit, and would balancing the budget necessarily return debt relative to GDP to its earlier level?",
+      "answered": "partly",
+      "where": "“High revenue, higher spending” supplies the fiscal levels, and the denominator paragraph explains that GDP matters, but the story does not work out the adjustment or directly answer the balanced-budget scenario."
+    }
+  ],
+  "missed_findings": [
+    "Interest accounts arithmetically for about 43% of the 2025 deficit: subtracting 2.2% of GDP from 5.1% leaves a substantial deficit before interest of 2.9% of GDP.",
+    "At unchanged GDP and before economic feedbacks, closing the 2025 gap requires spending cuts, revenue increases or a combination worth 5.1% of GDP—about 9% of spending or 10% of revenue if only one side adjusts.",
+    "The outline supplies an end-2025 debt ratio of 115.7%, making the rise to mid-2026 3.3 percentage points in six months, a useful measure of current speed omitted from the prose.",
+    "The annual accounts permit a percentage-point decomposition of recent deficit changes into spending and revenue movements; comparing their levels with Europe does not provide that explanation.",
+    "The story relies on total spending without explaining what it buys or which components have increased, despite available functional data through 2024, including groups within social protection.",
+    "Balancing annual revenue and spending would not automatically restore an earlier debt ratio: the existing debt stock remains, while GDP and stock-flow adjustments also affect the ratio."
+  ],
+  "charts": [
+    {
+      "file": "french-debt-ratio.svg",
+      "glance": "France’s debt burden has roughly doubled since 2000, with two sharp jumps, a partial retreat after 2021 and a new high in 2026.",
+      "glance_matches_prose": false,
+      "encodings": "The single solid blue line represents the debt ratio, identified by the axis and story context; equal-sized black filled circles mark directly labelled dates, and a red filled circle with matching bold text highlights the latest observation. Euro amounts are additional text annotations, not a second plotted series.",
+      "encodings_clear": true,
+      "shows": "Quarterly gross debt relative to GDP, with selected dates also showing the nominal debt stock.",
+      "form_fits": true,
+      "fix": "Change “It did not come back down after either jump” to “It never returned to its pre-jump level”; the chart visibly shows the partial decline that the current sentence denies."
+    },
+    {
+      "file": "french-debt-balance.svg",
+      "glance": "France remains below the zero line throughout and finishes with a larger deficit than its comparators.",
+      "glance_matches_prose": true,
+      "encodings": "France is a thick blue solid line with blue labelled circles at two large deficits; Germany, Italy and Spain share identical thin grey solid lines; EU27 is a darker dashed line. Endpoint text names the series, but labels are displaced without connectors, making the grey lines and the dashed series difficult to match reliably. The black horizontal line marks zero.",
+      "encodings_clear": false,
+      "shows": "Annual government balances for France, three other countries and the EU aggregate from 1995 to 2025.",
+      "form_fits": true,
+      "fix": "Connect displaced endpoint labels to their actual endpoints and add identifiable line samples so readers can trace each comparator through crossings."
+    },
+    {
+      "file": "french-debt-revenue-spending.svg",
+      "glance": "France collects and spends more relative to GDP than the EU aggregate, and its spending persistently exceeds its revenue.",
+      "glance_matches_prose": true,
+      "encodings": "Thick dark blue means French spending and thick light blue French revenue; thin grey solid means EU27 spending and thin grey dashed EU27 revenue. All four have direct endpoint labels. Pale red shading between the French lines is labelled “France’s deficit”; blue filled circles identify the two annotated spending peaks.",
+      "encodings_clear": true,
+      "shows": "Revenue and spending shares of GDP over time, with France’s annual funding gap shaded.",
+      "form_fits": true,
+      "fix": "Add a recent-period annotation quantifying the spending and revenue changes behind the deterioration, rather than leaving readers to infer them from the lines."
+    },
+    {
+      "file": "french-debt-interest.svg",
+      "glance": "Interest costs have risen since 2020 but remain below their 1995 share of GDP.",
+      "glance_matches_prose": true,
+      "encodings": "A solid blue line plots French interest payments as a share of GDP, identified by the axis heading. Equal-sized black filled circles mark labelled historical comparisons; the red filled circle and matching red text highlight 2025. Labels supply both GDP shares and nominal euro amounts.",
+      "encodings_clear": true,
+      "shows": "The long decline and recent rebound in interest costs relative to GDP, alongside selected cash totals.",
+      "form_fits": true,
+      "fix": ""
+    }
+  ],
+  "top_change": "Replace the aggregate spending comparison with an evidence-based explanation of the recent deficit change: quantify spending versus revenue contributions, then unpack the largest spending functions and social-protection components using the available data through 2024.",
+  "publishable": "with-edits",
+  "lessons": [
+    {
+      "rule": "When explaining a deterioration, quantify changes in its components rather than substituting comparisons of their current levels.",
+      "evidence": "High French revenue and spending relative to the EU do not establish which side widened the recent deficit."
+    },
+    {
+      "rule": "When an argument rests on a large spending category, explain its contents and identify which parts moved.",
+      "evidence": "Total spending carries the explanation, while the supplied functional and social-protection detail is deliberately omitted."
+    },
+    {
+      "rule": "Work out the arithmetic that answers the reader’s question instead of merely supplying its inputs.",
+      "evidence": "The reader receives a 5.1% deficit and 2.2% interest bill but must calculate the 2.9% deficit before interest."
+    },
+    {
+      "rule": "Distinguish a partial reversal from a return to the original level.",
+      "evidence": "“It did not come back down” conflicts with both the debt chart and the later account of the fall from 117.8% to 109.5%."
+    },
+    {
+      "rule": "Displaced line labels need an unambiguous connection to the marks they identify.",
+      "evidence": "The balance chart moves endpoint labels away from several nearly coincident grey lines without connectors."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 2,
+      "why": "A clear early claim—persistent borrowing drives debt accumulation—organises the story, and the market-crisis question is explicitly bounded."
+    },
+    "depth": {
+      "score": 1,
+      "why": "Historical and international comparisons, an attributed interest explanation and the GDP denominator add depth, but recent fiscal changes and spending composition remain unexplained."
+    },
+    "charts": {
+      "score": 0,
+      "why": "The debt chart visibly shows a post-2021 decline that “It did not come back down after either jump” denies; the balance chart also has ambiguous comparator labels."
+    },
+    "honesty": {
+      "score": 0,
+      "why": "Sources and data limits are disclosed, but the categorical claim that debt did not come back down is false as written and contradicted by the story’s own figures."
+    },
+    "reader_questions": {
+      "score": 1,
+      "why": "Debt scale, persistent deficits and peer comparisons are covered, but recent deterioration and spending composition are unanswered, with interest and adjustment arithmetic only partly addressed."
+    },
+    "prose": {
+      "score": 1,
+      "why": "Mostly readable, but repeated conclusions, undefined “stock-flow split,” process-heavy closing material and unnecessarily precise trillion-scale amounts add work for the reader."
+    }
+  },
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+  "prompt_sha256": "89ad7da85f9e1f76e51ad8425ebc6d76d72d634033f9306b6b1b38782a1dd9ce",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 41491,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2577,
+      "reasoning_output_tokens": 174
+    },
+    "calls": 2
+  }
+}
