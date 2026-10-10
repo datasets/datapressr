@@ -1,0 +1,65 @@
+{
+  "retrieved": "2026-10-10",
+  "files": [
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/US/aggregate_job_postings_US.csv",
+      "bytes": 202115,
+      "sha256": "30224101ee3154f30c785e5ea0cb4d1304ba4c9d9b15ecda1a2210d6716da81a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/US/job_postings_by_sector_US.csv",
+      "bytes": 12068143,
+      "sha256": "1edf24621091f8d9c875c0fb97b96882c14d343d73b8bdc58901ba0ca45b7ba5"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/GB/aggregate_job_postings_GB.csv",
+      "bytes": 198735,
+      "sha256": "5b3cc2ef2504a2e1bd30fab5c37263129aac65879a5b13e5036457e60262fc4f"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/GB/job_postings_by_sector_GB.csv",
+      "bytes": 12468112,
+      "sha256": "4ccb8a191cc214e67260eac71c6f078dd74badf62318263c3a4cddecb20a3dae"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/CA/aggregate_job_postings_CA.csv",
+      "bytes": 201231,
+      "sha256": "9a207a176b527e8a31e39676ef77083537277acce495601aed4a9fb32e9baca3"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/CA/job_postings_by_sector_CA.csv",
+      "bytes": 12132791,
+      "sha256": "921c55e477866cb7199edef2a7261bed30442099ef2b61dd2e311e74129d219f"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/DE/aggregate_job_postings_DE.csv",
+      "bytes": 202115,
+      "sha256": "aef8b2aa0cd2d807336e084e879d9677552fc211f9e77ab94847ae601a2650cc"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/DE/job_postings_by_sector_DE.csv",
+      "bytes": 11492521,
+      "sha256": "ba446dc8b88ace8d8af4ae7c0a3b20f821ab2ca391324ec4e9aaeff051787317"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/FR/aggregate_job_postings_FR.csv",
+      "bytes": 201081,
+      "sha256": "d2cea859950ef10b8b9e2fb235bb31c98c0408a9bf40b24df7289dc72212b713"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/FR/job_postings_by_sector_FR.csv",
+      "bytes": 8710768,
+      "sha256": "d7793c2346f07b48634f39ad73e519d7706bb07994da5c61477bf5de2dea09a5"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/AU/aggregate_job_postings_AU.csv",
+      "bytes": 202348,
+      "sha256": "ad7bc07574a2ad8095b7d88a40eff2c20fcedbee64394ed861aa7df39c1aa68a"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/hiring-lab/job_postings_tracker/master/AU/job_postings_by_sector_AU.csv",
+      "bytes": 12036130,
+      "sha256": "bf111f9ad8ddc321ee6b57d8fef54c9abd261d7a4464f6d8e8baf1c9403fd173"
+    }
+  ]
+}

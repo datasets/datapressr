@@ -7,6 +7,12 @@ description: Short data stories built from the datasets, each with charts as the
 
 Short data stories built from DataPressr datasets, newest first. Each one makes a single argument with charts as the evidence. Its outline, the argument and chart plan reviewed before any prose was written, is linked below the story.
 
+## [Software's Slump Landed on the Youngest](junior-dev-hiring.md)
+
+Since late 2022, US employment of software developers aged 22 to 25 has fallen by a fifth in ADP payroll records while every group over 30 grew. Data to October 2026.
+
+[Outline](junior-dev-hiring-outline.md)
+
 ## [Most Countries Now Have Birth Rates Below Replacement](birth-rates.md)
 
 In 2023, 130 of 237 countries and territories had fertility below 2.1 children per woman, up from 60 in 1990, and most places already below it kept falling. Sub-Saharan Africa is where the fall is far from finished.

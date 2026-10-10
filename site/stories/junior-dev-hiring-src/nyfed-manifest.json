@@ -1,0 +1,23 @@
+{
+  "retrieved": "2026-10-10",
+  "files": [
+    {
+      "file": "nyfed-college-labor-outcomes-by-major-data.csv",
+      "url": "https://www.newyorkfed.org/medialibrary/research/interactives/data/college-labor-market/college-labor-outcomes-by-major-data.csv",
+      "bytes": 3894,
+      "sha256": "f3eedbdbdb7683bff6caad9d8c2d9772250626378e47b44f01801994b4666495"
+    },
+    {
+      "file": "nyfed-college-labor-unemployment-data.csv",
+      "url": "https://www.newyorkfed.org/medialibrary/research/interactives/data/college-labor-market/college-labor-unemployment-data.csv",
+      "bytes": 16075,
+      "sha256": "202e637b06568d3632f35a42baa5db985d2f860b278b2296630e46e36eae5cbd"
+    },
+    {
+      "file": "nyfed-college-labor-chart-meta.json",
+      "url": "https://www.newyorkfed.org/medialibrary/research/interactives/data/college-labor-market/college-labor-chart-meta.json",
+      "bytes": 4190,
+      "sha256": "4735ac0a6ebdb2bbfb625d12cf1aea70fdbe382af833f5e9f7edf62a322f552b"
+    }
+  ]
+}

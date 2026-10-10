@@ -1,0 +1,650 @@
+{
+  "retrieved": "2026-10-10",
+  "files": [
+    {
+      "month": "2020-01",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/jan20pub.dat.gz",
+      "bytes": 11973369,
+      "sha256": "b4235db016ac963e523b0ede9415afb3c9b18725be2cc405e5a8b7fdb96f658d",
+      "person_records": 138697,
+      "software_records": 731
+    },
+    {
+      "month": "2020-02",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/feb20pub.dat.gz",
+      "bytes": 12031392,
+      "sha256": "24361dccdb77c181906d08c9efc5563c1c561574c6f7842d362a4656502c7fe9",
+      "person_records": 139248,
+      "software_records": 750
+    },
+    {
+      "month": "2020-03",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/mar20pub.dat.gz",
+      "bytes": 11094331,
+      "sha256": "1bc74d8b199b4d0e80506fd6ab0aef21c4218523d5ab234e59db8e1258c7716e",
+      "person_records": 131578,
+      "software_records": 679
+    },
+    {
+      "month": "2020-04",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/apr20pub.dat.gz",
+      "bytes": 10863277,
+      "sha256": "8aabd721822e4c7ad41565f8b408752bb2e456549f2ac85c2d7e8ce3d2fb8960",
+      "person_records": 129382,
+      "software_records": 675
+    },
+    {
+      "month": "2020-05",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/may20pub.dat.gz",
+      "bytes": 10563627,
+      "sha256": "9d7570dbe2f8744ef2a7781b60362296011e9e72f70be3f830d3253fbda92249",
+      "person_records": 126557,
+      "software_records": 686
+    },
+    {
+      "month": "2020-06",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/jun20pub.dat.gz",
+      "bytes": 10195823,
+      "sha256": "5ba4367a1c8704b05824ebb631dbc71490c72ef43708e7f5eca2f758bedf33aa",
+      "person_records": 123364,
+      "software_records": 674
+    },
+    {
+      "month": "2020-07",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/jul20pub.dat.gz",
+      "bytes": 10351601,
+      "sha256": "2dd4ba79680652e862ab8e46bd8df27b9da11c3f94fd446685b9eb3d06c4762d",
+      "person_records": 124102,
+      "software_records": 662
+    },
+    {
+      "month": "2020-08",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/aug20pub.dat.gz",
+      "bytes": 10619090,
+      "sha256": "8f65de20251950e9b7af870418c3f309e46b36a03913a485b964b2ad349d6b9b",
+      "person_records": 126448,
+      "software_records": 634
+    },
+    {
+      "month": "2020-09",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/sep20pub.dat.gz",
+      "bytes": 11527094,
+      "sha256": "9b5f8d5a07fb34062562f532567bcfb93c60ba0f5e4e328ff0cd00003915c35a",
+      "person_records": 133448,
+      "software_records": 675
+    },
+    {
+      "month": "2020-10",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/oct20pub.dat.gz",
+      "bytes": 11674942,
+      "sha256": "44fa6abf600f008377365a99b89ab9c224b30ab4debf5a8d9cf198071eef0d67",
+      "person_records": 135242,
+      "software_records": 688
+    },
+    {
+      "month": "2020-11",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/nov20pub.dat.gz",
+      "bytes": 11518191,
+      "sha256": "0ab2499a9f1156c91281689287a637e2785ee784c466533217ff69d21a979d48",
+      "person_records": 134122,
+      "software_records": 731
+    },
+    {
+      "month": "2020-12",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2020/basic/dec20pub.dat.gz",
+      "bytes": 11236703,
+      "sha256": "00e491212e0191aa961dfee65cab6c2bacadcc9bb4c2a2a796a5a551ab11f859",
+      "person_records": 132036,
+      "software_records": 734
+    },
+    {
+      "month": "2021-01",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/jan21pub.dat.gz",
+      "bytes": 11401711,
+      "sha256": "4b1fcb59e8e9be80173db63cc92d01db8c5c264d1eb0fbfdb2ee9ff59380c9cd",
+      "person_records": 133553,
+      "software_records": 724
+    },
+    {
+      "month": "2021-02",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/feb21pub.dat.gz",
+      "bytes": 11321728,
+      "sha256": "b6414f23ee9253d39cb60a9e9a6936995e3eba3d7bc315d10f57e82fdbc560f3",
+      "person_records": 132681,
+      "software_records": 749
+    },
+    {
+      "month": "2021-03",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/mar21pub.dat.gz",
+      "bytes": 11163230,
+      "sha256": "29ee4d06cf7bb7bdcf13f2fa9b7704055eebf70bd1f53644c4ea2419e87d4e9e",
+      "person_records": 131357,
+      "software_records": 727
+    },
+    {
+      "month": "2021-04",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/apr21pub.dat.gz",
+      "bytes": 11408727,
+      "sha256": "2b757da6044dfc01bad9392565a225a583ffa5da2133fd4232123455009af487",
+      "person_records": 133449,
+      "software_records": 730
+    },
+    {
+      "month": "2021-05",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/may21pub.dat.gz",
+      "bytes": 11312410,
+      "sha256": "c6e0899b4a724432170fc79bb9daad1f734cd893c1f3221ff2732355e3c8f946",
+      "person_records": 132077,
+      "software_records": 704
+    },
+    {
+      "month": "2021-06",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/jun21pub.dat.gz",
+      "bytes": 11051745,
+      "sha256": "6caaf68e554aaa2b69e78e6da9c22c18d91c3c0a31d4485c91c0edac9b5d8005",
+      "person_records": 129272,
+      "software_records": 694
+    },
+    {
+      "month": "2021-07",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/jul21pub.dat.gz",
+      "bytes": 11072644,
+      "sha256": "1d7760df6f4461a7ee5574ddadbb74d6b0a64d7d43b52d0fd96abb11d041f1f0",
+      "person_records": 129092,
+      "software_records": 670
+    },
+    {
+      "month": "2021-08",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/aug21pub.dat.gz",
+      "bytes": 11050968,
+      "sha256": "e7b3c11f3441ab55d2f1ba7d104d8b562b31a1e8985fbbfd6b61d96ea5d2f6f2",
+      "person_records": 129408,
+      "software_records": 686
+    },
+    {
+      "month": "2021-09",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/sep21pub.dat.gz",
+      "bytes": 10822410,
+      "sha256": "503333b87b5c1e078cc0f36a0fcfb51d2365459e227cec2812a1e8247c795a23",
+      "person_records": 127872,
+      "software_records": 690
+    },
+    {
+      "month": "2021-10",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/oct21pub.csv",
+      "bytes": 128094604,
+      "sha256": "ca3259ccd626645367e5f3e56d83a2115c369c096ed06d7fb153edae6dc8d384",
+      "person_records": 129103,
+      "software_records": 719
+    },
+    {
+      "month": "2021-11",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/nov21pub.dat.gz",
+      "bytes": 10715855,
+      "sha256": "6e86bed3b652a38749e66d280dc2d16f63a694c3fa6feaf14e177f27a6af02b7",
+      "person_records": 127375,
+      "software_records": 698
+    },
+    {
+      "month": "2021-12",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2021/basic/dec21pub.dat.gz",
+      "bytes": 10678466,
+      "sha256": "bd0a2868930d92fde94713163a66d812879140713cdc3219b6251fe827576e2d",
+      "person_records": 127489,
+      "software_records": 734
+    },
+    {
+      "month": "2022-01",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/jan22pub.dat.gz",
+      "bytes": 10793680,
+      "sha256": "4258e1bbe124202084194c20f29d9b31061cf5b4c024557ef47600d2da587085",
+      "person_records": 128000,
+      "software_records": 713
+    },
+    {
+      "month": "2022-02",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/feb22pub.dat.gz",
+      "bytes": 10804329,
+      "sha256": "8c9cc639a60264c508f8fb1156ba9b055dacd6b9d7e6565c088e492e0cb4b42d",
+      "person_records": 128234,
+      "software_records": 724
+    },
+    {
+      "month": "2022-03",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/mar22pub.dat.gz",
+      "bytes": 10601992,
+      "sha256": "bdee06c5ade9cc5d364bfbb83a919bbe6b8e7d2dd0dfaf5229b7dcad6e2b04c8",
+      "person_records": 126704,
+      "software_records": 707
+    },
+    {
+      "month": "2022-04",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/apr22pub.dat.gz",
+      "bytes": 10848784,
+      "sha256": "c3cbec8a64d7e642e112f01b93801bcb323a074503ef808d6af3b63dc2b37b99",
+      "person_records": 129029,
+      "software_records": 697
+    },
+    {
+      "month": "2022-05",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/may22pub.dat.gz",
+      "bytes": 10956138,
+      "sha256": "895aa449dd111ce4d6e4e13314fc226dac28ff7751aabd0b0876f6d29908971e",
+      "person_records": 129966,
+      "software_records": 758
+    },
+    {
+      "month": "2022-06",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/jun22pub.dat.gz",
+      "bytes": 10773557,
+      "sha256": "a5e51023fdc74a17875b5d6fabf6d430d3d1e37feda26c07734108a3228de949",
+      "person_records": 127999,
+      "software_records": 740
+    },
+    {
+      "month": "2022-07",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/jul22pub.dat.gz",
+      "bytes": 10717610,
+      "sha256": "3e8453fbb6897ee4844966cbfe2c2c15cdd0e7c317c7cb503c1ee87cd783f70f",
+      "person_records": 127084,
+      "software_records": 769
+    },
+    {
+      "month": "2022-08",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/aug22pub.dat.gz",
+      "bytes": 10793467,
+      "sha256": "7cb0fb2301630c7a27641fecea8002714e6b834f6e7228e94690cba755086191",
+      "person_records": 127932,
+      "software_records": 767
+    },
+    {
+      "month": "2022-09",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/sep22pub.dat.gz",
+      "bytes": 10681223,
+      "sha256": "cac2b5d1b18cd51ad5e53c84cec51409507a0484f4c62e186526210f9b4a7cb7",
+      "person_records": 127192,
+      "software_records": 732
+    },
+    {
+      "month": "2022-10",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/oct22pub.dat.gz",
+      "bytes": 10622818,
+      "sha256": "0648fd18e889b0dda89e60f6f8bbb9ac32c8e4e5f01fa602b9912945a6f8578f",
+      "person_records": 126649,
+      "software_records": 707
+    },
+    {
+      "month": "2022-11",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/nov22pub.dat.gz",
+      "bytes": 10526726,
+      "sha256": "4703b551365f8523ea3c6b0cfe59701b0c6b49f0c7245cd7498331a3f1f41fdc",
+      "person_records": 126097,
+      "software_records": 689
+    },
+    {
+      "month": "2022-12",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2022/basic/dec22pub.dat.gz",
+      "bytes": 10418550,
+      "sha256": "f427affdabf080359d46331c9db78190322a15503dd104a2ba876fd073feda03",
+      "person_records": 125489,
+      "software_records": 693
+    },
+    {
+      "month": "2023-01",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/jan23pub.dat.gz",
+      "bytes": 9928771,
+      "sha256": "a43bffbe176a2f11f8208ccec2128e0cbbf018141b57ef0cab304bb7715016cc",
+      "person_records": 125982,
+      "software_records": 693
+    },
+    {
+      "month": "2023-02",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/feb23pub.dat.gz",
+      "bytes": 9758270,
+      "sha256": "3e5a2b1fe811da238b09ccb518eaee5e8ba25f622e743533a0c4f2a1c1cb7b70",
+      "person_records": 124754,
+      "software_records": 680
+    },
+    {
+      "month": "2023-03",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/mar23pub.dat.gz",
+      "bytes": 9698341,
+      "sha256": "bccbc20d69ad7280f76e98e654f9345991a063e1535806bc6c55df055ba6bbf5",
+      "person_records": 124477,
+      "software_records": 681
+    },
+    {
+      "month": "2023-04",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/apr23pub.dat.gz",
+      "bytes": 9926880,
+      "sha256": "5c51bad952d352f22d39acde3f57f1847c374044ba89ef9d53c84f7ba22d6020",
+      "person_records": 126798,
+      "software_records": 706
+    },
+    {
+      "month": "2023-05",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/may23pub.dat.gz",
+      "bytes": 10015573,
+      "sha256": "75d9bf3db843ab3042fa72231e285134067a7a57319b2c0fdd4d9ce837ae7e83",
+      "person_records": 127559,
+      "software_records": 718
+    },
+    {
+      "month": "2023-06",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/jun23pub.dat.gz",
+      "bytes": 10032250,
+      "sha256": "de64e092a42b9e32bbd9fe12988b967e1ce25a0a76ff832c972c97cbfb8503cc",
+      "person_records": 127491,
+      "software_records": 731
+    },
+    {
+      "month": "2023-07",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/jul23pub.dat.gz",
+      "bytes": 10089589,
+      "sha256": "81202e61b46ae55d5e7b85646e775da09aefb581bc9b8c13ba09b8faa587a84e",
+      "person_records": 127424,
+      "software_records": 733
+    },
+    {
+      "month": "2023-08",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/aug23pub.dat.gz",
+      "bytes": 10150651,
+      "sha256": "6360eae03f4cbf1efbeda7aa44c0bbbfa5a59e3804e6b4bbe83e46b2b4324c1b",
+      "person_records": 127930,
+      "software_records": 725
+    },
+    {
+      "month": "2023-09",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/sep23pub.dat.gz",
+      "bytes": 10009682,
+      "sha256": "c0bd9ebcce2ec058b8f005f0085d65ff8a66bfba3f146a9d9c2b71b03ebce2c7",
+      "person_records": 126665,
+      "software_records": 694
+    },
+    {
+      "month": "2023-10",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/oct23pub.dat.gz",
+      "bytes": 10155642,
+      "sha256": "828a1b9891dcbb623580ea9f7a7d58bfa7886069cf70cc0e2752f3289d73eceb",
+      "person_records": 127941,
+      "software_records": 733
+    },
+    {
+      "month": "2023-11",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/nov23pub.dat.gz",
+      "bytes": 10018857,
+      "sha256": "034563dd0c797355897ea709673bf8110b9884d33510cd4932af41ec1f3b0971",
+      "person_records": 126917,
+      "software_records": 707
+    },
+    {
+      "month": "2023-12",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2023/basic/dec23pub.dat.gz",
+      "bytes": 9946926,
+      "sha256": "a1bb5582e642168f1c577bc343a08b04c5f405a9aa1519847b1b155175707c7e",
+      "person_records": 126832,
+      "software_records": 693
+    },
+    {
+      "month": "2024-01",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/jan24pub.csv",
+      "bytes": 121914518,
+      "sha256": "df2ffa2fc312e548cef6652e71d08deb4cffb49bc6de42636a53c2a126330f6b",
+      "person_records": 126802,
+      "software_records": 686
+    },
+    {
+      "month": "2024-02",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/feb24pub.dat.gz",
+      "bytes": 10488060,
+      "sha256": "57fc767f07dfd5cf4dbee998255254818cea55f905339b6a669f046ccc8c9322",
+      "person_records": 126784,
+      "software_records": 668
+    },
+    {
+      "month": "2024-03",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/mar24pub.dat.gz",
+      "bytes": 10231717,
+      "sha256": "af3d6b51f396391a6ff81ee5ba3f9aa2703b57fbc4f2da92022266f00670c34a",
+      "person_records": 124581,
+      "software_records": 665
+    },
+    {
+      "month": "2024-04",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/apr24pub.dat.gz",
+      "bytes": 10437494,
+      "sha256": "92f11f7472dd68a63f78cf9341a11a8ddfcbf032b1685ac8252fc7de43cf97a0",
+      "person_records": 126850,
+      "software_records": 703
+    },
+    {
+      "month": "2024-05",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/may24pub.dat.gz",
+      "bytes": 10480842,
+      "sha256": "cdaaa53c581593d6dc2269e7d9158eaca2e5679b3bd8693171cc7a2c1607e7d1",
+      "person_records": 126945,
+      "software_records": 664
+    },
+    {
+      "month": "2024-06",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/jun24pub.dat.gz",
+      "bytes": 10518511,
+      "sha256": "23757a0eede5d625bffbb209fbe4a3c0617c1c514f10d317c5f643ff8782bc14",
+      "person_records": 126112,
+      "software_records": 705
+    },
+    {
+      "month": "2024-07",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/jul24pub.dat.gz",
+      "bytes": 10601362,
+      "sha256": "0e88909a881dafa85f1e57fbc82d6d90072e4a74651fee4c34472d5b82f383cf",
+      "person_records": 126158,
+      "software_records": 670
+    },
+    {
+      "month": "2024-08",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/aug24pub.dat.gz",
+      "bytes": 10660569,
+      "sha256": "d17b86e4691072fceb5fd3b6d64f0ac2ced1ee916f8a7fc29cdba5c31f41e6fe",
+      "person_records": 127031,
+      "software_records": 687
+    },
+    {
+      "month": "2024-09",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/sep24pub.dat.gz",
+      "bytes": 10597534,
+      "sha256": "6f342a7bc1bf43370362f0ffc8785be890a465afc6fdb927aed7e2eeeeae206c",
+      "person_records": 126590,
+      "software_records": 686
+    },
+    {
+      "month": "2024-10",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/oct24pub.dat.gz",
+      "bytes": 10553506,
+      "sha256": "7c6a8606dc76a3fa9d3ce2c372f16381cef41d3567d4415ff5cf6294126bd781",
+      "person_records": 126387,
+      "software_records": 686
+    },
+    {
+      "month": "2024-11",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/nov24pub.dat.gz",
+      "bytes": 10546008,
+      "sha256": "16dd87822be459a91f9aabc125eea87232196350f6b54e1aa1e9fc339b68ca88",
+      "person_records": 126686,
+      "software_records": 695
+    },
+    {
+      "month": "2024-12",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2024/basic/dec24pub.dat.gz",
+      "bytes": 10525997,
+      "sha256": "a6c86ae17cf517a7d257bab71e537531ae5188683b1179a8b4ae2d0a5263d49d",
+      "person_records": 126743,
+      "software_records": 674
+    },
+    {
+      "month": "2025-01",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/jan25pub.dat.gz",
+      "bytes": 10478955,
+      "sha256": "143d819c7bf300a0e789cd3586f4be58dc6ea352af97f2a1d87744737afc54c5",
+      "person_records": 125700,
+      "software_records": 668
+    },
+    {
+      "month": "2025-02",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/feb25pub.dat.gz",
+      "bytes": 10413926,
+      "sha256": "90230dc1f3eed382ff5c7690d2fc531e8ed213f2207312404467b0e214cf0bd2",
+      "person_records": 125028,
+      "software_records": 709
+    },
+    {
+      "month": "2025-03",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/mar25pub.dat.gz",
+      "bytes": 10202167,
+      "sha256": "688e9de69edfab647125a4e38de8112ab74869982c7bdbb20055b816f4422570",
+      "person_records": 122943,
+      "software_records": 693
+    },
+    {
+      "month": "2025-04",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/apr25pub.dat.gz",
+      "bytes": 10233961,
+      "sha256": "7fc5601f2e8075353669e15f9c6a23be889bc8ba071b0e036830eeecb79fdde5",
+      "person_records": 123702,
+      "software_records": 675
+    },
+    {
+      "month": "2025-05",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/may25pub.dat.gz",
+      "bytes": 10220995,
+      "sha256": "7acb937f529a49052fcfc9d4b95154ae9f4cb314385adfa21d14ec1355800f33",
+      "person_records": 123461,
+      "software_records": 648
+    },
+    {
+      "month": "2025-06",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/jun25pub.dat.gz",
+      "bytes": 10182550,
+      "sha256": "44315f3d90b9b0c747b590b43e32a5fabd45930932b7ddfc5d0dd85af144801a",
+      "person_records": 122908,
+      "software_records": 636
+    },
+    {
+      "month": "2025-07",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/jul25pub.dat.gz",
+      "bytes": 10125912,
+      "sha256": "3b284881dfb05061c2197555ccffae1572c8f955de7407984b4bb72774b51da1",
+      "person_records": 122252,
+      "software_records": 665
+    },
+    {
+      "month": "2025-08",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/aug25pub.dat.gz",
+      "bytes": 10022289,
+      "sha256": "6c4cda5c271b85e02ac9a3d089c114f2abd4732f024aad58e71549467a06efb9",
+      "person_records": 125138,
+      "software_records": 733
+    },
+    {
+      "month": "2025-09",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/sep25pub.dat.gz",
+      "bytes": 9936775,
+      "sha256": "41d6de74c088a466e48d77376de0cf1bdf66e5f4aeddd451d09cc8d8cd536eaa",
+      "person_records": 124727,
+      "software_records": 729
+    },
+    {
+      "month": "2025-10",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/oct25pub.csv",
+      "status": "no file"
+    },
+    {
+      "month": "2025-11",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/nov25pub.dat.gz",
+      "bytes": 9499635,
+      "sha256": "d81da3b677927c74c01cdd000174bf1a7217ffb083a4d5b3d6f5980505a0bcde",
+      "person_records": 121723,
+      "software_records": 654
+    },
+    {
+      "month": "2025-12",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2025/basic/dec25pub.dat.gz",
+      "bytes": 9489416,
+      "sha256": "b7be5a4dc5e3a0a2bc8394483e807d99b9314363f3ca662249bb5291370435be",
+      "person_records": 121371,
+      "software_records": 628
+    },
+    {
+      "month": "2026-01",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/basic/jan26pub.dat.gz",
+      "bytes": 9469308,
+      "sha256": "63f3dd7ebd234c1bb4a7caf96fd882d03f0be7f8e6d062180738e0a4f3e9d377",
+      "person_records": 121168,
+      "software_records": 672
+    },
+    {
+      "month": "2026-02",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/basic/feb26pub.dat.gz",
+      "bytes": 9611097,
+      "sha256": "85f68712f576f2421b0be2855615b3b3e1a1b252a01725926176a3ed5ed08868",
+      "person_records": 122327,
+      "software_records": 685
+    },
+    {
+      "month": "2026-03",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/basic/mar26pub.dat.gz",
+      "bytes": 9388626,
+      "sha256": "17291f9f8e055966ccc92e29546b3c54035d302e0ee411e35eb2ecb24d45fb0a",
+      "person_records": 120491,
+      "software_records": 649
+    },
+    {
+      "month": "2026-04",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/basic/apr26pub.dat.gz",
+      "bytes": 9590761,
+      "sha256": "a1b38258ae1012badcbd7ff557ff5e2ddf5c01c54478dbd2c2144e221906e095",
+      "person_records": 122216,
+      "software_records": 665
+    },
+    {
+      "month": "2026-05",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/basic/may26pub.dat.gz",
+      "bytes": 9626197,
+      "sha256": "02a67a81aaa64d7007730cab67fa29f5e23db3a6d7a7e876af31208961f4a666",
+      "person_records": 122338,
+      "software_records": 717
+    },
+    {
+      "month": "2026-06",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/basic/jun26pub.dat.gz",
+      "bytes": 9559413,
+      "sha256": "f20d53bcaab977033ff7c7b48b9bafb675c61d7d78bfca73d6853f18325369ae",
+      "person_records": 121618,
+      "software_records": 706
+    },
+    {
+      "month": "2026-07",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/basic/jul26pub.dat.gz",
+      "bytes": 9502622,
+      "sha256": "a97d4908014689f29c2f833c01289c6564c8a27c0b5358562dd111eb33e05247",
+      "person_records": 120930,
+      "software_records": 698
+    },
+    {
+      "month": "2026-08",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/basic/aug26pub.dat.gz",
+      "bytes": 9579569,
+      "sha256": "ada56b62bb9fa2abb3ab56d1b2037c68b7f459eb2c89c7d9399df198a2984d65",
+      "person_records": 121791,
+      "software_records": 725
+    },
+    {
+      "month": "2026-09",
+      "url": "https://www2.census.gov/programs-surveys/cps/datasets/2026/basic/sep26pub.dat.gz",
+      "bytes": 9564557,
+      "sha256": "b7cf9bb7d0f0918640122e8eee4e1b9af3a28351793e0d5dd32d433a669f27d7",
+      "person_records": 121280,
+      "software_records": 672
+    }
+  ]
+}

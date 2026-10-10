@@ -1,0 +1,13 @@
+{
+  "retrieved": "2026-10-10",
+  "url": "https://storage.googleapis.com/aviary-del-public/release_memos/latest/downloads/canaries_software_developers_results.zip",
+  "zip_bytes": 5079,
+  "zip_sha256": "fe013d6076b6d0a6d977be3fb67f1fa1e6546c70ce62888b25f689154b9d353a",
+  "files": [
+    {
+      "file": "canaries_software_developers.csv",
+      "bytes": 4833,
+      "sha256": "df3e79d31056dcf7f4bf82b8a8644978979dc99d26c168c32c78c4792579d1cd"
+    }
+  ]
+}

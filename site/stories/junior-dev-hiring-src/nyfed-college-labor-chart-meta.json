@@ -1,0 +1,30 @@
+{
+  "releaseDateInfo": "August 6, 2026, with 2026:Q2 data",
+  "date": "August 6, 2026",
+  "meta": { 
+    "--#explore#unemployment": {
+      "page": "Unemployment",
+      "source": "Source: U.S. Census Bureau and U.S. Bureau of Labor Statistics, Current Population Survey (IPUMS).",
+      "notes": "Notes: Rates are seasonally adjusted and smoothed with a three-month moving average. All workers are those aged 16 to 65; college graduates are those aged 22 to 65 with a bachelor's degree or higher; recent college graduates are those aged 22 to 27 with a bachelor's degree or higher; young workers are those aged 22 to 27 without a bachelor's degree. All figures exclude those currently enrolled in school. Shaded areas indicate periods designated recessions by the National Bureau of Economic Research. Click on the labels in the chart legend to show and hide trend lines in the display. October 2025 results are estimated due to missing data."
+    },
+    "--#explore#underemployment": { 
+      "page": "Underemployment",
+      "source": "Sources: U.S. Census Bureau and U.S. Bureau of Labor Statistics, Current Population Survey (IPUMS); U.S. Department of Labor, O*NET.",
+      "notes": "Notes: The underemployment rate is defined as the share of graduates working in jobs that typically do not require a college degree. A job is classified as a college job if 50 percent or more of the people working in that job indicate that at least a bachelor's degree is necessary; otherwise, the job is classified as a non-college job. Rates are seasonally adjusted and smoothed with a three-month moving average. College graduates are those aged 22 to 65 with a bachelor's degree or higher; recent college graduates are those aged 22 to 27 with a bachelor's degree or higher. All figures exclude those currently enrolled in school. Shaded areas indicate periods designated recessions by the National Bureau of Economic Research. Click on the labels in the chart legend to show and hide trend lines in the display. October 2025 results are estimated due to missing data"
+    },
+    "--#explore#wages": {
+      "releaseDateInfo": "February 4, 2026,  with data through 2025",
+      "date": "February 4, 2026",
+	"page": "Wages",
+      "source": "Sources: U.S. Census Bureau and U.S. Bureau of Labor Statistics, Current Population Survey, March Supplement (IPUMS); U.S. Bureau of Labor Statistics, Consumer Price Index.",
+      "notes": "Annual wages are expressed in constant 2025 dollars. Recent college graduates are those aged 22 to 27 with a bachelor's degree only; high school graduates are those aged 22 to 27 with a high school diploma only. Figures are for full-time workers and exclude those currently enrolled in school. Note that some portion of the earnings gap could reflect differences in aptitude between graduates and non-graduates. Vertical shaded areas indicate periods designated recessions by the National Bureau of Economic Research. Data are updated annually at the beginning of each calendar year. Click on the labels in the chart legend to show and hide trend lines in the display. Additional wage percentile data available, <a href=\"/medialibrary/Research/Interactives/Data/college-labor-market/Distribution-of-Annual-Wages-Various-Percentile\">here</a>."
+    },
+    "--#explore#outcomes-by-major": {
+      "releaseDateInfo": "February 4, 2026, based on data from 2024",
+      "date": "February 4, 2026",
+      "page": "Outcomes by Major",
+      "source": "Source: U.S. Census Bureau, American Community Survey (IPUMS).",
+      "notes": "Notes: Figures are for 2024. Unemployment and underemployment rates are for recent college graduates (that is, those aged 22 to 27 with a bachelor's degree or higher), and median wages are for full-time workers with a bachelor's degree only. Early career graduates are those aged 22 to 27, and mid-career graduates are those aged 35 to 45. Graduate degree share is based on the adult working-age population (that is, those aged 25 to 65) with a bachelor's degree or higher. All figures exclude those currently enrolled in school. Data are updated annually at the beginning of each calendar year."
+    }
+  }
+}
