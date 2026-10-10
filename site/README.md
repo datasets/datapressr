@@ -49,7 +49,7 @@ Review the source, coverage and output with your agent. When the data is ready, 
 
 > Use the enrich skill to summarise this dataset and add initial charts. Tell me what stands out and what the data cannot establish.
 
-To scaffold an empty dataset first, use the `init` skill with a name such as `world-gdp`. For this workflow, [clone the repository](https://github.com/datasets/datapressr) so the agent has the accompanying `AGENTS.md` and validator script to copy. See the [setup guide](docs/cli.md) for commands and publication details.
+To scaffold an empty dataset first, use the `init` skill with a name such as `world-gdp`: it creates the folder, its metadata, the dataset conventions and the validator script. See the [setup guide](docs/cli.md) for commands and publication details.
 
 ### Make a data story
 
@@ -88,7 +88,15 @@ Use one skill for a specific job, or combine them for the full workflow. Publica
 - **Describe what the numbers mean.** Record field types, units, keys, coverage and missing values in `datapackage.json`.
 - **Separate findings from storytelling.** Review the argument and numbers before polishing the prose; generate story charts as static SVGs with Observable Plot.
 
-DataPressr is designed for small data that fits comfortably in memory, typically well under 1 GB raw. Validation checks the package metadata; it does not prove every value is correct. Source checks and review remain part of the workflow.
+## What DataPressr is and isn't
+
+DataPressr is a set of playbooks your AI assistant follows, plus a small validator script. It works on ordinary files in your own folder or Git repository.
+
+- **Not an app or a command-line tool.** You need only your assistant, Node.js and the skills.
+- **Not a hosting platform.** Publishing to [DataHub](https://datahub.io) is optional; a dataset can simply live in Git.
+- **Not for big data.** It assumes data that fits comfortably in memory, typically well under 1 GB raw.
+- **Not a guarantee of correctness.** The validator checks the metadata and that each value matches its declared type; it cannot tell you a number is right. Source checks and your own review remain part of the workflow.
+- **Not tied to one assistant, but tested on one.** The skills install into any agent the skills installer supports. So far they have been exercised with Claude Code; other agents have not yet been tested.
 
 ## See the results
 

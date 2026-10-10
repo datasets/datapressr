@@ -22,6 +22,7 @@ This directory holds maintainer and agent material outside the published `site/`
 - [Skills roadmap](plans/skills-roadmap.md) and [skills vision](plans/skills-vision.md): historical planning; current assignments live in Beads.
 - [Structure benchmark](structure-benchmark.md): overall findings, with [JSON/API](benchmarks/round-2-json.md) and [relational join](benchmarks/round-2-join.md) reports.
 - [Session protocol](next-session-brief.md), [migration audit](next-audit.md) and [cloud handoff log](handoffs/cloud-queue.md): agent coordination and dated execution evidence.
+- [What to review now](review.md): the owner's review queue up to the v1 release (2026-09-18), moved off the public site; later review items carry the `review-after` label in Beads.
 - [Inbox triage](inbox-triage.md), [GitHub issue reconciliation](github-issue-reconciliation.md) and [Project Drawdown comparison](project-drawdown-comparison.md): decision context; check the corresponding Beads for current outcomes.
 
 ## Documentation split — 2026-09-20

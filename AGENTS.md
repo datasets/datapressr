@@ -199,7 +199,7 @@ Published user documentation lives in `site/docs/`: setup, dataset conventions, 
 
 Internal project material lives in root `docs/`, outside the published `site/` folder: implementation plans and Superpowers design documents in `docs/plans/`, benchmark runs in `docs/benchmarks/`, agent handoffs in `docs/handoffs/`, and audits, decision records and the session protocol in `docs/`. See `docs/README.md` for the classification. These files remain public in the GitHub repository but are not published as site pages. Beads remains the only actionable task queue. Older Bead paths may predate the split; consult the docs index rather than assuming every `docs/` path means `site/docs/`.
 
-The site's navbar, favicon, sidebar and edit-link settings are in `site/config.json` (Flowershow reads it from the root of the published folder; reference: https://flowershow.app/docs/reference/config-file.md). `site/docs/README.md` and `site/stories/README.md` are the landing pages the navbar links to; the docs index is curated, while stories are listed automatically.
+The site's navbar, favicon, sidebar and edit-link settings are in `site/config.json` (Flowershow reads it from the root of the published folder; reference: https://flowershow.app/docs/reference/config-file.md). `site/docs/README.md` and `site/stories/README.md` are the landing pages the navbar links to; both are curated. Add a new story and its outline to `site/stories/README.md` (a test fails if one is missing); the hand-written index keeps each outline under its story.
 
 ## Task tracking (beads)
 

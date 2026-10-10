@@ -4,12 +4,15 @@ Datapressr is a skills repo — instead of a CLI, it provides AI assistant instr
 
 ## Quick start
 
-Install the skills into your agent once, then start a session:
+Make a folder to hold your datasets, install the skills into it and start your assistant there:
 
 ```sh
+mkdir my-datasets && cd my-datasets
 npx skills add datasets/datapressr
-mkdir world-gdp && cd world-gdp && claude
+claude
 ```
+
+The installer asks which skills and which agent to install for. To skip the prompts, pass them as flags: `npx skills add datasets/datapressr --skill '*' -a claude-code -y` installs all eight skills for Claude Code.
 
 Then inside the session:
 
@@ -17,10 +20,11 @@ Then inside the session:
 /init world-gdp
 ```
 
-Your AI assistant will scaffold the directory, create `datapackage.json`, and explain next steps.
+Your AI assistant creates `my-datasets/world-gdp/` with `datapackage.json`, `data/` and the validator, and explains next steps. Run later commands from `my-datasets/` too, and each new dataset gets its own folder alongside `world-gdp/`.
 
-(Claude Code in this repo also picks the skills up directly via `.claude/skills/`
-symlinks — no `npx skills` step needed when working inside `datapressr` itself.)
+**Scope.** By default the installer puts the skills in the project you ran it from (`./.claude/skills/` for Claude Code), so they are available when the assistant is started in that folder. To install them once for every project, add `-g` (`npx skills add datasets/datapressr -g`).
+
+(Claude Code in this repo also picks the skills up directly via `.claude/skills/` symlinks, so no `npx skills` step is needed when working inside `datapressr` itself.)
 
 ## AGENTS.md
 
@@ -30,9 +34,9 @@ Every dataset directory should contain `AGENTS.md` — a knowledge file that giv
 
 | Tool | Reads |
 |------|-------|
-| Claude Code | `AGENTS.md` + `skills/` (via `.claude/skills/` symlinks) |
-| Codex CLI | `AGENTS.md` + `skills/` (via `npx skills add`) |
-| Gemini CLI | `AGENTS.md` + `skills/` (via `npx skills add`) |
+| Claude Code | `AGENTS.md` + `skills/` (via `npx skills add`, or `.claude/skills/` symlinks inside this repo) |
+| Codex CLI | `AGENTS.md` + `skills/` (via `npx skills add`; not yet tested with DataPressr) |
+| Gemini CLI | `AGENTS.md` + `skills/` (via `npx skills add`; not yet tested with DataPressr) |
 
 ## Skills
 
