@@ -78,6 +78,33 @@ test('a relative link to nothing fails, naming the link', () => {
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
 
+test('the site-only "Read on DataHub" paragraph is dropped from the bundle (kh5.11)', () => {
+  const root = fakeRoot('Body text with a [real link](https://example.org).');
+  const md = join(root, 'site/stories/s.md');
+  writeFileSync(md, readFileSync(md, 'utf8').replace('# S\n\n', '# S\n\n**[Read on DataHub](https://datahub.io/datapressr/s)**, where this story is published. This page is the working copy.\n\n'));
+  try {
+    const { readme } = bundleStory('s', { ...DRAFT_OK, root, out: join(root, 'out') });
+    assert.doesNotMatch(readme, /Read on DataHub|working copy/);
+    assert.match(readme, /^---\n[\s\S]*?\n---\n\n!\[c\]\(chart\.svg\)/, 'chart follows the frontmatter directly');
+    assert.match(readme, /\[real link\]\(https:\/\/example\.org\)/);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('any other link to the story\'s own DataHub page fails, naming it', () => {
+  const root = fakeRoot('Also [here](https://datahub.io/datapressr/s#top).');
+  try {
+    assert.throws(() => bundleStory('s', { ...DRAFT_OK, root, out: join(root, 'out') }), /own DataHub page.*datapressr\/s#top/);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test('oil story bundle has no Read on DataHub self-link', () => {
+  const out = scratch();
+  try {
+    const { readme } = bundleStory('oil-prices', { ...DRAFT_OK, out });
+    assert.doesNotMatch(readme, /Read on DataHub|datahub\.io\/datapressr\/wti-went-negative/);
+  } finally { rmSync(out, { recursive: true, force: true }); }
+});
+
 test('an image outside site/stories fails, naming it', () => {
   const root = fakeRoot('![x](../elsewhere.svg)');
   writeFileSync(join(root, 'site/elsewhere.svg'), '<svg/>');

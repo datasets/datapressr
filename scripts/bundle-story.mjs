@@ -15,6 +15,8 @@
 // - frontmatter cut down to title, description and date;
 // - the first h1 removed (DataHub prints the title in its header);
 // - the internal "Friction notes" section removed;
+// - the site-only "Read on DataHub" paragraph removed (a page linking to
+//   itself); any other link left to the story's own DataHub page is an error;
 // - links to other site pages (outlines, ../datasets.md) made absolute
 //   datapressr.datahub.io URLs, and links to other repo files GitHub URLs;
 // - GitHub links to a dataset folder or README rewritten to its DataHub page
@@ -115,6 +117,12 @@ export function removeSection(body, heading) {
   return body.replace(re, '');
 }
 
+// A paragraph that opens with a "Read on DataHub" link (bold or not) is a
+// site-only pointer to the DataHub copy; on DataHub it would be a self-link.
+export function removeReadOnDataHub(body) {
+  return body.replace(/^(\*\*|__)?\[Read on DataHub\]\([^)]*\).*\n(\s*\n)*/gim, '');
+}
+
 const LINK = /(!?)\[((?:[^\[\]]|\[[^\]]*\])*)\]\(([^)\s]+)\)/g;
 const isExternal = (url) => /^[a-z][a-z0-9+.-]*:/i.test(url) || url.startsWith('//');
 
@@ -156,7 +164,7 @@ export function bundleStory(story, { slug, publication = process.env.DATAHUB_PUB
   const published = datasetLinks(root);
   const assets = new Set();
   const errors = [];
-  let text = removeSection(removeFirstH1(body), 'Friction notes');
+  let text = removeSection(removeReadOnDataHub(removeFirstH1(body)), 'Friction notes');
   text = text.replace(LINK, (whole, bang, label, url) => {
     if (isExternal(url)) {
       const [base, hash = ''] = url.split('#');
@@ -180,8 +188,11 @@ export function bundleStory(story, { slug, publication = process.env.DATAHUB_PUB
   const kept = keepFrontmatter(front);
   const readme = `---\n${kept}\n---\n\n${text.trim()}\n`;
 
-  // Every relative link left must resolve to a file in the bundle.
+  // Every relative link left must resolve to a file in the bundle, and no
+  // link may point at the story's own DataHub page.
+  const self = `https://datahub.io/${publication.toLowerCase()}/${slug}`;
   for (const [, , , url] of readme.matchAll(LINK)) {
+    if (url.split(/[?#]/)[0].replace(/\/$/, '').toLowerCase() === self) { errors.push(`${story}.md: links to its own DataHub page (${url}); drop it from the bundle`); continue; }
     if (isExternal(url) || url.startsWith('#')) continue;
     if (!assets.has(url.split('#')[0])) errors.push(`${story}.md: relative link does not resolve inside the bundle: ${url}`);
   }
