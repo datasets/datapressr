@@ -8,6 +8,8 @@ datahub:
 
 # WTI Went Negative. Brent Didn't.
 
+**[Read on DataHub](https://datahub.io/datapressr/wti-went-negative)**, where this story is published beside its dataset. This page is the working copy.
+
 ![Daily spot prices for Brent and WTI crude, 1 March to 15 May 2020, in US dollars per barrel. Both fall through March and April. On 20 April WTI drops to -$36.98, the only point below the zero line, while Brent is at $17.36. On 21 April Brent falls to $9.12 and WTI is back above zero close to it; by May the two lines move together again.](oil-prices-brent-wti.svg)
 
 *Daily spot prices, US dollars per barrel, not adjusted for inflation. Data: [oil-prices](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/oil-prices), from the U.S. Energy Information Administration (EIA). Data story #3 — written from [an outline](oil-prices-outline.md).*

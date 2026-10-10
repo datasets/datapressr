@@ -17,7 +17,7 @@ What is growing, what old-age spending means, and why bigger euro bills can coex
 
 On 20 April 2020 the WTI spot price was -$36.98 a barrel, the only negative value in Brent and WTI prices going back to 1986. Brent that day was $17.36.
 
-[Outline](oil-prices-outline.md)
+[Read on DataHub](https://datahub.io/datapressr/wti-went-negative) · [Outline](oil-prices-outline.md)
 
 ## [Planetary Boundaries](planetary-boundaries.md)
 

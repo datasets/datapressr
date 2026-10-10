@@ -13,6 +13,10 @@ See [`SUMMARY.md`](https://github.com/datasets/datapressr/blob/main/datasets/ene
 
 `build.ts` reproduces all eight CSVs from the archived EIA `.xls` workbooks. Run: `npm install && node build.ts`. The build script and raw snapshot live in the [DataPressr repository](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/oil-prices), not on DataHub.
 
+## Stories using this data
+
+- [WTI Went Negative. Brent Didn't.](https://datahub.io/datapressr/wti-went-negative): on 20 April 2020 the WTI spot price was -$36.98 a barrel, the only negative value in these series, while Brent was $17.36.
+
 ## Source & licence
 
 U.S. Energy Information Administration, *Petroleum & Other Liquids — Spot Prices*
