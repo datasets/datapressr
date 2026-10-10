@@ -53,5 +53,6 @@ Once you have a source, use the [skill playbooks](https://github.com/datasets/da
 - [Story craft](story-craft.md) — choose one argument, support it with checked numbers and charts, and explain its limits.
 - [Charting](charting.md) — build reproducible story charts with Observable Plot and static SVG; use dataset views for initial exploration.
 - [Voice guide](voice-guide.md) — write plainly, lead with the finding and let the numbers carry it.
+- [Story lab](story-lab.md) — how we are teaching AI agents to write better data stories: what we optimise, how blind runs and critics measure it, and progress so far.
 
 Browse the [datasets](../datasets.md) and [finished stories](../stories/README.md) for examples of the results.
