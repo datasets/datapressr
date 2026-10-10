@@ -121,13 +121,14 @@ async function critiqueRun({ root, evalsDir, runDir, run, kase, critic, config, 
 // noSkill (--no-skill, datapressr-8no.3): the baseline arm. No skill folder is staged, the prompt
 // drops its lines naming `skills/<name>` (noSkillPrompt), AGENTS.md is staged as usual; the run
 // records skill name "none" with the empty tree, "noskill" in its id and the `no_skill` flag.
-export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, writer, skillRef = "HEAD", allowDirty = false, noSkill = false, repeat = 1, now = () => new Date(), log = () => {}, adapters = ADAPTERS, cacheRoot, critic = { spec: "auto" } }) {
+export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, writer, skillRef = "HEAD", allowDirty = false, noSkill = false, maxUsd = null, repeat = 1, now = () => new Date(), log = () => {}, adapters = ADAPTERS, cacheRoot, critic = { spec: "auto" } }) {
   const adapter = adapters[writer];
   if (!adapter) {
     if (NOT_YET[writer]) throw new Error(`writer "${writer}" is not implemented yet; it arrives in ${NOT_YET[writer]}. Use --writer fake.`);
     throw new Error(`unknown writer "${writer}"`);
   }
   if (!Number.isInteger(repeat) || repeat < 1) throw new Error("--repeat must be a positive integer");
+  if (maxUsd !== null && !(Number.isFinite(maxUsd) && maxUsd > 0)) throw new Error("--max-usd must be a positive number");
 
   const config = loadConfig(evalsDir);
   const loaded = loadCase(root, evalsDir, caseRef);
@@ -147,7 +148,8 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
   const harness = harnessVersion(root);
   const inputs = kase.inputs.map((i) => ({ ...i, tree: treeHash(root, i.commit, i.path) }));
   const hash = caseHash(caseDir, inputs);
-  const caps = config.caps[kase.data_mode];
+  // --max-usd lowers (never raises) the per-run dollar cap, so a session can hold a total budget.
+  const caps = maxUsd === null ? config.caps[kase.data_mode] : { ...config.caps[kase.data_mode], max_usd: Math.min(config.caps[kase.data_mode].max_usd, maxUsd) };
 
   const ledgerFile = join(evalsDir, "ledger.jsonl");
   // 2. Gate: a staged writer needs a passing canary for this CLI version, recipe and mode.

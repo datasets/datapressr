@@ -10,6 +10,7 @@ import { join } from "node:path";
 import { makeRepo, sh, write } from "./fixture-repo.mjs";
 import { readLedger } from "./ledger.mjs";
 import { runCase } from "./runner.mjs";
+import * as fakeWriter from "./adapters/fake.mjs";
 import { validateRun } from "./schema.mjs";
 import { EMPTY_TREE, noSkillPrompt, writerPrompt } from "./stage.mjs";
 
@@ -205,6 +206,21 @@ test("--no-skill: the baseline arm records no skill, drops the skill line from t
     assert.equal(row.skill_name, "none");
     assert.equal(row.skill_tree, EMPTY_TREE);
     assert.deepEqual(row.flags, ["no_skill"]);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("--max-usd lowers the per-run dollar cap the writer gets, never raises it", async () => {
+  const { root } = makeRepo();
+  try {
+    const seen = [];
+    const adapters = { fake: { ...fakeWriter, write: async (args) => (seen.push(args.caps.max_usd), fakeWriter.write(args)) } };
+    await runCase({ root, caseRef: "story/t01-demo", writer: "fake", maxUsd: 7.5, adapters, critic: null });
+    await runCase({ root, caseRef: "story/t01-demo", writer: "fake", maxUsd: 500, adapters, critic: null });
+    await runCase({ root, caseRef: "story/t01-demo", writer: "fake", adapters, critic: null });
+    assert.deepEqual(seen, [7.5, 20, 20]);
+    await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "fake", maxUsd: 0, adapters }), /--max-usd must be a positive number/);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
