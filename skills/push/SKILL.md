@@ -29,6 +29,8 @@ Never run `dh login` yourself: it opens a browser and needs the person to sign i
    - `specType: "simple"` with `type: "bar"` or `"lines-and-points"` needs the `group` (x) field and `series[0]` to be typed `year`, `yearmonth`, `date` or `number` in the resource schema. `integer` and `string` fields render an "Unsupported field type" error. Only `series[0]` is plotted; any further series are silently dropped.
    - For a categorical x-axis or several bar series, use `specType: "vega-lite"` (a raw Vega-Lite spec; DataHub injects the resource's CSV as data) or `specType: "plot"` instead.
    - Each view's resource must match a resource `name`, or the page shows "Resource not found for view".
+   - DataHub bundles Vega-Lite 5.1, which has no `xOffset`: a grouped-bar spec renders as stacked bars. Use lines with points, or a facet, instead (datapressr-kh5.13).
+   - No resource may be named the same as the package. DataHub reads that as a "full + sample" premium package and shows only that one resource; every other resource, and any view on it, disappears (datapressr-kh5.12).
 6. **Check `.datahubignore`.** Every non-hidden file in the directory is uploaded unless `.datahubignore` excludes it (`.gitignore` is not read). Make sure it covers `archive/`, build and enrich scripts, `node_modules/`, `package*.json` and `AGENTS.md`. Any other `.md` file (such as `SUMMARY.md`) becomes its own sub-page, so exclude it if you don't want that.
 
 ## 2. Pick the publication
