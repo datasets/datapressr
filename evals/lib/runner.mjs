@@ -6,6 +6,7 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import * as fake from "./adapters/fake.mjs";
+import { checkRun } from "./checkers/run-checks.mjs";
 import { appendRow } from "./ledger.mjs";
 import { writeReport } from "./report.mjs";
 import { assertValid, validateCase, validateRun } from "./schema.mjs";
@@ -135,7 +136,9 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
       cost_usd: out.cost_usd,
       flags: run.flags,
     });
-    results.push({ runId, runDir, run });
+    // 7. Deterministic checks (checks.json + a `check` ledger row); critique arrives with H4.
+    const { checks } = checkRun({ root, evalsDir, runDir, harnessTree: harness.tree, now });
+    results.push({ runId, runDir, run, checks });
   }
   writeReport(ledgerFile, join(evalsDir, "REPORT.md"));
   return results;

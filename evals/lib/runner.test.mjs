@@ -43,8 +43,9 @@ test("run --writer fake works end to end through the CLI", () => {
     }
 
     const rows = readLedger(join(root, "evals/ledger.jsonl"));
-    assert.equal(rows.length, 1);
-    assert.equal(rows[0].kind, "run");
+    assert.deepEqual(rows.map((r) => r.kind), ["run", "check"]);
+    assert.equal(rows[1].run_id, runId);
+    assert.ok(existsSync(join(caseRuns, runId, "checks.json")), "run writes checks.json");
     assert.equal(rows[0].run_id, runId);
     assert.equal(rows[0].schema, 1);
     assert.equal(rows[0].path, `runs/story/t01-demo/${runId}`);
@@ -82,7 +83,7 @@ test("repeats get distinct run ids; real writers and unknown cases are refused c
     const results = await runCase({ root, caseRef: "story/t01-demo", writer: "fake", repeat: 2, now: () => fixed });
     assert.deepEqual(results.map((r) => r.runId.slice(-2)), ["-1", "-2"]);
     assert.ok(results[0].runId.startsWith("20261010-0905-t01-demo-fake-fake-"));
-    assert.equal(readLedger(join(root, "evals/ledger.jsonl")).length, 2);
+    assert.equal(readLedger(join(root, "evals/ledger.jsonl")).filter((r) => r.kind === "run").length, 2);
 
     await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "claude" }), /datapressr-hcn\.3/);
     await assert.rejects(runCase({ root, caseRef: "story/nope", writer: "fake" }), /no case/);

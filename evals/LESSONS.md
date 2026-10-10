@@ -1,0 +1,10 @@
+# Lessons
+
+Maintained by hand (design section 8): each lesson is a one-line rule with a status (`seen once`, `seen twice`, `owner-flagged`, `in skill @ <commit>`) and the evidence that supports it. The critic never sees this file.
+
+## story
+
+- **The exempt list must be a list.** Status: seen once (oracle, `datapressr-hcn.7`). S3 accepts a prose number that is not on a chart only when it appears in a friction-notes line that says "exempt" (or a list item nested under one), e.g. `- **Exempt numbers** (not on a chart):` followed by `- 25,415: dataset-wide count`. The oil-prices story names its exempt kinds in a sentence instead of listing the numbers, so it fails S3 on 25,415, -$37.63, $9.10 and 76%; with a four-line list it passes (the saboteur base in `lib/checkers/story.test.mjs`). The story skill's contract says "which the prose's friction notes or the task record list explicitly" but gives no format; it should give this one, or writers in blind runs will fail S3 on legitimate exempt numbers.
+- **Attributed external figures need the list too.** Status: seen once (oracle). France cites DREES's 5.3% pension uprating in the prose, has no friction notes and so no exempt list: S3 fails on that one number. Every other France number (20 of 21) is on a chart.
+- **Stories #1 and #2 predate the every-number-on-a-chart rule.** Status: seen once (oracle). Keeling Curve (11 of 13 prose numbers off-chart: start/end values, rates, the source file's sentinel codes) and Planetary Boundaries (6 of 11: raw readings and boundaries behind a scoreboard drawn in boundary units) fail S3. Keeling also predates the `<slug>-make-charts.mjs` name (its build is `make-charts.mjs`), so it fails S1 and therefore S4. These are recorded as oracle exceptions in the test, not fixed by weakening the checks.
+- **Rounding direction matters.** S3 lets the prose round a chart value to its own precision (chart `€1,710bn`, prose `€1.7 trillion`), never the reverse: a prose figure more precise than anything on a chart is a miss.
