@@ -16,7 +16,7 @@ const HOME = "/Users/someone";
 test("fixed-mode settings deny the repo and the user's agent and credential dirs, the web and the network", () => {
   const s = claude.settingsFor({ mode: "fixed", root: ROOT, home: HOME });
   const dirs = [ROOT, `${HOME}/.claude`, `${HOME}/.codex`, `${HOME}/.agents`, `${HOME}/.config/gh`, `${HOME}/.ssh`];
-  assert.deepEqual(s.permissions.deny, [...dirs.flatMap((d) => [`Read(/${d}/**)`, `Edit(/${d}/**)`]), "WebFetch", "WebSearch"]);
+  assert.deepEqual(s.permissions.deny, [...dirs.flatMap((d) => [`Read(/${d}/**)`, `Edit(/${d}/**)`]), "Bash(claude:*)", "Bash(codex:*)", "WebFetch", "WebSearch"]);
   assert.ok(s.permissions.deny.includes("Read(//Users/someone/src/datapressr/**)"), "absolute paths use the // prefix");
   assert.equal(s.permissions.allow, undefined, "allowed tools come from --allowedTools, not the settings file");
   assert.deepEqual(s.sandbox, {
@@ -28,7 +28,7 @@ test("fixed-mode settings deny the repo and the user's agent and credential dirs
   });
 });
 
-test("the weakened recipe drops only the read/edit denies and denyRead, and hashes differently", () => {
+test("the weakened recipe drops only the read/edit denies, denyRead and the nested-agent denies, and hashes differently", () => {
   const w = claude.settingsFor({ mode: "fixed", root: ROOT, home: HOME, weaken: true });
   assert.deepEqual(w.permissions.deny, ["WebFetch", "WebSearch"]);
   assert.deepEqual(w.sandbox.filesystem, {});
@@ -44,6 +44,9 @@ test("the recipe hash does not depend on machine paths, model or caps", () => {
   const text = JSON.stringify(t);
   assert.ok(!text.includes(HOME) && !text.includes(process.env.HOME || "/nonexistent-home"), "no machine paths");
   assert.ok(text.includes("<model>") && text.includes("<settings>"));
+  assert.equal(t.version, 2, "recipe 2: nested agent CLIs denied and shimmed");
+  assert.ok(text.includes("<shim bin>") && text.includes("NESTED_AGENT_BLOCKED"), "the shim is part of the hash");
+  assert.deepEqual(claude.recipeTemplate("fixed", { weaken: true }).env, {}, "the weakened recipe has no shim");
 });
 
 test("writer flags are the section 4.3 recipe", () => {
@@ -96,6 +99,15 @@ test("writer role: runs the recipe in the workspace, parses the result, removes 
     const argv = fake.argv();
     assert.equal(argv[1], "Write a story");
     assert.ok(!existsSync(argv[argv.indexOf("--settings") + 1]), "settings file removed after the run");
+    // A nested `claude` from inside the run hits the shim first on PATH, which refuses to run.
+    const env = fake.env();
+    assert.match(env.PATH.split(":")[0], /evals-settings-.*\/bin$/);
+    assert.equal(env.nested.status, 126);
+    assert.match(env.nested.stderr, /NESTED_AGENT_BLOCKED/);
+    assert.ok(!existsSync(env.PATH.split(":")[0]), "shim dir removed after the run");
+
+    await claude.write({ workspace: ws, prompt: "x", model: "m", caps: { max_usd: 1, max_turns: 5 }, mode: "fixed", root: ROOT, home: HOME, timeoutMs: 30_000, bin: fake.bin, weaken: true });
+    assert.ok(!/evals-settings-/.test(fake.env().PATH.split(":")[0]), "the weakened recipe has no shim");
   } finally {
     rmSync(ws, { recursive: true, force: true });
     rmSync(fake.dir, { recursive: true, force: true });

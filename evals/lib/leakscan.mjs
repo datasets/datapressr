@@ -1,7 +1,10 @@
 // Post-run leak scan (design section 4.2 step 6): flag any absolute path outside the workspace
 // that appears in a tool call. Works on a stream-json transcript (one JSON event per line) or on
 // already-extracted tool calls. A leak is { tool, path }; a run with any leak is flagged `leaked`
-// and stays in the ledger but is excluded from comparisons.
+// and stays in the ledger but is excluded from comparisons. Two more kinds of hit share that shape
+// (datapressr-hcn.19): a nested agent CLI invocation (`claude -p`, `codex exec`, however wrapped or
+// spelt) as { tool, path: "nested agent: <command>", kind: "nested_agent" }, and a `$TMPDIR`
+// reference that lists or climbs out of the shared temp dir or names another eval run's dir there.
 
 import { existsSync } from "node:fs";
 import { homedir } from "node:os";
@@ -101,7 +104,17 @@ export function scanToolCalls(calls, { workspaces, allowedDirs = [], allowedPref
     }
   };
   for (const call of calls) {
+    if (call.tool === "Bash" && typeof call.input?.command === "string") {
+      for (const inv of nestedAgentInvocations(call.input.command)) {
+        const key = `${call.tool}\0nested\0${inv}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          leaks.push({ tool: call.tool, path: `nested agent: ${inv}`, kind: "nested_agent" });
+        }
+      }
+    }
     for (const s of accessStrings(call)) {
+      for (const t of tmpdirLeaks(s)) add(call.tool, t);
       const { absolute, upward } = pathsIn(s, home);
       for (const p of absolute) {
         const n = normalize(p);
@@ -123,6 +136,59 @@ export function scanToolCalls(calls, { workspaces, allowedDirs = [], allowedPref
     }
   }
   return leaks;
+}
+
+// Words that run their arguments as a command; their own flags (and the one value some take) are
+// skipped to reach the command.
+const WRAPPERS = new Set(["timeout", "gtimeout", "env", "nohup", "exec", "command", "builtin", "time", "nice", "stdbuf", "caffeinate", "xargs", "sudo", "npx", "bunx", "pnpx", "doas"]);
+const AGENT_RE = /^(?:claude|codex)$|^@anthropic-ai\/claude-code(?:@.*)?$|^@openai\/codex(?:@.*)?$/;
+
+// Nested agent CLI invocations in a shell command: a `claude` or `codex` (bare, by path, or as the
+// npm package) in command position, i.e. first in a segment after a separator, quote or command
+// substitution, past any variable assignments and wrapper words. `which claude` or `grep codex`
+// is not an invocation. A quoted string counts after a shell's -c (`zsh -lc 'claude'`); other
+// quoted strings only with an argument after the name, so `grep "claude" file` does not.
+export function nestedAgentInvocations(command) {
+  const hits = [];
+  const parts = String(command).split(/(\$\(|[;&|\n(){}`"']|\bthen\b|\bdo\b|\belse\b)/);
+  for (let k = 0; k < parts.length; k += 2) {
+    const seg = parts[k];
+    // A quoted string is a command when a shell's -c (or -lc) precedes it.
+    const quoted = k > 0 && /^["']$/.test(parts[k - 1]) && !(k > 1 && /\s-l?c\s*$/.test(parts[k - 2]));
+    const words = seg.trim().split(/\s+/).filter(Boolean);
+    let i = 0;
+    while (i < words.length) {
+      const w = words[i];
+      if (/^[A-Za-z_][A-Za-z0-9_]*=/.test(w) || /^-/.test(w) || /^\d+(?:\.\d+)?[smhd]?$/.test(w)) {
+        i++;
+        continue;
+      }
+      if (WRAPPERS.has(w.split("/").pop())) {
+        i++;
+        continue;
+      }
+      break;
+    }
+    const w = words[i];
+    if (!w) continue;
+    const base = w.startsWith("@") ? w : w.split("/").pop();
+    if (AGENT_RE.test(base) && (!quoted || words.length > i + 1)) hits.push(words.slice(i, i + 3).join(" "));
+  }
+  return hits;
+}
+
+// `$TMPDIR` is the shared temp dir (Codex inherits ours, where every eval workspace, home and
+// settings dir lives; Claude's sandbox points it at a per-user dir shared with the user's other
+// sessions). Scratch files in it are allowed like /tmp; listing it, climbing out of it or naming
+// another eval run's dir (`evals-*`) is not.
+const TMP_RE = /(?:\$TMPDIR|\$\{TMPDIR\})(\/[^\s"'`;|&<>(){}[\],]*)?/g;
+function tmpdirLeaks(text) {
+  const out = [];
+  for (const m of String(text).matchAll(TMP_RE)) {
+    const rest = normalize(`/x${m[1] ?? ""}`).replace(/\/+$/, "");
+    if (rest === "/x" || !rest.startsWith("/x/") || /^\/x\/evals-/.test(rest)) out.push(m[0]);
+  }
+  return out;
 }
 
 export function scanTranscript(text, opts) {

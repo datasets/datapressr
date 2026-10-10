@@ -29,6 +29,7 @@ test("writer flags are the section 4.3 recipe, with the reach-out features off",
   assert.deepEqual(disabled, codex.DISABLED_FEATURES);
   for (const f of ["apps", "plugins", "memories", "browser_use", "computer_use"]) assert.ok(disabled.includes(f), f);
   assert.ok(args.includes('web_search="disabled"'), "no web search in fixed mode");
+  assert.ok(args.includes("allow_login_shell=false"), "no login shell, so path_helper cannot reorder PATH past the nested-agent shim");
   assert.ok(!args.some((a) => a.includes("network_access")), "no network in fixed mode");
   assert.deepEqual(args.slice(-2), ["--", "P"]);
 
@@ -46,6 +47,8 @@ test("the child environment points HOME and CODEX_HOME at the temp home and drop
   assert.deepEqual(env, { PATH: "/usr/bin", HOME: "/tmp/h", CODEX_HOME: "/tmp/h", OPENAI_API_KEY: "k" });
   const weak = codex.childEnv({ home: "/tmp/h", env: { HOME: "/Users/x" }, weaken: true });
   assert.deepEqual(weak, { HOME: "/Users/x", CODEX_HOME: "/tmp/h" }, "weakened keeps the real HOME, never the real CODEX_HOME");
+  assert.equal(codex.childEnv({ home: "/tmp/h", env: { PATH: "/usr/bin" }, shimBin: "/tmp/s/bin" }).PATH, "/tmp/s/bin:/usr/bin", "the nested-agent shim goes first on PATH");
+  assert.equal(codex.childEnv({ home: "/tmp/h", env: { PATH: "/usr/bin" }, shimBin: "/tmp/s/bin", weaken: true }).PATH, "/usr/bin", "the weakened recipe has no shim");
 });
 
 test("the recipe hash is stable, path-free and changes with mode and weaken", () => {
@@ -56,6 +59,8 @@ test("the recipe hash is stable, path-free and changes with mode and weaken", ()
   const text = JSON.stringify(codex.recipeTemplate("fixed"));
   assert.ok(!text.includes(process.env.HOME || "/nonexistent-home"));
   assert.ok(text.includes("<model>") && text.includes("<workspace>"));
+  assert.equal(codex.recipeTemplate("fixed").version, 2, "recipe 2: nested agent CLIs shimmed");
+  assert.ok(text.includes("<shim bin>") && !JSON.stringify(codex.recipeTemplate("fixed", { weaken: true })).includes("<shim bin>"));
 });
 
 test("makeHome copies only auth.json, mode 600", () => {

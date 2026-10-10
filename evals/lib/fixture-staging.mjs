@@ -33,6 +33,8 @@ const fs = require("node:fs"), path = require("node:path");
 const args = process.argv.slice(2);
 if (args[0] === "--version") { console.log("9.9.9 (Claude Code)"); process.exit(0); }
 fs.writeFileSync(${JSON.stringify(join(dir, "argv.json"))}, JSON.stringify(args));
+const nested = require("node:child_process").spawnSync("claude", ["-p", "hi"], { encoding: "utf8" });
+fs.writeFileSync(${JSON.stringify(join(dir, "env.json"))}, JSON.stringify({ PATH: process.env.PATH, nested: { status: nested.status, stderr: nested.stderr } }));
 const settings = JSON.parse(fs.readFileSync(args[args.indexOf("--settings") + 1], "utf8"));
 fs.writeFileSync(${JSON.stringify(join(dir, "settings.json"))}, JSON.stringify(settings));
 const cwd = process.cwd();
@@ -51,7 +53,7 @@ out({ type: "result", subtype: ${JSON.stringify(isError ? "error_max_budget_usd"
 `,
   );
   chmodSync(bin, 0o755);
-  return { dir, bin, argv: () => JSON.parse(readFileSync(join(dir, "argv.json"), "utf8")), settings: () => JSON.parse(readFileSync(join(dir, "settings.json"), "utf8")) };
+  return { dir, bin, argv: () => JSON.parse(readFileSync(join(dir, "argv.json"), "utf8")), settings: () => JSON.parse(readFileSync(join(dir, "settings.json"), "utf8")), env: () => JSON.parse(readFileSync(join(dir, "env.json"), "utf8")) };
 }
 
 // A fake `codex`: --version, `login status` (logged in when CODEX_HOME/auth.json exists), or an

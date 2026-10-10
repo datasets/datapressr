@@ -6,7 +6,8 @@
 //
 // Writer role: runs in the staged workspace with Read/Write/Edit/Glob/Grep/Bash, deny rules on
 // the repo and the user's agent and credential directories, and (fixed mode) a sandbox with no
-// network. Critic role: no tools, structured JSON output, run from an empty temp dir.
+// network; the nested agent CLIs `claude` and `codex` are denied as Bash commands and shadowed
+// on the child's PATH by shims that refuse to run (./nested.mjs). Critic role: no tools, structured JSON output, run from an empty temp dir.
 //
 // Output: stream-json (not json) so the transcript holds every tool call for the leak scan; its
 // final `result` event carries the same fields as --output-format json (total_cost_usd,
@@ -18,6 +19,7 @@ import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 import { deniedPaths } from "../stage.mjs";
 import { sha256 } from "../versions.mjs";
+import { NESTED_AGENTS, makeShimDir, resolveBin, shimTemplate, withShimPath } from "./nested.mjs";
 
 export const vendor = "claude";
 export const staged = true;
@@ -26,16 +28,19 @@ export const needsCanary = true;
 export const WRITER_TOOLS = ["Read", "Write", "Edit", "Glob", "Grep", "Bash"];
 
 // Recipe version: bump when the recipe changes in a way the template below cannot see.
-const RECIPE_VERSION = 1;
+// 2: nested agent CLIs denied and shimmed (datapressr-hcn.19).
+const RECIPE_VERSION = 2;
 
-// The harness settings file (passed with --settings). `weaken` drops the read-deny rules and the
-// sandbox denyRead list; it exists only to prove the canary fails without them.
+// The harness settings file (passed with --settings). `weaken` drops the read-deny rules, the
+// sandbox denyRead list and the nested-agent denies (and the writer drops the PATH shim); it
+// exists only to prove the canary fails without them.
 export function settingsFor({ mode, root, home = homedir(), weaken = false }) {
   if (mode !== "fixed") throw new Error(`the Claude ${mode}-mode recipe is not defined yet; it arrives with the open-mode case (datapressr-hcn.12)`);
   const denied = deniedPaths(root, home);
   const deny = [];
   if (!weaken) {
     for (const p of denied) deny.push(`Read(/${p}/**)`, `Edit(/${p}/**)`);
+    for (const a of NESTED_AGENTS) deny.push(`Bash(${a}:*)`);
   }
   deny.push("WebFetch", "WebSearch");
   const filesystem = weaken ? {} : { denyRead: denied };
@@ -94,6 +99,7 @@ export function recipeTemplate(mode, { weaken = false } = {}) {
     weaken,
     args: writerArgs({ prompt: "<prompt>", model: "<model>", maxTurns: "<turns>", maxBudgetUsd: "<usd>", settingsPath: "<settings>" }),
     settings: settingsFor({ mode, root: "/<repo>", home: "/<home>", weaken }),
+    env: weaken ? {} : shimTemplate(),
   };
 }
 
@@ -193,11 +199,12 @@ export function execute({ bin = "claude", args, cwd, timeoutMs, env = childEnv()
   });
 }
 
+// A per-run temp dir holding the settings file (and the nested-agent shims), removed afterwards.
 function withSettingsFile(settings, fn) {
   const dir = mkdtempSync(join(tmpdir(), "evals-settings-"));
   const path = join(dir, "settings.json");
   writeFileSync(path, `${JSON.stringify(settings, null, 2)}\n`);
-  return Promise.resolve(fn(path)).finally(() => rmSync(dir, { recursive: true, force: true }));
+  return Promise.resolve(fn(path, dir)).finally(() => rmSync(dir, { recursive: true, force: true }));
 }
 
 // Writer role. Runs in `workspace` (already staged). Returns the runner's writer result plus
@@ -205,9 +212,10 @@ function withSettingsFile(settings, fn) {
 export async function write({ workspace, prompt, model, caps, mode, root, timeoutMs, bin = "claude", home = homedir(), weaken = false }) {
   const settings = settingsFor({ mode, root, home, weaken });
   const version = cliVersion(bin);
-  return withSettingsFile(settings, async (settingsPath) => {
+  return withSettingsFile(settings, async (settingsPath, dir) => {
     const args = writerArgs({ prompt, model, maxTurns: caps.max_turns, maxBudgetUsd: caps.max_usd, settingsPath });
-    const proc = await execute({ bin, args, cwd: workspace, timeoutMs });
+    const env = weaken ? childEnv() : withShimPath(childEnv(), makeShimDir(dir));
+    const proc = await execute({ bin: resolveBin(bin), args, cwd: workspace, timeoutMs, env });
     const { init, result } = parseStream(proc.stdout);
     const s = summarise(result);
     const flags = [];

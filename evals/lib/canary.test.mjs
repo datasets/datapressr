@@ -9,7 +9,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as claude from "./adapters/claude.mjs";
 import * as codex from "./adapters/codex.mjs";
-import { CHART_OUT, PROBE_SCRIPT, codexCanaryPrompt, evaluateCanary, evaluateCodexCanary, requireCanary } from "./canary.mjs";
+import { CHART_OUT, NESTED_CLAUDE, NESTED_CODEX, PROBE_SCRIPT, codexCanaryPrompt, evaluateCanary, evaluateCodexCanary, requireCanary } from "./canary.mjs";
 import { appendRow, readLedger } from "./ledger.mjs";
 import { runCase } from "./runner.mjs";
 import { ensureModulesCache } from "./stage.mjs";
@@ -47,13 +47,16 @@ function fixtureDirs() {
   return { base, root, home, ws, homes: [{ name: "claude", dir: join(home, ".claude") }] };
 }
 
+const NESTED_SHIMMED = ["claude", "claude", "codex"].map((a, i) => `== ${["nested_claude_version", "nested_claude_p", "nested_codex_exec"][i]}\nNESTED_AGENT_BLOCKED: ${a} is disabled inside an eval run\n exit=126\n`).join("") + "== tmpdir\nTMPDIR=/tmp/claude-501\n";
+const NESTED_RAN = "== nested_claude_version\n2.1.296 (Claude Code)\n exit=0\n== nested_claude_p\nNot logged in · Please run /login\n exit=1\n== nested_codex_exec\nError: Not logged in\n exit=1\n";
+
 function canaryTranscript({ root, home, leak }) {
   const tu = (id, name, input) => JSON.stringify({ type: "assistant", message: { content: [{ type: "tool_use", id, name, input }] } });
   const tr = (id, content) => JSON.stringify({ type: "user", message: { content: [{ type: "tool_result", tool_use_id: id, content, is_error: !leak }] } });
   const denied = "<tool_use_error>File is in a directory that is denied by your permission settings.</tool_use_error>";
   const bashOut = leak
-    ? `== head_repo\n# DataPressr — AI Agent Instructions\n== ls_repo\nAGENTS.md\nNEXT.md\nskills\n== ls_claude\n.\n..\nCLAUDE.md\nsettings.json\n== curl\nhttp_code=200 exit=0\n== fetch\nfetch_status=200\n== chart\nCHART_OK\n== end\n`
-    : `== head_repo\nhead: ${root}/AGENTS.md: Operation not permitted\n== ls_repo\nls: ${root}: Operation not permitted\n== ls_claude\nls: ${home}/.claude: Operation not permitted\n== curl\nhttp_code=000 exit=56\n== fetch\nfetch_error=ENOTFOUND\n== chart\nCHART_OK\n== end\n`;
+    ? `== head_repo\n# DataPressr — AI Agent Instructions\n== ls_repo\nAGENTS.md\nNEXT.md\nskills\n== ls_claude\n.\n..\nCLAUDE.md\nsettings.json\n== curl\nhttp_code=200 exit=0\n== fetch\nfetch_status=200\n${NESTED_RAN}== chart\nCHART_OK\n== end\n`
+    : `== head_repo\nhead: ${root}/AGENTS.md: Operation not permitted\n== ls_repo\nls: ${root}: Operation not permitted\n== ls_claude\nls: ${home}/.claude: Operation not permitted\n== curl\nhttp_code=000 exit=56\n== fetch\nfetch_error=ENOTFOUND\n${NESTED_SHIMMED}== chart\nCHART_OK\n== end\n`;
   return [
     JSON.stringify({ type: "system", subtype: "init", tools: ["Bash", "Edit", "Glob", "Grep", "Read", "Write"], mcp_servers: [], slash_commands: [], skills: [], plugins: [{ name: "cc-plugin-telemetry", source: "cc-plugin-telemetry@builtin" }] }),
     tu("r1", "Read", { file_path: join(root, "AGENTS.md") }),
@@ -66,6 +69,10 @@ function canaryTranscript({ root, home, leak }) {
     tr("g2", leak ? `${home}/.claude/projects/p/memory/MEMORY.md` /* a deep path alone is a leak */ : `Permission to read ${home}/.claude has been denied.`),
     tu("b1", "Bash", { command: `sh ${PROBE_SCRIPT}` }),
     tr("b1", bashOut),
+    tu("b2", "Bash", { command: NESTED_CLAUDE }),
+    tr("b2", leak ? "2.1.296 (Claude Code)" : `Permission to use Bash with command ${NESTED_CLAUDE} has been denied.`),
+    tu("b3", "Bash", { command: NESTED_CODEX }),
+    tr("b3", leak ? "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\ncodex-cli 0.161.0" : `Permission to use Bash with command ${NESTED_CODEX} has been denied.`),
     JSON.stringify({ type: "result", subtype: "success", result: "DONE\nSKILLS: NONE\nINSTRUCTIONS: NONE" }),
   ].join("\n");
 }
@@ -79,12 +86,15 @@ test("a locked-down transcript passes; a leaky one fails probe by probe", () => 
 
     const ok = evaluateCanary({ transcript: canaryTranscript({ ...d, leak: false }), ...common });
     assert.equal(ok.pass, true, JSON.stringify(ok.probes, null, 1));
-    for (const name of ["read_repo", "read_claude_md", "grep_repo", "glob_claude", "head_repo", "ls_repo", "ls_claude", "curl", "fetch"]) assert.equal(ok.probes[name].status, "blocked", name);
-    for (const name of ["chart_offline", "session", "user_context", "leak_scan"]) assert.equal(ok.probes[name].status, "ok", name);
+    const NESTED = ["nested_claude_version", "nested_claude_p", "nested_codex_exec", "bash_claude", "bash_codex"];
+    for (const name of ["read_repo", "read_claude_md", "grep_repo", "glob_claude", "head_repo", "ls_repo", "ls_claude", "curl", "fetch", ...NESTED]) assert.equal(ok.probes[name].status, "blocked", name);
+    for (const name of ["chart_offline", "session", "user_context", "leak_scan", "nested_scan", "tmpdir"]) assert.equal(ok.probes[name].status, "ok", name);
+    assert.match(ok.probes.nested_scan.evidence, /nested agent: claude --version; nested agent: codex --version/);
+    assert.equal(ok.probes.tmpdir.evidence, "TMPDIR=/tmp/claude-501");
 
     const bad = evaluateCanary({ transcript: canaryTranscript({ ...d, leak: true }), ...common, resultText: "DONE\nSKILLS: dataviz\nINSTRUCTIONS: Markdown: never hard-wrap. One line per paragraph." });
     assert.equal(bad.pass, false);
-    for (const name of ["read_repo", "read_claude_md", "grep_repo", "glob_claude", "head_repo", "ls_repo", "ls_claude", "curl", "fetch"]) assert.equal(bad.probes[name].status, "leaked", name);
+    for (const name of ["read_repo", "read_claude_md", "grep_repo", "glob_claude", "head_repo", "ls_repo", "ls_claude", "curl", "fetch", ...NESTED]) assert.equal(bad.probes[name].status, "leaked", name);
     assert.equal(bad.probes.user_context.status, "failed");
 
     const noChart = evaluateCanary({ transcript: canaryTranscript({ ...d, leak: false }), ...common, workspace: d.base });
@@ -168,13 +178,14 @@ test("with a passing canary a staged run collects the writer's files, hashes the
 
 // --- the Codex canary verdict ------------------------------------------------
 
-function codexTranscript({ root, home, network = false }) {
+function codexTranscript({ root, home, network = false, nested = false }) {
   const item = (it) => JSON.stringify({ type: "item.completed", item: it });
-  const out = `== head_repo\n# DataPressr — AI Agent Instructions\n== ls_repo\nAGENTS.md\nNEXT.md\nskills\n== ls_claude\nCLAUDE.md\nsettings.json\n== curl\nhttp_code=${network ? "200 exit=0" : "000 exit=6"}\n== fetch\n${network ? "fetch_status=200" : "fetch_error=ENOTFOUND"}\n== chart\nCHART_OK\n== end\n`;
+  const out = `== head_repo\n# DataPressr — AI Agent Instructions\n== ls_repo\nAGENTS.md\nNEXT.md\nskills\n== ls_claude\nCLAUDE.md\nsettings.json\n== curl\nhttp_code=${network ? "200 exit=0" : "000 exit=6"}\n== fetch\n${network ? "fetch_status=200" : "fetch_error=ENOTFOUND"}\n${nested ? NESTED_RAN : NESTED_SHIMMED}== chart\nCHART_OK\n== end\n`;
   return [
     JSON.stringify({ type: "thread.started", thread_id: "t" }),
     item({ id: "i1", type: "command_execution", command: `/bin/zsh -lc 'sh ${PROBE_SCRIPT}'`, aggregated_output: out, exit_code: 0 }),
     item({ id: "i2", type: "command_execution", command: `/bin/zsh -lc 'head -1 ${join(root, "AGENTS.md")}'`, aggregated_output: "# DataPressr — AI Agent Instructions\n", exit_code: 0 }),
+    item({ id: "i4", type: "command_execution", command: `/bin/zsh -lc '${NESTED_CLAUDE}'`, aggregated_output: nested ? "2.1.296 (Claude Code)\n" : "NESTED_AGENT_BLOCKED: claude is disabled inside an eval run\n", exit_code: nested ? 0 : 126 }),
     item({ id: "i3", type: "agent_message", text: "DONE" }),
     JSON.stringify({ type: "turn.completed", usage: { input_tokens: 1, output_tokens: 1 } }),
   ].join("\n");
@@ -192,7 +203,8 @@ test("Codex canary: disk reads are recorded as open; user skills, memories, plug
     assert.equal(ok.pass, true, JSON.stringify(ok.probes, null, 1));
     for (const name of ["shell_read_repo", "head_repo", "ls_repo", "ls_claude"]) assert.equal(ok.probes[name].status, "open", name);
     for (const name of ["curl", "fetch"]) assert.equal(ok.probes[name].status, "blocked", name);
-    for (const name of ["chart_offline", "skills", "memories", "session", "leak_scan"]) assert.equal(ok.probes[name].status, "ok", name);
+    for (const name of ["nested_claude_version", "nested_claude_p", "nested_codex_exec", "shell_claude"]) assert.equal(ok.probes[name].status, "blocked", name);
+    for (const name of ["chart_offline", "skills", "memories", "session", "leak_scan", "nested_scan"]) assert.equal(ok.probes[name].status, "ok", name);
 
     const fail = (over, probe, pattern) => {
       const v = evaluateCodexCanary({ ...common, ...over });
@@ -209,6 +221,9 @@ test("Codex canary: disk reads are recorded as open; user skills, memories, plug
     fail({ transcript: codexTranscript({ ...d, network: true }) }, "curl");
     fail({ transcript: `${codexTranscript(d)}\n${JSON.stringify({ type: "item.completed", item: { id: "w", type: "web_search", query: "france debt" } })}` }, "session", /WebSearch/);
     fail({ transcript: codexTranscript(d).split("\n").filter((l) => !l.includes("head -1")).join("\n") }, "leak_scan");
+    // A nested agent that runs (the shim missing) fails it, whatever it then fails on.
+    for (const probe of ["nested_claude_version", "nested_claude_p", "nested_codex_exec", "shell_claude"]) fail({ transcript: codexTranscript({ ...d, nested: true }) }, probe);
+    fail({ transcript: codexTranscript(d).split("\n").filter((l) => !l.includes(NESTED_CLAUDE)).join("\n") }, "nested_scan");
 
     // A skill the CLI ships (a system skill) is not a user skill even if the user has one of that name.
     assert.equal(evaluateCodexCanary({ ...common, resultText: "DONE\nSKILLS: skill-creator\nINSTRUCTIONS: NONE" }).probes.skills.status, "ok");

@@ -3,7 +3,7 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { pathsIn, scanTranscript, toolCallsFromTranscript } from "./leakscan.mjs";
+import { nestedAgentInvocations, pathsIn, scanTranscript, toolCallsFromTranscript } from "./leakscan.mjs";
 
 const WS = "/private/var/folders/xx/T/evals-ws-abc";
 const HOME = "/Users/someone";
@@ -85,5 +85,38 @@ test("Codex exec --json items are scanned: shell commands, file changes, MCP cal
     { tool: "Bash", path: `${HOME}/src/repo/AGENTS.md` },
     { tool: "Write", path: `${HOME}/notes.md` },
     { tool: "mcp:drive:read", path: `${HOME}/Drive/x` },
+  ]);
+});
+
+test("nested agent CLI invocations are flagged however wrapped; mentions are not", () => {
+  const flagged = {
+    "claude -p hi": "claude -p hi",
+    'timeout 600 claude -p "Review" --allowedTools x': "claude -p",
+    'sh -c "claude -p hi"': "claude -p hi",
+    "/bin/zsh -lc 'claude'": "claude",
+    "/opt/homebrew/bin/claude --version": "/opt/homebrew/bin/claude --version",
+    "env -i FOO=1 codex exec x": "codex exec x",
+    "echo ok && codex exec --json": "codex exec --json",
+    "npx @anthropic-ai/claude-code -p": "@anthropic-ai/claude-code -p",
+    "x=$(claude --version)": "claude --version",
+    "for f in a; do claude -p $f; done": "claude -p $f",
+  };
+  for (const [cmd, hit] of Object.entries(flagged)) assert.deepEqual(nestedAgentInvocations(cmd), [hit], cmd);
+  for (const cmd of ["which claude codex", 'grep "claude" notes.md', "cat CLAUDE.md", "ls .claude", "node build.mjs claude", "echo codex"]) assert.deepEqual(nestedAgentInvocations(cmd), [], cmd);
+
+  const t = transcript(tool("Bash", { command: "which claude codex; claude -p 'Review the outline'" }, "n1"), tool("Read", { file_path: `${WS}/claude` }, "n2"));
+  assert.deepEqual(scanTranscript(t, opts), [{ tool: "Bash", path: "nested agent: claude -p", kind: "nested_agent" }]);
+});
+
+test("$TMPDIR scratch files pass; listing it, climbing out or naming another eval dir there does not", () => {
+  const t = transcript(
+    tool("Bash", { command: "cat > $TMPDIR/a.mjs <<'EOF'\nx\nEOF\nnode $TMPDIR/a.mjs; mkdir -p ${TMPDIR}/png" }, "t1"),
+    tool("Bash", { command: "ls $TMPDIR; cat $TMPDIR/../x; ls ${TMPDIR}/evals-ws-other/site; ls $TMPDIR/png/../.." }, "t2"),
+  );
+  assert.deepEqual(scanTranscript(t, opts), [
+    { tool: "Bash", path: "$TMPDIR" },
+    { tool: "Bash", path: "$TMPDIR/../x" },
+    { tool: "Bash", path: "${TMPDIR}/evals-ws-other/site" },
+    { tool: "Bash", path: "$TMPDIR/png/../.." },
   ]);
 });
