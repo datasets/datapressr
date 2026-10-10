@@ -1,6 +1,6 @@
 ---
 name: push
-description: "Use this skill to publish the current dataset directory to DataHub with the `dh publish` CLI command. Checks datapackage.json, the root README.md, views and credentials (from `dh login` or DATAHUB_API_TOKEN) first, always passes an explicit --publication, and skips cleanly if `dh` or credentials aren't set up (committing to git is enough on its own). Invoked as `/push` in Claude Code, or by name; operates on the dataset in the current directory."
+description: "Use this skill to publish the current dataset directory to DataHub with the `dh publish` CLI command, or (story mode, inside the DataPressr repo) to publish an approved data story as its own DataHub page. Checks datapackage.json, the root README.md, views and credentials (from `dh login` or DATAHUB_API_TOKEN) first, always passes an explicit --publication, and skips cleanly if `dh` or credentials aren't set up (committing to git is enough on its own). Invoked as `/push` in Claude Code, or by name; operates on the dataset in the current directory, or on the story named as the argument."
 ---
 
 # Push: publish the current dataset to DataHub
@@ -56,6 +56,35 @@ Report the URL, then tell the user:
 
 - **Check the page in a browser.** "N file(s) published" only means the uploads finished; the page is processed in the background. Look at the README, the views, the resource previews and the licence.
 - **Publishing is an upsert, not a sync.** Files are added or overwritten, but a file deleted or renamed locally stays on DataHub. On a dataset that already exists, the `title` and `description` are not updated either: change them in the DataHub dashboard. `dh delete <name> -p <pub>` removes the whole dataset, losing its identity and dates, so prefer not to.
+
+## Story mode: publish a data story
+
+Use this path when the argument names a story (`/push story oil-prices`, or "publish the oil story") rather than a dataset. It needs the DataPressr repo: stories live in its `site/stories/`, and the bundler is [scripts/bundle-story.mjs](https://github.com/datasets/datapressr/blob/main/scripts/bundle-story.mjs). On DataHub a story is a page with a `README.md` and no `datapackage.json`: DataHub shows the title, description, "Published <date>" and author, then the Markdown. Step 0 (skip cleanly if `dh` or credentials are missing) applies unchanged.
+
+Never publish `site/stories/` itself, or a story file in place: it holds every story, the outlines, build scripts and `node_modules`, and the story has an h1 and internal "Friction notes" that DataHub would show. Always publish the bundle.
+
+1. **Pick the publication.** As in section 2: `$DATAHUB_PUBLICATION` if set, otherwise `datapressr`. Stories go to `datapressr` (beside their datasets) until a story has had its voice pass and a grant to another publication (the DataHub `blog`) is recorded in the bundler's `PUBLICATIONS` list. Never `core`.
+2. **Check approval.** Read the story's frontmatter `datahub` block. `status: approved` with a dated `approved:` line may go to any publication with a recorded grant. `status: draft` (every story until its voice pass) may only go to `datapressr`, and only when the owner has explicitly said this draft may be published; record that OK (verbatim, dated) in the Bead before passing `--allow-draft`. Never mark a story approved yourself.
+3. **Build the bundle.** This checks approval, refuses `core` and publications without a grant, refuses a slug that is a local dataset name, rewrites links, keeps only `README.md` plus the SVGs it references, and checks the result compiles as DataHub MDX. It exits non-zero, naming the problem, if any of that fails; stop and report it.
+
+   ```sh
+   pub="${DATAHUB_PUBLICATION:-datapressr}"
+   json=$(node scripts/bundle-story.mjs <story> --publication "$pub") || exit 1   # add --allow-draft only with a recorded owner OK
+   echo "$json"   # dir, slug, publication, status, title, description, files, command
+   ```
+
+   Look at `files`: it should be `README.md` and the charts, nothing else.
+4. **Check the slug on DataHub.** The bundler only knows local dataset names. `curl -s -o /dev/null -w '%{http_code}' https://datahub.io/$pub/<slug>` should be `404` (a new page) or this same story's earlier publish. Anything else at that URL (a dataset, another story) means stop: pick another slug in the story's frontmatter.
+5. **Publish.** Run the `command` the bundler printed, which is `dh publish <bundle dir> --publication <pub> --name <slug> --title <title> --description <description>`. `dh` reads title and description only from `datapackage.json`, which a story doesn't have, so they must be passed as flags:
+
+   ```sh
+   node -e 'const [cmd, ...args] = JSON.parse(process.argv[1]).command; require("node:child_process").execFileSync(cmd, args, { stdio: "inherit" })' "$json"
+   ```
+6. **Check the page in a real browser** (`https://datahub.io/<pub>/<slug>`), not just the "N file(s) published" line: the title appears once (header only, no repeated h1); the description shows under it; every chart loads; there is no "Error parsing MDX" (an MDX failure blanks the whole body inside an HTTP 200 page); every link works, especially dataset links and the outline link.
+7. **Report the URL and these caveats:**
+   - **Title and description are fixed at first publish.** Re-publishing does not update them; change them in the DataHub dashboard.
+   - **The date shown is the first publish**, not the frontmatter `date`, and re-publishing does not move it.
+   - **Deleted or renamed files linger.** Publishing is an upsert: a renamed chart leaves the old SVG online. `dh delete <slug> -p <pub>` removes the whole page, losing its URL history, so prefer not to.
 
 ## Installing `dh`
 

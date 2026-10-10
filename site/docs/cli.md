@@ -107,3 +107,13 @@ tar -xzf dh_darwin_arm64.tar.gz && mv dh ~/bin/
 **Which publication.** The skill always passes `--publication` explicitly: `$DATAHUB_PUBLICATION` if you set it, otherwise `datapressr` (https://datahub.io/datapressr). It never publishes to `core` (it refuses if `$DATAHUB_PUBLICATION` is `core`), whose datasets sync from GitHub, so the next sync can overwrite a direct upload.
 
 **After publishing**, open the printed URL (`https://datahub.io/<publication>/<name>`) and check the page; it is processed in the background after the upload. Publishing again adds and overwrites files but never deletes them, so a file you removed locally stays online, and an existing dataset's title and description only change in the DataHub dashboard.
+
+**Publishing a story.** Inside the DataPressr repo, `/push` also publishes a data story from `site/stories/` as its own DataHub page (`/push story oil-prices`). It never uploads the story file in place. It builds a bundle with `node scripts/bundle-story.mjs <story> --publication <pub>`: the story as `README.md` without its h1 and internal "Friction notes", links made absolute, plus only the charts it uses. Then it runs the `dh publish <bundle> --publication <pub> --name <slug> --title <title> --description <description>` command the bundler prints. The slug and approval live in the story's frontmatter:
+
+```yaml
+datahub:
+  slug: wti-went-negative
+  status: draft          # approved, with an "approved: <date> <basis>" line, after the voice pass or an owner OK
+```
+
+The bundler refuses `core`, refuses publications with no recorded grant (only `datapressr` today; the DataHub `blog` comes later), refuses a draft unless the publication is `datapressr` and `--allow-draft` is passed with the owner's OK, and refuses a slug that is a dataset name, since stories and datasets share one namespace per publication. After publishing, check the page in a browser: title shown once, description present, every chart loads, no "Error parsing MDX", links work. Three DataHub limits apply: the title and description are fixed at first publish, the date shown is the first publish date rather than the frontmatter `date`, and deleted or renamed files stay online.
