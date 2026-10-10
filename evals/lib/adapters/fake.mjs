@@ -36,3 +36,44 @@ export async function write({ domain, destDir }) {
     flags: [],
   };
 }
+
+// Fake critic: deterministic, valid answers with no agent call, for npm test and plumbing runs.
+// `kind` is questions | absolute | pairwise; `meta` carries what a real critic would read from
+// the prompt (the reader questions, chart files, prose lengths). In pairwise mode it prefers the
+// longer prose, so a pair judged in both orders agrees unless the two are the same length.
+export async function critic({ kind, meta = {} }) {
+  const base = { ok: true, error: null, model_actual: "fake", cost_usd: 0, turns: 0, usage: null, cli_version: "fake" };
+  if (kind === "questions") {
+    return { ...base, output: { questions: ["What is the main claim?", "How big is it, compared with what?", "What changed, and when?", "What is the main cause, and how do we know?", "What would make it better or worse?"] } };
+  }
+  const questions = meta.questions ?? [];
+  if (kind === "absolute") {
+    const dims = ["argument", "depth", "charts", "honesty", "reader_questions", "prose", ...(meta.dataMode === "open" ? ["data_choice"] : [])];
+    return {
+      ...base,
+      output: {
+        reader_questions: questions.map((q, i) => ({ q, answered: i === 0 ? "yes" : "partly", where: i === 0 ? "opening paragraph" : "body" })),
+        missed_findings: ["Fake critic: no real reading was done."],
+        charts: (meta.charts ?? []).map((file) => ({ file, shows: "a fake description", form_fits: true, fix: "" })),
+        top_change: "Fake critic: no change proposed.",
+        publishable: "with-edits",
+        lessons: [{ rule: "When the critic is fake, do not read anything into its scores.", evidence: "This critique came from the fake critic." }],
+        scores: Object.fromEntries(dims.map((d) => [d, { score: 1, why: "fake critic" }])),
+      },
+    };
+  }
+  if (kind === "pairwise") {
+    const { 1: one = 0, 2: two = 0 } = meta.lengths ?? {};
+    const preferred = one === two ? "tie" : one > two ? "1" : "2";
+    return {
+      ...base,
+      output: {
+        reader_questions: questions.map((q) => ({ q, story_1: "partly", story_2: "partly" })),
+        why: "Fake critic: prefers the longer prose.",
+        preferred,
+        margin: preferred === "tie" ? null : "slight",
+      },
+    };
+  }
+  return { ...base, ok: false, error: `fake critic: unknown kind ${kind}`, output: null };
+}

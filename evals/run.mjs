@@ -7,6 +7,8 @@
 //   node evals/run.mjs owner <run_id> --remarks-file f.md [--scores prose=1] | owner --rounds <case_id> <n>
 //   node evals/run.mjs canary --writer claude|codex [--mode fixed] [--weaken]
 //   node evals/run.mjs critic-choice --writer claude|codex      (free: which critic score would use)
+//   node evals/run.mjs score <run_id|--all> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
+//   node evals/run.mjs pair <run_id> <run_id> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -14,6 +16,7 @@ import { parseArgs } from "node:util";
 import { checkCommand } from "./lib/checkers/run-checks.mjs";
 import { runCanary } from "./lib/canary.mjs";
 import { availabilityChecker, pickCritic } from "./lib/adapters/index.mjs";
+import { allRunDirs, findRunDir, pairRuns, resolveCritic, scoreRun, writersOf } from "./lib/critic.mjs";
 import { ownerCommand } from "./lib/owner.mjs";
 import { writeReport } from "./lib/report.mjs";
 import { ADAPTERS, loadConfig, runCase } from "./lib/runner.mjs";
@@ -21,11 +24,6 @@ import { repoRoot } from "./lib/versions.mjs";
 
 const evalsDir = dirname(fileURLToPath(import.meta.url));
 const root = repoRoot(evalsDir);
-
-const PLANNED = {
-  score: "datapressr-hcn.5 (H4)",
-  pair: "datapressr-hcn.5 (H4)",
-};
 
 const USAGE = `usage:
   node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--repeat N]
@@ -37,7 +35,17 @@ const USAGE = `usage:
   node evals/run.mjs owner --rounds <case_id> <n> [--remarks-file f.md]
   node evals/run.mjs canary --writer claude|codex [--mode fixed] [--weaken]
   node evals/run.mjs critic-choice --writer claude|codex
-planned: ${Object.entries(PLANNED).map(([k, v]) => `${k} (${v})`).join(", ")}`;
+  node evals/run.mjs score <run_id|--all> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
+  node evals/run.mjs pair <run_id> <run_id> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]`;
+
+const CRITIC_OPTIONS = {
+  rubric: { type: "string" },
+  critic: { type: "string", default: "auto" },
+  "critic-model": { type: "string" },
+  calibrate: { type: "boolean", default: false },
+};
+
+const costLine = (c) => `${c.calls} call(s), ${c.cost_usd === null ? `tokens ${JSON.stringify(c.usage)}` : `${c.cost_usd} USD (list)`}`;
 
 async function main(argv) {
   const [command, ...rest] = argv;
@@ -100,6 +108,38 @@ async function main(argv) {
     console.log(JSON.stringify(pickCritic(values.writer, { config, available })));
     return;
   }
+  if (command === "score") {
+    const { values, positionals } = parseArgs({ args: rest, allowPositionals: true, options: { ...CRITIC_OPTIONS, all: { type: "boolean", default: false } } });
+    if (values.all === (positionals.length === 1) || positionals.length > 1) throw new Error(USAGE);
+    const config = loadConfig(evalsDir);
+    const available = availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
+    const dirs = values.all ? allRunDirs(evalsDir) : [findRunDir(evalsDir, positionals[0])];
+    let failed = 0;
+    for (const runDir of dirs) {
+      const critic = resolveCritic({ spec: values.critic, model: values["critic-model"], writers: writersOf([runDir]), config, available });
+      const res = await scoreRun({ root, evalsDir, runDir, rubricId: values.rubric, critic, calibrate: values.calibrate, config, log: (m) => console.log(m) });
+      if (res.ok) console.log(`${res.row.run_id}: publishable ${res.row.publishable}, scores ${JSON.stringify(res.row.scores)}; wrote ${res.row.file.replace(/\.json$/, ".{json,md}")} (${costLine(res.costs)})`);
+      else failed++;
+    }
+    writeReport(join(evalsDir, "ledger.jsonl"), join(evalsDir, "REPORT.md"));
+    console.log("updated evals/ledger.jsonl and evals/REPORT.md");
+    if (failed) process.exitCode = 1;
+    return;
+  }
+  if (command === "pair") {
+    const { values, positionals } = parseArgs({ args: rest, allowPositionals: true, options: CRITIC_OPTIONS });
+    if (positionals.length !== 2) throw new Error(USAGE);
+    const config = loadConfig(evalsDir);
+    const available = availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
+    const runDirs = positionals.map((id) => findRunDir(evalsDir, id));
+    const critic = resolveCritic({ spec: values.critic, model: values["critic-model"], writers: writersOf(runDirs), config, available });
+    const res = await pairRuns({ root, evalsDir, runDirs, rubricId: values.rubric, critic, calibrate: values.calibrate, config, log: (m) => console.log(m) });
+    console.log(`pair ${res.pairId}: ${res.row.winner_run_id ? "a win (both orders agree)" : "a tie (orders split or tied)"}; ${costLine(res.costs)}`);
+    console.log(`wrote evals/pairs/${res.pairId}/A, B, critique-AB.json, critique-BA.json, critique.md and mapping.json (gitignored; do not open it before the owner judges)`);
+    writeReport(join(evalsDir, "ledger.jsonl"), join(evalsDir, "REPORT.md"));
+    console.log("updated evals/ledger.jsonl and evals/REPORT.md");
+    return;
+  }
   if (command === "report") {
     writeReport(join(evalsDir, "ledger.jsonl"), join(evalsDir, "REPORT.md"));
     console.log("wrote evals/REPORT.md");
@@ -124,7 +164,6 @@ async function main(argv) {
     console.log("updated evals/ledger.jsonl and evals/REPORT.md");
     return;
   }
-  if (PLANNED[command]) throw new Error(`"${command}" is not implemented yet; it arrives in ${PLANNED[command]}`);
   throw new Error(USAGE);
 }
 

@@ -35,5 +35,6 @@
   },
   "max_usd_per_invocation": 60,
   "canary": { "max_usd": 0.05, "max_turns": 6, "timeout_ms": 300000 },
+  "critic_caps": { "max_usd_per_call": 3 },
   "timeouts_ms": { "writer": 5400000, "critic": 900000 }
 }

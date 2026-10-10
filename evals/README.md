@@ -6,7 +6,7 @@ House style: plain Node, no build step, no npm dependencies; results are files i
 
 ## Status
 
-Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and the isolation canary (`datapressr-hcn.3`), the Codex writer and automatic critic vendor choice (`datapressr-hcn.4`), the full report and owner capture (`datapressr-hcn.9`). What works today:
+Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and the isolation canary (`datapressr-hcn.3`), the Codex writer and automatic critic vendor choice (`datapressr-hcn.4`), the full report and owner capture (`datapressr-hcn.9`), the critic with its v1 rubric, `score` and `pair` (`datapressr-hcn.5`). What works today:
 
 ```sh
 node evals/run.mjs run story/q01-french-debt --writer fake     # free plumbing test
@@ -16,6 +16,8 @@ node evals/run.mjs run story/q01-french-debt --writer claude   # paid (caps in c
 node evals/run.mjs canary --writer codex                       # tokens only (about 40k input, mostly cached, on gpt-6-luna); required before any Codex run
 node evals/run.mjs canary --writer codex --weaken              # negative control: real HOME, so ~/.agents/skills load; must FAIL
 node evals/run.mjs critic-choice --writer claude               # free: which critic vendor and model `score` would use, and why
+node evals/run.mjs score <run_id|--all> [--critic auto|claude|codex|fake] [--critic-model <id>] [--rubric story/v1] [--calibrate]
+node evals/run.mjs pair <run_id> <run_id> [--critic auto|claude|codex|fake] [--critic-model <id>] [--rubric story/v1] [--calibrate]
 node evals/run.mjs check <run_id|--all>                       # deterministic checks: checks.json + a ledger row
 node evals/run.mjs report                                      # regenerate evals/REPORT.md (also: npm run eval:report)
 node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md   # blind owner judgement, then reveal
@@ -24,7 +26,7 @@ npm test                                                       # harness tests, 
 
 `run` options: `--skill-ref <commit>` (default `HEAD`), `--allow-dirty` (run even when `skills/<name>` has uncommitted changes; the run is flagged `dirty_skill`), `--repeat N`.
 
-Planned, each with its bead: `score` and `pair` (`datapressr-hcn.5`), the open-mode recipe (`datapressr-hcn.12`). Calling one of these now prints which bead brings it.
+Planned: the open-mode recipe (`datapressr-hcn.12`).
 
 The fake writer copies `lib/adapters/fake-artefacts/<domain>/` into the run. Fake runs exist to test the plumbing; do not commit their output to the real ledger.
 
@@ -50,7 +52,7 @@ After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or 
 
 | Path | What |
 |---|---|
-| `config.json` | Full model IDs (never aliases), per-run caps (fixed 20 USD / 100 turns, open 30 USD / 150 turns), critic vendor preference and fallback family |
+| `config.json` | Full model IDs (never aliases), per-run caps (fixed 20 USD / 100 turns, open 30 USD / 150 turns), critic vendor preference and fallback family, a per-call critic cap (`critic_caps`, Claude only) |
 | `run.mjs` | Thin dispatcher for the subcommands |
 | `lib/schema.mjs` | Validators for case, run, checks, absolute and pairwise critiques, owner and ledger rows; each returns `{ ok, errors }` |
 | `lib/versions.mjs` | Skill tree (`git rev-parse <ref>:skills/<name>`), dirty check, harness tree of `evals/lib` as on disk, input trees, case hash, ancestor-of-main check |
@@ -58,6 +60,8 @@ After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or 
 | `lib/runner.mjs` | The `run` flow |
 | `lib/checkers/story.mjs` | The six story checks S1–S6 (below); `run-checks.mjs` is the `check` subcommand, which `run` also calls after collecting artefacts; `offline-preload.mjs` blocks the network for chart rebuilds |
 | `lib/report.mjs` | Writes `REPORT.md` (sections below); `renderReport(rows, ctx)` is pure, `reportContext` gathers skill history from git and the installed CLI versions |
+| `lib/critic.mjs` | The critic: rubric loading, prompt assembly, output schemas, validation with one retry, Markdown rendering, and the `score` and `pair` subcommands |
+| `rubrics/<domain>/vN.md` | The critic's instructions; a new version is a new file with its change log in the header (never sent to the critic) |
 | `lib/owner.mjs` | The `owner` subcommand: blind pair judgements, single-run remarks, rounds to publishable |
 | `lib/adapters/fake.mjs` | Zero-cost writer for tests |
 | `lib/stage.mjs` | Blind workspace staging, the `node_modules` cache, artefact collection |
@@ -69,7 +73,7 @@ After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or 
 | `canaries/<id>/` | `canary.json` (probe statuses and redacted evidence); `transcript.jsonl` is gitignored |
 | `cases/<domain>/<id>/` | `case.json` and `prompt.md` |
 | `runs/<domain>/<case>/<run_id>/` | `run.json` and `artefacts/` (the writer's files at their workspace paths, e.g. `artefacts/site/stories/<slug>.md`); later `checks.json` and `critique*.json`. `transcript.jsonl` and `workspace.tar` are gitignored and hashed in `run.json` |
-| `pairs/<pair_id>/` | Blind `A/` and `B/` for the owner; `mapping.json` (`{ "pair_id", "A": <run_id>, "B": <run_id> }`) is gitignored until `owner` records it as a `reveal` row |
+| `pairs/<pair_id>/` | Blind `A/` and `B/` for the owner (prose and charts only); the critic's `critique-AB.json`, `critique-BA.json` and `critique.md`; `mapping.json` (`{ "pair_id", "A": <run_id>, "B": <run_id> }`) is gitignored until `owner` records it as a `reveal` row |
 | `ledger.jsonl` | One row per event (`canary`, `run`, `check`, `score`, `pair`, `owner`, `reveal`), each with `schema: 1`; re-scoring appends |
 | `REPORT.md` | Generated; committed so trends read on GitHub |
 
@@ -80,6 +84,21 @@ A run id is `<YYYYMMDD-HHMM>-<case>-<vendor>-<model-short>-<skill7>-<n>` (UTC). 
 1. **Deterministic checks** (free): does the output meet the skill's own contract (artefacts present, word budget, every number in the prose visible in a chart, charts reproducible, inputs untouched, no dates past `as_of`). Failures here are the only automatic regressions.
 2. **Critic** from a different vendor than the writer (Codex for a Claude writer and vice versa; a different Claude model family when Codex is unavailable, recorded as a fallback). Its primary job is a blind side-by-side of old-skill and new-skill outputs, judged in both orders; its 0–2 checklist is for diagnosis.
 3. **Owner**: blind preference and verbatim remarks, the headline measure; the critic's agreement with the owner is the harness's own quality metric.
+
+## The critic
+
+`score` and `pair` (`lib/critic.mjs`, design section 5.2). The rubric (`rubrics/story/v1.md`) makes the critic the reader who commissioned the story. Each critique is two calls: first the critic writes five to eight reader questions from the case question alone, before it sees any story; then it reads the story (or both) with those questions fixed in the prompt.
+
+- **Absolute** (`score`): the questions marked yes/partly/no with where; the strongest findings missed; chart by chart, what it shows, whether its form fits and one fix; the one change that matters most; would you publish (`yes`, `with-edits`, `no`); at most five rule-shaped lessons; and last the 0-2 checklist (`argument`, `depth`, `charts`, `honesty`, `reader_questions`, `prose`, plus `data_choice` in open mode). Writes `critique-<version>-<n>.json` and `.md` in the run directory (findings first, checklist last; re-scoring adds `-2`, `-3`) and a `score` row with the scores, the critic and the cost.
+- **Pairwise** (`pair`): both runs must be of the same case. A coin toss decides which is `A`; `pairs/<pair_id>/A` and `B` get the reader prose (title-only frontmatter, no friction notes) and the SVGs it embeds. The critic judges twice, order `AB` then `BA`; it sees the stories by position as Story 1 and Story 2 and answers which it would publish with fewer edits (`1`, `2` or `tie`), the margin (`clear` or `slight`), why, and the reader questions each answers. The stored judgements use the pair's labels (`shown` records which label held each position). The `pair` row's result is a win only when both orders prefer the same run; a split is a tie.
+
+What the critic sees: the rubric's sections for the step (never its header), the case question, type, data mode, as_of and word budget, the case's references, and the story: outline (absolute mode only), prose, each embedded SVG as source (long path data elided, so colours and markers stay) with the text labels drawn on it, and `DATA.md` in open mode. Owner feedback only with `--calibrate`. It never sees the skill, other files in the run (run.json, checks, earlier critiques, transcripts), `LESSONS.md`, run dates, or any run id, skill or harness tree or skill ref; those are redacted wherever they appear in the material. The tests in `lib/critic.test.mjs` prove this with marker files.
+
+Critic choice: `--critic auto` (the default) uses `pickCritic` (the other vendor when available, else the writer's vendor with the fallback family); `--critic claude|codex` forces a vendor (the fallback family when it is the writer's); `--critic-model` overrides the model (cheap smoke tests), never the writer's own; `--critic fake` is free and deterministic. Both vendors run with tools off and a JSON schema (`claude -p --json-schema`, `codex exec --output-schema`). An answer that fails the call or validation is retried once; then `score` appends a `critic_failed` row and `pair` removes the half-written pair and exits non-zero.
+
+First smoke, 2026-10-10, in a scratch evals dir (nothing committed), on copies of the published France and Keeling stories posing as q01 runs: `--critic auto` chose Codex (no fallback), run on `gpt-6-luna` via `--critic-model`; one absolute critique (2 calls, about 52k input and 2k output tokens) and one pair (3 calls, about 94k input and 1k output tokens; France preferred in both orders, `clear`). A Claude critic on `claude-haiku-5-5` (forced, so `fallback: true`) scored the same run for 0.019 USD.
+
+Blindness of the pair files: `critique-*.json` plus the pair row's `preferred_run_id` in the ledger reveal which run is `A`. Show the owner only `A/` and `B/`, and do not read the critique files or the pair row aloud before `owner` has recorded the judgement.
 
 ## The report
 

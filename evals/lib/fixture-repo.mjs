@@ -38,6 +38,7 @@ export function makeRepo({ withHarness = true } = {}) {
     cpSync(join(evalsDir, "lib"), join(root, "evals/lib"), { recursive: true });
     cpSync(join(evalsDir, "run.mjs"), join(root, "evals/run.mjs"));
     cpSync(join(evalsDir, "config.json"), join(root, "evals/config.json"));
+    cpSync(join(evalsDir, "rubrics"), join(root, "evals/rubrics"), { recursive: true });
     write(root, "evals/cases/story/t01-demo/case.json", JSON.stringify(demoCase(dataCommit), null, 2));
     write(root, "evals/cases/story/t01-demo/prompt.md", "# Task\n\nWhy did the value double?\n");
     commitAll(root, "harness");
