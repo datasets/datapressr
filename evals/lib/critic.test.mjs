@@ -557,7 +557,7 @@ test("score and pair with --critic fake through the CLI, on fake-writer runs", (
   const { root } = makeRepo();
   const cli = (args) => spawnSync(process.execPath, [join(root, "evals/run.mjs"), ...args], { cwd: root, encoding: "utf8" });
   try {
-    for (let i = 0; i < 2; i++) assert.equal(cli(["run", "story/t01-demo", "--writer", "fake"]).status, 0);
+    for (let i = 0; i < 2; i++) assert.equal(cli(["run", "story/t01-demo", "--writer", "fake", "--no-critic"]).status, 0);
     const caseRuns = join(root, "evals/runs/story/t01-demo");
     const ids = readdirSync(caseRuns).sort();
     assert.equal(ids.length, 2);

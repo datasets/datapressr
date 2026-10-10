@@ -1,15 +1,17 @@
 // The `run` subcommand (design section 4.2): resolve versions, refuse a dirty skill tree, gate
 // on a passing canary (staged writers), stage a blind workspace, run the writer adapter, collect
 // artefacts, leak-scan the transcript, write run.json, append a ledger row and regenerate the
-// report. The fake writer skips staging and the gate; Claude and Codex writers are staged and
-// gated.
+// report, then score with the critic (step 7; skipped with `critic: null`). The fake writer skips
+// staging and the gate; Claude and Codex writers are staged and gated.
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import * as claude from "./adapters/claude.mjs";
 import * as codex from "./adapters/codex.mjs";
 import * as fake from "./adapters/fake.mjs";
+import { availabilityChecker } from "./adapters/index.mjs";
 import { gateFromLedger } from "./canary.mjs";
+import { CRITIC_ADAPTERS, latestRubricId, resolveCritic, scoreRun } from "./critic.mjs";
 import { scanTranscript } from "./leakscan.mjs";
 import { collectArtefacts, ensureModulesCache, removeWorkspace, stageWorkspace, tarWorkspace, writerPrompt } from "./stage.mjs";
 import { checkRun } from "./checkers/run-checks.mjs";
@@ -77,7 +79,45 @@ async function runStaged({ adapter, root, kase, prompt, skillRef, model, caps, c
   }
 }
 
-export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, writer, skillRef = "HEAD", allowDirty = false, repeat = 1, now = () => new Date(), log = () => {}, adapters = ADAPTERS, cacheRoot }) {
+// The critic step of `run`: resolve the critic for this run's writer (auto picks the fake critic
+// for the fake writer, so the plumbing test stays free) and score with the latest rubric. Any
+// failure, including one to resolve the critic, becomes a `critic_failed` score row: the run,
+// its checks and the ledger rows already written are kept.
+async function critiqueRun({ root, evalsDir, runDir, run, kase, critic, config, now, log }) {
+  const spec = critic.spec === "auto" && run.writer.vendor === "fake" ? "fake" : critic.spec;
+  let resolved = null;
+  try {
+    const available = critic.available ?? availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
+    resolved = resolveCritic({ spec, model: critic.model, writers: [{ vendor: run.writer.vendor, model: run.writer.model }], config, available });
+    const res = await scoreRun({ root, evalsDir, runDir, critic: resolved, config, now, log, ...(critic.adapters ? { adapters: critic.adapters } : {}), ...(critic.readInput ? { readInput: critic.readInput } : {}) });
+    if (res.ok) log(`scored ${run.run_id}: publishable ${res.row.publishable}, scores ${JSON.stringify(res.row.scores)}`);
+    return res.row;
+  } catch (e) {
+    const vendor = resolved?.vendor ?? (CRITIC_ADAPTERS[spec] ? spec : run.writer.vendor);
+    const model = resolved?.model ?? critic.model ?? config.models[vendor]?.critic ?? vendor;
+    let rubric = "unknown";
+    try {
+      rubric = latestRubricId(evalsDir, kase.domain);
+    } catch {}
+    const row = appendRow(join(evalsDir, "ledger.jsonl"), {
+      kind: "score",
+      at: now().toISOString(),
+      run_id: run.run_id,
+      rubric,
+      critic: { vendor, model, model_actual: null, fallback: resolved?.fallback ?? false, fallback_reason: resolved?.fallback_reason ?? null, ...(resolved ? {} : { requested: critic.spec }) },
+      status: "critic_failed",
+      errors: [e.message],
+      cost_usd: null,
+      calls: 0,
+    });
+    log(`critic_failed for ${run.run_id}: ${e.message} (the run is kept; retry with \`score ${run.run_id}\`)`);
+    return row;
+  }
+}
+
+// critic: { spec: "auto"|"claude"|"codex"|"fake", model?, adapters?, available?, readInput? }, or
+// null to skip scoring (--no-critic).
+export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, writer, skillRef = "HEAD", allowDirty = false, repeat = 1, now = () => new Date(), log = () => {}, adapters = ADAPTERS, cacheRoot, critic = { spec: "auto" } }) {
   const adapter = adapters[writer];
   if (!adapter) {
     if (NOT_YET[writer]) throw new Error(`writer "${writer}" is not implemented yet; it arrives in ${NOT_YET[writer]}. Use --writer fake.`);
@@ -171,9 +211,10 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
       cost_usd: out.cost_usd,
       flags: run.flags,
     });
-    // 7. Deterministic checks (checks.json + a `check` ledger row); critique arrives with H4.
+    // 7. Deterministic checks (checks.json + a `check` ledger row), then the critic.
     const { checks } = checkRun({ root, evalsDir, runDir, harnessTree: harness.tree, now });
-    results.push({ runId, runDir, run, checks });
+    const score = critic ? await critiqueRun({ root, evalsDir, runDir, run, kase, critic, config, now, log }) : null;
+    results.push({ runId, runDir, run, checks, score });
   }
   writeReport(ledgerFile, join(evalsDir, "REPORT.md"));
   return results;

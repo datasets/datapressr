@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Thin dispatcher for the eval harness. See evals/README.md.
-//   node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--repeat N]
+//   node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--repeat N] [--critic auto|claude|codex|fake] [--critic-model <id>] [--no-critic]
 //   node evals/run.mjs check <run_id|--all>
 //   node evals/run.mjs report
 //   node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md [--scores A.prose=1,B.prose=2]
@@ -26,7 +26,7 @@ const evalsDir = dirname(fileURLToPath(import.meta.url));
 const root = repoRoot(evalsDir);
 
 const USAGE = `usage:
-  node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--repeat N]
+  node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--repeat N] [--critic auto|claude|codex|fake] [--critic-model <id>] [--no-critic]
   node evals/run.mjs check <run_id|--all>
   node evals/run.mjs report
   node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md [--scores A.prose=1,B.prose=2]
@@ -59,6 +59,9 @@ async function main(argv) {
         "skill-ref": { type: "string", default: "HEAD" },
         "allow-dirty": { type: "boolean", default: false },
         repeat: { type: "string", default: "1" },
+        critic: { type: "string", default: "auto" },
+        "critic-model": { type: "string" },
+        "no-critic": { type: "boolean", default: false },
       },
     });
     if (positionals.length !== 1 || !values.writer) throw new Error(USAGE);
@@ -70,10 +73,16 @@ async function main(argv) {
       skillRef: values["skill-ref"],
       allowDirty: values["allow-dirty"],
       repeat: Number(values.repeat),
+      critic: values["no-critic"] ? null : { spec: values.critic, model: values["critic-model"] },
       log: (m) => console.log(m),
     });
-    for (const r of results) console.log(`wrote evals/runs/${r.run.domain}/${r.run.case_id}/${r.runId}/run.json`);
+    for (const r of results) {
+      const s = r.score;
+      const scored = !s ? "not scored (--no-critic)" : s.status === "ok" ? `scored, publishable ${s.publishable} (${s.file})` : "critic_failed (run kept; retry with `score`)";
+      console.log(`wrote evals/runs/${r.run.domain}/${r.run.case_id}/${r.runId}/run.json; ${scored}`);
+    }
     console.log("updated evals/ledger.jsonl and evals/REPORT.md");
+    if (results.some((r) => r.score?.status === "critic_failed")) process.exitCode = 1;
     return;
   }
   if (command === "check") {

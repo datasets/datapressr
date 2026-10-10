@@ -45,9 +45,16 @@ test("run --writer fake works end to end through the CLI", () => {
     }
 
     const rows = readLedger(join(root, "evals/ledger.jsonl"));
-    assert.deepEqual(rows.map((r) => r.kind), ["run", "check"]);
+    assert.deepEqual(rows.map((r) => r.kind), ["run", "check", "score"]);
     assert.equal(rows[1].run_id, runId);
     assert.ok(existsSync(join(caseRuns, runId, "checks.json")), "run writes checks.json");
+    // Step 7: auto picks the free fake critic for the fake writer and the latest rubric.
+    assert.equal(rows[2].run_id, runId);
+    assert.equal(rows[2].status, "ok");
+    assert.equal(rows[2].critic.vendor, "fake");
+    assert.equal(rows[2].rubric, "story/v2");
+    assert.ok(existsSync(join(caseRuns, runId, "critique-v2-1.json")), "run writes the critique");
+    assert.match(res.stdout, /scored, publishable with-edits/);
     assert.equal(rows[0].run_id, runId);
     assert.equal(rows[0].schema, 1);
     assert.equal(rows[0].path, `runs/story/t01-demo/${runId}`);
@@ -108,6 +115,64 @@ test("a case whose input commit is not on main is refused before anything runs",
     kase.inputs[0].commit = side;
     write(root, "evals/cases/story/t01-demo/case.json", JSON.stringify(kase));
     await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "fake", allowDirty: true }), /not an ancestor of main/);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("--no-critic skips scoring; an explicit fake critic scores", () => {
+  const { root } = makeRepo();
+  try {
+    const skipped = cli(root, ["run", "story/t01-demo", "--writer", "fake", "--no-critic"]);
+    assert.equal(skipped.status, 0, skipped.stderr);
+    assert.match(skipped.stdout, /not scored \(--no-critic\)/);
+    assert.deepEqual(readLedger(join(root, "evals/ledger.jsonl")).map((r) => r.kind), ["run", "check"]);
+    const scored = cli(root, ["run", "story/t01-demo", "--writer", "fake", "--critic", "fake"]);
+    assert.equal(scored.status, 0, scored.stderr);
+    assert.deepEqual(readLedger(join(root, "evals/ledger.jsonl")).map((r) => r.kind), ["run", "check", "run", "check", "score"]);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("a critic failure is recorded as critic_failed and the run, its checks and later repeats are kept", async () => {
+  const { root } = makeRepo();
+  try {
+    const broken = { fake: { critic: async () => { throw new Error("critic exploded"); } } };
+    const logs = [];
+    const results = await runCase({ root, caseRef: "story/t01-demo", writer: "fake", repeat: 2, critic: { spec: "auto", adapters: broken }, log: (m) => logs.push(m) });
+    assert.equal(results.length, 2, "the second repeat still runs");
+    const rows = readLedger(join(root, "evals/ledger.jsonl"));
+    assert.deepEqual(rows.map((r) => r.kind), ["run", "check", "score", "run", "check", "score"]);
+    for (const [i, r] of results.entries()) {
+      assert.ok(existsSync(join(r.runDir, "run.json")));
+      assert.ok(existsSync(join(r.runDir, "checks.json")));
+      assert.equal(r.score.status, "critic_failed");
+      assert.equal(r.score.run_id, r.runId);
+      assert.match(r.score.errors.join(" "), /critic exploded/);
+      assert.equal(rows[3 * i + 2].status, "critic_failed");
+    }
+    assert.ok(logs.some((m) => /critic_failed for /.test(m)));
+    assert.match(readFileSync(join(root, "evals/REPORT.md"), "utf8"), /critic failed/);
+
+    // A critic that cannot even be resolved (vendor unavailable) is recorded the same way.
+    const [r] = await runCase({ root, caseRef: "story/t01-demo", writer: "fake", critic: { spec: "codex", available: () => ({ ok: false, reason: "no auth" }) } });
+    assert.equal(r.score.status, "critic_failed");
+    assert.equal(r.score.critic.vendor, "codex");
+    assert.match(r.score.errors[0], /--critic codex: no auth/);
+    assert.ok(existsSync(join(r.runDir, "run.json")));
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("run exits non-zero when the critic fails, but keeps the run", () => {
+  const { root } = makeRepo();
+  try {
+    const res = cli(root, ["run", "story/t01-demo", "--writer", "fake", "--critic", "nope"]);
+    assert.equal(res.status, 1);
+    assert.match(res.stdout, /critic_failed \(run kept/);
+    assert.deepEqual(readLedger(join(root, "evals/ledger.jsonl")).map((r) => [r.kind, r.status]), [["run", undefined], ["check", undefined], ["score", "critic_failed"]]);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
