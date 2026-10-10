@@ -15,7 +15,7 @@ A dataset is done with `structure` when, per `AGENTS.md`:
 - `licenses` and `sources` are filled in
 - Encoding is UTF-8, columns are `snake_case` with units where ambiguous, missing values are genuinely empty cells (one convention, not three), dates are ISO 8601
 - A checked-in `build.ts` reproduces `data/*.csv` deterministically from the raw snapshot
-- `node scripts/validate-datapackage.mjs .` passes with no errors (aim for no warnings)
+- `node scripts/validate-datapackage.mjs .` passes with no errors (aim for no warnings); it checks every CSV value against the declared schema too, not just the metadata
 - If the build has a custom parser or draws on many source documents, an independent reviewer has returned `APPROVED` (step 7)
 
 If you can't tick all of these, the dataset isn't structured yet — don't set `status: structured` prematurely.

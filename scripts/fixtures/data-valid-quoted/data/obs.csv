@@ -1,0 +1,6 @@
+country_code,date,value,count,flag,note
+GBR,2020-01-01,1.5,3,true,"a, quoted ""note"""
+GBR,2020-02-29,-2e3,-4,0,"line one
+line two"
+FRA,2020-01-01,,,,
+NA,2020-01-01,.5,0,FALSE,NA is Namibia here

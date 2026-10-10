@@ -3,14 +3,16 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import {
   copyFileSync,
+  existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
+  readdirSync,
   symlinkSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, dirname } from "node:path";
+import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { validateDatapackage } from "./validate-datapackage.mjs";
 
@@ -201,4 +203,195 @@ test("a stub with no title key still warns, and a non-array resources errors at 
   assert.ok(warnings.some((w) => /`title` is missing/.test(w)));
   assert.ok(warnings.some((w) => /`description` is missing/.test(w)));
   assert.deepEqual(notes, []);
+});
+
+// --- Data layer: CSV values against the declared schema ------------------------
+// Fixtures and expected results: docs/plans/2026-09-25-research/quality.md §1.5.
+
+const dataErrors = (name, opts) => validateDatapackage(fixture(name), opts);
+
+// A throwaway structured dataset with one resource `obs` holding `csv` (written
+// byte for byte, so BOM/CRLF cases need no committed fixture git could normalise).
+const tmpData = (fields, csv, schemaExtra = {}) => {
+  const dir = mkdtempSync(join(tmpdir(), "validate-data-"));
+  mkdirSync(join(dir, "data"));
+  writeFileSync(join(dir, "data", "obs.csv"), csv);
+  writeFileSync(join(dir, "datapackage.json"), JSON.stringify({
+    name: "x", title: "X", description: "X", status: "structured",
+    licenses: [{ name: "CC0-1.0" }], sources: [{ title: "S", path: "https://example.com" }],
+    resources: [{ path: "data/obs.csv", name: "obs", schema: { fields, ...schemaExtra } }],
+  }));
+  return dir;
+};
+
+test("quoted CSV (embedded comma, \"\" escape, embedded newline) and missing optional values are clean", () => {
+  assert.deepEqual(dataErrors("data-valid-quoted"), { errors: [], warnings: [], notes: [] });
+});
+
+test("invalid dates: impossible day, wrong separator, 29 Feb in a non-leap year", () => {
+  const { errors, warnings } = dataErrors("data-invalid-date");
+  assert.deepEqual(errors, [
+    'obs:3: date = "2020-02-30" is not an ISO 8601 date (YYYY-MM-DD)',
+    'obs:4: date = "2020/04/01" is not an ISO 8601 date (YYYY-MM-DD)',
+    'obs:5: date = "2021-02-29" is not an ISO 8601 date (YYYY-MM-DD)',
+  ]);
+  assert.deepEqual(warnings, []);
+});
+
+test("bad number, integer, grouped number and boolean are one error each", () => {
+  const { errors } = dataErrors("data-bad-number");
+  assert.deepEqual(errors, [
+    'obs:2: value = "abc" is not a number',
+    'obs:3: count = "2.5" is not an integer',
+    'obs:4: value = "1,000" is not a number',
+    'obs:5: flag = "yes" is not a boolean',
+  ]);
+});
+
+test("duplicate composite and single-field primary keys cite the first-seen line", () => {
+  const { errors } = dataErrors("data-duplicate-key");
+  assert.deepEqual(errors, [
+    "obs:5: duplicate primary key (country_code, date) = (GBR, 2020-01-01), first seen line 2",
+    "countries:4: duplicate primary key (country_code) = (GBR), first seen line 2",
+  ]);
+});
+
+test("a blank cell in a primary key field is an error", () => {
+  assert.deepEqual(dataErrors("data-empty-key").errors, ["obs:3: country_code is empty but part of the primary key"]);
+});
+
+test("short and long rows are errors and the other rows are still checked", () => {
+  assert.deepEqual(dataErrors("data-row-width").errors, [
+    "obs:3: row has 2 cell(s), header has 3",
+    "obs:4: row has 4 cell(s), header has 3",
+    'obs:5: value = "oops" is not a number',
+  ]);
+});
+
+test("a header that doesn't match the schema is one error, with no per-row cascade", () => {
+  const { errors } = dataErrors("data-header-mismatch");
+  assert.equal(errors.length, 1, errors.join("\n"));
+  assert.match(errors[0], /header \[value, id\] does not match schema fields \[id, value\]/);
+});
+
+test("a same-package foreign key orphan is one error with a count and the first line", () => {
+  assert.deepEqual(dataErrors("data-fk-orphan").errors, [
+    "obs: 2 row(s) whose foreign key (country_code) is not in countries; first at line 3 (XKX)",
+  ]);
+});
+
+test("an unsupported type is a 'not checked' warning, not an error", () => {
+  const { errors, warnings } = dataErrors("data-unsupported-type");
+  assert.deepEqual(errors, []);
+  assert.deepEqual(warnings, ['obs: location has type "geopoint", which this validator does not check']);
+});
+
+test("{ data: false } (--metadata-only) skips every value check", () => {
+  for (const name of ["data-invalid-date", "data-bad-number", "data-duplicate-key", "data-fk-orphan", "data-header-mismatch", "data-unsupported-type"]) {
+    assert.deepEqual(dataErrors(name, { data: false }), { errors: [], warnings: [], notes: [] }, name);
+  }
+});
+
+test("BOM is an error; CRLF and a missing trailing newline are warnings", () => {
+  const dir = tmpData([{ name: "n", type: "integer" }], "\ufeffn\r\n1\r\n2");
+  const { errors, warnings } = validateDatapackage(dir);
+  assert.deepEqual(errors, ["obs: file starts with a UTF-8 BOM (house format is UTF-8 without BOM)"]);
+  assert.deepEqual(warnings, ["obs:1: CR line endings (house format is LF)", "obs:3: no trailing newline (house format ends with LF)"]);
+});
+
+test("invalid UTF-8 is an error", () => {
+  const dir = tmpData([{ name: "name", type: "string" }], "name\n");
+  writeFileSync(join(dir, "data", "obs.csv"), Buffer.from([0x6e, 0x61, 0x6d, 0x65, 0x0a, 0xff, 0xfe, 0x0a]));
+  assert.deepEqual(validateDatapackage(dir).errors, ["obs: not valid UTF-8"]);
+});
+
+test("CSV syntax: an unterminated quote and a stray quote are errors", () => {
+  assert.ok(validateDatapackage(tmpData([{ name: "a", type: "string" }], 'a\n"open\n')).errors.some((e) => /unterminated quoted field/.test(e)));
+  assert.ok(validateDatapackage(tmpData([{ name: "a", type: "string" }], 'a\nx"y\n')).errors.some((e) => /quote character inside an unquoted field/.test(e)));
+  assert.ok(validateDatapackage(tmpData([{ name: "a", type: "string" }], 'a\n"x"y\n')).errors.some((e) => /text after a closing quote/.test(e)));
+});
+
+test("string whitespace padding warns; required, enum, year, yearmonth and datetime are checked", () => {
+  const fields = [
+    { name: "region", type: "string", constraints: { required: true, enum: ["North", "South"] } },
+    { name: "year", type: "year" },
+    { name: "month", type: "yearmonth" },
+    { name: "at", type: "datetime" },
+  ];
+  const csv = "region,year,month,at\nNorth,2020,2020-01,2020-01-01T00:00:00Z\nNorth ,20,2020-13,2020-02-30T00:00:00\n,2020,2020-12,2020-01-01T10:00:00+01:00\n";
+  const { errors, warnings } = validateDatapackage(tmpData(fields, csv));
+  assert.deepEqual(errors, [
+    'obs:3: region = "North " is not one of the allowed values (constraints.enum)',
+    'obs:3: year = "20" is not a 4-digit year',
+    'obs:3: month = "2020-13" is not a year-month (YYYY-MM)',
+    'obs:3: at = "2020-02-30T00:00:00" is not an ISO 8601 datetime (YYYY-MM-DDThh:mm:ss)',
+    "obs:4: region is empty but required",
+  ]);
+  assert.deepEqual(warnings, ['obs:3: region has leading/trailing whitespace: "North "']);
+});
+
+test("schema.missingValues replaces the default empty string, and booleans honour trueValues/falseValues", () => {
+  const fields = [{ name: "v", type: "number" }, { name: "ok", type: "boolean", trueValues: ["Y"], falseValues: ["N"] }];
+  const { errors } = validateDatapackage(tmpData(fields, "v,ok\nNA,Y\n,N\n1,true\n", { missingValues: ["NA"] }));
+  assert.deepEqual(errors, ['obs:3: v = "" is not a number', 'obs:4: ok = "true" is not a boolean']);
+});
+
+test("a non-default date format is a 'not checked' warning, and its values are skipped", () => {
+  const { errors, warnings } = validateDatapackage(tmpData([{ name: "d", type: "date", format: "%d/%m/%Y" }], "d\n01/02/2020\n"));
+  assert.deepEqual(errors, []);
+  assert.deepEqual(warnings, ['obs: d has format "%d/%m/%Y", which this validator does not check']);
+});
+
+test("a systematic error prints five findings and one 'more of the same' line", () => {
+  const csv = "n\n" + Array.from({ length: 12 }, () => "x\n").join("");
+  const { errors } = validateDatapackage(tmpData([{ name: "n", type: "integer" }], csv));
+  assert.equal(errors.length, 6, errors.join("\n"));
+  assert.equal(errors[5], "obs: ... 7 more of the same (type n)");
+});
+
+test("the CLI's --metadata-only and --json flags", () => {
+  const script = join(here, "validate-datapackage.mjs");
+  const run = (...args) => {
+    try {
+      return { status: 0, out: execFileSync(process.execPath, [script, ...args], { encoding: "utf8" }) };
+    } catch (e) {
+      return { status: e.status, out: e.stdout };
+    }
+  };
+  const full = run(fixture("data-invalid-date"));
+  assert.equal(full.status, 1);
+  assert.match(full.out, /2020-02-30/);
+  const meta = run("--metadata-only", fixture("data-invalid-date"));
+  assert.equal(meta.status, 0);
+  assert.match(meta.out, /values not checked \(--metadata-only\)/);
+  const json = run(fixture("data-invalid-date"), "--json");
+  assert.equal(json.status, 1);
+  const parsed = JSON.parse(json.out);
+  assert.equal(parsed.errors.length, 3);
+  assert.equal(parsed.stats.rows, 5);
+  assert.equal(parsed.stats.cells, 10);
+});
+
+// Every real dataset in this repo validates clean, values included, so a data
+// regression in any of them fails `npm test`.
+const repoRoot = join(here, "..");
+const datasetDirs = (dir) => {
+  const found = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (!entry.isDirectory() || ["archive", "data", "node_modules"].includes(entry.name) || entry.name.startsWith(".")) continue;
+    found.push(...datasetDirs(join(dir, entry.name)));
+  }
+  if (existsSync(join(dir, "datapackage.json"))) found.push(dir);
+  return found;
+};
+
+test("every dataset in datasets/ passes the validator with values checked: 0 errors, 0 warnings", () => {
+  const dirs = datasetDirs(join(repoRoot, "datasets"));
+  assert.ok(dirs.length >= 7, `expected at least 7 datasets, found ${dirs.length}`);
+  for (const dir of dirs) {
+    const stats = { resources: 0, rows: 0, cells: 0 };
+    const { errors, warnings } = validateDatapackage(dir, { stats });
+    assert.deepEqual([...errors, ...warnings], [], relative(repoRoot, dir));
+    assert.ok(stats.rows > 0, `${relative(repoRoot, dir)}: no rows checked`);
+  }
 });

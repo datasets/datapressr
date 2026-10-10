@@ -1,0 +1,41 @@
+{
+  "name": "data-invalid-date",
+  "title": "Fixture: data-invalid-date",
+  "description": "Value-check fixture for scripts/validate-datapackage.mjs",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "CC0-1.0",
+      "title": "CC0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Example Source",
+      "path": "https://example.com/"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/obs.csv",
+      "name": "obs",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "id",
+            "type": "integer"
+          },
+          {
+            "name": "date",
+            "type": "date"
+          }
+        ],
+        "primaryKey": [
+          "id"
+        ]
+      }
+    }
+  ]
+}

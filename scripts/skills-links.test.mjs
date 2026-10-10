@@ -7,10 +7,11 @@
 // (`docs/...`, `datasets/<group>/<name>`, ...) must become an absolute GitHub URL.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import { sync } from "./sync-skill-bundles.mjs";
+import { datasetValidatorCopies, sync } from "./sync-skill-bundles.mjs";
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 const skillsDir = join(repoRoot, "skills");
@@ -52,6 +53,14 @@ export function repoOnlyRefs(file, text) {
 
 test("every file bundled into skills/ matches its original (run node scripts/sync-skill-bundles.mjs)", () => {
   assert.deepEqual(sync(repoRoot, { check: true }), []);
+});
+
+test("dataset validator copies are found next to a datapackage.json, never under archive/", () => {
+  const dir = mkdtempSync(join(tmpdir(), "sync-validator-"));
+  for (const name of ["a", "group/b", "a/archive/old", "no-package"]) mkdirSync(join(dir, name, "scripts"), { recursive: true });
+  for (const name of ["a", "group/b", "a/archive/old"]) writeFileSync(join(dir, name, "datapackage.json"), "{}");
+  for (const name of ["a", "group/b", "a/archive/old", "no-package"]) writeFileSync(join(dir, name, "scripts", "validate-datapackage.mjs"), "old\n");
+  assert.deepEqual(datasetValidatorCopies(dir).map((p) => relative(dir, p)), [join("a", "scripts", "validate-datapackage.mjs"), join("group", "b", "scripts", "validate-datapackage.mjs")]);
 });
 
 test("the link check catches a relative link out of the skill and a backticked repo path", () => {

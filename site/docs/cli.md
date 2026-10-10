@@ -65,7 +65,7 @@ world-gdp/
 
 Check `datapackage.json` for common issues before publishing.
 
-Runs `scripts/validate-datapackage.mjs` (copied into the dataset by `/init`, zero dependencies, plain Node — no `package.json` needed to run it) and reports its output: errors (must fix), warnings (worth fixing) and notes (reminders that don't count as warnings).
+Runs `scripts/validate-datapackage.mjs` (copied into the dataset by `/init`, zero dependencies, plain Node — no `package.json` needed to run it) and reports its output: errors (must fix), warnings (worth fixing) and notes (reminders that don't count as warnings). It checks the metadata and, by default, every CSV value against the resource's declared schema: types, real calendar dates, row width, primary key uniqueness, foreign keys and the house CSV format. `--metadata-only` skips the value checks; `--json` prints machine-readable output.
 
 - **Errors**: missing file, invalid JSON, unsafe name, empty resources (allowed while `status` is `capture` or `stub`), a resource path that doesn't exist
 - **Warnings**: missing title/description, missing or unknown status, unlisted files in `data/`, large files, missing `licenses`/`sources` past `stub`, resources with no typed `schema` or no `primaryKey`

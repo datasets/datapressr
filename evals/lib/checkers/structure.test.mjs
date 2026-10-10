@@ -175,7 +175,8 @@ const SABOTEURS = [
   },
   {
     name: "CRLF line endings",
-    expect: ["D6"],
+    // D4 too since datapressr-ck8: the validator warns on CR line endings.
+    expect: ["D4", "D6"],
     apply: (dir) => {
       edit(join(dir, B), 'return lines.join("\\n") + "\\n";', 'return lines.join("\\r\\n") + "\\r\\n";');
       rebuild(dir);
