@@ -41,6 +41,21 @@ export function writerPrompt(casePrompt) {
   return `${casePrompt.trimEnd()}\n\n${BLIND_RUN_NOTES}`;
 }
 
+// The git empty tree: the skill tree of a no-skill run (nothing from skills/ is staged).
+export const EMPTY_TREE = "4b825dc642cb6eb9a060e54bf8d69288fbee4904";
+
+// The case prompt for the no-skill arm (datapressr-8no.3): every line that names a staged skill
+// path (`skills/<name>`) is dropped, so the writer is not pointed at a folder that is absent; the
+// rest of the prompt, AGENTS.md included, is unchanged. A case whose prompt names no skill path
+// throws, rather than silently giving both arms the same text.
+export function noSkillPrompt(casePrompt, skills) {
+  const names = skills.map((n) => `skills/${n}`);
+  const lines = casePrompt.split("\n");
+  const kept = lines.filter((l) => !names.some((n) => l.includes(n)));
+  if (kept.length === lines.length) throw new Error(`no-skill: the case prompt names none of ${names.join(", ")} on a line of its own`);
+  return kept.join("\n").replace(/\n{3,}/g, "\n\n");
+}
+
 function sh(cwd, cmd, args, opts = {}) {
   return execFileSync(cmd, args, { cwd, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], maxBuffer: 1 << 30, ...opts });
 }
@@ -113,7 +128,8 @@ export function ensureModulesCache({ root, ref = "HEAD", cacheRoot = defaultCach
 // Stage a blind workspace. Returns { dir, baseline, modules }. `dir` is a realpath (macOS temp
 // dirs live behind the /var -> /private/var link, and tools report realpaths).
 // extraFiles: { "<rel path>": "<text>" } added before the baseline (the canary's probe files).
-export function stageWorkspace({ root, kase, prompt, skillRef = "HEAD", modules, extraFiles = {}, tmpRoot = tmpdir() }) {
+// skills: the skill folders to stage (default the case's; [] for a no-skill run).
+export function stageWorkspace({ root, kase, prompt, skillRef = "HEAD", skills = kase.skills, modules, extraFiles = {}, tmpRoot = tmpdir() }) {
   const dir = realpathSync(mkdtempSync(join(tmpRoot, "evals-ws-")));
   try {
     sh(dir, "git", ["init", "-q", "-b", "main"]);
@@ -121,7 +137,7 @@ export function stageWorkspace({ root, kase, prompt, skillRef = "HEAD", modules,
 
     writeFileSync(join(dir, "TASK.md"), prompt);
     for (const input of kase.inputs) archiveInto(root, input.commit, input.path, dir);
-    for (const name of kase.skills) archiveInto(root, skillRef, `skills/${name}`, dir);
+    for (const name of skills) archiveInto(root, skillRef, `skills/${name}`, dir);
     writeFileSync(join(dir, "AGENTS.md"), datasetConventions(showFile(root, skillRef, "AGENTS.md")));
 
     mkdirSync(join(dir, STORIES_DIR), { recursive: true });

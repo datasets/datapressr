@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Thin dispatcher for the eval harness. See evals/README.md.
-//   node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--repeat N] [--critic auto|claude|codex|fake] [--critic-model <id>] [--no-critic]
+//   node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--no-skill] [--repeat N] [--critic auto|claude|codex|fake] [--critic-model <id>] [--no-critic]
 //   node evals/run.mjs check <run_id|--all>
 //   node evals/run.mjs report
 //   node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md [--scores A.prose=1,B.prose=2]
@@ -26,7 +26,7 @@ const evalsDir = dirname(fileURLToPath(import.meta.url));
 const root = repoRoot(evalsDir);
 
 const USAGE = `usage:
-  node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--repeat N] [--critic auto|claude|codex|fake] [--critic-model <id>] [--no-critic]
+  node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--no-skill] [--repeat N] [--critic auto|claude|codex|fake] [--critic-model <id>] [--no-critic]
   node evals/run.mjs check <run_id|--all>
   node evals/run.mjs report
   node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md [--scores A.prose=1,B.prose=2]
@@ -59,6 +59,7 @@ async function main(argv) {
         writer: { type: "string" },
         "skill-ref": { type: "string", default: "HEAD" },
         "allow-dirty": { type: "boolean", default: false },
+        "no-skill": { type: "boolean", default: false },
         repeat: { type: "string", default: "1" },
         critic: { type: "string", default: "auto" },
         "critic-model": { type: "string" },
@@ -73,6 +74,7 @@ async function main(argv) {
       writer: values.writer,
       skillRef: values["skill-ref"],
       allowDirty: values["allow-dirty"],
+      noSkill: values["no-skill"],
       repeat: Number(values.repeat),
       critic: values["no-critic"] ? null : { spec: values.critic, model: values["critic-model"] },
       log: (m) => console.log(m),

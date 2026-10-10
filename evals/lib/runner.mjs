@@ -13,12 +13,12 @@ import { availabilityChecker } from "./adapters/index.mjs";
 import { gateFromLedger } from "./canary.mjs";
 import { CRITIC_ADAPTERS, latestRubricId, resolveCritic, scoreRun } from "./critic.mjs";
 import { scanTranscript } from "./leakscan.mjs";
-import { collectArtefacts, ensureModulesCache, removeWorkspace, stageWorkspace, tarWorkspace, writerPrompt } from "./stage.mjs";
+import { EMPTY_TREE, collectArtefacts, ensureModulesCache, noSkillPrompt, removeWorkspace, stageWorkspace, tarWorkspace, writerPrompt } from "./stage.mjs";
 import { checkRun } from "./checkers/run-checks.mjs";
 import { appendRow } from "./ledger.mjs";
 import { writeReport } from "./report.mjs";
 import { assertValid, validateCase, validateRun } from "./schema.mjs";
-import { caseHash, harnessVersion, isAncestorOfMain, sha256, skillVersion, treeHash } from "./versions.mjs";
+import { caseHash, harnessVersion, isAncestorOfMain, resolveCommit, sha256, skillVersion, treeHash } from "./versions.mjs";
 
 export const ADAPTERS = { fake, claude, codex };
 const NOT_YET = {};
@@ -37,8 +37,9 @@ export function loadCase(root, evalsDir, caseRef) {
   assertValid(validateCase(kase, { isAncestor: (c) => isAncestorOfMain(root, c) }), `case ${caseRef}`);
   if (kase.id !== id || kase.domain !== domain) throw new Error(`case.json id/domain (${kase.domain}/${kase.id}) do not match its directory (${caseRef})`);
   // The writer gets the case prompt plus the harness's blind-run notes (stage.mjs).
-  const prompt = writerPrompt(readFileSync(join(dir, "prompt.md"), "utf8"));
-  return { kase, prompt, dir };
+  const casePrompt = readFileSync(join(dir, "prompt.md"), "utf8");
+  const prompt = writerPrompt(casePrompt);
+  return { kase, prompt, casePrompt, dir };
 }
 
 function walk(dir) {
@@ -60,9 +61,9 @@ const modelShort = (model) => model.replace(/^claude-/, "").replace(/[^a-z0-9-]+
 // A staged writer (design 4.2 steps 3-6): blind workspace, the vendor recipe, then collect the
 // changed files into artefactDir, leak-scan the transcript and keep transcript + tarball (both
 // gitignored, hashed in run.json). The workspace is removed afterwards.
-async function runStaged({ adapter, root, kase, prompt, skillRef, model, caps, config, runDir, artefactDir, cacheRoot, log }) {
+async function runStaged({ adapter, root, kase, prompt, skillRef, skills, model, caps, config, runDir, artefactDir, cacheRoot, log }) {
   const cache = ensureModulesCache({ root, ref: skillRef, log, ...(cacheRoot ? { cacheRoot } : {}) });
-  const ws = stageWorkspace({ root, kase, prompt, skillRef, modules: cache.modules });
+  const ws = stageWorkspace({ root, kase, prompt, skillRef, skills, modules: cache.modules });
   try {
     log(`workspace ${ws.dir}`);
     const out = await adapter.write({ workspace: ws.dir, prompt, model, caps, mode: kase.data_mode, root, timeoutMs: config.timeouts_ms.writer });
@@ -117,7 +118,10 @@ async function critiqueRun({ root, evalsDir, runDir, run, kase, critic, config, 
 
 // critic: { spec: "auto"|"claude"|"codex"|"fake", model?, adapters?, available?, readInput? }, or
 // null to skip scoring (--no-critic).
-export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, writer, skillRef = "HEAD", allowDirty = false, repeat = 1, now = () => new Date(), log = () => {}, adapters = ADAPTERS, cacheRoot, critic = { spec: "auto" } }) {
+// noSkill (--no-skill, datapressr-8no.3): the baseline arm. No skill folder is staged, the prompt
+// drops its lines naming `skills/<name>` (noSkillPrompt), AGENTS.md is staged as usual; the run
+// records skill name "none" with the empty tree, "noskill" in its id and the `no_skill` flag.
+export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, writer, skillRef = "HEAD", allowDirty = false, noSkill = false, repeat = 1, now = () => new Date(), log = () => {}, adapters = ADAPTERS, cacheRoot, critic = { spec: "auto" } }) {
   const adapter = adapters[writer];
   if (!adapter) {
     if (NOT_YET[writer]) throw new Error(`writer "${writer}" is not implemented yet; it arrives in ${NOT_YET[writer]}. Use --writer fake.`);
@@ -126,7 +130,9 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
   if (!Number.isInteger(repeat) || repeat < 1) throw new Error("--repeat must be a positive integer");
 
   const config = loadConfig(evalsDir);
-  const { kase, prompt, dir: caseDir } = loadCase(root, evalsDir, caseRef);
+  const loaded = loadCase(root, evalsDir, caseRef);
+  const { kase, dir: caseDir } = loaded;
+  const prompt = noSkill ? writerPrompt(noSkillPrompt(loaded.casePrompt, kase.skills)) : loaded.prompt;
   // A domain with no rubric yet (structure, until datapressr-8no.4) has no critic step.
   if (critic && !existsSync(join(evalsDir, "rubrics", kase.domain))) {
     log(`no rubric for domain "${kase.domain}" in evals/rubrics/; critic skipped`);
@@ -134,7 +140,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
   }
 
   // 1. Resolve versions.
-  const skill = skillVersion(root, kase.skills[0], skillRef);
+  const skill = noSkill ? { name: "none", ref: resolveCommit(root, skillRef), tree: EMPTY_TREE, dirty: false } : skillVersion(root, kase.skills[0], skillRef);
   if (skill.dirty && !allowDirty) {
     throw new Error(`skills/${skill.name} has uncommitted changes; commit them or pass --allow-dirty (the run is then flagged dirty_skill)`);
   }
@@ -150,7 +156,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
   for (let r = 0; r < repeat; r++) {
     const started = now();
     const model = writer === "fake" ? "fake" : config.models[writer].writer;
-    const base = `${stamp(started)}-${kase.id}-${writer}-${modelShort(model)}-${skill.tree.slice(0, 7)}`;
+    const base = `${stamp(started)}-${kase.id}-${writer}-${modelShort(model)}-${noSkill ? "noskill" : skill.tree.slice(0, 7)}`;
     const caseRuns = join(evalsDir, "runs", kase.domain, kase.id);
     let n = 1;
     while (existsSync(join(caseRuns, `${base}-${n}`))) n++;
@@ -162,7 +168,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
 
     // 3-6. Stage, execute, collect, leak scan (the fake writer just copies canned files).
     const out = adapter.staged
-      ? { ...(await runStaged({ adapter, root, kase, prompt, skillRef: skill.ref, model, caps, config, runDir, artefactDir, cacheRoot, log })), canary_run_id: canary.run_id }
+      ? { ...(await runStaged({ adapter, root, kase, prompt, skillRef: skill.ref, skills: noSkill ? [] : kase.skills, model, caps, config, runDir, artefactDir, cacheRoot, log })), canary_run_id: canary.run_id }
       : await adapter.write({ domain: kase.domain, kase, caseDir, prompt, destDir: artefactDir, caps, config });
 
     // 5. Collect.
@@ -172,6 +178,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
     });
     const flags = [...out.flags];
     if (skill.dirty) flags.push("dirty_skill");
+    if (noSkill) flags.push("no_skill");
     if (out.cost_usd !== null && out.cost_usd > caps.max_usd) flags.push("over_budget");
     if (out.turns !== null && out.turns > caps.max_turns) flags.push("over_budget");
 

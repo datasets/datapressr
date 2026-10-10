@@ -11,7 +11,7 @@ import { makeRepo, sh, write } from "./fixture-repo.mjs";
 import { readLedger } from "./ledger.mjs";
 import { runCase } from "./runner.mjs";
 import { validateRun } from "./schema.mjs";
-import { writerPrompt } from "./stage.mjs";
+import { EMPTY_TREE, noSkillPrompt, writerPrompt } from "./stage.mjs";
 
 const cli = (root, args) => spawnSync(process.execPath, [join(root, "evals/run.mjs"), ...args], { cwd: root, encoding: "utf8" });
 
@@ -173,6 +173,38 @@ test("run exits non-zero when the critic fails, but keeps the run", () => {
     assert.equal(res.status, 1);
     assert.match(res.stdout, /critic_failed \(run kept/);
     assert.deepEqual(readLedger(join(root, "evals/ledger.jsonl")).map((r) => [r.kind, r.status]), [["run", undefined], ["check", undefined], ["score", "critic_failed"]]);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("--no-skill: the baseline arm records no skill, drops the skill line from the prompt, and is refused for a case that names none", async () => {
+  const { root } = makeRepo();
+  try {
+    // The demo prompt names no skill path: a no-skill arm would get the same text as the skill arm.
+    await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "fake", noSkill: true }), /no-skill: the case prompt names none of skills\/story/);
+
+    const casePrompt = "# Task\n\nWhy did the value double?\n\nFollow the conventions in `AGENTS.md`.\n\nUse the `story` skill in `skills/story/`.\n\n## More\n";
+    write(root, "evals/cases/story/t01-demo/prompt.md", casePrompt);
+    sh(root, ["add", "--all"]);
+    sh(root, ["commit", "-q", "-m", "prompt names the skill"]);
+    write(root, "skills/story/SKILL.md", "# edited, uncommitted\n"); // irrelevant to a no-skill run
+    const res = cli(root, ["run", "story/t01-demo", "--writer", "fake", "--no-skill", "--no-critic"]);
+    assert.equal(res.status, 0, res.stderr);
+    const caseRuns = join(root, "evals/runs/story/t01-demo");
+    const [runId] = readdirSync(caseRuns);
+    assert.match(runId, /^\d{8}-\d{4}-t01-demo-fake-fake-noskill-1$/);
+    const run = JSON.parse(readFileSync(join(caseRuns, runId, "run.json"), "utf8"));
+    assert.deepEqual(validateRun(run).errors, []);
+    assert.deepEqual(run.skill, { name: "none", ref: sh(root, ["rev-parse", "HEAD"]), tree: EMPTY_TREE, dirty: false });
+    assert.deepEqual(run.flags, ["no_skill"]);
+    const stripped = noSkillPrompt(casePrompt, ["story"]);
+    assert.equal(stripped, "# Task\n\nWhy did the value double?\n\nFollow the conventions in `AGENTS.md`.\n\n## More\n");
+    assert.equal(run.writer.prompt_sha256, createHash("sha256").update(writerPrompt(stripped)).digest("hex"));
+    const [row] = readLedger(join(root, "evals/ledger.jsonl"));
+    assert.equal(row.skill_name, "none");
+    assert.equal(row.skill_tree, EMPTY_TREE);
+    assert.deepEqual(row.flags, ["no_skill"]);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

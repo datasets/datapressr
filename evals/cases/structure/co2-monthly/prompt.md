@@ -2,7 +2,9 @@
 
 Turn the archived NOAA Mauna Loa monthly CO2 file into a structured, publishable dataset.
 
-Use the `structure` skill in `skills/structure/` and the conventions in `AGENTS.md`.
+Follow the conventions in `AGENTS.md`.
+
+Use the `structure` skill in `skills/structure/`.
 
 ## What you have
 
@@ -17,6 +19,6 @@ All in `datasets/climate-and-environment/co2-ppm/`:
 - `build.ts`: reads `archive/co2_mm_mlo.csv` and nothing else, writes the cleaned monthly series to `data/` (one CSV), runs offline with `node build.ts`, and gives the same bytes every time it runs.
 - `data/*.csv`: the output of `build.ts`, committed.
 - `datapackage.json`: the dataset's metadata, at `status: "structured"`, meeting the definition of done in `AGENTS.md`.
-- `DECISIONS.md`: a list of every decision you made that neither the skill nor `AGENTS.md` settled for you. One item per decision: what you decided, the alternatives, and why. Write "none" if there were none.
+- `DECISIONS.md`: a list of every decision you made that your instructions (this task and the files it points you to) did not settle for you. One item per decision: what you decided, the alternatives, and why. Write "none" if there were none.
 
 Do not edit or delete anything in `archive/` or `scripts/`. Skip the parts of the workflow that need things this workspace does not have: no README, no DataHub publishing, no Beads, no changelog. Commit your work in this repository when you are done.

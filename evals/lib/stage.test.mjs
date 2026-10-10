@@ -122,3 +122,21 @@ test("collection copies new and changed files, lists deletions and skips the nod
     for (const d of [cacheRoot, dest, root]) rmSync(d, { recursive: true, force: true });
   }
 });
+
+test("a no-skill workspace (skills: []) has AGENTS.md but no skills folder", () => {
+  const { root, dataCommit } = stagingRepo();
+  const cacheRoot = mkdtempSync(join(tmpdir(), "evals-cache-"));
+  let ws;
+  try {
+    const cache = ensureModulesCache({ root, cacheRoot, install: fakeInstall });
+    const kase = { inputs: [{ path: "datasets/demo", commit: dataCommit }], skills: ["story"] };
+    ws = stageWorkspace({ root, kase, prompt: "x\n", skills: [], modules: cache.modules });
+    assert.deepEqual(listFiles(ws.dir), [".gitignore", "AGENTS.md", "TASK.md", "datasets/demo/data.csv", "site/stories/package-lock.json", "site/stories/package.json"]);
+    assert.equal(existsSync(join(ws.dir, "skills")), false);
+  } finally {
+    if (ws) removeWorkspace(ws.dir);
+    execFileSync("chmod", ["-R", "u+w", cacheRoot]);
+    rmSync(cacheRoot, { recursive: true, force: true });
+    rmSync(root, { recursive: true, force: true });
+  }
+});

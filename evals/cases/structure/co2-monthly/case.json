@@ -7,7 +7,7 @@
   "data_mode": "fixed",
   "inputs": [
     { "path": "datasets/climate-and-environment/co2-ppm/archive/co2_mm_mlo.csv", "commit": "e24166f" },
-    { "path": "datasets/climate-and-environment/co2-ppm/scripts/validate-datapackage.mjs", "commit": "e24166f" }
+    { "path": "datasets/climate-and-environment/co2-ppm/scripts/validate-datapackage.mjs", "commit": "1c1b1eb" }
   ],
   "skills": ["structure"],
   "references": [],
