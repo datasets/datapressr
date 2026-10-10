@@ -12,7 +12,7 @@ import { fileURLToPath } from "node:url";
 import { makeRepo } from "../fixture-repo.mjs";
 import { readLedger } from "../ledger.mjs";
 import { validateChecks } from "../schema.mjs";
-import { archiveInto, checkStory, countWords, findDates, linkNodeModules, numberOnChart, parseProse, removeWorkspace, svgTexts, tokenizeNumbers } from "./story.mjs";
+import { archiveInto, checkNumbers, checkStory, countWords, findDates, linkNodeModules, numberOnChart, parseProse, removeWorkspace, svgTexts, tokenizeNumbers } from "./story.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const STORIES = join(root, "site/stories");
@@ -75,6 +75,22 @@ test("prose parsing drops frontmatter, alt text, URLs and friction notes, and re
   assert.equal(countWords(p.mainText), 6);
 });
 
+// The exempt-list format the story skill prescribes (skills/story/SKILL.md step 4), read from the
+// skill itself so the two cannot drift: its example must satisfy S3 with no charts at all.
+test("the story skill's exempt-list example is what S3 parses", () => {
+  const skill = readFileSync(join(root, "skills/story/SKILL.md"), "utf8");
+  const example = skill.match(/exempt"[^\n]*\n\n```markdown\n([\s\S]*?)```/)?.[1];
+  assert.ok(example, "SKILL.md step 4 has a fenced exempt-list example");
+  const md = `# T\n\nThere are 25,415 rows and the low was $9.10, but 77 is unlisted.\n\n## Friction notes\n\n${example}`;
+  const prose = parseProse(md);
+  assert.deepEqual(nums(prose.exemptText), ["25,415", "$9.10"]);
+  const s3 = checkNumbers({ prose, svgs: [] });
+  assert.equal(s3.pass, false);
+  assert.deepEqual(s3.evidence.misses.map((m) => m.number), ["77"]);
+  const listed = checkNumbers({ prose: parseProse(md.replace(", but 77 is unlisted", "")), svgs: [] });
+  assert.equal(listed.pass, true, listed.message);
+});
+
 test("SVG text: <text> and <tspan> contents, entities decoded, tooltips ignored", () => {
   const svg = `<svg><text>a &amp; b</text><text><tspan>−&#36;36.98</tspan><tspan>x</tspan></text><g aria-label="99"><title>77</title></g></svg>`;
   assert.deepEqual(svgTexts(svg), ["a & b", "−$36.98 x"]);
@@ -99,9 +115,6 @@ const ORACLE_EXCEPTIONS = {
     S1: { reason: "Story #1 predates the <slug>-make-charts.mjs convention: its build is site/stories/make-charts.mjs.", missing: ["site/stories/keeling-curve-make-charts.mjs"] },
     S3: { reason: "Story #1 predates the every-number-on-a-chart rule: start/end values, rates and the source file's quirks (sentinel codes, altitude) are prose-only.", misses: ["3,400", "316", "427", "67", "0.9", "2.6", "6", "40", "-1", "-9.99", "-0.99"] },
     S4: { reason: "Follows from S1: there is no keeling-curve-make-charts.mjs to run (make-charts.mjs is reproducible on its own)." },
-  },
-  "oil-prices": {
-    S3: { reason: "Exempt kinds per story-craft pattern 4 (dataset-wide count, all-time low outside the window, attributed CFTC and EIA figures), but its friction notes describe them instead of listing them.", misses: ["25,415", "-$37.63", "$9.10", "76%"] },
   },
   "france-public-finances": {
     S3: { reason: "An attributed DREES figure (pension uprating) with no exempt list; the story has no friction notes section.", misses: ["5.3%"] },
@@ -145,13 +158,12 @@ for (const slug of Object.keys(ORACLE)) {
 
 // --- Saboteurs --------------------------------------------------------------------
 
-// The base: a copy of the oil-prices story with an explicit exempt list added to its friction
-// notes (the fix its S3 exception asks for), checked with an as_of so S6 is active. It must pass
+// The base: a copy of the oil-prices story (which lists its exempt numbers in the skill's format),
+// checked with an as_of so S6 is active. It must pass
 // all six checks; each saboteur breaks one thing and must fail exactly that check.
 const SLUG = "oil-prices";
 const INPUT = "datasets/energy-and-commodities/oil-prices/data";
 const AS_OF = "2026-10-09";
-const EXEMPT = `- **Exempt numbers** (story-craft, not on a chart):\n  - 25,415: dataset-wide count\n  - $9.10: all-time low outside the chart's window\n  - -$37.63: attributed CFTC futures settlement\n  - 76%: attributed EIA storage figure\n`;
 
 const proseFile = (ws) => join(ws, "site/stories", `${SLUG}.md`);
 const edit = (file, fn) => writeFileSync(file, fn(readFileSync(file, "utf8")));
@@ -161,20 +173,18 @@ const insertBefore = (marker, text) => (s) => {
 };
 
 function baseWorkspace() {
-  const ws = oracleWorkspace(SLUG);
-  edit(proseFile(ws), (s) => `${s.trimEnd()}\n${EXEMPT}`);
-  return ws;
+  return oracleWorkspace(SLUG);
 }
 
 const run = (ws) => checkStory({ workspace: ws, slug: SLUG, root, inputs: [{ path: INPUT, commit: "HEAD" }], asOf: AS_OF });
 const failed = (results) => results.filter((r) => !r.pass).map((r) => r.id);
 
-test("saboteur base: the oil-prices copy with an exempt list passes all six checks", { skip: buildSkip }, () => {
+test("saboteur base: the oil-prices copy passes all six checks", { skip: buildSkip }, () => {
   const ws = baseWorkspace();
   try {
     const results = run(ws);
     assert.deepEqual(failed(results), [], JSON.stringify(results.filter((r) => !r.pass), null, 1));
-    assert.deepEqual(results.find((r) => r.id === "S3").evidence.exempt, ["25,415", "$9.10", "-$37.63", "76%"]);
+    assert.deepEqual(results.find((r) => r.id === "S3").evidence.exempt, ["25,415", "-$37.63", "$9.10", "76%"]);
   } finally {
     removeWorkspace(ws);
   }

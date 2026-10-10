@@ -38,7 +38,7 @@ Chart-build dependencies live in one scoped `package.json` in that folder (`@obs
 - The argument is stated in **one sentence** in the outline.
 - The outline was **reviewed and approved before charts or prose** (see step 2). The approval is recorded with the reviewer, the exact revision (commit and file hash) and the reproduced numbers.
 - Every chart: Observable Plot per `references/charting.md`, a committed `.svg`, **annotated on the chart** (direct labels, marked moments), byte-identical across two builds. One chart = one idea.
-- Prose is **300–700 words**, follows `references/voice-guide.md`, does not narrate the chart, and **every data number in the prose is on a chart** — except the exempt kinds listed in `references/story-craft.md` §4, which the prose's friction notes or the task record list explicitly.
+- Prose is **300–700 words**, follows `references/voice-guide.md`, does not narrate the chart, and **every data number in the prose is on a chart** — except the exempt kinds listed in `references/story-craft.md` §4, which the prose's friction notes list explicitly (format in step 4).
 - No causal claim the data can't support: explanations are attributed to a named, linked source.
 - A short **"How this was made"** section, last: links the dataset and its build script, says re-running reproduces the numbers.
 - The story is linked from the site's index pages (DataPressr: `site/datasets.md` and `site/README.md`).
@@ -93,6 +93,14 @@ Commit: `Story #N (<Title>): charts` — the `.mjs` and `.svg`s only.
 ### 4. Prose — *commit*
 
 `<slug>.md`. Render the approved outline — **wording only; the argument is fixed**. Lead with the headline chart and one line. Embed charts as `![alt](<slug>-chart.svg)` with alt text that states what the chart shows, including the key values. Method last and short. Keep a short "Friction notes" section while the skill is still evolving, and state that the author's voice pass is outstanding.
+
+Under the "Friction notes" heading, list every exempt number as a list item containing the word "exempt", with one nested item per number, written exactly as it appears in the prose, and its exempt kind:
+
+```markdown
+- **Exempt numbers** (not on a chart):
+  - 25,415: dataset-wide count
+  - $9.10: all-time low outside the chart's window
+```
 
 Before committing, check: word count (300–700, excluding frontmatter, alt text and friction notes); every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. A second, quick review of the prose against the outline is cheap and catches overstatement (story #3's caught an "all holders" that the source said was "some").
 
