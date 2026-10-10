@@ -11,7 +11,7 @@ import * as codex from "./adapters/codex.mjs";
 import * as fake from "./adapters/fake.mjs";
 import { gateFromLedger } from "./canary.mjs";
 import { scanTranscript } from "./leakscan.mjs";
-import { collectArtefacts, ensureModulesCache, removeWorkspace, stageWorkspace, tarWorkspace } from "./stage.mjs";
+import { collectArtefacts, ensureModulesCache, removeWorkspace, stageWorkspace, tarWorkspace, writerPrompt } from "./stage.mjs";
 import { checkRun } from "./checkers/run-checks.mjs";
 import { appendRow } from "./ledger.mjs";
 import { writeReport } from "./report.mjs";
@@ -34,7 +34,8 @@ export function loadCase(root, evalsDir, caseRef) {
   const kase = JSON.parse(readFileSync(join(dir, "case.json"), "utf8"));
   assertValid(validateCase(kase, { isAncestor: (c) => isAncestorOfMain(root, c) }), `case ${caseRef}`);
   if (kase.id !== id || kase.domain !== domain) throw new Error(`case.json id/domain (${kase.domain}/${kase.id}) do not match its directory (${caseRef})`);
-  const prompt = readFileSync(join(dir, "prompt.md"), "utf8");
+  // The writer gets the case prompt plus the harness's blind-run notes (stage.mjs).
+  const prompt = writerPrompt(readFileSync(join(dir, "prompt.md"), "utf8"));
   return { kase, prompt, dir };
 }
 

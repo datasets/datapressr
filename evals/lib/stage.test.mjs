@@ -10,12 +10,24 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { commitAll, write } from "./fixture-repo.mjs";
 import { stagingRepo } from "./fixture-staging.mjs";
-import { collectArtefacts, ensureModulesCache, removeWorkspace, stageWorkspace } from "./stage.mjs";
+import { BLIND_RUN_NOTES, collectArtefacts, ensureModulesCache, removeWorkspace, stageWorkspace, writerPrompt } from "./stage.mjs";
 
 const fakeInstall = (dir) => {
   mkdirSync(join(dir, "node_modules/fake-plot"), { recursive: true });
   writeFileSync(join(dir, "node_modules/fake-plot/index.js"), "export const ok = 1;\n");
 };
+
+test("the writer prompt is the case prompt, then the same blind-run notes for every case", () => {
+  const p = writerPrompt("# Task\n\nDo it.\n\n");
+  assert.equal(p, `# Task\n\nDo it.\n\n${BLIND_RUN_NOTES}`);
+  assert.ok(writerPrompt("# Other\n").endsWith(BLIND_RUN_NOTES));
+  // The review gate is met by a recorded self-review (datapressr-hcn.18), with the reader-questions pass.
+  assert.match(BLIND_RUN_NOTES, /review: self \(blind run, no reviewer available\)/);
+  assert.match(BLIND_RUN_NOTES, /reader-questions pass/);
+  assert.match(BLIND_RUN_NOTES, /not inspected visually/);
+  // The notes must not point the writer at anything outside the workspace.
+  assert.doesNotMatch(BLIND_RUN_NOTES, /docs\/reviews|feedback|evals\//i);
+});
 
 const listFiles = (dir) => execFileSync("git", ["ls-files"], { cwd: dir, encoding: "utf8" }).trim().split("\n").sort();
 

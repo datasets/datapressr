@@ -1,6 +1,6 @@
 // Blind workspace staging (design section 4.2 step 3). A run happens in a fresh temp git repo
-// that holds only an allowlist: the case prompt as TASK.md, the case inputs and skills at their
-// pinned commits (via git archive, at the same paths as in this repo), the dataset-conventions
+// that holds only an allowlist: the writer prompt (case prompt plus blind-run notes) as TASK.md,
+// the case inputs and skills at their pinned commits (via git archive, at the same paths as in this repo), the dataset-conventions
 // part of AGENTS.md, and site/stories/package.json with a read-only link to a cached
 // node_modules so chart builds work offline. Anything not named here is absent.
 
@@ -20,6 +20,25 @@ export function datasetConventions(agentsText) {
   const at = agentsText.indexOf(AGENTS_MARKER);
   if (at === -1) throw new Error("AGENTS.md has no repo-only marker line");
   return agentsText.slice(0, at).trimEnd() + "\n";
+}
+
+// The blind-run notes (datapressr-hcn.18): appended by the harness to every case prompt, so the
+// writer gets the same text in its -p prompt and in TASK.md, and every arm of a comparison gets
+// the same text whatever skill revision it runs. They settle what a blind writer does where a
+// skill needs something the workspace cannot provide (an independent reviewer, a rasteriser).
+// Editing them changes the harness tree, not the case hash; past runs used the text at their
+// harness tree.
+export const BLIND_RUN_NOTES = `## Blind-run notes
+
+These notes come from the evaluation harness and are the same for every run.
+
+- **No independent reviewer is available.** There is no subagent tool here, and nested \`claude\` or \`codex\` calls are blocked. Where a skill requires a review by someone other than the author (the story skill's outline review in step 2, and the quick review of the prose against the outline in step 4), review it yourself: run the skill's own review checklist in full against the committed revision, including the reader-questions pass (write the five to eight reader questions down before you reread the outline, then say which it answers, partly answers or misses). Record the verdict (APPROVED, or numbered corrections), the revision reviewed (commit and file SHA-256) and the numbers you reproduced, as the skill asks. If you find corrections, fix the outline and review the new revision. Record the reviewer as "review: self (blind run, no reviewer available)" in the friction notes of the outline and of the story. Then carry on: do not stop at the gate or leave it marked as outstanding.
+- **Do not rasterise the charts.** The workspace has no supported way to turn SVG into an image, so do not look for one (Quick Look, a browser, rsvg or ImageMagick). Check each chart from its SVG source instead (text labels, axis ticks, \`viewBox\` and widths), and say in the story's friction notes that the charts were not inspected visually.
+`;
+
+// The writer's prompt: the case prompt, then the blind-run notes.
+export function writerPrompt(casePrompt) {
+  return `${casePrompt.trimEnd()}\n\n${BLIND_RUN_NOTES}`;
 }
 
 function sh(cwd, cmd, args, opts = {}) {

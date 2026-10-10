@@ -11,6 +11,7 @@ import { makeRepo, sh, write } from "./fixture-repo.mjs";
 import { readLedger } from "./ledger.mjs";
 import { runCase } from "./runner.mjs";
 import { validateRun } from "./schema.mjs";
+import { writerPrompt } from "./stage.mjs";
 
 const cli = (root, args) => spawnSync(process.execPath, [join(root, "evals/run.mjs"), ...args], { cwd: root, encoding: "utf8" });
 
@@ -30,7 +31,8 @@ test("run --writer fake works end to end through the CLI", () => {
     assert.equal(run.skill.dirty, false);
     assert.equal(run.harness.tree, sh(root, ["rev-parse", "HEAD:evals/lib"]));
     assert.match(run.case_hash, /^[0-9a-f]{64}$/);
-    assert.equal(run.writer.prompt_sha256, createHash("sha256").update(readFileSync(join(root, "evals/cases/story/t01-demo/prompt.md"))).digest("hex"));
+    // The writer prompt is the case prompt plus the blind-run notes (datapressr-hcn.18).
+    assert.equal(run.writer.prompt_sha256, createHash("sha256").update(writerPrompt(readFileSync(join(root, "evals/cases/story/t01-demo/prompt.md"), "utf8"))).digest("hex"));
     assert.equal(run.cost_usd, 0);
     assert.deepEqual(run.flags, []);
 
