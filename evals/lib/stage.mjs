@@ -126,10 +126,13 @@ export function stageWorkspace({ root, kase, prompt, skillRef = "HEAD", modules,
   }
 }
 
-// Files added or modified since the baseline (deletions listed separately), relative paths.
-export function changedFiles(dir) {
+// Files added or modified since the baseline commit (deletions listed separately), relative paths.
+// Diffs the index against the baseline, not HEAD: writers that follow the story skill commit their
+// work, and a diff against HEAD then finds nothing (the q01 pilot lost all its artefacts that way).
+export function changedFiles(dir, baseline) {
+  if (!baseline) throw new Error("changedFiles: baseline commit required");
   sh(dir, "git", ["add", "--all"]);
-  const out = sh(dir, "git", ["diff", "--cached", "--name-status", "--no-renames", "-z", "HEAD"]);
+  const out = sh(dir, "git", ["diff", "--cached", "--name-status", "--no-renames", "-z", baseline]);
   const parts = out.split("\0").filter(Boolean);
   const changed = [];
   const deleted = [];
@@ -141,8 +144,8 @@ export function changedFiles(dir) {
 }
 
 // Copy changed files into destDir at their workspace paths, up to maxBytes in total.
-export function collectArtefacts(dir, destDir, { maxBytes = 2 * 1024 * 1024 } = {}) {
-  const { changed, deleted } = changedFiles(dir);
+export function collectArtefacts(dir, destDir, { baseline, maxBytes = 2 * 1024 * 1024 } = {}) {
+  const { changed, deleted } = changedFiles(dir, baseline);
   let total = 0;
   const copied = [];
   const skipped = [];

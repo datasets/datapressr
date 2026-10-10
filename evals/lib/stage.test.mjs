@@ -94,12 +94,15 @@ test("collection copies new and changed files, lists deletions and skips the nod
     write(ws.dir, "site/stories/demo-chart.svg", "<svg/>\n");
     write(ws.dir, "datasets/demo/data.csv", "tampered\n");
     rmSync(join(ws.dir, "skills/story/SKILL.md"));
-    const got = collectArtefacts(ws.dir, dest);
+    // A writer that commits part of its work (the story skill says to commit each artefact) must not hide it.
+    execFileSync("git", ["add", "site/stories/demo.md"], { cwd: ws.dir });
+    execFileSync("git", ["commit", "-q", "-m", "outline"], { cwd: ws.dir });
+    const got = collectArtefacts(ws.dir, dest, { baseline: ws.baseline });
     assert.deepEqual(got.copied, ["datasets/demo/data.csv", "site/stories/demo-chart.svg", "site/stories/demo.md"]);
     assert.deepEqual(got.deleted, ["skills/story/SKILL.md"]);
     assert.equal(readFileSync(join(dest, "site/stories/demo.md"), "utf8"), "# Demo story\n");
 
-    const capped = collectArtefacts(ws.dir, mkdtempSync(join(tmpdir(), "evals-dest-")), { maxBytes: 10 });
+    const capped = collectArtefacts(ws.dir, mkdtempSync(join(tmpdir(), "evals-dest-")), { baseline: ws.baseline, maxBytes: 10 });
     assert.ok(capped.skipped.length > 0, "the 2 MB cap skips files beyond it");
   } finally {
     if (ws) removeWorkspace(ws.dir);
