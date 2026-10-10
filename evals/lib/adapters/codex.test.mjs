@@ -49,6 +49,8 @@ test("the child environment points HOME and CODEX_HOME at the temp home and drop
   assert.deepEqual(weak, { HOME: "/Users/x", CODEX_HOME: "/tmp/h" }, "weakened keeps the real HOME, never the real CODEX_HOME");
   assert.equal(codex.childEnv({ home: "/tmp/h", env: { PATH: "/usr/bin" }, shimBin: "/tmp/s/bin" }).PATH, "/tmp/s/bin:/usr/bin", "the nested-agent shim goes first on PATH");
   assert.equal(codex.childEnv({ home: "/tmp/h", env: { PATH: "/usr/bin" }, shimBin: "/tmp/s/bin", weaken: true }).PATH, "/usr/bin", "the weakened recipe has no shim");
+  assert.equal(codex.childEnv({ home: "/tmp/h", env: { TMPDIR: "/var/T/" }, tmp: "/tmp/evt-x/tmp" }).TMPDIR, "/tmp/evt-x/tmp", "a per-run TMPDIR");
+  assert.equal(codex.childEnv({ home: "/tmp/h", env: { TMPDIR: "/var/T/" }, tmp: "/tmp/evt-x/tmp", weaken: true }).TMPDIR, "/var/T/", "the weakened recipe keeps ours");
 });
 
 test("the recipe hash is stable, path-free and changes with mode and weaken", () => {
@@ -59,7 +61,9 @@ test("the recipe hash is stable, path-free and changes with mode and weaken", ()
   const text = JSON.stringify(codex.recipeTemplate("fixed"));
   assert.ok(!text.includes(process.env.HOME || "/nonexistent-home"));
   assert.ok(text.includes("<model>") && text.includes("<workspace>"));
-  assert.equal(codex.recipeTemplate("fixed").version, 2, "recipe 2: nested agent CLIs shimmed");
+  assert.equal(codex.recipeTemplate("fixed").version, 3, "recipe 3: per-run TMPDIR");
+  assert.equal(codex.recipeTemplate("fixed").env.TMPDIR, "<run tmp>/tmp");
+  assert.equal(codex.recipeTemplate("fixed", { weaken: true }).env.TMPDIR, undefined, "the weakened recipe keeps our TMPDIR");
   assert.ok(text.includes("<shim bin>") && !JSON.stringify(codex.recipeTemplate("fixed", { weaken: true })).includes("<shim bin>"));
 });
 

@@ -8,14 +8,16 @@ import { chmodSync, existsSync, mkdtempSync, rmSync, writeFileSync } from "node:
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as claude from "./claude.mjs";
+import { sharedTmpDirs } from "./runtmp.mjs";
 import { fakeClaudeBin } from "../fixture-staging.mjs";
 
 const ROOT = "/Users/someone/src/datapressr";
 const HOME = "/Users/someone";
 
 test("fixed-mode settings deny the repo and the user's agent and credential dirs, the web and the network", () => {
-  const s = claude.settingsFor({ mode: "fixed", root: ROOT, home: HOME });
-  const dirs = [ROOT, `${HOME}/.claude`, `${HOME}/.codex`, `${HOME}/.agents`, `${HOME}/.config/gh`, `${HOME}/.ssh`];
+  const s = claude.settingsFor({ mode: "fixed", root: ROOT, home: HOME, sharedTmp: sharedTmpDirs(501) });
+  // The shared Claude temp dir (other sessions' scratchpads) is denied like the repo (datapressr-hcn.23).
+  const dirs = [ROOT, `${HOME}/.claude`, `${HOME}/.codex`, `${HOME}/.agents`, `${HOME}/.config/gh`, `${HOME}/.ssh`, "/tmp/claude-501", "/private/tmp/claude-501"];
   assert.deepEqual(s.permissions.deny, [...dirs.flatMap((d) => [`Read(/${d}/**)`, `Edit(/${d}/**)`]), "Bash(claude:*)", "Bash(codex:*)", "WebFetch", "WebSearch"]);
   assert.ok(s.permissions.deny.includes("Read(//Users/someone/src/datapressr/**)"), "absolute paths use the // prefix");
   assert.equal(s.permissions.allow, undefined, "allowed tools come from --allowedTools, not the settings file");
@@ -44,8 +46,10 @@ test("the recipe hash does not depend on machine paths, model or caps", () => {
   const text = JSON.stringify(t);
   assert.ok(!text.includes(HOME) && !text.includes(process.env.HOME || "/nonexistent-home"), "no machine paths");
   assert.ok(text.includes("<model>") && text.includes("<settings>"));
-  assert.equal(t.version, 2, "recipe 2: nested agent CLIs denied and shimmed");
+  assert.equal(t.version, 3, "recipe 3: per-run temp dir, shared temp dir denied");
   assert.ok(text.includes("<shim bin>") && text.includes("NESTED_AGENT_BLOCKED"), "the shim is part of the hash");
+  assert.equal(t.env.CLAUDE_CODE_TMPDIR, "<run tmp>", "the per-run temp dir is part of the hash");
+  assert.ok(t.settings.sandbox.filesystem.denyRead.includes("/tmp/claude-<uid>"), "no machine uid in the hash");
   assert.deepEqual(claude.recipeTemplate("fixed", { weaken: true }).env, {}, "the weakened recipe has no shim");
 });
 
@@ -69,6 +73,12 @@ test("writer flags are the section 4.3 recipe", () => {
   const c = claude.criticArgs({ prompt: "P", model: "m", settingsPath: "/s", jsonSchema: { type: "object" } });
   assert.equal(c[c.indexOf("--tools") + 1], "", "critic has no tools");
   assert.equal(c[c.indexOf("--json-schema") + 1], '{"type":"object"}');
+});
+
+test("the writer environment: shim and per-run temp dir, or neither when weakened", () => {
+  const env = claude.writerEnv({ shimBin: "/s/bin", runTmp: "/tmp/evt-x", env: { PATH: "/usr/bin", TMPDIR: "/var/T/", CLAUDE_CODE_TMPDIR: "/elsewhere" } });
+  assert.deepEqual(env, { PATH: "/s/bin:/usr/bin", TMPDIR: "/tmp/evt-x", CLAUDE_CODE_TMPDIR: "/tmp/evt-x" });
+  assert.deepEqual(claude.writerEnv({ weaken: true, env: { PATH: "/usr/bin", TMPDIR: "/var/T/" } }), { PATH: "/usr/bin", TMPDIR: "/var/T/" });
 });
 
 test("the child environment drops the parent Claude Code session but keeps auth", () => {

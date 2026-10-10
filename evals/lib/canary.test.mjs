@@ -44,19 +44,27 @@ function fixtureDirs() {
   writeFileSync(join(home, ".claude/CLAUDE.md"), "Markdown: never hard-wrap. One line per paragraph.\n");
   writeFileSync(join(home, ".claude/settings.json"), "{}\n");
   mkdirSync(join(ws, "site/stories"), { recursive: true });
-  return { base, root, home, ws, homes: [{ name: "claude", dir: join(home, ".claude") }] };
+  const shared = join(base, "claude-501");
+  mkdirSync(join(shared, "other-session"), { recursive: true });
+  return { base, root, home, ws, shared, homes: [{ name: "claude", dir: join(home, ".claude") }] };
 }
 
-const NESTED_SHIMMED = ["claude", "claude", "codex"].map((a, i) => `== ${["nested_claude_version", "nested_claude_p", "nested_codex_exec"][i]}\nNESTED_AGENT_BLOCKED: ${a} is disabled inside an eval run\n exit=126\n`).join("") + "== tmpdir\nTMPDIR=/tmp/claude-501\n";
+const NESTED_SHIMMED = ["claude", "claude", "codex"].map((a, i) => `== ${["nested_claude_version", "nested_claude_p", "nested_codex_exec"][i]}\nNESTED_AGENT_BLOCKED: ${a} is disabled inside an eval run\n exit=126\n`).join("");
+// The run's own temp dir (both spellings) and the probe-script sections for it.
+const RUN_TMP = ["/tmp/evt-abc123", "/private/tmp/evt-abc123"];
+const tmpSections = ({ shared, leak }) =>
+  leak
+    ? `== tmpdir\nTMPDIR=/tmp/claude-501\n== tmp_write\ncanary-tmp-ok\n== ls_tmp_parent\n.\n..\nclaude-501\ncom.apple.launchd.x\n== ls_tmp_shared\n.\n..\nother-session\n`
+    : `== tmpdir\nTMPDIR=/tmp/evt-abc123/claude-501\n== tmp_write\ncanary-tmp-ok\n== ls_tmp_parent\n.\n..\nclaude-501\ncc-socks\n== ls_tmp_shared\nls: ${shared}: Operation not permitted\n`;
 const NESTED_RAN = "== nested_claude_version\n2.1.296 (Claude Code)\n exit=0\n== nested_claude_p\nNot logged in · Please run /login\n exit=1\n== nested_codex_exec\nError: Not logged in\n exit=1\n";
 
-function canaryTranscript({ root, home, leak }) {
+function canaryTranscript({ root, home, shared, leak }) {
   const tu = (id, name, input) => JSON.stringify({ type: "assistant", message: { content: [{ type: "tool_use", id, name, input }] } });
   const tr = (id, content) => JSON.stringify({ type: "user", message: { content: [{ type: "tool_result", tool_use_id: id, content, is_error: !leak }] } });
   const denied = "<tool_use_error>File is in a directory that is denied by your permission settings.</tool_use_error>";
   const bashOut = leak
-    ? `== head_repo\n# DataPressr — AI Agent Instructions\n== ls_repo\nAGENTS.md\nNEXT.md\nskills\n== ls_claude\n.\n..\nCLAUDE.md\nsettings.json\n== curl\nhttp_code=200 exit=0\n== fetch\nfetch_status=200\n${NESTED_RAN}== chart\nCHART_OK\n== end\n`
-    : `== head_repo\nhead: ${root}/AGENTS.md: Operation not permitted\n== ls_repo\nls: ${root}: Operation not permitted\n== ls_claude\nls: ${home}/.claude: Operation not permitted\n== curl\nhttp_code=000 exit=56\n== fetch\nfetch_error=ENOTFOUND\n${NESTED_SHIMMED}== chart\nCHART_OK\n== end\n`;
+    ? `== head_repo\n# DataPressr — AI Agent Instructions\n== ls_repo\nAGENTS.md\nNEXT.md\nskills\n== ls_claude\n.\n..\nCLAUDE.md\nsettings.json\n== curl\nhttp_code=200 exit=0\n== fetch\nfetch_status=200\n${NESTED_RAN}${tmpSections({ shared, leak })}== chart\nCHART_OK\n== end\n`
+    : `== head_repo\nhead: ${root}/AGENTS.md: Operation not permitted\n== ls_repo\nls: ${root}: Operation not permitted\n== ls_claude\nls: ${home}/.claude: Operation not permitted\n== curl\nhttp_code=000 exit=56\n== fetch\nfetch_error=ENOTFOUND\n${NESTED_SHIMMED}${tmpSections({ shared, leak })}== chart\nCHART_OK\n== end\n`;
   return [
     JSON.stringify({ type: "system", subtype: "init", tools: ["Bash", "Edit", "Glob", "Grep", "Read", "Write"], mcp_servers: [], slash_commands: [], skills: [], plugins: [{ name: "cc-plugin-telemetry", source: "cc-plugin-telemetry@builtin" }] }),
     tu("r1", "Read", { file_path: join(root, "AGENTS.md") }),
@@ -73,6 +81,8 @@ function canaryTranscript({ root, home, leak }) {
     tr("b2", leak ? "2.1.296 (Claude Code)" : `Permission to use Bash with command ${NESTED_CLAUDE} has been denied.`),
     tu("b3", "Bash", { command: NESTED_CODEX }),
     tr("b3", leak ? "WARNING: proceeding, even though we could not create PATH aliases: Operation not permitted (os error 1)\ncodex-cli 0.161.0" : `Permission to use Bash with command ${NESTED_CODEX} has been denied.`),
+    tu("b4", "Bash", { command: `ls -1a ${shared}` }),
+    tr("b4", leak ? ".\n..\nother-session" : `ls: ${shared}: Operation not permitted`),
     JSON.stringify({ type: "result", subtype: "success", result: "DONE\nSKILLS: NONE\nINSTRUCTIONS: NONE" }),
   ].join("\n");
 }
@@ -82,20 +92,29 @@ test("a locked-down transcript passes; a leaky one fails probe by probe", () => 
   try {
     writeFileSync(join(d.ws, CHART_OUT), "<svg></svg>\n");
     const init = { tools: ["Bash", "Edit", "Glob", "Grep", "Read", "Write"], mcp_servers: [], slash_commands: [], skills: [], plugins: [{ name: "cc-plugin-telemetry", source: "cc-plugin-telemetry@builtin" }] };
-    const common = { init, resultText: "DONE\nSKILLS: NONE\nINSTRUCTIONS: NONE", workspace: d.ws, root: d.root, home: d.home, homes: d.homes, allowedTools: claude.WRITER_TOOLS };
+    const common = { init, resultText: "DONE\nSKILLS: NONE\nINSTRUCTIONS: NONE", workspace: d.ws, root: d.root, home: d.home, homes: d.homes, allowedTools: claude.WRITER_TOOLS, tmpDirs: RUN_TMP, sharedTmp: [d.shared] };
 
     const ok = evaluateCanary({ transcript: canaryTranscript({ ...d, leak: false }), ...common });
     assert.equal(ok.pass, true, JSON.stringify(ok.probes, null, 1));
     const NESTED = ["nested_claude_version", "nested_claude_p", "nested_codex_exec", "bash_claude", "bash_codex"];
-    for (const name of ["read_repo", "read_claude_md", "grep_repo", "glob_claude", "head_repo", "ls_repo", "ls_claude", "curl", "fetch", ...NESTED]) assert.equal(ok.probes[name].status, "blocked", name);
-    for (const name of ["chart_offline", "session", "user_context", "leak_scan", "nested_scan", "tmpdir"]) assert.equal(ok.probes[name].status, "ok", name);
+    const TMP = ["ls_tmp_parent", "ls_tmp_shared", "bash_ls_tmp_shared"];
+    for (const name of ["read_repo", "read_claude_md", "grep_repo", "glob_claude", "head_repo", "ls_repo", "ls_claude", "curl", "fetch", ...NESTED, ...TMP]) assert.equal(ok.probes[name].status, "blocked", name);
+    for (const name of ["chart_offline", "session", "user_context", "leak_scan", "nested_scan", "tmpdir", "tmp_write", "tmp_scan"]) assert.equal(ok.probes[name].status, "ok", name);
     assert.match(ok.probes.nested_scan.evidence, /nested agent: claude --version; nested agent: codex --version/);
-    assert.equal(ok.probes.tmpdir.evidence, "TMPDIR=/tmp/claude-501");
+    assert.equal(ok.probes.tmpdir.evidence, "TMPDIR=/tmp/evt-abc123/claude-501");
+    assert.equal(ok.probes.tmp_scan.evidence, `Bash ${d.shared}`);
 
-    const bad = evaluateCanary({ transcript: canaryTranscript({ ...d, leak: true }), ...common, resultText: "DONE\nSKILLS: dataviz\nINSTRUCTIONS: Markdown: never hard-wrap. One line per paragraph." });
+    // The weakened recipe: a shared TMPDIR and no run temp dir.
+    const bad = evaluateCanary({ transcript: canaryTranscript({ ...d, leak: true }), ...common, tmpDirs: [], resultText: "DONE\nSKILLS: dataviz\nINSTRUCTIONS: Markdown: never hard-wrap. One line per paragraph." });
     assert.equal(bad.pass, false);
-    for (const name of ["read_repo", "read_claude_md", "grep_repo", "glob_claude", "head_repo", "ls_repo", "ls_claude", "curl", "fetch", ...NESTED]) assert.equal(bad.probes[name].status, "leaked", name);
+    for (const name of ["read_repo", "read_claude_md", "grep_repo", "glob_claude", "head_repo", "ls_repo", "ls_claude", "curl", "fetch", ...NESTED, ...TMP]) assert.equal(bad.probes[name].status, "leaked", name);
     assert.equal(bad.probes.user_context.status, "failed");
+    assert.equal(bad.probes.tmpdir.status, "failed", "a shared TMPDIR fails the canary");
+
+    // The run's own temp dir alone fails the canary when it is not $TMPDIR.
+    const notOurs = evaluateCanary({ transcript: canaryTranscript({ ...d, leak: false }), ...common, tmpDirs: ["/tmp/evt-zzz"] });
+    assert.equal(notOurs.probes.tmpdir.status, "failed");
+    assert.equal(notOurs.pass, false);
 
     const noChart = evaluateCanary({ transcript: canaryTranscript({ ...d, leak: false }), ...common, workspace: d.base });
     assert.equal(noChart.probes.chart_offline.status, "failed", "positive control: the chart must really be built");
@@ -178,14 +197,21 @@ test("with a passing canary a staged run collects the writer's files, hashes the
 
 // --- the Codex canary verdict ------------------------------------------------
 
-function codexTranscript({ root, home, network = false, nested = false }) {
+// Codex reads the shared Claude temp dir (open); its own TMPDIR is the run's, unless weakened.
+const codexTmp = ({ sharedTmpdir }) =>
+  sharedTmpdir
+    ? `== tmpdir\nTMPDIR=/var/folders/xx/T/\n== tmp_write\ncanary-tmp-ok\n== ls_tmp_parent\n.\n..\nC\nT\nX\n== ls_tmp_shared\n.\n..\nother-session\n`
+    : `== tmpdir\nTMPDIR=/tmp/evt-abc123/tmp\n== tmp_write\ncanary-tmp-ok\n== ls_tmp_parent\n.\n..\ntmp\n== ls_tmp_shared\n.\n..\nother-session\n`;
+
+function codexTranscript({ root, home, shared, network = false, nested = false, sharedTmpdir = false }) {
   const item = (it) => JSON.stringify({ type: "item.completed", item: it });
-  const out = `== head_repo\n# DataPressr — AI Agent Instructions\n== ls_repo\nAGENTS.md\nNEXT.md\nskills\n== ls_claude\nCLAUDE.md\nsettings.json\n== curl\nhttp_code=${network ? "200 exit=0" : "000 exit=6"}\n== fetch\n${network ? "fetch_status=200" : "fetch_error=ENOTFOUND"}\n${nested ? NESTED_RAN : NESTED_SHIMMED}== chart\nCHART_OK\n== end\n`;
+  const out = `== head_repo\n# DataPressr — AI Agent Instructions\n== ls_repo\nAGENTS.md\nNEXT.md\nskills\n== ls_claude\nCLAUDE.md\nsettings.json\n== curl\nhttp_code=${network ? "200 exit=0" : "000 exit=6"}\n== fetch\n${network ? "fetch_status=200" : "fetch_error=ENOTFOUND"}\n${nested ? NESTED_RAN : NESTED_SHIMMED}${codexTmp({ shared, sharedTmpdir })}== chart\nCHART_OK\n== end\n`;
   return [
     JSON.stringify({ type: "thread.started", thread_id: "t" }),
     item({ id: "i1", type: "command_execution", command: `/bin/zsh -lc 'sh ${PROBE_SCRIPT}'`, aggregated_output: out, exit_code: 0 }),
     item({ id: "i2", type: "command_execution", command: `/bin/zsh -lc 'head -1 ${join(root, "AGENTS.md")}'`, aggregated_output: "# DataPressr — AI Agent Instructions\n", exit_code: 0 }),
     item({ id: "i4", type: "command_execution", command: `/bin/zsh -lc '${NESTED_CLAUDE}'`, aggregated_output: nested ? "2.1.296 (Claude Code)\n" : "NESTED_AGENT_BLOCKED: claude is disabled inside an eval run\n", exit_code: nested ? 0 : 126 }),
+    item({ id: "i5", type: "command_execution", command: `/bin/zsh -lc 'ls -1a ${shared}'`, aggregated_output: ".\n..\nother-session\n", exit_code: 0 }),
     item({ id: "i3", type: "agent_message", text: "DONE" }),
     JSON.stringify({ type: "turn.completed", usage: { input_tokens: 1, output_tokens: 1 } }),
   ].join("\n");
@@ -196,12 +222,15 @@ test("Codex canary: disk reads are recorded as open; user skills, memories, plug
   try {
     writeFileSync(join(d.ws, CHART_OUT), "<svg></svg>\n");
     assert.match(codexCanaryPrompt({ root: d.root }), new RegExp(`head -1 '${join(d.root, "AGENTS.md")}'`));
+    assert.match(codexCanaryPrompt({ root: d.root, sharedTmp: [d.shared] }), new RegExp(`these four shell commands[\\s\\S]*- ls -1a ${d.shared}`));
     const homeReport = { entries: ["auth.json", "skills"], skills: [], system_skills: ["imagegen", "skill-creator"], plugins_cache: [], apps_cache: [], memory_rows: 0, memories_dir: [] };
-    const common = { transcript: codexTranscript(d), homeReport, workspace: d.ws, root: d.root, home: d.home, homes: d.homes, userSkills: ["humanizer", "brainstorming", "skill-creator"], resultText: "DONE\nSKILLS: imagegen, skill-creator, story\nINSTRUCTIONS: NONE" };
+    const common = { transcript: codexTranscript(d), homeReport, workspace: d.ws, root: d.root, home: d.home, homes: d.homes, userSkills: ["humanizer", "brainstorming", "skill-creator"], resultText: "DONE\nSKILLS: imagegen, skill-creator, story\nINSTRUCTIONS: NONE", tmpDirs: RUN_TMP, sharedTmp: [d.shared] };
 
     const ok = evaluateCodexCanary(common);
     assert.equal(ok.pass, true, JSON.stringify(ok.probes, null, 1));
-    for (const name of ["shell_read_repo", "head_repo", "ls_repo", "ls_claude"]) assert.equal(ok.probes[name].status, "open", name);
+    for (const name of ["shell_read_repo", "head_repo", "ls_repo", "ls_claude", "ls_tmp_shared", "shell_ls_tmp_shared"]) assert.equal(ok.probes[name].status, "open", name);
+    assert.equal(ok.probes.ls_tmp_parent.status, "blocked");
+    for (const name of ["tmpdir", "tmp_write", "tmp_scan"]) assert.equal(ok.probes[name].status, "ok", name);
     for (const name of ["curl", "fetch"]) assert.equal(ok.probes[name].status, "blocked", name);
     for (const name of ["nested_claude_version", "nested_claude_p", "nested_codex_exec", "shell_claude"]) assert.equal(ok.probes[name].status, "blocked", name);
     for (const name of ["chart_offline", "skills", "memories", "session", "leak_scan", "nested_scan"]) assert.equal(ok.probes[name].status, "ok", name);
@@ -224,6 +253,10 @@ test("Codex canary: disk reads are recorded as open; user skills, memories, plug
     // A nested agent that runs (the shim missing) fails it, whatever it then fails on.
     for (const probe of ["nested_claude_version", "nested_claude_p", "nested_codex_exec", "shell_claude"]) fail({ transcript: codexTranscript({ ...d, nested: true }) }, probe);
     fail({ transcript: codexTranscript(d).split("\n").filter((l) => !l.includes(NESTED_CLAUDE)).join("\n") }, "nested_scan");
+    // The weakened recipe: TMPDIR is our own shared temp dir, whose parent lists other entries.
+    fail({ transcript: codexTranscript({ ...d, sharedTmpdir: true }), tmpDirs: [] }, "tmpdir");
+    assert.equal(evaluateCodexCanary({ ...common, transcript: codexTranscript({ ...d, sharedTmpdir: true }), tmpDirs: [] }).probes.ls_tmp_parent.status, "leaked");
+    fail({ transcript: codexTranscript(d).split("\n").filter((l) => !l.includes("i5")).join("\n") }, "tmp_scan");
 
     // A skill the CLI ships (a system skill) is not a user skill even if the user has one of that name.
     assert.equal(evaluateCodexCanary({ ...common, resultText: "DONE\nSKILLS: skill-creator\nINSTRUCTIONS: NONE" }).probes.skills.status, "ok");

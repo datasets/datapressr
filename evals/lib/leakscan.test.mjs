@@ -1,5 +1,6 @@
 // Leak scan on fixture transcripts: absolute paths outside the workspace in tool calls are
-// flagged; workspace paths, the node_modules cache, executables, /tmp and URLs are not.
+// flagged; workspace paths, the node_modules cache, the run's own temp dir, executables and URLs
+// are not. /tmp as a whole is (datapressr-hcn.23).
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -23,13 +24,14 @@ function transcript(...calls) {
 }
 
 const ROOTS = new Set(["Users", "private", "var", "etc", "usr", "tmp", "bin", "opt", "dev"]);
-const opts = { workspaces: [WS], allowedDirs: [CACHE], home: HOME, rootExists: (seg) => ROOTS.has(seg) };
+const RUN_TMP = ["/tmp/evt-abc123", "/private/tmp/evt-abc123"];
+const opts = { workspaces: [WS], allowedDirs: [CACHE, ...RUN_TMP], home: HOME, rootExists: (seg) => ROOTS.has(seg) };
 
 test("a clean transcript has no leaks", () => {
   const t = transcript(
     tool("Read", { file_path: `${WS}/skills/story/SKILL.md` }),
     tool("Bash", { command: `cd ${WS} && node site/stories/x-make-charts.mjs > /dev/null 2>&1; ls ${CACHE}/node_modules` }),
-    tool("Bash", { command: "curl -s https://example.com/a/b && /usr/bin/env node -e 1 && cat /tmp/scratch.txt" }),
+    tool("Bash", { command: "curl -s https://example.com/a/b && /usr/bin/env node -e 1 && cat /tmp/evt-abc123/claude-501/scratch.txt /private/tmp/evt-abc123/tmp/a.mjs" }),
     tool("Write", { file_path: `${WS}/site/stories/x.md`, content: "Debt rose to 113% of GDP / 2024 (source: INSEE / Eurostat)." }),
     tool("Grep", { pattern: "debt", path: "datasets/france-public-finances" }),
     tool("Bash", { command: "node -e 'console.log(\"a/b\".replace(/b/g, \"c\"), 4 / 2)'" }),
@@ -118,5 +120,20 @@ test("$TMPDIR scratch files pass; listing it, climbing out or naming another eva
     { tool: "Bash", path: "$TMPDIR/../x" },
     { tool: "Bash", path: "${TMPDIR}/evals-ws-other/site" },
     { tool: "Bash", path: "$TMPDIR/png/../.." },
+  ]);
+});
+
+test("/tmp is not allowed as a whole: the shared Claude temp dir, /tmp itself and other runs' temp dirs are flagged", () => {
+  const t = transcript(
+    tool("Bash", { command: "ls -1a /tmp/claude-501; cat /private/tmp/claude-501/other-session/notes.md" }, "s1"),
+    tool("Glob", { pattern: "*", path: "/tmp" }, "s2"),
+    tool("Bash", { command: "cat /tmp/scratch.txt; ls /tmp/evt-zzz999/claude-501" }, "s3"),
+  );
+  assert.deepEqual(scanTranscript(t, opts), [
+    { tool: "Bash", path: "/tmp/claude-501" },
+    { tool: "Bash", path: "/private/tmp/claude-501/other-session/notes.md" },
+    { tool: "Glob", path: "/tmp" },
+    { tool: "Bash", path: "/tmp/scratch.txt" },
+    { tool: "Bash", path: "/tmp/evt-zzz999/claude-501" },
   ]);
 });

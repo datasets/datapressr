@@ -4,15 +4,18 @@
 // and stays in the ledger but is excluded from comparisons. Two more kinds of hit share that shape
 // (datapressr-hcn.19): a nested agent CLI invocation (`claude -p`, `codex exec`, however wrapped or
 // spelt) as { tool, path: "nested agent: <command>", kind: "nested_agent" }, and a `$TMPDIR`
-// reference that lists or climbs out of the shared temp dir or names another eval run's dir there.
+// reference that lists or climbs out of the temp dir or names another eval run's dir there.
+// /tmp is not allowed as a whole (datapressr-hcn.23): it holds /tmp/claude-<uid>, the user's other
+// Claude sessions' scratchpads. A run's own temp dir is passed in allowedDirs (the adapters
+// return it as `tmp_dirs`).
 
 import { existsSync } from "node:fs";
 import { homedir } from "node:os";
 import { isAbsolute, normalize, relative, resolve, sep } from "node:path";
 
-// Paths a tool call may name without it counting as a peek: executables, null devices and the
-// shared temp dir (the sandbox's own scratch space). Not $TMPDIR: other workspaces live there.
-export const DEFAULT_ALLOWED_PREFIXES = ["/usr/", "/bin/", "/sbin/", "/opt/homebrew/", "/dev/null", "/dev/stdin", "/dev/stdout", "/dev/stderr", "/dev/fd/", "/tmp/", "/private/tmp/"];
+// Paths a tool call may name without it counting as a peek: executables and null devices. Not
+// /tmp (other sessions' scratchpads) and not our $TMPDIR (other workspaces live there).
+export const DEFAULT_ALLOWED_PREFIXES = ["/usr/", "/bin/", "/sbin/", "/opt/homebrew/", "/dev/null", "/dev/stdin", "/dev/stdout", "/dev/stderr", "/dev/fd/"];
 
 // A Codex `exec --json` item as a tool call in the Claude shape: shell commands as Bash, file
 // changes as Write (one per path), MCP calls and web searches by name.
@@ -90,7 +93,7 @@ function accessStrings(call) {
 const defaultRootExists = (seg) => existsSync(`/${seg}`);
 
 // workspaces: the workspace path(s) (given and realpath). allowedDirs: extra directories that are
-// not leaks (the node_modules cache). Returns [{ tool, path }] with duplicates removed. The scan
+// not leaks (the node_modules cache, the run's own temp dir). Returns [{ tool, path }] with duplicates removed. The scan
 // is conservative: a flagged run lists its paths in run.json for a person to review.
 export function scanToolCalls(calls, { workspaces, allowedDirs = [], allowedPrefixes = DEFAULT_ALLOWED_PREFIXES, home = homedir(), rootExists = defaultRootExists }) {
   const roots = [...workspaces, ...allowedDirs].map((d) => normalize(d));
@@ -177,10 +180,11 @@ export function nestedAgentInvocations(command) {
   return hits;
 }
 
-// `$TMPDIR` is the shared temp dir (Codex inherits ours, where every eval workspace, home and
-// settings dir lives; Claude's sandbox points it at a per-user dir shared with the user's other
-// sessions). Scratch files in it are allowed like /tmp; listing it, climbing out of it or naming
-// another eval run's dir (`evals-*`) is not.
+// `$TMPDIR` is the run's own temp dir under both recipes since datapressr-hcn.23 (before, and in
+// the weakened recipes, it was shared: Codex inherited ours, where every eval workspace, home and
+// settings dir lives; Claude's sandbox pointed it at a per-user dir shared with the user's other
+// sessions). Scratch files in it are allowed; listing it, climbing out of it or naming another
+// eval run's dir (`evals-*`) is still flagged, so a transcript reads the same under either.
 const TMP_RE = /(?:\$TMPDIR|\$\{TMPDIR\})(\/[^\s"'`;|&<>(){}[\],]*)?/g;
 function tmpdirLeaks(text) {
   const out = [];

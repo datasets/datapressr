@@ -7,7 +7,9 @@
 // Writer role: runs in the staged workspace with Read/Write/Edit/Glob/Grep/Bash, deny rules on
 // the repo and the user's agent and credential directories, and (fixed mode) a sandbox with no
 // network; the nested agent CLIs `claude` and `codex` are denied as Bash commands and shadowed
-// on the child's PATH by shims that refuse to run (./nested.mjs). Critic role: no tools, structured JSON output, run from an empty temp dir.
+// on the child's PATH by shims that refuse to run (./nested.mjs). The child gets a per-run temp
+// dir through CLAUDE_CODE_TMPDIR, and the shared /tmp/claude-<uid> (the user's other sessions'
+// scratchpads) is denied like the repo (./runtmp.mjs). Critic role: no tools, structured JSON output, run from an empty temp dir.
 //
 // Output: stream-json (not json) so the transcript holds every tool call for the leak scan; its
 // final `result` event carries the same fields as --output-format json (total_cost_usd,
@@ -20,6 +22,7 @@ import { join } from "node:path";
 import { deniedPaths } from "../stage.mjs";
 import { sha256 } from "../versions.mjs";
 import { NESTED_AGENTS, makeShimDir, resolveBin, shimTemplate, withShimPath } from "./nested.mjs";
+import { assertTmpOutsideShared, makeRunTmp, removeRunTmp, sharedTmpDirs } from "./runtmp.mjs";
 
 export const vendor = "claude";
 export const staged = true;
@@ -29,14 +32,15 @@ export const WRITER_TOOLS = ["Read", "Write", "Edit", "Glob", "Grep", "Bash"];
 
 // Recipe version: bump when the recipe changes in a way the template below cannot see.
 // 2: nested agent CLIs denied and shimmed (datapressr-hcn.19).
-const RECIPE_VERSION = 2;
+// 3: per-run CLAUDE_CODE_TMPDIR; the shared /tmp/claude-<uid> denied (datapressr-hcn.23).
+const RECIPE_VERSION = 3;
 
 // The harness settings file (passed with --settings). `weaken` drops the read-deny rules, the
-// sandbox denyRead list and the nested-agent denies (and the writer drops the PATH shim); it
-// exists only to prove the canary fails without them.
-export function settingsFor({ mode, root, home = homedir(), weaken = false }) {
+// sandbox denyRead list and the nested-agent denies (and the writer drops the PATH shim and the
+// per-run temp dir); it exists only to prove the canary fails without them.
+export function settingsFor({ mode, root, home = homedir(), weaken = false, sharedTmp = sharedTmpDirs() }) {
   if (mode !== "fixed") throw new Error(`the Claude ${mode}-mode recipe is not defined yet; it arrives with the open-mode case (datapressr-hcn.12)`);
-  const denied = deniedPaths(root, home);
+  const denied = [...deniedPaths(root, home), ...sharedTmp];
   const deny = [];
   if (!weaken) {
     for (const p of denied) deny.push(`Read(/${p}/**)`, `Edit(/${p}/**)`);
@@ -98,8 +102,8 @@ export function recipeTemplate(mode, { weaken = false } = {}) {
     mode,
     weaken,
     args: writerArgs({ prompt: "<prompt>", model: "<model>", maxTurns: "<turns>", maxBudgetUsd: "<usd>", settingsPath: "<settings>" }),
-    settings: settingsFor({ mode, root: "/<repo>", home: "/<home>", weaken }),
-    env: weaken ? {} : shimTemplate(),
+    settings: settingsFor({ mode, root: "/<repo>", home: "/<home>", weaken, sharedTmp: sharedTmpDirs("<uid>") }),
+    env: weaken ? {} : { ...shimTemplate(), CLAUDE_CODE_TMPDIR: "<run tmp>", TMPDIR: "<run tmp>" },
   };
 }
 
@@ -209,12 +213,21 @@ function withSettingsFile(settings, fn) {
 
 // Writer role. Runs in `workspace` (already staged). Returns the runner's writer result plus
 // the raw transcript (the runner saves and hashes it).
+// The writer's environment: no shim and the shared temp dir when weakened; otherwise the shim
+// first on PATH and CLAUDE_CODE_TMPDIR (and the CLI's own TMPDIR) at the per-run temp dir.
+export function writerEnv({ weaken = false, shimBin, runTmp, env = process.env }) {
+  if (weaken) return childEnv(env);
+  return { ...withShimPath(childEnv(env), shimBin), CLAUDE_CODE_TMPDIR: runTmp, TMPDIR: runTmp };
+}
+
 export async function write({ workspace, prompt, model, caps, mode, root, timeoutMs, bin = "claude", home = homedir(), weaken = false }) {
   const settings = settingsFor({ mode, root, home, weaken });
   const version = cliVersion(bin);
+  if (!weaken) assertTmpOutsideShared(tmpdir());
+  const runTmp = weaken ? null : makeRunTmp();
   return withSettingsFile(settings, async (settingsPath, dir) => {
     const args = writerArgs({ prompt, model, maxTurns: caps.max_turns, maxBudgetUsd: caps.max_usd, settingsPath });
-    const env = weaken ? childEnv() : withShimPath(childEnv(), makeShimDir(dir));
+    const env = writerEnv({ weaken, shimBin: weaken ? null : makeShimDir(dir), runTmp: runTmp?.base });
     const proc = await execute({ bin: resolveBin(bin), args, cwd: workspace, timeoutMs, env });
     const { init, result } = parseStream(proc.stdout);
     const s = summarise(result);
@@ -239,8 +252,10 @@ export async function write({ workspace, prompt, model, caps, mode, root, timeou
       exit_code: proc.code,
       init,
       result_text: s.text,
+      // The per-run temp dir (every spelling): the leak scan allows it. Empty when weakened.
+      tmp_dirs: runTmp ? runTmp.dirs : [],
     };
-  });
+  }).finally(() => removeRunTmp(runTmp));
 }
 
 // Critic role: no tools; the answer is structured JSON when a schema is given. Runs from an

@@ -10,6 +10,8 @@
 // path. Those reads are detected by the leak scan, not blocked; the canary records that they are
 // possible. A per-run shim directory first on PATH makes `claude` and `codex` refuse to run inside
 // the session (./nested.mjs); an absolute path to the real binary is caught by the leak scan.
+// TMPDIR is a per-run dir under /tmp (./runtmp.mjs), not our own temp dir, where every eval
+// workspace and temp home lives.
 //
 // Writer role: `--sandbox workspace-write` in the staged workspace; network off unless open mode.
 // Critic role: `--sandbox read-only` from an empty temp dir, `--output-schema` for structured
@@ -21,6 +23,7 @@ import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 import { sha256 } from "../versions.mjs";
 import { makeShimDir, resolveBin, shimTemplate, withShimPath } from "./nested.mjs";
+import { makeRunTmp, removeRunTmp } from "./runtmp.mjs";
 
 export const vendor = "codex";
 export const staged = true;
@@ -28,7 +31,8 @@ export const needsCanary = true;
 
 // Recipe version: bump when the recipe changes in a way the template below cannot see.
 // 2: nested agent CLIs shimmed on PATH (datapressr-hcn.19).
-const RECIPE_VERSION = 2;
+// 3: per-run TMPDIR (datapressr-hcn.23).
+const RECIPE_VERSION = 3;
 
 // Features that would give the run reach beyond the workspace sandbox or the user's own state.
 export const DISABLED_FEATURES = ["apps", "plugins", "remote_plugin", "browser_use", "computer_use", "image_generation", "memories", "hooks"];
@@ -71,10 +75,10 @@ export function criticArgs({ prompt, model, cwd, lastPath, schemaPath, images = 
 }
 
 // The child's environment: ours minus parent agent-session markers, with HOME and CODEX_HOME at
-// the temp home. `weaken` (canary negative control only) keeps the real HOME, so ~/.agents/skills
-// load, and drops the nested-agent shim; CODEX_HOME stays temporary so the real ~/.codex is never
-// written.
-export function childEnv({ home, env = process.env, weaken = false, shimBin }) {
+// the temp home and TMPDIR at the per-run temp dir when given. `weaken` (canary negative control
+// only) keeps the real HOME, so ~/.agents/skills load, and drops the nested-agent shim and the
+// per-run TMPDIR; CODEX_HOME stays temporary so the real ~/.codex is never written.
+export function childEnv({ home, env = process.env, weaken = false, shimBin, tmp }) {
   const out = {};
   for (const [k, v] of Object.entries(env)) {
     if (k === "CLAUDECODE" || k.startsWith("CLAUDE_CODE_") || k === "CLAUDE_PID" || k === "CLAUDE_EFFORT") continue;
@@ -83,6 +87,7 @@ export function childEnv({ home, env = process.env, weaken = false, shimBin }) {
   }
   if (!weaken) out.HOME = home;
   out.CODEX_HOME = home;
+  if (tmp && !weaken) out.TMPDIR = tmp;
   return shimBin && !weaken ? withShimPath(out, shimBin) : out;
 }
 
@@ -94,7 +99,7 @@ export function recipeTemplate(mode, { weaken = false } = {}) {
     mode,
     weaken,
     args: writerArgs({ prompt: "<prompt>", model: "<model>", cwd: "<workspace>", mode, lastPath: "<last>" }),
-    env: { HOME: weaken ? "<user home>" : "<temp home>", CODEX_HOME: "<temp home>", home_contents: ["auth.json"], ...(weaken ? {} : { nested_agents: shimTemplate() }) },
+    env: { HOME: weaken ? "<user home>" : "<temp home>", CODEX_HOME: "<temp home>", home_contents: ["auth.json"], ...(weaken ? {} : { nested_agents: shimTemplate(), TMPDIR: "<run tmp>/tmp" }) },
   };
 }
 
@@ -238,16 +243,18 @@ export function execute({ bin = "codex", args, cwd, env, timeoutMs }) {
   });
 }
 
-// Run one codex exec in a fresh temp home (and nested-agent shim dir) that are always removed
-// afterwards.
+// Run one codex exec in a fresh temp home, nested-agent shim dir and (unless weakened) per-run
+// temp dir, all removed afterwards. fn gets (home, env, runTmp).
 async function withHome({ authFile, weaken = false }, fn) {
   const home = makeHome({ authFile });
   const shim = realpathSync(mkdtempSync(join(tmpdir(), "evals-shim-")));
+  const runTmp = weaken ? null : makeRunTmp();
   try {
-    return await fn(home, childEnv({ home, weaken, shimBin: makeShimDir(shim) }));
+    return await fn(home, childEnv({ home, weaken, shimBin: makeShimDir(shim), tmp: runTmp?.codexTmp }), runTmp);
   } finally {
     rmSync(home, { recursive: true, force: true });
     rmSync(shim, { recursive: true, force: true });
+    removeRunTmp(runTmp);
   }
 }
 
@@ -257,7 +264,7 @@ const readText = (p) => (existsSync(p) ? readFileSync(p, "utf8") : null);
 // home inventory (used by the canary), `init` is null (Codex has no init event).
 export async function write({ workspace, prompt, model, caps, mode, timeoutMs, bin = "codex", authFile = authSource(), weaken = false }) {
   const version = cliVersion(bin);
-  return withHome({ authFile, weaken }, async (home, env) => {
+  return withHome({ authFile, weaken }, async (home, env, runTmp) => {
     const lastPath = join(home, "last.md");
     const proc = await execute({ bin: resolveBin(bin), args: writerArgs({ prompt, model, cwd: workspace, mode, lastPath }), cwd: workspace, env, timeoutMs });
     const p = parseEvents(proc.stdout);
@@ -285,6 +292,8 @@ export async function write({ workspace, prompt, model, caps, mode, timeoutMs, b
       init: null,
       result_text: last ?? p.last_message,
       home_report,
+      // The per-run temp dir (every spelling): the leak scan allows it. Empty when weakened.
+      tmp_dirs: runTmp ? runTmp.dirs : [],
     };
   });
 }

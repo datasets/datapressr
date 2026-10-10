@@ -68,7 +68,7 @@ async function runStaged({ adapter, root, kase, prompt, skillRef, model, caps, c
     const out = await adapter.write({ workspace: ws.dir, prompt, model, caps, mode: kase.data_mode, root, timeoutMs: config.timeouts_ms.writer });
     const collected = collectArtefacts(ws.dir, artefactDir, { baseline: ws.baseline });
     if (collected.skipped.length) log(`not collected (over 2 MB in total, or not a file): ${collected.skipped.join(", ")}`);
-    const leaks = scanTranscript(out.transcript, { workspaces: [ws.dir], allowedDirs: [cache.dir] });
+    const leaks = scanTranscript(out.transcript, { workspaces: [ws.dir], allowedDirs: [cache.dir, ...(out.tmp_dirs ?? [])] });
     writeFileSync(join(runDir, "transcript.jsonl"), out.transcript);
     const tar = tarWorkspace(ws.dir, join(runDir, "workspace.tar"));
     const flags = [...out.flags];
