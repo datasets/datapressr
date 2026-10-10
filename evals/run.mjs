@@ -8,7 +8,7 @@
 //   node evals/run.mjs canary --writer claude|codex [--mode fixed] [--weaken]
 //   node evals/run.mjs critic-choice --writer claude|codex      (free: which critic score would use)
 //   node evals/run.mjs score <run_id|--all> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate] [--png]
-//   node evals/run.mjs pair <run_id> <run_id> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
+//   node evals/run.mjs pair <run_id> <run_id> [--rubric story/v1] [--overlay reference-pairwise] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -36,7 +36,7 @@ const USAGE = `usage:
   node evals/run.mjs canary --writer claude|codex [--mode fixed] [--weaken]
   node evals/run.mjs critic-choice --writer claude|codex
   node evals/run.mjs score <run_id|--all> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate] [--png]
-  node evals/run.mjs pair <run_id> <run_id> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]`;
+  node evals/run.mjs pair <run_id> <run_id> [--rubric story/v1] [--overlay reference-pairwise] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]`;
 
 const CRITIC_OPTIONS = {
   rubric: { type: "string" },
@@ -44,6 +44,7 @@ const CRITIC_OPTIONS = {
   "critic-model": { type: "string" },
   calibrate: { type: "boolean", default: false },
   png: { type: "boolean", default: false },
+  overlay: { type: "string" },
 };
 
 const costLine = (c) => `${c.calls} call(s), ${c.cost_usd === null ? `tokens ${JSON.stringify(c.usage)}` : `${c.cost_usd} USD (list)`}`;
@@ -121,6 +122,7 @@ async function main(argv) {
   if (command === "score") {
     const { values, positionals } = parseArgs({ args: rest, allowPositionals: true, options: { ...CRITIC_OPTIONS, all: { type: "boolean", default: false } } });
     if (values.all === (positionals.length === 1) || positionals.length > 1) throw new Error(USAGE);
+    if (values.overlay) throw new Error("--overlay applies to pair only");
     const config = loadConfig(evalsDir);
     const available = availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
     const dirs = values.all ? allRunDirs(evalsDir) : [findRunDir(evalsDir, positionals[0])];
@@ -143,7 +145,7 @@ async function main(argv) {
     const available = availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
     const runDirs = positionals.map((id) => findRunDir(evalsDir, id));
     const critic = resolveCritic({ spec: values.critic, model: values["critic-model"], writers: writersOf(runDirs), config, available });
-    const res = await pairRuns({ root, evalsDir, runDirs, rubricId: values.rubric, critic, calibrate: values.calibrate, config, log: (m) => console.log(m) });
+    const res = await pairRuns({ root, evalsDir, runDirs, rubricId: values.rubric, overlay: values.overlay, critic, calibrate: values.calibrate, config, log: (m) => console.log(m) });
     console.log(`pair ${res.pairId}: ${res.row.winner_run_id ? "a win (both orders agree)" : "a tie (orders split or tied)"}; ${costLine(res.costs)}`);
     console.log(`wrote evals/pairs/${res.pairId}/A, B, critique-AB.json, critique-BA.json, critique.md and mapping.json (gitignored; do not open it before the owner judges)`);
     writeReport(join(evalsDir, "ledger.jsonl"), join(evalsDir, "REPORT.md"));

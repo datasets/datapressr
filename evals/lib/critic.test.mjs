@@ -31,6 +31,7 @@ import {
   resolveCritic,
   scoreRun,
   svgForCritic,
+  withOverlay,
 } from "./critic.mjs";
 import { makeRepo } from "./fixture-repo.mjs";
 import { readLedger } from "./ledger.mjs";
@@ -622,6 +623,33 @@ test("score --png: renders charts, attaches them to the critique call only, refu
     assert.ok(!plain.calls[1].prompt.includes("PNG renders"));
     await assert.rejects(scoreRun({ root, evalsDir, runDir, critic: { ...FAKE, vendor: "claude" }, config, adapters: { claude: { critic: async () => ({}) } }, png: true, renderer, now: clock() }), /takes no images/);
     await assert.rejects(scoreRun({ root, evalsDir, runDir, critic: FAKE, config, adapters, png: true, renderer: { available: () => ({ ok: false, reason: "no qlmanage" }) }, now: clock() }), /no qlmanage/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("pair --overlay: the overlay's sections replace the base rubric's, rows record <base>+<name>, and the overlay is never the latest rubric", async () => {
+  const { root, evalsDir, cleanup } = setup();
+  try {
+    writeFileSync(join(evalsDir, "rubrics", "story", "reference-pairwise.md"), readFileSync(join(evalsSrc, "rubrics", "story", "reference-pairwise.md")));
+    assert.equal(latestRubricId(evalsDir, "story"), "story/v1");
+    const base = loadRubric(evalsDir, "story/v1");
+    const r1 = writeRun(evalsDir, "20261010-0900-t01-demo-fake-fake-1abcdef-1", { tree: TREE_OLD });
+    const r2 = writeRun(evalsDir, "20261010-1000-t01-demo-fake-fake-2bcdef0-1", { tree: TREE_NEW, extra: " A longer second story." });
+    const { calls, adapters } = capture();
+    const res = await pairRuns({ root, evalsDir, runDirs: [r1, r2], overlay: "reference-pairwise", critic: FAKE, config, adapters, now: clock(), random: () => 0 });
+    assert.equal(res.row.rubric, "story/v1+reference-pairwise");
+    assert.notEqual(res.row.rubric_sha256, base.sha256);
+    assert.deepEqual(validateLedgerRow(res.row).errors, []);
+    const pw = calls.filter((c) => c.kind === "pairwise");
+    assert.equal(pw.length, 2);
+    for (const c of pw) {
+      assert.match(c.prompt, /what the reference contains|the reference contains that the story lacks/);
+      assert.ok(!c.prompt.includes(base.sections.get("Pairwise judgement")), "the base pairwise section was replaced");
+      assert.ok(!c.prompt.includes("Reference comparison overlay"), "the overlay's header is never sent");
+    }
+    assert.throws(() => withOverlay(base, "## No such section\n\ntext", "x"), /no "## No such section"/);
+    await assert.rejects(pairRuns({ root, evalsDir, runDirs: [r1, r2], overlay: "v3", critic: FAKE, config, adapters, now: clock() }), /not vN/);
   } finally {
     cleanup();
   }

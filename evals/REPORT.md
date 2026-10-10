@@ -86,8 +86,8 @@ No owner-judged pairs yet. The critic's pairwise verdict stands alone for small 
 
 ### Critic and isolation
 
-- Critic fallback: 0 of 20 critiques (absolute and pairwise) used the fallback critic.
-- Critic validation failures: 0 of 16 absolute critiques recorded as critic_failed.
+- Critic fallback: 0 of 24 critiques (absolute and pairwise) used the fallback critic.
+- Critic validation failures: 0 of 18 absolute critiques recorded as critic_failed.
 - Leaks caught: 0 of 2 runs flagged leaked.
 
 Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):

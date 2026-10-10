@@ -97,6 +97,38 @@ export function loadRubric(evalsDir, id) {
   return parseRubric(readFileSync(file, "utf8"), id);
 }
 
+// An overlay (rubrics/<domain>/<name>.md without a vN, e.g. reference-pairwise.md;
+// datapressr-hcn.16): its `## ` sections replace the base rubric's sections of the same name. The
+// result is recorded as "<base>+<name>" with a hash over both files, so its rows never mix with
+// the base rubric's.
+export function withOverlay(rubric, text, name) {
+  const over = new Map();
+  let cur = null;
+  let buf = [];
+  const flush = () => cur !== null && over.set(cur, buf.join("\n").trim());
+  for (const line of text.split("\n")) {
+    const h = line.match(/^## (.+?)\s*$/);
+    if (h) {
+      flush();
+      cur = h[1];
+      buf = [];
+    } else if (cur !== null) buf.push(line);
+  }
+  flush();
+  if (!over.size) throw new Error(`overlay ${name} has no "## " sections`);
+  for (const k of over.keys()) if (!rubric.sections.has(k)) throw new Error(`overlay ${name}: the base rubric ${rubric.id} has no "## ${k}" section to replace`);
+  const sections = new Map(rubric.sections);
+  for (const [k, v] of over) sections.set(k, v);
+  return { ...rubric, id: `${rubric.id}+${name}`, sha256: sha256(`${rubric.sha256}\n${sha256(text)}`), sections };
+}
+
+export function loadOverlay(evalsDir, rubric, name) {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(name) || /^v\d+$/.test(name)) throw new Error(`overlay name must be a slug that is not vN, got "${name}"`);
+  const file = join(evalsDir, "rubrics", rubric.id.split("/")[0], `${name}.md`);
+  if (!existsSync(file)) throw new Error(`no overlay at ${relative(evalsDir, file)}`);
+  return withOverlay(rubric, readFileSync(file, "utf8"), name);
+}
+
 // The highest vN.md in rubrics/<domain>/.
 export function latestRubricId(evalsDir, domain) {
   const dir = join(evalsDir, "rubrics", domain);
@@ -829,13 +861,14 @@ function writeBlindCopy(dir, m) {
 // evals/pairs/<pair_id>/A and B (prose and charts only), mapping.json (gitignored), the two
 // judgements and critique.md, and appends a `pair` row. `random()` returns 0 or 1 (1 swaps which
 // run is A); injectable for tests.
-export async function pairRuns({ root, evalsDir, runDirs, rubricId, critic, calibrate = false, config, adapters = CRITIC_ADAPTERS, readInput = gitReadInput(root), now = () => new Date(), random = () => randomInt(2), log = () => {} }) {
+export async function pairRuns({ root, evalsDir, runDirs, rubricId, overlay = null, critic, calibrate = false, config, adapters = CRITIC_ADAPTERS, readInput = gitReadInput(root), now = () => new Date(), random = () => randomInt(2), log = () => {} }) {
   if (runDirs.length !== 2) throw new Error("pair needs exactly two runs");
   const runs = runDirs.map(readRun);
   if (runs[0].run_id === runs[1].run_id) throw new Error("pair needs two different runs");
   if (runs[0].case_id !== runs[1].case_id || runs[0].domain !== runs[1].domain) throw new Error(`pair needs two runs of the same case (got ${runs[0].domain}/${runs[0].case_id} and ${runs[1].domain}/${runs[1].case_id})`);
   const kase = readCase(evalsDir, runs[0].domain, runs[0].case_id);
-  const rubric = loadRubric(evalsDir, rubricId ?? latestRubricId(evalsDir, runs[0].domain));
+  const baseRubric = loadRubric(evalsDir, rubricId ?? latestRubricId(evalsDir, runs[0].domain));
+  const rubric = overlay ? loadOverlay(evalsDir, baseRubric, overlay) : baseRubric;
   const adapter = adapters[critic.vendor];
   if (!adapter?.critic) throw new Error(`no critic adapter for ${critic.vendor}`);
   const redact = redactor(runs);

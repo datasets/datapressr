@@ -1,0 +1,104 @@
+{
+  "checker": "story",
+  "results": [
+    {
+      "id": "S1",
+      "pass": false,
+      "severity": "fail",
+      "message": "missing artefacts: site/stories/keeling-curve-make-charts.mjs",
+      "evidence": {
+        "missing": [
+          "site/stories/keeling-curve-make-charts.mjs"
+        ]
+      }
+    },
+    {
+      "id": "S2",
+      "pass": true,
+      "severity": "fail",
+      "message": "352 words (budget 300–700)",
+      "evidence": {
+        "words": 352,
+        "min": 300,
+        "max": 700
+      }
+    },
+    {
+      "id": "S3",
+      "pass": false,
+      "severity": "fail",
+      "message": "11 of 13 prose number(s) on no chart and not exempt: 3,400, 316, 427, 67, 0.9, 2.6, 6, 40, -1, -9.99, -0.99",
+      "evidence": {
+        "misses": [
+          {
+            "number": "3,400",
+            "context": "n the air at the Mauna Loa Observatory, 3,400 metres up a volcano in Hawaii, far from"
+          },
+          {
+            "number": "316",
+            "context": "hat record, 1959 to 2025. What it shows 316 ppm in 1959. 427 ppm in 2025 — parts pe"
+          },
+          {
+            "number": "427",
+            "context": "to 2025. What it shows 316 ppm in 1959. 427 ppm in 2025 — parts per million of dry"
+          },
+          {
+            "number": "67",
+            "context": "The annual mean has not once fallen in 67 years. The rise is getting faster: abou"
+          },
+          {
+            "number": "0.9",
+            "context": "ears. The rise is getting faster: about 0.9 ppm/year across the 1960s, about 2.6"
+          },
+          {
+            "number": "2.6",
+            "context": "0.9 ppm/year across the 1960s, about 2.6 ppm/year across the last decade. It pas"
+          },
+          {
+            "number": "6",
+            "context": "ns into a sawtooth: CO₂ drops about 6 ppm every northern-hemisphere summer, a"
+          },
+          {
+            "number": "40",
+            "context": "file, co2mmmlo.csv. It opens with about 40 comment lines, uses -1 / -9.99 / -0.99"
+          },
+          {
+            "number": "-1",
+            "context": "opens with about 40 comment lines, uses -1 / -9.99 / -0.99 to mean \"no measurement"
+          },
+          {
+            "number": "-9.99",
+            "context": "with about 40 comment lines, uses -1 / -9.99 / -0.99 to mean \"no measurement\" rather"
+          },
+          {
+            "number": "-0.99",
+            "context": "out 40 comment lines, uses -1 / -9.99 / -0.99 to mean \"no measurement\" rather than le"
+          }
+        ],
+        "checked": 13,
+        "exempt": []
+      }
+    },
+    {
+      "id": "S4",
+      "pass": false,
+      "severity": "fail",
+      "message": "no chart build site/stories/keeling-curve-make-charts.mjs to run",
+      "evidence": null
+    },
+    {
+      "id": "S5",
+      "pass": true,
+      "severity": "fail",
+      "message": "1 input(s) identical to their pinned commits",
+      "evidence": null
+    },
+    {
+      "id": "S6",
+      "pass": true,
+      "severity": "fail",
+      "message": "no date after as_of 2026-07-01",
+      "evidence": null
+    }
+  ]
+}

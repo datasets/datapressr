@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v2+reference-pairwise",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "AB",
+  "shown": {
+    "story_1": "A",
+    "story_2": "B"
+  },
+  "preferred": "B",
+  "margin": "slight",
+  "why": "Story 2 supplies the missing demand shock, refinery-throughput evidence, delivery obligation and contrast with longer-dated contracts; these require evidence beyond the supplied price series, and Story 1’s external citations are not established as available within its fixed inputs. Story 1 could nevertheless have quantified the preceding fall, exceptional benchmark spread, subsequent recovery and negative day’s contribution to April’s average using its available data. Story 1 adds the precise spot-price observation, Brent’s near-1998 low, the positive weekly average and an explicit acknowledgment that prices alone cannot establish causes. The first chart’s glance conclusion—both benchmarks slumped but only WTI crossed zero—matches the prose, with clearly labeled grey Brent and blue WTI lines, a red filled negative-day marker, black filled Brent markers and a black zero baseline; marker sizes merely emphasize observations. The second chart’s glance conclusion—a negative daily observation within a positive weekly average—also matches, with chart labels identifying thin grey daily and thicker blue weekly lines, equal-sized filled red and blue highlighted observations, and a black zero baseline; neither chart quantifies the broader comparisons the reader needs. There is no demonstrated factual disagreement: one negative daily spot observation and futures trading below zero into the next day concern different measurements, as do the different Brent quotes, and Story 2 gives the stronger explanation of why the event happened.",
+  "reader_questions": [
+    {
+      "q": "Which oil price went below zero, on what date and by how much, and is the quoted figure a spot price or a futures price?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "What could make a seller pay someone to take oil, and what evidence do the supplied sources offer about why that happened in April 2020?",
+      "A": "set-aside",
+      "B": "yes"
+    },
+    {
+      "q": "How far had WTI already fallen before the negative day, and how abrupt was the final plunge?",
+      "A": "partly",
+      "B": "no"
+    },
+    {
+      "q": "What happened to Brent at the same time, and how unusual was the gap between the two benchmarks?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How long did WTI stay negative, and how quickly and fully did it recover over the following weeks and months?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "Was this unprecedented in the available price records, and how did it compare with earlier oil-price collapses?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How much of April’s price collapse was concentrated in the negative day, and what do the weekly and monthly averages reveal about the broader slump?",
+      "A": "partly",
+      "B": "no"
+    }
+  ],
+  "prompt_sha256": "08485c1232b41c8b9d1c31a36b5dd93754492827219293a495f14730a841bbda",
+  "rubric_sha256": "374935fd0534369320c6380c526bf768d0c54fcbfcbab6213abab3aebdd6153e"
+}

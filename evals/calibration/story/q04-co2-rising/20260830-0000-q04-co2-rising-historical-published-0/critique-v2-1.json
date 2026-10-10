@@ -1,0 +1,141 @@
+{
+  "rubric": "story/v2",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "Is atmospheric CO₂ still rising in the latest usable Mauna Loa observations as of July 1, 2026, and what is its concentration in ppm?",
+      "answered": "partly",
+      "where": "“What it shows” gives 427 ppm for the 2025 annual mean and says annual means keep rising; the seasonal chart extends into 2026 without identifying the latest usable observation or its concentration."
+    },
+    {
+      "q": "How much has CO₂ increased over the latest comparable 12-month period, in ppm and percentage terms?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "Is the annual rate of increase accelerating or slowing compared with the past decade and earlier decades of the record?",
+      "answered": "partly",
+      "where": "“What it shows” compares about 0.9 ppm/year in the 1960s with 2.6 ppm/year across an undefined “last decade”; it does not compare the latest annual increase with those averages."
+    },
+    {
+      "q": "After removing the normal seasonal cycle, do the recent monthly readings show a continuing rise or a change in direction?",
+      "answered": "partly",
+      "where": "“The seasonal cycle” describes a “trend that doesn't reverse,” and keeling-seasonal.svg presents a deseasonalized series, but neither identifies recent monthly changes."
+    },
+    {
+      "q": "How much has the concentration risen since the first full year of measurements in 1959?",
+      "answered": "partly",
+      "where": "“What it shows” supplies the endpoints, 316 ppm in 1959 and 427 ppm in 2025, but leaves the increase for the reader to calculate."
+    },
+    {
+      "q": "Do measurement uncertainty, interpolated months or incomplete recent coverage materially affect the conclusion about the latest rise?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How well does the Mauna Loa record represent atmospheric CO₂ worldwide, and what limits apply to that comparison?",
+      "answered": "set-aside",
+      "where": ""
+    }
+  ],
+  "missed_findings": [
+    "The monthly data could establish the latest usable concentration and its same-month year-on-year increase in ppm and percent, after checking coverage and excluding any monthly average that was not available by July 1, 2026.",
+    "The annual series could distinguish the latest year's acceleration or slowdown from the longer-term increase in average growth rates, using explicitly dated comparison periods.",
+    "The story's rounded annual endpoints imply an increase of about 111 ppm, or 35%, between 1959 and 2025, but it never states either result.",
+    "The uncertainty, observation-count and interpolation fields could support an assessment of whether the latest increase survives measurement and coverage limitations.",
+    "Recent deseasonalized monthly changes could test the absolute claim that the trend never reverses; a long chart and an assertion do not establish that."
+  ],
+  "charts": [
+    {
+      "file": "keeling-annual.svg",
+      "glance": "CO₂ has climbed over decades and crossed two highlighted concentration thresholds.",
+      "glance_matches_prose": true,
+      "encodings": "The solid blue line represents annual concentration, identified by the surrounding caption rather than an on-chart label; green and red dashed horizontal lines have matching threshold labels; faint horizontal lines are the ppm grid. There are no data markers or size encodings.",
+      "encodings_clear": false,
+      "shows": "Annual concentration against year, with labelled threshold crossings; the supplied source omits the line coordinates, so its precise shape and individual values cannot be checked.",
+      "form_fits": true,
+      "fix": "Place the threshold rules at their labelled values: the SVG positions currently correspond to approximately 351.69 and 401.01 ppm, rather than 350 and 400 ppm."
+    },
+    {
+      "file": "keeling-seasonal.svg",
+      "glance": "Seasonal fluctuations sit on a rising longer-term CO₂ path.",
+      "glance_matches_prose": true,
+      "encodings": "A thin grey solid line and a thicker blue solid line apparently represent monthly and deseasonalized concentrations, but neither is labelled on the chart; the reader must infer the mapping from the prose. Identical filled dark circles mark the directly labelled May and September 2025 seasonal high and low. Faint horizontal lines are the ppm grid.",
+      "encodings_clear": false,
+      "shows": "Monthly and seasonally adjusted concentration over time, with two 2025 seasonal observations highlighted; omitted path coordinates prevent checking the latest movements or endpoint.",
+      "form_fits": true,
+      "fix": "Directly label the grey line “Monthly mean” and the blue line “Seasonally adjusted” so readers can identify the evidence without consulting the prose."
+    }
+  ],
+  "top_change": "Rebuild the opening around the latest usable monthly observation: give its date, concentration, year-on-year increase in ppm and percent, and coverage qualification, then compare that increase with explicitly dated historical rates.",
+  "publishable": "no",
+  "lessons": [
+    {
+      "rule": "For a current-state commission, lead with the latest usable observation and a comparable measure of change.",
+      "evidence": "The story leads with historical annual means and never supplies the latest monthly concentration or 12-month increase."
+    },
+    {
+      "rule": "Separate long-term acceleration from the direction of the latest growth rate.",
+      "evidence": "The 1960s-versus-last-decade comparison does not establish whether growth is currently accelerating or slowing."
+    },
+    {
+      "rule": "Calculate the comparison the reader needs instead of supplying only its ingredients.",
+      "evidence": "The 1959 and 2025 endpoints leave readers to calculate the roughly 111 ppm, 35% increase."
+    },
+    {
+      "rule": "Make chart encodings self-contained and verify annotations against axis coordinates.",
+      "evidence": "The seasonal lines lack labels, and the annual chart's threshold rules do not sit at their stated ppm values."
+    },
+    {
+      "rule": "Use limited prose space for substantive uncertainty and scope before production details.",
+      "evidence": "The lengthy build-script discussion displaces assessment of interpolation, recent coverage and the limits of a single monitoring location."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 1,
+      "why": "A clear historical-rise claim appears, but it does not establish the current pace, and the production section does not serve the commission."
+    },
+    "depth": {
+      "score": 1,
+      "why": "The seasonal mechanism and historical rate comparison help, but the latest rate and recent adjusted movements are not examined."
+    },
+    "charts": {
+      "score": 1,
+      "why": "Time-series lines suit the broad claims, but the seasonal series require inference and the charts do not display the cited growth rates."
+    },
+    "honesty": {
+      "score": 0,
+      "why": "The threshold rules are plotted at incorrect values; the “safe ceiling” claim is unattributed, and the absolute claim of a trend that never reverses needs verification from the monthly rows."
+    },
+    "reader_questions": {
+      "score": 0,
+      "why": "None of the six in-reach questions is fully answered; the latest 12-month increase and the reliability assessment are entirely absent."
+    },
+    "prose": {
+      "score": 1,
+      "why": "The core explanation is readable and figures are rounded, but publishing-workflow chatter and detailed CSV processing take space from the reader's questions."
+    }
+  },
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+  "prompt_sha256": "2a0199cdb24c294ac1090f02c11a1c048fbc9b1dd15c059f832ddce6dd7bc679",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 31660,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2005,
+      "reasoning_output_tokens": 155
+    },
+    "calls": 2
+  }
+}

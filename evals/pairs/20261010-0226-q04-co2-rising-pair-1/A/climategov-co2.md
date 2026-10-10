@@ -1,0 +1,13 @@
+---
+title: "NOAA Climate.gov, Climate change: atmospheric carbon dioxide (Rebecca Lindsey, 21 May 2025)"
+---
+
+Key findings of a published reference piece, as recorded by us. The original's prose and charts are not reproduced. Source: https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide
+
+- Global average CO2 set a record in 2024, about 422.8 ppm, and the 2024 rise over 2023 (3.75 ppm) was the largest one-year increase on record; Mauna Loa's 2024 annual mean was 424.61 ppm, and its monthly mean peaked just under 427 ppm in May 2024.
+- The rise is speeding up: about 0.8 ppm a year in the 1960s, about 1.6 in the 1980s, 1.5 in the 1990s and about 2.6 a year over 2015-2024; the current rate is roughly 100 times faster than the natural rise at the end of the last ice age.
+- CO2 is now about 50% above its pre-industrial level (280 ppm or less before the mid-1700s); in ice cores it never exceeded 300 ppm over the past million or so years, and it was already about 315 ppm when Mauna Loa measurements began in 1958.
+- The cause is human: fossil-fuel CO2 emissions grew from about 11 billion tons a year in the 1960s to an estimated 37.4 billion tons in 2024 (Global Carbon Budget), and plants and the ocean remove only about half of each year's emissions.
+- Year-to-year growth varies with climate: the biggest annual jumps come with strong El Ninos, and 2024's record rise is attributed largely to heat, drought and large fires in the Amazon and Canada.
+- The seasonal cycle at Mauna Loa peaks each May and falls through the Northern Hemisphere growing season; the long-term rise sits on top of it.
+- Consequences named: CO2 is the main long-lived greenhouse gas (about 80% of the heating influence of human-produced greenhouse gases since 1990), and the ocean's uptake has lowered surface pH from 8.21 to 8.10, about 30% more acidic.
