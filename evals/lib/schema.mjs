@@ -361,6 +361,8 @@ const ROW_CHECKS = {
       c.string(r.writer.model, "writer.model");
       c.string(r.writer.model_actual, "writer.model_actual", { nullable: true });
       c.string(r.writer.cli_version, "writer.cli_version", { nullable: true, optional: true });
+      // prompt_sha256 arrived in run rows with datapressr-hcn.24; older rows have it in run.json only.
+      c.string(r.writer.prompt_sha256, "writer.prompt_sha256", { pattern: SHA256, optional: true });
     }
     c.number(r.turns, "turns", { min: 0, integer: true, nullable: true });
     c.number(r.cost_usd, "cost_usd", { min: 0, nullable: true });

@@ -69,7 +69,7 @@ After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or 
 | `lib/ledger.mjs` | Append (validated) and read `ledger.jsonl`; never rewrites |
 | `lib/runner.mjs` | The `run` flow |
 | `lib/checkers/structure.mjs` | The thirteen structure checks D1–D13 (below); `structure.test.mjs` holds the oracle and saboteur tests |
-| `lib/checkers/story.mjs` | The six story checks S1–S6 (below); `run-checks.mjs` is the `check` subcommand, which `run` also calls after collecting artefacts; `offline-preload.mjs` blocks the network for chart rebuilds |
+| `lib/checkers/story.mjs` | The seven story checks S1–S7 (below); `run-checks.mjs` is the `check` subcommand, which `run` also calls after collecting artefacts; `offline-preload.mjs` blocks the network for chart rebuilds |
 | `lib/report.mjs` | Writes `REPORT.md` (sections below); `renderReport(rows, ctx)` is pure, `reportContext` gathers skill history from git and the installed CLI versions |
 | `lib/critic.mjs` | The critic: rubric loading, prompt assembly, output schemas, validation with one retry, Markdown rendering, and the `score` and `pair` subcommands |
 | `rubrics/<domain>/vN.md` | The critic's instructions; a new version is a new file with its change log in the header (never sent to the critic). A version is frozen once calibrated (`story/v1` since `datapressr-hcn.8`): its hash covers the whole file, so even a header edit splits its scores |
@@ -126,7 +126,7 @@ Blindness of the pair files: `critique-*.json` plus the pair row's `preferred_ru
 - **Flags.** Hard regression: a check that passed on every run of the previous skill tree for a case and fails on a run of the next tree (deterministic checks are the only automatic regressions). Soft flag: a pair where the older tree won in both orders. Leaked runs. A missing or failed canary for the installed CLI version and current recipe.
 - **Per skill change.** Each skill tree with runs, newest first: the cases run, the `git log --oneline a..b -- skills/<name>` range since the previous tree (with a compare link), win/tie/loss of new vs old in order-swapped pairs with n (a win only when both orders agree; split orders are a tie), and owner preferences once revealed. Then the skill commits after the earliest tree with runs that no pair covers (a pair old -> new covers the commits between them).
 - **Per case.** Runs newest first, one table per writer `model_actual`: date, run, skill tree, checks, cost, turns, flags; then one table of absolute scores per rubric version (never mixed), with the critic and publishable; then the pairs; then rounds to publishable and the owner's remarks, verbatim.
-- **Noise.** Per case, writer model and rubric: each dimension's range (min-max) per skill tree with n, and a comparison row that says higher or lower only when the ranges do not overlap, otherwise "no detectable change"; n=1 is an anecdote. Critic-only spread from re-scoring one run. No standard deviations or p-values.
+- **Noise.** Per case, writer model, rubric and writer prompt (`writer.prompt_sha256`, from the run row or else the run's `run.json`; the harness tree when neither has it), so runs given different prompts, such as the q01 pilot before the blind-run notes or a no-skill arm, are never pooled (`datapressr-hcn.24`): each dimension's range (min-max) per skill tree with n, and a comparison row that says higher or lower only when the ranges do not overlap, otherwise "no detectable change"; n=1 is an anecdote. Critic-only spread from re-scoring one run. No standard deviations or p-values.
 - **Harness quality.** Judge-owner agreement on pairs per rubric version (owner's preferred run against the critic's pair result; "neither" agrees with a tie; the critic stands alone for small edits only at 4 of 5), owner vs critic checklist scores where both exist, calibration hit rates (`calibration/<domain>/*.json`, each `{ rubric, label, hits, total }`), critic fallback rate, critic validation failures, leaks caught, and canary status per vendor.
 
 ## Owner capture
@@ -143,7 +143,7 @@ For a pair, `owner` appends the owner row first (A/B labels as the owner saw the
 
 ## Story checks
 
-`check` rebuilds the writer's workspace in a temp dir (case inputs via `git archive` at their pinned commits, the run's artefacts on top, `site/stories/node_modules` linked from this repo), runs the six checks of design section 5.1, writes `checks.json` and appends a `check` row. All six have severity `fail`.
+`check` rebuilds the writer's workspace in a temp dir (case inputs via `git archive` at their pinned commits, the run's artefacts on top, `site/stories/node_modules` linked from this repo), runs the six checks of design section 5.1 plus S7, writes `checks.json` and appends a `check` row. All seven have severity `fail`.
 
 | Id | Passes when |
 |---|---|
@@ -153,6 +153,7 @@ For a pair, `owner` appends the owner row first (A/B labels as the owner saw the
 | S4 | `<slug>-make-charts.mjs` run twice offline (network blocked) gives byte-identical SVGs, identical to the committed ones |
 | S5 | Every input is identical to its pinned commit: no file edited, added or deleted |
 | S6 | No date or year after the case's `as_of` in the prose or the outline (link URLs excluded); passes when the case has no `as_of` |
+| S7 | No SVG the prose embeds has NaN, Infinity or `undefined` in an attribute (transforms, path data, coordinates), or JavaScript function source (`=>`, `function (`) in one, which Observable Plot writes when a function is passed for a constant option such as `dx`, `textAnchor` or `fontWeight`; no visible `<text>` reads NaN or `undefined` (`datapressr-hcn.25`: the WWII run's legend sat at `translate(NaN,-22)`) |
 
 The oracle is the published stories in `site/stories/`; their known failures are pinned with reasons in `lib/checkers/story.test.mjs` and explained in [`LESSONS.md`](LESSONS.md).
 

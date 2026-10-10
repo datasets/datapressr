@@ -1,6 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { agreement, compareRanges, renderReport } from "./report.mjs";
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { agreement, compareRanges, promptKey, readPrompts, renderReport } from "./report.mjs";
 import { validateLedgerRow } from "./schema.mjs";
 
 const SHA = "d".repeat(64);
@@ -145,6 +148,67 @@ test("noise: overlapping ranges are no detectable change, disjoint ranges are a 
   assert.equal(compareRanges([2, 2], [0, 1]), "higher");
   assert.equal(compareRanges([0, 0], [1, 2]), "lower");
   assert.equal(compareRanges([2], [0, 0]), "anecdote (n=1)");
+});
+
+test("noise: runs given different writer prompts are never pooled (datapressr-hcn.24)", () => {
+  const P1 = "a".repeat(64);
+  const P2 = "b".repeat(64);
+  const withPrompt = (sha) => ({ writer: { vendor: "claude", model: "claude-opus-5-5", model_actual: "claude-opus-5-5", prompt_sha256: sha } });
+  // Synthetic ledger: tree T1 has two pilot runs on prompt P1 (old notes) and two on P2; tree T2
+  // has two on P2. Pooled, T1's P1 runs would widen its range and hide the T2 vs T1 change.
+  const rows = [
+    run("p1a", "2026-10-10T09:00:00.000Z", T1, withPrompt(P1)),
+    run("p1b", "2026-10-10T09:05:00.000Z", T1, withPrompt(P1)),
+    run("t1a", "2026-10-10T09:10:00.000Z", T1, withPrompt(P2)),
+    run("t1b", "2026-10-10T09:15:00.000Z", T1, withPrompt(P2)),
+    run("t2a", "2026-10-10T10:00:00.000Z", T2, withPrompt(P2)),
+    run("t2b", "2026-10-10T10:05:00.000Z", T2, withPrompt(P2)),
+    // An older row with no prompt in the ledger: its run.json hash arrives through ctx.prompts.
+    run("old", "2026-10-10T10:10:00.000Z", T2),
+    // No prompt anywhere: keyed by harness tree, never pooled with a known prompt.
+    run("unk", "2026-10-10T10:15:00.000Z", T2, { harness_tree: T3 }),
+    score("p1a", "2026-10-10T12:00:00Z", { argument: 2 }),
+    score("p1b", "2026-10-10T12:00:00Z", { argument: 0 }),
+    score("t1a", "2026-10-10T12:00:00Z", { argument: 0 }),
+    score("t1b", "2026-10-10T12:00:00Z", { argument: 0 }),
+    score("t2a", "2026-10-10T12:00:00Z", { argument: 2 }),
+    score("t2b", "2026-10-10T12:00:00Z", { argument: 2 }),
+    score("old", "2026-10-10T12:00:00Z", { argument: 1 }),
+    score("unk", "2026-10-10T12:00:00Z", { argument: 1 }),
+  ];
+  for (const row of rows) assert.deepEqual(validateLedgerRow(row).errors, [], row.run_id);
+  const s = section(renderReport(rows, { ...ctx, prompts: { old: P2 } }), "Noise");
+  const tables = s.split("\n### ").slice(1).filter((t) => !t.startsWith("Critic-only"));
+  assert.equal(tables.length, 3, "one table per prompt: P1, P2 and the unknown one");
+  const p1 = tables.find((t) => t.includes("prompt `aaaaaaa`"));
+  const p2 = tables.find((t) => t.includes("prompt `bbbbbbb`"));
+  const unk = tables.find((t) => t.includes("harness tree `3333333` (prompt unknown)"));
+  assert.ok(p1 && p2 && unk);
+  assert.match(p1, /\| `1111111` \| 2 \| 0-2 \|/);
+  assert.doesNotMatch(p1, /2222222/, "no P2 run in the P1 table");
+  assert.match(p2, /\| `2222222` \| 3 \| 1-2 \|/, "the old row joins P2 through its run.json hash");
+  assert.match(p2, /\| `1111111` \| 2 \| 0 \|/, "the P1 pilot runs are not pooled into T1");
+  assert.match(p2, /\| `2222222` vs `1111111` \| higher \|/);
+  assert.match(unk, /\| `2222222` \| 1 \(anecdote\) \|/);
+  // Every table's runs share one prompt key.
+  assert.equal(promptKey({ run_id: "x", harness_tree: T0, writer: {} }, { x: P1 }).key, `prompt:${P1}`);
+  assert.equal(promptKey({ run_id: "x", harness_tree: T0, writer: {} }).key, `harness:${T0}`);
+});
+
+test("readPrompts reads writer.prompt_sha256 from run.json for rows without it", () => {
+  const dir = mkdtempSync(join(tmpdir(), "report-prompts-"));
+  try {
+    mkdirSync(join(dir, "runs/a"), { recursive: true });
+    writeFileSync(join(dir, "runs/a/run.json"), JSON.stringify({ writer: { prompt_sha256: "c".repeat(64) } }));
+    const rows = [
+      { kind: "run", run_id: "a", path: "runs/a", writer: {} },
+      { kind: "run", run_id: "b", path: "runs/missing", writer: {} },
+      { kind: "run", run_id: "c", path: "runs/a", writer: { prompt_sha256: "d".repeat(64) } },
+    ];
+    assert.deepEqual(readPrompts(dir, rows), { a: "c".repeat(64) });
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 test("harness quality: agreement per rubric, owner vs critic scores, calibration, fallback, canaries", () => {

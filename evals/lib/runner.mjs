@@ -223,7 +223,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
       skill_ref: skill.ref,
       skill_tree: skill.tree,
       harness_tree: harness.tree,
-      writer: { vendor: writer, model: out.model, model_actual: out.model_actual, cli_version: out.cli_version ?? null },
+      writer: { vendor: writer, model: out.model, model_actual: out.model_actual, cli_version: out.cli_version ?? null, prompt_sha256: run.writer.prompt_sha256 },
       turns: out.turns,
       cost_usd: out.cost_usd,
       flags: run.flags,

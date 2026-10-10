@@ -347,23 +347,33 @@ export function compareRanges(newVals, oldVals) {
   return "no detectable change";
 }
 
-function noiseSection(a) {
-  const out = ["## Noise", "", "Absolute scores per skill tree as min-max ranges with n (the latest score per run). A difference is called a change only when the ranges do not overlap; otherwise \"no detectable change\". A single run is an anecdote. No standard deviations or p-values at these sample sizes.", ""];
+// The writer prompt a run was given, as a pooling key for the noise table (datapressr-hcn.24):
+// the run row's writer.prompt_sha256 (rows since hcn.24), else the hash read from its run.json
+// (ctx.prompts, gathered by reportContext), else the harness tree, which holds the stager that
+// builds the prompt, so an unknown prompt never pools with a different harness.
+export function promptKey(run, prompts = {}) {
+  const sha = run.writer?.prompt_sha256 ?? prompts[run.run_id] ?? null;
+  return sha ? { key: `prompt:${sha}`, label: `prompt ${code(short(sha))}` } : { key: `harness:${run.harness_tree}`, label: `harness tree ${code(short(run.harness_tree))} (prompt unknown)` };
+}
+
+function noiseSection(a, ctx = {}) {
+  const out = ["## Noise", "", "Absolute scores per skill tree as min-max ranges with n (the latest score per run), one table per case, writer model, rubric and writer prompt: runs given different prompts (a harness change to the blind-run notes, or the no-skill arm) are never pooled. A difference is called a change only when the ranges do not overlap; otherwise \"no detectable change\". A single run is an anecdote. No standard deviations or p-values at these sample sizes.", ""];
   const okScores = a.scores.filter((s) => s.status === "ok" && a.runById.has(s.run_id));
   if (okScores.length === 0) return [...out, "No absolute scores recorded yet.", ""];
   const latest = [...latestBy(okScores, (s) => `${s.run_id}\u0000${s.rubric}`).values()];
   const groups = groupBy(latest, (s) => {
     const r = a.runById.get(s.run_id);
-    return `${r.domain}/${r.case_id}\u0000${modelOf(r)}\u0000${s.rubric}\u0000${skillOf(r)}`;
+    const p = promptKey(r, ctx.prompts);
+    return `${r.domain}/${r.case_id}\u0000${modelOf(r)}\u0000${s.rubric}\u0000${skillOf(r)}\u0000${p.key}\u0000${p.label}`;
   });
   for (const key of [...groups.keys()].sort()) {
-    const [caseKey, model, rubric, skill] = key.split("\u0000");
+    const [caseKey, model, rubric, skill, , promptLabel] = key.split("\u0000");
     const rows = groups.get(key);
     const dims = DIMS.filter((d) => rows.some((s) => d in (s.scores ?? {})));
     const byTree = groupBy(rows, (s) => a.runById.get(s.run_id).skill_tree);
     const trees = [...byTree.keys()].sort((x, y) => a.treeRank(skill, y) - a.treeRank(skill, x));
     const vals = (tree, d) => byTree.get(tree).map((s) => s.scores?.[d]).filter((v) => typeof v === "number");
-    out.push(`### ${caseKey}, writer ${model}, rubric ${rubric}`, "");
+    out.push(`### ${caseKey}, writer ${model}, rubric ${rubric}, ${promptLabel}`, "");
     out.push(`| Skill tree | n | ${dims.join(" | ")} |`, `|---|---|${dims.map(() => "---|").join("")}`);
     for (const t of trees) out.push(`| ${treeLabel(t)} | ${byTree.get(t).length}${byTree.get(t).length === 1 ? " (anecdote)" : ""} | ${dims.map((d) => fmtRange(range(vals(t, d)))).join(" | ")} |`);
     out.push("");
@@ -509,7 +519,7 @@ export function renderReport(rows, ctx = {}) {
     ...flagsSection(rows, a, ctx),
     ...skillSection(a, ctx),
     ...caseSection(a),
-    ...noiseSection(a),
+    ...noiseSection(a, ctx),
     ...harnessSection(rows, a, ctx),
   ];
   while (out[out.length - 1] === "") out.pop();
@@ -580,6 +590,20 @@ function readCalibration(evalsDir) {
 // list with the same cliVersion/recipeHash exports.
 const CANARY_ADAPTERS = [claude];
 
+// Writer prompt hashes from run.json for run rows that predate writer.prompt_sha256 in the ledger.
+export function readPrompts(evalsDir, rows) {
+  const prompts = {};
+  for (const r of rows.filter((x) => x.kind === "run" && !x.writer?.prompt_sha256 && x.path)) {
+    try {
+      const sha = JSON.parse(readFileSync(join(evalsDir, r.path, "run.json"), "utf8")).writer?.prompt_sha256;
+      if (sha) prompts[r.run_id] = sha;
+    } catch {
+      // no run.json (or unreadable): the report falls back to the harness tree
+    }
+  }
+  return prompts;
+}
+
 export function reportContext(root, evalsDir, rows, { adapters = CANARY_ADAPTERS } = {}) {
   const skills = {};
   for (const name of new Set(rows.filter((r) => r.kind === "run").map(skillOf))) skills[name] = skillHistory(root, name);
@@ -602,7 +626,7 @@ export function reportContext(root, evalsDir, rows, { adapters = CANARY_ADAPTERS
       canary.push({ vendor: ad.vendor, cli_version: version, recipe_sha256: recipe, mode });
     }
   }
-  return { skills, canary, calibration: readCalibration(evalsDir), repoUrl: githubUrl(root) };
+  return { skills, canary, calibration: readCalibration(evalsDir), repoUrl: githubUrl(root), prompts: readPrompts(evalsDir, rows) };
 }
 
 export function writeReport(ledgerFile, reportFile, ctx) {

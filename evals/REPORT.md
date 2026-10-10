@@ -72,7 +72,7 @@ Cases run: structure/co2-monthly (7 runs).
 
 #### Skill commits with no pairwise comparison on record
 
-None.
+- `07c29e1` Drafts stay off the live site (publish: false) until approved; licence policy: ship and cite; owner review beads
 
 ## Per case
 
@@ -163,26 +163,32 @@ Absolute scores, rubric story/v2 (diagnostic; 0-2):
 
 ## Noise
 
-Absolute scores per skill tree as min-max ranges with n (the latest score per run). A difference is called a change only when the ranges do not overlap; otherwise "no detectable change". A single run is an anecdote. No standard deviations or p-values at these sample sizes.
+Absolute scores per skill tree as min-max ranges with n (the latest score per run), one table per case, writer model, rubric and writer prompt: runs given different prompts (a harness change to the blind-run notes, or the no-skill arm) are never pooled. A difference is called a change only when the ranges do not overlap; otherwise "no detectable change". A single run is an anecdote. No standard deviations or p-values at these sample sizes.
 
-### story/q01-french-debt, writer claude-opus-5-5, rubric story/v1
+### story/q01-french-debt, writer claude-opus-5-5, rubric story/v1, prompt `39a5e7f`
 
 | Skill tree | n | argument | depth | charts | honesty | reader_questions | prose |
 |---|---|---|---|---|---|---|---|
 | `c08d6d6` | 2 | 0 | 1 | 1 | 0 | 0 | 1-2 |
 
-### story/q01-french-debt, writer claude-opus-5-5, rubric story/v2
+### story/q01-french-debt, writer claude-opus-5-5, rubric story/v2, prompt `39a5e7f`
+
+| Skill tree | n | argument | depth | charts | honesty | reader_questions | prose |
+|---|---|---|---|---|---|---|---|
+| `c08d6d6` | 2 | 2 | 1 | 1 | 0 | 1 | 1 |
+
+### story/q01-french-debt, writer claude-opus-5-5, rubric story/v2, prompt `3fe1ed6`
 
 | Skill tree | n | argument | depth | charts | honesty | reader_questions | prose |
 |---|---|---|---|---|---|---|---|
 | `d6d4845` | 2 | 2 | 1 | 1 | 0-1 | 1 | 1-2 |
-| `c08d6d6` | 4 | 2 | 1 | 1 | 0-2 | 1 | 1 |
+| `c08d6d6` | 2 | 2 | 1 | 1 | 0-2 | 1 | 1 |
 
 | Comparison | argument | depth | charts | honesty | reader_questions | prose |
 |---|---|---|---|---|---|---|
 | `d6d4845` vs `c08d6d6` | no detectable change | no detectable change | no detectable change | no detectable change | no detectable change | no detectable change |
 
-### story/q02-allies-wwii, writer claude-opus-5-5, rubric story/v2
+### story/q02-allies-wwii, writer claude-opus-5-5, rubric story/v2, prompt `5a60fa0`
 
 | Skill tree | n | argument | depth | charts | honesty | reader_questions | prose | data_choice |
 |---|---|---|---|---|---|---|---|---|
