@@ -7,7 +7,8 @@ The walkthrough of how the source was found and built is [`site/docs/examples/te
 ```sh
 SEC_USER_AGENT="<project> <your-email>" node fetch.ts   # network; reuses archive/ unless --refresh
 node build.ts                                           # offline; archive/ → data/
-node --test                                             # 31 tests
+node --test                                             # 32 tests
+node chart.ts                                           # offline; data/ → the chart in the worked example
 ```
 
 `fetch.ts` is the only script that touches the network, and it refuses to *fetch* without `SEC_USER_AGENT` (with a snapshot already in `archive/` it reuses it and exits without needing one) — the SEC requires requests to identify the requester and asks for no more than 10 per second. `build.ts` reads `archive/` only, checks every file against the SHA-256 in `archive/manifest.json`, and is deterministic: two runs produce byte-identical CSVs.
@@ -25,6 +26,8 @@ node --test                                             # 31 tests
 | Q4 2023 – Q2 2026 | `Model 3/Y`, `Other Models` |
 
 Group labels are kept exactly as the release writes them. A combined group is never split into individual models, and groups are never re-combined across regimes, because the source does not support either. If you want a continuous series, `Total` is the only group that runs unchanged through all 29 quarters.
+
+**For a continuous series, use `data/tesla-quarterly-totals.csv`.** It holds one row per quarter with the release's `Total` deliveries and production side by side, copied from the Total rows of the main resource by `build.ts` (a test checks they match). It is what the chart on this page plots.
 
 **`is_total` matters.** Each quarter and metric has its component rows plus the release's own `Total`. Filter on `is_total` — summing a Total with its components double-counts. `build.ts` asserts that the components sum to the reported Total for every quarter and metric where the release printed a figure for every group, so if that ever stops being true the build fails rather than publishing the discrepancy. Where a group is dashed instead, the exact sum is unavailable by construction; the build still requires the known components not to exceed the Total, and the dash-resolution rule below is what decides the rest.
 

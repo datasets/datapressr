@@ -338,3 +338,18 @@ test("the coverage table accounts for every archived exhibit", () => {
   assert.equal(coverage.filter((c) => c.extracted === "true").length, 29);
   assert.ok(coverage.filter((c) => c.layout === "prose").length >= 19, "the prose era is recorded, not dropped");
 });
+
+test("the quarterly totals resource is exactly the Total rows, one per quarter", () => {
+  const rows = readCsv("tesla-quarterly-deliveries.csv").filter((r) => r.vehicle_group === "Total");
+  const totals = readCsv("tesla-quarterly-totals.csv");
+  assert.equal(totals.length, new Set(rows.map((r) => r.period_start)).size);
+  for (const t of totals) {
+    for (const metric of ["deliveries", "production"]) {
+      const r = rows.find((x) => x.period_start === t.period_start && x.metric === metric);
+      assert.ok(r, `no ${metric} Total for ${t.period_start}`);
+      assert.equal(t[metric], r.vehicles, `${metric} ${t.period_start}`);
+      assert.equal(t.period_end, r.period_end);
+      assert.equal(t.source_id, r.source_id);
+    }
+  }
+});

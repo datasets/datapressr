@@ -9,13 +9,31 @@ An agent was given a data question, not a source: *Tesla quarterly sales by vehi
 
 `archive` and `structure` both start from a source you already have. This example is about the step before them, and the finding that matters most is that **discovery changed the question**. The question said "sales by vehicle". The source supports *production and deliveries by model group*, where the grouping changes twice and no individual model is ever reported. Half the work was establishing that, and the rest was not quietly papering over it.
 
+## The result
+
+![Line chart of Tesla's total vehicles delivered (blue) and produced (orange) per quarter, Q2 2019 to Q2 2026. Deliveries rise from 95,200 in Q2 2019 to about 485,000 by Q4 2023, then swing between 336,681 and 497,099; the peak is Q3 2025. Q2 2026: 480,126 delivered, 451,758 produced.](tesla-quarterly-deliveries.svg)
+
+The chart plots `data/tesla-quarterly-totals.csv`, the release's own `Total` per quarter. It uses Total because Total is the only group that runs unchanged through all 29 quarters; the model groups change twice. `chart.ts` in the dataset directory draws it from the CSV. On DataHub, a `views` entry in `datapackage.json` draws the same series on the dataset page.
+
+The main resource, `data/tesla-quarterly-deliveries.csv`, has one row per quarter, vehicle group and metric. Here are its six rows for the latest quarter:
+
+| period_start | period_end | vehicle_group | is_total | metric | vehicles | source_id |
+|---|---|---|---|---|--:|---|
+| 2026-04-01 | 2026-06-30 | Model 3/Y | false | deliveries | 467762 | 0001628280-26-046717 |
+| 2026-04-01 | 2026-06-30 | Other Models | false | deliveries | 12364 | 0001628280-26-046717 |
+| 2026-04-01 | 2026-06-30 | Total | true | deliveries | 480126 | 0001628280-26-046717 |
+| 2026-04-01 | 2026-06-30 | Model 3/Y | false | production | 442936 | 0001628280-26-046717 |
+| 2026-04-01 | 2026-06-30 | Other Models | false | production | 8822 | 0001628280-26-046717 |
+| 2026-04-01 | 2026-06-30 | Total | true | production | 451758 | 0001628280-26-046717 |
+
 ## Run it
 
 ```sh
 cd datasets/transport/tesla-quarterly-deliveries
 SEC_USER_AGENT="<project> <your-email>" node fetch.ts   # ~100 requests, paced; writes archive/
 node build.ts                                           # offline; archive/ → data/
-node --test                                             # 31 tests
+node --test                                             # 32 tests
+node chart.ts                                           # data/ → the chart above
 node ../../../scripts/validate-datapackage.mjs .
 ```
 
