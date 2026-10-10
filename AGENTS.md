@@ -211,6 +211,8 @@ The site's navbar, favicon, sidebar and edit-link settings are in `site/config.j
 
 Beads is the source of truth for actionable work, dependencies and completion evidence. Start with [NEXT.md](https://github.com/datasets/datapressr/blob/main/NEXT.md), the reusable session prompt for selecting and executing `bd ready` tasks; [docs/next-session-brief.md](https://github.com/datasets/datapressr/blob/main/docs/next-session-brief.md) holds the detailed protocol and [docs/next-audit.md](https://github.com/datasets/datapressr/blob/main/docs/next-audit.md) holds the dated migration evidence. Keep NEXT.md as instructions, not a Markdown task queue. Read the full assigned Bead, claim it, and record verification and handoff notes before closing it.
 
+**Logging a new idea quickly:** default to a bead (labels `dataset,inbox`); use a line in the Inbox issue only when `bd` isn't available, and its own GitHub issue only for long write-ups. Never the same idea in two places. Details in [Capturing ideas quickly](site/docs/capturing-ideas.md).
+
 This repo uses [beads](https://github.com/steveyegge/beads) (`bd`) for task tracking — see `.beads/README.md` and the sync playbook at `~/src/rufuspollock/agent-skills/beads-sync-playbook.md` for setup/sync mechanics.
 
 **Labeling convention for a dataset-wrangling idea that hasn't been triaged yet:**

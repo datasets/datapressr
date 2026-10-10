@@ -39,6 +39,8 @@ You can stop at a useful dataset. Use `init` to scaffold it and `push` to publis
 
 ## Find and prepare a source
 
+Saw something that might be a dataset? [Capture it in seconds](capturing-ideas.md), then come back to it later.
+
 Use the [source-discovery playbook](source-discovery-playbook.md) to turn a question into an extraction plan: compare sources, check licensing, establish coverage and record gaps before building.
 
 Two worked examples show how that works in practice:

@@ -28,11 +28,12 @@ The idea goes into **the project you are working in** — never into another pro
 
 ## Inside the DataPressr repo
 
-1. Decide substantive vs. not, right now, don't agonize:
-   - **Not yet substantive** (a URL with no clear dataset shape yet, a factoid, a vague idea) → add one checklist line to the open **"Inbox — quick finds to triage"** issue in `datasets/datapressr`. Find it with `search_issues` (query: `Inbox quick finds to triage`) rather than a hardcoded issue number — it could be recreated or renumbered.
-   - **Already substantive** (clear source, some readiness signal — an existing scraper, an attached file, a known API) → a bead, not its own GitHub issue: `bd create --title="dataset: <name>" --type=task --priority=3 --labels="dataset,inbox"` (add `story-candidate` for a story idea; see AGENTS.md's labeling convention).
+1. Where it goes, first match wins (see [Capturing ideas quickly](https://github.com/datasets/datapressr/blob/main/site/docs/capturing-ideas.md)):
+   - **`bd` is available** (the default) → a bead: `bd create --title="dataset: <name>" --type=task --priority=3 --labels="dataset,inbox"` (add `story-candidate` for a story idea; see AGENTS.md's labeling convention).
+   - **No `bd`** (e.g. a cloud session) → add one checklist line to the open **"Inbox — quick finds to triage"** issue in `datasets/datapressr`. Find it with `search_issues` (query: `Inbox quick finds to triage`) rather than a hardcoded issue number — it could be recreated or renumbered.
+   - **Needs a long write-up or outside comment** → its own issue, titled `Wrangle and publish: <name>` or `Data story: <name>`, linked from the bead.
 
-2. Beads (`bd ready`) is the actionable work queue; see the [handoff protocol](https://github.com/datasets/datapressr/blob/main/docs/next-session-brief.md). Lightweight captures go in the Inbox issue under this skill; anything substantive is tracked in Beads only, following AGENTS.md's labeling convention. Never file the same idea in both.
+2. Beads (`bd ready`) is the actionable work queue; see the [handoff protocol](https://github.com/datasets/datapressr/blob/main/docs/next-session-brief.md). Captures go in Beads by default and in the Inbox issue only when `bd` isn't available, following AGENTS.md's labeling convention. Never file the same idea in both.
 
 ## Why not a markdown backlog in DataPressr
 
