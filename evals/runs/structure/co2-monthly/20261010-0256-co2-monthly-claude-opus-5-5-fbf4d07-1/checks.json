@@ -1,0 +1,105 @@
+{
+  "checker": "structure",
+  "results": [
+    {
+      "id": "D1",
+      "pass": false,
+      "severity": "fail",
+      "message": "missing: build.ts, datapackage.json, data/*.csv, DECISIONS.md (non-empty)",
+      "evidence": {
+        "missing": [
+          "build.ts",
+          "datapackage.json",
+          "data/*.csv",
+          "DECISIONS.md (non-empty)"
+        ]
+      }
+    },
+    {
+      "id": "D2",
+      "pass": false,
+      "severity": "fail",
+      "message": "no build.ts to run",
+      "evidence": null
+    },
+    {
+      "id": "D3",
+      "pass": false,
+      "severity": "fail",
+      "message": "not run: no build.ts",
+      "evidence": null
+    },
+    {
+      "id": "D4",
+      "pass": false,
+      "severity": "fail",
+      "message": "no datapackage.json to validate",
+      "evidence": null
+    },
+    {
+      "id": "D5",
+      "pass": false,
+      "severity": "fail",
+      "message": "datapackage.json unreadable: ENOENT: no such file or directory, open '/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-check-M4uFXx/datasets/climate-and-environment/co2-ppm/datapackage.json'",
+      "evidence": null
+    },
+    {
+      "id": "D6",
+      "pass": true,
+      "severity": "fail",
+      "message": "snake_case headers, LF, trailing newline, no dialect",
+      "evidence": null
+    },
+    {
+      "id": "D7",
+      "pass": false,
+      "severity": "fail",
+      "message": "no data/*.csv to check",
+      "evidence": null
+    },
+    {
+      "id": "D8",
+      "pass": false,
+      "severity": "fail",
+      "message": "no data/*.csv to check",
+      "evidence": null
+    },
+    {
+      "id": "D9",
+      "pass": false,
+      "severity": "fail",
+      "message": "no data/*.csv to check",
+      "evidence": null
+    },
+    {
+      "id": "D10",
+      "pass": false,
+      "severity": "fail",
+      "message": "no data/*.csv to check",
+      "evidence": null
+    },
+    {
+      "id": "D11",
+      "pass": false,
+      "severity": "fail",
+      "message": "no build.ts",
+      "evidence": null
+    },
+    {
+      "id": "D12",
+      "pass": false,
+      "severity": "fail",
+      "message": "no data to check",
+      "evidence": null
+    },
+    {
+      "id": "D13",
+      "pass": true,
+      "severity": "fail",
+      "message": "2 input(s) identical to their pinned commits",
+      "evidence": {
+        "added": []
+      }
+    }
+  ]
+}

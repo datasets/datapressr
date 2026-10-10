@@ -1,0 +1,162 @@
+{
+  "checker": "structure",
+  "results": [
+    {
+      "id": "D1",
+      "pass": true,
+      "severity": "fail",
+      "message": "build.ts, datapackage.json, 1 CSV(s) and DECISIONS.md (9 list item(s)) present",
+      "evidence": {
+        "csvs": [
+          "co2-monthly.csv"
+        ],
+        "decisions_items": 9
+      }
+    },
+    {
+      "id": "D2",
+      "pass": true,
+      "severity": "fail",
+      "message": "offline build from a data/ with no CSVs wrote 1 CSV(s)",
+      "evidence": {
+        "csvs": [
+          "co2-monthly.csv"
+        ]
+      }
+    },
+    {
+      "id": "D3",
+      "pass": true,
+      "severity": "fail",
+      "message": "two offline builds reproduce the committed 1 CSV(s) byte for byte",
+      "evidence": {
+        "sha256": {
+          "co2-monthly.csv": "690928b8d5a822f7dff17edd29d57e71279b3fd237b99110c123520e8aa727e0"
+        }
+      }
+    },
+    {
+      "id": "D4",
+      "pass": true,
+      "severity": "fail",
+      "message": "validator clean (0 note(s))",
+      "evidence": {
+        "errors": [],
+        "warnings": [],
+        "notes": []
+      }
+    },
+    {
+      "id": "D5",
+      "pass": false,
+      "severity": "fail",
+      "message": "no licence with an SPDX-shaped name",
+      "evidence": {
+        "problems": [
+          "no licence with an SPDX-shaped name"
+        ]
+      }
+    },
+    {
+      "id": "D6",
+      "pass": true,
+      "severity": "fail",
+      "message": "snake_case headers, LF, trailing newline, no dialect",
+      "evidence": null
+    },
+    {
+      "id": "D7",
+      "pass": true,
+      "severity": "fail",
+      "message": "co2-monthly.csv: 821 observation rows (expected 821)",
+      "evidence": {
+        "csv": "co2-monthly.csv",
+        "rows": 821
+      }
+    },
+    {
+      "id": "D8",
+      "pass": true,
+      "severity": "fail",
+      "message": "22 hand-read anchor value(s) on 5 rows match",
+      "evidence": {
+        "rows_by": "date column date",
+        "roles": {
+          "decimal_date": "decimal_year (by name)",
+          "co2_ppm_deseasonalized": "deseasonalized_ppm (by name)",
+          "uncertainty": "uncertainty_ppm (by name)",
+          "std_dev": "sdev_ppm (by name)",
+          "num_days": "ndays (by name)",
+          "co2_ppm": "average_ppm (by name)"
+        }
+      }
+    },
+    {
+      "id": "D9",
+      "pass": true,
+      "severity": "fail",
+      "message": "no sentinels left; empty counts [194, 195, 196] as expected",
+      "evidence": {
+        "empties": {
+          "date": 0,
+          "decimal_year": 0,
+          "average_ppm": 0,
+          "deseasonalized_ppm": 0,
+          "ndays": 195,
+          "sdev_ppm": 196,
+          "uncertainty_ppm": 194
+        }
+      }
+    },
+    {
+      "id": "D10",
+      "pass": true,
+      "severity": "fail",
+      "message": "7/7 reference columns matched by value",
+      "evidence": {
+        "matched": {
+          "date": "date",
+          "decimal_date": "decimal_year",
+          "co2_ppm": "average_ppm",
+          "co2_ppm_deseasonalized": "deseasonalized_ppm",
+          "num_days": "ndays",
+          "std_dev": "sdev_ppm",
+          "uncertainty": "uncertainty_ppm"
+        },
+        "allowed_missing": []
+      }
+    },
+    {
+      "id": "D11",
+      "pass": false,
+      "severity": "fail",
+      "message": "build.ts header comment lacks: licence",
+      "evidence": {
+        "missing": [
+          "licence"
+        ]
+      }
+    },
+    {
+      "id": "D12",
+      "pass": true,
+      "severity": "fail",
+      "message": "date is YYYY-MM-DD throughout (day of month: 01; a judgement call)",
+      "evidence": {
+        "column": "date",
+        "days_of_month": [
+          "01"
+        ]
+      }
+    },
+    {
+      "id": "D13",
+      "pass": true,
+      "severity": "fail",
+      "message": "2 input(s) identical to their pinned commits",
+      "evidence": {
+        "added": []
+      }
+    }
+  ]
+}

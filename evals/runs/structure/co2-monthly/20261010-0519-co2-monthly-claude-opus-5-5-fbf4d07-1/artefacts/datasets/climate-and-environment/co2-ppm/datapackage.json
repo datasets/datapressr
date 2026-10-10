@@ -1,0 +1,73 @@
+{
+  "name": "co2-ppm",
+  "title": "Atmospheric CO2 at Mauna Loa, Monthly (ppm)",
+  "description": "Monthly mean atmospheric carbon dioxide (CO2) mole fraction in dry air, in parts per million (ppm), measured at Mauna Loa Observatory, Hawaii, from March 1958 to July 2026 (the Keeling Curve). Data from March 1958 to April 1974 were collected by C. David Keeling of the Scripps Institution of Oceanography (SIO); data from May 1974 onward are from NOAA's Global Monitoring Laboratory (GML). Because of the 2022 Mauna Loa eruption, observations from December 2022 to 4 July 2023 come from a site at the Maunakea Observatories, about 21 miles north. Monthly values are corrected to the centre of the month using the average seasonal cycle; NOAA interpolated months that had no observations (see the `days_measured` field). Built from a snapshot of NOAA's co2_mm_mlo.csv retrieved on 2026-08-30 (file created 2026-08-05).",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "Use of NOAA GML Data",
+      "title": "Use of NOAA GML Data: made freely available to the public and the scientific community; please give GML fair credit and include relevant citation text in publications",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NOAA Global Monitoring Laboratory, Trends in Atmospheric Carbon Dioxide: Mauna Loa monthly mean CO2",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv"
+    },
+    {
+      "title": "Scripps Institution of Oceanography CO2 Program (March 1958 to April 1974, as republished by NOAA GML)",
+      "path": "https://scrippsco2.ucsd.edu/data/atmospheric_co2"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/co2-ppm-monthly.csv",
+      "name": "co2-ppm-monthly",
+      "title": "Mauna Loa CO2 Monthly Mean",
+      "description": "One row per month, March 1958 to July 2026. Values are copied from the source at its own precision. Source sentinels for 'no information' (ndays -1, sdev -9.99, unc -0.99) are empty cells.",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "yearmonth",
+            "description": "Month of the observation, YYYY-MM. From the source's separate year and month columns."
+          },
+          {
+            "name": "decimal_date",
+            "type": "number",
+            "description": "The month as a decimal year (NOAA's 'decimal date'), roughly the middle of the month, e.g. 2026.5417 for July 2026."
+          },
+          {
+            "name": "co2_ppm",
+            "type": "number",
+            "description": "Monthly mean CO2 mole fraction in dry air, ppm (source column 'average'), corrected to the centre of the month. Months with no observations were interpolated by NOAA; those months have an empty days_measured from May 1974 onward."
+          },
+          {
+            "name": "co2_deseasonalized_ppm",
+            "type": "number",
+            "description": "Monthly mean CO2 with the average seasonal cycle removed, ppm (source column 'deseasonalized')."
+          },
+          {
+            "name": "days_measured",
+            "type": "integer",
+            "description": "Number of days with data in the month (source column 'ndays'). Empty where the source gives -1: for every month March 1958 to April 1974 (SIO data, no information available) and, from May 1974 on, for months NOAA interpolated (only 1975-12)."
+          },
+          {
+            "name": "daily_stdev_ppm",
+            "type": "number",
+            "description": "Standard deviation of the daily means within the month, ppm (source column 'sdev'). Empty where the source gives -9.99 (no information or interpolated month)."
+          },
+          {
+            "name": "uncertainty_ppm",
+            "type": "number",
+            "description": "Uncertainty of the monthly mean, ppm (source column 'unc'). Empty where the source gives -0.99 (no information), and also for 1975-12 and 1984-04, where the source gives 0.00 alongside a missing sdev; a zero uncertainty there is a gap, not a measurement."
+          }
+        ],
+        "primaryKey": ["date"]
+      }
+    }
+  ]
+}

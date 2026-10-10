@@ -1,0 +1,6 @@
+archive/
+scripts/
+build.ts
+AGENTS.md
+DECISIONS.md
+.git/

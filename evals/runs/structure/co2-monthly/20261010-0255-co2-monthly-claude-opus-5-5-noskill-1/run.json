@@ -1,0 +1,131 @@
+{
+  "run_id": "20261010-0255-co2-monthly-claude-opus-5-5-noskill-1",
+  "case_id": "co2-monthly",
+  "domain": "structure",
+  "case_hash": "9f7972f6196a20e01d48b3471782fa21eb7f1d3bdd62f3762bfe5384750a23ad",
+  "skill": {
+    "name": "none",
+    "ref": "a14f0b643c39847936366038087133e23531edaf",
+    "tree": "4b825dc642cb6eb9a060e54bf8d69288fbee4904",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "d6760762299840b6a594f70bb3c736651baae8fb",
+    "dirty": false,
+    "recipe_sha256": "eb5a76ea3d644d9532ebfb98864577d963b711d7a03d1a8a0e39af5036322b87"
+  },
+  "writer": {
+    "vendor": "claude",
+    "model": "claude-opus-5-5",
+    "model_actual": "claude-opus-5-5",
+    "cli_version": "2.1.296",
+    "prompt_sha256": "d34786309a7bcc4728f9e6d8ed8f8415d388da312b326ca7c51a70a621acddfa"
+  },
+  "isolation": {
+    "canary_run_id": "20261010-0211-canary-claude-haiku-5-5-1",
+    "network": false,
+    "leaks": [
+      {
+        "tool": "Bash",
+        "path": "../../../skills"
+      },
+      {
+        "tool": "Bash",
+        "path": "../.."
+      },
+      {
+        "tool": "Bash",
+        "path": "../../.."
+      },
+      {
+        "tool": "Bash",
+        "path": "../../../../AGENTS.md"
+      },
+      {
+        "tool": "Bash",
+        "path": "../../../../TASK.md"
+      },
+      {
+        "tool": "Bash",
+        "path": ".."
+      },
+      {
+        "tool": "Bash",
+        "path": "../../../AGENTS.md"
+      }
+    ]
+  },
+  "started_at": "2026-10-10T02:55:05.744Z",
+  "duration_ms": 97853,
+  "turns": 10,
+  "cost_usd": 0.5072962000000001,
+  "cost_basis": "list",
+  "usage": {
+    "input_tokens": 14,
+    "cache_creation_input_tokens": 33201,
+    "cache_read_input_tokens": 160061,
+    "output_tokens": 10481,
+    "output_tokens_details": {
+      "thinking_tokens": 4678
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 33201,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 2510,
+        "cache_read_input_tokens": 35020,
+        "cache_creation_input_tokens": 3340,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 3340
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "artefacts": [
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/.datahubignore",
+      "sha256": "f3f03cc4ebc39d2b27805a2c3b3f5820ad4cbf2dd518339a6c996482ad3bb084",
+      "bytes": 40
+    },
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/AGENTS.md",
+      "sha256": "8de1598bf8a009724f2d90bdb7020d134851485367b8d871d3f7f8968d9548ac",
+      "bytes": 9146
+    },
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/build.ts",
+      "sha256": "21140d2136ed74a61ea3a7aec757d331812018bd66f6582c096c9c5254c787d8",
+      "bytes": 3421
+    },
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/data/co2-mm-mlo.csv",
+      "sha256": "2d253d8ff943b65dc8b2210dfaa630663e79ee4dabd8a89d56b0b5867b4377c4",
+      "bytes": 51188
+    },
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/datapackage.json",
+      "sha256": "317fd9019771b53382235a1c91201ec7d6d47b1f7edc388d2cdbd2975fc91ebd",
+      "bytes": 4734
+    }
+  ],
+  "transcript_sha256": "c72f686efd048ba137c09decb91eeb87a5245309be626eecb7dca49a15118375",
+  "workspace_sha256": "813dcbffa3e6e918eda659a71396cec841ac9c625cc284c510c850d666be3977",
+  "flags": [
+    "failed",
+    "leaked",
+    "no_skill"
+  ]
+}

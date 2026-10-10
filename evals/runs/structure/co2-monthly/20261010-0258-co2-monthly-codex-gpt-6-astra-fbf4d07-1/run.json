@@ -1,0 +1,76 @@
+{
+  "run_id": "20261010-0258-co2-monthly-codex-gpt-6-astra-fbf4d07-1",
+  "case_id": "co2-monthly",
+  "domain": "structure",
+  "case_hash": "9f7972f6196a20e01d48b3471782fa21eb7f1d3bdd62f3762bfe5384750a23ad",
+  "skill": {
+    "name": "structure",
+    "ref": "a14f0b643c39847936366038087133e23531edaf",
+    "tree": "fbf4d07a5488814633f986d177a5b3e7b4173b19",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "d6760762299840b6a594f70bb3c736651baae8fb",
+    "dirty": false,
+    "recipe_sha256": "d9f5481a55c22c7b9e01497a2ccd35085436c5c642c769417cbfd42602015ec0"
+  },
+  "writer": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "model_actual": null,
+    "cli_version": "0.161.0",
+    "prompt_sha256": "343b95180dd6c75c2172026272afee62e4faefbbc42ab152bd5bcf46215f1b70"
+  },
+  "isolation": {
+    "canary_run_id": "20261010-0212-canary-codex-gpt-6-luna-1",
+    "network": false,
+    "leaks": []
+  },
+  "started_at": "2026-10-10T02:58:17.801Z",
+  "duration_ms": 154710,
+  "turns": 16,
+  "cost_usd": null,
+  "cost_basis": null,
+  "usage": {
+    "input_tokens": 270705,
+    "cached_input_tokens": 226432,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5755,
+    "reasoning_output_tokens": 322
+  },
+  "artefacts": [
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/.datahubignore",
+      "sha256": "4627f19f5b46410b20812fbe3170f01c9131a7c6582d4b61778e9a2f0fc9451c",
+      "bytes": 50
+    },
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/AGENTS.md",
+      "sha256": "6c356a0c471508c7f9e533d1ff5fe1ec1ecf474c4a7f0596fc68c285ee8ae57f",
+      "bytes": 7101
+    },
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/DECISIONS.md",
+      "sha256": "d9fdb19648dcc80ba988633ed66723929e63d742272a51083ebe190b9ec592e9",
+      "bytes": 4478
+    },
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/build.ts",
+      "sha256": "c87ee99900b8497716dd4e899d90838f2d26eb9e3d65c84413bb0bc4c6c7b114",
+      "bytes": 4300
+    },
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/data/co2-monthly.csv",
+      "sha256": "8f7b8ae7a9be302673ecc9a48c19600451e60d5b6525637ce83bcc41336d0e9f",
+      "bytes": 37561
+    },
+    {
+      "path": "datasets/climate-and-environment/co2-ppm/datapackage.json",
+      "sha256": "893999efbee0d82c3c07ea8cd8b32f8e019298e29e749b9c9f9fde8b95a292d0",
+      "bytes": 6018
+    }
+  ],
+  "transcript_sha256": "e7633f9fddde3c0da479a73bf6fbfdd0e7ba679303ce4b1fb97e823d40a036a8",
+  "workspace_sha256": "a91405dcfd05ebd24a64db3b2e492d28ac308489274ce6b778d7087d6223c6d6",
+  "flags": []
+}

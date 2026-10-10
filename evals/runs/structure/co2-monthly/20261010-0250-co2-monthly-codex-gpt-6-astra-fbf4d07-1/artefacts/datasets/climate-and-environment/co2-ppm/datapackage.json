@@ -1,0 +1,86 @@
+{
+  "name": "co2-ppm",
+  "title": "Mauna Loa Monthly Atmospheric CO2",
+  "description": "NOAA Global Monitoring Laboratory monthly mean and deseasonalized atmospheric CO2, March 1958–July 2026 (821 months), from the snapshot retrieved 2026-08-30. March 1958–April 1974 data are from C. David Keeling, Scripps Institution of Oceanography. NOAA states that missing months have been interpolated; values are retained as supplied. Mauna Loa measurements were suspended November 29, 2022 and resumed in July 2023; observations from December 2022 through July 4, 2023 came from Maunakea Observatories, approximately 21 miles north. This is the source station series, not a global mean.",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "USE OF NOAA GML DATA",
+      "title": "USE OF NOAA GML DATA",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv",
+      "description": "These data are made freely available to the public and the scientific community in the belief that their wide dissemination will lead to greater understanding and new scientific insights. To ensure that GML receives fair credit for their work please include relevant citation text in publications. We encourage users to contact the data providers, who can provide detailed information about the measurements and scientific insight. In cases where the data are central to a publication, coauthorship for data providers may be appropriate."
+    }
+  ],
+  "sources": [
+    {
+      "title": "NOAA Global Monitoring Laboratory — Trends in Atmospheric Carbon Dioxide, Mauna Loa monthly mean",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv",
+      "retrieved": "2026-08-30"
+    },
+    {
+      "title": "NOAA Trends in Atmospheric Carbon Dioxide — data landing page",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+  ],
+  "resources": [
+    {
+      "name": "co2-monthly",
+      "title": "Monthly Mauna Loa CO2",
+      "path": "data/co2-monthly.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "date",
+            "description": "Calendar month represented by its first day (YYYY-MM-01); a monthly period label, not an observation on that day.",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "decimal_year",
+            "type": "number",
+            "description": "Source decimal date, retained verbatim; not recalculated from the first-day period label.",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "average_ppm",
+            "type": "number",
+            "description": "Monthly mean CO2 in parts per million, constructed from daily means and corrected to the center of the month using the average seasonal cycle. Includes source-interpolated missing months; -99.99 would become empty (none in this snapshot)."
+          },
+          {
+            "name": "deseasonalized_ppm",
+            "type": "number",
+            "description": "Source seasonally adjusted monthly CO2 in parts per million. Includes source interpolations; -99.99 would become empty (none in this snapshot)."
+          },
+          {
+            "name": "ndays",
+            "type": "integer",
+            "description": "Number of daily values used in the monthly mean. Source -1 becomes empty (195 months). Scripps-era day counts are unavailable. Zero, if present, is retained."
+          },
+          {
+            "name": "sdev_ppm",
+            "type": "number",
+            "description": "Source standard deviation in parts per million (sdev). Source -9.99 becomes empty (196 months). Negative diagnostics mark unavailable Scripps statistics or source-interpolated NOAA months; no interpolation flag is inferred from this field alone."
+          },
+          {
+            "name": "uncertainty_ppm",
+            "type": "number",
+            "description": "Source uncertainty in parts per million (unc); the archived header does not specify a confidence level. Source -0.99 becomes empty (194 months). Literal 0.00 is retained, including when sdev is missing; diagnostic availability is handled per column."
+          }
+        ],
+        "primaryKey": [
+          "date"
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Decisions
+
+Decisions made while structuring `co2-ppm` that the task, `AGENTS.md` and the `structure` skill did not settle.
+
+1. **One `date` column (`yearmonth`, `YYYY-MM`) as the primary key, with the source's `year` and `month` columns dropped.** Alternatives: keep `year` + `month` as a composite key, or keep all three. Why: AGENTS.md asks for ISO 8601 dates, and a single `yearmonth` field is the ISO form of a monthly period. `year` and `month` would just repeat it, and a one-field key is simpler to join on.
+
+2. **Column names: `decimal_date`, `co2_ppm`, `co2_deseasonalized_ppm`, `days_measured`, `daily_stdev_ppm`, `uncertainty_ppm`.** Alternatives: keep the source names (`average`, `deseasonalized`, `ndays`, `sdev`, `unc`), or snake_case them as they are (`decimal_date`, `average`, ...). Why: the skill says to use house conventions by default and only match source names for a ground-truth comparison, which this isn't. The units (ppm) go in the names because `average` doesn't say what it measures. Each field description names the source column it came from.
+
+3. **Numbers are published as the source's own text, not re-serialised through `Number`.** Alternative: parse with the skill's `num()` idiom and write `String(n)`, which would turn `315.70` into `315.7` and `2026.3750` into `2026.375`. Why: the skill says to keep the source's precision. The build still checks that every value is a plain decimal and throws if not.
+
+4. **`unc = 0.00` in 1975-12 and 1984-04 becomes an empty cell.** Alternative: keep `0.00` as published. Why: both rows have the `-9.99` "no information" sentinel for `sdev`, and 1975-12 also has `ndays = -1`. A monthly-mean uncertainty of exactly zero is not physically possible, so the zero is an unmarked gap. AGENTS.md says not to mix `0` and empty for "missing" within one column. The build lists the two months and throws if the set changes, or if a `0.00` uncertainty ever turns up next to a measured `sdev`. The field description explains it.
+
+5. **No derived `interpolated`, `institution` (SIO/NOAA) or `site` (Mauna Loa/Maunakea) columns.** Alternative: add flags for interpolated months, the data provider, and the 2022–23 Maunakea period. Why: none of these is a column in the source. The provider and the site come from prose in the header, and July 2023 mixes both sites, so a per-row `site` value would be partly made up. For SIO months the source says it has no information, so it can't say which months were interpolated. That context is in the dataset and field descriptions instead. From May 1974 on, an empty `days_measured` still marks an interpolated month (only 1975-12).
+
+6. **License recorded as `"name": "Use of NOAA GML Data"`, linked to the landing page, with no SPDX id.** Alternatives: `CC0-1.0`/`PDDL-1.0`, or "US Government Work / public domain" (NOAA is a US federal agency). Why: the file's own terms are headed "USE OF NOAA GML DATA". They say the data are "made freely available" and ask for credit and citation, but they don't name a license or say public domain. AGENTS.md says to use the license's own name and a link when there's no SPDX id. Claiming public domain would go beyond what the source says.
+
+7. **Two `sources`: the NOAA file URL, and the Scripps CO2 programme for March 1958 to April 1974.** Alternative: list only the NOAA URL given in the task. Why: the file header says the 1958–1974 values are Keeling/SIO data taken from the Scripps website. Crediting the upstream producer fits the purpose of `sources`. The NOAA file is still listed first, as the file this dataset was built from.
+
+8. **Resource and file name `co2-ppm-monthly` / `data/co2-ppm-monthly.csv`.** Alternatives: `co2_mm_mlo.csv` (the source name), or `monthly.csv`. Why: the house style is lowercase-hyphenated with the grain in the name (the skill's `brent-monthly` example), and it leaves room for annual or weekly resources later.
+
+9. **Build anchors pinned to this snapshot: exactly 821 rows, first row 1958-03 = 315.71/314.44, last row 2026-07 = 429.12 with 21 days.** Alternative: assert only structure (header, contiguous months, sentinels) so a refreshed source builds without edits. Why: the task's input is this one snapshot, and the skill asks for at least one hand-read literal per layout. The cost is that refreshing the archive means updating these constants on purpose, which is the point.
+
+10. **Plausibility bounds of 250 to 600 ppm on `co2_ppm` and `co2_deseasonalized_ppm`, and a mid-month check on `decimal_date` (within 0.01 years of `year + (month - 0.5)/12`).** Alternative: no range checks. Why: there's no sentinel in these columns in this snapshot. The checks make sure a sentinel the source adds later, or a column shift, stops the build instead of being published.
+
+11. **Copied the root `AGENTS.md` into the dataset directory in full.** Alternative: copy only the "dataset part". Why: AGENTS.md says to copy everything above a "repo-only marker", but the file has no such marker, and `scripts/sync-dataset-agents.mjs` doesn't exist in this workspace. A full copy loses nothing.
+
+12. **`.datahubignore` excludes `archive/`, `scripts/`, `DECISIONS.md` and `AGENTS.md`; `build.ts` stays publishable.** Alternative: also exclude `build.ts`, or publish everything. Why: AGENTS.md says to exclude raw downloads, so `archive/` goes. The validator and the agent and decision notes are working files, not part of the dataset. The build script documents how the CSV was made, so it's worth publishing.

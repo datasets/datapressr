@@ -4,9 +4,21 @@ Generated from `evals/ledger.jsonl` by `node evals/run.mjs report` (or `npm run 
 
 ## Flags
 
-None.
+- Leaked run 20261010-0250-co2-monthly-claude-opus-5-5-fbf4d07-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-0253-co2-monthly-claude-opus-5-5-fbf4d07-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-0255-co2-monthly-claude-opus-5-5-noskill-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-0512-co2-monthly-claude-opus-5-5-noskill-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-0514-co2-monthly-claude-opus-5-5-noskill-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-0517-co2-monthly-claude-opus-5-5-noskill-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-0519-co2-monthly-claude-opus-5-5-fbf4d07-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
 
 ## Per skill change
+
+### none
+
+#### Tree `4b825dc`, not a committed tree (earliest tree with runs)
+
+Cases run: structure/co2-monthly (6 runs).
 
 ### story
 
@@ -19,6 +31,16 @@ Cases run: story/q01-french-debt (2 runs).
 - `20c6d1e` Define the story skill's exempt-number list format (datapressr-hcn.17)
 - `5f62900` Make installed skills self-contained (datapressr-4ly.2)
 - `50e166b` Put the owner's France feedback into the story skill (datapressr-hcn.10)
+
+### structure
+
+#### Tree `fbf4d07`, commit `1c1b1eb` validate: check CSV values against the declared schema, on by default (datapressr-ck8) (earliest tree with runs)
+
+Cases run: structure/co2-monthly (7 runs).
+
+#### Skill commits with no pairwise comparison on record
+
+None.
 
 ## Per case
 
@@ -46,6 +68,33 @@ Absolute scores, rubric story/v2 (diagnostic; 0-2):
 |---|---|---|---|---|---|---|---|---|---|
 | 20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 1 | with-edits |
 | 20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 1 | with-edits |
+
+### structure/co2-monthly
+
+13 runs over 2 skill trees.
+
+#### Writer claude-opus-5-5
+
+| Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
+|---|---|---|---|---|---|---|---|
+| 2026-10-10 05:19 | [20261010-0519-co2-monthly-claude-opus-5-5-fbf4d07-1](runs/structure/co2-monthly/20261010-0519-co2-monthly-claude-opus-5-5-fbf4d07-1/run.json) | `fbf4d07` | claude | fail D5, D8, D9, D10, D11, D12 (7 pass) | 0.85 | 19 | leaked |
+| 2026-10-10 05:17 | [20261010-0517-co2-monthly-claude-opus-5-5-noskill-1](runs/structure/co2-monthly/20261010-0517-co2-monthly-claude-opus-5-5-noskill-1/run.json) | `4b825dc` | claude | fail D8, D9, D10, D11, D12 (8 pass) | 0.69 | 17 | leaked, no_skill |
+| 2026-10-10 05:14 | [20261010-0514-co2-monthly-claude-opus-5-5-noskill-1](runs/structure/co2-monthly/20261010-0514-co2-monthly-claude-opus-5-5-noskill-1/run.json) | `4b825dc` | claude | fail D8, D9, D10, D11, D12 (8 pass) | 0.68 | 15 | leaked, no_skill |
+| 2026-10-10 05:12 | [20261010-0512-co2-monthly-claude-opus-5-5-noskill-1](runs/structure/co2-monthly/20261010-0512-co2-monthly-claude-opus-5-5-noskill-1/run.json) | `4b825dc` | claude | fail D8, D9, D10, D11, D12 (8 pass) | 0.75 | 17 | leaked, no_skill |
+| 2026-10-10 02:56 | [20261010-0256-co2-monthly-claude-opus-5-5-noskill-2](runs/structure/co2-monthly/20261010-0256-co2-monthly-claude-opus-5-5-noskill-2/run.json) | `4b825dc` | claude | fail D1, D2, D3, D4, D5, D7, D8, D9, D10, D11, D12 (2 pass) | 0.00 | 1 | failed, no_skill |
+| 2026-10-10 02:56 | [20261010-0256-co2-monthly-claude-opus-5-5-noskill-1](runs/structure/co2-monthly/20261010-0256-co2-monthly-claude-opus-5-5-noskill-1/run.json) | `4b825dc` | claude | fail D1, D2, D3, D4, D5, D7, D8, D9, D10, D11, D12 (2 pass) | 0.00 | 1 | failed, no_skill |
+| 2026-10-10 02:56 | [20261010-0256-co2-monthly-claude-opus-5-5-fbf4d07-1](runs/structure/co2-monthly/20261010-0256-co2-monthly-claude-opus-5-5-fbf4d07-1/run.json) | `fbf4d07` | claude | fail D1, D2, D3, D4, D5, D7, D8, D9, D10, D11, D12 (2 pass) | 0.09 | 2 | failed |
+| 2026-10-10 02:55 | [20261010-0255-co2-monthly-claude-opus-5-5-noskill-1](runs/structure/co2-monthly/20261010-0255-co2-monthly-claude-opus-5-5-noskill-1/run.json) | `4b825dc` | claude | fail D1, D8, D9, D10, D11, D12 (7 pass) | 0.51 | 10 | failed, leaked, no_skill |
+| 2026-10-10 02:53 | [20261010-0253-co2-monthly-claude-opus-5-5-fbf4d07-1](runs/structure/co2-monthly/20261010-0253-co2-monthly-claude-opus-5-5-fbf4d07-1/run.json) | `fbf4d07` | claude | fail D8, D9, D10, D11, D12 (8 pass) | 0.85 | 15 | leaked |
+| 2026-10-10 02:50 | [20261010-0250-co2-monthly-claude-opus-5-5-fbf4d07-1](runs/structure/co2-monthly/20261010-0250-co2-monthly-claude-opus-5-5-fbf4d07-1/run.json) | `fbf4d07` | claude | fail D11, D12 (11 pass) | 0.80 | 17 | leaked |
+
+#### Writer gpt-6-astra
+
+| Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
+|---|---|---|---|---|---|---|---|
+| 2026-10-10 02:58 | [20261010-0258-co2-monthly-codex-gpt-6-astra-fbf4d07-1](runs/structure/co2-monthly/20261010-0258-co2-monthly-codex-gpt-6-astra-fbf4d07-1/run.json) | `fbf4d07` | codex | fail D5, D11 (11 pass) |  | 16 |  |
+| 2026-10-10 02:56 | [20261010-0256-co2-monthly-codex-gpt-6-astra-fbf4d07-1](runs/structure/co2-monthly/20261010-0256-co2-monthly-codex-gpt-6-astra-fbf4d07-1/run.json) | `fbf4d07` | codex | fail D5, D11 (11 pass) |  | 13 |  |
+| 2026-10-10 02:50 | [20261010-0250-co2-monthly-codex-gpt-6-astra-fbf4d07-1](runs/structure/co2-monthly/20261010-0250-co2-monthly-codex-gpt-6-astra-fbf4d07-1/run.json) | `fbf4d07` | codex | fail D5, D11 (11 pass) |  | 11 |  |
 
 ## Noise
 
@@ -88,7 +137,7 @@ No owner-judged pairs yet. The critic's pairwise verdict stands alone for small 
 
 - Critic fallback: 0 of 24 critiques (absolute and pairwise) used the fallback critic.
 - Critic validation failures: 0 of 18 absolute critiques recorded as critic_failed.
-- Leaks caught: 0 of 2 runs flagged leaked.
+- Leaks caught: 7 of 15 runs flagged leaked.
 
 Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):
 

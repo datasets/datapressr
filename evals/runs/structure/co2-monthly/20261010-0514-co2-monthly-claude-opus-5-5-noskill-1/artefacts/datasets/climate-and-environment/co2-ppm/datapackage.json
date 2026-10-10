@@ -1,0 +1,92 @@
+{
+  "name": "co2-ppm",
+  "title": "CO2 PPM - Trends in Atmospheric Carbon Dioxide (Mauna Loa, monthly)",
+  "description": "Monthly mean atmospheric carbon dioxide (CO2) measured at Mauna Loa Observatory, Hawaii, March 1958 to July 2026, from NOAA Global Monitoring Laboratory (GML). Data from March 1958 through April 1974 were obtained by C. David Keeling of the Scripps Institution of Oceanography (SIO); NOAA measurements start in May 1974. Monthly values are corrected to the centre of the month based on the average seasonal cycle; missing months have been interpolated by the source. Because of the eruption of Mauna Loa, measurements were suspended on 29 November 2022 and resumed in July 2023: observations from December 2022 to 4 July 2023 come from a site at the Maunakea Observatories, about 21 miles north. Snapshot of the NOAA file created 2026-08-05, retrieved 2026-08-30.",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "NOAA-GML-data-use",
+      "title": "NOAA GML data use terms: freely available to the public; please credit NOAA GML (and SIO for 1958-1974) and cite the data in publications",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NOAA Global Monitoring Laboratory, Trends in Atmospheric Carbon Dioxide, Mauna Loa monthly mean (co2_mm_mlo.csv), retrieved 2026-08-30",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv"
+    },
+    {
+      "title": "NOAA GML Trends in Atmospheric Carbon Dioxide, data page",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    },
+    {
+      "title": "Scripps Institution of Oceanography CO2 Program (Mauna Loa data March 1958 to April 1974, as included in the NOAA file)",
+      "path": "http://scrippsco2.ucsd.edu/data/atmospheric_co2"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/co2-mm-mlo.csv",
+      "name": "co2-mm-mlo",
+      "title": "Monthly mean CO2 at Mauna Loa",
+      "description": "One row per month, March 1958 to July 2026, no gaps. Built from archive/co2_mm_mlo.csv by build.ts. NOAA writes 'no value' as -1 (ndays), -9.99 (sdev) and -0.99 (unc); these are empty cells here, as is an uncertainty of 0.00 in the two rows (1975-12, 1984-04) where the standard deviation is also missing. For March 1958 to April 1974 (SIO data) days_measured, daily_std_dev_ppm and uncertainty_ppm are always empty: NOAA has no such information for those months. From May 1974 an empty days_measured marks a month NOAA interpolated (1975-12 is the only one).",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "yearmonth",
+            "title": "Month",
+            "description": "Month of the observation, YYYY-MM (from the source's year and month columns).",
+            "constraints": { "required": true }
+          },
+          {
+            "name": "decimal_date",
+            "type": "number",
+            "title": "Decimal date",
+            "description": "Middle of the month as a decimal year, as given by the source (e.g. 1958.2027).",
+            "constraints": { "required": true }
+          },
+          {
+            "name": "co2_ppm",
+            "type": "number",
+            "title": "CO2 monthly mean (ppm)",
+            "description": "Monthly mean CO2 mole fraction in parts per million (source column 'average'), corrected to the centre of the month based on the average seasonal cycle. Includes months the source interpolated.",
+            "constraints": { "required": true }
+          },
+          {
+            "name": "co2_deseasonalized_ppm",
+            "type": "number",
+            "title": "CO2 deseasonalized (ppm)",
+            "description": "Monthly mean CO2 in ppm with the average seasonal cycle removed (source column 'deseasonalized').",
+            "constraints": { "required": true }
+          },
+          {
+            "name": "days_measured",
+            "type": "integer",
+            "title": "Days with data",
+            "description": "Number of days with data in the month (source column 'ndays'). Empty where the source gives -1: no information (SIO months, 1958-03 to 1974-04) or no measurements, i.e. an interpolated month (1975-12).",
+            "constraints": { "minimum": 0 }
+          },
+          {
+            "name": "daily_std_dev_ppm",
+            "type": "number",
+            "title": "Standard deviation of daily means (ppm)",
+            "description": "Standard deviation of the daily mean values in the month, in ppm (source column 'sdev'). Empty where the source gives -9.99 (not available).",
+            "constraints": { "minimum": 0 }
+          },
+          {
+            "name": "uncertainty_ppm",
+            "type": "number",
+            "title": "Uncertainty of the monthly mean (ppm)",
+            "description": "Uncertainty of the monthly mean, in ppm (source column 'unc'). Empty where the source gives -0.99 (not available) or 0.00 alongside a missing standard deviation (1975-12, 1984-04).",
+            "constraints": { "minimum": 0 }
+          }
+        ],
+        "primaryKey": ["date"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+# DataPressr — AI Agent Instructions
+
+You are helping wrangle raw data finds into clean, publishable datasets on DataHub.
+
+Do NOT linewrap markdown files.
+
+## Concepts
+
+### Data hierarchy
+
+- **Catalog** — a collection of datasets. Maps to one GitHub repo + one DataHub publication. Example: "World Bank Open Data", "Our World in Data".
+- **Dataset** — a coherent data concept with defined schema and coverage. One directory, one `datapackage.json`. Example: "World GDP 1960–2024".
+- **Data file** — a concrete file artifact (csv, json, parquet…). Listed as a resource in `datapackage.json`.
+
+**Catalog-as-repo rule:** if the source is a portal or collection containing many datasets, give it its own repo and DataHub publication — not a subfolder inside another dataset.
+
+### Dataset lifecycle
+
+A dataset doesn't need to be complete to be published. Lifecycle stages:
+
+| Stage | Description |
+|-------|-------------|
+| `capture` | Just a URL or note — intent to explore |
+| `stub` | Title, description, source link. No files yet. Publishable. |
+| `archived` | Raw files downloaded locally |
+| `structured` | Cleaned, normalised, schema documented |
+| `enriched` | Analysis, visualisations, derived data added |
+| `monitored` | Living source, versioned and updated over time |
+
+Set `"status": "<stage>"` in `datapackage.json` to track this.
+
+---
+
+## Dataset structure
+
+Every dataset is a directory:
+
+```
+<name>/
+  datapackage.json   # metadata and resource list (required)
+  data/              # data files go here
+  .datahubignore     # gitignore-style exclusions for dh publish
+  AGENTS.md          # this file (copy into new datasets)
+```
+
+---
+
+## datapackage.json
+
+Minimal valid example:
+
+```json
+{
+  "name": "world-gdp",
+  "title": "World GDP",
+  "description": "GDP by country from World Bank, 1960–2024",
+  "status": "structured",
+  "licenses": [
+    { "name": "ODbL-1.0", "title": "Open Data Commons Open Database License", "path": "https://opendatacommons.org/licenses/odbl/" }
+  ],
+  "sources": [
+    { "title": "World Bank Open Data", "path": "https://data.worldbank.org/indicator/NY.GDP.MKTP.CD" }
+  ],
+  "resources": [
+    {
+      "path": "data/gdp.csv",
+      "name": "gdp",
+      "title": "GDP by Country",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "country_code", "type": "string" },
+          { "name": "year", "type": "year" },
+          { "name": "gdp_usd", "type": "number" }
+        ],
+        "primaryKey": ["country_code", "year"]
+      }
+    }
+  ]
+}
+```
+
+**Rules:**
+- `name` must be URL-safe: lowercase, hyphens only
+- Every file in `data/` that should be published must be in `resources`
+- `status` should reflect the lifecycle stage above
+- `licenses` and `sources` are **not optional** once the dataset leaves `stub`. We are republishing other people's data — record where it came from and what it's licensed under as soon as both are known. Use an SPDX id in `licenses[].name` when one applies (`CC-BY-4.0`, `ODbL-1.0`, `CC0-1.0`, `PDDL-1.0`...); if there's no SPDX id, use the license's own name and a link.
+- Every resource should declare a `schema` with a `type` per field and a `primaryKey` where one exists. This is what makes the dataset actually structured, not just "a CSV that exists."
+- Use `.datahubignore` to exclude scratch files, large intermediaries, raw downloads
+
+### Data conventions
+
+Applies from `structured` onward — the bar a dataset must clear before it's more than a stub:
+
+- **Encoding**: UTF-8, no BOM.
+- **Column names**: `snake_case`, no spaces. Include units where the value is ambiguous without them (`gdp_usd_millions`, not `gdp`).
+- **Missing values**: a genuinely empty cell. Don't mix `NA`, `N/A`, `-`, `0`, and empty string for "missing" within one column, and note the converse: where a literal `NA` is a real code (North America, Namibia), keep it verbatim and say so in the field description.
+- **Dates**: ISO 8601 (`YYYY-MM-DD`, or `YYYY` for year-only series).
+- **One value per cell, one row per observation.** No merged headers, no totals rows mixed in with data rows.
+- **CSV output**: LF line endings, trailing newline, RFC 4180 quoting. No Frictionless `dialect` block in `datapackage.json` — the defaults (comma, `"` quote, LF) are the house format.
+- **Reproducibility**: any transform beyond a trivial rename should be a checked-in script (`build.ts`, run directly with `node build.ts` — no build step) living in the dataset directory next to the raw snapshot — not a one-off interactive edit that can't be re-run when the source updates. The raw snapshot plus the script should be able to reproduce `data/*.csv` deterministically. Default to plain Node (`fetch`, `fs`, built-ins); reach for one targeted pure-JS package only when the source format needs it (`exceljs` for modern `.xlsx`; SheetJS `xlsx` for legacy BIFF8 `.xls`, which `exceljs` can't read; `csv-parse` for quoted CSV). A build with a dependency gets its own committed `package.json` + `package-lock.json` and a `npm install && node build.ts` run line, with `node_modules/` and `package.json` in `.datahubignore`. DuckDB earns its place when the transform is genuinely one SQL query — many-to-many joins, window functions, or reshaping a wide table to long across dozens of columns — not for keyed lookups and group-bys, which stay plain Node even across several files, and not for "clean up one messy source."
+- **Scale**: this workflow assumes small data — comfortably fits in memory in a single Node process (rule of thumb: well under ~1GB raw). If a source is bigger than that, say so explicitly rather than quietly forcing it through the same pipeline; it needs a different approach.
+
+**Definition of done for `status: structured`:** every resource has a `schema` with typed fields, a `primaryKey` if one exists, `licenses` and `sources` are filled in, the build is reproducible from a script, `/validate` passes with no warnings (it checks the CSV values against the declared schema, not just the metadata), and, if the build has a custom parser (PDF, HTML, prose, or a spreadsheet with a preamble or several layouts) or draws on many source documents, an independent adversarial review has returned `APPROVED` (step 7 of the `structure` skill).
+
+### Adding charts (views)
+
+Add a `views` array to `datapackage.json` to render charts on the dataset page:
+
+```json
+{
+  "views": [
+    {
+      "name": "gdp-over-time",
+      "title": "GDP Over Time",
+      "specType": "simple",
+      "resources": ["gdp"],
+      "spec": {
+        "type": "line",
+        "group": "year",
+        "series": ["gdp_usd"]
+      }
+    }
+  ]
+}
+```
+
+Supported chart types: `line`, `bar`, `lines-and-points`. Only CSV and GeoJSON resources can be visualised. `group` is the x-axis field, `series` is the list of y-axis fields. On DataHub, simple `bar` and `lines-and-points` charts need `group` and `series[0]` typed `year`, `yearmonth`, `date` or `number` (not `integer` or `string`) and plot only `series[0]`; use `line` for several series, or `"specType": "vega-lite"` or `"plot"` otherwise.
+
+---
+
+## Workflow
+
+### Start a new dataset
+
+Create the directory structure:
+
+```sh
+mkdir -p <name>/data
+cd <name>
+```
+
+Create `datapackage.json` with at minimum `name`, `title`, `description`. Add `"status": "stub"` if no data files yet.
+
+Copy the dataset part of this `AGENTS.md` (everything above the repo-only marker below) into the new directory so future AI sessions have context. In this repo `node scripts/sync-dataset-agents.mjs` does it.
+
+### Publish to DataHub
+
+**Skip this step if `dh` or credentials are not set up.** Commit and push to GitHub — that is sufficient. Do not treat missing credentials as an error, and never run `dh login` on the user's behalf (it needs them in a browser).
+
+The DataHub CLI command is `dh publish` (renamed from `push`, which now fails). The `push` skill runs it:
+
+```sh
+dh publish . --publication datapressr
+```
+
+- **Credentials:** `dh login` (a one-off browser sign-in that saves a token locally) is the normal path. `DATAHUB_API_TOKEN` plus `DATAHUB_API_URL=https://datahub.io` is the CI path.
+- **Always pass `--publication` explicitly.** Use `$DATAHUB_PUBLICATION` if set, otherwise `datapressr`. Never publish to `core`, and stop if `$DATAHUB_PUBLICATION` is `core`: `core` datasets (e.g. co2-ppm, oil-prices, airport-codes) git-sync from `github.com/datasets/*`, and the next sync can overwrite a direct upload.
+- **A root `README.md` is required.** Without one the dataset page is a 404.
+- **Publishing is an upsert, not a sync.** Files deleted locally stay on DataHub, and the `title` and `description` of an existing dataset are not updated.
+
+`dh` is a Go binary from the private repo [datopian/datahub-next](https://github.com/datopian/datahub-next/tree/staging/cli): `gh release download v0.1.0 -R datopian/datahub-next -p 'dh_<os>_<arch>.tar.gz'`, extract it and put `dh` on your `PATH`. Step-by-step install (including headless machines): [docs/install-dh.md](docs/install-dh.md). The `push` skill has the full checklist.
+
+### Delete a dataset
+
+```sh
+dh delete <name> -p datapressr
+```
+
+---
+

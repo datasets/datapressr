@@ -1,0 +1,161 @@
+{
+  "checker": "structure",
+  "results": [
+    {
+      "id": "D1",
+      "pass": true,
+      "severity": "fail",
+      "message": "build.ts, datapackage.json, 1 CSV(s) and DECISIONS.md (14 list item(s)) present",
+      "evidence": {
+        "csvs": [
+          "co2-ppm-monthly.csv"
+        ],
+        "decisions_items": 14
+      }
+    },
+    {
+      "id": "D2",
+      "pass": true,
+      "severity": "fail",
+      "message": "offline build from a data/ with no CSVs wrote 1 CSV(s)",
+      "evidence": {
+        "csvs": [
+          "co2-ppm-monthly.csv"
+        ]
+      }
+    },
+    {
+      "id": "D3",
+      "pass": true,
+      "severity": "fail",
+      "message": "two offline builds reproduce the committed 1 CSV(s) byte for byte",
+      "evidence": {
+        "sha256": {
+          "co2-ppm-monthly.csv": "0f12cee2d8c2470f0961e6e193d6d161ad0e0bede154c7aa4b51278ca5b9b7d3"
+        }
+      }
+    },
+    {
+      "id": "D4",
+      "pass": true,
+      "severity": "fail",
+      "message": "validator clean (0 note(s))",
+      "evidence": {
+        "errors": [],
+        "warnings": [],
+        "notes": []
+      }
+    },
+    {
+      "id": "D5",
+      "pass": true,
+      "severity": "fail",
+      "message": "structured, licence NOAA-GML-data-use, source on gml.noaa.gov, 1 typed resource(s) with primaryKey",
+      "evidence": null
+    },
+    {
+      "id": "D6",
+      "pass": true,
+      "severity": "fail",
+      "message": "snake_case headers, LF, trailing newline, no dialect",
+      "evidence": null
+    },
+    {
+      "id": "D7",
+      "pass": true,
+      "severity": "fail",
+      "message": "co2-ppm-monthly.csv: 821 observation rows (expected 821)",
+      "evidence": {
+        "csv": "co2-ppm-monthly.csv",
+        "rows": 821
+      }
+    },
+    {
+      "id": "D8",
+      "pass": false,
+      "severity": "fail",
+      "message": "1 anchor(s) wrong: 1984-04 uncertainty: uncertainty_ppm = \"\", raw file has 0",
+      "evidence": {
+        "misses": [
+          "1984-04 uncertainty: uncertainty_ppm = \"\", raw file has 0"
+        ],
+        "rows_by": "date column date",
+        "roles": {
+          "decimal_date": "decimal_date (by name)",
+          "co2_ppm_deseasonalized": "deseasonalized_ppm (by name)",
+          "uncertainty": "uncertainty_ppm (by name)",
+          "std_dev": "daily_sdev_ppm (by name)",
+          "num_days": "n_days (by name)",
+          "co2_ppm": "average_ppm (by name)"
+        }
+      }
+    },
+    {
+      "id": "D9",
+      "pass": false,
+      "severity": "fail",
+      "message": "empty-cell counts per column [195, 196, 196], expected [194, 195, 196]",
+      "evidence": {
+        "empties": {
+          "date": 0,
+          "decimal_date": 0,
+          "average_ppm": 0,
+          "deseasonalized_ppm": 0,
+          "n_days": 195,
+          "daily_sdev_ppm": 196,
+          "uncertainty_ppm": 196
+        }
+      }
+    },
+    {
+      "id": "D10",
+      "pass": false,
+      "severity": "fail",
+      "message": "6/7 reference columns matched; no agent column holds the values of uncertainty",
+      "evidence": {
+        "matched": {
+          "date": "date",
+          "decimal_date": "decimal_date",
+          "co2_ppm": "average_ppm",
+          "co2_ppm_deseasonalized": "deseasonalized_ppm",
+          "num_days": "n_days",
+          "std_dev": "daily_sdev_ppm"
+        },
+        "unmatched": [
+          "uncertainty"
+        ],
+        "allowed_missing": []
+      }
+    },
+    {
+      "id": "D11",
+      "pass": false,
+      "severity": "fail",
+      "message": "build.ts header comment lacks: licence",
+      "evidence": {
+        "missing": [
+          "licence"
+        ]
+      }
+    },
+    {
+      "id": "D12",
+      "pass": false,
+      "severity": "fail",
+      "message": "821 value(s) in date are not YYYY-MM-DD, e.g. \"1958-03\"",
+      "evidence": {
+        "column": "date",
+        "days_of_month": []
+      }
+    },
+    {
+      "id": "D13",
+      "pass": true,
+      "severity": "fail",
+      "message": "2 input(s) identical to their pinned commits",
+      "evidence": {
+        "added": []
+      }
+    }
+  ]
+}
