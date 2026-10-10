@@ -531,6 +531,45 @@ export async function parseYear(
 }
 
 /** RFC 4180, LF endings, trailing newline. Copied from scripts/wrangling-idioms.mjs. */
+/** The three event types with the most deaths over the whole published range — heat, tornado,
+ * flash flood — named here rather than ranked at build time, so a new year cannot silently
+ * reshuffle the columns of annual-fatalities.csv. The test checks they are still the top three. */
+export const LEADING_CAUSES = ["heat", "tornado", "flash-flood"] as const;
+
+export interface AnnualFatalitiesRow {
+  year: number;
+  all_hazards: number;
+  heat: number;
+  tornado: number;
+  flash_flood: number;
+  all_other: number;
+}
+
+/**
+ * One row per year: the year's own total deaths and the three leading causes, plus the rest.
+ * A derived view of hazard-statistics.csv for charting; it adds no information. all_hazards is
+ * the source's total row, and all_other is that total minus the three named causes, so the four
+ * parts always add back to it.
+ */
+export function annualFatalities(hazards: HazardRow[]): AnnualFatalitiesRow[] {
+  const years = [...new Set(hazards.map((r) => r.year))].sort((a, b) => a - b);
+  return years.map((year) => {
+    const rows = hazards.filter((r) => r.year === year);
+    const totals = rows.filter((r) => r.is_total);
+    if (totals.length !== 1) throw new Error(`${year}: expected one total row, found ${totals.length}`);
+    const cause = (id: string) => {
+      const hit = rows.filter((r) => !r.is_total && r.hazard_id === id);
+      if (hit.length !== 1) throw new Error(`${year}: expected one ${id} row, found ${hit.length}`);
+      return hit[0].fatalities;
+    };
+    const [heat, tornado, flash_flood] = LEADING_CAUSES.map(cause);
+    const all_hazards = totals[0].fatalities;
+    const all_other = all_hazards - heat - tornado - flash_flood;
+    if (all_other < 0) throw new Error(`${year}: the leading causes exceed the year's total`);
+    return { year, all_hazards, heat, tornado, flash_flood, all_other };
+  });
+}
+
 export function toCsv(rows: Record<string, unknown>[], columns: string[]): string {
   const esc = (v: unknown) => {
     if (v === undefined || v === null) return "";
@@ -657,6 +696,12 @@ async function main(): Promise<void> {
     ]),
   );
 
+  const annual = annualFatalities(hazards);
+  writeFileSync(
+    join(DATA, "annual-fatalities.csv"),
+    toCsv(annual as unknown as Record<string, unknown>[], ["year", "all_hazards", "heat", "tornado", "flash_flood", "all_other"]),
+  );
+
   const labels = new Set(hazards.filter((r) => !r.is_total).map((r) => r.hazard));
   console.log(
     `data/hazard-statistics.csv: ${hazards.length} rows, ${extracted.length} years ` +
@@ -666,6 +711,7 @@ async function main(): Promise<void> {
     `data/source-documents.csv: ${coverage.length} candidates, ${extracted.length} extracted, ` +
       `${coverage.filter((c) => !c.extracted).map((c) => `${c.year} (${c.layout})`).join(", ") || "none skipped"}`,
   );
+  console.log(`data/annual-fatalities.csv: ${annual.length} years`);
 }
 
 // Only build when run directly; build.test.mjs imports the functions above.

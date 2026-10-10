@@ -11,6 +11,24 @@ The first run ([Tesla quarterly deliveries](tesla-source-discovery.md)) used SEC
 
 The dataset is [`datasets/climate-and-environment/us-natural-hazard-statistics`](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/us-natural-hazard-statistics).
 
+## The result
+
+29 years of the NWS's own annual tables, 1997–2025, as one CSV: deaths, injuries and property and crop damage per year and event type. Over those years the source counts 18,867 weather deaths. Heat is the largest single cause, and the deadliest of the three leading causes in 21 of the 29 years:
+
+![Line chart of U.S. weather deaths per year from heat, tornadoes and flash floods, 1997–2025. Heat is highest in most years, peaking at 555 in 2023; tornadoes spike to 553 in 2011.](nws-hazard-leading-causes.svg)
+
+| Event type | Deaths, 1997–2025 | Share |
+|---|--:|--:|
+| Heat | 5,366 | 28% |
+| Tornado | 2,167 | 11% |
+| Flash flood | 2,015 | 11% |
+| Tropical storm / hurricane (wind only) | 1,505 | 8% |
+| Rip current (reported from 2002) | 1,438 | 8% |
+| All other event types | 6,376 | 34% |
+| **All hazards** | **18,867** | **100%** |
+
+The chart is drawn from `data/annual-fatalities.csv`, a small per-year table the build derives from the main CSV, and is redrawn by the dataset's `chart.ts`. The same table backs two charts declared as `views` in the dataset's `datapackage.json` (deaths per year from all hazards, and from the three leading causes), which DataHub draws on the dataset page. Hurricanes are not one of the three lines: their row counts wind deaths only (storm surge and flooding from the same storm are counted under other event types), and 1,016 of the 1,505 fall in a single year, 2005, mostly Katrina.
+
 ## The question
 
 *How many people does weather kill in the United States, and what kills them?* — with the immediate follow-up that makes it a data question rather than a wish: **per what, over what period, on whose count.**

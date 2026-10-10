@@ -2,13 +2,22 @@ Deaths, injuries and property and crop damage caused by weather in the United St
 
 Over the 29 years the source counts **18,867** weather-related deaths. Heat is the largest single cause at 5,366, ahead of tornadoes (2,167) and flash floods (2,015). The deadliest year is 2005 (1,451, most of it Hurricane Katrina) and the costliest is also 2005, at about $100.8 billion of nominal property and crop damage.
 
+## Files
+
+- `data/hazard-statistics.csv` — the dataset: one row per year and event type, plus each year's own total row.
+- `data/annual-fatalities.csv` — a small derived table for charting, one row per year: total deaths, deaths from the three leading causes (heat, tornado, flash flood) and all other causes. `build.ts` computes it from `hazard-statistics.csv` and the tests check that the four parts add back to the year's total. It adds no information.
+- `data/source-documents.csv` — every annual summary the source lists, and what became of it.
+
+The two charts on this page (deaths per year, and deaths from the three leading causes) are drawn from `annual-fatalities.csv`. Heat is the deadliest of the three in 21 of the 29 years, and in 2023 and 2024 it alone accounted for about half of all weather deaths.
+
 ## Rebuild
 
 ```sh
 cd datasets/climate-and-environment/us-natural-hazard-statistics
 NWS_USER_AGENT="<project> <your-email>" node fetch.ts   # 35 requests, paced; writes archive/
 npm install && node build.ts                            # offline; archive/ → data/
-node --test                                             # 36 tests
+node --test                                             # 40 tests
+node chart.ts                                           # redraws the worked example's SVG on the site
 node ../../../scripts/validate-datapackage.mjs .
 ```
 

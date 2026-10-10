@@ -9,7 +9,7 @@ import { readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { cellNumber, hazardId, selectTableRows, calibrateColumns, assignColumns, toCsv, CATEGORIES, expectedEvents } from "./build.ts";
+import { cellNumber, hazardId, selectTableRows, calibrateColumns, assignColumns, toCsv, CATEGORIES, expectedEvents, annualFatalities, LEADING_CAUSES } from "./build.ts";
 import { parseCandidates } from "./fetch.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -51,10 +51,16 @@ function readCsv(name) {
 
 const hazards = readCsv("hazard-statistics.csv");
 const coverage = readCsv("source-documents.csv");
+const annual = readCsv("annual-fatalities.csv");
 
 /** Build an Item[] row the way pageRows does, from [rightEdge, text] pairs. */
 function row(y, cells) {
   return cells.map(([right, text]) => ({ x: right - 10, right, y, text }));
+}
+
+/** hazard-statistics.csv rows typed the way build.ts holds them. */
+function typedHazards() {
+  return hazards.map((h) => ({ ...h, year: Number(h.year), is_total: h.is_total === "true", fatalities: Number(h.fatalities) }));
 }
 
 // --- cellNumber -------------------------------------------------------------
@@ -444,4 +450,31 @@ test("parseCandidates refuses a menu whose label and filename disagree", () => {
 
 test("parseCandidates refuses a page with no U.S. Summaries menu", () => {
   assert.throws(() => parseCandidates("<select><option>Cold</option></select>"), /no 'U\.S\. Summaries'/);
+});
+
+// --- annual-fatalities.csv (the derived charting table) -----------------------
+
+test("annual-fatalities.csv is exactly annualFatalities() of the published rows", () => {
+  const expected = annualFatalities(typedHazards()).map((r) => Object.fromEntries(Object.entries(r).map(([k, v]) => [k, String(v)])));
+  assert.deepEqual(annual, expected);
+});
+
+test("annual-fatalities.csv: the parts add back to the year's own total", () => {
+  for (const r of annual) {
+    assert.equal(Number(r.heat) + Number(r.tornado) + Number(r.flash_flood) + Number(r.all_other), Number(r.all_hazards), r.year);
+    const total = hazards.find((h) => h.year === r.year && h.is_total === "true");
+    assert.equal(r.all_hazards, total.fatalities, r.year);
+  }
+});
+
+test("the named leading causes are still the three deadliest event types over the range", () => {
+  const sums = new Map();
+  for (const h of hazards) if (h.is_total === "false") sums.set(h.hazard_id, (sums.get(h.hazard_id) ?? 0) + Number(h.fatalities));
+  const top3 = [...sums].sort((a, b) => b[1] - a[1]).slice(0, 3).map(([id]) => id);
+  assert.deepEqual(top3, [...LEADING_CAUSES]);
+});
+
+test("annualFatalities throws when a leading cause is missing from a year", () => {
+  const rows = typedHazards().filter((h) => !(h.year === 2010 && h.hazard_id === "heat"));
+  assert.throws(() => annualFatalities(rows), /2010: expected one heat row/);
 });
