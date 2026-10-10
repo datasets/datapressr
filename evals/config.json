@@ -1,0 +1,31 @@
+{
+  "models": {
+    "claude": {
+      "writer": "claude-opus-5-5",
+      "critic": "claude-opus-5-5",
+      "canary": "claude-haiku-5-5"
+    },
+    "codex": {
+      "writer": "gpt-6-astra",
+      "critic": "gpt-6-astra",
+      "canary": "gpt-6-astra"
+    }
+  },
+  "families": {
+    "opus": "claude-opus-5-5",
+    "sonnet": "claude-sonnet-5-5",
+    "haiku": "claude-haiku-5-5"
+  },
+  "critic_preference": {
+    "claude": "codex",
+    "codex": "claude"
+  },
+  "critic_fallback": {
+    "opus": "sonnet"
+  },
+  "caps": {
+    "fixed": { "max_usd": 20, "max_turns": 100 },
+    "open": { "max_usd": 30, "max_turns": 150 }
+  },
+  "max_usd_per_invocation": 60
+}
