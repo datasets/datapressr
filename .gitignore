@@ -21,3 +21,4 @@ site/.flowershow
 evals/runs/**/transcript.jsonl
 evals/runs/**/workspace.tar
 evals/pairs/**/mapping.json
+evals/canaries/**/transcript.jsonl

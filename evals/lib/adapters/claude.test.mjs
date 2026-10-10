@@ -1,0 +1,134 @@
+// Claude recipe without agent calls: the settings file, the flags, the recipe hash, the child
+// environment, stream-json parsing, and the writer and critic roles driven through a fake
+// `claude` binary that prints a canned stream-json transcript.
+
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { chmodSync, existsSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import * as claude from "./claude.mjs";
+import { fakeClaudeBin } from "../fixture-staging.mjs";
+
+const ROOT = "/Users/someone/src/datapressr";
+const HOME = "/Users/someone";
+
+test("fixed-mode settings deny the repo and the user's agent and credential dirs, the web and the network", () => {
+  const s = claude.settingsFor({ mode: "fixed", root: ROOT, home: HOME });
+  const dirs = [ROOT, `${HOME}/.claude`, `${HOME}/.codex`, `${HOME}/.agents`, `${HOME}/.config/gh`, `${HOME}/.ssh`];
+  assert.deepEqual(s.permissions.deny, [...dirs.flatMap((d) => [`Read(/${d}/**)`, `Edit(/${d}/**)`]), "WebFetch", "WebSearch"]);
+  assert.ok(s.permissions.deny.includes("Read(//Users/someone/src/datapressr/**)"), "absolute paths use the // prefix");
+  assert.equal(s.permissions.allow, undefined, "allowed tools come from --allowedTools, not the settings file");
+  assert.deepEqual(s.sandbox, {
+    enabled: true,
+    autoAllowBashIfSandboxed: true,
+    allowUnsandboxedCommands: false,
+    filesystem: { denyRead: dirs },
+    network: { allowedDomains: [] },
+  });
+});
+
+test("the weakened recipe drops only the read/edit denies and denyRead, and hashes differently", () => {
+  const w = claude.settingsFor({ mode: "fixed", root: ROOT, home: HOME, weaken: true });
+  assert.deepEqual(w.permissions.deny, ["WebFetch", "WebSearch"]);
+  assert.deepEqual(w.sandbox.filesystem, {});
+  assert.deepEqual(w.sandbox.network, { allowedDomains: [] });
+  assert.notEqual(claude.recipeHash("fixed"), claude.recipeHash("fixed", { weaken: true }));
+  assert.equal(claude.recipeHash("fixed"), claude.recipeHash("fixed"), "stable");
+  assert.match(claude.recipeHash("fixed"), /^[0-9a-f]{64}$/);
+  assert.throws(() => claude.settingsFor({ mode: "open", root: ROOT, home: HOME }), /datapressr-hcn\.12/);
+});
+
+test("the recipe hash does not depend on machine paths, model or caps", () => {
+  const t = claude.recipeTemplate("fixed");
+  const text = JSON.stringify(t);
+  assert.ok(!text.includes(HOME) && !text.includes(process.env.HOME || "/nonexistent-home"), "no machine paths");
+  assert.ok(text.includes("<model>") && text.includes("<settings>"));
+});
+
+test("writer flags are the section 4.3 recipe", () => {
+  const args = claude.writerArgs({ prompt: "P", model: "claude-haiku-5-5", maxTurns: 6, maxBudgetUsd: 0.05, settingsPath: "/x/settings.json" });
+  const flag = (f) => args[args.indexOf(f) + 1];
+  assert.equal(args[0], "-p");
+  assert.equal(args[1], "P");
+  assert.equal(flag("--model"), "claude-haiku-5-5");
+  assert.equal(flag("--max-turns"), "6");
+  assert.equal(flag("--max-budget-usd"), "0.05");
+  assert.equal(flag("--setting-sources"), "project");
+  assert.equal(flag("--permission-mode"), "dontAsk");
+  assert.equal(flag("--allowedTools"), "Read,Write,Edit,Glob,Grep,Bash");
+  assert.equal(flag("--tools"), "Read,Write,Edit,Glob,Grep,Bash");
+  assert.equal(flag("--settings"), "/x/settings.json");
+  assert.equal(flag("--output-format"), "stream-json");
+  for (const f of ["--disable-slash-commands", "--no-session-persistence", "--strict-mcp-config", "--verbose"]) assert.ok(args.includes(f), f);
+  assert.ok(!args.includes("bypassPermissions"), "bypassPermissions lets curl through the sandbox");
+
+  const c = claude.criticArgs({ prompt: "P", model: "m", settingsPath: "/s", jsonSchema: { type: "object" } });
+  assert.equal(c[c.indexOf("--tools") + 1], "", "critic has no tools");
+  assert.equal(c[c.indexOf("--json-schema") + 1], '{"type":"object"}');
+});
+
+test("the child environment drops the parent Claude Code session but keeps auth", () => {
+  const env = claude.childEnv({ PATH: "/usr/bin", HOME, CLAUDECODE: "1", CLAUDE_CODE_ENTRYPOINT: "cli", CLAUDE_CODE_SESSION_ID: "s", CLAUDE_PID: "1", CLAUDE_CODE_OAUTH_TOKEN: "t", ANTHROPIC_API_KEY: "k" });
+  assert.deepEqual(env, { PATH: "/usr/bin", HOME, CLAUDE_CODE_OAUTH_TOKEN: "t", ANTHROPIC_API_KEY: "k" });
+});
+
+test("modelActual picks the model that did the work", () => {
+  assert.equal(claude.modelActual({ modelUsage: { "claude-haiku-5-5": { costUSD: 0.001, outputTokens: 10 }, "claude-opus-5-5": { costUSD: 2.5, outputTokens: 9000 } } }), "claude-opus-5-5");
+  assert.equal(claude.modelActual({}), null);
+});
+
+test("writer role: runs the recipe in the workspace, parses the result, removes its settings file", async () => {
+  const fake = fakeClaudeBin();
+  const ws = mkdtempSync(join(tmpdir(), "evals-ws-"));
+  try {
+    const out = await claude.write({ workspace: ws, prompt: "Write a story", model: "claude-haiku-5-5", caps: { max_usd: 1, max_turns: 5 }, mode: "fixed", root: ROOT, home: HOME, timeoutMs: 30_000, bin: fake.bin });
+    assert.equal(out.cli_version, "9.9.9");
+    assert.equal(out.model_actual, "claude-haiku-5-5");
+    assert.equal(out.turns, 3);
+    assert.equal(out.cost_usd, 0.0123);
+    assert.equal(out.cost_basis, "list");
+    assert.equal(out.recipe_sha256, claude.recipeHash("fixed"));
+    assert.deepEqual(out.flags, []);
+    assert.equal(out.network, false);
+    assert.ok(existsSync(join(ws, "site/stories/fake.md")));
+    assert.deepEqual(fake.settings(), claude.settingsFor({ mode: "fixed", root: ROOT, home: HOME }));
+    const argv = fake.argv();
+    assert.equal(argv[1], "Write a story");
+    assert.ok(!existsSync(argv[argv.indexOf("--settings") + 1]), "settings file removed after the run");
+  } finally {
+    rmSync(ws, { recursive: true, force: true });
+    rmSync(fake.dir, { recursive: true, force: true });
+  }
+});
+
+test("writer role flags failed and over_budget from the result; the timeout kills the process", async () => {
+  const fake = fakeClaudeBin({ isError: true });
+  const ws = mkdtempSync(join(tmpdir(), "evals-ws-"));
+  try {
+    const out = await claude.write({ workspace: ws, prompt: "x", model: "m", caps: { max_usd: 1, max_turns: 5 }, mode: "fixed", root: ROOT, home: HOME, timeoutMs: 30_000, bin: fake.bin });
+    assert.deepEqual(out.flags.sort(), ["failed", "over_budget"]);
+
+    const slow = join(fake.dir, "slow");
+    writeFileSync(slow, `#!/bin/sh\nexec sleep 30\n`);
+    chmodSync(slow, 0o755);
+    const proc = await claude.execute({ bin: slow, args: [], cwd: ws, timeoutMs: 200 });
+    assert.equal(proc.timedOut, true);
+  } finally {
+    rmSync(ws, { recursive: true, force: true });
+    rmSync(fake.dir, { recursive: true, force: true });
+  }
+});
+
+test("critic role: no tools, structured output returned", async () => {
+  const fake = fakeClaudeBin();
+  try {
+    const res = await claude.critic({ prompt: "Judge", model: "claude-sonnet-5-5", jsonSchema: { type: "object" }, root: ROOT, home: HOME, bin: fake.bin });
+    assert.equal(res.ok, true);
+    assert.deepEqual(res.output, { verdict: "ok" });
+    const argv = fake.argv();
+    assert.equal(argv[argv.indexOf("--tools") + 1], "");
+  } finally {
+    rmSync(fake.dir, { recursive: true, force: true });
+  }
+});

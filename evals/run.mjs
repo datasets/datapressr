@@ -3,20 +3,21 @@
 //   node evals/run.mjs run <domain>/<case> --writer fake [--skill-ref <commit>] [--allow-dirty] [--repeat N]
 //   node evals/run.mjs check <run_id|--all>
 //   node evals/run.mjs report
+//   node evals/run.mjs canary --writer claude [--mode fixed] [--weaken]
 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { checkCommand } from "./lib/checkers/run-checks.mjs";
+import { runCanary } from "./lib/canary.mjs";
 import { writeReport } from "./lib/report.mjs";
-import { runCase } from "./lib/runner.mjs";
+import { ADAPTERS, loadConfig, runCase } from "./lib/runner.mjs";
 import { repoRoot } from "./lib/versions.mjs";
 
 const evalsDir = dirname(fileURLToPath(import.meta.url));
 const root = repoRoot(evalsDir);
 
 const PLANNED = {
-  canary: "datapressr-hcn.3 (H2)",
   score: "datapressr-hcn.5 (H4)",
   pair: "datapressr-hcn.5 (H4)",
   owner: "datapressr-hcn.9 (H8)",
@@ -26,6 +27,7 @@ const USAGE = `usage:
   node evals/run.mjs run <domain>/<case> --writer fake [--skill-ref <commit>] [--allow-dirty] [--repeat N]
   node evals/run.mjs check <run_id|--all>
   node evals/run.mjs report
+  node evals/run.mjs canary --writer claude [--mode fixed] [--weaken]
 planned: ${Object.entries(PLANNED).map(([k, v]) => `${k} (${v})`).join(", ")}`;
 
 async function main(argv) {
@@ -61,6 +63,20 @@ async function main(argv) {
     checkCommand({ root, evalsDir, target: rest[0], log: (m) => console.log(m) });
     writeReport(join(evalsDir, "ledger.jsonl"), join(evalsDir, "REPORT.md"));
     console.log("wrote checks.json, updated evals/ledger.jsonl and evals/REPORT.md");
+    return;
+  }
+  if (command === "canary") {
+    const { values } = parseArgs({
+      args: rest,
+      options: { writer: { type: "string" }, mode: { type: "string", default: "fixed" }, weaken: { type: "boolean", default: false } },
+    });
+    const adapter = ADAPTERS[values.writer];
+    if (!adapter?.needsCanary) throw new Error(`canary needs a real writer (claude); got ${JSON.stringify(values.writer)}`);
+    const { detail } = await runCanary({ root, evalsDir, adapter, config: loadConfig(evalsDir), mode: values.mode, weaken: values.weaken, log: (m) => console.log(m) });
+    for (const [name, p] of Object.entries(detail.probes)) console.log(`  ${p.status.padEnd(8)} ${name}`);
+    console.log(`canary ${detail.run_id}: ${detail.pass ? "PASS" : "FAIL"} (${detail.vendor} ${detail.cli_version}, recipe ${detail.recipe_sha256.slice(0, 12)}, ${detail.mode}${detail.weakened ? ", weakened" : ""}; ${detail.model_actual}, ${detail.turns} turns, ${detail.cost_usd} USD)`);
+    console.log(`wrote evals/canaries/${detail.run_id}/canary.json and a canary row in evals/ledger.jsonl`);
+    if (!detail.pass) process.exitCode = 1;
     return;
   }
   if (command === "report") {

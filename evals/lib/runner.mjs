@@ -1,19 +1,24 @@
-// The `run` subcommand (design section 4.2). This skeleton covers: resolve versions, refuse a
-// dirty skill tree, run the writer adapter, collect artefacts, write run.json, append a ledger
-// row and regenerate the report. Blind staging, the canary gate and real writers arrive in
-// datapressr-hcn.3 (H2) and datapressr-hcn.4 (H3); only the fake writer exists so far.
+// The `run` subcommand (design section 4.2): resolve versions, refuse a dirty skill tree, gate
+// on a passing canary (staged writers), stage a blind workspace, run the writer adapter, collect
+// artefacts, leak-scan the transcript, write run.json, append a ledger row and regenerate the
+// report. The fake writer skips staging and the gate; the Codex writer arrives in
+// datapressr-hcn.4 (H3).
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join, relative, sep } from "node:path";
+import * as claude from "./adapters/claude.mjs";
 import * as fake from "./adapters/fake.mjs";
+import { gateFromLedger } from "./canary.mjs";
+import { scanTranscript } from "./leakscan.mjs";
+import { collectArtefacts, ensureModulesCache, removeWorkspace, stageWorkspace, tarWorkspace } from "./stage.mjs";
 import { checkRun } from "./checkers/run-checks.mjs";
 import { appendRow } from "./ledger.mjs";
 import { writeReport } from "./report.mjs";
 import { assertValid, validateCase, validateRun } from "./schema.mjs";
 import { caseHash, harnessVersion, isAncestorOfMain, sha256, skillVersion, treeHash } from "./versions.mjs";
 
-const ADAPTERS = { fake };
-const NOT_YET = { claude: "datapressr-hcn.3 (H2)", codex: "datapressr-hcn.4 (H3)" };
+export const ADAPTERS = { fake, claude };
+const NOT_YET = { codex: "datapressr-hcn.4 (H3)" };
 
 export function loadConfig(evalsDir) {
   return JSON.parse(readFileSync(join(evalsDir, "config.json"), "utf8"));
@@ -48,8 +53,30 @@ function stamp(d) {
 }
 const modelShort = (model) => model.replace(/^claude-/, "").replace(/[^a-z0-9-]+/gi, "-").toLowerCase();
 
-export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, writer, skillRef = "HEAD", allowDirty = false, repeat = 1, now = () => new Date(), log = () => {} }) {
-  const adapter = ADAPTERS[writer];
+// A staged writer (design 4.2 steps 3-6): blind workspace, the vendor recipe, then collect the
+// changed files into artefactDir, leak-scan the transcript and keep transcript + tarball (both
+// gitignored, hashed in run.json). The workspace is removed afterwards.
+async function runStaged({ adapter, root, kase, prompt, skillRef, model, caps, config, runDir, artefactDir, cacheRoot, log }) {
+  const cache = ensureModulesCache({ root, ref: skillRef, log, ...(cacheRoot ? { cacheRoot } : {}) });
+  const ws = stageWorkspace({ root, kase, prompt, skillRef, modules: cache.modules });
+  try {
+    log(`workspace ${ws.dir}`);
+    const out = await adapter.write({ workspace: ws.dir, prompt, model, caps, mode: kase.data_mode, root, timeoutMs: config.timeouts_ms.writer });
+    const collected = collectArtefacts(ws.dir, artefactDir);
+    if (collected.skipped.length) log(`not collected (over 2 MB in total, or not a file): ${collected.skipped.join(", ")}`);
+    const leaks = scanTranscript(out.transcript, { workspaces: [ws.dir], allowedDirs: [cache.dir] });
+    writeFileSync(join(runDir, "transcript.jsonl"), out.transcript);
+    const tar = tarWorkspace(ws.dir, join(runDir, "workspace.tar"));
+    const flags = [...out.flags];
+    if (leaks.length) flags.push("leaked");
+    return { ...out, leaks, flags, transcript_sha256: sha256(out.transcript), workspace_sha256: sha256(tar), deleted: collected.deleted };
+  } finally {
+    removeWorkspace(ws.dir);
+  }
+}
+
+export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, writer, skillRef = "HEAD", allowDirty = false, repeat = 1, now = () => new Date(), log = () => {}, adapters = ADAPTERS, cacheRoot }) {
+  const adapter = adapters[writer];
   if (!adapter) {
     if (NOT_YET[writer]) throw new Error(`writer "${writer}" is not implemented yet; it arrives in ${NOT_YET[writer]}. Use --writer fake.`);
     throw new Error(`unknown writer "${writer}"`);
@@ -70,6 +97,8 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
   const caps = config.caps[kase.data_mode];
 
   const ledgerFile = join(evalsDir, "ledger.jsonl");
+  // 2. Gate: a staged writer needs a passing canary for this CLI version, recipe and mode.
+  const canary = adapter.needsCanary ? gateFromLedger(ledgerFile, { vendor: adapter.vendor, cli_version: adapter.cliVersion(), recipe_sha256: adapter.recipeHash(kase.data_mode), mode: kase.data_mode }) : null;
   const results = [];
   for (let r = 0; r < repeat; r++) {
     const started = now();
@@ -84,8 +113,10 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
     mkdirSync(artefactDir, { recursive: true });
     log(`run ${runId}`);
 
-    // 4. Execute (the fake writer just copies canned files).
-    const out = await adapter.write({ domain: kase.domain, kase, prompt, destDir: artefactDir, caps, config });
+    // 3-6. Stage, execute, collect, leak scan (the fake writer just copies canned files).
+    const out = adapter.staged
+      ? { ...(await runStaged({ adapter, root, kase, prompt, skillRef: skill.ref, model, caps, config, runDir, artefactDir, cacheRoot, log })), canary_run_id: canary.run_id }
+      : await adapter.write({ domain: kase.domain, kase, prompt, destDir: artefactDir, caps, config });
 
     // 5. Collect.
     const artefacts = walk(artefactDir).map((p) => {
@@ -103,7 +134,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
       domain: kase.domain,
       case_hash: hash,
       skill,
-      harness: { tree: harness.tree, dirty: harness.dirty, recipe_sha256: null },
+      harness: { tree: harness.tree, dirty: harness.dirty, recipe_sha256: out.recipe_sha256 ?? null },
       writer: { vendor: writer, model: out.model, model_actual: out.model_actual, cli_version: out.cli_version, prompt_sha256: sha256(prompt) },
       isolation: { canary_run_id: out.canary_run_id, network: out.network, leaks: out.leaks },
       started_at: started.toISOString(),

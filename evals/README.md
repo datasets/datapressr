@@ -6,20 +6,33 @@ House style: plain Node, no build step, no npm dependencies; results are files i
 
 ## Status
 
-Walking skeleton (`datapressr-hcn.2`). What works today:
+Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and the isolation canary (`datapressr-hcn.3`). What works today:
 
 ```sh
-node evals/run.mjs run story/q01-french-debt --writer fake   # free plumbing test
-node evals/run.mjs check <run_id|--all>                     # deterministic checks: checks.json + a ledger row
-node evals/run.mjs report                                    # regenerate evals/REPORT.md
-npm test                                                     # harness tests, no agent calls
+node evals/run.mjs run story/q01-french-debt --writer fake     # free plumbing test
+node evals/run.mjs canary --writer claude                      # about 0.003 USD on Haiku; required before any Claude run
+node evals/run.mjs canary --writer claude --weaken             # negative control: no deny rules, must FAIL
+node evals/run.mjs run story/q01-french-debt --writer claude   # paid (caps in config.json); refused without a passing canary
+node evals/run.mjs check <run_id|--all>                       # deterministic checks: checks.json + a ledger row
+node evals/run.mjs report                                      # regenerate evals/REPORT.md
+npm test                                                       # harness tests, no agent calls
 ```
 
 `run` options: `--skill-ref <commit>` (default `HEAD`), `--allow-dirty` (run even when `skills/<name>` has uncommitted changes; the run is flagged `dirty_skill`), `--repeat N`.
 
-Planned, each with its bead: `canary` and `--writer claude` with blind staging (`datapressr-hcn.3`), `--writer codex` and automatic critic choice (`datapressr-hcn.4`), `score` and `pair` (`datapressr-hcn.5`), `owner` and the full report (`datapressr-hcn.9`). Calling one of these now prints which bead brings it.
+Planned, each with its bead: `--writer codex` and automatic critic choice (`datapressr-hcn.4`), `score` and `pair` (`datapressr-hcn.5`), `owner` and the full report (`datapressr-hcn.9`), the open-mode recipe (`datapressr-hcn.12`). Calling one of these now prints which bead brings it.
 
 The fake writer copies `lib/adapters/fake-artefacts/<domain>/` into the run. Fake runs exist to test the plumbing; do not commit their output to the real ledger.
+
+## Blind runs and the canary
+
+A real writer never runs in this repo. `lib/stage.mjs` builds a fresh temp git repo holding only: the case `prompt.md` as `TASK.md`; each input via `git archive <commit> <path>` at its repo path; each case skill via `git archive <skill-ref> skills/<name>`; the dataset-conventions part of `AGENTS.md` (above the repo-only marker, at the skill ref); `site/stories/package.json` and its lockfile; and `site/stories/node_modules`, a link to a read-only cache built once per lockfile hash with `npm ci --ignore-scripts` in `~/.cache/datapressr-evals/node_modules/<hash>/` (override with `EVALS_CACHE_DIR`; refused inside a denied path). The staged tree is committed as the baseline; after the run, new and changed files (up to 2 MB) are copied into the run's `artefacts/`.
+
+The Claude recipe (`lib/adapters/claude.mjs`, design section 4.3): `claude -p` with a full model ID, `--max-turns`, `--max-budget-usd`, `--setting-sources project`, `--disable-slash-commands`, `--strict-mcp-config`, `--no-session-persistence`, `--permission-mode dontAsk`, `--tools` and `--allowedTools` set to Read, Write, Edit, Glob, Grep and Bash, `--output-format stream-json --verbose` (so the transcript holds every tool call), and `--settings` pointing at a harness-written file: `Read` and `Edit` deny rules on the repo root, `~/.claude`, `~/.codex`, `~/.agents`, `~/.config/gh` and `~/.ssh`; `WebFetch` and `WebSearch` denied; and a sandbox with `allowUnsandboxedCommands: false`, `filesystem.denyRead` on the same paths and `network.allowedDomains: []`. The child process gets our environment minus the variables that mark a parent Claude Code session. Nothing in the user's settings, `CLAUDE.md` or memory is changed. The recipe hash covers the flags and settings with machine paths as placeholders, not the model or caps.
+
+`canary` runs that recipe on the canary model (`config.json`) with a probe prompt: Read, Grep and Bash `head`/`ls` on the repo; Read, Glob and Bash `ls` on each of the user directories above that exist; `curl` and Node `fetch`; and an Observable Plot chart built inside the sandbox from the cached `node_modules` (the positive control). The verdict comes from the tool results in the transcript and the session's init event (only the six tools; no MCP servers, skills, slash commands or non-built-in plugins), never from the model's own account. It writes `canaries/<id>/canary.json` (leaked content redacted) and a `canary` ledger row keyed by vendor, CLI version, recipe hash and mode. `run` refuses unless the latest canary for that key passed, so a CLI upgrade or recipe change needs a new canary.
+
+After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or `~`, `$HOME`, `../`) paths outside the workspace and the `node_modules` cache, allowing executables, `/dev/null` and `/tmp`; any hit flags the run `leaked` and lists the paths in `run.json`. The scan is conservative: review flagged paths before excluding a run.
 
 ## Layout
 
@@ -34,6 +47,11 @@ The fake writer copies `lib/adapters/fake-artefacts/<domain>/` into the run. Fak
 | `lib/checkers/story.mjs` | The six story checks S1–S6 (below); `run-checks.mjs` is the `check` subcommand, which `run` also calls after collecting artefacts; `offline-preload.mjs` blocks the network for chart rebuilds |
 | `lib/report.mjs` | Writes `REPORT.md` (per-case table of runs for now) |
 | `lib/adapters/fake.mjs` | Zero-cost writer for tests |
+| `lib/stage.mjs` | Blind workspace staging, the `node_modules` cache, artefact collection |
+| `lib/adapters/claude.mjs` | The Claude recipe: settings file, flags, writer and critic roles, stream-json parsing |
+| `lib/canary.mjs` | Canary probes, verdict and the `run` gate |
+| `lib/leakscan.mjs` | Out-of-workspace path scan over a transcript's tool calls |
+| `canaries/<id>/` | `canary.json` (probe statuses and redacted evidence); `transcript.jsonl` is gitignored |
 | `cases/<domain>/<id>/` | `case.json` and `prompt.md` |
 | `runs/<domain>/<case>/<run_id>/` | `run.json` and `artefacts/` (the writer's files at their workspace paths, e.g. `artefacts/site/stories/<slug>.md`); later `checks.json` and `critique*.json`. `transcript.jsonl` and `workspace.tar` are gitignored and hashed in `run.json` |
 | `pairs/<pair_id>/` | Blind `A/` and `B/` for the owner; `mapping.json` is gitignored |

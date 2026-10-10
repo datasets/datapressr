@@ -27,5 +27,7 @@
     "fixed": { "max_usd": 20, "max_turns": 100 },
     "open": { "max_usd": 30, "max_turns": 150 }
   },
-  "max_usd_per_invocation": 60
+  "max_usd_per_invocation": 60,
+  "canary": { "max_usd": 0.05, "max_turns": 6, "timeout_ms": 300000 },
+  "timeouts_ms": { "writer": 5400000, "critic": 900000 }
 }
