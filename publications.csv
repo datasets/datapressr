@@ -1,0 +1,17 @@
+kind,slug,title,source_path,venue,url,status,updated
+story,oil-prices,"WTI Went Negative. Brent Didn't.",site/stories/oil-prices.md,site,https://datapressr.datahub.io/stories/oil-prices,live,2026-10-10
+story,oil-prices,"WTI Went Negative. Brent Didn't.",site/stories/oil-prices.md,datahub,https://datahub.io/datapressr/wti-went-negative,draft,2026-10-10
+story,keeling-curve,The Keeling Curve,site/stories/keeling-curve.md,site,https://datapressr.datahub.io/stories/keeling-curve,live,2026-10-10
+story,keeling-curve,The Keeling Curve,site/stories/keeling-curve.md,datahub,https://datahub.io/datapressr/keeling-curve,draft,2026-10-10
+story,planetary-boundaries,Planetary Boundaries,site/stories/planetary-boundaries.md,site,https://datapressr.datahub.io/stories/planetary-boundaries,live,2026-10-10
+story,planetary-boundaries,Planetary Boundaries,site/stories/planetary-boundaries.md,datahub,https://datahub.io/datapressr/planetary-boundaries-scoreboard,draft,2026-10-10
+story,france-public-finances,Where France’s public money goes,site/stories/france-public-finances.md,site,https://datapressr.datahub.io/stories/france-public-finances,live,2026-10-10
+story,france-public-finances,Where France’s public money goes,site/stories/france-public-finances.md,datahub,https://datahub.io/datapressr/where-frances-public-money-goes,draft,2026-10-10
+dataset,oil-prices,Oil Prices,datasets/energy-and-commodities/oil-prices,datahub,https://datahub.io/datapressr/oil-prices,live,2026-10-10
+dataset,co2-ppm,CO2 PPM,datasets/climate-and-environment/co2-ppm,datahub,https://datahub.io/datapressr/co2-ppm,live,2026-10-10
+dataset,france-public-finances,France Public Finances,datasets/france-public-finances,datahub,https://datahub.io/datapressr/france-public-finances,live,2026-10-10
+dataset,airports,Airports,datasets/transport/airports,datahub,https://datahub.io/datapressr/airports,live,2026-10-10
+dataset,population-growth,Population Growth,datasets/demographics/population-growth,datahub,https://datahub.io/datapressr/population-growth,live,2026-10-10
+dataset,tesla-quarterly-deliveries,Tesla Quarterly Deliveries,datasets/transport/tesla-quarterly-deliveries,datahub,https://datahub.io/datapressr/tesla-quarterly-deliveries,live,2026-10-10
+dataset,us-natural-hazard-statistics,US Natural Hazard Statistics,datasets/climate-and-environment/us-natural-hazard-statistics,datahub,https://datahub.io/datapressr/us-natural-hazard-statistics,live,2026-10-10
+story,keeling-curve,The Keeling Curve,site/stories/keeling-curve.md,flowershow-drafts,https://datapressr-drafts-rufuspollock.flowershow.me/stories/keeling-curve,review,2026-10-10
