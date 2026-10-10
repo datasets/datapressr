@@ -2,12 +2,17 @@
   "name": "stories-charts-build",
   "private": true,
   "type": "module",
-  "description": "Chart-build deps for the data stories (not published). Observable Plot rendered to static SVG at build time; jsdom supplies the DOM.",
+  "description": "Chart-build deps for the data stories (not published). Observable Plot rendered to static SVG at build time; jsdom supplies the DOM. The MDX devDependencies check stories and dataset READMEs compile under the DataHub MDX pipeline.",
   "dependencies": {
     "@observablehq/plot": "0.6.17",
     "d3-dsv": "3.0.1",
     "d3-hierarchy": "3.1.2",
     "jsdom": "30.0.1",
     "marked": "17.0.1"
+  },
+  "devDependencies": {
+    "@mdx-js/mdx": "3.1.1",
+    "remark-gfm": "4.0.1",
+    "remark-math": "6.0.0"
   }
 }
