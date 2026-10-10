@@ -16,10 +16,13 @@ Validate the dataset in the current directory.
    re-derived by reasoning about the JSON each run. It exits non-zero if there
    are errors.
 
-2. If the script is missing (an older dataset scaffolded before this existed),
-   fall back to checking by hand and tell the user to copy
-   `scripts/validate-datapackage.mjs` from the `datapressr` repo into this
-   dataset so future runs are deterministic:
+2. If the dataset has no `scripts/validate-datapackage.mjs` (an older dataset, or one not scaffolded by `init`), run the copy that ships with this skill, in `scripts/validate-datapackage.mjs` under this skill's own directory (the folder holding this `SKILL.md`), and print its output verbatim:
+   ```sh
+   node <this skill's directory>/scripts/validate-datapackage.mjs .
+   ```
+   Then offer to copy that file into the dataset's `scripts/` so future runs don't depend on the skill being installed.
+
+3. If neither copy exists, download https://raw.githubusercontent.com/datasets/datapressr/main/skills/validate/scripts/validate-datapackage.mjs into the dataset's `scripts/` and run it as in step 1. Only if that fails too, fall back to checking by hand, and say that you did:
 
    **Errors (must fix before pushing):**
    - `datapackage.json` exists and is valid JSON

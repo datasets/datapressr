@@ -26,13 +26,9 @@ uppercase, slugify it and say what you used.
    }
    ```
 
-3. Copy the dataset conventions from the repo's `AGENTS.md` into `<name>/AGENTS.md` so future AI sessions have context: everything above its `<!-- repo-only: ... -->` marker line, not the repo-only sections below it. Inside the DataPressr repo, run `node scripts/sync-dataset-agents.mjs` instead, which does exactly that for every dataset (and `npm test` fails if a copy goes stale).
+3. Copy the dataset conventions into `<name>/AGENTS.md` so future AI sessions have context. They ship with this skill: copy `references/AGENTS.md` from this skill's own directory (the folder holding this `SKILL.md`) verbatim. If that file isn't there, download it from https://raw.githubusercontent.com/datasets/datapressr/main/skills/init/references/AGENTS.md. Inside the DataPressr repo itself, run `node scripts/sync-dataset-agents.mjs` instead, which writes the same text into every dataset (and `npm test` fails if a copy goes stale).
 
-4. Copy the repo's `scripts/validate-datapackage.mjs` into
-   `<name>/scripts/validate-datapackage.mjs` — it's what the `validate` skill runs.
-   It's a single dependency-free file (plain Node, no `package.json` needed to run
-   it), so it travels with the dataset directory even when that directory becomes
-   its own repo, unrelated to wherever `datapressr` itself is checked out.
+4. Copy the validator into `<name>/scripts/validate-datapackage.mjs` — it's what the `validate` skill runs. It ships with the `validate` skill: copy `scripts/validate-datapackage.mjs` from that skill's directory, a sibling of this one (`../validate/scripts/validate-datapackage.mjs` from the folder holding this `SKILL.md`). If it isn't there, download it from https://raw.githubusercontent.com/datasets/datapressr/main/skills/validate/scripts/validate-datapackage.mjs. Don't write a stand-in from memory. It's a single dependency-free file (plain Node, no `package.json` needed to run it), so it travels with the dataset directory even when that directory becomes its own repo.
 
 5. Tell the user:
    - What was created

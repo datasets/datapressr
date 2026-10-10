@@ -178,7 +178,7 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 
 | Skill | What it does |
 |-------|-------------|
-| `capture` | File a URL / idea in the Inbox issue (or a bead once substantive) — near-zero friction |
+| `capture` | File a URL / idea in the project's own tracker (Beads, its issues, or a local `INBOX.md`; in this repo, the Inbox issue or a bead) — near-zero friction |
 | `archive` | Snapshot the raw source into `archive/` with provenance |
 | `structure` | Raw → tidy typed CSV(s) + `datapackage.json` (the core wrangling step) |
 | `enrich` | Structured → enriched: consolidated stats, first `views`, a "What stands out" note |

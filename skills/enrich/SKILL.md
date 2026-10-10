@@ -72,7 +72,7 @@ A few links, not prose: the source, the community or related dataset, any story 
 
 ### 5. Bump status
 
-`datapackage.json` `status`: `"structured"` → `"enriched"`. Re-run the validator (DataPressr: `node scripts/validate-datapackage.mjs .`).
+`datapackage.json` `status`: `"structured"` → `"enriched"`. Re-run the validator (`node scripts/validate-datapackage.mjs .`, or the `validate` skill).
 
 ## Derived data: build.ts or enrich.ts?
 

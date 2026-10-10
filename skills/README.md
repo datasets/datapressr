@@ -7,7 +7,7 @@ install into any agent, not just Claude Code.
 
 | Skill | Lifecycle stage | What it does |
 |-------|-----------------|--------------|
-| `capture` | capture | File a URL / idea as a GitHub issue — near-zero friction, no judgement |
+| `capture` | capture | File a URL / idea in your own project's tracker (Beads, its issues, or a local `INBOX.md`) — near-zero friction, no judgement |
 | `archive` | → archived | Snapshot the raw source into `archive/` with provenance |
 | `structure` | → structured | The core wrangling step: raw → tidy typed CSV(s) + `datapackage.json` |
 | `init` | — | Scaffold a new dataset directory |
@@ -16,7 +16,7 @@ install into any agent, not just Claude Code.
 | `enrich` | → enriched | Structured dataset → consolidated descriptive stats + first charts + commentary (`enrich.ts` + `SUMMARY.md` + `views`). Bundles a working `enrich.ts` template in `references/`. |
 | `story` | → story | One or more finished datasets → a short data story: outline (independently reviewed) → Observable Plot charts → prose. Bundles its craft, voice and charting guides in `references/`. |
 
-`monitor` is planned but not built. `enrich` and `story` were activated after real runs (enrich on co2-ppm and oil-prices; story on three data stories). Each carries what it needs in its own `references/` folder, so an installed copy works without this repo; `site/docs/story-craft.md`, `site/docs/voice-guide.md` and `site/docs/charting.md` hold the background and decision history.
+`monitor` is planned but not built. `enrich` and `story` were activated after real runs (enrich on co2-ppm and oil-prices; story on three data stories). Each carries what it needs in its own `references/` folder, so an installed copy works without this repo; [`site/docs/story-craft.md`](https://github.com/datasets/datapressr/blob/main/site/docs/story-craft.md), [`site/docs/voice-guide.md`](https://github.com/datasets/datapressr/blob/main/site/docs/voice-guide.md) and [`site/docs/charting.md`](https://github.com/datasets/datapressr/blob/main/site/docs/charting.md) hold the background and decision history.
 
 ## Install
 
