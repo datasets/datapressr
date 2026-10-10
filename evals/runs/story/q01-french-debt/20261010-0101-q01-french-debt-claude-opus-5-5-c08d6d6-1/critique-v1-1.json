@@ -1,0 +1,146 @@
+{
+  "rubric": "story/v1",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "What makes France’s debt situation a crisis now, and what evidence distinguishes it from a large but manageable debt burden?",
+      "answered": "partly",
+      "where": "The opening and closing paragraphs establish a record debt ratio and rising interest costs, but the closing paragraph explicitly excludes market and political evidence; the distinction between a crisis and a manageable burden remains unresolved."
+    },
+    {
+      "q": "How large are France’s public debt, annual deficit and interest costs relative to its economy and those of comparable countries?",
+      "answered": "partly",
+      "where": "“What this measures,” “A deficit every year,” and “The wrinkle: interest is climbing again” give France’s three measures; french-debt-compare.svg compares deficits, but neither debt nor interest costs are compared with other countries."
+    },
+    {
+      "q": "Why has debt accumulated, and how much reflects spending choices, tax revenues, weak growth or exceptional shocks?",
+      "answered": "partly",
+      "where": "“A deficit every year” identifies persistent borrowing and recession peaks, while “Not a low-tax country” compares current revenue and spending; neither section separates policy choices, growth and shocks quantitatively."
+    },
+    {
+      "q": "What has changed recently to make the situation more urgent, and how do interest rates, investor confidence and political instability contribute?",
+      "answered": "partly",
+      "where": "“The wrinkle: interest is climbing again” documents higher interest costs and attributes their rise to debt and rates through INSEE; investor confidence and political instability are explicitly excluded."
+    },
+    {
+      "q": "How does being in the euro area affect France’s risks and its options for addressing them?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "Who bears the costs of the debt problem and of possible remedies such as spending cuts or tax increases?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "What would have to change to stabilise France’s debt, how politically and economically plausible is that, and what could make the crisis worse?",
+      "answered": "partly",
+      "where": "“Not a low-tax country” mentions spending cuts and higher collections, and the interest section identifies an increasing cost, but the story gives no debt-stabilisation condition, scenario or assessment of feasibility."
+    }
+  ],
+  "missed_findings": [
+    "The supplied figures imply a 2025 deficit excluding interest of roughly 2.9% of GDP, showing that interest accounts for less than half of the total 5.1% deficit.",
+    "The outline records a debt-ratio fall from 117.8% in early 2021 to 109.5% at the end of 2023 despite continuing deficits, a central counterexample that requires explaining nominal GDP growth and other debt adjustments.",
+    "The deficit chart shows France’s deficit narrowing from 5.8% of GDP in 2024 to 5.1% in 2025, and the outline supplies INSEE’s explanation involving revenue measures and slower spending, which would qualify the account of worsening finances.",
+    "The outline’s Italian interest bill of 3.9% of GDP in 2025 provides a useful comparison with France’s 2.2%, but the prose omits it.",
+    "A record debt ratio alone does not establish a crisis; financing conditions, refinancing exposure and credible budget options are needed to judge the immediate risk.",
+    "The story leaves out how euro-area institutions constrain or support France and how adjustment would affect taxpayers and users of public services."
+  ],
+  "charts": [
+    {
+      "file": "french-debt-ratio.svg",
+      "shows": "France’s gross public debt nearly doubles relative to GDP between early 2000 and mid-2026, with selected dates labelled.",
+      "form_fits": true,
+      "fix": "Annotate the 2021–2023 decline to make the important reversal visible alongside the long-run increase."
+    },
+    {
+      "file": "french-debt-deficit.svg",
+      "shows": "France runs a deficit in every year from 1995 through 2025, with the EU27 balance provided for comparison.",
+      "form_fits": true,
+      "fix": "Increase the right margin so the EU27 endpoint label fits comfortably inside the SVG."
+    },
+    {
+      "file": "french-debt-compare.svg",
+      "shows": "France has the highest government revenue, spending and deficit shares among the five displayed geographies in 2025.",
+      "form_fits": true,
+      "fix": "Add a note explaining that independently rounded revenue and spending figures need not subtract to the displayed deficit, as Germany’s row otherwise appears inconsistent."
+    },
+    {
+      "file": "french-debt-interest.svg",
+      "shows": "Nominal interest payments more than double between 2020 and 2025, while selected labels show a smaller GDP share than in 1995.",
+      "form_fits": true,
+      "fix": "Plot interest as a share of GDP as the main series so the chart directly shows the burden relevant to debt sustainability."
+    }
+  ],
+  "top_change": "Rebuild the argument around why financing and governing this debt have become urgent now, using evidence on borrowing conditions and feasible debt stabilisation; persistent deficits should support that explanation rather than substitute for it.",
+  "publishable": "no",
+  "lessons": [
+    {
+      "rule": "A crisis explainer must distinguish a large problem from an immediate threat using observable evidence.",
+      "evidence": "The story establishes record debt but explicitly excludes the market and political evidence needed to answer why this is a crisis now."
+    },
+    {
+      "rule": "When explaining a debt ratio, account for both borrowing and changes in the economy’s nominal size.",
+      "evidence": "The opening attributes the ratio’s doubling to annual deficits, while the supplied outline records a substantial ratio decline during years with deficits."
+    },
+    {
+      "rule": "Separate interest costs from the underlying budget balance before explaining what drives borrowing.",
+      "evidence": "The reported 5.1% deficit and 2.2% interest share imply a substantial deficit even before interest."
+    },
+    {
+      "rule": "Use measures that match the claim, especially when moving from description to causal interpretation.",
+      "evidence": "“Not a low-tax country” relies on total government revenue, and high revenue relative to peers does not establish that revenue choices played no role in deficits."
+    },
+    {
+      "rule": "Use limited prose space for consequences and mechanisms, keeping production details in a short source note.",
+      "evidence": "The closing methods section discusses scripts, the outline and parser review while euro-area constraints, affected groups and stabilisation options remain unexplained."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 0,
+      "why": "The early claim explains persistent borrowing but does not answer why France has a debt crisis; the story explicitly sets that question aside."
+    },
+    "depth": {
+      "score": 1,
+      "why": "Historical and peer comparisons plus an attributed interest-rate mechanism provide context, but growth, policy causes and the distinction between debt and crisis remain unexplained."
+    },
+    "charts": {
+      "score": 1,
+      "why": "The forms support the descriptive evidence, but most lack takeaway titles, and the interest chart requires annotations and prose to distinguish nominal costs from economic burden."
+    },
+    "honesty": {
+      "score": 0,
+      "why": "Sources and limitations are disclosed, but “Each year's deficit is added to the stock” presents an exact relationship without other debt adjustments, and deficits alone do not explain changes in the debt-to-GDP ratio."
+    },
+    "reader_questions": {
+      "score": 0,
+      "why": "No reader question receives a complete answer, including the central question of what makes this a crisis now."
+    },
+    "prose": {
+      "score": 1,
+      "why": "Most sentences are plain and the stock-flow distinction is introduced clearly, but repeated observations about never closing the deficit and lengthy production details consume space needed for explanation."
+    }
+  },
+  "rubric_sha256": "86d8957be324276c3935864fcee67cfd3f1f06fc2b6e6add82dc15b78a0da22f",
+  "prompt_sha256": "131bc6373c81bd108a695d4f647c9192c103c96dd6555ae24e1387f8a0315a8a",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 37009,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2061,
+      "reasoning_output_tokens": 111
+    },
+    "calls": 2
+  }
+}

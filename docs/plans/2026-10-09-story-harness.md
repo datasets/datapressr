@@ -261,7 +261,7 @@ The runner, adapters, canary, ledger and report are domain-agnostic; a domain ad
 - Canary and critics on cheap settings: canary on the smallest model; critics with tools off.
 - `fake` writer and fake critic for all plumbing tests; `npm test` never calls an agent.
 - Costs are notional list prices for Claude (`cost_basis: list`); Codex records tokens only.
-- Estimates: Phase 0 under 5 USD (canaries, H4 smoke critique); H5 pilot 10–20; H7 calibration 3–8; H10 A/B with repeats 45–70; H11 WWII 20–30; H13 re-scoring 5–10; H14 one regression run 10–20; H15 3–5. Actuals replace estimates in close notes and the report.
+- Estimates: Phase 0 under 5 USD (canaries, H4 smoke critique); H5 pilot 10–20 (actual, 2026-10-10: two Opus writer runs on the pre-edit skill, 1.46 and 1.72 USD list, 26 and 33 turns, 5.5 and 5.7 minutes; two Codex gpt-6-astra critiques, tokens only, about 37k input and 2k output each, about 1 minute; canary already current, so 3.18 USD in all); H7 calibration 3–8; H10 A/B with repeats 45–70; H11 WWII 20–30; H13 re-scoring 5–10; H14 one regression run 10–20; H15 3–5. Actuals replace estimates in close notes and the report.
 
 ## 12. Bead breakdown
 

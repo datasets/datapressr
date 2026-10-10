@@ -8,17 +8,51 @@ None.
 
 ## Per skill change
 
-No runs recorded yet.
+### story
+
+#### Tree `c08d6d6`, commit `90ea475` site: publish all docs on the site by moving docs/ to site/docs/ (earliest tree with runs)
+
+Cases run: story/q01-french-debt (2 runs).
+
+#### Skill commits with no pairwise comparison on record
+
+- `20c6d1e` Define the story skill's exempt-number list format (datapressr-hcn.17)
+- `5f62900` Make installed skills self-contained (datapressr-4ly.2)
+- `50e166b` Put the owner's France feedback into the story skill (datapressr-hcn.10)
 
 ## Per case
 
-No runs recorded yet.
+### story/q01-french-debt
+
+2 runs over 1 skill tree.
+
+#### Writer claude-opus-5-5
+
+| Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
+|---|---|---|---|---|---|---|---|
+| 2026-10-10 01:13 | [20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3 (5 pass) | 1.72 | 33 |  |
+| 2026-10-10 01:01 | [20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | pass (6) | 1.46 | 26 |  |
+
+Absolute scores, rubric story/v1 (diagnostic; 0-2):
+
+| Run | Skill tree | Critic | argument | depth | charts | honesty | reader_questions | prose | Publishable |
+|---|---|---|---|---|---|---|---|---|---|
+| 20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 0 | 1 | 1 | 0 | 0 | 2 | no |
+| 20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 0 | 1 | 1 | 0 | 0 | 1 | no |
 
 ## Noise
 
 Absolute scores per skill tree as min-max ranges with n (the latest score per run). A difference is called a change only when the ranges do not overlap; otherwise "no detectable change". A single run is an anecdote. No standard deviations or p-values at these sample sizes.
 
-No absolute scores recorded yet.
+### story/q01-french-debt, writer claude-opus-5-5, rubric story/v1
+
+| Skill tree | n | argument | depth | charts | honesty | reader_questions | prose |
+|---|---|---|---|---|---|---|---|
+| `c08d6d6` | 2 | 0 | 1 | 1 | 0 | 0 | 1-2 |
+
+### Critic-only spread (one run re-scored)
+
+No run has been re-scored yet.
 
 ## Harness quality
 
@@ -32,9 +66,9 @@ No calibration hit rates recorded yet (datapressr-hcn.8 writes them to `evals/ca
 
 ### Critic and isolation
 
-- Critic fallback: 0 of 0 critiques (absolute and pairwise) used the fallback critic.
-- Critic validation failures: 0 of 0 absolute critiques recorded as critic_failed.
-- Leaks caught: 0 of 0 runs flagged leaked.
+- Critic fallback: 0 of 9 critiques (absolute and pairwise) used the fallback critic.
+- Critic validation failures: 0 of 8 absolute critiques recorded as critic_failed.
+- Leaks caught: 0 of 2 runs flagged leaked.
 
 Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):
 
