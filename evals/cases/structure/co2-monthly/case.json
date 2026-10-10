@@ -1,0 +1,33 @@
+{
+  "id": "co2-monthly",
+  "domain": "structure",
+  "title": "Mauna Loa monthly CO2: archived NOAA file to a structured dataset",
+  "question": "Turn the archived NOAA Mauna Loa monthly CO2 file into a structured, publishable dataset.",
+  "type": "wrangling",
+  "data_mode": "fixed",
+  "inputs": [
+    { "path": "datasets/climate-and-environment/co2-ppm/archive/co2_mm_mlo.csv", "commit": "e24166f" },
+    { "path": "datasets/climate-and-environment/co2-ppm/scripts/validate-datapackage.mjs", "commit": "e24166f" }
+  ],
+  "skills": ["structure"],
+  "references": [],
+  "owner_feedback": [],
+  "budget": { "max_usd": 20, "max_turns": 100 },
+  "golden": {
+    "dataset_dir": "datasets/climate-and-environment/co2-ppm",
+    "reference": { "path": "datasets/climate-and-environment/co2-ppm/data/co2-monthly-mlo.csv", "commit": "e24166f" },
+    "rows": 821,
+    "empty_counts": [194, 195, 196],
+    "sentinels": ["-1", "-9.99", "-0.99", "-99.99"],
+    "source_domain": "gml.noaa.gov",
+    "optional_columns": ["decimal_date"],
+    "anchors_note": "Typed in by hand from archive/co2_mm_mlo.csv (sha256 eb751e4e...), not from the reference build's output. Columns: year,month,decimal date,average,deseasonalized,ndays,sdev,unc.",
+    "anchors": [
+      { "month": "1958-03", "raw": "1958,3,1958.2027,315.71,314.44,-1,-9.99,-0.99", "values": { "decimal_date": 1958.2027, "co2_ppm": 315.71, "co2_ppm_deseasonalized": 314.44 } },
+      { "month": "1974-05", "raw": "1974,5,1974.3750,333.19,330.22,13,0.31,0.16", "values": { "co2_ppm": 333.19, "co2_ppm_deseasonalized": 330.22, "num_days": 13, "std_dev": 0.31, "uncertainty": 0.16 } },
+      { "month": "1984-04", "raw": "1984,4,1984.2917,347.37,344.75,2,-9.99,0.00", "values": { "co2_ppm": 347.37, "co2_ppm_deseasonalized": 344.75, "num_days": 2, "uncertainty": 0 } },
+      { "month": "2000-06", "raw": "2000,6,2000.4583,371.87,369.66,28,0.24,0.09", "values": { "co2_ppm": 371.87, "co2_ppm_deseasonalized": 369.66, "num_days": 28, "std_dev": 0.24, "uncertainty": 0.09 } },
+      { "month": "2026-07", "raw": "2026,7,2026.5417,429.12,428.83,21,0.59,0.25", "values": { "co2_ppm": 429.12, "co2_ppm_deseasonalized": 428.83, "num_days": 21, "std_dev": 0.59, "uncertainty": 0.25 } }
+    ]
+  }
+}

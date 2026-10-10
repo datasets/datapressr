@@ -64,7 +64,8 @@ for (const { domain, id, dir } of cases) {
       }
     }
     assert.ok(prompt.includes(kase.question), "prompt states the question verbatim");
-    assert.ok(prompt.includes("site/stories/"), "prompt says where files go");
+    if (domain === "story") assert.ok(prompt.includes("site/stories/"), "prompt says where files go");
+    if (domain === "structure") assert.ok(prompt.includes(kase.golden.dataset_dir), "prompt says where files go");
   });
 }
 

@@ -10,6 +10,7 @@ Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and 
 
 ```sh
 node evals/run.mjs run story/q01-french-debt --writer fake     # free plumbing test (writer and critic both fake)
+node evals/run.mjs run structure/co2-monthly --writer fake    # free: the structure case's oracle arm, scores 13/13 (no critic yet)
 node evals/run.mjs canary --writer claude                      # about 0.003 USD on Haiku; required before any Claude run
 node evals/run.mjs canary --writer claude --weaken             # negative control: no deny rules, must FAIL
 node evals/run.mjs run story/q01-french-debt --writer claude   # paid (caps in config.json); refused without a passing canary
@@ -26,9 +27,9 @@ npm test                                                       # harness tests, 
 
 `run` options: `--skill-ref <commit>` (default `HEAD`), `--allow-dirty` (run even when `skills/<name>` has uncommitted changes; the run is flagged `dirty_skill`), `--repeat N`, and the critic options `--critic auto|claude|codex|fake` and `--critic-model <id>` (as for `score`) or `--no-critic`. After the deterministic checks, `run` scores each run with the critic and the latest rubric (design section 4.2 step 7, `datapressr-hcn.22`), so a paid writer run also pays for one absolute critique unless `--no-critic` is given; `--critic auto` picks the free fake critic for the fake writer. A critic failure, including a critic that cannot be resolved (vendor unavailable), never loses the run: `run.json`, `checks.json` and the `run` and `check` rows are already written, a `critic_failed` score row records the error, any remaining repeats still run, and `run` exits non-zero at the end. Re-score later with `score <run_id>`.
 
-Planned: the open-mode recipe (`datapressr-hcn.12`).
+Planned: the open-mode recipe (`datapressr-hcn.12`). The structure domain (`datapressr-8no.2`) has its case and deterministic checks D1–D13 ([below](#structure-checks)); its rubric (`datapressr-8no.4`) and first paid comparison (`datapressr-8no.3`) are not built yet, so `run` skips the critic for any domain with no `rubrics/<domain>/` folder.
 
-The fake writer copies `lib/adapters/fake-artefacts/<domain>/` into the run. Fake runs exist to test the plumbing; do not commit their output to the real ledger.
+The fake writer copies `lib/adapters/fake-artefacts/<domain>/` into the run, or the case's `oracle/` folder when it has one (the structure case: a fake run is its oracle arm). Fake runs exist to test the plumbing; do not commit their output to the real ledger.
 
 ## Blind runs and the canary
 
@@ -62,6 +63,7 @@ After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or 
 | `lib/versions.mjs` | Skill tree (`git rev-parse <ref>:skills/<name>`), dirty check, harness tree of `evals/lib` as on disk, input trees, case hash, ancestor-of-main check |
 | `lib/ledger.mjs` | Append (validated) and read `ledger.jsonl`; never rewrites |
 | `lib/runner.mjs` | The `run` flow |
+| `lib/checkers/structure.mjs` | The thirteen structure checks D1–D13 (below); `structure.test.mjs` holds the oracle and saboteur tests |
 | `lib/checkers/story.mjs` | The six story checks S1–S6 (below); `run-checks.mjs` is the `check` subcommand, which `run` also calls after collecting artefacts; `offline-preload.mjs` blocks the network for chart rebuilds |
 | `lib/report.mjs` | Writes `REPORT.md` (sections below); `renderReport(rows, ctx)` is pure, `reportContext` gathers skill history from git and the installed CLI versions |
 | `lib/critic.mjs` | The critic: rubric loading, prompt assembly, output schemas, validation with one retry, Markdown rendering, and the `score` and `pair` subcommands |
@@ -77,7 +79,7 @@ After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or 
 | `lib/canary.mjs` | Canary probes, verdict and the `run` gate |
 | `lib/leakscan.mjs` | Out-of-workspace path scan over a transcript's tool calls |
 | `canaries/<id>/` | `canary.json` (probe statuses and redacted evidence); `transcript.jsonl` is gitignored |
-| `cases/<domain>/<id>/` | `case.json` and `prompt.md` |
+| `cases/<domain>/<id>/` | `case.json` and `prompt.md`; a structure case also has `oracle/` (the reference build's files at their workspace paths) |
 | `runs/<domain>/<case>/<run_id>/` | `run.json` and `artefacts/` (the writer's files at their workspace paths, e.g. `artefacts/site/stories/<slug>.md`); later `checks.json` and `critique*.json`. `transcript.jsonl` and `workspace.tar` are gitignored and hashed in `run.json` |
 | `pairs/<pair_id>/` | Blind `A/` and `B/` for the owner (prose and charts only); the critic's `critique-AB.json`, `critique-BA.json` and `critique.md`; `mapping.json` (`{ "pair_id", "A": <run_id>, "B": <run_id> }`) is gitignored until `owner` records it as a `reveal` row |
 | `ledger.jsonl` | One row per event (`canary`, `run`, `check`, `score`, `pair`, `owner`, `reveal`), each with `schema: 1`; re-scoring appends |
@@ -149,8 +151,32 @@ For a pair, `owner` appends the owner row first (A/B labels as the owner saw the
 
 The oracle is the published stories in `site/stories/`; their known failures are pinned with reasons in `lib/checkers/story.test.mjs` and explained in [`LESSONS.md`](LESSONS.md).
 
+## Structure checks
+
+The structure domain evaluates the `structure` skill: a writer turns an archived raw file into a structured dataset (design: [`docs/plans/2026-09-25-research/quality.md`](../docs/plans/2026-09-25-research/quality.md) section 2; `datapressr-8no.2`). The first case is `cases/structure/co2-monthly/`: the inputs are the archived NOAA Mauna Loa monthly file `co2_mm_mlo.csv` and the dataset's validator script, pinned at `e24166f`, staged at their repo paths under `datasets/climate-and-environment/co2-ppm/`; the prompt asks for `build.ts`, `data/*.csv`, `datapackage.json` at `status: "structured"` and a `DECISIONS.md` listing every decision the skill and `AGENTS.md` did not settle. Its `case.json` has `type: "wrangling"`, no word budget and a `golden` block: the dataset directory, the reference CSV (`{ path, commit }`, read with `git show`), the row count, the per-column empty-cell counts, the NOAA sentinels, the source domain, the optional columns and five anchor rows typed in by hand from the raw file (each with its raw line, which the tests check is verbatim in the pinned file).
+
+`check` rebuilds the workspace as for stories, then runs thirteen checks, all severity `fail`. Nothing needs the writer's column names to match the reference: rows are found by month (a date column, or year plus month columns), columns by value, and for the anchors by a name pattern per role (`unc`, `std`/`sdev`, `day`, `deseason`/`trend`, `decimal`, then `co2`/`average`/`ppm`) with the value match as the fallback. Day of month, naming and dropping `decimal_date` are judgement calls: recorded in the evidence, never failed.
+
+| Id | Passes when |
+|---|---|
+| D1 | `build.ts`, `datapackage.json`, at least one `data/*.csv` and a non-empty `DECISIONS.md` exist |
+| D2 | With the committed `data/*.csv` deleted, `node build.ts` succeeds offline (network blocked by `offline-preload.mjs`) and writes at least one CSV |
+| D3 | A second offline build gives byte-identical CSVs, identical to the committed ones |
+| D4 | This repo's `scripts/validate-datapackage.mjs` (not the workspace copy) reports no errors and no warnings |
+| D5 | `status` is `structured`; a licence with an SPDX-shaped name; a `sources[].path` on `gml.noaa.gov`; every resource has typed fields and a `primaryKey` |
+| D6 | Every `data/*.csv` has snake_case headers, LF line endings, a trailing newline and no BOM; no `dialect` block |
+| D7 | The monthly CSV has exactly 821 observation rows |
+| D8 | The hand-read anchors (1958-03, 1974-05, 1984-04, 2000-06, 2026-07) are on their rows, in the column bound to each role |
+| D9 | No cell holds a NOAA sentinel (`-1`, `-9.99`, `-0.99`, `-99.99`), and the non-zero per-column empty counts are {194, 195, 196} as a multiset |
+| D10 | Every reference column has a writer column with the same value multiset (empty and sentinel cells count as missing, dates compare by month, numbers by value); `decimal_date` may be absent, which is reported |
+| D11 | `build.ts` opens with a comment naming a `gml.noaa.gov` URL, a retrieval date and the licence |
+| D12 | The date column is `YYYY-MM-DD` throughout; the day of month chosen is reported |
+| D13 | Every input file is byte-identical to its pinned commit; files added beside it (an `archive/PROVENANCE.md`, say) are listed, not failed |
+
+The oracle is the co2-ppm `build.ts` as of `e24166f`, trimmed to the monthly resource (the other four builders removed, the monthly code unchanged; it reproduces the published `co2-monthly-mlo.csv` byte for byte), with its `datapackage.json` trimmed to match at `status: "structured"` and a canned `DECISIONS.md`. It scores 13/13 directly and through `run --writer fake`. Each saboteur in `lib/checkers/structure.test.mjs` breaks a copy of it in one way and must fail exactly the checks listed: no `DECISIONS.md` (D1); a `fetch` in the build (D2, D3); a `Date.now()` column (D3); a name that is not URL-safe (D4); `status: archived` (D5); CRLF (D6); the last month dropped (D7, D8, D10); `std_dev` and `uncertainty` values swapped under their own labels (D8 only: the multisets still match, so only the name-bound anchors catch it); sentinels kept (D9); one global sentinel list that also drops zero (D8, D9, D10); one cell off by 0.01 away from every anchor (D10); no provenance header (D11); `YYYY-MM` dates typed `yearmonth` (D12); the raw file edited (D13). A further test renames every column, dates months to the 15th and drops `decimal_date`, and still scores 13/13.
+
 ## Adding a case
 
-1. Create `cases/<domain>/<id>/case.json` with the fields of design section 3.1: `id` and `domain` (matching the folder), `title`, `question` (verbatim), `type` (`explanatory`, `historical`, `current-state`, `markets`, `periodic`), `data_mode` (`fixed` or `open`), `inputs[]` of `{ path, commit }` where the commit is on `main`, `skills[]`, `references[]` (critic only), `owner_feedback[]` (paths in `docs/reviews/`, critic and calibration only), `budget` `{ max_usd, max_turns, words: [min, max] }`, and optionally `as_of` and `forbidden_domains[]`.
+1. Create `cases/<domain>/<id>/case.json` with the fields of design section 3.1: `id` and `domain` (matching the folder), `title`, `question` (verbatim), `type` (`explanatory`, `historical`, `current-state`, `markets`, `periodic`; `wrangling` for structure cases), `data_mode` (`fixed` or `open`), `inputs[]` of `{ path, commit }` where the commit is on `main`, `skills[]`, `references[]` (critic only), `owner_feedback[]` (paths in `docs/reviews/`, critic and calibration only), `budget` `{ max_usd, max_turns, words: [min, max] }` (`words` for stories only), and optionally `as_of` and `forbidden_domains[]`.
 2. Write `prompt.md`: the only case text the writer sees. It holds the question, the data mode and inputs, the word budget, that files go in `site/stories/`, and which skill steps to skip in a scratch repo (site index links, DataHub publishing, the human voice pass). It never contains feedback, references or anything else the critic uses; `cases.test.mjs` checks this.
 3. Run `npm test` (the case must validate against this repo) and `node evals/run.mjs run <domain>/<id> --writer fake`.

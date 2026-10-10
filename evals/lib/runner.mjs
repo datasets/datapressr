@@ -127,6 +127,11 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
 
   const config = loadConfig(evalsDir);
   const { kase, prompt, dir: caseDir } = loadCase(root, evalsDir, caseRef);
+  // A domain with no rubric yet (structure, until datapressr-8no.4) has no critic step.
+  if (critic && !existsSync(join(evalsDir, "rubrics", kase.domain))) {
+    log(`no rubric for domain "${kase.domain}" in evals/rubrics/; critic skipped`);
+    critic = null;
+  }
 
   // 1. Resolve versions.
   const skill = skillVersion(root, kase.skills[0], skillRef);
@@ -158,7 +163,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
     // 3-6. Stage, execute, collect, leak scan (the fake writer just copies canned files).
     const out = adapter.staged
       ? { ...(await runStaged({ adapter, root, kase, prompt, skillRef: skill.ref, model, caps, config, runDir, artefactDir, cacheRoot, log })), canary_run_id: canary.run_id }
-      : await adapter.write({ domain: kase.domain, kase, prompt, destDir: artefactDir, caps, config });
+      : await adapter.write({ domain: kase.domain, kase, caseDir, prompt, destDir: artefactDir, caps, config });
 
     // 5. Collect.
     const artefacts = walk(artefactDir).map((p) => {

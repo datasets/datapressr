@@ -8,12 +8,21 @@ import { appendRow } from "../ledger.mjs";
 import { assertValid, validateChecks } from "../schema.mjs";
 import { harnessVersion } from "../versions.mjs";
 import { checkStory, materializeRunWorkspace, removeWorkspace } from "./story.mjs";
+import { checkStructure } from "./structure.mjs";
 
 const CHECKERS = {
   story: ({ root, runDir, kase, run }) => {
     const ws = materializeRunWorkspace({ root, runDir, inputs: kase.inputs, deleted: run.deleted ?? [] });
     try {
       return checkStory({ workspace: ws, root, inputs: kase.inputs, asOf: kase.as_of, dataMode: kase.data_mode, words: kase.budget?.words });
+    } finally {
+      removeWorkspace(ws);
+    }
+  },
+  structure: ({ root, runDir, kase, run }) => {
+    const ws = materializeRunWorkspace({ root, runDir, inputs: kase.inputs, deleted: run.deleted ?? [] });
+    try {
+      return checkStructure({ workspace: ws, root, inputs: kase.inputs, golden: kase.golden });
     } finally {
       removeWorkspace(ws);
     }

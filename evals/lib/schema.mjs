@@ -4,7 +4,8 @@
 
 export const LEDGER_SCHEMA = 1;
 
-export const CASE_TYPES = ["explanatory", "historical", "current-state", "markets", "periodic"];
+// Story question types, plus "wrangling" for structure cases (datapressr-8no.2).
+export const CASE_TYPES = ["explanatory", "historical", "current-state", "markets", "periodic", "wrangling"];
 export const DATA_MODES = ["fixed", "open"];
 export const VENDORS = ["claude", "codex", "fake"];
 export const RUN_FLAGS = ["leaked", "over_budget", "failed", "dirty_skill", "fallback_critic"];
@@ -142,8 +143,9 @@ export function validateCase(kase, opts = {}) {
   if (c.isObject(kase.budget, "budget")) {
     c.number(kase.budget.max_usd, "budget.max_usd", { min: 0 });
     c.number(kase.budget.max_turns, "budget.max_turns", { min: 1, integer: true });
+    // A word budget is a story constraint; other domains (structure) may omit it.
     const w = kase.budget.words;
-    if (c.array(w, "budget.words", { minItems: 2, maxItems: 2 })) {
+    if ((kase.domain === "story" || w !== undefined) && c.array(w, "budget.words", { minItems: 2, maxItems: 2 })) {
       if (c.number(w[0], "budget.words[0]", { min: 1, integer: true }) && c.number(w[1], "budget.words[1]", { min: 1, integer: true }) && w[0] >= w[1]) {
         c.at("budget.words", "minimum must be below maximum");
       }

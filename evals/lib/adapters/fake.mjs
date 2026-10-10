@@ -13,9 +13,11 @@ export function cannedDir(domain) {
   return join(here, "fake-artefacts", domain);
 }
 
-// destDir mirrors the writer's workspace: files land at their workspace-relative paths.
-export async function write({ domain, destDir }) {
-  const src = cannedDir(domain);
+// destDir mirrors the writer's workspace: files land at their workspace-relative paths. A case
+// with an `oracle/` folder (the structure case's reference build) uses it instead of the
+// domain's canned artefacts, so a fake run is that case's oracle arm.
+export async function write({ domain, caseDir, destDir }) {
+  const src = caseDir && existsSync(join(caseDir, "oracle")) ? join(caseDir, "oracle") : cannedDir(domain);
   if (!existsSync(src)) throw new Error(`fake writer has no canned artefacts for domain "${domain}" (${src})`);
   const started = Date.now();
   cpSync(src, destDir, { recursive: true });
