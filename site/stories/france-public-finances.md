@@ -8,6 +8,8 @@ datahub:
 
 # Where France’s public money goes
 
+**[Read on DataHub](https://datahub.io/datapressr/where-frances-public-money-goes)**, where this story is published beside its dataset. This page is the working copy.
+
 ![France’s 2025 revenue, in near-black, was €1.56 trillion; expenditure, in red, was €1.71 trillion. The €153 billion deficit meant receipts covered about €91 of every €100 spent.](france-public-finances-snapshot.svg)
 
 France spent **€1.7 trillion** in 2025, about **€153 billion more than it raised**. These figures cover central government, local government and social security; receipts include taxes, social contributions and other income.

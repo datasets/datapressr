@@ -8,10 +8,12 @@ datahub:
 
 # The Keeling Curve
 
+**[Read on DataHub](https://datahub.io/datapressr/keeling-curve)**, where this story is published beside its dataset. This page is the working copy.
+
 ![Annual mean CO₂ at Mauna Loa, rising from 316 ppm in 1959 to 427 ppm in 2025, crossing 350 ppm around 1988 and 400 ppm in 2015](keeling-annual.svg)
 
 *Annual mean atmospheric CO₂ measured at Mauna Loa Observatory, Hawaii. Data:
-[co2-ppm](../datasets.md), from NOAA. Data story #1 — written by hand from
+[co2-ppm](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/co2-ppm), from NOAA. Data story #1 — written by hand from
 [an outline](keeling-curve-outline.md); the `story` skill comes after a couple of
 these.*
 

@@ -11,7 +11,7 @@ Short data stories built from DataPressr datasets, newest first. Each one makes 
 
 What is growing, what old-age spending means, and why bigger euro bills can coexist with falling GDP shares.
 
-[Outline](france-public-finances-outline.md)
+[Read on DataHub](https://datahub.io/datapressr/where-frances-public-money-goes) · [Outline](france-public-finances-outline.md)
 
 ## [WTI Went Negative. Brent Didn't.](oil-prices.md)
 
@@ -23,10 +23,10 @@ On 20 April 2020 the WTI spot price was -$36.98 a barrel, the only negative valu
 
 The nine planetary boundaries and where they stand now: six of the nine are crossed, and one, stratospheric ozone, has been pulled back inside the line.
 
-[Outline](planetary-boundaries-outline.md)
+[Read on DataHub](https://datahub.io/datapressr/planetary-boundaries-scoreboard) · [Outline](planetary-boundaries-outline.md)
 
 ## [The Keeling Curve](keeling-curve.md)
 
 The measured rise of atmospheric carbon dioxide, the longest continuous record there is, begun by Charles David Keeling at Mauna Loa in 1958.
 
-[Outline](keeling-curve-outline.md)
+[Read on DataHub](https://datahub.io/datapressr/keeling-curve) · [Outline](keeling-curve-outline.md)

@@ -8,6 +8,8 @@ datahub:
 
 # Planetary Boundaries
 
+**[Read on DataHub](https://datahub.io/datapressr/planetary-boundaries-scoreboard)**. This page is the working copy.
+
 ![Twelve indicators for the nine planetary boundaries, each drawn as its distance past or short of the boundary. Eight are measurably past it, led by biosphere genetic diversity at about sixteen times the boundary; novel entities is past a boundary set at zero; ocean acidification, atmospheric aerosols and stratospheric ozone sit inside the safe zone.](planetary-boundaries-scoreboard.svg)
 
 *Each indicator rescaled so the pre-industrial state is 0 and the boundary is 1. Data: [planetary-boundaries](https://datahub.io/climate-and-environment/planetary-boundaries), after Steffen et al. (2015) and Richardson et al. (2023). Data story #2 — written by hand from [an outline](planetary-boundaries-outline.md).*
