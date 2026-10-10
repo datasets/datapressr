@@ -33,7 +33,7 @@ Information Administration (Sep 2026)."* This tidy compilation is released as
   1987-05-19 here). `build.ts` converts the raw serials with
   `XLSX.SSF.parse_date_code`, which has no offset.
 - **One dependency**: SheetJS `xlsx`. The EIA files are legacy BIFF8 `.xls`
-  (OLE2 compound documents), which `exceljs` cannot read.
+  (OLE2 compound documents), which `exceljs` cannot read. The npm release, 0.18.5, has two high-severity advisories that npm cannot fix: prototype pollution (GHSA-4r6h-8v6p-xvw6, fixed in 0.19.3) and ReDoS (GHSA-5pgg-2g8v-p4x9, fixed in 0.20.2). SheetJS publishes fixed versions only on its own CDN. The build reads only the archived EIA files, so the risk is low. A monitored build that parses freshly downloaded files should move to the CDN release or to the EIA API.
 
 ## Relation to core/oil-prices
 
@@ -41,6 +41,18 @@ DataHub also has [core/oil-prices](https://datahub.io/core/oil-prices), git-sync
 
 - **Snapshot vs living.** This is EIA as of 2026-09-05; core follows EIA every day, so it has later prices.
 - **Historical rows EIA has since dropped.** Between 6 and 20 September 2026 EIA's daily workbooks dropped hundreds of historical daily observations, about 890 Brent days and 740 WTI days (for example Brent on 1987-12-21): on 2026-10-09 EIA's `RBRTEd.xls` has 9,102 daily rows against 9,967 here. Core follows the current file, so this snapshot keeps days that core no longer has. Refreshing the archive from EIA today would drop them here too.
+
+## The days missing from EIA's current daily files
+
+Checked on 2026-10-10 against EIA's workbooks released 7 October 2026. The missing days look like a fault in EIA's published files, not a revision of the data, so this dataset keeps them.
+
+- **Which days.** 890 Brent days (1987-12-21 to 2014-10-14, mostly 1993–2006; 1994 keeps only 138 of 252 trading days) and 743 WTI days (1986-01-31 to 2015-02-04, heaviest in 1999, 2003 and 2011). They are ordinary trading days spread evenly across Monday to Friday. They are not holidays, and they are not days that repeat the previous day's price. 174 dates are missing from both series.
+- **Nothing was revised.** None of the 9,077 Brent or 9,493 WTI days still in the file changed value. The monthly and annual workbooks lost no rows.
+- **EIA still publishes the missing values elsewhere.** EIA's API (v2, `petroleum/pri/spt`) still returns every missing day, with the same price as this snapshot.
+- **EIA's own weekly averages still count them.** For 471 of the 475 Brent weeks that contain a missing day, EIA's current weekly price is the mean of the full set of daily prices in this snapshot. Only 12 of them match the mean of the shorter daily file. WTI gives 450 of 469 against 12. The weekly workbooks also dropped some rows at random (3 Brent weeks, 21 WTI weeks), even though those weeks still have daily prices.
+- **The rows are missing at the source, not lost in download.** The rows are absent from the `.xls` sheet itself (it ends at row 9,106, not 9,971), and EIA's HTML history page (`RBRTED.htm`) is missing the same days. Repeat downloads return identical bytes.
+
+**Policy.** This snapshot keeps the 2026-09-05 values. A future refresh should not just copy the current `.xls` files, because that would delete these days. Either take the daily series from the EIA API or keep earlier days that the new file drops, and flag them. A few small differences between the API and the workbooks are unrelated to this: the API has some holidays the workbooks lack, and a handful of 2014–2024 dates in each source are not in the other.
 - **Resource names.** Core calls its resources `brent-week`/`brent-month` (and the WTI equivalents); here they are `brent-weekly`/`brent-monthly`. The file paths are the same.
 - **Line endings.** LF here, CRLF in core.
 
