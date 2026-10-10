@@ -24,7 +24,7 @@ const SKIP_DIRS = new Set(["node_modules", "archive", "data", ".git"]);
 // Datasets published to the DataHub `datapressr` publication. Nothing in a
 // datapackage.json records a publish, so this is the one hand-kept list:
 // add a name here after `dh publish` succeeds.
-export const PUBLISHED = new Set(["oil-prices"]);
+export const PUBLISHED = new Set(["oil-prices", "co2-ppm", "france-public-finances", "airports", "population-growth", "tesla-quarterly-deliveries", "us-natural-hazard-statistics"]);
 
 // Datasets wrangled with DataPressr that live in their own repos.
 export const EXTERNAL = [

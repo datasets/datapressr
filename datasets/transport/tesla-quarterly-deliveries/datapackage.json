@@ -27,7 +27,7 @@
   "resources": [
     {
       "path": "data/tesla-quarterly-deliveries.csv",
-      "name": "tesla-quarterly-deliveries",
+      "name": "quarterly-deliveries",
       "title": "Tesla quarterly production and deliveries by model group",
       "mediatype": "text/csv",
       "schema": {

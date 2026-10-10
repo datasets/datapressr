@@ -15,7 +15,7 @@ Atmospheric carbon dioxide concentration from NOAA GML — the Mauna Loa record 
 
 **Status:** enriched · **Licence:** [PDDL-1.0](https://opendatacommons.org/licenses/pddl/) · **Source:** [NOAA GML — Trends in Atmospheric Carbon Dioxide, Mauna Loa monthly mean](https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv) (+5 more)
 
-[folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/co2-ppm) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/README.md) · story: [The Keeling Curve](stories/keeling-curve.md)
+[DataHub](https://datahub.io/datapressr/co2-ppm) · [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/co2-ppm) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/co2-ppm/README.md) · story: [The Keeling Curve](stories/keeling-curve.md)
 
 ## Crude oil spot prices — Brent and WTI
 
@@ -31,7 +31,7 @@ Every airport, heliport, seaplane base and balloonport in OurAirports (86,094 ro
 
 **Status:** structured · **Licence:** [PDDL-1.0](https://opendatacommons.org/licenses/pddl/) · **Source:** [OurAirports — open data downloads (airports, countries, regions, runways); "All data is released to the Public Domain"](https://ourairports.com/data/) (+1 more)
 
-[folder](https://github.com/datasets/datapressr/tree/main/datasets/transport/airports) · [README](https://github.com/datasets/datapressr/blob/main/datasets/transport/airports/README.md)
+[DataHub](https://datahub.io/datapressr/airports) · [folder](https://github.com/datasets/datapressr/tree/main/datasets/transport/airports) · [README](https://github.com/datasets/datapressr/blob/main/datasets/transport/airports/README.md)
 
 ## French public finances: debt, revenue and spending
 
@@ -39,7 +39,7 @@ General government debt, fiscal balances, revenue and expenditure, and spending 
 
 **Status:** structured · **Licence:** [Eurostat reuse policy](https://ec.europa.eu/eurostat/help/copyright-notice) + [etalab-2.0](https://www.etalab.gouv.fr/licence-ouverte-open-licence/) · **Source:** [Eurostat: government revenue, expenditure and main aggregates (gov_10a_main)](https://ec.europa.eu/eurostat/databrowser/view/gov_10a_main/default/table?lang=en) (+2 more)
 
-[folder](https://github.com/datasets/datapressr/tree/main/datasets/france-public-finances) · [README](https://github.com/datasets/datapressr/blob/main/datasets/france-public-finances/README.md) · story: [Where France’s public money goes](stories/france-public-finances.md)
+[DataHub](https://datahub.io/datapressr/france-public-finances) · [folder](https://github.com/datasets/datapressr/tree/main/datasets/france-public-finances) · [README](https://github.com/datasets/datapressr/blob/main/datasets/france-public-finances/README.md) · story: [Where France’s public money goes](stories/france-public-finances.md)
 
 ## Population growth (annual %) by country and region, 1960–2025
 
@@ -47,7 +47,7 @@ World Bank World Development Indicators series SP.POP.GROW: the exponential rate
 
 **Status:** structured · **Licence:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) · **Source:** [World Bank, World Development Indicators — Population growth (annual %) (SP.POP.GROW), via the Indicators API v2](https://api.worldbank.org/v2/country/all/indicator/SP.POP.GROW?format=json&per_page=1000) (+2 more)
 
-[folder](https://github.com/datasets/datapressr/tree/main/datasets/demographics/population-growth) · [README](https://github.com/datasets/datapressr/blob/main/datasets/demographics/population-growth/README.md)
+[DataHub](https://datahub.io/datapressr/population-growth) · [folder](https://github.com/datasets/datapressr/tree/main/datasets/demographics/population-growth) · [README](https://github.com/datasets/datapressr/blob/main/datasets/demographics/population-growth/README.md)
 
 ## Project Drawdown — Table of Solutions (2020)
 
@@ -63,7 +63,7 @@ Vehicles produced and delivered per quarter by reported model group, from Q2 201
 
 **Status:** structured · **Licence:** [PDDL-1.0](https://opendatacommons.org/licenses/pddl/) · **Source:** [SEC EDGAR — Tesla, Inc. (CIK 0001318605) Form 8-K filings reporting under Item 2.02, Exhibit 99.1](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001318605&type=8-K&dateb=&owner=include&count=40) (+2 more)
 
-[folder](https://github.com/datasets/datapressr/tree/main/datasets/transport/tesla-quarterly-deliveries) · [README](https://github.com/datasets/datapressr/blob/main/datasets/transport/tesla-quarterly-deliveries/README.md)
+[DataHub](https://datahub.io/datapressr/tesla-quarterly-deliveries) · [folder](https://github.com/datasets/datapressr/tree/main/datasets/transport/tesla-quarterly-deliveries) · [README](https://github.com/datasets/datapressr/blob/main/datasets/transport/tesla-quarterly-deliveries/README.md)
 
 ## U.S. weather-related fatalities, injuries and damage by hazard type
 
@@ -71,7 +71,7 @@ Deaths, injuries and property and crop damage caused by weather in the United St
 
 **Status:** structured · **Licence:** [PDDL-1.0](https://opendatacommons.org/licenses/pddl/) · **Source:** [NWS Weather Related Fatality and Injury Statistics — the hub page whose menu is the only listing of the annual summaries](https://www.weather.gov/hazstat/) (+2 more)
 
-[folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/us-natural-hazard-statistics) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/us-natural-hazard-statistics/README.md)
+[DataHub](https://datahub.io/datapressr/us-natural-hazard-statistics) · [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/us-natural-hazard-statistics) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/us-natural-hazard-statistics/README.md)
 
 <!-- hand-written:start (kept by scripts/build-datasets-page.mjs) -->
 

@@ -27,7 +27,7 @@
   "resources": [
     {
       "path": "data/population-growth.csv",
-      "name": "population-growth",
+      "name": "growth-rates",
       "title": "Population growth (annual %) by entity and year",
       "mediatype": "text/csv",
       "schema": {

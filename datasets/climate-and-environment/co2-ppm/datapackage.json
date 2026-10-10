@@ -262,7 +262,7 @@
             "as": "series"
           }
         ],
-        "mark": "bar",
+        "mark": { "type": "line", "point": true },
         "encoding": {
           "x": {
             "field": "decade",
@@ -272,10 +272,6 @@
             "axis": {
               "labelAngle": 0
             }
-          },
-          "xOffset": {
-            "field": "series",
-            "type": "nominal"
           },
           "y": {
             "field": "ppm_per_year",

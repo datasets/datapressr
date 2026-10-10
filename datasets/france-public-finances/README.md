@@ -2,6 +2,10 @@ Official snapshots for an investigation of French public debt, persistent defici
 
 This is one portable dataset in the DataPressr repository, not a copy of an entire Eurostat or INSEE catalog. It can become a standalone repository later without changing its build. The accompanying story belongs in `site/stories/`; Bead `datapressr-sy2` tracks the investigation.
 
+## Stories using this data
+
+- [Where France’s public money goes](https://datahub.io/datapressr/where-frances-public-money-goes): what is growing, what old-age spending means, and why bigger euro bills can coexist with falling GDP shares.
+
 ## Reproduce
 
 Requires a recent Node version with native TypeScript support (tested on Node 26.4.0).
