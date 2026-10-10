@@ -95,13 +95,13 @@ Applies from `structured` onward — the bar a dataset must clear before it's mo
 - **Encoding**: UTF-8, no BOM.
 - **Column names**: `snake_case`, no spaces. Include units where the value is ambiguous without them (`gdp_usd_millions`, not `gdp`).
 - **Missing values**: a genuinely empty cell. Don't mix `NA`, `N/A`, `-`, `0`, and empty string for "missing" within one column, and note the converse: where a literal `NA` is a real code (North America, Namibia), keep it verbatim and say so in the field description.
-- **Dates**: ISO 8601 (`YYYY-MM-DD`, or `YYYY` for year-only series).
+- **Dates**: ISO 8601 (`YYYY-MM-DD`, or `YYYY` for year-only series). Date a monthly series by the first of the month (`YYYY-MM-01`) and type it `date`, which both DataHub's simple charts and Observable Plot accept as an x-axis.
 - **One value per cell, one row per observation.** No merged headers, no totals rows mixed in with data rows.
 - **CSV output**: LF line endings, trailing newline, RFC 4180 quoting. No Frictionless `dialect` block in `datapackage.json` — the defaults (comma, `"` quote, LF) are the house format.
 - **Reproducibility**: any transform beyond a trivial rename should be a checked-in script (`build.ts`, run directly with `node build.ts` — no build step) living in the dataset directory next to the raw snapshot — not a one-off interactive edit that can't be re-run when the source updates. The raw snapshot plus the script should be able to reproduce `data/*.csv` deterministically. Default to plain Node (`fetch`, `fs`, built-ins); reach for one targeted pure-JS package only when the source format needs it (`exceljs` for modern `.xlsx`; SheetJS `xlsx` for legacy BIFF8 `.xls`, which `exceljs` can't read; `csv-parse` for quoted CSV). A build with a dependency gets its own committed `package.json` + `package-lock.json` and a `npm install && node build.ts` run line, with `node_modules/` and `package.json` in `.datahubignore`. DuckDB earns its place when the transform is genuinely one SQL query — many-to-many joins, window functions, or reshaping a wide table to long across dozens of columns — not for keyed lookups and group-bys, which stay plain Node even across several files, and not for "clean up one messy source."
 - **Scale**: this workflow assumes small data — comfortably fits in memory in a single Node process (rule of thumb: well under ~1GB raw). If a source is bigger than that, say so explicitly rather than quietly forcing it through the same pipeline; it needs a different approach.
 
-**Definition of done for `status: structured`:** every resource has a `schema` with typed fields, a `primaryKey` if one exists, `licenses` and `sources` are filled in, the build is reproducible from a script, `/validate` passes with no warnings, and, if the build has a custom parser (PDF, HTML, prose, or a spreadsheet with a preamble or several layouts) or draws on many source documents, an independent adversarial review has returned `APPROVED` (step 7 of the `structure` skill).
+**Definition of done for `status: structured`:** every resource has a `schema` with typed fields, a `primaryKey` if one exists, `licenses` and `sources` are filled in, the build is reproducible from a script, `/validate` passes with no warnings (it checks the CSV values against the declared schema, not just the metadata), and, if the build has a custom parser (PDF, HTML, prose, or a spreadsheet with a preamble or several layouts) or draws on many source documents, an independent adversarial review has returned `APPROVED` (step 7 of the `structure` skill).
 
 ### Adding charts (views)
 
@@ -159,7 +159,7 @@ dh publish . --publication datapressr
 - **A root `README.md` is required.** Without one the dataset page is a 404.
 - **Publishing is an upsert, not a sync.** Files deleted locally stay on DataHub, and the `title` and `description` of an existing dataset are not updated.
 
-`dh` is a Go binary from the private repo [datopian/datahub-next](https://github.com/datopian/datahub-next/tree/staging/cli): `gh release download v0.1.0 -R datopian/datahub-next -p 'dh_<os>_<arch>.tar.gz'`, extract it and put `dh` on your `PATH`. The `push` skill has the full checklist.
+`dh` is a Go binary from the private repo [datopian/datahub-next](https://github.com/datopian/datahub-next/tree/staging/cli): `gh release download v0.1.0 -R datopian/datahub-next -p 'dh_<os>_<arch>.tar.gz'`, extract it and put `dh` on your `PATH`. Step-by-step install (including headless machines): [docs/install-dh.md](docs/install-dh.md). The `push` skill has the full checklist.
 
 ### Delete a dataset
 
@@ -178,13 +178,13 @@ into any agent. `npx skills add datasets/datapressr` to install; see
 
 | Skill | What it does |
 |-------|-------------|
-| `capture` | File a URL / idea in the Inbox issue (or a bead once substantive) — near-zero friction |
+| `capture` | File a URL / idea in the project's own tracker (Beads, its issues, or a local `INBOX.md`; in this repo, the Inbox issue or a bead) — near-zero friction |
 | `archive` | Snapshot the raw source into `archive/` with provenance |
 | `structure` | Raw → tidy typed CSV(s) + `datapackage.json` (the core wrangling step) |
 | `enrich` | Structured → enriched: consolidated stats, first `views`, a "What stands out" note |
 | `story` | Finished dataset(s) → a short data story: reviewed outline → Plot charts → prose |
 | `init` | Scaffold a new dataset directory |
-| `validate` | Check `datapackage.json` for common issues |
+| `validate` | Check `datapackage.json` for common issues and CSV values against the declared schema |
 | `push` | Publish the current dataset directory to DataHub (`dh publish`) |
 
 In Claude Code each is also a `/<name>` slash command (`.claude/skills/`

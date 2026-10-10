@@ -1,0 +1,89 @@
+{
+  "run_id": "20261010-0000-q01-french-debt-historical-weak-0",
+  "case_id": "q01-french-debt",
+  "domain": "story",
+  "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+  "calibration": {
+    "label": "Negative control: dataset tour, no argument, chart soup",
+    "sources": "hand-written for datapressr-hcn.8"
+  },
+  "skill": {
+    "name": "story",
+    "ref": "f22b8b7635ebac2c13261cdb48d24eed981a6111",
+    "tree": "85b0db464dbcb5791c1f66d287fb9ad02a29f94b",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "79317fea973a9a8c06cd4b2cd647f55509f9933e",
+    "dirty": true,
+    "recipe_sha256": null
+  },
+  "writer": {
+    "vendor": "historical",
+    "model": "hand-written",
+    "model_actual": null,
+    "cli_version": null,
+    "prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "isolation": {
+    "canary_run_id": null,
+    "network": false,
+    "leaks": []
+  },
+  "started_at": "2026-10-10T00:00:00.000Z",
+  "duration_ms": 0,
+  "turns": null,
+  "cost_usd": null,
+  "cost_basis": null,
+  "usage": null,
+  "artefacts": [
+    {
+      "path": "site/stories/france-public-finances-countries.svg",
+      "sha256": "287e121671fb81d2833a221fc70b0b56962f0b9b32abb0c05221b8ae927d5166",
+      "bytes": 8236
+    },
+    {
+      "path": "site/stories/france-public-finances-debt.svg",
+      "sha256": "63a03cc43443a0d6e59d76b8da76468c12a6345951758655eaa586835db6f035",
+      "bytes": 36230
+    },
+    {
+      "path": "site/stories/france-public-finances-deficits.svg",
+      "sha256": "fc7f4647dcb37c4c39d536efd5e45ef813e65e33a349e4659db708de57a225d7",
+      "bytes": 13615
+    },
+    {
+      "path": "site/stories/france-public-finances-functions.svg",
+      "sha256": "d449f0261cc567509f73b4e1cc02022fbd9d938e74b91c0796c15cea69cf5dcb",
+      "bytes": 4995
+    },
+    {
+      "path": "site/stories/france-public-finances-indicators.svg",
+      "sha256": "203c6dde7c59b8b346abe20ce71abc4aab2fd16f093ce847d98455f5face169b",
+      "bytes": 11245
+    },
+    {
+      "path": "site/stories/france-public-finances-make-charts.mjs",
+      "sha256": "02e15078ba3b1a6fc9be0393e9df26a46f2f7abf4077666e9ab899fe273f2d0c",
+      "bytes": 3333
+    },
+    {
+      "path": "site/stories/france-public-finances-outline.md",
+      "sha256": "5226933867a132083eb3c21514a05acf7cb80484fc8f646144345eae25e43f45",
+      "bytes": 565
+    },
+    {
+      "path": "site/stories/france-public-finances-subfunctions.svg",
+      "sha256": "10ef3cd2d5cbe74d4a264a87585a95849d80452c3ad9c9fe809e764e7af2b457",
+      "bytes": 16134
+    },
+    {
+      "path": "site/stories/france-public-finances.md",
+      "sha256": "ffff6f2dd78c9acef50b53e7f13a48f871457be46ff6eb390f99f89772cf7a3f",
+      "bytes": 2280
+    }
+  ],
+  "transcript_sha256": null,
+  "workspace_sha256": null,
+  "flags": []
+}

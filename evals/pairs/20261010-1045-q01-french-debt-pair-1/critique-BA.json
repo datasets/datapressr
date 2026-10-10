@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v2",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "BA",
+  "shown": {
+    "story_1": "B",
+    "story_2": "A"
+  },
+  "preferred": "A",
+  "margin": "clear",
+  "why": "Story 2 answers more of the available fiscal explanation: its spending section identifies social protection, old age and health, while its revenue–spending chart supports the claim that both sides have worsened since 2019, though it leaves their contributions unquantified. Story 1 omits those spending findings entirely, but more explicitly distinguishes a persistent fiscal problem from an unproven market crisis and explains why debt can fall relative to GDP despite deficits. Story 2’s interest chart immediately shows a burden below 1995’s, whereas Story 1’s nominal-euro chart visually stresses a record bill and leaves its GDP qualification to labels and prose. Story 2’s functions chart needs a clearer key: grey denotes 1995, but 2024 switches between red for increases and black for decreases without explicitly explaining that encoding. Neither story works out the roughly 2.9%-of-GDP deficit excluding interest or the adjustment needed to close the annual gap and its historical scale, even though these arithmetic questions are within reach.",
+  "reader_questions": [
+    {
+      "q": "How large is France’s debt relative to GDP, how fast is it rising, and does the available evidence establish a crisis rather than a persistent fiscal problem?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How much more does France spend than it collects each year, and how does that gap compare with Germany, Italy, Spain and the EU aggregate?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "When did France’s debt burden and annual deficit worsen most, and how much of that deterioration has since been reversed?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "Does the recent widening of France’s deficit reflect falling revenue relative to GDP, rising spending, or both?",
+      "A": "partly",
+      "B": "no"
+    },
+    {
+      "q": "Which functions account for the largest shares of public spending, what is inside the biggest category, and which components explain the spending increase?",
+      "A": "yes",
+      "B": "no"
+    },
+    {
+      "q": "How much of the deficit comes from interest payments, how has that burden changed, and how large would the deficit be without it?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "What changes in revenue or spending would be needed to close the annual deficit, and how large would those adjustments be compared with recent experience?",
+      "A": "no",
+      "B": "no"
+    }
+  ],
+  "prompt_sha256": "0194e581fcb6605f67ccaac22ccda0a5a24fecd9b6dac11064853a88a1c21d82",
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+}

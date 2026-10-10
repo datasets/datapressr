@@ -1,0 +1,18 @@
+{
+  "id": "q01-french-debt",
+  "domain": "story",
+  "title": "French debt crisis",
+  "question": "Why is there a French debt crisis?",
+  "type": "explanatory",
+  "data_mode": "fixed",
+  "inputs": [
+    { "path": "datasets/france-public-finances", "commit": "f0082af" }
+  ],
+  "skills": ["story"],
+  "references": [],
+  "owner_feedback": [
+    "docs/reviews/france-public-finances-user-feedback.md",
+    "docs/reviews/france-public-finances-reader-critique.md"
+  ],
+  "budget": { "max_usd": 20, "max_turns": 100, "words": [300, 700] }
+}

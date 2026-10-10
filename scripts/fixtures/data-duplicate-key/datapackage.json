@@ -1,0 +1,66 @@
+{
+  "name": "data-duplicate-key",
+  "title": "Fixture: data-duplicate-key",
+  "description": "Value-check fixture for scripts/validate-datapackage.mjs",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "CC0-1.0",
+      "title": "CC0",
+      "path": "https://creativecommons.org/publicdomain/zero/1.0/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Example Source",
+      "path": "https://example.com/"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/obs.csv",
+      "name": "obs",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "country_code",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "type": "date"
+          },
+          {
+            "name": "value",
+            "type": "number"
+          }
+        ],
+        "primaryKey": [
+          "country_code",
+          "date"
+        ]
+      }
+    },
+    {
+      "path": "data/countries.csv",
+      "name": "countries",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "country_code",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          }
+        ],
+        "primaryKey": [
+          "country_code"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+country,item,year,value,unit
+USA,"Rifles, carbines",1941,37.9,thousands
+USA,"Rifles, carbines",1942,1541.7,thousands
+USA,"Rifles, carbines",1943,5683,thousands
+USA,"Rifles, carbines",1944,3489.3,thousands
+USA,"Rifles, carbines",1945,1578.1,thousands
+USA,Machine pistols,1941,41.6,thousands
+USA,Machine pistols,1942,651.1,thousands
+USA,Machine pistols,1943,686.4,thousands
+USA,Machine pistols,1944,347.5,thousands
+USA,Machine pistols,1945,206.7,thousands
+USA,Machine guns,1941,20.4,thousands
+USA,Machine guns,1942,662.3,thousands
+USA,Machine guns,1943,830,thousands
+USA,Machine guns,1944,798.8,thousands
+USA,Machine guns,1945,302.8,thousands
+USA,Guns,1941,3.4,thousands
+USA,Guns,1942,187.6,thousands
+USA,Guns,1943,220.9,thousands
+USA,Guns,1944,103,thousands
+USA,Guns,1945,34,thousands
+USA,Mortars,1941,0.4,thousands
+USA,Mortars,1942,11,thousands
+USA,Mortars,1943,25.8,thousands
+USA,Mortars,1944,24.8,thousands
+USA,Mortars,1945,40.1,thousands
+USA,Tanks and SPG,1941,0.9,thousands
+USA,Tanks and SPG,1942,27,thousands
+USA,Tanks and SPG,1943,38.5,thousands
+USA,Tanks and SPG,1944,20.5,thousands
+USA,Tanks and SPG,1945,12.6,thousands
+USA,Combat aircraft,1941,1.4,thousands
+USA,Combat aircraft,1942,24.9,thousands
+USA,Combat aircraft,1943,54.1,thousands
+USA,Combat aircraft,1944,74.1,thousands
+USA,Combat aircraft,1945,37.5,thousands
+USA,Major naval vessels,1941,544,units
+USA,Major naval vessels,1942,1854,units
+USA,Major naval vessels,1943,2654,units
+USA,Major naval vessels,1944,2247,units
+USA,Major naval vessels,1945,1513,units
+UK,"Rifles, carbines",1939,18.3,thousands
+UK,"Rifles, carbines",1940,80.8,thousands
+UK,"Rifles, carbines",1941,78.5,thousands
+UK,"Rifles, carbines",1942,594.9,thousands
+UK,"Rifles, carbines",1943,909.8,thousands
+UK,"Rifles, carbines",1944,547.4,thousands
+UK,"Rifles, carbines",1945,227.4,thousands
+UK,Machine pistols,1941,6.4,thousands
+UK,Machine pistols,1942,1438.3,thousands
+UK,Machine pistols,1943,1572.4,thousands
+UK,Machine pistols,1944,671.5,thousands
+UK,Machine pistols,1945,231.3,thousands
+UK,Machine guns,1939,19,thousands
+UK,Machine guns,1940,101.9,thousands
+UK,Machine guns,1941,193.4,thousands
+UK,Machine guns,1942,283.8,thousands
+UK,Machine guns,1943,200.5,thousands
+UK,Machine guns,1944,125.3,thousands
+UK,Machine guns,1945,14.7,thousands
+UK,Guns,1939,1.4,thousands
+UK,Guns,1940,10.2,thousands
+UK,Guns,1941,33.1,thousands
+UK,Guns,1942,106.1,thousands
+UK,Guns,1943,118.2,thousands
+UK,Guns,1944,92.8,thousands
+UK,Guns,1945,27.9,thousands
+UK,Mortars,1939,1.3,thousands
+UK,Mortars,1940,7.6,thousands
+UK,Mortars,1941,21.7,thousands
+UK,Mortars,1942,29.2,thousands
+UK,Mortars,1943,17.1,thousands
+UK,Mortars,1944,19,thousands
+UK,Mortars,1945,5,thousands
+UK,Tanks and SPG,1939,0.3,thousands
+UK,Tanks and SPG,1940,1.4,thousands
+UK,Tanks and SPG,1941,4.8,thousands
+UK,Tanks and SPG,1942,8.6,thousands
+UK,Tanks and SPG,1943,7.5,thousands
+UK,Tanks and SPG,1944,4.6,thousands
+UK,Tanks and SPG,1945,2.1,thousands
+UK,Combat aircraft,1939,1.3,thousands
+UK,Combat aircraft,1940,8.6,thousands
+UK,Combat aircraft,1941,13.2,thousands
+UK,Combat aircraft,1942,17.7,thousands
+UK,Combat aircraft,1943,21.2,thousands
+UK,Combat aircraft,1944,22.7,thousands
+UK,Combat aircraft,1945,9.9,thousands
+UK,Major naval vessels,1939,57,units
+UK,Major naval vessels,1940,148,units
+UK,Major naval vessels,1941,236,units
+UK,Major naval vessels,1942,239,units
+UK,Major naval vessels,1943,224,units
+UK,Major naval vessels,1944,188,units
+UK,Major naval vessels,1945,64,units
+USSR,"Rifles, carbines",1941,1567.1,thousands
+USSR,"Rifles, carbines",1942,4049,thousands
+USSR,"Rifles, carbines",1943,3436.2,thousands
+USSR,"Rifles, carbines",1944,2450,thousands
+USSR,"Rifles, carbines",1945,637,thousands
+USSR,Machine pistols,1941,89.7,thousands
+USSR,Machine pistols,1942,1506.4,thousands
+USSR,Machine pistols,1943,2023.6,thousands
+USSR,Machine pistols,1944,1970.8,thousands
+USSR,Machine pistols,1945,583.4,thousands
+USSR,Machine guns,1941,106.2,thousands
+USSR,Machine guns,1942,356.1,thousands
+USSR,Machine guns,1943,458.5,thousands
+USSR,Machine guns,1944,439.1,thousands
+USSR,Machine guns,1945,156,thousands
+USSR,Guns,1941,30.2,thousands
+USSR,Guns,1942,127.1,thousands
+USSR,Guns,1943,130.3,thousands
+USSR,Guns,1944,122.4,thousands
+USSR,Guns,1945,72.2,thousands
+USSR,Mortars,1941,42.3,thousands
+USSR,Mortars,1942,230,thousands
+USSR,Mortars,1943,69.4,thousands
+USSR,Mortars,1944,7.1,thousands
+USSR,Mortars,1945,3,thousands
+USSR,Tanks and SPG,1941,4.8,thousands
+USSR,Tanks and SPG,1942,24.4,thousands
+USSR,Tanks and SPG,1943,24.1,thousands
+USSR,Tanks and SPG,1944,29,thousands
+USSR,Tanks and SPG,1945,20.5,thousands
+USSR,Combat aircraft,1941,8.2,thousands
+USSR,Combat aircraft,1942,21.7,thousands
+USSR,Combat aircraft,1943,29.9,thousands
+USSR,Combat aircraft,1944,33.2,thousands
+USSR,Combat aircraft,1945,19.1,thousands
+USSR,Major naval vessels,1940,33,units
+USSR,Major naval vessels,1941,62,units
+USSR,Major naval vessels,1942,19,units
+USSR,Major naval vessels,1943,13,units
+USSR,Major naval vessels,1944,23,units
+USSR,Major naval vessels,1945,11,units
+Germany,"Rifles, carbines",1939,450.6,thousands
+Germany,"Rifles, carbines",1940,1352,thousands
+Germany,"Rifles, carbines",1941,1359,thousands
+Germany,"Rifles, carbines",1942,1370.2,thousands
+Germany,"Rifles, carbines",1943,2275.3,thousands
+Germany,"Rifles, carbines",1944,2855.7,thousands
+Germany,"Rifles, carbines",1945,665,thousands
+Germany,Machine pistols,1939,39.9,thousands
+Germany,Machine pistols,1940,119,thousands
+Germany,Machine pistols,1941,325,thousands
+Germany,Machine pistols,1942,232,thousands
+Germany,Machine pistols,1943,234.3,thousands
+Germany,Machine pistols,1944,228.6,thousands
+Germany,Machine pistols,1945,78,thousands
+Germany,Machine guns,1939,19.7,thousands
+Germany,Machine guns,1940,59.2,thousands
+Germany,Machine guns,1941,96.2,thousands
+Germany,Machine guns,1942,117,thousands
+Germany,Machine guns,1943,263,thousands
+Germany,Machine guns,1944,509.4,thousands
+Germany,Machine guns,1945,111,thousands
+Germany,Guns,1939,2.1,thousands
+Germany,Guns,1940,6.3,thousands
+Germany,Guns,1941,22.1,thousands
+Germany,Guns,1942,40.5,thousands
+Germany,Guns,1943,73.7,thousands
+Germany,Guns,1944,148.2,thousands
+Germany,Guns,1945,27,thousands
+Germany,Mortars,1939,1.4,thousands
+Germany,Mortars,1940,4.4,thousands
+Germany,Mortars,1941,4.2,thousands
+Germany,Mortars,1942,9.8,thousands
+Germany,Mortars,1943,23,thousands
+Germany,Mortars,1944,33.2,thousands
+Germany,Mortars,1945,2.8,thousands
+Germany,Tanks and SPG,1939,0.7,thousands
+Germany,Tanks and SPG,1940,2.2,thousands
+Germany,Tanks and SPG,1941,3.8,thousands
+Germany,Tanks and SPG,1942,6.2,thousands
+Germany,Tanks and SPG,1943,10.7,thousands
+Germany,Tanks and SPG,1944,18.3,thousands
+Germany,Tanks and SPG,1945,4.4,thousands
+Germany,Combat aircraft,1939,2.3,thousands
+Germany,Combat aircraft,1940,6.6,thousands
+Germany,Combat aircraft,1941,8.4,thousands
+Germany,Combat aircraft,1942,11.6,thousands
+Germany,Combat aircraft,1943,19.3,thousands
+Germany,Combat aircraft,1944,34.1,thousands
+Germany,Combat aircraft,1945,7.2,thousands
+Germany,Submarines,1939,15,units
+Germany,Submarines,1940,40,units
+Germany,Submarines,1941,196,units
+Germany,Submarines,1942,244,units
+Germany,Submarines,1943,270,units
+Germany,Submarines,1944,189,units
+Germany,Submarines,1945,0,units
+Italy,Combat aircraft,1939,1.7,thousands
+Italy,Combat aircraft,1940,3.3,thousands
+Italy,Combat aircraft,1941,3.5,thousands
+Italy,Combat aircraft,1942,2.8,thousands
+Italy,Combat aircraft,1943,2,thousands
+Italy,Major naval vessels,1939,40,units
+Italy,Major naval vessels,1940,12,units
+Italy,Major naval vessels,1941,41,units
+Italy,Major naval vessels,1942,86,units
+Italy,Major naval vessels,1943,148,units
+Japan,"Rifles, carbines",1939,83.2,thousands
+Japan,"Rifles, carbines",1940,448.9,thousands
+Japan,"Rifles, carbines",1941,729.4,thousands
+Japan,"Rifles, carbines",1942,440,thousands
+Japan,"Rifles, carbines",1943,634,thousands
+Japan,"Rifles, carbines",1944,885,thousands
+Japan,"Rifles, carbines",1945,349,thousands
+Japan,Machine pistols,1944,3,thousands
+Japan,Machine pistols,1945,5,thousands
+Japan,Machine guns,1939,5.5,thousands
+Japan,Machine guns,1940,20.6,thousands
+Japan,Machine guns,1941,42.5,thousands
+Japan,Machine guns,1942,71,thousands
+Japan,Machine guns,1943,113.5,thousands
+Japan,Machine guns,1944,156.1,thousands
+Japan,Machine guns,1945,40.3,thousands
+Japan,Guns,1939,0.8,thousands
+Japan,Guns,1940,3.3,thousands
+Japan,Guns,1941,7.3,thousands
+Japan,Guns,1942,13.4,thousands
+Japan,Guns,1943,27.7,thousands
+Japan,Guns,1944,84.4,thousands
+Japan,Guns,1945,23.2,thousands
+Japan,Mortars,1939,0.5,thousands
+Japan,Mortars,1940,1.6,thousands
+Japan,Mortars,1941,1.1,thousands
+Japan,Mortars,1942,1.5,thousands
+Japan,Mortars,1943,1.7,thousands
+Japan,Mortars,1944,1.1,thousands
+Japan,Mortars,1945,0.3,thousands
+Japan,Tanks and SPG,1939,0.2,thousands
+Japan,Tanks and SPG,1940,1,thousands
+Japan,Tanks and SPG,1941,1,thousands
+Japan,Tanks and SPG,1942,1.2,thousands
+Japan,Tanks and SPG,1943,0.8,thousands
+Japan,Tanks and SPG,1944,0.4,thousands
+Japan,Tanks and SPG,1945,0.2,thousands
+Japan,Combat aircraft,1939,0.7,thousands
+Japan,Combat aircraft,1940,2.2,thousands
+Japan,Combat aircraft,1941,3.2,thousands
+Japan,Combat aircraft,1942,6.3,thousands
+Japan,Combat aircraft,1943,13.4,thousands
+Japan,Combat aircraft,1944,21,thousands
+Japan,Combat aircraft,1945,8.3,thousands
+Japan,Major naval vessels,1939,21,units
+Japan,Major naval vessels,1940,30,units
+Japan,Major naval vessels,1941,49,units
+Japan,Major naval vessels,1942,68,units
+Japan,Major naval vessels,1943,122,units
+Japan,Major naval vessels,1944,248,units
+Japan,Major naval vessels,1945,51,units

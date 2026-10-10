@@ -5,6 +5,8 @@ description: The short list of things that actually need a human look, newest fi
 
 # What to review now
 
+*Moved from the public site (`site/review.md`) on 2026-10-10: this is the owner's review queue, not a page for visitors. Last updated 2026-09-18; current review work lives in Beads (the `review-after` label).*
+
 Newest first. Everything is on `main` — GitHub renders the Markdown and shows CSVs
 as sortable tables, so no local checkout or DataHub account is needed.
 
@@ -12,8 +14,8 @@ as sortable tables, so no local checkout or DataHub account is needed.
 
 | Thing | Look at | Why it needs eyes |
 |-------|---------|-------------------|
-| Story #3 prose | [WTI Went Negative. Brent Didn't.](stories/oil-prices.md) | **Your voice pass is outstanding.** The argument was approved by an independent AI reviewer; the prose is an AI draft rendered from it. |
-| Story #3 outline | [outline](stories/oil-prices-outline.md) | Approved after one round of corrections: the first draft explained *why* WTI went negative from price data alone and left out Brent's $9.12 the next day. The mechanism is now attributed to EIA and the CFTC. Agree with where the line was drawn? |
+| Story #3 prose | [WTI Went Negative. Brent Didn't.](../site/stories/oil-prices.md) | **Your voice pass is outstanding.** The argument was approved by an independent AI reviewer; the prose is an AI draft rendered from it. |
+| Story #3 outline | [outline](../site/stories/oil-prices-outline.md) | Approved after one round of corrections: the first draft explained *why* WTI went negative from price data alone and left out Brent's $9.12 the next day. The mechanism is now attributed to EIA and the CFTC. Agree with where the line was drawn? |
 | The two new skills | [`skills/story/`](https://github.com/datasets/datapressr/tree/main/skills/story) · [`skills/enrich/`](https://github.com/datasets/datapressr/tree/main/skills/enrich) | Now active, with their guidance packaged in `references/` so an installed copy doesn't need this repo. Each former open question has a written policy — do the defaults match your intent? |
 
 ## 2026-08-30 — autonomous session + follow-ups
@@ -30,7 +32,7 @@ as sortable tables, so no local checkout or DataHub account is needed.
 ## Open questions parked for you
 
 - **Project Drawdown** now lives in its own repo at <https://github.com/datasets/project-drawdown> (moved out of `datapressr` on 2026-09-05); DataHub publish still pending.
-- **Charting approach** is decided for the near term: Observable Plot rendered to static SVG for stories, declarative `views` for dataset pages ([`docs/charting.md`](docs/charting.md)). A DataHub-native charting standard is still deferred.
+- **Charting approach** is decided for the near term: Observable Plot rendered to static SVG for stories, declarative `views` for dataset pages ([`docs/charting.md`](../site/docs/charting.md)). A DataHub-native charting standard is still deferred.
 
 ## Tracking
 

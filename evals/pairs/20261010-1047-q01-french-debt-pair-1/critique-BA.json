@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v2",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "BA",
+  "shown": {
+    "story_1": "B",
+    "story_2": "A"
+  },
+  "preferred": "B",
+  "margin": "clear",
+  "why": "Story 1 needs fewer substantive additions: its neighbour comparison supplies all five spending, revenue and deficit figures, and “Where the money goes” explains social protection, old age and health, which Story 2 omits entirely. Story 1 also identifies both spending increases and revenue declines since 2019, although neither story quantifies their contributions to the deterioration or calculates the deficit excluding interest and the adjustment needed to balance the budget. Story 2 explains the GDP denominator and the missing market evidence for a crisis more explicitly, but “It did not come back down after either jump” contradicts its own debt chart and later account of the post-pandemic decline. Story 1’s directly labelled comparison chart immediately supports its argument, whereas Story 2’s balance chart uses indistinguishable solid grey lines for three countries and displaced endpoint labels without connectors, making their histories difficult to decode. Story 1’s spending-functions chart still needs a clearer key for red increases, black decreases and grey starting points, but its visible ranking and changes support the prose.",
+  "reader_questions": [
+    {
+      "q": "How large is France’s debt relative to its economy, how quickly is it rising, and what evidence would establish that this is a crisis rather than simply high debt?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How big is the annual gap between government spending and revenue, and is its recent deterioration driven by higher spending, weaker revenue or both?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "When did France’s debt burden rise most sharply, and do its deficits suggest a temporary shock or a persistent inability to balance the books?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "How do France’s spending, revenue and deficit as shares of GDP compare with Germany, Italy, Spain and the EU overall?",
+      "A": "partly",
+      "B": "yes"
+    },
+    {
+      "q": "Which public services and benefits account for the largest spending totals, what is inside the biggest category, and which components have grown most relative to GDP?",
+      "A": "no",
+      "B": "yes"
+    },
+    {
+      "q": "How much of the deficit comes from interest payments, and would France still be borrowing heavily without them?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How much would spending or revenue have to change to close the annual deficit, and how large is that adjustment compared with the main budget categories?",
+      "A": "no",
+      "B": "no"
+    }
+  ],
+  "prompt_sha256": "24e6452ab2f92dffb8be12678eeac02a260c75156e91cf55839729a055841c07",
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+}

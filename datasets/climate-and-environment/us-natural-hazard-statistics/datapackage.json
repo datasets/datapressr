@@ -48,6 +48,24 @@
       }
     },
     {
+      "path": "data/annual-fatalities.csv",
+      "name": "annual-fatalities",
+      "title": "U.S. weather deaths per year: all hazards and the three leading causes",
+      "description": "Derived from hazard-statistics.csv by build.ts for charting; it adds no information. One row per year. all_hazards is the year's own total row; heat, tornado and flash_flood are those event types' rows (the three with the most deaths over 1997-2025); all_other is the total minus those three, so the four parts add back to all_hazards. Hurricane-related deaths fall under all_other, and the Tropical Storm / Hurricane row is wind only (see README).",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "year", "type": "year", "description": "Calendar year the summary reports on." },
+          { "name": "all_hazards", "type": "integer", "description": "The year's total weather-related deaths, from the source's own total row." },
+          { "name": "heat", "type": "integer", "description": "Deaths attributed to Heat (hazard_id heat)." },
+          { "name": "tornado", "type": "integer", "description": "Deaths attributed to Tornado (hazard_id tornado)." },
+          { "name": "flash_flood", "type": "integer", "description": "Deaths attributed to Flash Flood (hazard_id flash-flood)." },
+          { "name": "all_other", "type": "integer", "description": "all_hazards minus heat, tornado and flash_flood: every other event type, including the wind-only Tropical Storm / Hurricane row." }
+        ],
+        "primaryKey": ["year"]
+      }
+    },
+    {
       "path": "data/source-documents.csv",
       "name": "source-documents",
       "title": "Every annual summary the source lists, and what became of it",
@@ -64,6 +82,111 @@
           { "name": "note", "type": "string", "description": "Why a candidate was not extracted. Empty where it was." }
         ],
         "primaryKey": ["year"]
+      }
+    }
+  ],
+  "views": [
+    {
+      "name": "deaths-per-year",
+      "title": "U.S. weather deaths per year, all hazards (NWS, 1997–2025)",
+      "description": "The source's own annual total. The 2005 peak is mostly Hurricane Katrina; about half of the 2011 peak is tornadoes, the year of the April Super Outbreak and Joplin. The latest year is preliminary.",
+      "specType": "simple",
+      "resources": [
+        "annual-fatalities"
+      ],
+      "spec": {
+        "type": "line",
+        "group": "year",
+        "series": [
+          "all_hazards"
+        ]
+      }
+    },
+    {
+      "name": "deaths-by-leading-cause",
+      "title": "Deaths per year from heat, tornadoes and flash floods (NWS, 1997–2025)",
+      "description": "The three event types with the most deaths over 1997–2025. Heat is the deadliest of the three in 21 of the 29 years and has climbed since 2020; the latest year is preliminary.",
+      "specType": "vega-lite",
+      "resources": [
+        "annual-fatalities"
+      ],
+      "spec": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "transform": [
+          {
+            "fold": [
+              "heat",
+              "tornado",
+              "flash_flood"
+            ],
+            "as": [
+              "cause_id",
+              "deaths"
+            ]
+          },
+          {
+            "calculate": "datum.cause_id === 'heat' ? 'Heat' : datum.cause_id === 'tornado' ? 'Tornado' : 'Flash flood'",
+            "as": "cause"
+          }
+        ],
+        "mark": {
+          "type": "line",
+          "strokeWidth": 2,
+          "point": {
+            "size": 30
+          }
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "temporal",
+            "timeUnit": "year",
+            "title": null
+          },
+          "y": {
+            "field": "deaths",
+            "type": "quantitative",
+            "title": "Deaths"
+          },
+          "color": {
+            "field": "cause",
+            "type": "nominal",
+            "title": null,
+            "scale": {
+              "domain": [
+                "Heat",
+                "Tornado",
+                "Flash flood"
+              ],
+              "range": [
+                "#eb6834",
+                "#2a78d6",
+                "#1baf7a"
+              ]
+            },
+            "legend": {
+              "orient": "top"
+            }
+          },
+          "tooltip": [
+            {
+              "field": "year",
+              "type": "temporal",
+              "timeUnit": "year",
+              "title": "Year"
+            },
+            {
+              "field": "cause",
+              "type": "nominal",
+              "title": "Cause"
+            },
+            {
+              "field": "deaths",
+              "type": "quantitative",
+              "title": "Deaths"
+            }
+          ]
+        }
       }
     }
   ]

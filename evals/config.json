@@ -1,0 +1,40 @@
+{
+  "models": {
+    "claude": {
+      "writer": "claude-opus-5-5",
+      "critic": "claude-opus-5-5",
+      "canary": "claude-haiku-5-5"
+    },
+    "codex": {
+      "writer": "gpt-6-astra",
+      "critic": "gpt-6-astra",
+      "canary": "gpt-6-luna"
+    }
+  },
+  "families": {
+    "opus": "claude-opus-5-5",
+    "sonnet": "claude-sonnet-5-5",
+    "haiku": "claude-haiku-5-5",
+    "astra": "gpt-6-astra",
+    "sol": "gpt-6.1-sol",
+    "luna": "gpt-6-luna"
+  },
+  "critic_preference": {
+    "claude": "codex",
+    "codex": "claude"
+  },
+  "critic_fallback": {
+    "opus": "sonnet",
+    "sonnet": "opus",
+    "astra": "sol",
+    "sol": "astra"
+  },
+  "caps": {
+    "fixed": { "max_usd": 20, "max_turns": 100 },
+    "open": { "max_usd": 30, "max_turns": 150 }
+  },
+  "max_usd_per_invocation": 60,
+  "canary": { "max_usd": 0.05, "max_turns": 6, "timeout_ms": 300000 },
+  "critic_caps": { "max_usd_per_call": 3 },
+  "timeouts_ms": { "writer": 5400000, "critic": 900000 }
+}

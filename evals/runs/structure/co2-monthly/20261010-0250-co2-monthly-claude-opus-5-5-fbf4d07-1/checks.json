@@ -1,0 +1,156 @@
+{
+  "checker": "structure",
+  "results": [
+    {
+      "id": "D1",
+      "pass": true,
+      "severity": "fail",
+      "message": "build.ts, datapackage.json, 1 CSV(s) and DECISIONS.md (15 list item(s)) present",
+      "evidence": {
+        "csvs": [
+          "co2-ppm-monthly.csv"
+        ],
+        "decisions_items": 15
+      }
+    },
+    {
+      "id": "D2",
+      "pass": true,
+      "severity": "fail",
+      "message": "offline build from a data/ with no CSVs wrote 1 CSV(s)",
+      "evidence": {
+        "csvs": [
+          "co2-ppm-monthly.csv"
+        ]
+      }
+    },
+    {
+      "id": "D3",
+      "pass": true,
+      "severity": "fail",
+      "message": "two offline builds reproduce the committed 1 CSV(s) byte for byte",
+      "evidence": {
+        "sha256": {
+          "co2-ppm-monthly.csv": "ce69039c645e8a9864eadf03f3eb914324a703d07de832a049eaf98df144a634"
+        }
+      }
+    },
+    {
+      "id": "D4",
+      "pass": true,
+      "severity": "fail",
+      "message": "validator clean (0 note(s))",
+      "evidence": {
+        "errors": [],
+        "warnings": [],
+        "notes": []
+      }
+    },
+    {
+      "id": "D5",
+      "pass": true,
+      "severity": "fail",
+      "message": "structured, licence NOAA-GML-data-use, source on gml.noaa.gov, 1 typed resource(s) with primaryKey",
+      "evidence": null
+    },
+    {
+      "id": "D6",
+      "pass": true,
+      "severity": "fail",
+      "message": "snake_case headers, LF, trailing newline, no dialect",
+      "evidence": null
+    },
+    {
+      "id": "D7",
+      "pass": true,
+      "severity": "fail",
+      "message": "co2-ppm-monthly.csv: 821 observation rows (expected 821)",
+      "evidence": {
+        "csv": "co2-ppm-monthly.csv",
+        "rows": 821
+      }
+    },
+    {
+      "id": "D8",
+      "pass": true,
+      "severity": "fail",
+      "message": "22 hand-read anchor value(s) on 5 rows match",
+      "evidence": {
+        "rows_by": "date column date",
+        "roles": {
+          "decimal_date": "decimal_date (by name)",
+          "co2_ppm_deseasonalized": "co2_deseasonalized_ppm (by name)",
+          "uncertainty": "uncertainty_ppm (by name)",
+          "std_dev": "daily_sdev_ppm (by name)",
+          "num_days": "n_days (by name)",
+          "co2_ppm": "co2_ppm (by name)"
+        }
+      }
+    },
+    {
+      "id": "D9",
+      "pass": true,
+      "severity": "fail",
+      "message": "no sentinels left; empty counts [194, 195, 196] as expected",
+      "evidence": {
+        "empties": {
+          "date": 0,
+          "decimal_date": 0,
+          "co2_ppm": 0,
+          "co2_deseasonalized_ppm": 0,
+          "n_days": 195,
+          "daily_sdev_ppm": 196,
+          "uncertainty_ppm": 194
+        }
+      }
+    },
+    {
+      "id": "D10",
+      "pass": true,
+      "severity": "fail",
+      "message": "7/7 reference columns matched by value",
+      "evidence": {
+        "matched": {
+          "date": "date",
+          "decimal_date": "decimal_date",
+          "co2_ppm": "co2_ppm",
+          "co2_ppm_deseasonalized": "co2_deseasonalized_ppm",
+          "num_days": "n_days",
+          "std_dev": "daily_sdev_ppm",
+          "uncertainty": "uncertainty_ppm"
+        },
+        "allowed_missing": []
+      }
+    },
+    {
+      "id": "D11",
+      "pass": false,
+      "severity": "fail",
+      "message": "build.ts header comment lacks: licence",
+      "evidence": {
+        "missing": [
+          "licence"
+        ]
+      }
+    },
+    {
+      "id": "D12",
+      "pass": false,
+      "severity": "fail",
+      "message": "821 value(s) in date are not YYYY-MM-DD, e.g. \"1958-03\"",
+      "evidence": {
+        "column": "date",
+        "days_of_month": []
+      }
+    },
+    {
+      "id": "D13",
+      "pass": true,
+      "severity": "fail",
+      "message": "2 input(s) identical to their pinned commits",
+      "evidence": {
+        "added": []
+      }
+    }
+  ]
+}

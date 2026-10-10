@@ -1,7 +1,7 @@
 {
   "name": "tesla-quarterly-deliveries",
   "title": "Tesla quarterly vehicle production and deliveries by model group",
-  "description": "Vehicles produced and delivered per quarter by reported model group, from Q2 2019 to Q2 2026 (29 quarters, 174 rows), taken from Exhibit 99.1 of Tesla's quarterly Production & Deliveries Form 8-K filed with the SEC. Across this range Tesla reports grouped models rather than individual ones (the earlier prose releases did give per-model figures), and the grouping has changed twice (Model S/X + Model 3 → Model S/X + Model 3/Y → Model 3/Y + Other Models); groups are kept exactly as reported and are never split or re-combined. Each quarter carries its component rows plus the reported Total, flagged by is_total — do not sum a Total row with its components. Coverage starts at Q2 2019 because that is the first release to publish a table. 19 earlier releases, covering 18 quarters between Q1 2013 and Q1 2019 and not contiguous (no delivery 8-K was filed for Q2 2013 through Q4 2014), state their figures in prose only and are listed in source-filings.csv as discovered but not extracted. Missing values are empty cells and are distinct from a genuine 0 (Tesla produced no Model S/X in Q1 2021). Snapshot taken 2026-09-18; rebuilt offline by build.ts from the archived filings.",
+  "description": "Vehicles produced and delivered per quarter by reported model group, from Q2 2019 to Q2 2026 (29 quarters, 174 rows), taken from Exhibit 99.1 of Tesla's quarterly Production & Deliveries Form 8-K filed with the SEC. Across this range Tesla reports grouped models rather than individual ones (the earlier prose releases did give per-model figures), and the grouping has changed twice (Model S/X + Model 3 → Model S/X + Model 3/Y → Model 3/Y + Other Models); groups are kept exactly as reported and are never split or re-combined. Each quarter carries its component rows plus the reported Total, flagged by is_total — do not sum a Total row with its components. tesla-quarterly-totals repeats just the Totals, one row per quarter with deliveries and production side by side, for charting. Coverage starts at Q2 2019 because that is the first release to publish a table. 19 earlier releases, covering 18 quarters between Q1 2013 and Q1 2019 and not contiguous (no delivery 8-K was filed for Q2 2013 through Q4 2014), state their figures in prose only and are listed in source-filings.csv as discovered but not extracted. Missing values are empty cells and are distinct from a genuine 0 (Tesla produced no Model S/X in Q1 2021). Snapshot taken 2026-09-18; rebuilt offline by build.ts from the archived filings.",
   "status": "structured",
   "licenses": [
     {
@@ -44,6 +44,22 @@
       }
     },
     {
+      "path": "data/tesla-quarterly-totals.csv",
+      "name": "tesla-quarterly-totals",
+      "title": "Tesla total deliveries and production per quarter",
+      "mediatype": "text/csv",
+      "schema": {
+        "fields": [
+          { "name": "period_start", "type": "date", "description": "First day of the reported calendar quarter." },
+          { "name": "period_end", "type": "date", "description": "Last day of the reported calendar quarter." },
+          { "name": "deliveries", "type": "integer", "description": "Total vehicles delivered in the quarter as first reported: the Total deliveries row of tesla-quarterly-deliveries for the same quarter, copied by build.ts rather than re-read or recomputed. Not restated; the full-year recap in tesla-annual-deliveries can differ from the sum of four quarters." },
+          { "name": "production", "type": "integer", "description": "Total vehicles produced in the quarter as first reported: the Total production row of tesla-quarterly-deliveries for the same quarter." },
+          { "name": "source_id", "type": "string", "description": "SEC accession number of the 8-K both figures were read from; joins to source-filings.csv." }
+        ],
+        "primaryKey": ["period_start", "period_end"]
+      }
+    },
+    {
       "path": "data/tesla-annual-deliveries.csv",
       "name": "tesla-annual-deliveries",
       "title": "Tesla full-year production and deliveries by model group, as recapped in the Q4 release",
@@ -77,6 +93,20 @@
           { "name": "exhibit_url", "type": "string", "description": "URL the exhibit was retrieved from on 2026-09-18." }
         ],
         "primaryKey": ["source_id", "exhibit_file"]
+      }
+    }
+  ],
+  "views": [
+    {
+      "name": "quarterly-totals",
+      "title": "Tesla vehicles delivered and produced per quarter, Q2 2019 to Q2 2026",
+      "description": "The release's own Total for each quarter, as first reported. Total is the only vehicle group that runs unchanged through all 29 quarters; the model groups change twice (see README).",
+      "specType": "simple",
+      "resources": ["tesla-quarterly-totals"],
+      "spec": {
+        "type": "line",
+        "group": "period_end",
+        "series": ["deliveries", "production"]
       }
     }
   ]

@@ -1,6 +1,9 @@
 ---
 title: "WTI Went Negative. Brent Didn't."
 description: On 20 April 2020 the WTI spot price was -$36.98 a barrel, the only negative value in Brent and WTI prices going back to 1986. Brent that day was $17.36.
+datahub:
+  slug: wti-went-negative
+  status: draft
 ---
 
 # WTI Went Negative. Brent Didn't.
@@ -44,4 +47,9 @@ For the `story` and `enrich` skills:
 - **The consolidated table found the story.** Scanning one `min` column across all eight resources turned up the single negative cell. Without that table it would have taken a file-by-file search.
 - **Outline review earned its keep.** The first outline explained *why* WTI went negative, which a price-only dataset cannot show. It also left out Brent's $9.12 the next day, and so made the contrast look stronger than the data supports. The independent reviewer caught both before any prose was written.
 - **"Every number on a chart" has limits.** The dataset-wide count, Brent's 1998 low and the attributed EIA and CFTC figures cannot sit on a chart of spring 2020. The skill should say which kinds of numbers are exempt.
+- **Exempt numbers** (not on a chart):
+  - 25,415: dataset-wide count
+  - -$37.63: attributed CFTC futures settlement
+  - $9.10: all-time low outside the chart's window
+  - 76%: attributed EIA storage figure
 - **Author's voice pass: outstanding.** This prose is an AI draft rendered from the approved outline; the "sounds like me" pass has not been done.

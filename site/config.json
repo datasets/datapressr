@@ -28,5 +28,5 @@
     ]
   },
   "showEditLink": true,
-  "contentHide": ["/changelog"]
+  "contentHide": ["/changelog", "/charting-spike.html"]
 }

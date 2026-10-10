@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v2+reference-pairwise",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "AB",
+  "shown": {
+    "story_1": "A",
+    "story_2": "B"
+  },
+  "preferred": "A",
+  "margin": "clear",
+  "why": "Story 1 supplies a dated annual increase and its record ranking, which Story 2 could have calculated for Mauna Loa, while its global measurements, pre-industrial comparisons and ancient rates require other evidence. Story 1 also explains emissions, incomplete natural uptake and climate-related fluctuations using evidence outside the fixed series; Story 2 should acknowledge that causal limitation and use its available uncertainty fields to qualify its conclusions. Story 2 adds the 2025 annual concentration, uninterrupted annual increases and an approximately 6 ppm seasonal swing, but neither piece calculates the ppm and percentage increase since measurements began, and Story 2 leaves its latest usable month and current annual growth unspecified. The 1960s rates differ slightly—0.8 versus 0.9 ppm per year—and explicit averaging periods and calculations would settle that difference; the different concentration figures describe different years or geographical coverage and do not contradict each other. For the annual chart, glance: CO₂ rises persistently and increasingly steeply, matching the prose; the solid blue line represents annual concentration, while directly labelled green and red dashed lines represent thresholds, but the blue series lacks an internal label, so encodings_clear is false, and the threshold lines should be corrected because their SVG positions correspond to roughly 351.69 and 401.01 ppm rather than their stated values. For the seasonal chart, glance: recurring fluctuations accompany an upward trend, matching the prose, although the elided paths prevent independent verification; thin grey and thicker blue solid lines apparently represent monthly and adjusted concentrations, decoded only through the prose, while identical dark filled circles directly label the selected high and low, so encodings_clear is false and direct series labels plus a latest-observation label are needed.",
+  "reader_questions": [
+    {
+      "q": "Is atmospheric CO₂ still rising in the latest usable Mauna Loa observations, and what concentration and date do those observations show?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How fast is it rising now, in parts per million per year, using comparisons that avoid seasonal distortions?",
+      "A": "yes",
+      "B": "partly"
+    },
+    {
+      "q": "Has that pace accelerated or slowed compared with earlier decades, and how unusual is the latest annual increase?",
+      "A": "yes",
+      "B": "partly"
+    },
+    {
+      "q": "How much has the concentration risen, in ppm and percentage terms, since the record began?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How much of the recent month-to-month movement is seasonal, and what does the seasonally adjusted series show?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How confidently can this record from one location answer a question about the atmosphere as a whole, given its coverage and measurement uncertainty?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "What explains the continuing rise and any recent change in its pace?",
+      "A": "yes",
+      "B": "set-aside"
+    }
+  ],
+  "prompt_sha256": "422382eeb8406598269246606ba8ead1d2aa87500591ed1270d8f02ea9750907",
+  "rubric_sha256": "374935fd0534369320c6380c526bf768d0c54fcbfcbab6213abab3aebdd6153e"
+}

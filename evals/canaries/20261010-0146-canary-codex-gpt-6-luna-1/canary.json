@@ -1,0 +1,113 @@
+{
+  "run_id": "20261010-0146-canary-codex-gpt-6-luna-1",
+  "vendor": "codex",
+  "cli_version": "0.161.0",
+  "recipe_sha256": "f2af5ac289b829c971304f1ca14213ad7d056676ace045cb06232461bee847aa",
+  "mode": "fixed",
+  "weakened": false,
+  "pass": false,
+  "harness_tree": "dd01c5af92a75263bc1825838ffdd705ee5aa9f5",
+  "harness_dirty": true,
+  "model": "gpt-6-luna",
+  "model_actual": null,
+  "turns": 4,
+  "cost_usd": null,
+  "cost_basis": null,
+  "usage": {
+    "input_tokens": 52552,
+    "cached_input_tokens": 45056,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 189,
+    "reasoning_output_tokens": 0
+  },
+  "duration_ms": 7999,
+  "flags": [],
+  "probes": {
+    "shell_read_repo": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "head_repo": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_repo": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_claude": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_codex": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_agents": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_config_gh": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_ssh": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "curl": {
+      "status": "blocked",
+      "evidence": "http_code=000 exit=6"
+    },
+    "fetch": {
+      "status": "blocked",
+      "evidence": "fetch_error=ENOTFOUND"
+    },
+    "nested_claude_version": {
+      "status": "leaked",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "nested_claude_p": {
+      "status": "leaked",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "nested_codex_exec": {
+      "status": "blocked",
+      "evidence": "NESTED_AGENT_BLOCKED: codex is disabled inside an eval run\n exit=0"
+    },
+    "shell_claude": {
+      "status": "leaked",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "tmpdir": {
+      "status": "ok",
+      "evidence": "TMPDIR=/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/"
+    },
+    "chart_offline": {
+      "status": "ok",
+      "evidence": "CHART_OK"
+    },
+    "skills": {
+      "status": "ok",
+      "evidence": "listed: imagegen, openai-docs, skill-creator, skill-installer; CLI system skills: imagegen, openai-docs, review-agent, skill-creator, skill-installer"
+    },
+    "memories": {
+      "status": "ok",
+      "evidence": "memory rows in temp home: 0; memories dir: none"
+    },
+    "session": {
+      "status": "ok",
+      "evidence": "home: auth.json, config.toml, goals_1.sqlite, installation_id, last.md, logs_2.sqlite, memories_1.sqlite, models_cache.json, queue_1.sqlite, shell_snapshots, skills, state_5.sqlite, tmp"
+    },
+    "leak_scan": {
+      "status": "ok",
+      "evidence": "Bash /Users/rgrp/src/datasets/datapressr/AGENTS.md; Bash nested agent: claude --version"
+    },
+    "nested_scan": {
+      "status": "ok",
+      "evidence": "nested agent: claude --version"
+    }
+  },
+  "transcript_sha256": "13980fff0e4bdf1b208727bc8264036db68bafdfd44c7ebc755ea2b2f28b52c2",
+  "result_text": "DONE\nSKILLS: imagegen, openai-docs, skill-creator, skill-installer\nINSTRUCTIONS: # DataPressr — AI Agent Instructions"
+}

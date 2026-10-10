@@ -1,0 +1,108 @@
+{
+  "name": "co2-ppm",
+  "title": "Mauna Loa Monthly Atmospheric CO2",
+  "description": "NOAA Global Monitoring Laboratory monthly mean and deseasonalized atmospheric carbon dioxide concentrations in ppm, March 1958 through July 2026 (821 months), with available day counts, standard deviations and uncertainties. Includes Scripps observations through April 1974 and temporary Maunakea observations during the Mauna Loa interruption. Archived snapshot retrieved 2026-08-30; source file created 2026-08-05.",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "USE OF NOAA GML DATA",
+      "title": "USE OF NOAA GML DATA",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv"
+    }
+  ],
+  "license_notes": "These data are made freely available to the public and the scientific community in the belief that their wide dissemination will lead to greater understanding and new scientific insights. To ensure that GML receives fair credit for their work please include relevant citation text in publications. We encourage users to contact the data providers, who can provide detailed information about the measurements and scientific insight. In cases where the data are central to a publication, coauthorship for data providers may be appropriate.",
+  "sources": [
+    {
+      "title": "NOAA Global Monitoring Laboratory — Trends in Atmospheric Carbon Dioxide, Mauna Loa monthly mean",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv",
+      "retrieved": "2026-08-30"
+    },
+    {
+      "title": "NOAA GML — Trends in Atmospheric Carbon Dioxide data landing page",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+  ],
+  "contributors": [
+    {
+      "title": "NOAA Global Monitoring Laboratory",
+      "role": "publisher"
+    },
+    {
+      "title": "C. David Keeling, Scripps Institution of Oceanography",
+      "role": "contributor"
+    }
+  ],
+  "methodological_notes": [
+    "March 1958 through April 1974 data were obtained by C. David Keeling of Scripps Institution of Oceanography. The archived header states that these data were downloaded from http://scrippsco2.ucsd.edu/data/atmospheric_co2 and have no information on ndays, sdev or unc.",
+    "The source states that missing months have been interpolated and that negative standard deviation and uncertainty indicate interpolation for NOAA data. December 1975 and April 1984 instead have sdev=-9.99 and unc=0.00 (ndays=-1 and 2 respectively). The numeric sentinels are normalized field by field; no definitive interpolation flag is inferred from these inconsistent diagnostics. No rows or concentration values are dropped or interpolated by this build.",
+    "Mauna Loa measurements were suspended on 2022-11-29 and resumed in July 2023 after the volcanic eruption. Observations from December 2022 through 2023-07-04 came from Maunakea Observatories, approximately 21 miles north. July 2023 is not assigned exclusively to either site.",
+    "The archived header is the evidence for reuse terms; no SPDX license, CC0 dedication or public-domain declaration is asserted. Please credit NOAA GML and the relevant data providers in publications as requested by the source."
+  ],
+  "resources": [
+    {
+      "name": "co2-monthly",
+      "title": "Monthly Atmospheric CO2 at Mauna Loa",
+      "path": "data/co2-monthly.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "date",
+            "description": "Calendar month labelled by its first day (YYYY-MM-01); this is a monthly period label, not a daily observation.",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "decimal_year",
+            "type": "number",
+            "description": "Source decimal date in years, preserved exactly; not recalculated from the monthly period label.",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "average_ppm",
+            "type": "number",
+            "description": "Monthly mean atmospheric CO2 in parts per million (ppm), constructed from daily means and corrected to the centre of the month using the average seasonal cycle. Source interpolated monthly means are retained.",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "deseasonalized_ppm",
+            "type": "number",
+            "description": "Source deseasonalized monthly CO2 concentration in ppm; this is not the ndays column or a newly calculated trend.",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "measurement_days",
+            "type": "integer",
+            "description": "Source ndays: number of daily means used in the month. Source -1 becomes empty. No day-count information is available for the Scripps period through April 1974. Zero, if present, remains zero."
+          },
+          {
+            "name": "standard_deviation_ppm",
+            "type": "number",
+            "description": "Source sdev: standard deviation in ppm. Source -9.99 becomes empty; diagnostics are unavailable for the Scripps period. The header associates negative NOAA diagnostics with interpolated months; see methodological_notes for exceptions to the paired-sign description."
+          },
+          {
+            "name": "uncertainty_ppm",
+            "type": "number",
+            "description": "Source unc: uncertainty in ppm. Source -0.99 becomes empty; diagnostics are unavailable for the Scripps period. No confidence level or uncertainty formula is specified in the archived header. Literal 0.00 values are retained, including December 1975 and April 1984."
+          }
+        ],
+        "primaryKey": [
+          "date"
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 fetch.ts
 build.ts
+chart.ts
 build.test.mjs
 archive/
 AGENTS.md

@@ -510,14 +510,33 @@ function main(): void {
   annual.sort(sortRows);
   coverage.sort((a, b) => String(a.filing_date).localeCompare(String(b.filing_date)) || String(a.source_id).localeCompare(String(b.source_id)));
 
+  // One row per quarter: the release's own Total for each metric, side by side. Derived from
+  // the quarterly rows above, never re-read from the filings, so it cannot disagree with them.
+  // It exists so the dataset page can chart the continuous series: Total is the only group
+  // that runs unchanged through every quarter, and a DataHub "simple" line view needs one
+  // column per series.
+  const totals: Record<string, unknown>[] = periods.map((start) => {
+    const out: Record<string, unknown> = { period_start: start };
+    for (const metric of METRICS) {
+      const t = quarterly.find((r) => r.period_start === start && r.metric === metric && r.vehicle_group === TOTAL_LABEL);
+      if (!t || typeof t.vehicles !== "number") throw new Error(`no ${metric} Total for the quarter starting ${start}`);
+      out.period_end = t.period_end;
+      out[metric] = t.vehicles;
+      out.source_id = t.source_id;
+    }
+    return out;
+  });
+
   const ROW_COLS = ["period_start", "period_end", "vehicle_group", "is_total", "metric", "vehicles", "source_id"];
   const COVER_COLS = ["source_id", "filing_date", "period_label", "layout", "extracted", "exhibit_file", "exhibit_url"];
   writeFileSync(join(HERE, "data", "tesla-quarterly-deliveries.csv"), toCsv(quarterly as unknown as Record<string, unknown>[], ROW_COLS));
+  writeFileSync(join(HERE, "data", "tesla-quarterly-totals.csv"), toCsv(totals, ["period_start", "period_end", "deliveries", "production", "source_id"]));
   writeFileSync(join(HERE, "data", "tesla-annual-deliveries.csv"), toCsv(annual as unknown as Record<string, unknown>[], ROW_COLS));
   writeFileSync(join(HERE, "data", "source-filings.csv"), toCsv(coverage as unknown as Record<string, unknown>[], COVER_COLS));
 
   const extracted = coverage.filter((c) => c.extracted).length;
   console.log(`tesla-quarterly-deliveries.csv: ${quarterly.length} rows, ${periods.length} quarters (${periods[0]} to ${periods[periods.length - 1]})`);
+  console.log(`tesla-quarterly-totals.csv:     ${totals.length} rows`);
   console.log(`tesla-annual-deliveries.csv:    ${annual.length} rows`);
   console.log(`source-filings.csv:             ${coverage.length} filings, ${extracted} extracted, ${coverage.length - extracted} recorded only`);
   if (drift.length > 0) {

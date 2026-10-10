@@ -1,0 +1,14 @@
+{
+  "id": "q02-allies-wwii",
+  "domain": "story",
+  "title": "Why the Allies won the Second World War",
+  "question": "Why did the Allies win the Second World War?",
+  "type": "historical",
+  "data_mode": "open",
+  "inputs": [],
+  "skills": ["story", "archive", "structure"],
+  "references": [],
+  "owner_feedback": [],
+  "budget": { "max_usd": 30, "max_turns": 150, "words": [300, 700] },
+  "forbidden_domains": []
+}

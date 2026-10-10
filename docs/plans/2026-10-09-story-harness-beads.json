@@ -1,0 +1,336 @@
+[
+  {
+    "key": "epic",
+    "title": "Epic: story and skill improvement harness",
+    "description": "A small test bench under evals/ for developing skills (stories first; wrangling on the same runner via the amended datapressr-8no.2): hand-written cases, blind runs in a staged temp repo whose isolation is proven by a canary rather than assumed, six deterministic checks, a critic on a different vendor (Codex, with automatic fallback to a different Claude model) whose primary job is a blind order-swapped pairwise comparison of old-skill and new-skill outputs, an append-only ledger with a generated report (win/tie/loss, score ranges with n, hard regressions from checks only), owner judgements recorded verbatim, and judge-owner agreement plus held-out calibration as the harness's own quality metrics. Design: docs/plans/2026-10-09-story-harness.md; review: docs/plans/2026-10-09-story-harness-review.md (supersedes the machinery and bead sections of docs/plans/2026-10-09-story-practice.md). The deliverable is the infrastructure; the pilot (H5) and the first A/B (H10) prove it end to end.",
+    "acceptance": "npm test guards the harness with no agent calls (schemas, staging allowlist, checker oracle and saboteurs, critic prompt assembly, ledger and report on fixtures). A passing canary per vendor is on record. The q01 pilot and a pre/post skill A/B with two runs per arm are in evals/ledger.jsonl with absolute and pairwise critiques; evals/REPORT.md shows win/tie/loss, ranges, flags and judge-owner agreement from at least one owner session; the critic's held-out calibration result is recorded; datapressr-8no.2 is amended to build on this runner. Every paid bead records actual cost in its close notes.",
+    "priority": "P1",
+    "type": "epic",
+    "labels": [
+      "quality",
+      "evals",
+      "story",
+      "harness"
+    ],
+    "depends_on": [],
+    "human": false,
+    "parent": null
+  },
+  {
+    "key": "H0",
+    "title": "Amend the 8no eval beads in place to build on this harness",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Bookkeeping, no code. Apply section 9 of the design with bd update (amend in place; do not create parallel beads and do not re-parent): datapressr-8no.2 builds its fixture, golden anchors, D1-D13 and oracle/saboteur tests as evals/lib/checkers/structure.mjs and evals/cases/structure/co2-monthly/ on the shared runner instead of its own runner, and gains dependencies on the harness beads that correspond to H2 (staging) and H8 (ledger and report) once they are filed, keeping its dependency on ck8; datapressr-8no.3 runs via node evals/run.mjs run structure/co2-monthly --repeat 3 and wraps the generated report; datapressr-8no.4 uses the shared critic (findings first, order-swapped pairwise, automatic vendor) with rubrics/structure/v1.md and gains a dependency on the bead for H4; datapressr-8no.5 becomes an enrich domain on the shared runner; the 8no epic acceptance changes '13/13' wording to 'the structure case on the shared harness scores the reference 13/13'. Add a note to each amended bead pointing at the design. Also check whether a story-practice epic or beads from docs/plans/2026-10-09-story-practice.md section 8 were ever filed; if so close them with a pointer to this epic (practice plan P1 lives on as H9; P6, pattern library and France decision, stays with the practice loop and is not filed here).",
+    "acceptance": "bd show of 8no, 8no.2, 8no.3, 8no.4 and 8no.5 shows the amended text and dependencies; no duplicate structure beads exist; any filed story-practice beads are closed with a pointer; decisions noted with review-after.",
+    "priority": "P1",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "agent-ready",
+      "review-after"
+    ],
+    "depends_on": [],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H1",
+    "title": "Skeleton: evals/ layout, q01 case, schemas, versions, ledger, fake writer, minimal report",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Free. Create evals/ per section 2 with only what the walking skeleton needs: README.md (purpose, commands as they exist, the three scoring layers, how to add a case), config.json (full model IDs not aliases, per-run caps 20 USD/100 turns fixed and 30 USD/150 open, critic preference {claude: codex, codex: claude}, fallback {opus family: sonnet family}), run.mjs as a thin dispatcher, lib/schema.mjs (plain validator functions for case, run, checks, critique absolute and pairwise, owner and ledger rows per section 3; return {ok, errors}; every ledger row carries schema: 1), lib/versions.mjs (tree hash via git rev-parse <ref>:<path>, dirty check, harness tree of evals/lib), lib/ledger.mjs (append with validation, read; never rewrites), lib/adapters/fake.mjs (copies a canned artefact directory; zero cost) and a first lib/report.mjs that writes evals/REPORT.md as a per-case table of runs. Write cases/story/q01-french-debt/case.json and prompt.md: explanatory, fixed, inputs datasets/france-public-finances at f0082af (an ancestor of main; schema validation rejects input commits that are not ancestors of main), owner_feedback docs/reviews/france-public-finances-user-feedback.md and -reader-critique.md, no references, budget 20 USD/100 turns/300-700 words; prompt.md contains only the question, data mode, inputs, word budget, that files go in site/stories/, and which skill steps to skip in a scratch repo (site index links, DataHub publishing, the human voice pass); it never contains feedback. The run subcommand works end to end for --writer fake (resolve versions, refuse a dirty skills/story tree without --allow-dirty, copy fake artefacts into evals/runs/story/q01-french-debt/<run_id>/, write run.json, append a run row, regenerate REPORT.md); real staging comes in H2. Gitignore evals/runs/**/transcript.jsonl, evals/runs/**/workspace.tar and evals/pairs/**/mapping.json. Tests for schema, versions, ledger and the fake run.",
+    "acceptance": "node evals/run.mjs run story/q01-french-debt --writer fake writes a run.json that validates (skill.tree, harness.tree, case_hash, artefact hashes filled), appends a ledger row and regenerates evals/REPORT.md; schema tests reject a case without data_mode, an input commit not on main, a run without skill.tree and scores outside 0-2; prompt.md contains no feedback text (test greps); no dependency added; npm test green with no agent calls.",
+    "priority": "P1",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "story",
+      "agent-ready"
+    ],
+    "depends_on": [],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H2",
+    "title": "Blind staging, Claude recipe and isolation canary",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Mostly free; canary runs cost cents. Implement lib/stage.mjs per section 4.2 step 3: mkdtemp, git init, allowlist copy (prompt.md as TASK.md; inputs via git archive at the case commit into their repo paths; skills via git archive <skill-ref> skills/<name> into skills/<name>/; the dataset-conventions part of AGENTS.md; site/stories/package.json plus a read-only link to a node_modules cache built once per lockfile hash with npm ci in a cache directory outside the denied paths), baseline commit. Implement lib/adapters/claude.mjs (writer and critic roles) with the recipe of section 4.3: claude -p with --output-format json, full model ID, --max-turns, --max-budget-usd, --setting-sources project, --disable-slash-commands, --no-session-persistence, --permission-mode dontAsk, --allowedTools for Read Write Edit Glob Grep Bash, and --settings pointing at a harness-generated settings file with Read deny rules (repo root, ~/.claude, ~/.codex, ~/.agents, ~/.config/gh, ~/.ssh), WebFetch/WebSearch denied in fixed mode, and sandbox {enabled, autoAllowBashIfSandboxed, allowUnsandboxedCommands: false, filesystem.denyRead, network.allowedDomains: []}. The prompt tells the writer to read skills/story/SKILL.md and follow it. Parse total_cost_usd, num_turns, duration_ms, usage and model_actual from modelUsage; wall-clock timeout kills the process. Implement the canary subcommand (section 4.3) and the gate in run (refuse without a passing canary row for this vendor, CLI version, recipe hash and mode). Implement the leak scan: flag leaked for any absolute path outside the workspace in a tool call. Verify with the canary that the probes recorded in section 4.3 still hold on the installed CLI and update the table if not. Tests (no agent calls): staging allowlist and absence of evals/, docs/, site/stories/*.md and .beads in the workspace; settings file content; leak scan on fixture transcripts; gate refusal without a canary row.",
+    "acceptance": "node evals/run.mjs canary --writer claude passes and is recorded in the ledger with CLI version and recipe hash (cost noted, under 0.05 USD); a deliberately weakened recipe (no deny rules) makes the canary fail; a chart build runs offline inside a staged workspace using the cached node_modules; stage and leak-scan tests pass; run refuses without a canary; npm test green with no agent calls.",
+    "priority": "P1",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "agent-ready"
+    ],
+    "depends_on": [
+      "H1"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H3",
+    "title": "Codex recipe and automatic critic vendor with fallback",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Mostly free; canary runs cost cents. Implement lib/adapters/codex.mjs (writer and critic roles, same interface as Claude): HOME and CODEX_HOME set to a per-run temp home containing only a copy of auth.json (removed afterwards), codex exec -C <cwd> --skip-git-repo-check --ephemeral --ignore-user-config --json -o last.md -m <model> --sandbox workspace-write (critic: read-only), -c sandbox_workspace_write.network_access=true only in open mode, --output-schema for structured critic output, -i for images when used; read turns, token usage and the actual model from the JSONL events; cost_basis null (tokens only). Extend the canary to Codex: with the temp home, the skills listing must not include ~/.agents/skills entries (e.g. humanizer) and no memories may load; reads of the parent repo cannot be prevented under workspace-write, so the canary records whether they are possible and the leak scan is the control (say so in README). Implement lib/adapters/index.mjs: available(vendor) = binary present, auth works, canary passed for this CLI version (cached per invocation); pickCritic(writer) returns the other vendor when available, otherwise the writer's vendor with a different model family from config.json, with {vendor, model, fallback, fallback_reason}; the critic never equals the writer's model. Tests with injected availability stubs: codex available, missing, auth failing, canary failing.",
+    "acceptance": "node evals/run.mjs canary --writer codex is recorded with its result and CLI version; pickCritic returns codex for a claude writer when available and a sonnet-family Claude fallback with fallback_reason when not; index tests pass without agent calls; README states what Codex isolation does and does not prevent; npm test green.",
+    "priority": "P1",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "agent-ready"
+    ],
+    "depends_on": [
+      "H2"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H4",
+    "title": "Critic v1: rubric, absolute and order-swapped pairwise modes",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Small paid smoke test (about 1-2 USD). Write evals/rubrics/story/v1.md per section 5.2: the critic is the commissioning reader; it first lists five to eight reader questions from the case question alone, then reads the story and marks each answered yes/partly/no with where; then strongest findings missed; chart by chart with one fix; the one change that matters most and would-you-publish; at most five rule-shaped lessons; then the 0-2 checklist (argument, depth, charts, honesty, reader_questions, prose; data_choice in open mode) with generic anchors (do not write anchors from the France drafts: H7 uses France as held-out evidence); type rules. Include the pairwise prompt: two unlabelled stories, which would the commissioning reader publish with fewer edits and why, margin clear/slight or tie, reader questions each answers. Implement lib/critic.mjs: prompt assembly (case question, type, as_of, outline, prose, SVG sources with extracted text labels, DATA.md in open mode, references; owner_feedback only with --calibrate; never the skill, prior runs, critiques or LESSONS.md, and in pairwise mode never run ids, skill trees or dates), call via pickCritic with tools off and the JSON schema, validate, retry once, else critic_failed; render critique.md (findings first, checklist last). Add score (absolute, appends a score row) and pair (writes evals/pairs/<pair_id>/A and B with prose and charts only, a gitignored mapping.json, judges in both orders, appends a pair row whose result is a win only when both orders agree) subcommands. Tests with the fake critic: the skill text and run ids never reach the prompt; a malformed critique is rejected; markdown rendering deterministic; order-swap logic (agree, disagree to tie). Smoke test one real absolute critique and one real pair on fake-writer artefacts (copy two published stories) and note cost and vendor.",
+    "acceptance": "rubrics/story/v1.md exists with reader-questions-first ordering, generic anchors for every dimension and a pairwise section; score and pair work with --critic fake and with the automatic vendor (one real smoke each, vendor and fallback status recorded, cost noted); prompt-assembly tests prove the skill and version identifiers never reach the critic; npm test green.",
+    "priority": "P1",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "story",
+      "agent-ready"
+    ],
+    "depends_on": [
+      "H3"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H5",
+    "title": "Pilot: q01 blind run on the current skill, critiqued, in ledger and report",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Paid (estimate 10-20 USD; cap 20 USD). Run node evals/run.mjs run story/q01-french-debt --writer claude on the current skills/story tree (this is the pre-edit arm for H10: if H9 has already landed, pass --skill-ref <the commit before H9>) with the network off, letting the runner leak-scan, score with the automatic critic (record fallback if any), append to the ledger and regenerate the report. Checks (H6) and calibration (H7) may not exist yet; apply them retroactively with check and score when they land. Verify by hand and write in the bead notes: the workspace tarball contains no evals/, docs/reviews or published story text; the transcript shows no reads outside the workspace; run.json has every pin of section 3.2; the critique validates and reads as useful. Record actual cost, turns and duration and replace the estimate in section 11 of the design. File harness bugs as beads; fix small ones here. A site/changelog entry is optional here and required in H14.",
+    "acceptance": "One committed q01 run directory with artefacts, run.json, critique.json and critique.md; ledger run and score rows; REPORT.md lists the run labelled as an anecdote; isolation hand check and actual cost, turns and duration recorded in the bead; npm test green.",
+    "priority": "P1",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "story",
+      "paid"
+    ],
+    "depends_on": [
+      "H4"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H6",
+    "title": "Story deterministic checks with oracle and saboteurs",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Free. Implement lib/checkers/story.mjs with the six checks of section 5.1 (S1 artefacts, S2 word count, S3 every prose number on a chart or in the exempt list with robust number tokenising for thousands separators, decimals, percentages, years and EUR/USD magnitudes, S4 byte-identical chart rebuild offline, S5 inputs untouched, S6 no date after as_of), each returning {id, pass, severity, message, evidence}, and the check subcommand (check <run_id>|--all) that writes checks.json and appends a check row; run calls it after collect. Oracle test: the four stories in site/stories pass, or the test documents the exact exception and reason (never weaken a check to make a story pass; note the finding in evals/LESSONS.md). Saboteurs generated in the test from a copy of one story: a prose-only number (S3), Date.now() in the build (S4), an edited input (S5), a 900-word prose (S2), a date after as_of (S6), a missing outline (S1); each must fail exactly its intended check. Re-run check --all over any committed runs.",
+    "acceptance": "checkers/story.test.mjs passes offline in under 60 s: oracle stories pass (exceptions documented with reasons), each saboteur fails exactly its intended check; check --all writes checks.json for existing runs; npm test green.",
+    "priority": "P2",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "story",
+      "agent-ready"
+    ],
+    "depends_on": [
+      "H1"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H7",
+    "title": "Calibrate the critic on France with a held-out split and a negative control",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Paid, small (about 3-8 USD). Build evals/calibration/story/ with run-0 directories (writer vendor historical) for the France first draft (outline a153036, charts and make-charts 844796a, prose cbddc11) and second draft (all story files at cb2080d), and one deliberately weak story on the same data (a dataset tour, no argument, chart soup), all as fake-writer artefacts. Held-out split per section 5.3: anchors may be revised using the owner's round-1 remarks (docs/reviews/france-public-finances-user-feedback.md, the part above Round 2) and the reader critique; the test is the critique of the second draft against the round-2 remarks, which the rubric author must not use for edits. Run score blind (no owner_feedback) on both drafts and record a hit/miss table per draft in evals/LESSONS.md under 'Critic calibration' (round 1: social protection unexplained, unreadable magnitudes, simple graphics, wordy, not deep or compelling, reader questions; round 2: colours, hollow vs filled markers, what is old age, show what is growing, growth vs share contradiction). Run pair on weak vs first draft: the weak story must lose in both orders and score lower on every applicable dimension. If round-2 visual remarks are missed with SVG text only, add PNG renders (one targeted dependency in evals/package.json or a system rasteriser, decided and recorded) and re-run once. Re-score one run three times to measure critic-only spread. Freeze story/v1 when this bead closes; re-score the H5 pilot under the frozen v1 if it exists.",
+    "acceptance": "Hit/miss tables for both drafts recorded, with the round-2 (held-out) hit rate stated as the honest number; the negative control loses both orders; critic-only spread recorded; any rubric edits cite the round-1 remark they address; PNG decision recorded with evidence; critic vendor and fallback status recorded; cost noted; npm test green.",
+    "priority": "P1",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "story",
+      "paid"
+    ],
+    "depends_on": [
+      "H4"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H8",
+    "title": "Report v1 and owner capture: pairwise win/tie/loss, ranges, flags, agreement",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Free. Extend lib/report.mjs to the full section 6: flags at the top (hard regression when a fail-severity check newly fails on a newer skill tree; soft flag on any pairwise loss of new vs old; leaked runs; missing canary for the current CLI version); per skill change: cases run, order-swapped pairwise win/tie/loss of new vs previous tree, owner preferences, git log --oneline a..b -- skills/<name> link, and a list of skill commits with no pairwise comparison on record; per case: runs newest first with skill tree, model_actual, checks, absolute scores, critic, publishable, cost, turns, never mixing rubric versions and segmenting by model; noise as ranges with n per skill tree plus critic-only spread, calling a difference a change only when ranges do not overlap, single runs labelled anecdotes, no standard deviations or p-values; harness quality: judge-owner agreement on pairs per rubric version, calibration hit rates, fallback rate, critic failures, leaks, canary status. Implement the owner subcommand: owner <pair_id> --preferred A|B|neither --remarks-file <f> [--scores] writes an owner row with remarks verbatim (never summarised), and only then reads mapping.json to resolve which run is which and compute agreement with the critic's pair result; owner <run_id> --remarks-file for a single story; owner --rounds <case> <n> for rounds to publishable. Add npm script eval:report. Tests on a fixture ledger with two skill trees, repeats, a leaked run, a pair, an owner row and a newly failing check: flags fire as expected, overlapping ranges report no detectable change, agreement computed, markdown stable across two generations.",
+    "acceptance": "report.test.mjs and owner tests pass on fixtures; node evals/run.mjs report regenerates evals/REPORT.md deterministically; the owner row is written before the mapping is read (test); npm run eval:report works; npm test green.",
+    "priority": "P1",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "agent-ready"
+    ],
+    "depends_on": [
+      "H1"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H9",
+    "title": "Put the France lessons into the story skill (the treatment)",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Practice plan bead P1, unchanged in substance, and owner-flagged so it meets the edit rule. From docs/reviews/france-public-finances-user-feedback.md (both rounds) and -reader-critique.md, add to skills/story/references/story-craft.md: unpack the biggest category; separate mix from change and show euros and GDP share together, naming the denominator; readable magnitudes (EUR 1.7tn, not 1,714.1 billion); equal markers with real colour keys; define source labels in plain words; answer why with attributed evidence rather than a limitation; simple graphics over prose for simple comparisons; cut wordiness. Add a reader-questions pass to SKILL.md step 2 (the outline review checked correctness and missed depth) and one line that owner remarks on any story are kept verbatim in docs/reviews/<slug>-user-feedback.md. Sync site/docs/story-craft.md. One commit; it cites the feedback file. Record each lesson in evals/LESSONS.md (create it if H7 has not) as 'in skill @ <commit>' and note the pre-edit commit so H5 and H10 can pin the old tree. No dependency: the A/B needs only the two commits.",
+    "acceptance": "One commit citing the feedback; SKILL.md grows by at most a few lines; site/docs/story-craft.md synced; LESSONS.md lists each lesson with the commit and the pre-edit commit noted; skills frontmatter test and npm test green.",
+    "priority": "P2",
+    "type": "task",
+    "labels": [
+      "quality",
+      "story",
+      "harness",
+      "review-after"
+    ],
+    "depends_on": [],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H10",
+    "title": "q01 A/B with repeats: pre- vs post-edit skill, two runs each, pairwise",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Paid (estimate 45-70 USD; cap 20 USD per run; run refuses above 60 USD per invocation, so split invocations). Two q01 runs on the pre-H9 skill tree (the H5 pilot counts as one if its tree matches) and two on the post-H9 tree, same writer model ID, network off. Run check and score on all four, then pair every pre x post combination (four pairs, each judged in both orders) under frozen story/v1. Re-score one run twice more if H7's critic-only spread is not yet recorded. Regenerate the report: win/tie/loss of post vs pre, absolute score ranges with n per arm, writer range vs critic range. State the conclusion in the words the report rules allow (change only if ranges do not overlap or wins are consistent; otherwise no detectable change). Prepare the owner pair for H12 from the two runs the critic rated most typical of each arm (one pre, one post), leaving the pair id in the bead. Record costs.",
+    "acceptance": "Four q01 runs (two per skill tree) with checks and absolute critiques; four order-swapped pairs in the ledger; REPORT.md shows win/tie/loss and ranges with an honest conclusion; owner pair folder prepared with its mapping gitignored; costs recorded; npm test green.",
+    "priority": "P2",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "story",
+      "paid"
+    ],
+    "depends_on": [
+      "H5",
+      "H6",
+      "H7",
+      "H8",
+      "H9"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H11",
+    "title": "Transfer case: q02 WWII, open mode, data-driven brief",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Paid (estimate 20-30 USD; cap 30 USD, 150 turns). Write cases/story/q02-allies-wwii (historical, open, no as_of, skills story plus archive and structure) with the data-driven brief of section 10 in prompt.md: argument built from measurable series (war production, manpower, coalition GDP, oil and raw materials, casualties), each chart carrying one; each number names what it measures; source disagreement shown; what the data does not test; snapshots in <slug>-src/ with PROVENANCE.md; DATA.md listing what was searched, chosen, licence and vintage. Choose the open-mode Claude network setting (web tools on; sandbox domains open or allowlisted), record it in section 4.3 and README, and pass the open-mode canary (parent repo and home config still unreadable). Run on the post-H9 skill tree; check (S1 includes DATA.md and PROVENANCE.md), leak scan, absolute critique with the historical type rules. This is the transfer test of H9's edits: in the bead notes, say which France lessons were exercised and whether they held, citing the critique. Update LESSONS.md statuses by hand. Record cost, turns and duration (first open-mode actual).",
+    "acceptance": "q02 case validates; open-mode canary passed and recorded; one q02 run with outline, charts, prose, DATA.md and PROVENANCE.md, checks and critique committed; transfer assessment of H9 in the bead; LESSONS.md updated with run ids; cost recorded; npm test green.",
+    "priority": "P2",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "story",
+      "paid"
+    ],
+    "depends_on": [
+      "H5",
+      "H9"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H12",
+    "title": "HUMAN (20-30 min): owner judges the q01 pair and the WWII story blind",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Human-only reading; an agent prepares and records. Give the owner the paths to evals/pairs/<id>/A and B from H10 (labels only, no run ids) and the WWII story from H11. The owner says which q01 story is better and why, in his own words, and gives remarks on the WWII story (optional 0-2 scores). The agent records each reply verbatim with node evals/run.mjs owner (no paraphrase), only then reveals the mapping, records rounds to publishable for France (3) with owner --rounds, regenerates the report and checks the judge-owner agreement section.",
+    "acceptance": "Owner rows for the q01 pair and the WWII run in the ledger with verbatim remarks; agreement with the critic's pair result computed; REPORT.md harness-quality section shows the first agreement figure; npm test green.",
+    "priority": "P2",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "story",
+      "harness",
+      "human"
+    ],
+    "depends_on": [
+      "H10",
+      "H11"
+    ],
+    "human": true,
+    "parent": "epic"
+  },
+  {
+    "key": "H13",
+    "title": "Rubric v2 from owner misses; re-score history; agreement v1 vs v2",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Paid, small (critic-only; estimate 5-10 USD). For each owner remark from H12 and the calibration tables of H7, record whether the v1 critique contained it (quote the finding or write missed) and, for each miss, a proposed rubric change (anchor, prompt line or reader-question seed). Create rubrics/story/v2.md with a change-log header listing each change and the remark that motivated it. Re-score every committed run and re-judge every pair under v2 (score --all --rubric story/v2 and pair re-runs). The report shows v1 and v2 side by side with judge-owner agreement and calibration hit rates for each; make v2 the default in config.json only if its agreement and held-out hit rate are at least v1's. Note honestly that one owner session gives an agreement figure of n=1 or 2.",
+    "acceptance": "rubrics/story/v2.md with a change log citing remarks; v2 score and pair rows for every run; REPORT.md shows agreement and hit rates per rubric version; the default-rubric decision recorded with its evidence; cost noted; npm test green.",
+    "priority": "P2",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "story",
+      "paid"
+    ],
+    "depends_on": [
+      "H12"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H14",
+    "title": "Regression routine and docs: npm run eval:regress, README, changelog",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. One paid run to prove it (about 10-20 USD). Add npm script eval:regress: runs q01 once on the current skills/story tree under the per-run cap (canary gate applies), checks it, pairs it against the most recent run of the previous skill tree in both orders under the default rubric, regenerates the report and exits non-zero on a hard regression (newly failing check) and prints a warning on a pairwise loss. Finish evals/README.md: every subcommand as built, adding a case by hand, the isolation recipes and what they do not prevent, scoring layers, owner capture, re-scoring on a rubric change, the lessons and edit rule (two sources or an owner flag; pairwise on the origin case and one transfer case; commit cites run ids), caps and costs, and a 'before you edit skills/story' checklist. Add one line to AGENTS.md's Skills section pointing at evals/README.md. Write a site/changelog entry for the harness (what it is, the first win/tie/loss result, judge-owner agreement; include a table or screenshot of REPORT.md if useful). Deferred, not built: a CI gate (file a bead only if H10 and later batches show a stable pairwise signal) and case add-from-story (file a bead when a third hand-written case feels repetitive).",
+    "acceptance": "npm run eval:regress works end to end on the current tree with its exit code reflecting a hard regression (one paid run, cost recorded); README covers every subcommand that exists; AGENTS.md pointer added; changelog entry committed; npm test green.",
+    "priority": "P3",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "docs",
+      "paid"
+    ],
+    "depends_on": [
+      "H10",
+      "H13"
+    ],
+    "human": false,
+    "parent": "epic"
+  },
+  {
+    "key": "H15",
+    "title": "Reference cases q03/q04: published stories vs EIA and Climate.gov, pairwise",
+    "description": "Read AGENTS.md, NEXT.md and docs/plans/2026-10-09-story-harness.md first. Preserve unrelated changes; do not linewrap Markdown; run npm test before committing. Paid, small (about 3-5 USD). Write cases/story/q03-wti-negative (explanatory, fixed, inputs datasets/energy-and-commodities/oil-prices at the commit of the published story's data; reference EIA Today in Energy 27 April 2020 with archive link, answers_same_question true, key findings; public domain) and q04-co2-rising (current-state, fixed, inputs datasets/climate-and-environment/co2-ppm, as_of the dataset's last observation; reference NOAA Climate.gov CO2 page with key findings; confirm its notice). Register the published oil-prices and keeling-curve stories as run 0 (fake-writer artefacts, writer vendor historical). Score each absolutely, and run a pairwise comparison against a text rendering of the reference's key findings using the rubric's pairwise section adapted to ask what the reference contains that ours lacks and vice versa. No new writing. Add lessons to LESSONS.md by hand with run ids. These cases become the transfer and regression set for later skill edits.",
+    "acceptance": "Two cases validate with inputs on main; two run-0 directories with absolute critiques and reference comparisons in the ledger; lessons added with run ids; cost recorded; npm test green.",
+    "priority": "P3",
+    "type": "task",
+    "labels": [
+      "quality",
+      "evals",
+      "harness",
+      "story",
+      "paid"
+    ],
+    "depends_on": [
+      "H7"
+    ],
+    "human": false,
+    "parent": "epic"
+  }
+]

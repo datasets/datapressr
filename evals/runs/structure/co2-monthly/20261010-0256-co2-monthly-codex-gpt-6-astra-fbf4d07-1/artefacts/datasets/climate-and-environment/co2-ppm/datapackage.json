@@ -1,0 +1,86 @@
+{
+  "name": "co2-ppm",
+  "title": "Mauna Loa Monthly Atmospheric CO2",
+  "description": "NOAA Global Monitoring Laboratory monthly mean and deseasonalized atmospheric CO2, March 1958–July 2026, with measurement-day counts, standard deviation and uncertainty where available. Snapshot retrieved 2026-08-30; source file created 2026-08-05. March 1958–April 1974 data originate with C. David Keeling, Scripps Institution of Oceanography. Monthly means are corrected to the center of the month and source-interpolated values are retained. Observations from December 2022 through July 4, 2023 were taken at Maunakea Observatories during the Mauna Loa interruption. Empty cells represent unavailable statistics, not zero.",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "USE OF NOAA GML DATA",
+      "title": "NOAA GML data use terms",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv",
+      "description": "Terms transcribed from the archived source header: These data are made freely available to the public and the scientific community in the belief that their wide dissemination will lead to greater understanding and new scientific insights. To ensure that GML receives fair credit for their work please include relevant citation text in publications. We encourage users to contact the data providers, who can provide detailed information about the measurements and scientific insight. In cases where the data are central to a publication, coauthorship for data providers may be appropriate."
+    }
+  ],
+  "sources": [
+    {
+      "title": "NOAA Global Monitoring Laboratory — Trends in Atmospheric Carbon Dioxide, Mauna Loa monthly mean",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv",
+      "retrieved": "2026-08-30"
+    },
+    {
+      "title": "NOAA GML — Trends data landing page",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+  ],
+  "resources": [
+    {
+      "name": "co2-monthly",
+      "title": "Monthly Atmospheric CO2",
+      "path": "data/co2-monthly.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "date",
+            "description": "Calendar month represented by its first day (YYYY-MM-01); this is a monthly mean, not a daily observation.",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "decimal_year",
+            "type": "number",
+            "description": "Source decimal date in years, preserved at the supplied precision.",
+            "constraints": {
+              "required": true
+            }
+          },
+          {
+            "name": "average_ppm",
+            "type": "number",
+            "description": "Monthly mean atmospheric CO2 in parts per million, corrected to the center of the month. Source-interpolated monthly values are retained. The skill-documented -99.99 missing marker is supported; none occurs in this snapshot."
+          },
+          {
+            "name": "deseasonalized_ppm",
+            "type": "number",
+            "description": "Source deseasonalized monthly CO2 in parts per million. The skill-documented -99.99 missing marker is supported; none occurs in this snapshot."
+          },
+          {
+            "name": "measurement_days",
+            "type": "integer",
+            "description": "Source ndays: number of days with measurements. Source -1 becomes empty; zero remains zero. Scripps-era counts are unavailable."
+          },
+          {
+            "name": "standard_deviation_ppm",
+            "type": "number",
+            "description": "Source sdev in parts per million. Source -9.99 becomes empty; negative values indicate unavailable Scripps statistics or interpolated NOAA months, per the source header."
+          },
+          {
+            "name": "uncertainty_ppm",
+            "type": "number",
+            "description": "Source unc in parts per million. Source -0.99 becomes empty; negative values indicate unavailable Scripps statistics or interpolated NOAA months, per the source header. The header does not specify a confidence level."
+          }
+        ],
+        "primaryKey": [
+          "date"
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    }
+  ]
+}

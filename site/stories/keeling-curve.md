@@ -1,6 +1,9 @@
 ---
 title: The Keeling Curve
 description: The measured rise of atmospheric carbon dioxide — the longest continuous record there is, begun by Charles David Keeling at Mauna Loa in 1958.
+datahub:
+  slug: keeling-curve
+  status: draft
 ---
 
 # The Keeling Curve

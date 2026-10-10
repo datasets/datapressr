@@ -1,0 +1,117 @@
+{
+  "run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+  "case_id": "q01-french-debt",
+  "domain": "story",
+  "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+  "calibration": {
+    "label": "France second draft (owner round 2, held out)",
+    "sources": {
+      "site/stories/france-public-finances-data.mjs": "cb2080d",
+      "site/stories/france-public-finances-debt.svg": "cb2080d",
+      "site/stories/france-public-finances-deficits.svg": "cb2080d",
+      "site/stories/france-public-finances-evolution.svg": "cb2080d",
+      "site/stories/france-public-finances-gap.svg": "cb2080d",
+      "site/stories/france-public-finances-make-charts.mjs": "cb2080d",
+      "site/stories/france-public-finances-outline.md": "cb2080d",
+      "site/stories/france-public-finances-package.mjs": "cb2080d",
+      "site/stories/france-public-finances-snapshot.svg": "cb2080d",
+      "site/stories/france-public-finances-social.svg": "cb2080d",
+      "site/stories/france-public-finances-spending.svg": "cb2080d",
+      "site/stories/france-public-finances.md": "cb2080d"
+    }
+  },
+  "skill": {
+    "name": "story",
+    "ref": "cb2080d7d60009e650bd61f5d40db53a38ed25fa",
+    "tree": "c08d6d659a4db14be9083a46c2d1e56557c66293",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "79317fea973a9a8c06cd4b2cd647f55509f9933e",
+    "dirty": true,
+    "recipe_sha256": null
+  },
+  "writer": {
+    "vendor": "historical",
+    "model": "historical",
+    "model_actual": null,
+    "cli_version": null,
+    "prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "isolation": {
+    "canary_run_id": null,
+    "network": false,
+    "leaks": []
+  },
+  "started_at": "2026-10-08T00:01:00.000Z",
+  "duration_ms": 0,
+  "turns": null,
+  "cost_usd": null,
+  "cost_basis": null,
+  "usage": null,
+  "artefacts": [
+    {
+      "path": "site/stories/france-public-finances-data.mjs",
+      "sha256": "b62bbf978509ad6eea3a92eea53136f7dd3211c6468df0a481b3a626d9222fca",
+      "bytes": 3111
+    },
+    {
+      "path": "site/stories/france-public-finances-debt.svg",
+      "sha256": "ba3411edf1505789cc3732baec15f4877c4a23d6b1fdde38649e714342c51c62",
+      "bytes": 7676
+    },
+    {
+      "path": "site/stories/france-public-finances-deficits.svg",
+      "sha256": "ade83ddfbcb25940b2346ee04b908813afe3c694c8245cc569c530265aacf48e",
+      "bytes": 5099
+    },
+    {
+      "path": "site/stories/france-public-finances-evolution.svg",
+      "sha256": "c76de327dbd451a6746757f65f3c216ba38b240cf8a887cc1c45e9487b98ff65",
+      "bytes": 13100
+    },
+    {
+      "path": "site/stories/france-public-finances-gap.svg",
+      "sha256": "97352f993265386461deffe73527df74c3b03bd75373709759864c23c7e07f5e",
+      "bytes": 6998
+    },
+    {
+      "path": "site/stories/france-public-finances-make-charts.mjs",
+      "sha256": "1f64820c40aafe8559bbbe74166fb6dab75057f991249d8ecfc5ba2bca5a7bf8",
+      "bytes": 16881
+    },
+    {
+      "path": "site/stories/france-public-finances-outline.md",
+      "sha256": "ba37614d2cd560b0706b28f7c69e71aabb575ee97b6ff98e4040e2dd31576bfc",
+      "bytes": 9556
+    },
+    {
+      "path": "site/stories/france-public-finances-package.mjs",
+      "sha256": "275cfb5c8e90dd4824e16b643de8d4b1fdab9d90d36af8862808491a1ec7c593",
+      "bytes": 9047
+    },
+    {
+      "path": "site/stories/france-public-finances-snapshot.svg",
+      "sha256": "9357cc3701374459bf9be711a1c6db0fd2487ceaf9e2e6cff4d8b22fd068eb90",
+      "bytes": 2143
+    },
+    {
+      "path": "site/stories/france-public-finances-social.svg",
+      "sha256": "2e98a1d15d029178137818858a7fc0730cc82c313806b65e490eeffe1a6d3dab",
+      "bytes": 4962
+    },
+    {
+      "path": "site/stories/france-public-finances-spending.svg",
+      "sha256": "ef4fcac769ad73a35f9a49944b0eed18eb8bb67e509e26a2b5732c0877ac300f",
+      "bytes": 5398
+    },
+    {
+      "path": "site/stories/france-public-finances.md",
+      "sha256": "281f81f39fea4bc196cebdd07fed7d9be2504ff99776b9acf0323a4fcaa7085f",
+      "bytes": 5828
+    }
+  ],
+  "transcript_sha256": null,
+  "workspace_sha256": null,
+  "flags": []
+}

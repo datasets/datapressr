@@ -14,13 +14,16 @@ This directory holds maintainer and agent material outside the published `site/`
 
 ## Planning and evidence
 
+- [French public finances investigation](france-public-finances-investigation.md): scope, official sources, first findings and interpretation limits, with [independent dataset review](reviews/france-public-finances-data-round2.md).
 - [BB preview v0.1 implementation plan](plans/2026-09-30-bb-preview-v01-plan.md): scope, component contracts, dependency-linked Beads, acceptance checks, effort estimate, and next-session prompt for the usable plugin.
 - [BB preview development gate, 2026-09-30](plans/2026-09-30-bb-preview-development-gate.md): clarified preview-only vision and evidence that the assistant can build, reload, operate, and visually inspect a local BB plugin without user testing.
 - [Visual data workspace assessment, 2026-09-29](plans/2026-09-29-visual-data-workspace-assessment.md): initial comparison of BB and Zed extensions, OpenDesign customization or a fork, and a standalone application for agent-assisted data work.
 - [Next phase plan, 2026-09-25](plans/2026-09-25-next-phase.md): current direction, epics, order and delegated decisions, with its [research reports](plans/2026-09-25-research/).
 - [Skills roadmap](plans/skills-roadmap.md) and [skills vision](plans/skills-vision.md): historical planning; current assignments live in Beads.
 - [Structure benchmark](structure-benchmark.md): overall findings, with [JSON/API](benchmarks/round-2-json.md) and [relational join](benchmarks/round-2-join.md) reports.
+- [Story harness, round 1](benchmarks/story-round-1.md): everything the story eval harness has measured so far: the q01 pilot, critic calibration v1 vs v2, the q03/q04 reference cases and the first A/B of a story-skill edit (post-edit wins 4 of 4 blind pairs), with per-run tables and what's next. See also the [structure eval, co2-monthly round 1](benchmarks/eval-structure-co2-round-1.md).
 - [Session protocol](next-session-brief.md), [migration audit](next-audit.md) and [cloud handoff log](handoffs/cloud-queue.md): agent coordination and dated execution evidence.
+- [What to review now](review.md): the owner's review queue up to the v1 release (2026-09-18), moved off the public site; later review items carry the `review-after` label in Beads.
 - [Inbox triage](inbox-triage.md), [GitHub issue reconciliation](github-issue-reconciliation.md) and [Project Drawdown comparison](project-drawdown-comparison.md): decision context; check the corresponding Beads for current outcomes.
 
 ## Documentation split — 2026-09-20

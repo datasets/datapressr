@@ -1,0 +1,192 @@
+{
+  "rubric": "story/v2",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "How large is France’s debt relative to its economy, how quickly is it rising, and does the available evidence establish a crisis rather than a persistent fiscal problem?",
+      "answered": "partly",
+      "where": "“Repeated gaps accumulate into debt” gives €3.6 trillion and 119% of GDP; france-public-finances-debt.svg supplies historical endpoints. Neither works out the recent pace of increase. The closing caveat rules out predicting default but does not explicitly distinguish evidence of persistent deficits from evidence of an acute crisis."
+    },
+    {
+      "q": "How big is the annual gap between government spending and revenue, and how does France compare with Germany, Italy, Spain and the EU aggregate?",
+      "answered": "partly",
+      "where": "The opening and france-public-finances-snapshot.svg give the 2025 gap as €153 billion, or 5.1% of GDP. No peer comparison appears."
+    },
+    {
+      "q": "When did France’s debt burden and deficits worsen most sharply, and how much of that deterioration has persisted beyond the initial shocks?",
+      "answered": "partly",
+      "where": "france-public-finances-deficits.svg shows the 2020 deficit spike and subsequent partial recovery; france-public-finances-debt.svg supplies selected historical debt ratios. The story does not identify and quantify the largest deteriorations across the full record or calculate what remains."
+    },
+    {
+      "q": "Is the recent deterioration in the budget balance mainly due to spending rising or revenue falling relative to GDP?",
+      "answered": "yes",
+      "where": "“The deficit also has a revenue side” and france-public-finances-gap.svg show revenue falling 2.5 percentage points of GDP during 2022–2024, against a 1.4-point fall in spending."
+    },
+    {
+      "q": "Which public services and benefits account for the largest spending shares, what is inside the biggest category, and which components have driven spending growth?",
+      "answered": "yes",
+      "where": "“The biggest commitment is social protection” and “Bigger bills, but not always a bigger share of the economy,” supported by the spending, social and evolution charts, unpack social protection and identify old age as accounting for 60% of its nominal increase."
+    },
+    {
+      "q": "How much of the deficit comes from debt interest, how has that burden changed, and would France still run a deficit without it?",
+      "answered": "partly",
+      "where": "“The deficit also has a revenue side” cites an IMF estimate of a 2025 deficit before interest of 3% of GDP. It provides neither the interest bill nor its history, and that IMF source is outside the supplied inventory."
+    },
+    {
+      "q": "What improvement in revenue or non-interest spending would close the current budget gap, and how large would that adjustment be relative to GDP?",
+      "answered": "no",
+      "where": ""
+    }
+  ],
+  "missed_findings": [
+    "The supplied fiscal accounts allow a same-year comparison of France’s deficit, revenue and expenditure with Germany, Italy, Spain and the EU aggregate, but the story provides no international benchmark.",
+    "Debt rose by 9.5 percentage points of GDP between end-2023 and June 2026 and stood 20.8 points above end-2019; the story leaves readers to subtract the chart labels.",
+    "The deficit narrowed by 3.8 percentage points of GDP between 2020 and 2025 but remained 2.7 points above its 2019 level, making the incomplete recovery explicit.",
+    "The available interest series would establish the interest bill, its change over time and the remaining deficit before interest without importing an IMF estimate.",
+    "At unchanged GDP and interest costs, closing the 2025 budget gap requires approximately €153 billion, or 5.1% of GDP, in additional revenue, lower non-interest spending or a combination; this is an accounting illustration, not an estimate of policy effects.",
+    "Although the story thoroughly unpacks social protection, it leaves the striking subgroup result in chart labels: sickness and disability and social exclusion each rose by 0.2 percentage points of GDP during 2014–2024 while most other components declined."
+  ],
+  "charts": [
+    {
+      "file": "france-public-finances-snapshot.svg",
+      "glance": "France spent more than it raised in 2025, leaving about €9 uncovered for every €100 spent.",
+      "glance_matches_prose": true,
+      "encodings": "Green denotes revenue and blue spending, identified by adjacent row labels; horizontal bar length measures current-euro totals from a common zero baseline, with values directly labelled.",
+      "encodings_clear": true,
+      "shows": "Revenue of €1.56 trillion against spending of €1.71 trillion, producing a €153 billion deficit.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-spending.svg",
+      "glance": "Social protection dominates spending, and together with health accounts for more than half the total.",
+      "glance_matches_prose": true,
+      "encodings": "Blue highlights social protection, green highlights health and grey denotes the remaining purposes; every bar has a category label. Length represents billions of current euros, with amounts and spending shares printed at the ends.",
+      "encodings_clear": true,
+      "shows": "The ranking and size of all ten mutually exclusive spending purposes in 2024.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-social.svg",
+      "glance": "Old-age spending occupies more than half the social-protection budget.",
+      "glance_matches_prose": true,
+      "encodings": "Rectangle area represents spending; blue and progressively paler blue-green fills distinguish directly labelled benefit categories, redundantly following their size ranking. Similar shades are distinguishable through labels and white boundaries. An asterisk identifies the narrow other-protection tile through a footnote; zero research spending is explicitly excluded from the area.",
+      "encodings_clear": true,
+      "shows": "How the €693 billion social-protection total divides among benefits, led by €392 billion for old age.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-evolution.svg",
+      "glance": "Social protection remains much larger than health, and old age dwarfs the other benefits; the changes themselves are less immediately visible.",
+      "glance_matches_prose": true,
+      "encodings": "The upper panel uses directly labelled blue and green solid lines for social protection and health, with matching dots marking annotated years. The lower panel keys larger hollow grey circles to 2014 and smaller filled blue circles to 2024; grey connectors join each category’s endpoints. Horizontal position measures GDP share, and adjacent text gives both values. Fill, colour and size redundantly distinguish years.",
+      "encodings_clear": true,
+      "shows": "Two aggregate spending histories, nine subgroup endpoint comparisons and a footnoted decomposition of nominal growth.",
+      "form_fits": false,
+      "fix": "Separate the aggregate history from a subgroup chart of percentage-point changes, so the small movements are visible without reading nine pairs of numbers."
+    },
+    {
+      "file": "france-public-finances-gap.svg",
+      "glance": "Spending persistently exceeds revenue, including a substantial gap in 2025.",
+      "glance_matches_prose": true,
+      "encodings": "Blue solid line denotes spending and green solid line revenue, both directly labelled at their latest dots; vertical position measures percentage of GDP. Matching dots identify the latest observations, and the subtitle explicitly discloses the truncated vertical axis.",
+      "encodings_clear": true,
+      "shows": "The persistent revenue-spending gap from 1995 to 2025, with a footnote quantifying the 2022–2024 deterioration.",
+      "form_fits": true,
+      "fix": "Annotate the 2022–2024 movements beside the relevant line segments so the revenue-led deterioration is visible in the plot itself."
+    },
+    {
+      "file": "france-public-finances-deficits.svg",
+      "glance": "The deficit improved in 2025 but remained far above its pre-pandemic level.",
+      "glance_matches_prose": true,
+      "encodings": "Grey bars represent 2019–2024 and the blue bar highlights 2025, identified by year labels and the title. Height measures the deficit as a positive percentage of GDP from zero; every bar has a value label.",
+      "encodings_clear": true,
+      "shows": "The pandemic deficit spike, its partial reversal, renewed widening and the latest improvement.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-debt.svg",
+      "glance": "Debt has climbed substantially over time and resumed rising after its post-pandemic decline.",
+      "glance_matches_prose": true,
+      "encodings": "A single blue solid line represents gross Maastricht debt as a percentage of GDP; matching circles mark labelled reference quarters. The subtitle identifies the series and discloses the truncated axis; the latest nominal stock is separately labelled.",
+      "encodings_clear": true,
+      "shows": "France’s quarterly debt burden through June 2026, including the pandemic increase, subsequent decline and renewed rise.",
+      "form_fits": true,
+      "fix": "Add a callout stating the 9.5-percentage-point rise since end-2023, making the recent pace explicit."
+    }
+  ],
+  "top_change": "Rebuild the opening and structure around the commissioned debt question: persistent deficits, shocks that were only partly reversed, and the recent revenue-led deterioration; use the spending breakdown as supporting evidence, and state plainly that these accounts cannot establish an acute funding crisis.",
+  "publishable": "no",
+  "lessons": [
+    {
+      "rule": "Keep the commissioned question, rather than the most detailed dataset, at the centre of the argument.",
+      "evidence": "The title and first three substantive sections explain where money goes; the debt explanation arrives near the end, while peer comparisons and adjustment arithmetic are absent."
+    },
+    {
+      "rule": "Calculate consequential differences for readers instead of leaving them to subtract chart labels.",
+      "evidence": "The debt chart supplies 109.5% and 119%, but never states the 9.5-point increase; the deficit chart similarly leaves the remaining deterioration since 2019 implicit."
+    },
+    {
+      "rule": "When explaining a change, choose a chart scale and structure that make the change visually prominent.",
+      "evidence": "The evolution chart’s shared 0–15% subgroup scale makes old age’s size obvious but compresses the small endpoint differences."
+    },
+    {
+      "rule": "Use the supplied accounting components before importing outside estimates of the same quantity.",
+      "evidence": "The story cites an IMF primary-deficit estimate despite having a fiscal dataset with balances and interest payments; the IMF material is absent from the fixed inventory."
+    },
+    {
+      "rule": "Distinguish the size of a spending category from its contribution to deterioration.",
+      "evidence": "The story usefully shows that social protection dominates the budget while its GDP share declined during 2014–2024, and that falling receipts drove the 2022–2024 widening."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 1,
+      "why": "A defensible explanation emerges, but the opening promises a spending tour and the connection to the commissioned debt question arrives late."
+    },
+    "depth": {
+      "score": 1,
+      "why": "Social protection is well unpacked and the revenue mechanism is quantified, but peer context, interest history and the persistence of shock-era deterioration remain unexplained."
+    },
+    "charts": {
+      "score": 1,
+      "why": "Most charts are clear and directly labelled, but the evolution figure combines several points and visually emphasises levels over changes."
+    },
+    "honesty": {
+      "score": 0,
+      "why": "The IMF primary-deficit and cycle-adjusted claims exceed the supplied evidence inventory; attribution alone does not verify them, so they need supplied source evidence or replacement with calculations from the fiscal accounts."
+    },
+    "reader_questions": {
+      "score": 1,
+      "why": "The debt stock, annual gap, spending composition and revenue deterioration are covered, but several questions are only partly answered and the adjustment question is untouched."
+    },
+    "prose": {
+      "score": 1,
+      "why": "Figures are sensibly rounded and much of the prose is plain, but the central answer is delayed and “cycle-adjusted assessment” and “taxable bases” require explanation."
+    }
+  },
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+  "prompt_sha256": "5af85370cfb29991177d3084413d89328b876563e35c732362a3cdacf5aed1de",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 47267,
+      "cached_input_tokens": 8704,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 3146,
+      "reasoning_output_tokens": 160
+    },
+    "calls": 2
+  }
+}

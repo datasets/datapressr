@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v2+reference-pairwise",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "BA",
+  "shown": {
+    "story_1": "B",
+    "story_2": "A"
+  },
+  "preferred": "A",
+  "margin": "clear",
+  "why": "Story 2 supplies global measurements, emissions and carbon-sink explanations, climate-related causes of annual fluctuations, and pre-industrial context that require evidence beyond Story 1’s supplied concentration series. Its dated growth comparisons and assessment of an exceptional annual increase also illustrate analyses Story 1 could have provided for Mauna Loa; Story 1 additionally leaves its latest usable monthly observation, cumulative ppm and percentage increase, and supplied measurement uncertainties unexplained, without stating the limits of a single-site record or of causal inference. Story 1 adds a 2025 annual concentration, the uninterrupted annual rise, threshold-crossing dates and an approximately 6 ppm seasonal swing, although neither piece calculates the increase since measurements began. The annual chart’s glance conclusion is sustained, accelerating growth, matching the prose: green and red dashed thresholds have matching direct labels, but the solid blue concentration line depends on surrounding text for identification, and the rules sit slightly above the values their labels advertise. The seasonal chart’s intended glance conclusion—oscillation around a rising baseline—matches the prose, but its thin grey monthly line and thicker blue adjusted line lack chart-internal identification, while identical dark filled circles are directly labelled as the 2025 high and low; the elided paths prevent independent verification of either chart’s actual line shapes, and direct series labels would clarify both. The explicit numerical difference is roughly 0.9 versus 0.8 ppm per year in the 1960s, which needs exact endpoints and calculation methods to settle; the different annual concentrations concern different years or geographic coverage, so they are not contradictions.",
+  "reader_questions": [
+    {
+      "q": "Is atmospheric CO₂ still rising in the latest usable Mauna Loa observations, and what concentration and date do those observations show?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How fast is it rising now, in parts per million per year, using comparisons that avoid seasonal distortions?",
+      "A": "yes",
+      "B": "partly"
+    },
+    {
+      "q": "Has that pace accelerated or slowed compared with earlier decades, and how unusual is the latest annual increase?",
+      "A": "yes",
+      "B": "partly"
+    },
+    {
+      "q": "How much has the concentration risen, in ppm and percentage terms, since the record began?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How much of the recent month-to-month movement is seasonal, and what does the seasonally adjusted series show?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How confidently can this record from one location answer a question about the atmosphere as a whole, given its coverage and measurement uncertainty?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "What explains the continuing rise and any recent change in its pace?",
+      "A": "yes",
+      "B": "set-aside"
+    }
+  ],
+  "prompt_sha256": "c4b85a627ba8fd0ec56d5679cfc097b4ae7792c4b9157007ed478c65ae76aaad",
+  "rubric_sha256": "374935fd0534369320c6380c526bf768d0c54fcbfcbab6213abab3aebdd6153e"
+}

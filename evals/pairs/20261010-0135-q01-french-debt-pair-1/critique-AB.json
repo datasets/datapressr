@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v1",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "AB",
+  "shown": {
+    "story_1": "A",
+    "story_2": "B"
+  },
+  "preferred": "B",
+  "margin": "slight",
+  "why": "Story 2 has a slight advantage because its revenue section quantifies and explains the IMF’s structural and primary deficits, giving firmer evidence against temporary weakness or interest alone explaining the shortfall than Story 1’s brief cycle-adjusted reference. Story 2 also leads with the persistent revenue–spending gap, while Story 1 devotes three charts to spending composition and evolution, although its longer historical comparisons are useful. Both provide debt and deficit histories with clearly identified bases and statistical vintages, but neither supplies comparable-country figures or directly reports interest costs. Most importantly, neither establishes a crisis now: dated borrowing-cost, refinancing or confidence evidence would be needed, alongside explanations of politics, euro-area constraints, stabilisation and who pays. Both therefore require substantial additions to answer the commission, with Story 2 offering a slightly more focused starting point.",
+  "reader_questions": [
+    {
+      "q": "What makes France’s debt situation a crisis now, rather than simply a high level of government borrowing?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "How large are France’s debt, annual deficit and interest costs relative to its economy, its own history and comparable countries?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "What drove the buildup of debt, and how much reflects spending decisions, tax policy, weak growth or exceptional shocks?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "What changed, and when, to make the debt harder to finance or confidence in France’s finances weaker?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "How do France’s political constraints and its membership of the euro area affect its ability to manage the problem?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "What would have to happen to growth, interest rates and the government budget for debt to stabilise, and how plausible is that?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "Who bears the costs of the debt problem and the proposed remedies, and what could the consequences be beyond France?",
+      "A": "no",
+      "B": "no"
+    }
+  ],
+  "prompt_sha256": "cb4506c1bc35b28f121e70d9cf3cf763ae92a52748845365fbe1d513732a83e9",
+  "rubric_sha256": "86d8957be324276c3935864fcee67cfd3f1f06fc2b6e6add82dc15b78a0da22f"
+}

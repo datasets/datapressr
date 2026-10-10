@@ -1,0 +1,158 @@
+{
+  "rubric": "story/v1",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "What makes France’s debt situation a crisis now, rather than simply a high level of government borrowing?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How large are France’s debt, annual deficit and interest bill relative to its economy, its own history and comparable countries?",
+      "answered": "partly",
+      "where": "“Debt” gives gross and net debt in euros and gross debt as 119 percent of GDP in 2026-Q2; “The indicators” gives the annual borrowing total, and “Other countries” gives peer balances without units. The interest bill and usable historical comparisons are missing."
+    },
+    {
+      "q": "What has driven the debt buildup, and what evidence distinguishes the roles of spending, taxation, weak growth and economic shocks?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "What changed, and when, to make the situation more urgent?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How do interest rates, economic growth and the government’s budget balance affect whether the debt burden keeps rising?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How do France’s political constraints and its membership of the euro area shape the crisis and the options for resolving it?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "What credible measures could stabilise the debt, who would bear their costs, and what would happen if the government failed to act?",
+      "answered": "no",
+      "where": ""
+    }
+  ],
+  "missed_findings": [
+    "The reported 2025 expenditure and revenue imply a €152.5 billion shortfall, about 8.9 percent of expenditure, but the story never explains the significance of that gap.",
+    "If the reported B9 figures all measure percent of GDP, France’s 2025 deficit exceeds Germany’s by 2.4 percentage points, Italy’s by 2.0 and Spain’s by 2.7; confirming the unit would establish this useful comparison.",
+    "The story supplies no dated evidence of financing stress or a loss of budget credibility that would distinguish a crisis from a high debt burden.",
+    "A spending snapshot cannot distinguish persistent budget imbalances from temporary shocks, tax changes or weak growth; the story needs changes in revenue, spending and GDP over identified periods.",
+    "Interest spending is listed as an available indicator but never extracted to explain how borrowing costs, nominal growth and the balance before interest affect debt sustainability.",
+    "Political feasibility, euro-area constraints and the distributional costs of stabilising debt are entirely absent, leaving the reader unable to assess possible resolutions."
+  ],
+  "charts": [
+    {
+      "file": "france-public-finances-indicators.svg",
+      "shows": "Fifteen fiscal series over time, with no labels identifying the lines and repeated colours.",
+      "form_fits": false,
+      "fix": "Reduce this to directly labelled revenue and expenditure lines on an axis marked percent of GDP, making the budget gap the point."
+    },
+    {
+      "file": "france-public-finances-countries.svg",
+      "shows": "Revenue and expenditure totals over time for four countries and the EU aggregate, without identifying the series.",
+      "form_fits": false,
+      "fix": "Use labelled country panels showing revenue and expenditure as percentages of GDP so economic size and the EU aggregate do not dominate the comparison."
+    },
+    {
+      "file": "france-public-finances-functions.svg",
+      "shows": "Ten spending categories, with GF10 visibly the largest, but categories appear only as codes and values have no unit.",
+      "form_fits": true,
+      "fix": "Replace the technical labelling with category names and a title specifying France, 2024 and the verified monetary unit."
+    },
+    {
+      "file": "france-public-finances-subfunctions.svg",
+      "shows": "Dozens of spending subcategories as narrow bars with vertical codes; neither the unit nor the period is stated.",
+      "form_fits": false,
+      "fix": "Replace the exhaustive display with ranked horizontal bars for a few relevant, fully named categories, specifying the year and unit."
+    },
+    {
+      "file": "france-public-finances-debt.svg",
+      "shows": "Quarterly gross and net debt stacked together, producing a meaningless combined height of €6,962.3 billion in 2026-Q2.",
+      "form_fits": false,
+      "fix": "Plot gross and net debt as separate, directly labelled lines in € billions; these overlapping measures must not be added."
+    },
+    {
+      "file": "france-public-finances-deficits.svg",
+      "shows": "Five unidentified coloured sets of annual budget-balance dots, including positive balances, on an axis labelled only “value”.",
+      "form_fits": false,
+      "fix": "Use directly labelled lines with France highlighted and an axis specifying budget balance as percent of GDP, with negative values identified as deficits."
+    }
+  ],
+  "top_change": "Rewrite around an evidence-backed answer to “why a crisis now?”, connecting the persistent budget gap, debt dynamics and constraints on adjustment; retain only charts that establish that explanation.",
+  "publishable": "no",
+  "lessons": [
+    {
+      "rule": "Organise an explanatory story around an answer to the commissioned question, rather than the structure of its dataset.",
+      "evidence": "The opening promises a dataset tour and the conclusion says there is more to explore; neither explains why France faces a debt crisis."
+    },
+    {
+      "rule": "Use changes over time and competing explanations to establish causes; a snapshot establishes composition only.",
+      "evidence": "The spending-function section lists one year’s totals without distinguishing spending decisions, tax changes, growth or shocks."
+    },
+    {
+      "rule": "Stack series only when they are non-overlapping components of a meaningful total.",
+      "evidence": "The debt chart adds gross and net debt, creating a total that measures neither."
+    },
+    {
+      "rule": "Make every chart intelligible through readable series names, units and a stated takeaway.",
+      "evidence": "The charts use “value” or “v”, omit series legends and leave spending categories as GF codes."
+    },
+    {
+      "rule": "Normalise international fiscal comparisons and translate source precision into useful reader-scale numbers.",
+      "evidence": "The country chart compares euro totals with the EU aggregate, while the prose reports expenditure to a tenth of a million euros and leaves deficit ratios unitless."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 0,
+      "why": "An explicit tour of tables and indicators offers no claim answering why France has a debt crisis."
+    },
+    "depth": {
+      "score": 0,
+      "why": "No causal mechanism, dated turning point or alternative explanation is examined."
+    },
+    "charts": {
+      "score": 0,
+      "why": "Unidentified series and unspecified units prevent interpretation, and stacked gross and net debt misrepresent the measures."
+    },
+    "honesty": {
+      "score": 0,
+      "why": "The debt chart misuses overlapping measures by adding them; several prose figures also omit units despite naming Eurostat and INSEE broadly."
+    },
+    "reader_questions": {
+      "score": 0,
+      "why": "Only the scale question receives a partial answer; the other six questions remain unanswered."
+    },
+    "prose": {
+      "score": 0,
+      "why": "Generic opening and closing paragraphs surround code-heavy lists and unwieldy figures, with no explanatory point for the reader to find."
+    }
+  },
+  "rubric_sha256": "86d8957be324276c3935864fcee67cfd3f1f06fc2b6e6add82dc15b78a0da22f",
+  "prompt_sha256": "2ec021c2ee2f6d12b0d89aabd2c53e26c132f10af858499af09e981fdfb12119",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 55176,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1922,
+      "reasoning_output_tokens": 73
+    },
+    "calls": 2
+  }
+}

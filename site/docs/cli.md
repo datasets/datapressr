@@ -4,12 +4,15 @@ Datapressr is a skills repo — instead of a CLI, it provides AI assistant instr
 
 ## Quick start
 
-Install the skills into your agent once, then start a session:
+Make a folder to hold your datasets, install the skills into it and start your assistant there:
 
 ```sh
+mkdir my-datasets && cd my-datasets
 npx skills add datasets/datapressr
-mkdir world-gdp && cd world-gdp && claude
+claude
 ```
+
+The installer asks which skills and which agent to install for. To skip the prompts, pass them as flags: `npx skills add datasets/datapressr --skill '*' -a claude-code -y` installs all eight skills for Claude Code.
 
 Then inside the session:
 
@@ -17,10 +20,11 @@ Then inside the session:
 /init world-gdp
 ```
 
-Your AI assistant will scaffold the directory, create `datapackage.json`, and explain next steps.
+Your AI assistant creates `my-datasets/world-gdp/` with `datapackage.json`, `data/` and the validator, and explains next steps. Run later commands from `my-datasets/` too, and each new dataset gets its own folder alongside `world-gdp/`.
 
-(Claude Code in this repo also picks the skills up directly via `.claude/skills/`
-symlinks — no `npx skills` step needed when working inside `datapressr` itself.)
+**Scope.** By default the installer puts the skills in the project you ran it from (`./.claude/skills/` for Claude Code), so they are available when the assistant is started in that folder. To install them once for every project, add `-g` (`npx skills add datasets/datapressr -g`).
+
+(Claude Code in this repo also picks the skills up directly via `.claude/skills/` symlinks, so no `npx skills` step is needed when working inside `datapressr` itself.)
 
 ## AGENTS.md
 
@@ -30,9 +34,9 @@ Every dataset directory should contain `AGENTS.md` — a knowledge file that giv
 
 | Tool | Reads |
 |------|-------|
-| Claude Code | `AGENTS.md` + `skills/` (via `.claude/skills/` symlinks) |
-| Codex CLI | `AGENTS.md` + `skills/` (via `npx skills add`) |
-| Gemini CLI | `AGENTS.md` + `skills/` (via `npx skills add`) |
+| Claude Code | `AGENTS.md` + `skills/` (via `npx skills add`, or `.claude/skills/` symlinks inside this repo) |
+| Codex CLI | `AGENTS.md` + `skills/` (via `npx skills add`; not yet tested with DataPressr) |
+| Gemini CLI | `AGENTS.md` + `skills/` (via `npx skills add`; not yet tested with DataPressr) |
 
 ## Skills
 
@@ -65,7 +69,7 @@ world-gdp/
 
 Check `datapackage.json` for common issues before publishing.
 
-Runs `scripts/validate-datapackage.mjs` (copied into the dataset by `/init`, zero dependencies, plain Node — no `package.json` needed to run it) and reports its output: errors (must fix), warnings (worth fixing) and notes (reminders that don't count as warnings).
+Runs `scripts/validate-datapackage.mjs` (copied into the dataset by `/init`, zero dependencies, plain Node — no `package.json` needed to run it) and reports its output: errors (must fix), warnings (worth fixing) and notes (reminders that don't count as warnings). It checks the metadata and, by default, every CSV value against the resource's declared schema: types, real calendar dates, row width, primary key uniqueness, foreign keys and the house CSV format. `--metadata-only` skips the value checks; `--json` prints machine-readable output.
 
 - **Errors**: missing file, invalid JSON, unsafe name, empty resources (allowed while `status` is `capture` or `stub`), a resource path that doesn't exist
 - **Warnings**: missing title/description, missing or unknown status, unlisted files in `data/`, large files, missing `licenses`/`sources` past `stub`, resources with no typed `schema` or no `primaryKey`
@@ -100,6 +104,16 @@ tar -xzf dh_darwin_arm64.tar.gz && mv dh ~/bin/
 - **Views DataHub can draw.** Simple `line` charts take several series. Simple `bar` and `lines-and-points` charts need the x (`group`) field and `series[0]` typed `year`, `yearmonth`, `date` or `number`, not `integer` or `string`, and they plot only `series[0]`. For anything else use a `vega-lite` or `plot` view.
 - **`.datahubignore`** excludes `archive/`, scripts, `node_modules/`, `package*.json` and `AGENTS.md`. Every other non-hidden file is uploaded, and every other `.md` file becomes a sub-page.
 
-**Which publication.** The skill always passes `--publication` explicitly: `$DATAHUB_PUBLICATION` if you set it, otherwise `datapressr`. It never publishes to `core` (it refuses if `$DATAHUB_PUBLICATION` is `core`), whose datasets sync from GitHub, so the next sync can overwrite a direct upload.
+**Which publication.** The skill always passes `--publication` explicitly: `$DATAHUB_PUBLICATION` if you set it, otherwise `datapressr` (https://datahub.io/datapressr). It never publishes to `core` (it refuses if `$DATAHUB_PUBLICATION` is `core`), whose datasets sync from GitHub, so the next sync can overwrite a direct upload.
 
 **After publishing**, open the printed URL (`https://datahub.io/<publication>/<name>`) and check the page; it is processed in the background after the upload. Publishing again adds and overwrites files but never deletes them, so a file you removed locally stays online, and an existing dataset's title and description only change in the DataHub dashboard.
+
+**Publishing a story.** Inside the DataPressr repo, `/push` also publishes a data story from `site/stories/` as its own DataHub page (`/push story oil-prices`). It never uploads the story file in place. It builds a bundle with `node scripts/bundle-story.mjs <story> --publication <pub>`: the story as `README.md` without its h1 and internal "Friction notes", links made absolute, plus only the charts it uses. Then it runs the `dh publish <bundle> --publication <pub> --name <slug> --title <title> --description <description>` command the bundler prints. The slug and approval live in the story's frontmatter:
+
+```yaml
+datahub:
+  slug: wti-went-negative
+  status: draft          # approved, with an "approved: <date> <basis>" line, after the voice pass or an owner OK
+```
+
+The bundler refuses `core`, refuses publications with no recorded grant (only `datapressr` today; the DataHub `blog` comes later), refuses a draft unless the publication is `datapressr` and `--allow-draft` is passed with the owner's OK, and refuses a slug that is a dataset name, since stories and datasets share one namespace per publication. After publishing, check the page in a browser: title shown once, description present, every chart loads, no "Error parsing MDX", links work. Three DataHub limits apply: the title and description are fixed at first publish, the date shown is the first publish date rather than the frontmatter `date`, and deleted or renamed files stay online.

@@ -1,6 +1,6 @@
 ---
 name: archive
-description: "Use this skill when a captured source has been decided worth pursuing and needs its raw form saved safely before wrangling starts — moving a dataset from stub to status: archived. Downloads/saves the raw source into archive/ with provenance (source URL, retrieval date, license if known), separate from data/ which holds the cleaned output. Precedes structure — read skills/structure/SKILL.md next once this is done."
+description: "Use this skill when a captured source has been decided worth pursuing and needs its raw form saved safely before wrangling starts — moving a dataset from stub to status: archived. Downloads/saves the raw source into archive/ with provenance (source URL, retrieval date, license if known), separate from data/ which holds the cleaned output. Precedes structure — use the structure skill next once this is done."
 ---
 
 # Archive: get the raw bytes safely stored, with provenance
@@ -11,7 +11,7 @@ The step between "worth pursuing" and "worth cleaning." Once this is done, the r
 
 1. **Check scale before downloading anything.** Same rule as `structure`: comfortably fits in memory in a single Node process, well under ~1GB. If the source is bigger, say so now rather than after downloading it — this workflow assumes small data.
 
-2. **If the dataset directory doesn't exist yet**, scaffold it first — `/init <name>` (creates `datapackage.json` with `status: "stub"`, `data/`, `AGENTS.md`, the validator script).
+2. **If the dataset directory doesn't exist yet**, scaffold it first — `/init <name>` (creates `datapackage.json` with `status: "stub"`, `data/`, `AGENTS.md`, `scripts/validate-datapackage.mjs`).
 
 3. **Save the raw file(s) into `archive/`** at the dataset root, sibling to `data/` — not inside it. This is real precedent from [`millennium-macroeconomic-data-uk`](https://github.com/datasets/economic-history/tree/main/millennium-macroeconomic-data-uk), in the sibling `datasets/economic-history` repo, not an invented convention. For a live URL:
 
@@ -27,7 +27,7 @@ The step between "worth pursuing" and "worth cleaning." Once this is done, the r
 
    For a **paginated API** or anything needing more than one request, use a separate `fetch.ts` that saves each raw response and writes a hashed `archive/manifest.json` — see `structure` → "JSON / REST API sources".
 
-4. **Record provenance right away** — this is the step most likely to get skipped and regretted later (see the rigor pass in `docs/plans/skills-vision.md`: shipping a dataset with no recorded source/license is a real liability, not a nice-to-have). At minimum, a comment at the top of wherever `build.ts` will live:
+4. **Record provenance right away** — this is the step most likely to get skipped and regretted later (see the rigor pass in [`docs/plans/skills-vision.md`](https://github.com/datasets/datapressr/blob/main/docs/plans/skills-vision.md): shipping a dataset with no recorded source/license is a real liability, not a nice-to-have). At minimum, a comment at the top of wherever `build.ts` will live:
 
    ```ts
    // Source: <url>
@@ -39,8 +39,8 @@ The step between "worth pursuing" and "worth cleaning." Once this is done, the r
 
 5. **Set `"status": "archived"`** in `datapackage.json`.
 
-6. **Hand off to `structure`** (`skills/structure/SKILL.md`) to turn the raw snapshot into a clean, typed dataset. Don't do both in one undifferentiated pass if the source is at all messy — archiving first means there's always a stable raw copy to re-run the build script against, even if the live source later changes or disappears.
+6. **Hand off to `structure`** (the `structure` skill) to turn the raw snapshot into a clean, typed dataset. Don't do both in one undifferentiated pass if the source is at all messy — archiving first means there's always a stable raw copy to re-run the build script against, even if the live source later changes or disappears.
 
 ## What this doesn't cover
 
-Re-fetching a source that updates on a schedule (a "living" dataset) is `monitor`'s job, not this skill's — not designed yet, see `docs/plans/skills-vision.md`. This skill is a one-time snapshot.
+Re-fetching a source that updates on a schedule (a "living" dataset) is `monitor`'s job, not this skill's — not designed yet, see [`docs/plans/skills-vision.md`](https://github.com/datasets/datapressr/blob/main/docs/plans/skills-vision.md). This skill is a one-time snapshot.

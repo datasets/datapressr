@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v2+reference-pairwise",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "BA",
+  "shown": {
+    "story_1": "B",
+    "story_2": "A"
+  },
+  "preferred": "B",
+  "margin": "slight",
+  "why": "Story 1 supplies the missing demand explanation, quantified refinery slowdown, storage volumes and capacity, low liquidity, and evidence that longer-dated contracts stayed positive; these require evidence beyond the supplied price series, and the inventory does not establish that the accompanying files contain it. Story 2 acknowledges that limitation but cites external EIA and CFTC accounts whose availability within the fixed inputs would need verification. Story 2 adds the exact negative spot quotation, a distinction from futures settlement, Brent’s near-record low, the positive $3.32 weekly average and the single negative observation, but leaves available calculations of the preceding fall, exceptional spread, recovery and monthly slump largely undone. Both charts’ glance conclusions match its prose—a brief WTI-only negative plunge and a weekly average remaining positive—and their encodings are clear from coloured labels: grey Brent/blue WTI in the first, thin grey daily/thicker blue weekly steps in the second, labelled filled red negative-day markers, black Brent markers and a blue weekly marker, with black zero baselines and no quantitative marker-size encoding. The different negative prices and durations are not contradictions: Story 1 describes intraday futures trading, while Story 2 distinguishes daily spot prices and futures settlement; verifying the exact figures would require the relevant EIA observations and contract records. I slightly prefer Story 1 because its evidence explains why someone would pay to exit an oil position, whereas Story 2 offers more price context but a thinner explanation of the commissioned question.",
+  "reader_questions": [
+    {
+      "q": "Which oil price went below zero, on what date and by how much, and is the quoted figure a spot price or a futures price?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "What could make a seller pay someone to take oil, and what evidence do the supplied sources offer about why that happened in April 2020?",
+      "A": "set-aside",
+      "B": "yes"
+    },
+    {
+      "q": "How far had WTI already fallen before the negative day, and how abrupt was the final plunge?",
+      "A": "partly",
+      "B": "no"
+    },
+    {
+      "q": "What happened to Brent at the same time, and how unusual was the gap between the two benchmarks?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How long did WTI stay negative, and how quickly and fully did it recover over the following weeks and months?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "Was this unprecedented in the available price records, and how did it compare with earlier oil-price collapses?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How much of April’s price collapse was concentrated in the negative day, and what do the weekly and monthly averages reveal about the broader slump?",
+      "A": "partly",
+      "B": "no"
+    }
+  ],
+  "prompt_sha256": "c3c4e61a2fb92ce4a26a84b565c6f161d43dcce45c2a063a71271a8c5e6d8f93",
+  "rubric_sha256": "374935fd0534369320c6380c526bf768d0c54fcbfcbab6213abab3aebdd6153e"
+}

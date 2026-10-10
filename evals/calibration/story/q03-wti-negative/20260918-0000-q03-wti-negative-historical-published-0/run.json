@@ -1,0 +1,75 @@
+{
+  "run_id": "20260918-0000-q03-wti-negative-historical-published-0",
+  "case_id": "q03-wti-negative",
+  "domain": "story",
+  "case_hash": "78afac2584621952bf39f0b3569dbdf206d51618391116e3a0e74ee4ab713ca6",
+  "calibration": {
+    "label": "Published story #3, WTI Went Negative. Brent Didn't.",
+    "sources": {
+      "site/stories/oil-prices.md": "20c6d1e",
+      "site/stories/oil-prices-outline.md": "6d44924",
+      "site/stories/oil-prices-make-charts.mjs": "90ea475",
+      "site/stories/oil-prices-brent-wti.svg": "8318e88",
+      "site/stories/oil-prices-daily-weekly.svg": "8318e88"
+    }
+  },
+  "skill": {
+    "name": "story",
+    "ref": "20c6d1efd95743d598c310ed82247ce563328c7b",
+    "tree": "85b0db464dbcb5791c1f66d287fb9ad02a29f94b",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "a95fb3411cc30318a7ae8538c702f5dfad73461d",
+    "dirty": true,
+    "recipe_sha256": null
+  },
+  "writer": {
+    "vendor": "historical",
+    "model": "historical",
+    "model_actual": null,
+    "cli_version": null,
+    "prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "isolation": {
+    "canary_run_id": null,
+    "network": false,
+    "leaks": []
+  },
+  "started_at": "2026-09-18T00:00:00.000Z",
+  "duration_ms": 0,
+  "turns": null,
+  "cost_usd": null,
+  "cost_basis": null,
+  "usage": null,
+  "artefacts": [
+    {
+      "path": "site/stories/oil-prices-brent-wti.svg",
+      "sha256": "1f95c1b772369c3ff40b3752436618fda67aa699e4d83235632956276765ed87",
+      "bytes": 8266
+    },
+    {
+      "path": "site/stories/oil-prices-daily-weekly.svg",
+      "sha256": "cb9d533d5378c88a757628f3e445329fecc36c9fdb801692cf81d47bf9ad66e9",
+      "bytes": 7478
+    },
+    {
+      "path": "site/stories/oil-prices-make-charts.mjs",
+      "sha256": "0147e398d3f0d02a2598aea2cb0776ac097eb5d217533d992c115c6c7453ae91",
+      "bytes": 6980
+    },
+    {
+      "path": "site/stories/oil-prices-outline.md",
+      "sha256": "1eedb3178e3dd2830e15476a496776dfa9a4e2ee1b4c3919afb900d7b5afa892",
+      "bytes": 8803
+    },
+    {
+      "path": "site/stories/oil-prices.md",
+      "sha256": "dd5817c2ae6a6aef5a025a7b25a3bdb0408520cbca2a7f6a35c43ee2324604e5",
+      "bytes": 5665
+    }
+  ],
+  "transcript_sha256": null,
+  "workspace_sha256": null,
+  "flags": []
+}

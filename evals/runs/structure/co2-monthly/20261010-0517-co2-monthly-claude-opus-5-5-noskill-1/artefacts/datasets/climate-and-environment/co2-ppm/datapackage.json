@@ -1,0 +1,83 @@
+{
+  "name": "co2-ppm",
+  "title": "Atmospheric CO2 at Mauna Loa, Monthly Mean (1958–2026)",
+  "description": "Monthly mean atmospheric carbon dioxide (CO2) dry-air mole fraction at Mauna Loa Observatory, Hawaii, in parts per million (ppm), from March 1958 to July 2026, as published by the NOAA Global Monitoring Laboratory (GML). Data from March 1958 through April 1974 were measured by C. David Keeling of the Scripps Institution of Oceanography (SIO); NOAA measurements start in May 1974. Monthly values are built from daily means and corrected to the centre of the month using the average seasonal cycle. Missing months have been interpolated by the source. Because of the Mauna Loa volcano eruption, measurements were suspended from 29 November 2022 and resumed in July 2023: observations from December 2022 to 4 July 2023 are from a site at the Maunakea Observatories, about 21 miles north of Mauna Loa. Snapshot of the source file retrieved 2026-08-30 (file created by NOAA on 2026-08-05).",
+  "status": "structured",
+  "keywords": ["co2", "carbon dioxide", "climate", "keeling curve", "mauna loa", "noaa", "greenhouse gases"],
+  "licenses": [
+    {
+      "name": "NOAA-GML-data-use",
+      "title": "Use of NOAA GML Data: freely available to the public and the scientific community; please give fair credit with relevant citation text",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NOAA Global Monitoring Laboratory, Trends in Atmospheric Carbon Dioxide: Mauna Loa monthly mean CO2 (retrieved 2026-08-30)",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv"
+    },
+    {
+      "title": "NOAA GML Trends in Atmospheric Carbon Dioxide, data page",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    },
+    {
+      "title": "Scripps Institution of Oceanography CO2 program (March 1958 – April 1974 values, via NOAA GML)",
+      "path": "https://scrippsco2.ucsd.edu/data/atmospheric_co2"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/co2-mm-mlo.csv",
+      "name": "co2-mm-mlo",
+      "title": "Monthly mean CO2 at Mauna Loa",
+      "description": "One row per month, March 1958 to July 2026, with no gaps. Values are copied from the NOAA GML file; the source's negative 'not available' codes are written as empty cells.",
+      "mediatype": "text/csv",
+      "format": "csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "yearmonth",
+            "description": "Calendar month of the observation (YYYY-MM). Source columns `year` and `month`."
+          },
+          {
+            "name": "decimal_year",
+            "type": "number",
+            "description": "Mid-month as a decimal year, as given by the source (`decimal date`)."
+          },
+          {
+            "name": "co2_ppm",
+            "type": "number",
+            "unit": "ppm",
+            "description": "Monthly mean CO2 dry-air mole fraction, parts per million (source `average`). Includes months interpolated by the source."
+          },
+          {
+            "name": "co2_deseasonalized_ppm",
+            "type": "number",
+            "unit": "ppm",
+            "description": "Monthly mean CO2 with the average seasonal cycle removed, parts per million (source `deseasonalized`)."
+          },
+          {
+            "name": "days_measured",
+            "type": "integer",
+            "description": "Number of days with data in the month (source `ndays`). Empty where the source gives -1: all SIO months (March 1958 – April 1974), for which no count is available, and NOAA months it interpolated."
+          },
+          {
+            "name": "daily_sdev_ppm",
+            "type": "number",
+            "unit": "ppm",
+            "description": "Standard deviation of the daily means within the month, parts per million (source `sdev`). Empty where the source gives -9.99 (not available: SIO months and interpolated or sparse NOAA months)."
+          },
+          {
+            "name": "uncertainty_ppm",
+            "type": "number",
+            "unit": "ppm",
+            "description": "Uncertainty of the monthly mean, parts per million (source `unc`). Empty where the source gives -0.99 (not available), and for 1975-12 and 1984-04, where the source gives 0.00 next to a missing sdev."
+          }
+        ],
+        "primaryKey": ["date"]
+      }
+    }
+  ]
+}

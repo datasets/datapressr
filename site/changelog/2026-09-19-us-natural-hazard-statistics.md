@@ -1,12 +1,18 @@
 ---
 date: 2026-09-19
 title: "What weather kills, from a source with no index"
+description: 29 years of National Weather Service hazard statistics, 1997–2025, as one CSV. Heat is the largest single cause of weather deaths.
+image: images/2026-09-19-nws-hazard-leading-causes.svg
 promote: true
 ---
 
 **A new dataset: [U.S. weather-related fatalities, injuries and damage by hazard type](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/us-natural-hazard-statistics).** 29 years, 1997 to 2025, from the National Weather Service's annual hazard summaries. Over the range the source counts 18,867 weather-related deaths: heat is the largest single cause at 5,366, ahead of tornadoes at 2,167 and flash floods at 2,015. The deadliest and costliest year is the same one, 2005.
 
+![Line chart of U.S. weather deaths per year from heat, tornadoes and flash floods, 1997–2025. Heat is highest in most years, peaking at 555 in 2023; tornadoes spike to 553 in 2011. Hurricanes are left out because their rows count wind deaths only.](images/2026-09-19-nws-hazard-leading-causes.svg)
+
 Two things are worth knowing before anyone quotes it. Damage is in dollars of the year reported and is never inflation-adjusted. And a hurricane row counts **wind only** — the same storm's storm surge, rainfall flooding and tornadoes are filed under Flood and Tornado — so no row in the dataset is the full cost of a named storm. Neither fact is visible in the table; both are now in the dataset's own metadata.
+
+![A slice of the published CSV: the eight deadliest event types in 2025, with deaths, injuries and property, crop and total damage in millions of nominal US dollars, never inflation-adjusted.](images/2026-09-19-nws-hazard-table.png)
 
 This was the second run of the [source-discovery playbook](../docs/source-discovery-playbook.md), and it was chosen to test the case the first one could not: a source with **no machine-readable index at all**. No API, no feed, no sitemap, no bulk download. The only listing of these 31 documents anywhere is a Dreamweaver-era drop-down menu on one page — and it offers a 1995 summary that the server does not have. That is the finding the run existed to produce: when the listing is typed by hand rather than generated from holdings, it can be wrong, so a 404 is data about the source rather than a failed fetch. All 31 candidates are published in a coverage table, the missing year and the 1996 document that turns out to be page images with no extractable text included.
 

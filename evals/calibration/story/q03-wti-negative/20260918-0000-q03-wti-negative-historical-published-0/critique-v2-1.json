@@ -1,0 +1,141 @@
+{
+  "rubric": "story/v2",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "Which oil price went below zero, on what date and by how much, and do these data measure spot prices or futures contracts?",
+      "answered": "yes",
+      "where": "Opening paragraph and “What these numbers are”: Cushing WTI spot was -$36.98 per barrel on 20 April 2020, distinguished from the -$37.63 futures settlement."
+    },
+    {
+      "q": "Why would a seller pay someone to take oil, and what evidence establishes why that happened in April 2020?",
+      "answered": "set-aside",
+      "where": ""
+    },
+    {
+      "q": "How far had WTI and Brent prices already fallen before the negative price appeared, and when did the decline accelerate?",
+      "answered": "partly",
+      "where": "oil-prices-brent-wti.svg shows the March decline, but neither the chart nor the prose calculates either benchmark’s preceding fall or identifies when it accelerated."
+    },
+    {
+      "q": "What happened to Brent when WTI went negative, and how unusual was the gap between them?",
+      "answered": "partly",
+      "where": "Opening paragraph, “Brent fell hard too,” and oil-prices-brent-wti.svg give Brent’s prices on 20–21 April; the spread is neither calculated nor compared with its history."
+    },
+    {
+      "q": "How long did negative prices last, how quickly did prices recover, and what do the weekly and monthly averages show about the episode?",
+      "answered": "partly",
+      "where": "“What the data says” establishes one negative daily observation and the $3.32 weekly average; the charts show recovery, but the prose gives no recovery milestones or monthly average."
+    },
+    {
+      "q": "Had either benchmark gone negative before in the available record, and how did April 2020 compare with earlier price collapses?",
+      "answered": "partly",
+      "where": "The opening establishes the sole negative observation; “Brent fell hard too” compares Brent with its December 1998 low, but earlier collapses are not compared in scale or speed."
+    },
+    {
+      "q": "What would have to happen to demand, supply, storage or trading conditions for negative oil prices to recur?",
+      "answered": "set-aside",
+      "where": ""
+    }
+  ],
+  "missed_findings": [
+    "The story leaves the size and timing of the pre-negative collapse for readers to estimate from the lines, although the daily data permit explicit before-and-after comparisons for both benchmarks.",
+    "Brent exceeded WTI by $54.34 per barrel on 20 April, but by only $0.21 the next day; this makes the exceptional divergence and its rapid reversal concrete.",
+    "WTI moved from $18.31 on 17 April to -$36.98 on 20 April and $8.91 on 21 April, a $55.29 fall followed by a $45.89 rebound, figures present in the outline but omitted from the story.",
+    "April’s WTI monthly average was $16.55, above December 1998’s $11.35 in nominal dollars, showing that the unprecedented daily negative price did not produce the lowest monthly price.",
+    "The available historical series could establish how unusual the benchmark spread and the speed of the collapse were, whereas the story supplies only a historical Brent low."
+  ],
+  "charts": [
+    {
+      "file": "oil-prices-brent-wti.svg",
+      "glance": "Both prices collapse, but WTI alone makes a dramatic, brief plunge below zero while Brent remains positive.",
+      "glance_matches_prose": true,
+      "encodings": "The grey solid line is Brent and the blue solid line is WTI, identified by matching endpoint labels. A red filled circle and matching annotation highlight negative WTI; smaller dark filled circles and adjacent labels highlight Brent on 20 and 21 April. Circle sizes provide emphasis rather than a quantitative scale. The dark horizontal line marks zero, readable against the axis; faint horizontal lines are gridlines.",
+      "encodings_clear": true,
+      "shows": "Daily nominal spot prices through March–mid-May, the negative WTI observation, Brent’s positive price that day, and Brent’s near-record low the next day.",
+      "form_fits": true,
+      "fix": "Add a takeaway title containing the year, such as “WTI alone briefly crossed below zero in April 2020”; the chart itself currently has no year."
+    },
+    {
+      "file": "oil-prices-daily-weekly.svg",
+      "glance": "WTI’s daily price plunges below zero, but its weekly average stays just above it.",
+      "glance_matches_prose": true,
+      "encodings": "The thin grey solid line denotes daily WTI; the thicker blue stepped line denotes the weekly average, decoded through matching coloured labels inside the chart. A red filled circle with a direct annotation highlights the negative daily observation; a blue filled circle with a direct annotation identifies the $3.32 weekly average. Equal marker sizes do not encode magnitude. The dark horizontal line marks zero and faint lines provide the grid.",
+      "encodings_clear": true,
+      "shows": "Daily and weekly nominal WTI prices from February to June, demonstrating that weekly averaging leaves the lowest week positive despite one negative daily price.",
+      "form_fits": true,
+      "fix": "Add a takeaway title with the year so the chart independently identifies the episode as April 2020."
+    }
+  ],
+  "top_change": "Replace most of “How this was made” with a compact account of the collapse and recovery: quantify the preceding falls, the one-day spread and rebound, and April’s monthly average against 1998, while retaining the explicit limit on causal inference.",
+  "publishable": "with-edits",
+  "lessons": [
+    {
+      "rule": "Use the available price history to quantify the buildup and recovery around an exceptional observation.",
+      "evidence": "The story labels the negative day precisely but leaves the preceding decline and subsequent recovery largely to visual estimation."
+    },
+    {
+      "rule": "When comparing benchmarks, calculate the gap and supply a meaningful historical benchmark.",
+      "evidence": "The reader receives $17.36 and -$36.98 but must calculate the $54.34 spread and is not told how unusual it was."
+    },
+    {
+      "rule": "Explain what aggregation changes economically, as well as whether it removes an extreme value.",
+      "evidence": "The weekly average is shown, but April’s $16.55 monthly average and its comparison with December 1998 are omitted."
+    },
+    {
+      "rule": "Keep causal explanations attributed and distinguish them from what the supplied measurements establish.",
+      "evidence": "“Why, according to EIA” explicitly separates the storage and expiry explanation from the price-only dataset."
+    },
+    {
+      "rule": "Keep production details proportionate to their value for the reader.",
+      "evidence": "The long final section explains scripts, repository-local statistics and independent wrangling while several substantive price comparisons remain unanswered."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 1,
+      "why": "The early claim about a brief, benchmark-specific negative spot price is clear and within reach, but the explanation arrives late and the lengthy production section does not advance it."
+    },
+    "depth": {
+      "score": 1,
+      "why": "The attributed mechanism and Brent comparison help, but available evidence about the preceding collapse, historical spread and recovery is not developed."
+    },
+    "charts": {
+      "score": 2,
+      "why": "Both line charts fit their comparisons, clearly identify their encodings and annotate the decisive values; their immediate readings match the prose."
+    },
+    "honesty": {
+      "score": 2,
+      "why": "The story distinguishes spot from futures, identifies nominal units and sources, and expressly states that its price data cannot establish the causal explanation."
+    },
+    "reader_questions": {
+      "score": 1,
+      "why": "The essential identification is answered, but four other in-reach questions receive only partial answers."
+    },
+    "prose": {
+      "score": 1,
+      "why": "Most sentences are clear, but repeated statements of the negative-price contrast and a long repository-focused ending displace useful explanation."
+    }
+  },
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+  "prompt_sha256": "0bfac60fb8298c150aad744942cf1afc612ee96de43c35315653a991dc34d8db",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 34667,
+      "cached_input_tokens": 8320,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2265,
+      "reasoning_output_tokens": 264
+    },
+    "calls": 2
+  }
+}

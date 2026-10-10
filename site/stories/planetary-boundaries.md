@@ -1,6 +1,9 @@
 ---
 title: Planetary Boundaries
 description: The nine planetary boundaries and where they stand now — six of the nine are crossed, and one, stratospheric ozone, has been pulled back inside the line.
+datahub:
+  slug: planetary-boundaries-scoreboard
+  status: draft
 ---
 
 # Planetary Boundaries

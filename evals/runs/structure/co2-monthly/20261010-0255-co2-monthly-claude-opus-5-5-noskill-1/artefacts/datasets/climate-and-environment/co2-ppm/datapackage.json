@@ -1,0 +1,54 @@
+{
+  "name": "co2-ppm",
+  "title": "CO2 PPM - Trends in Atmospheric Carbon Dioxide (Mauna Loa, monthly)",
+  "description": "Monthly mean atmospheric carbon dioxide (CO2) at Mauna Loa Observatory, Hawaii, from March 1958 to July 2026, as dry-air mole fraction in parts per million (ppm). Published by the NOAA Global Monitoring Laboratory (GML). March 1958 to April 1974 is C. David Keeling's Scripps Institution of Oceanography (SIO) record; NOAA measurements start in May 1974. Monthly values are corrected to the centre of the month based on the average seasonal cycle, and missing months are interpolated. After the Mauna Loa eruption, measurements came from the Maunakea Observatories (about 21 miles north) from December 2022 to 4 July 2023 (see the `site` column). Snapshot of the NOAA file retrieved 2026-08-30 (file created 2026-08-05). NOAA GML asks users to give credit for the data and to contact the data providers (Xin Lan, xin.lan@noaa.gov) where the data are central to a publication.",
+  "status": "structured",
+  "keywords": ["co2", "carbon dioxide", "climate", "mauna loa", "keeling curve", "noaa"],
+  "licenses": [
+    {
+      "name": "NOAA-GML-data-use",
+      "title": "USE OF NOAA GML DATA: made freely available to the public and the scientific community; credit to GML requested (terms quoted in the source file header)",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NOAA Global Monitoring Laboratory, Trends in Atmospheric Carbon Dioxide, Mauna Loa monthly mean (co2_mm_mlo.csv, retrieved 2026-08-30)",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv"
+    },
+    {
+      "title": "NOAA GML Trends in Atmospheric Carbon Dioxide, data page",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    },
+    {
+      "title": "Scripps Institution of Oceanography CO2 program (March 1958 to April 1974, via the NOAA file)",
+      "path": "http://scrippsco2.ucsd.edu/data/atmospheric_co2"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/co2-mm-mlo.csv",
+      "name": "co2-mm-mlo",
+      "title": "Monthly mean CO2 at Mauna Loa",
+      "description": "One row per month, March 1958 to July 2026, with no gaps. Built from archive/co2_mm_mlo.csv by build.ts. The source's sentinel values (ndays -1, sdev -9.99, unc -0.99, and an unc of 0.00 next to a missing sdev) are empty cells here.",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          { "name": "date", "type": "yearmonth", "description": "Calendar month (YYYY-MM). Source columns `year` and `month`." },
+          { "name": "decimal_date", "type": "number", "description": "Centre of the month as a decimal year, as given by NOAA (source `decimal date`)." },
+          { "name": "co2_ppm", "type": "number", "description": "Monthly mean CO2 dry-air mole fraction, ppm, corrected to the centre of the month. Interpolated where `interpolated` is true (and possibly in SIO months, which are not flagged). Source `average`." },
+          { "name": "co2_deseasonalized_ppm", "type": "number", "description": "Monthly mean CO2 with the average seasonal cycle removed, ppm. Source `deseasonalized`." },
+          { "name": "days_measured", "type": "integer", "description": "Number of days with valid daily means in the month. Empty for SIO months (no information) and interpolated months. Source `ndays`." },
+          { "name": "daily_sdev_ppm", "type": "number", "description": "Standard deviation of the daily means within the month, ppm. Empty where the source has none. Source `sdev`." },
+          { "name": "uncertainty_ppm", "type": "number", "description": "Uncertainty of the monthly mean, ppm. Empty where the source has none (negative sentinel, or 0.00 where sdev is also missing). Source `unc`." },
+          { "name": "interpolated", "type": "boolean", "description": "true if NOAA interpolated the month (source ndays negative), false if measured. Empty for SIO months (March 1958 to April 1974), which the source does not flag." },
+          { "name": "provider", "type": "string", "description": "Who made the measurement: SIO (Scripps, March 1958 to April 1974) or NOAA (from May 1974).", "constraints": { "required": true, "enum": ["SIO", "NOAA"] } },
+          { "name": "site", "type": "string", "description": "Where the measurements were made: Mauna Loa; Maunakea (December 2022 to June 2023, Mauna Loa closed by the eruption); or Maunakea and Mauna Loa (July 2023: Maunakea to 4 July, Mauna Loa after).", "constraints": { "required": true, "enum": ["Mauna Loa", "Maunakea", "Maunakea and Mauna Loa"] } }
+        ],
+        "primaryKey": ["date"]
+      }
+    }
+  ]
+}

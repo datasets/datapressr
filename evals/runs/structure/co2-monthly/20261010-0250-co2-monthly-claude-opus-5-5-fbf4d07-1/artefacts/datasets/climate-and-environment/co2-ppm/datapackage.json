@@ -1,0 +1,77 @@
+{
+  "name": "co2-ppm",
+  "title": "CO2 PPM - Trends in Atmospheric Carbon Dioxide (Mauna Loa, monthly)",
+  "description": "Monthly mean atmospheric carbon dioxide (CO2) mole fraction in dry air, in parts per million, measured at Mauna Loa Observatory, Hawaii, from March 1958 to July 2026. Compiled by NOAA Global Monitoring Laboratory (GML). Values from March 1958 to April 1974 were measured by C. David Keeling of the Scripps Institution of Oceanography (SIO); NOAA measurements start in May 1974. Because of the eruption of Mauna Loa, measurements from December 2022 to July 4, 2023 come from a site at the Maunakea Observatories, about 21 miles north. Snapshot of NOAA's file retrieved 2026-08-30 (file created 2026-08-05).",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "NOAA-GML-data-use",
+      "title": "Use of NOAA GML Data: made freely available to the public; GML asks for fair credit, with relevant citation text in publications, and suggests coauthorship for data providers where the data are central to a publication",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "NOAA Global Monitoring Laboratory, Trends in Atmospheric Carbon Dioxide: Mauna Loa monthly mean CO2 (co2_mm_mlo.csv)",
+      "path": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv"
+    },
+    {
+      "title": "NOAA GML Trends in Atmospheric Carbon Dioxide: data page",
+      "path": "https://gml.noaa.gov/ccgg/trends/data.html"
+    },
+    {
+      "title": "Scripps Institution of Oceanography CO2 program (source of the March 1958 to April 1974 values, as stated in NOAA's file)",
+      "path": "http://scrippsco2.ucsd.edu/data/atmospheric_co2"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/co2-ppm-monthly.csv",
+      "name": "co2-ppm-monthly",
+      "title": "Mauna Loa CO2, monthly mean",
+      "mediatype": "text/csv",
+      "format": "csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "yearmonth",
+            "description": "Month of the observation (YYYY-MM)."
+          },
+          {
+            "name": "decimal_date",
+            "type": "number",
+            "description": "The month as a decimal year, as given by NOAA (the middle of the month, e.g. 2026.5417 for July 2026)."
+          },
+          {
+            "name": "co2_ppm",
+            "type": "number",
+            "description": "Monthly mean CO2 mole fraction in dry air, parts per million (ppm). NOAA builds it from daily means and corrects it to the centre of the month using the average seasonal cycle. Months with no measurements have been interpolated by NOAA, which says it marks them with negative (here: empty) sdev and uncertainty. In this snapshot only one NOAA-era month has no day count, 1975-12 (empty n_days and daily_sdev_ppm, uncertainty_ppm 0.00); for 1958-03 to 1974-04 (SIO) n_days, daily_sdev_ppm and uncertainty_ppm are always empty, so interpolated SIO months cannot be told apart."
+          },
+          {
+            "name": "co2_deseasonalized_ppm",
+            "type": "number",
+            "description": "Monthly mean CO2 with the average seasonal cycle removed, ppm (NOAA's 'deseasonalized' column)."
+          },
+          {
+            "name": "n_days",
+            "type": "integer",
+            "description": "Number of days with data in the month. Empty where NOAA gives no information (source sentinel -1): all of the SIO period (March 1958 to April 1974) and interpolated NOAA months."
+          },
+          {
+            "name": "daily_sdev_ppm",
+            "type": "number",
+            "description": "Standard deviation of the daily means within the month, ppm. Empty where NOAA gives no information (source sentinel -9.99): all of the SIO period and interpolated NOAA months."
+          },
+          {
+            "name": "uncertainty_ppm",
+            "type": "number",
+            "description": "Uncertainty of the monthly mean, ppm. Empty where NOAA gives no information (source sentinel -0.99). Kept verbatim from the source: two months (1975-12 and 1984-04) carry 0.00 although their daily_sdev_ppm is empty, which NOAA does not document as a sentinel."
+          }
+        ],
+        "primaryKey": ["date"]
+      }
+    }
+  ]
+}

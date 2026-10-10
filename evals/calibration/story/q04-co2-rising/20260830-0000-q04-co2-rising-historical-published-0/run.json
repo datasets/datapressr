@@ -1,0 +1,75 @@
+{
+  "run_id": "20260830-0000-q04-co2-rising-historical-published-0",
+  "case_id": "q04-co2-rising",
+  "domain": "story",
+  "case_hash": "d9ca3f9ef421d409c62e0a07465e90b4c7178fd1ec36c2951012a39f8035cbe6",
+  "calibration": {
+    "label": "Published story #1, The Keeling Curve",
+    "sources": {
+      "site/stories/keeling-curve.md": "90ea475",
+      "site/stories/keeling-curve-outline.md": "c4c2a65",
+      "site/stories/make-charts.mjs": "90ea475",
+      "site/stories/keeling-annual.svg": "c7ecdda",
+      "site/stories/keeling-seasonal.svg": "c7ecdda"
+    }
+  },
+  "skill": {
+    "name": "story",
+    "ref": "90ea475a4f6138b8cacdbde97aa478fc2b842ab1",
+    "tree": "c08d6d659a4db14be9083a46c2d1e56557c66293",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "a95fb3411cc30318a7ae8538c702f5dfad73461d",
+    "dirty": true,
+    "recipe_sha256": null
+  },
+  "writer": {
+    "vendor": "historical",
+    "model": "historical",
+    "model_actual": null,
+    "cli_version": null,
+    "prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "isolation": {
+    "canary_run_id": null,
+    "network": false,
+    "leaks": []
+  },
+  "started_at": "2026-08-30T00:00:00.000Z",
+  "duration_ms": 0,
+  "turns": null,
+  "cost_usd": null,
+  "cost_basis": null,
+  "usage": null,
+  "artefacts": [
+    {
+      "path": "site/stories/keeling-annual.svg",
+      "sha256": "33ec8fe0bbf0eb424764ca56431e8bb23b686e259fbb0387773b05996a18915a",
+      "bytes": 6596
+    },
+    {
+      "path": "site/stories/keeling-curve-outline.md",
+      "sha256": "7aae86bf440cbaecd0707eae150fd464bf3a6a94ab085c36caf565ede9d382f1",
+      "bytes": 2708
+    },
+    {
+      "path": "site/stories/keeling-curve.md",
+      "sha256": "4bb303524c57d99c5eba78e097dbe3c1a18b597f1bd206f58cb650a9bfff234b",
+      "bytes": 3615
+    },
+    {
+      "path": "site/stories/keeling-seasonal.svg",
+      "sha256": "b272f0dd12a2cac9b1c92ad546c5effd8a1eb7edf3fb3f85c31ba52ac7a4c10b",
+      "bytes": 11719
+    },
+    {
+      "path": "site/stories/make-charts.mjs",
+      "sha256": "dbc8ead0cd834bff7c6c1d1ea75d533e4bb64d0bfa7fd2aadcd6da68e1dd002a",
+      "bytes": 6462
+    }
+  ],
+  "transcript_sha256": null,
+  "workspace_sha256": null,
+  "flags": []
+}

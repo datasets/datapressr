@@ -16,3 +16,9 @@ site/.flowershow
 .beads/*.sock
 .beads/locks/
 .beads/sync-state.json
+
+# Eval harness: transcripts, workspace tarballs and blind pair mappings stay local (hashes are in run.json / the ledger)
+evals/runs/**/transcript.jsonl
+evals/runs/**/workspace.tar
+evals/pairs/**/mapping.json
+evals/canaries/**/transcript.jsonl

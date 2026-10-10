@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="440" viewBox="0 0 820 440" role="img" font-family="system-ui, -apple-system, sans-serif">
+<title>Tesla vehicles delivered and produced per quarter, Q2 2019 to Q2 2026, total across all models, as first reported in Tesla's SEC filings. Deliveries rose from 95,200 in Q2 2019 to a peak of 497,099 in Q3 2025; Q2 2026 deliveries were 480,126 and production 451,758.</title>
+<rect width="820" height="440" fill="#fcfcfb"/>
+<text x="20" y="32" font-size="20" font-weight="600" fill="#0b0b0b">Tesla vehicles delivered and produced per quarter</text>
+<text x="20" y="56" font-size="13" fill="#52514e">Q2 2019 to Q2 2026, total across all models, as first reported in Tesla's SEC filings</text>
+<line x1="20" y1="76" x2="38" y2="76" stroke="#2a78d6" stroke-width="2" stroke-linecap="round"/>
+<text x="44" y="80" font-size="13" fill="#52514e">Deliveries</text>
+<line x1="140" y1="76" x2="158" y2="76" stroke="#eb6834" stroke-width="2" stroke-linecap="round"/>
+<text x="164" y="80" font-size="13" fill="#52514e">Production</text>
+<line x1="64" y1="384" x2="635" y2="384" stroke="#c3c2b7" stroke-width="1"/>
+<text x="56" y="388" font-size="12" fill="#898781" text-anchor="end">0</text>
+<line x1="64" y1="329.6" x2="635" y2="329.6" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56" y="333.6" font-size="12" fill="#898781" text-anchor="end">100k</text>
+<line x1="64" y1="275.2" x2="635" y2="275.2" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56" y="279.2" font-size="12" fill="#898781" text-anchor="end">200k</text>
+<line x1="64" y1="220.8" x2="635" y2="220.8" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56" y="224.8" font-size="12" fill="#898781" text-anchor="end">300k</text>
+<line x1="64" y1="166.4" x2="635" y2="166.4" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56" y="170.4" font-size="12" fill="#898781" text-anchor="end">400k</text>
+<line x1="64" y1="112" x2="635" y2="112" stroke="#e1e0d9" stroke-width="1"/>
+<text x="56" y="116" font-size="12" fill="#898781" text-anchor="end">500k</text>
+<line x1="125.2" y1="384" x2="125.2" y2="389" stroke="#c3c2b7" stroke-width="1"/>
+<text x="125.2" y="404" font-size="12" fill="#898781" text-anchor="middle">2020</text>
+<line x1="206.8" y1="384" x2="206.8" y2="389" stroke="#c3c2b7" stroke-width="1"/>
+<text x="206.8" y="404" font-size="12" fill="#898781" text-anchor="middle">2021</text>
+<line x1="288.3" y1="384" x2="288.3" y2="389" stroke="#c3c2b7" stroke-width="1"/>
+<text x="288.3" y="404" font-size="12" fill="#898781" text-anchor="middle">2022</text>
+<line x1="369.9" y1="384" x2="369.9" y2="389" stroke="#c3c2b7" stroke-width="1"/>
+<text x="369.9" y="404" font-size="12" fill="#898781" text-anchor="middle">2023</text>
+<line x1="451.5" y1="384" x2="451.5" y2="389" stroke="#c3c2b7" stroke-width="1"/>
+<text x="451.5" y="404" font-size="12" fill="#898781" text-anchor="middle">2024</text>
+<line x1="533" y1="384" x2="533" y2="389" stroke="#c3c2b7" stroke-width="1"/>
+<text x="533" y="404" font-size="12" fill="#898781" text-anchor="middle">2025</text>
+<line x1="614.6" y1="384" x2="614.6" y2="389" stroke="#c3c2b7" stroke-width="1"/>
+<text x="614.6" y="404" font-size="12" fill="#898781" text-anchor="middle">2026</text>
+<path d="M64,336.6L84.4,331.7L104.8,326.9L125.2,328.1L145.6,339.2L166,305.1L186.4,286.2L206.8,285.9L227.1,271.7L247.5,254.6L267.9,217.6L288.3,217.9L308.7,243.3L329.1,184.9L349.5,144.8L369.9,144.2L390.3,123L410.7,149.8L431.1,114.7L451.5,148.2L471.9,160.5L492.3,128.4L512.6,134.1L533,186.7L553.4,160.8L573.8,140.6L594.2,147.7L614.6,161.8L635,138.2" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M64,332.2L84.4,331.2L104.8,323.1L125.2,335.9L145.6,334.7L166,308.2L186.4,285.8L206.8,283.5L227.1,274.5L247.5,252.7L267.9,216.1L288.3,215.3L308.7,245.4L329.1,197L349.5,163.5L369.9,154L390.3,130.4L410.7,147.3L431.1,120.4L451.5,173.6L471.9,142.5L492.3,132.2L512.6,114.4L533,200.8L553.4,175L573.8,113.6L594.2,156.5L614.6,189.2L635,122.8" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="573.8" cy="113.6" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="565.8" y="103.6" font-size="12" fill="#0b0b0b" text-anchor="end">Peak: 497,099 delivered, Q3 2025</text>
+<circle cx="635" cy="122.8" r="4" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="645" y="111.5" font-size="12" fill="#52514e">Deliveries, Q2 2026</text>
+<text x="645" y="126.5" font-size="12" font-weight="600" fill="#0b0b0b">480,126</text>
+<circle cx="635" cy="138.2" r="4" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="645" y="145.5" font-size="12" fill="#52514e">Production, Q2 2026</text>
+<text x="645" y="160.5" font-size="12" font-weight="600" fill="#0b0b0b">451,758</text>
+<text x="20" y="426" font-size="11" fill="#898781">Source: Tesla Form 8-K Exhibit 99.1 via SEC EDGAR. Data: datasets/transport/tesla-quarterly-deliveries (PDDL-1.0).</text>
+</svg>

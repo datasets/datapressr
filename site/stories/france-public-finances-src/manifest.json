@@ -1,0 +1,31 @@
+{
+  "sources": [
+    {
+      "file": "cofog-old-age.html",
+      "url": "https://unstats.un.org/unsd/classifications/Econ/Structure/Detail/en/4/10_2_0",
+      "title": "UN COFOG 10.2.0 definition",
+      "licence": "UN website terms; no specific open licence identified for this page",
+      "retrieved_at": "2026-10-08T19:37:51.714Z",
+      "bytes": 39101,
+      "sha256": "2b2debdb86628b878867548b0f7192990c9407ff68e59b19b3fbecf9f3b17c67"
+    },
+    {
+      "file": "drees-social-protection-2024.pdf",
+      "url": "https://www.drees.solidarites-sante.gouv.fr/sites/default/files/2026-03/La%20protection%20sociale%20en%20France%20et%20en%20Europe%20en%202024.pdf",
+      "title": "DREES, La protection sociale en France et en Europe en 2024, edition 2025, March 2026 file",
+      "licence": "Official French public statistical publication; specific document licence not identified",
+      "retrieved_at": "2026-10-08T19:37:52.531Z",
+      "bytes": 2646195,
+      "sha256": "98692741a5ec3070cade1ebf92a02adae4c2fa317cdcc100d63b0580d2cf1ccd"
+    },
+    {
+      "file": "retiree-population.html",
+      "url": "https://evaluation.securite-sociale.fr/home/retraite/1-7-1-effectifs-de-retraites-de-.html",
+      "title": "Social Security evaluation: pension recipient numbers",
+      "licence": "Official French public statistical publication; specific document licence not identified",
+      "retrieved_at": "2026-10-08T19:37:53.088Z",
+      "bytes": 35736,
+      "sha256": "6ece4c278c6eac08db724cadf5923b0acb290aefaa722f55535e47d4d5657d04"
+    }
+  ]
+}

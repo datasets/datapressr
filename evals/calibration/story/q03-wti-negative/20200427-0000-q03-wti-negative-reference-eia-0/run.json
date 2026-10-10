@@ -1,0 +1,53 @@
+{
+  "run_id": "20200427-0000-q03-wti-negative-reference-eia-0",
+  "case_id": "q03-wti-negative",
+  "domain": "story",
+  "case_hash": "78afac2584621952bf39f0b3569dbdf206d51618391116e3a0e74ee4ab713ca6",
+  "calibration": {
+    "label": "Reference: EIA Today in Energy, 27 April 2020 (key findings as recorded in case.json)",
+    "sources": {
+      "reference": "https://www.eia.gov/todayinenergy/detail.php?id=43495",
+      "archive_url": "https://web.archive.org/web/20210106195446/https://www.eia.gov/todayinenergy/detail.php?id=43495",
+      "rendered_from": "evals/cases/story/q03-wti-negative/case.json references[0].key_findings"
+    }
+  },
+  "skill": {
+    "name": "story",
+    "ref": "e24166f6365878985c08371319522cdfc1357de2",
+    "tree": "85b0db464dbcb5791c1f66d287fb9ad02a29f94b",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "a95fb3411cc30318a7ae8538c702f5dfad73461d",
+    "dirty": true,
+    "recipe_sha256": null
+  },
+  "writer": {
+    "vendor": "reference",
+    "model": "key-findings",
+    "model_actual": null,
+    "cli_version": null,
+    "prompt_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "isolation": {
+    "canary_run_id": null,
+    "network": false,
+    "leaks": []
+  },
+  "started_at": "2020-04-27T00:00:00.000Z",
+  "duration_ms": 0,
+  "turns": null,
+  "cost_usd": null,
+  "cost_basis": null,
+  "usage": null,
+  "artefacts": [
+    {
+      "path": "site/stories/eia-wti-negative.md",
+      "sha256": "a36b6182f5287bd219c46ef7b5aa433f654832ad746db3fb64a524557b1bff29",
+      "bytes": 1706
+    }
+  ],
+  "transcript_sha256": null,
+  "workspace_sha256": null,
+  "flags": []
+}

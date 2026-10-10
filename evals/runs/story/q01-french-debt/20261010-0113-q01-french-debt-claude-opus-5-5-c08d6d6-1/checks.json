@@ -1,0 +1,80 @@
+{
+  "checker": "story",
+  "results": [
+    {
+      "id": "S1",
+      "pass": true,
+      "severity": "fail",
+      "message": "outline, chart build, 3 embedded SVG(s) and prose present",
+      "evidence": {
+        "svgs": [
+          "france-debt-ratio.svg",
+          "france-debt-deficit.svg",
+          "france-debt-spending-revenue.svg"
+        ]
+      }
+    },
+    {
+      "id": "S2",
+      "pass": true,
+      "severity": "fail",
+      "message": "570 words (budget 300–700)",
+      "evidence": {
+        "words": 570,
+        "min": 300,
+        "max": 700
+      }
+    },
+    {
+      "id": "S3",
+      "pass": false,
+      "severity": "fail",
+      "message": "3 of 28 prose number(s) on no chart and not exempt: €64.7 billion, 5.7, 7.7",
+      "evidence": {
+        "misses": [
+          {
+            "number": "€64.7 billion",
+            "context": "accounting convention the 2025 bill is €64.7 billion. France taxes a lot and spends more"
+          },
+          {
+            "number": "5.7",
+            "context": "s 57.2%, against 49.5%. France collects 5.7 points of GDP more than the EU average"
+          },
+          {
+            "number": "7.7",
+            "context": "GDP more than the EU average and spends 7.7 points more. The recent widening has t"
+          }
+        ],
+        "checked": 28,
+        "exempt": []
+      }
+    },
+    {
+      "id": "S4",
+      "pass": true,
+      "severity": "fail",
+      "message": "two offline builds reproduce 3 SVG(s) byte for byte",
+      "evidence": {
+        "svgs": [
+          "france-debt-deficit.svg",
+          "france-debt-ratio.svg",
+          "france-debt-spending-revenue.svg"
+        ]
+      }
+    },
+    {
+      "id": "S5",
+      "pass": true,
+      "severity": "fail",
+      "message": "1 input(s) identical to their pinned commits",
+      "evidence": null
+    },
+    {
+      "id": "S6",
+      "pass": true,
+      "severity": "fail",
+      "message": "not applicable: the case has no as_of",
+      "evidence": null
+    }
+  ]
+}

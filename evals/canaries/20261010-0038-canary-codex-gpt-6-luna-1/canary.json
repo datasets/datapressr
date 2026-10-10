@@ -1,0 +1,89 @@
+{
+  "run_id": "20261010-0038-canary-codex-gpt-6-luna-1",
+  "vendor": "codex",
+  "cli_version": "0.161.0",
+  "recipe_sha256": "3cbb5204a276e1473e0aa1f80d8bf8ce7c5a1273cc6c30deea1e5c0a577454cc",
+  "mode": "fixed",
+  "weakened": false,
+  "pass": true,
+  "harness_tree": "029a650f288e2431d413da6eb1eb4e706c33dea4",
+  "harness_dirty": true,
+  "model": "gpt-6-luna",
+  "model_actual": null,
+  "turns": 3,
+  "cost_usd": null,
+  "cost_basis": null,
+  "usage": {
+    "input_tokens": 38967,
+    "cached_input_tokens": 24064,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 214,
+    "reasoning_output_tokens": 0
+  },
+  "duration_ms": 6631,
+  "flags": [],
+  "probes": {
+    "shell_read_repo": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "head_repo": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_repo": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_claude": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_codex": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_agents": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_config_gh": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_ssh": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "curl": {
+      "status": "blocked",
+      "evidence": "http_code=000 exit=6"
+    },
+    "fetch": {
+      "status": "blocked",
+      "evidence": "fetch_error=ENOTFOUND"
+    },
+    "chart_offline": {
+      "status": "ok",
+      "evidence": "CHART_OK"
+    },
+    "skills": {
+      "status": "ok",
+      "evidence": "listed: imagegen, openai-docs, skill-creator, skill-installer; CLI system skills: imagegen, openai-docs, review-agent, skill-creator, skill-installer"
+    },
+    "memories": {
+      "status": "ok",
+      "evidence": "memory rows in temp home: 0; memories dir: none"
+    },
+    "session": {
+      "status": "ok",
+      "evidence": "home: auth.json, config.toml, goals_1.sqlite, installation_id, last.md, logs_2.sqlite, logs_2.sqlite-shm, logs_2.sqlite-wal, memories_1.sqlite, memories_1.sqlite-shm, memories_1.sqlite-wal, models_cache.json, queue_1.sqlite, shell_snapshots, skills, state_5.sqlite, tmp"
+    },
+    "leak_scan": {
+      "status": "ok",
+      "evidence": "Bash /Users/rgrp/src/datasets/datapressr/AGENTS.md"
+    }
+  },
+  "transcript_sha256": "e03b9be7097729ea633c123465f2f77f7e1798195549b3259d697cb2680eea17",
+  "result_text": "DONE\nSKILLS: imagegen, openai-docs, skill-creator, skill-installer\nINSTRUCTIONS: # AGENTS.md instructions for /private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-LXSclB"
+}
