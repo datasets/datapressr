@@ -16,11 +16,13 @@ import {
   allRunDirs,
   buildAbsolute,
   buildPairwise,
+  dataInventory,
   latestRubricId,
   loadRubric,
   pairResult,
   findRunDir,
   pairRuns,
+  parseCsv,
   parseRubric,
   readerProse,
   redactor,
@@ -124,7 +126,8 @@ function assertBlind(prompt, runIds) {
 test("rubric v1: reader questions first, anchors for every dimension, a pairwise section", () => {
   const text = readFileSync(join(evalsSrc, "rubrics", "story", "v1.md"), "utf8");
   const r = parseRubric(text, "story/v1");
-  assert.equal(latestRubricId(evalsSrc, "story"), "story/v1");
+  assert.equal(r.features.fixedData, false, "v1 has no fixed-data scope");
+  assert.equal(r.features.chartReading, false);
   const abs = r.sections.get("Absolute critique");
   const order = ["Reader questions.", "Missed findings.", "Charts.", "The one change.", "Would you publish it?", "Lessons.", "Checklist."].map((s) => abs.indexOf(`**${s}**`));
   assert.ok(order.every((i) => i >= 0), `every step present: ${order}`);
@@ -173,6 +176,8 @@ test("score: the skill, other run files, LESSONS.md and version identifiers neve
     assert.ok(!ap.includes("Friction notes"), "friction notes are the writer's, not the reader's");
     assert.ok(!ap.includes("2026-10-10"), "no run date (frontmatter date dropped)");
     assert.ok(!ap.includes(FEEDBACK_MARKER), "owner feedback only with --calibrate");
+    assert.ok(!qp.includes("## Fixed data") && !ap.includes("## Fixed data"), "v1 prompts carry no data inventory");
+    assert.ok(!ap.includes("set-aside"));
     assertBlind(qp, [runId]);
     assertBlind(ap, [runId]);
     // And the real story skill's text is nowhere in it.
@@ -299,6 +304,112 @@ test("buildAbsolute rejects malformed answers and restores the question wording"
   assert.match(buildAbsolute(good, { ...opts, dataMode: "open" }).errors.join(";"), /scores\.data_choice/);
   assert.ok("data_choice" in absoluteSchema("open").properties.scores.properties);
   assert.ok(!("data_choice" in absoluteSchema("fixed").properties.scores.properties));
+});
+
+test("rubric v2: fixed-data scope, chart reading, and the round-1 depth and precision anchors", () => {
+  const r = loadRubric(evalsSrc, "story/v2");
+  assert.equal(latestRubricId(evalsSrc, "story"), "story/v2");
+  assert.deepEqual(r.features, { fixedData: true, chartReading: true });
+  assert.match(r.sections.get("Fixed data"), /set aside/i);
+  assert.match(r.sections.get("Absolute critique"), /`set-aside`/);
+  for (const f of ["glance", "glance_matches_prose", "encodings", "encodings_clear"]) assert.match(r.sections.get("Chart reading"), new RegExp(`\`${f}\``));
+  const anchors = r.sections.get("Checklist anchors");
+  assert.match(anchors.split("- **depth**")[1].split("- **charts**")[0], /what it contains/);
+  assert.match(anchors.split("- **prose**")[1].split("- **data_choice**")[0], /more digits than a reader can hold/);
+  assert.match(anchors.split("- **charts**")[1].split("- **honesty**")[0], /five-second/);
+  assert.match(r.sections.get("Pairwise judgement"), /`set-aside`/);
+  // v1 stays byte-identical to its frozen hash.
+  assert.equal(loadRubric(evalsSrc, "story/v1").sha256.slice(0, 8), "86d8957b");
+});
+
+test("parseCsv and dataInventory: what the fixed-mode writer was given, from the pinned commit", () => {
+  assert.deepEqual(parseCsv('a,b\n"x, y","say ""hi"""\r\n1,\n'), [["a", "b"], ["x, y", 'say "hi"'], ["1", ""]]);
+  const files = {
+    "abcdef0:datasets/demo/datapackage.json": JSON.stringify({
+      title: "Demo values",
+      description: "A demo series.",
+      sources: [{ title: "Demo office" }],
+      resources: [{ name: "v", title: "Values", path: "data/v.csv", schema: { fields: [{ name: "year", type: "year" }, { name: "kind", type: "string", description: "Kind of value." }, { name: "value", type: "number" }] } }],
+    }),
+    "abcdef0:datasets/demo/data/v.csv": "year,kind,value\n2001,b,2\n2000,a,1\n2020,a,\n",
+  };
+  const read = (c, p) => files[`${c}:${p}`] ?? null;
+  read.list = () => [{ path: "datapackage.json", size: 10 }, { path: "data/v.csv", size: 40 }, { path: "archive/source.html", size: 4096 }];
+  const inv = dataInventory(CASE, read);
+  assert.match(inv, /writer could also read[^\n]*\n- `archive\/source\.html` \(4 KB\)$/);
+  assert.match(inv, /^## The data the writer was given/);
+  assert.match(inv, /### Demo values\n\nA demo series\./);
+  assert.match(inv, /Sources: Demo office\./);
+  assert.match(inv, /- \*\*Values\*\* \(`data\/v\.csv`, 3 rows, 2 with an observation\)/);
+  assert.match(inv, /`year` \(year\) Range: 2000 to 2001\./, "ranges cover rows with an observation");
+  assert.match(inv, /`kind` \(string\): Kind of value\. Values: a, b\./);
+  assert.match(dataInventory({ ...CASE, inputs: [{ path: "datasets/none", commit: "abcdef0" }] }, () => null), /no datapackage\.json/);
+});
+
+test("score under v2: inventory in every fixed-mode prompt, set-aside answers and chart reading recorded", async () => {
+  const { root, evalsDir, cleanup } = setup();
+  try {
+    writeFileSync(join(evalsDir, "rubrics", "story", "v2.md"), readFileSync(join(evalsSrc, "rubrics", "story", "v2.md")));
+    const runId = "20261010-0900-t01-demo-fake-fake-1abcdef-1";
+    const runDir = writeRun(evalsDir, runId);
+    const { calls, adapters } = capture();
+    const readInput = (c, p) => (p.endsWith("datapackage.json") ? JSON.stringify({ title: "INVENTORY-TITLE", resources: [] }) : null);
+    const res = await scoreRun({ root, evalsDir, runDir, rubricId: "story/v2", critic: FAKE, config, adapters, readInput, now: clock() });
+    assert.ok(res.ok, JSON.stringify(res.errors));
+    const [qc, ac] = calls;
+    for (const pr of [qc.prompt, ac.prompt]) {
+      assert.match(pr, /## Fixed data/);
+      assert.match(pr, /### INVENTORY-TITLE/);
+      assertBlind(pr, [runId]);
+    }
+    assert.ok(!qc.prompt.includes("rose from 10"), "still no story in the questions prompt");
+    assert.match(ac.prompt, /## Chart reading/);
+    assert.match(ac.prompt, /each with file, glance, glance_matches_prose, encodings, encodings_clear/);
+    assert.deepEqual(ac.jsonSchema.properties.reader_questions.items.properties.answered.enum, ["yes", "partly", "no", "set-aside"]);
+    assert.ok("encodings_clear" in ac.jsonSchema.properties.charts.items.properties);
+    const cq = JSON.parse(readFileSync(res.file, "utf8"));
+    assert.equal(cq.rubric, "story/v2");
+    assert.deepEqual(cq.reader_questions.at(-1), { q: "What would make it better or worse?", answered: "set-aside", where: "" });
+    assert.equal(cq.charts[0].glance, "a fake glance");
+    assert.match(readFileSync(res.file.replace(/\.json$/, ".md"), "utf8"), /\| 5 \| What would make it better or worse\? \| set-aside \|/);
+
+    // Open mode: no inventory, no set-aside; chart reading still applies.
+    writeFileSync(join(evalsDir, "cases", "story", CASE.id, "case.json"), JSON.stringify({ ...CASE, data_mode: "open" }));
+    const open = capture();
+    const r2 = await scoreRun({ root, evalsDir, runDir, rubricId: "story/v2", critic: FAKE, config, adapters: open.adapters, readInput, now: clock() });
+    assert.ok(r2.ok, JSON.stringify(r2.errors));
+    assert.ok(!open.calls[1].prompt.includes("## Fixed data"));
+    assert.deepEqual(open.calls[1].jsonSchema.properties.reader_questions.items.properties.answered.enum, ["yes", "partly", "no"]);
+    assert.match(open.calls[1].prompt, /## Chart reading/);
+  } finally {
+    cleanup();
+  }
+});
+
+test("buildAbsolute: set-aside only when offered, chart-reading fields required when on", () => {
+  const questions = ["Q1?", "Q2?", "Q3?", "Q4?", "Q5?"];
+  const out = {
+    reader_questions: questions.map((q) => ({ q, answered: "set-aside", where: "x" })),
+    missed_findings: [],
+    charts: [{ file: "a.svg", shows: "x", form_fits: true, fix: "" }],
+    top_change: "t",
+    publishable: "no",
+    lessons: [],
+    scores: Object.fromEntries(SCORE_DIMENSIONS.map((d) => [d, { score: 0, why: "w" }])),
+  };
+  const opts = { rubric: "story/v2", critic: { ...FAKE, model_actual: null }, questions, dataMode: "fixed" };
+  assert.match(buildAbsolute(out, opts).errors.join(";"), /answered: must be one of yes, partly, no$/m);
+  const ok = buildAbsolute(out, { ...opts, answers: ["yes", "partly", "no", "set-aside"] });
+  assert.ok(ok.ok, ok.errors.join(";"));
+  assert.equal(ok.critique.reader_questions[0].where, "", "no where for a set-aside question");
+  const cr = { ...opts, answers: ["yes", "partly", "no", "set-aside"], chartReading: true };
+  assert.match(buildAbsolute(out, cr).errors.join(";"), /charts\[0\]\.glance: must be a non-empty string/);
+  const full = structuredClone(out);
+  Object.assign(full.charts[0], { glance: "g", glance_matches_prose: false, encodings: "blue = revenue", encodings_clear: false });
+  assert.ok(buildAbsolute(full, cr).ok);
+  const pw = { reader_questions: questions.map((q) => ({ q, story_1: "set-aside", story_2: "set-aside" })), why: "w", preferred: "tie", margin: null };
+  assert.equal(buildPairwise(pw, { rubric: "story/v2", critic: { ...FAKE, model_actual: null }, questions, order: "AB" }).ok, false);
+  assert.ok(buildPairwise(pw, { rubric: "story/v2", critic: { ...FAKE, model_actual: null }, questions, order: "AB", answers: ["yes", "partly", "no", "set-aside"] }).ok);
 });
 
 // --- Rendering -------------------------------------------------------------------------------
@@ -453,14 +564,15 @@ test("score and pair with --critic fake through the CLI, on fake-writer runs", (
     const s = cli(["score", ids[0], "--critic", "fake"]);
     assert.equal(s.status, 0, s.stderr);
     assert.match(s.stdout, /publishable with-edits/);
-    assert.ok(existsSync(join(caseRuns, ids[0], "critique-v1-1.md")));
+    assert.ok(existsSync(join(caseRuns, ids[0], "critique-v2-1.md")), "the latest rubric (v2) by default");
+    assert.match(readFileSync(join(caseRuns, ids[0], "critique-v2-1.md"), "utf8"), /At a glance: a fake glance/);
     assert.notEqual(cli(["score", ids[0]]).status, 0, "auto refuses a fake writer");
     const p = cli(["pair", ids[0], ids[1], "--critic", "fake"]);
     assert.equal(p.status, 0, p.stderr);
     assert.match(p.stdout, /a tie/, "two identical fake stories tie");
     const rows = readLedger(join(root, "evals/ledger.jsonl"));
     assert.deepEqual(rows.map((r) => r.kind), ["run", "check", "run", "check", "score", "pair"]);
-    assert.match(readFileSync(join(root, "evals/REPORT.md"), "utf8"), /Absolute scores, rubric story\/v1/);
+    assert.match(readFileSync(join(root, "evals/REPORT.md"), "utf8"), /Absolute scores, rubric story\/v2/);
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

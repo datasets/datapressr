@@ -6,7 +6,7 @@ House style: plain Node, no build step, no npm dependencies; results are files i
 
 ## Status
 
-Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and the isolation canary (`datapressr-hcn.3`), the Codex writer and automatic critic vendor choice (`datapressr-hcn.4`), the full report and owner capture (`datapressr-hcn.9`), the critic with its v1 rubric, `score` and `pair` (`datapressr-hcn.5`), and the critic's calibration on France (`datapressr-hcn.8`; results in [`LESSONS.md`](LESSONS.md#critic-calibration): held-out hit rate 0 of 5, negative control passes, `story/v1` frozen). What works today:
+Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and the isolation canary (`datapressr-hcn.3`), the Codex writer and automatic critic vendor choice (`datapressr-hcn.4`), the full report and owner capture (`datapressr-hcn.9`), the critic with its v1 rubric, `score` and `pair` (`datapressr-hcn.5`), the critic's calibration on France (`datapressr-hcn.8`; results in [`LESSONS.md`](LESSONS.md#critic-calibration): held-out hit rate 0 of 5, negative control passes, `story/v1` frozen), and rubric `story/v2` (`datapressr-hcn.21`: fixed-mode scope, chart reading, round-1 anchors; re-calibrated in `LESSONS.md`, no longer a held-out test). What works today:
 
 ```sh
 node evals/run.mjs run story/q01-french-debt --writer fake     # free plumbing test
@@ -16,8 +16,8 @@ node evals/run.mjs run story/q01-french-debt --writer claude   # paid (caps in c
 node evals/run.mjs canary --writer codex                       # tokens only (about 40k input, mostly cached, on gpt-6-luna); required before any Codex run
 node evals/run.mjs canary --writer codex --weaken              # negative control: real HOME, so ~/.agents/skills load; must FAIL
 node evals/run.mjs critic-choice --writer claude               # free: which critic vendor and model `score` would use, and why
-node evals/run.mjs score <run_id|--all> [--critic auto|claude|codex|fake] [--critic-model <id>] [--rubric story/v1] [--calibrate] [--png]
-node evals/run.mjs pair <run_id> <run_id> [--critic auto|claude|codex|fake] [--critic-model <id>] [--rubric story/v1] [--calibrate]
+node evals/run.mjs score <run_id|--all> [--critic auto|claude|codex|fake] [--critic-model <id>] [--rubric story/v2] [--calibrate] [--png]
+node evals/run.mjs pair <run_id> <run_id> [--critic auto|claude|codex|fake] [--critic-model <id>] [--rubric story/v2] [--calibrate]
 node evals/run.mjs check <run_id|--all>                       # deterministic checks: checks.json + a ledger row
 node evals/run.mjs report                                      # regenerate evals/REPORT.md (also: npm run eval:report)
 node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md   # blind owner judgement, then reveal
@@ -89,10 +89,12 @@ A run id is `<YYYYMMDD-HHMM>-<case>-<vendor>-<model-short>-<skill7>-<n>` (UTC). 
 
 ## The critic
 
-`score` and `pair` (`lib/critic.mjs`, design section 5.2). The rubric (`rubrics/story/v1.md`) makes the critic the reader who commissioned the story. Each critique is two calls: first the critic writes five to eight reader questions from the case question alone, before it sees any story; then it reads the story (or both) with those questions fixed in the prompt.
+`score` and `pair` (`lib/critic.mjs`, design section 5.2). The rubric (`rubrics/story/v2.md` by default, the highest version; `--rubric story/v1` for the frozen first one) makes the critic the reader who commissioned the story. Each critique is two calls: first the critic writes five to eight reader questions from the case question alone, before it sees any story; then it reads the story (or both) with those questions fixed in the prompt.
 
 - **Absolute** (`score`): the questions marked yes/partly/no with where; the strongest findings missed; chart by chart, what it shows, whether its form fits and one fix; the one change that matters most; would you publish (`yes`, `with-edits`, `no`); at most five rule-shaped lessons; and last the 0-2 checklist (`argument`, `depth`, `charts`, `honesty`, `reader_questions`, `prose`, plus `data_choice` in open mode). Writes `critique-<version>-<n>.json` and `.md` in the run directory (findings first, checklist last; re-scoring adds `-2`, `-3`) and a `score` row with the scores, the critic and the cost.
 - **Pairwise** (`pair`): both runs must be of the same case. A coin toss decides which is `A`; `pairs/<pair_id>/A` and `B` get the reader prose (title-only frontmatter, no friction notes) and the SVGs it embeds. The critic judges twice, order `AB` then `BA`; it sees the stories by position as Story 1 and Story 2 and answers which it would publish with fewer edits (`1`, `2` or `tie`), the margin (`clear` or `slight`), why, and the reader questions each answers. The stored judgements use the pair's labels (`shown` records which label held each position). The `pair` row's result is a win only when both orders prefer the same run; a split is a tie.
+
+Rubric v2 adds two optional sections that switch on harness behaviour. `## Fixed data`: in fixed mode every step (questions, absolute, pairwise) also gets an inventory of what the writer was given, built deterministically from each input's `datapackage.json` and CSVs at the pinned commit (`dataInventory`: titles, sources, rows, field descriptions, year and date ranges over rows with an observation, values of text fields with at most 20 distinct values); reader questions may then be answered `set-aside` when they need evidence outside that data, and set-aside questions do not count against the story. `## Chart reading`: each chart in an absolute critique also records `glance` (what a reader concludes in five seconds), `glance_matches_prose`, `encodings` (what each colour, marker and line style means and how a reader finds out) and `encodings_clear`.
 
 What the critic sees: the rubric's sections for the step (never its header), the case question, type, data mode, as_of and word budget, the case's references, and the story: outline (absolute mode only), prose, each embedded SVG as source (long path data elided, so colours and markers stay) with the text labels drawn on it, and `DATA.md` in open mode. Owner feedback only with `--calibrate`. It never sees the skill, other files in the run (run.json, checks, earlier critiques, transcripts), `LESSONS.md`, run dates, or any run id, skill or harness tree or skill ref; those are redacted wherever they appear in the material. The tests in `lib/critic.test.mjs` prove this with marker files.
 

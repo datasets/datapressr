@@ -2,8 +2,8 @@
 // absolute and order-swapped pairwise modes, JSON validation with one retry, and Markdown
 // rendering. Subcommands:
 //
-//   score <run_id|--all> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
-//   pair <run_id> <run_id> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
+//   score <run_id|--all> [--rubric story/v2] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
+//   pair <run_id> <run_id> [--rubric story/v2] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
 //
 // Every critique takes two calls per mode. First the critic writes the commissioning reader's
 // questions from the case question alone, before it sees any story (review issue 4); then it
@@ -13,10 +13,14 @@
 // and as_of, the case's references, the story's outline (absolute mode only), its prose with the
 // friction notes and frontmatter (except the title) removed, each embedded SVG as its source
 // (long path data elided) plus the text labels drawn on it, and DATA.md in open mode. Owner
-// feedback only with --calibrate. Never: the skill, other runs, earlier critiques, LESSONS.md,
+// feedback only with --calibrate. With a rubric that has a "## Fixed data" section (story/v2 on),
+// a fixed-mode critique also gets an inventory of the case's inputs (dataInventory) and may mark a
+// reader question set-aside; with "## Chart reading", each chart records what a reader sees at a
+// glance and what its encodings mean. Never: the skill, other runs, earlier critiques, LESSONS.md,
 // and never run ids, skill or harness trees, skill refs or run dates (redacted wherever they
 // appear in the material).
 
+import { execFileSync } from "node:child_process";
 import { randomInt } from "node:crypto";
 import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -34,6 +38,7 @@ import { sha256 } from "./versions.mjs";
 
 export const CRITIC_ADAPTERS = { claude, codex, fake };
 const ANSWERS = ["yes", "partly", "no"];
+const SET_ASIDE = "set-aside";
 const QUESTIONS_MIN = 5;
 const QUESTIONS_MAX = 8;
 const STORIES_DIR = "site/stories";
@@ -75,7 +80,9 @@ export function parseRubric(text, id) {
     if (!sections.get(s)) throw new Error(`rubric ${id} has no "## ${s}" section`);
   }
   if (!typeRules.get("All types")) throw new Error(`rubric ${id} has no "### All types" under Type rules`);
-  return { id, sha256: sha256(text), sections, typeRules };
+  // Optional sections that switch on harness behaviour (story/v2 on).
+  const features = { fixedData: Boolean(sections.get("Fixed data")), chartReading: Boolean(sections.get("Chart reading")) };
+  return { id, sha256: sha256(text), sections, typeRules, features };
 }
 
 export function rubricPath(evalsDir, id) {
@@ -102,6 +109,148 @@ function typeRulesText(rubric, type) {
   const parts = [`### All types\n\n${rubric.typeRules.get("All types")}`];
   if (rubric.typeRules.get(type)) parts.push(`### ${type}\n\n${rubric.typeRules.get(type)}`);
   return parts.join("\n\n");
+}
+
+// Fixed-mode scope applies when the rubric has "## Fixed data" and the case's data is fixed.
+const scoped = (rubric, kase) => Boolean(rubric.features?.fixedData) && kase.data_mode !== "open";
+
+// The answers a critic may give a reader question under this rubric and case.
+export function answersFor(rubric, kase) {
+  return scoped(rubric, kase) ? [...ANSWERS, SET_ASIDE] : ANSWERS;
+}
+
+// --- Data inventory (fixed mode, rubrics with "## Fixed data") ------------------------------
+
+// Minimal RFC 4180 parser: rows of fields.
+export function parseCsv(text) {
+  const rows = [];
+  let row = [];
+  let f = "";
+  let q = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) {
+      if (ch === '"' && text[i + 1] === '"') {
+        f += '"';
+        i++;
+      } else if (ch === '"') q = false;
+      else f += ch;
+    } else if (ch === '"') q = true;
+    else if (ch === ",") {
+      row.push(f);
+      f = "";
+    } else if (ch === "\n" || ch === "\r") {
+      if (ch === "\r" && text[i + 1] === "\n") i++;
+      row.push(f);
+      rows.push(row);
+      row = [];
+      f = "";
+    } else f += ch;
+  }
+  if (f !== "" || row.length) {
+    row.push(f);
+    rows.push(row);
+  }
+  return rows;
+}
+
+// Read <path> at <commit> from git; null when it does not exist. `.list(commit, dir)` gives
+// every file under dir at commit as { path (relative to dir), size }.
+export function gitReadInput(root) {
+  const git = (args) => execFileSync("git", args, { cwd: root, encoding: "utf8", maxBuffer: 256 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"] });
+  const read = (commit, path) => {
+    try {
+      return git(["show", `${commit}:${path}`]);
+    } catch {
+      return null;
+    }
+  };
+  read.list = (commit, dir) => {
+    try {
+      return git(["ls-tree", "-r", "-l", commit, "--", `${dir}/`])
+        .split("\n")
+        .filter(Boolean)
+        .map((l) => l.match(/^\S+ blob \S+\s+(\d+)\t(.+)$/))
+        .filter(Boolean)
+        .map((m) => ({ path: m[2].slice(dir.length + 1), size: Number(m[1]) }));
+    } catch {
+      return [];
+    }
+  };
+  return read;
+}
+
+const MAX_LISTED_FILES = 40;
+
+const MAX_LISTED_VALUES = 20;
+
+// What a fixed-mode writer was given, for the critic: per input, the datapackage's title,
+// description and sources, and per resource its rows, fields (type, description), the range of
+// year and date fields and the values of low-cardinality text fields. Deterministic: read from
+// git at the pinned commits. `read(commit, path)` returns the file text or null.
+export function dataInventory(kase, read) {
+  const parts = ["## The data the writer was given", "", "The writer had these inputs, as of the commits pinned for this commission, and nothing else: no web access and no other datasets."];
+  for (const input of kase.inputs ?? []) {
+    const dir = input.path.replace(/\/+$/, "");
+    const dpText = read(input.commit, `${dir}/datapackage.json`);
+    if (!dpText) {
+      parts.push("", `### \`${dir}\``, "", "(no datapackage.json; contents not described)");
+      continue;
+    }
+    const dp = JSON.parse(dpText);
+    parts.push("", `### ${dp.title ?? dp.name ?? dir}`, "");
+    if (dp.description) parts.push(dp.description, "");
+    if (dp.sources?.length) parts.push(`Sources: ${dp.sources.map((s) => s.title ?? s.path).join("; ")}.`, "");
+    for (const r of dp.resources ?? []) {
+      const fields = r.schema?.fields ?? [];
+      const text = typeof r.path === "string" && /\.csv$/i.test(r.path) ? read(input.commit, `${dir}/${r.path}`) : null;
+      const rows = text ? parseCsv(text).filter((x) => x.length > 1 || x[0] !== "") : null;
+      const header = rows?.[0] ?? [];
+      const colOf = (name) => header.indexOf(name);
+      // Rows with an observation: when the resource has number fields, at least one is filled
+      // (so a year range reflects data, not empty placeholder rows).
+      const numCols = fields.filter((f) => f.type === "number").map((f) => colOf(f.name)).filter((i) => i >= 0);
+      const all = rows ? rows.slice(1) : [];
+      const observed = numCols.length ? all.filter((x) => numCols.some((i) => (x[i] ?? "") !== "")) : all;
+      const head = `- **${r.title ?? r.name}** (\`${r.path}\`${rows ? `, ${all.length} rows${observed.length !== all.length ? `, ${observed.length} with an observation` : ""}` : ""})`;
+      parts.push(head);
+      for (const f of fields) {
+        let extra = "";
+        const ci = colOf(f.name);
+        if (rows && ci >= 0) {
+          const vals = observed.map((x) => x[ci] ?? "").filter((v) => v !== "");
+          const distinct = [...new Set(vals)];
+          if (["year", "date", "datetime", "yearmonth"].includes(f.type) && distinct.length) {
+            const sorted = [...distinct].sort();
+            extra = ` Range: ${sorted[0]} to ${sorted[sorted.length - 1]}.`;
+          } else if (f.type === "string" || f.type === "integer") {
+            if (distinct.length && distinct.length <= MAX_LISTED_VALUES) extra = ` Values: ${distinct.sort().join(", ")}.`;
+            else if (distinct.length) extra = ` ${distinct.length} distinct values.`;
+          }
+        }
+        parts.push(`  - \`${f.name}\` (${f.type ?? "any"})${f.description ? `: ${f.description}` : ""}${extra}`);
+      }
+    }
+    // Everything else in the input (archived source pages, notes, scripts): the writer could read
+    // it, so claims drawn from it are within the data.
+    const listed = new Set(["datapackage.json", ...(dp.resources ?? []).map((r) => r.path)]);
+    const others = (read.list?.(input.commit, dir) ?? []).filter((f) => !listed.has(f.path));
+    if (others.length) {
+      parts.push("", "Other files in this input, which the writer could also read (archived source pages, notes, scripts); a claim drawn from them and attributed is within the data:");
+      for (const f of others.slice(0, MAX_LISTED_FILES)) parts.push(`- \`${f.path}\` (${f.size < 1024 ? `${f.size} B` : `${Math.round(f.size / 1024)} KB`})`);
+      if (others.length > MAX_LISTED_FILES) parts.push(`- and ${others.length - MAX_LISTED_FILES} more`);
+    }
+  }
+  return parts.join("\n");
+}
+
+function fixedDataBlock(rubric, kase, inventory) {
+  if (!scoped(rubric, kase)) return null;
+  return `## Fixed data\n\n${rubric.sections.get("Fixed data")}\n\n${inventory ?? "## The data the writer was given\n\n(not described)"}`;
+}
+
+function chartReadingBlock(rubric) {
+  return rubric.features?.chartReading ? `## Chart reading\n\n${rubric.sections.get("Chart reading")}` : null;
 }
 
 // --- Material -----------------------------------------------------------------------
@@ -231,37 +380,43 @@ function storyBlock(label, m, { outline, images = false }) {
 
 const join2 = (parts) => `${parts.filter(Boolean).join("\n\n")}\n`;
 
-export function questionsPrompt({ rubric, kase }) {
+export function questionsPrompt({ rubric, kase, inventory }) {
   return join2([
     rubric.sections.get("Role"),
     `## Your task\n\n${rubric.sections.get("Reader questions")}`,
     commissionBlock(kase),
+    fixedDataBlock(rubric, kase, inventory),
     `Answer with JSON only: {"questions": [...]} with ${QUESTIONS_MIN} to ${QUESTIONS_MAX} questions.`,
   ]);
 }
 
-export function absolutePrompt({ rubric, kase, questions, material, feedback, images = false }) {
+export function absolutePrompt({ rubric, kase, questions, material, feedback, images = false, inventory }) {
   const dims = kase.data_mode === "open" ? [...SCORE_DIMENSIONS, ...OPEN_MODE_DIMENSIONS] : SCORE_DIMENSIONS;
+  const chartFields = rubric.features?.chartReading ? "file, glance, glance_matches_prose, encodings, encodings_clear, shows, form_fits, fix" : null;
   return join2([
     rubric.sections.get("Role"),
     `## Your task\n\n${rubric.sections.get("Absolute critique")}`,
+    chartReadingBlock(rubric),
     `## Checklist anchors\n\n${rubric.sections.get("Checklist anchors")}`,
     `## Type rules\n\n${typeRulesText(rubric, kase.type)}`,
     commissionBlock(kase),
+    fixedDataBlock(rubric, kase, inventory),
     `## Your reader questions (written before you read the story)\n\n${questionList(questions)}`,
     referencesBlock(kase),
     feedbackBlock(feedback),
     `## The story\n\n${storyBlock("STORY", material, { outline: true, images })}`,
-    `Answer with JSON only, fields in this order: reader_questions (all ${questions.length}, in order), missed_findings, charts (one per embedded chart, in order), top_change, publishable, lessons (at most 5), scores (${dims.join(", ")}).`,
+    `Answer with JSON only, fields in this order: reader_questions (all ${questions.length}, in order), missed_findings, charts (one per embedded chart, in order${chartFields ? `; each with ${chartFields}` : ""}), top_change, publishable, lessons (at most 5), scores (${dims.join(", ")}).`,
   ]);
 }
 
-export function pairwisePrompt({ rubric, kase, questions, first, second, feedback }) {
+export function pairwisePrompt({ rubric, kase, questions, first, second, feedback, inventory }) {
   return join2([
     rubric.sections.get("Role"),
     `## Your task\n\n${rubric.sections.get("Pairwise judgement")}`,
+    chartReadingBlock(rubric),
     `## Type rules\n\n${typeRulesText(rubric, kase.type)}`,
     commissionBlock(kase),
+    fixedDataBlock(rubric, kase, inventory),
     `## Your reader questions (written before you read either story)\n\n${questionList(questions)}`,
     referencesBlock(kase),
     feedbackBlock(feedback),
@@ -275,18 +430,22 @@ export function pairwisePrompt({ rubric, kase, questions, first, second, feedbac
 
 const obj = (properties) => ({ type: "object", additionalProperties: false, required: Object.keys(properties), properties });
 const str = { type: "string" };
-const answer = { type: "string", enum: ANSWERS };
+const answerOf = (answers = ANSWERS) => ({ type: "string", enum: answers });
 
 export function questionsSchema() {
   return obj({ questions: { type: "array", items: str } });
 }
 
-export function absoluteSchema(dataMode = "fixed") {
+export function absoluteSchema(dataMode = "fixed", { answers = ANSWERS, chartReading = false } = {}) {
   const dims = dataMode === "open" ? [...SCORE_DIMENSIONS, ...OPEN_MODE_DIMENSIONS] : SCORE_DIMENSIONS;
+  const bool = { type: "boolean" };
+  const chart = chartReading
+    ? obj({ file: str, glance: str, glance_matches_prose: bool, encodings: str, encodings_clear: bool, shows: str, form_fits: bool, fix: str })
+    : obj({ file: str, shows: str, form_fits: bool, fix: str });
   return obj({
-    reader_questions: { type: "array", items: obj({ q: str, answered: answer, where: str }) },
+    reader_questions: { type: "array", items: obj({ q: str, answered: answerOf(answers), where: str }) },
     missed_findings: { type: "array", items: str },
-    charts: { type: "array", items: obj({ file: str, shows: str, form_fits: { type: "boolean" }, fix: str }) },
+    charts: { type: "array", items: chart },
     top_change: str,
     publishable: { type: "string", enum: ["yes", "with-edits", "no"] },
     lessons: { type: "array", items: obj({ rule: str, evidence: str }) },
@@ -294,9 +453,9 @@ export function absoluteSchema(dataMode = "fixed") {
   });
 }
 
-export function pairwiseSchema() {
+export function pairwiseSchema({ answers = ANSWERS } = {}) {
   return obj({
-    reader_questions: { type: "array", items: obj({ q: str, story_1: answer, story_2: answer }) },
+    reader_questions: { type: "array", items: obj({ q: str, story_1: answerOf(answers), story_2: answerOf(answers) }) },
     why: str,
     preferred: { type: "string", enum: ["1", "2", "tie"] },
     margin: { type: ["string", "null"], enum: ["clear", "slight", null] },
@@ -318,13 +477,18 @@ export function validateQuestions(out) {
 
 // The critic's answer must mark every question, in order; the question text is then restored to
 // the original wording (a model may re-punctuate when it copies).
-function checkQuestionsAnswered(list, questions, errors) {
+function checkQuestionsAnswered(list, questions, errors, answers = ANSWERS, keys = ["answered"]) {
   if (!Array.isArray(list)) return;
   if (list.length !== questions.length) errors.push(`reader_questions: want ${questions.length} (one per question, in order), got ${list.length}`);
+  list.forEach((r, i) => {
+    for (const k of keys) if (r && typeof r === "object" && !answers.includes(r[k])) errors.push(`reader_questions[${i}].${k}: must be one of ${answers.join(", ")}`);
+  });
 }
 
+const CHART_READING_FIELDS = { glance: "string", glance_matches_prose: "boolean", encodings: "string", encodings_clear: "boolean" };
+
 // Build the stored absolute critique from the critic's output; returns { ok, errors, critique }.
-export function buildAbsolute(output, { rubric, critic, questions, dataMode, calibrate = false }) {
+export function buildAbsolute(output, { rubric, critic, questions, dataMode, calibrate = false, answers = ANSWERS, chartReading = false }) {
   if (output === null || typeof output !== "object" || Array.isArray(output)) return { ok: false, errors: ["output: must be an object"], critique: null };
   const critique = {
     rubric,
@@ -341,9 +505,14 @@ export function buildAbsolute(output, { rubric, critic, questions, dataMode, cal
   };
   const v = validateCritiqueAbsolute(critique, { data_mode: dataMode });
   const errors = [...v.errors];
-  checkQuestionsAnswered(output.reader_questions, questions, errors);
+  checkQuestionsAnswered(output.reader_questions, questions, errors, answers);
+  if (chartReading && Array.isArray(output.charts)) {
+    output.charts.forEach((ch, i) => {
+      for (const [k, t] of Object.entries(CHART_READING_FIELDS)) if (typeof ch?.[k] !== t || (t === "string" && !ch[k].trim())) errors.push(`charts[${i}].${k}: must be a ${t === "string" ? "non-empty string" : t}`);
+    });
+  }
   if (errors.length) return { ok: false, errors, critique: null };
-  critique.reader_questions = output.reader_questions.map((r, i) => ({ q: questions[i], answered: r.answered, where: r.answered === "no" ? "" : r.where ?? "" }));
+  critique.reader_questions = output.reader_questions.map((r, i) => ({ q: questions[i], answered: r.answered, where: r.answered === "no" || r.answered === SET_ASIDE ? "" : r.where ?? "" }));
   if (dataMode !== "open") for (const d of OPEN_MODE_DIMENSIONS) delete critique.scores[d];
   return { ok: true, errors: [], critique };
 }
@@ -352,7 +521,7 @@ export function buildAbsolute(output, { rubric, critic, questions, dataMode, cal
 // answers in those terms; the stored critique uses the pair's labels (order "AB": pair A was
 // Story 1; "BA": pair B was Story 1), keeps the critic's own text verbatim, and records in
 // `shown` which pair label each position held, so "Story 1" in `why` can be read.
-export function buildPairwise(output, { rubric, critic, questions, order, calibrate = false }) {
+export function buildPairwise(output, { rubric, critic, questions, order, calibrate = false, answers = ANSWERS }) {
   if (output === null || typeof output !== "object" || Array.isArray(output)) return { ok: false, errors: ["output: must be an object"], critique: null };
   const shown = order === "AB" ? { 1: "A", 2: "B" } : { 1: "B", 2: "A" };
   const errors = [];
@@ -375,7 +544,7 @@ export function buildPairwise(output, { rubric, critic, questions, order, calibr
   };
   if (!errors.length) errors.push(...validateCritiquePairwise(critique).errors);
   if (output.preferred !== "tie" && !["clear", "slight"].includes(output.margin)) errors.push("margin: must be clear or slight when a story is preferred");
-  checkQuestionsAnswered(output.reader_questions, questions, errors);
+  checkQuestionsAnswered(output.reader_questions, questions, errors, answers, ["story_1", "story_2"]);
   if (errors.length) return { ok: false, errors, critique: null };
   critique.reader_questions = critique.reader_questions.map((r, i) => ({ ...r, q: questions[i] }));
   return { ok: true, errors: [], critique };
@@ -489,7 +658,9 @@ export function renderCritique(cq, { runId } = {}) {
   out.push("", "## Charts", "");
   if (!cq.charts.length) out.push("No charts.", "");
   for (const ch of cq.charts) {
-    out.push(`### ${ch.file}`, "", `- Shows: ${ch.shows}`, `- Form fits the point: ${yesNo(ch.form_fits)}`, `- Fix: ${ch.fix ? ch.fix : "none"}`, "");
+    out.push(`### ${ch.file}`, "");
+    if (typeof ch.glance === "string") out.push(`- At a glance: ${ch.glance}`, `- Glance matches the prose: ${yesNo(ch.glance_matches_prose)}`, `- Encodings: ${ch.encodings}`, `- Encodings clear from the chart: ${yesNo(ch.encodings_clear)}`);
+    out.push(`- Shows: ${ch.shows}`, `- Form fits the point: ${yesNo(ch.form_fits)}`, `- Fix: ${ch.fix ? ch.fix : "none"}`, "");
   }
   out.push("## The one change that matters most", "", cq.top_change, "", "## Would the commissioning reader publish it?", "", cq.publishable, "", "## Lessons", "");
   if (cq.lessons.length) cq.lessons.forEach((l, i) => out.push(`${i + 1}. ${l.rule} Evidence: ${l.evidence}`));
@@ -549,8 +720,8 @@ function criticArgs({ critic, config, root, kind, prompt, jsonSchema, meta, imag
   };
 }
 
-async function askQuestions({ rubric, kase, critic, adapter, config, root, costs }) {
-  const prompt = questionsPrompt({ rubric, kase });
+async function askQuestions({ rubric, kase, critic, adapter, config, root, costs, inventory }) {
+  const prompt = questionsPrompt({ rubric, kase, inventory });
   const res = await callWithRetry({
     adapter,
     costs,
@@ -568,7 +739,7 @@ const withCost = (critic, costs) => ({ ...critic, model_actual: costs.get().mode
 // Absolute critique of one run: critique-<version>-<n>.json and .md in the run directory and a
 // `score` ledger row (status critic_failed, with the errors, when two attempts fail).
 // png: attach PNG renders of the charts (lib/render.mjs; Codex critic only, which takes images).
-export async function scoreRun({ root, evalsDir, runDir, rubricId, critic, calibrate = false, png = false, config, adapters = CRITIC_ADAPTERS, renderer = render, now = () => new Date(), log = () => {} }) {
+export async function scoreRun({ root, evalsDir, runDir, rubricId, critic, calibrate = false, png = false, config, adapters = CRITIC_ADAPTERS, renderer = render, readInput = gitReadInput(root), now = () => new Date(), log = () => {} }) {
   const run = readRun(runDir);
   const kase = readCase(evalsDir, run.domain, run.case_id);
   const rubric = loadRubric(evalsDir, rubricId ?? latestRubricId(evalsDir, run.domain));
@@ -577,6 +748,9 @@ export async function scoreRun({ root, evalsDir, runDir, rubricId, critic, calib
   const redact = redactor([run]);
   const material = storyMaterial(runDir, { dataMode: kase.data_mode, redact });
   const feedback = calibrate ? readOwnerFeedback(root, kase) : null;
+  const inventory = scoped(rubric, kase) ? dataInventory(kase, readInput) : null;
+  const answers = answersFor(rubric, kase);
+  const chartReading = Boolean(rubric.features?.chartReading);
   let images = [];
   let imageDir = null;
   if (png) {
@@ -590,18 +764,18 @@ export async function scoreRun({ root, evalsDir, runDir, rubricId, critic, calib
   const base = { kind: "score", run_id: run.run_id, rubric: rubric.id, rubric_sha256: rubric.sha256, ...(calibrate ? { calibrate: true } : {}), ...(png ? { png: true } : {}) };
 
   log(`scoring ${run.run_id} with ${critic.vendor} ${critic.model} (rubric ${rubric.id})`);
-  const q = await askQuestions({ rubric, kase, critic, adapter, config, root, costs });
+  const q = await askQuestions({ rubric, kase, critic, adapter, config, root, costs, inventory });
   let result = q.ok ? null : { ok: false, errors: q.errors.map((e) => `questions: ${e}`) };
   let prompt = null;
   if (q.ok) {
-    prompt = absolutePrompt({ rubric, kase, questions: q.value, material, feedback, images: images.length > 0 });
-    const meta = { questions: q.value, charts: material.charts.map((c) => c.file), dataMode: kase.data_mode };
+    prompt = absolutePrompt({ rubric, kase, questions: q.value, material, feedback, images: images.length > 0, inventory });
+    const meta = { questions: q.value, charts: material.charts.map((c) => c.file), dataMode: kase.data_mode, answers, chartReading };
     result = await callWithRetry({
       adapter,
       costs,
-      args: criticArgs({ critic, config, root, kind: "absolute", prompt, jsonSchema: absoluteSchema(kase.data_mode), meta, images }),
+      args: criticArgs({ critic, config, root, kind: "absolute", prompt, jsonSchema: absoluteSchema(kase.data_mode, { answers, chartReading }), meta, images }),
       build: (o) => {
-        const b = buildAbsolute(o, { rubric: rubric.id, critic: withCost(critic, costs), questions: q.value, dataMode: kase.data_mode, calibrate });
+        const b = buildAbsolute(o, { rubric: rubric.id, critic: withCost(critic, costs), questions: q.value, dataMode: kase.data_mode, calibrate, answers, chartReading });
         return b.ok ? { ok: true, value: b.critique } : b;
       },
     });
@@ -655,7 +829,7 @@ function writeBlindCopy(dir, m) {
 // evals/pairs/<pair_id>/A and B (prose and charts only), mapping.json (gitignored), the two
 // judgements and critique.md, and appends a `pair` row. `random()` returns 0 or 1 (1 swaps which
 // run is A); injectable for tests.
-export async function pairRuns({ root, evalsDir, runDirs, rubricId, critic, calibrate = false, config, adapters = CRITIC_ADAPTERS, now = () => new Date(), random = () => randomInt(2), log = () => {} }) {
+export async function pairRuns({ root, evalsDir, runDirs, rubricId, critic, calibrate = false, config, adapters = CRITIC_ADAPTERS, readInput = gitReadInput(root), now = () => new Date(), random = () => randomInt(2), log = () => {} }) {
   if (runDirs.length !== 2) throw new Error("pair needs exactly two runs");
   const runs = runDirs.map(readRun);
   if (runs[0].run_id === runs[1].run_id) throw new Error("pair needs two different runs");
@@ -667,6 +841,8 @@ export async function pairRuns({ root, evalsDir, runDirs, rubricId, critic, cali
   const redact = redactor(runs);
   const materials = runDirs.map((d) => storyMaterial(d, { dataMode: kase.data_mode, redact }));
   const feedback = calibrate ? readOwnerFeedback(root, kase) : null;
+  const inventory = scoped(rubric, kase) ? dataInventory(kase, readInput) : null;
+  const answers = answersFor(rubric, kase);
 
   const swap = random() === 1;
   const mapping = { A: runs[swap ? 1 : 0].run_id, B: runs[swap ? 0 : 1].run_id };
@@ -686,20 +862,20 @@ export async function pairRuns({ root, evalsDir, runDirs, rubricId, critic, cali
 
   const costs = tally();
   try {
-    const q = await askQuestions({ rubric, kase, critic, adapter, config, root, costs });
+    const q = await askQuestions({ rubric, kase, critic, adapter, config, root, costs, inventory });
     if (!q.ok) throw new Error(`critic_failed writing reader questions: ${q.errors.join(" | ")}`);
     const judgements = [];
     for (const order of ["AB", "BA"]) {
       const [first, second] = order === "AB" ? [byLabel.A, byLabel.B] : [byLabel.B, byLabel.A];
-      const prompt = pairwisePrompt({ rubric, kase, questions: q.value, first, second, feedback });
+      const prompt = pairwisePrompt({ rubric, kase, questions: q.value, first, second, feedback, inventory });
       const len = (m) => m.prose.length;
-      const meta = { questions: q.value, lengths: { 1: len(first), 2: len(second) } };
+      const meta = { questions: q.value, lengths: { 1: len(first), 2: len(second) }, answers };
       const res = await callWithRetry({
         adapter,
         costs,
-        args: criticArgs({ critic, config, root, kind: "pairwise", prompt, jsonSchema: pairwiseSchema(), meta }),
+        args: criticArgs({ critic, config, root, kind: "pairwise", prompt, jsonSchema: pairwiseSchema({ answers }), meta }),
         build: (o) => {
-          const b = buildPairwise(o, { rubric: rubric.id, critic: withCost(critic, costs), questions: q.value, order, calibrate });
+          const b = buildPairwise(o, { rubric: rubric.id, critic: withCost(critic, costs), questions: q.value, order, calibrate, answers });
           return b.ok ? { ok: true, value: { ...b.critique, prompt_sha256: sha256(prompt) } } : b;
         },
       });

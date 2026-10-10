@@ -52,9 +52,19 @@ export async function critic({ kind, meta = {} }) {
     return {
       ...base,
       output: {
-        reader_questions: questions.map((q, i) => ({ q, answered: i === 0 ? "yes" : "partly", where: i === 0 ? "opening paragraph" : "body" })),
+        // With set-aside on (rubric story/v2, fixed mode) the last question is set aside.
+        reader_questions: questions.map((q, i) => {
+          if (i > 0 && i === questions.length - 1 && meta.answers?.includes("set-aside")) return { q, answered: "set-aside", where: "" };
+          return { q, answered: i === 0 ? "yes" : "partly", where: i === 0 ? "opening paragraph" : "body" };
+        }),
         missed_findings: ["Fake critic: no real reading was done."],
-        charts: (meta.charts ?? []).map((file) => ({ file, shows: "a fake description", form_fits: true, fix: "" })),
+        charts: (meta.charts ?? []).map((file) => ({
+          file,
+          ...(meta.chartReading ? { glance: "a fake glance", glance_matches_prose: true, encodings: "fake encodings", encodings_clear: true } : {}),
+          shows: "a fake description",
+          form_fits: true,
+          fix: "",
+        })),
         top_change: "Fake critic: no change proposed.",
         publishable: "with-edits",
         lessons: [{ rule: "When the critic is fake, do not read anything into its scores.", evidence: "This critique came from the fake critic." }],

@@ -1,0 +1,161 @@
+{
+  "rubric": "story/v2",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "How large is France’s debt relative to its economy, how fast is it rising, and what evidence distinguishes a debt crisis from a high debt burden?",
+      "answered": "partly",
+      "where": "Opening and “What this measures” give 119.0% of GDP and the long-run doubling, but no recent rate of increase; the final substantive paragraph explicitly sets aside market and political evidence of a crisis."
+    },
+    {
+      "q": "Why is France still running a deficit: how have spending and revenue as shares of GDP changed, and which accounts for the recent deterioration?",
+      "answered": "partly",
+      "where": "“Not a low-tax country” gives the 2025 spending–revenue gap, but neither series’ changes nor their contributions to the deterioration."
+    },
+    {
+      "q": "When did France’s debt burden rise most sharply, and did it recover between those episodes or keep ratcheting higher?",
+      "answered": "yes",
+      "where": "“What this measures” and french-debt-ratio.svg identify the financial-crisis and Covid jumps and the subsequent partial recovery."
+    },
+    {
+      "q": "How do France’s deficit, spending and revenue compare with Germany, Italy, Spain and the EU aggregate in the latest comparable year?",
+      "answered": "yes",
+      "where": "french-debt-compare.svg supplies all three measures for all five geographies in 2025."
+    },
+    {
+      "q": "What are the biggest functions of French public spending, what sits inside the largest category, and which components account for most of the spending increase?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How much of the deficit comes from interest payments, how has that burden changed, and would the budget balance without it?",
+      "answered": "partly",
+      "where": "“The wrinkle: interest is climbing again” gives interest levels and historical comparisons, but never calculates its share of the deficit or the balance excluding interest."
+    },
+    {
+      "q": "How much would revenue have to rise or spending fall to close the current deficit, measured in euros and percentage points of GDP?",
+      "answered": "partly",
+      "where": "“Not a low-tax country” supplies the 5.1%-of-GDP gap implicitly, but does not translate it into a required adjustment or give its euro value."
+    }
+  ],
+  "missed_findings": [
+    "Interest of 2.2% of GDP accounts arithmetically for about 43% of the 2025 deficit, leaving a deficit of roughly 2.9% of GDP even without interest.",
+    "The annual accounts permit a spending-versus-revenue decomposition of the recent deficit deterioration and subsequent improvement, which the single-year comparison omits.",
+    "The story relies on total spending without identifying its biggest functions or unpacking social protection into its constituent groups and their changes, despite having functional data through 2024.",
+    "The outline’s post-Covid figures show debt falling by 8.3 percentage points of GDP between early 2021 and late 2023, then rising by 9.5 points by mid-2026; the prose leaves this substantial reversal unquantified.",
+    "Closing the 2025 deficit mechanically requires an adjustment of 5.1 percentage points of GDP, with the corresponding euro amount available from the annual B9 observation."
+  ],
+  "charts": [
+    {
+      "file": "french-debt-ratio.svg",
+      "glance": "French debt has roughly doubled relative to GDP, with sharp upward steps and a latest value near 120%.",
+      "glance_matches_prose": true,
+      "encodings": "The solid blue line represents gross debt as a percentage of GDP; blue filled circles mark labelled historical observations, while a larger red filled circle and matching label highlight the latest observation. Axes and direct labels explain these encodings; size adds emphasis rather than another variable.",
+      "encodings_clear": true,
+      "shows": "The quarterly debt ratio from 2000 to mid-2026, with selected values labelled.",
+      "form_fits": true,
+      "fix": "Label the 2021 peak and 2023 trough, including the subsequent 9.5-percentage-point rise, so the recent reversal is measurable at a glance."
+    },
+    {
+      "file": "french-debt-deficit.svg",
+      "glance": "France runs deficits throughout the period, with especially deep shortfalls around 2009 and 2020.",
+      "glance_matches_prose": true,
+      "encodings": "Blue bars represent France’s annual balance and the grey solid line represents the EU27 balance, identified by coloured end labels. The dark horizontal rule marks zero; negative values mean deficits, as the axis explicitly states. Bar widths and line thickness do not encode additional quantities.",
+      "encodings_clear": true,
+      "shows": "France’s uninterrupted annual deficits and their comparison with the EU aggregate from 1995 to 2025.",
+      "form_fits": true,
+      "fix": "Move the end labels inside the canvas or enlarge the right margin: the EU27 label starts at x=660 in a 720-pixel-wide SVG and risks losing its final value."
+    },
+    {
+      "file": "french-debt-compare.svg",
+      "glance": "France has the highest revenue and spending shares, and the widest deficit gap, among the five geographies.",
+      "glance_matches_prose": true,
+      "encodings": "Grey filled circles represent revenue, dark filled circles spending, and red connecting segments the gap; direct labels above France’s endpoints identify the circles, while red deficit labels identify the gaps. All circles have equal size and all connectors use the same solid style.",
+      "encodings_clear": true,
+      "shows": "Revenue, spending and deficits as shares of GDP in 2025 for France, Italy, Germany, the EU27 and Spain.",
+      "form_fits": true,
+      "fix": "Add a rounding note explaining why Germany’s displayed endpoints differ by 2.6 points while its independently reported deficit is 2.7% of GDP."
+    },
+    {
+      "file": "french-debt-interest.svg",
+      "glance": "France’s nominal interest bill has surged since 2020 and now exceeds its 1995 level substantially.",
+      "glance_matches_prose": true,
+      "encodings": "The solid blue line represents annual interest payments in nominal billions of euros, identified by the axis. Blue filled circles mark selected historical years; a red filled circle and matching direct label highlight 2025. GDP shares appear as text annotations, not as a plotted series.",
+      "encodings_clear": true,
+      "shows": "Nominal interest payments over time, with GDP-share annotations for 1995, 2020 and 2025.",
+      "form_fits": true,
+      "fix": "Use aligned panels for nominal euros and percentage of GDP so the rising bill and its historically lower relative burden are both visible in the shapes."
+    }
+  ],
+  "top_change": "Replace repeated statements that spending exceeds revenue with an evidence-led decomposition: show how spending and revenue changed, unpack the spending functions driving the increase, and calculate the deficit excluding interest.",
+  "publishable": "with-edits",
+  "lessons": [
+    {
+      "rule": "An explanatory fiscal story should distinguish the accounting gap from an explanation of how that gap developed.",
+      "evidence": "The story repeatedly identifies spending above revenue but never decomposes changes in either series."
+    },
+    {
+      "rule": "When spending is central to the argument, unpack its largest functions and distinguish their size from their contribution to growth.",
+      "evidence": "Functional spending data, including nested groups, is available but entirely unused."
+    },
+    {
+      "rule": "Calculate the counterfactual that tests the most obvious explanation.",
+      "evidence": "Subtracting interest leaves a deficit of roughly 2.9% of GDP, directly establishing that interest alone does not explain the shortfall."
+    },
+    {
+      "rule": "Keep stock changes, annual flows and ratios distinct when explaining debt dynamics.",
+      "evidence": "“Each year's deficit is added to the stock” omits other debt adjustments, while persistent deficits alone do not explain movements in debt relative to GDP."
+    },
+    {
+      "rule": "Plot the denominator-adjusted measure when the reader needs to assess a burden over decades.",
+      "evidence": "The interest chart visually emphasises nominal growth while relegating its lower share of GDP than in 1995 to annotations."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 2,
+      "why": "The opening states a clear claim about persistent deficits and rising debt, and every substantive section serves it within the acknowledged limits of the accounts."
+    },
+    "depth": {
+      "score": 1,
+      "why": "Peer comparisons and attributed interest mechanisms add explanation, but spending remains an unopened aggregate and recent fiscal changes are not decomposed."
+    },
+    "charts": {
+      "score": 1,
+      "why": "The charts support the argument with understandable encodings, but the interest chart carries two differently measured points and several charts lack takeaway titles."
+    },
+    "honesty": {
+      "score": 0,
+      "why": "The categorical claim that each deficit is added to debt presents an incomplete accounting identity as exact; debt also changes through other adjustments, and GDP growth affects the ratio."
+    },
+    "reader_questions": {
+      "score": 1,
+      "why": "Debt history and peer comparisons are answered, but spending composition is absent and the fiscal deterioration, interest contribution and required adjustment remain partly unanswered."
+    },
+    "prose": {
+      "score": 1,
+      "why": "Mostly plain and organised, but repeated deficit explanations and production-process detail consume space, while €3,595.5bn uses unnecessary precision."
+    }
+  },
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+  "prompt_sha256": "85784f705ea375ba95b784cb2eaa4e150bfc4e4762913fb66cade760f8790eae",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 41416,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2487,
+      "reasoning_output_tokens": 134
+    },
+    "calls": 2
+  }
+}

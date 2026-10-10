@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v2",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "AB",
+  "shown": {
+    "story_1": "A",
+    "story_2": "B"
+  },
+  "preferred": "B",
+  "margin": "slight",
+  "why": "Story 2 earns a slight advantage through its spending-evolution section: unlike Story 1’s single decade comparison, it shows both longer-run GDP shares and changes within social protection, helping distinguish large commitments from growing burdens. Its treemap clearly shows old age dominating social protection, and its evolution chart identifies the series directly and explains hollow versus filled markers; these readings support the prose. Both stories explain the revenue-led deterioration and acknowledge limits on predicting default, but neither supplies the available international comparisons, interest-payment history or explicit calculation of the adjustment needed to balance the budget. Their debt charts show the pandemic jump, subsequent fall and renewed rise, but leave the reader to calculate the pace and do not adequately explain earlier sharp increases. Both also invoke IMF assessments outside the listed source inventory; those claims need support from an identified supplied archive or replacement with calculations from the fiscal accounts.",
+  "reader_questions": [
+    {
+      "q": "How large is France’s debt relative to GDP, how fast is it rising, and what evidence supports calling this a crisis?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How much more does France spend than it raises, and has the recent deterioration come mainly from spending increases or weaker revenue relative to GDP?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "When did the debt burden rise most sharply, and did it fall back between those episodes or keep climbing?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How do France’s spending, revenue and deficit compare with Germany, Italy, Spain and the EU average relative to GDP?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "Which public services and benefits account for the largest spending shares, and which explain the biggest increases in spending relative to GDP?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How much of the deficit comes from interest payments, how has that burden changed, and how large would the deficit be before interest?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How much would revenue need to rise or spending fall to close the current deficit, measured in euros and percentage points of GDP?",
+      "A": "partly",
+      "B": "partly"
+    }
+  ],
+  "prompt_sha256": "213d334bb741d88414d0f5381189e06326a9fc4a7fbbe85defdcb6465f8bf165",
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+}

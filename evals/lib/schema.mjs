@@ -232,6 +232,9 @@ export function validateChecks(checks) {
 
 // --- 3.4 Critique -----------------------------------------------------------
 
+// "set-aside": fixed mode, rubric story/v2 on: the question needs evidence outside the given data.
+const READER_ANSWERS = ["yes", "partly", "no", "set-aside"];
+
 function checkCritic(c, critic, path) {
   if (!c.isObject(critic, path)) return;
   c.oneOf(critic.vendor, VENDORS, `${path}.vendor`);
@@ -258,7 +261,7 @@ export function validateCritiqueAbsolute(cq, opts = {}) {
       const p = `reader_questions[${i}]`;
       if (!c.isObject(q, p)) return;
       c.string(q.q, `${p}.q`);
-      c.oneOf(q.answered, ["yes", "partly", "no"], `${p}.answered`);
+      c.oneOf(q.answered, READER_ANSWERS, `${p}.answered`);
       c.string(q.where, `${p}.where`, { nonEmpty: false, nullable: true });
     });
   }
@@ -271,6 +274,13 @@ export function validateCritiqueAbsolute(cq, opts = {}) {
       c.string(ch.shows, `${p}.shows`);
       c.bool(ch.form_fits, `${p}.form_fits`);
       c.string(ch.fix, `${p}.fix`, { nonEmpty: false, nullable: true });
+      // Chart reading (rubric story/v2 on): optional, all four or none.
+      if ("glance" in ch || "encodings" in ch) {
+        c.string(ch.glance, `${p}.glance`);
+        c.bool(ch.glance_matches_prose, `${p}.glance_matches_prose`);
+        c.string(ch.encodings, `${p}.encodings`);
+        c.bool(ch.encodings_clear, `${p}.encodings_clear`);
+      }
     });
   }
   c.string(cq.top_change, "top_change");
@@ -307,8 +317,8 @@ export function validateCritiquePairwise(cq) {
       const p = `reader_questions[${i}]`;
       if (!c.isObject(q, p)) return;
       c.string(q.q, `${p}.q`);
-      c.oneOf(q.A, ["yes", "partly", "no"], `${p}.A`);
-      c.oneOf(q.B, ["yes", "partly", "no"], `${p}.B`);
+      c.oneOf(q.A, READER_ANSWERS, `${p}.A`);
+      c.oneOf(q.B, READER_ANSWERS, `${p}.B`);
     });
   }
   return c.result();

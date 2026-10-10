@@ -8,12 +8,42 @@
     "hits": 4,
     "total": 6,
     "remarks": [
-      { "id": "R1.1", "remark": "social protection unexplained (deeper dive, how it is evolving)", "hit": false, "note": "partial: lesson 2 separates the size of social protection from its contribution, but never asks what it contains" },
-      { "id": "R1.2", "remark": "unreadable magnitudes (EUR 1,714.1 billion, not 1.7 trillion)", "hit": false, "note": "not raised, although the prose anchor names magnitudes the reader cannot picture" },
-      { "id": "R1.3", "remark": "simple graphics more effective than text", "hit": true, "note": "spending chart fix: move the footer's historical comparison into a small comparison graphic (not revenue vs spending specifically)" },
-      { "id": "R1.4", "remark": "a bit wordy in places", "hit": true, "note": "prose 1: accounting cautions occupy substantial space" },
-      { "id": "R1.5", "remark": "not very deep or compelling", "hit": true, "note": "argument 0, depth 1, publishable no" },
-      { "id": "R1.6", "remark": "what questions would a reader bring; are they answered", "hit": true, "note": "4 of 7 questions unanswered, 3 partly; near-automatic given the procedure" }
+      {
+        "id": "R1.1",
+        "remark": "social protection unexplained (deeper dive, how it is evolving)",
+        "hit": false,
+        "note": "partial: lesson 2 separates the size of social protection from its contribution, but never asks what it contains"
+      },
+      {
+        "id": "R1.2",
+        "remark": "unreadable magnitudes (EUR 1,714.1 billion, not 1.7 trillion)",
+        "hit": false,
+        "note": "not raised, although the prose anchor names magnitudes the reader cannot picture"
+      },
+      {
+        "id": "R1.3",
+        "remark": "simple graphics more effective than text",
+        "hit": true,
+        "note": "spending chart fix: move the footer's historical comparison into a small comparison graphic (not revenue vs spending specifically)"
+      },
+      {
+        "id": "R1.4",
+        "remark": "a bit wordy in places",
+        "hit": true,
+        "note": "prose 1: accounting cautions occupy substantial space"
+      },
+      {
+        "id": "R1.5",
+        "remark": "not very deep or compelling",
+        "hit": true,
+        "note": "argument 0, depth 1, publishable no"
+      },
+      {
+        "id": "R1.6",
+        "remark": "what questions would a reader bring; are they answered",
+        "hit": true,
+        "note": "4 of 7 questions unanswered, 3 partly; near-automatic given the procedure"
+      }
     ]
   },
   {
@@ -25,11 +55,36 @@
     "hits": 0,
     "total": 5,
     "remarks": [
-      { "id": "R2.1", "remark": "colours poor (blue and green for revenue and spending)", "hit": false, "note": "never raised" },
-      { "id": "R2.2", "remark": "hollow vs filled markers: which is 2014 and which 2024", "hit": false, "note": "partial in later re-scores: drop the nine-subgroup panel as a second task; never the year encoding" },
-      { "id": "R2.3", "remark": "what is old age; is it because of an ageing population", "hit": false, "note": "never raised; honesty praised the prose for limiting claims about ageing" },
-      { "id": "R2.4", "remark": "show me what is growing", "hit": false, "note": "never raised" },
-      { "id": "R2.5", "remark": "how could social protection have grown if almost every area shrank", "hit": false, "note": "the opposite: lesson 5 praises the story for explaining nominal growth vs falling GDP share clearly" }
+      {
+        "id": "R2.1",
+        "remark": "colours poor (blue and green for revenue and spending)",
+        "hit": false,
+        "note": "never raised"
+      },
+      {
+        "id": "R2.2",
+        "remark": "hollow vs filled markers: which is 2014 and which 2024",
+        "hit": false,
+        "note": "partial in later re-scores: drop the nine-subgroup panel as a second task; never the year encoding"
+      },
+      {
+        "id": "R2.3",
+        "remark": "what is old age; is it because of an ageing population",
+        "hit": false,
+        "note": "never raised; honesty praised the prose for limiting claims about ageing"
+      },
+      {
+        "id": "R2.4",
+        "remark": "show me what is growing",
+        "hit": false,
+        "note": "never raised"
+      },
+      {
+        "id": "R2.5",
+        "remark": "how could social protection have grown if almost every area shrank",
+        "hit": false,
+        "note": "the opposite: lesson 5 praises the story for explaining nominal growth vs falling GDP share clearly"
+      }
     ]
   },
   {
@@ -41,11 +96,167 @@
     "hits": 0,
     "total": 5,
     "remarks": [
-      { "id": "R2.1", "remark": "colours poor (blue and green for revenue and spending)", "hit": false, "note": "snapshot chart: fix none" },
-      { "id": "R2.2", "remark": "hollow vs filled markers: which is 2014 and which 2024", "hit": false, "note": "partial: subgroup panel's small changes are visually compressed; remove it. Not the hollow/filled encoding" },
-      { "id": "R2.3", "remark": "what is old age; is it because of an ageing population", "hit": false, "note": "partial at most: flags 'pension uprating' as unexplained" },
-      { "id": "R2.4", "remark": "show me what is growing", "hit": false, "note": "never raised" },
-      { "id": "R2.5", "remark": "how could social protection have grown if almost every area shrank", "hit": false, "note": "lesson 4 again treats the nominal vs GDP-share distinction as a strength" }
+      {
+        "id": "R2.1",
+        "remark": "colours poor (blue and green for revenue and spending)",
+        "hit": false,
+        "note": "snapshot chart: fix none"
+      },
+      {
+        "id": "R2.2",
+        "remark": "hollow vs filled markers: which is 2014 and which 2024",
+        "hit": false,
+        "note": "partial: subgroup panel's small changes are visually compressed; remove it. Not the hollow/filled encoding"
+      },
+      {
+        "id": "R2.3",
+        "remark": "what is old age; is it because of an ageing population",
+        "hit": false,
+        "note": "partial at most: flags 'pension uprating' as unexplained"
+      },
+      {
+        "id": "R2.4",
+        "remark": "show me what is growing",
+        "hit": false,
+        "note": "never raised"
+      },
+      {
+        "id": "R2.5",
+        "remark": "how could social protection have grown if almost every area shrank",
+        "hit": false,
+        "note": "lesson 4 again treats the nominal vs GDP-share distinction as a strength"
+      }
+    ]
+  },
+  {
+    "rubric": "story/v2",
+    "label": "q01 round 1 (draft 1; anchors drew on these remarks)",
+    "run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+    "critique": "critique-v2-1",
+    "critic": "codex gpt-6-astra, blind (no owner_feedback), fixed-data inventory, SVG text only",
+    "hits": 6,
+    "total": 6,
+    "remarks": [
+      {
+        "id": "R1.1",
+        "remark": "social protection unexplained (deeper dive, how it is evolving)",
+        "hit": true,
+        "note": "missed finding 4 and lesson 1: which benefits rose or fell, size vs contribution to change; depth reason names changes within the largest category"
+      },
+      {
+        "id": "R1.2",
+        "remark": "unreadable magnitudes (EUR 1,714.1 billion, not 1.7 trillion)",
+        "hit": true,
+        "note": "lesson 5 and prose 1: EUR 1,714.1bn, 1,561.6bn and 3,595.5bn need rounding"
+      },
+      {
+        "id": "R1.3",
+        "remark": "simple graphics more effective than text",
+        "hit": true,
+        "note": "gap chart fix: put the footer's 2022-2024 changes on the lines; spending chart fix: add a change companion graphic"
+      },
+      {
+        "id": "R1.4",
+        "remark": "a bit wordy in places",
+        "hit": true,
+        "note": "prose 1: methodological explanations displace the central answer (same standard as the v1 hit on 'accounting cautions take space')"
+      },
+      {
+        "id": "R1.5",
+        "remark": "not very deep or compelling",
+        "hit": true,
+        "note": "depth 1, argument 1, with-edits; spending detour and missing peer context"
+      },
+      {
+        "id": "R1.6",
+        "remark": "what questions would a reader bring; are they answered",
+        "hit": true,
+        "note": "1 no, 5 partly, 1 set-aside of 7"
+      }
+    ]
+  },
+  {
+    "rubric": "story/v2",
+    "label": "q01 round 2 (draft 2; seen by the v2 author, not held out), SVG text",
+    "run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+    "critique": "critique-v2-1",
+    "critic": "codex gpt-6-astra, blind (no owner_feedback), fixed-data inventory, SVG text only",
+    "caveat": "NOT held out: the v2 author had read the round-2 remarks (datapressr-hcn.21)",
+    "hits": 1,
+    "total": 5,
+    "remarks": [
+      {
+        "id": "R2.1",
+        "remark": "colours poor (blue and green for revenue and spending)",
+        "hit": false,
+        "note": "chart reading lists green revenue / blue spending and calls the encodings clear"
+      },
+      {
+        "id": "R2.2",
+        "remark": "hollow vs filled markers: which is 2014 and which 2024",
+        "hit": false,
+        "note": "chart reading describes the hollow/filled key and calls it clear ('fill, colour and size redundantly distinguish years')"
+      },
+      {
+        "id": "R2.3",
+        "remark": "what is old age; is it because of an ageing population",
+        "hit": false,
+        "note": "never raised"
+      },
+      {
+        "id": "R2.4",
+        "remark": "show me what is growing",
+        "hit": true,
+        "note": "evolution fix: a subgroup chart of percentage-point changes; missed finding: the subgroups that rose are left in chart labels"
+      },
+      {
+        "id": "R2.5",
+        "remark": "how could social protection have grown if almost every area shrank",
+        "hit": false,
+        "note": "glance_matches_prose yes; lesson 5 again treats size vs contribution as handled"
+      }
+    ]
+  },
+  {
+    "rubric": "story/v2",
+    "label": "q01 round 2 (draft 2; seen by the v2 author, not held out), PNG renders",
+    "run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+    "critique": "critique-v2-2",
+    "critic": "codex gpt-6-astra, blind (no owner_feedback), fixed-data inventory, plus headless-Chrome PNGs",
+    "caveat": "NOT held out: the v2 author had read the round-2 remarks (datapressr-hcn.21)",
+    "hits": 1,
+    "total": 5,
+    "remarks": [
+      {
+        "id": "R2.1",
+        "remark": "colours poor (blue and green for revenue and spending)",
+        "hit": false,
+        "note": "encodings clear, fix none, with the images attached"
+      },
+      {
+        "id": "R2.2",
+        "remark": "hollow vs filled markers: which is 2014 and which 2024",
+        "hit": false,
+        "note": "reads the key correctly from the heading and calls it clear"
+      },
+      {
+        "id": "R2.3",
+        "remark": "what is old age; is it because of an ageing population",
+        "hit": false,
+        "note": "never raised"
+      },
+      {
+        "id": "R2.4",
+        "remark": "show me what is growing",
+        "hit": true,
+        "note": "missed finding: which spending functions contributed most to growth; evolution fix: percentage-point-change bars"
+      },
+      {
+        "id": "R2.5",
+        "remark": "how could social protection have grown if almost every area shrank",
+        "hit": false,
+        "note": "lesson 5 praises the nominal-growth vs falling-share distinction as successful"
+      }
     ]
   }
 ]

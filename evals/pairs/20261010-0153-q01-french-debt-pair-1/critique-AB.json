@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v2",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "AB",
+  "shown": {
+    "story_1": "A",
+    "story_2": "B"
+  },
+  "preferred": "A",
+  "margin": "clear",
+  "why": "Story 1 establishes persistent shortfalls, explains the recent revenue-side deterioration and distinguishes annual deficits from debt, while Story 2 mostly lists dataset fields and unexplained numbers. Story 1’s labelled charts communicate the spending gap, spending composition, deficit improvement and debt trajectory consistently with its prose; Story 2’s unkeyed colours obscure its comparisons, and its debt chart stacks gross and net debt into a misleading total approaching €7 trillion. Story 1 also challenges the assumption that the biggest spending category necessarily caused the deterioration and acknowledges that these accounts cannot establish default risk. Its IMF structural and primary deficit estimates nevertheless require removal or evidence from the supplied archive, since that assessment is outside the listed inputs. Both miss available international comparisons relative to GDP, spending-growth decomposition and adjustment arithmetic, but Story 1 needs substantially fewer edits.",
+  "reader_questions": [
+    {
+      "q": "How large is France’s public debt relative to GDP, how fast is it rising, and what makes this a crisis rather than simply a high debt burden?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How persistent is the gap between government spending and revenue, and how much does it explain the accumulation of debt?",
+      "A": "partly",
+      "B": "no"
+    },
+    {
+      "q": "When did France’s debt burden rise most sharply, and did it recover after those episodes or keep climbing?",
+      "A": "partly",
+      "B": "no"
+    },
+    {
+      "q": "How do France’s spending, revenue and deficit compare with Germany, Italy, Spain and the EU average relative to GDP?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "Which public services and benefits account for the largest shares of spending, and which—including the components of social protection—have driven its growth relative to GDP?",
+      "A": "partly",
+      "B": "no"
+    },
+    {
+      "q": "How much of the deficit comes from interest payments rather than the gap between revenue and spending before interest, and how has that changed?",
+      "A": "partly",
+      "B": "no"
+    },
+    {
+      "q": "What would have to change in revenue or spending to close the deficit, and how large would that adjustment be relative to GDP?",
+      "A": "no",
+      "B": "no"
+    }
+  ],
+  "prompt_sha256": "920ff677964ce5fd94e000f9b3836426c2935db54567b5287448ff20354eb893",
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+}

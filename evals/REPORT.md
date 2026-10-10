@@ -40,6 +40,13 @@ Absolute scores, rubric story/v1 (diagnostic; 0-2):
 | 20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 0 | 1 | 1 | 0 | 0 | 2 | no |
 | 20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 0 | 1 | 1 | 0 | 0 | 1 | no |
 
+Absolute scores, rubric story/v2 (diagnostic; 0-2):
+
+| Run | Skill tree | Critic | argument | depth | charts | honesty | reader_questions | prose | Publishable |
+|---|---|---|---|---|---|---|---|---|---|
+| 20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 1 | with-edits |
+| 20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 1 | with-edits |
+
 ## Noise
 
 Absolute scores per skill tree as min-max ranges with n (the latest score per run). A difference is called a change only when the ranges do not overlap; otherwise "no detectable change". A single run is an anecdote. No standard deviations or p-values at these sample sizes.
@@ -49,6 +56,12 @@ Absolute scores per skill tree as min-max ranges with n (the latest score per ru
 | Skill tree | n | argument | depth | charts | honesty | reader_questions | prose |
 |---|---|---|---|---|---|---|---|
 | `c08d6d6` | 2 | 0 | 1 | 1 | 0 | 0 | 1-2 |
+
+### story/q01-french-debt, writer claude-opus-5-5, rubric story/v2
+
+| Skill tree | n | argument | depth | charts | honesty | reader_questions | prose |
+|---|---|---|---|---|---|---|---|
+| `c08d6d6` | 2 | 2 | 1 | 1 | 0 | 1 | 1 |
 
 ### Critic-only spread (one run re-scored)
 
@@ -67,11 +80,14 @@ No owner-judged pairs yet. The critic's pairwise verdict stands alone for small 
 | story/v1 | q01 round 1 (draft 1; anchors may use these remarks) | 4 of 6 |
 | story/v1 | q01 round 2 (draft 2; held out), PNG renders | 0 of 5 |
 | story/v1 | q01 round 2 (draft 2; held out), SVG text | 0 of 5 |
+| story/v2 | q01 round 1 (draft 1; anchors drew on these remarks) | 6 of 6 |
+| story/v2 | q01 round 2 (draft 2; seen by the v2 author, not held out), PNG renders | 1 of 5 |
+| story/v2 | q01 round 2 (draft 2; seen by the v2 author, not held out), SVG text | 1 of 5 |
 
 ### Critic and isolation
 
-- Critic fallback: 0 of 12 critiques (absolute and pairwise) used the fallback critic.
-- Critic validation failures: 0 of 10 absolute critiques recorded as critic_failed.
+- Critic fallback: 0 of 20 critiques (absolute and pairwise) used the fallback critic.
+- Critic validation failures: 0 of 16 absolute critiques recorded as critic_failed.
 - Leaks caught: 0 of 2 runs flagged leaked.
 
 Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):

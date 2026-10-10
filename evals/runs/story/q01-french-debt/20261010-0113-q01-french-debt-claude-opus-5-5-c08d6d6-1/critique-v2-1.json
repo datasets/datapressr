@@ -1,0 +1,150 @@
+{
+  "rubric": "story/v2",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "How large is France’s public debt relative to GDP, and what evidence distinguishes a debt crisis from a high debt burden?",
+      "answered": "partly",
+      "where": "Opening paragraph and france-debt-ratio.svg give 119% of GDP in mid-2026; the final substantive paragraph explicitly sets aside diagnosing a crisis because bond-market evidence is unavailable."
+    },
+    {
+      "q": "Why is France still borrowing: how large is the gap between government spending and revenue, and how has each side changed relative to GDP?",
+      "answered": "yes",
+      "where": "“Spending has exceeded revenue every year” gives the 2025 deficit of 5.1% of GDP; “France taxes a lot and spends more” gives spending and revenue levels and their changes since 2019."
+    },
+    {
+      "q": "When did France’s debt burden rise most sharply, and did it subsequently recover or continue worsening?",
+      "answered": "yes",
+      "where": "Opening discussion and france-debt-ratio.svg identify the crisis-era increases, the 2020–2023 partial recovery and the subsequent renewed rise."
+    },
+    {
+      "q": "How do France’s deficit, spending and revenue compare with Germany, Italy, Spain and the EU overall?",
+      "answered": "partly",
+      "where": "“France taxes a lot and spends more” and france-debt-spending-revenue.svg compare France’s spending and revenue with the EU; Italy appears only in the observation about persistent deficits, while Germany and Spain are absent."
+    },
+    {
+      "q": "Which public services and benefits account for the largest spending shares, and which explain the biggest increases relative to GDP?",
+      "answered": "partly",
+      "where": "The final substantive paragraph attributes most of the 2024 spending increase to pensions and health, but supplies no shares, component changes or longer-term decomposition."
+    },
+    {
+      "q": "How much of the deficit comes from interest payments, how has that changed, and how large would the deficit remain without them?",
+      "answered": "yes",
+      "where": "“Spending has exceeded revenue every year” and france-debt-deficit.svg show interest rising from 1.3% to 2.2% of GDP between 2020 and 2025, leaving a 2025 primary deficit of 2.9%."
+    },
+    {
+      "q": "What would have to change in revenue, spending or economic growth for France’s debt-to-GDP ratio to stabilise?",
+      "answered": "no",
+      "where": ""
+    }
+  ],
+  "missed_findings": [
+    "The available functional spending data could identify the largest services and benefits and their contributions to changes in spending relative to GDP; the story relies on total spending without unpacking it, and merely names pensions and health.",
+    "The outline’s alternative baseline materially changes the recent story: between 2017 and 2025 revenue fell 2.2 percentage points of GDP while spending fell 0.5 points, so the widening over that interval came from revenue.",
+    "The displayed figures imply an EU deficit of 3.1% of GDP in 2025, making France’s deficit 2 percentage points larger; the available German, Italian and Spanish comparisons are also omitted.",
+    "The 2020–2023 fall in the debt ratio despite rising euro debt provides an opening to explain stabilisation: nominal GDP growth can accommodate a continuing deficit, subject to other changes in debt, so eliminating borrowing is not a necessary condition."
+  ],
+  "charts": [
+    {
+      "file": "france-debt-ratio.svg",
+      "glance": "Debt has roughly doubled relative to GDP, with a temporary retreat after 2020 followed by another rise.",
+      "glance_matches_prose": true,
+      "encodings": "The solid blue line represents gross debt relative to GDP, identified by the axis and dated value labels; equal-sized filled red circles highlight labelled observations; the dashed grey horizontal line is directly labelled as the 60% Maastricht reference value.",
+      "encodings_clear": true,
+      "shows": "Quarter-end debt ratios from 2000 to mid-2026, with selected values and the latest nominal debt stock.",
+      "form_fits": true,
+      "fix": "Add a takeaway title identifying France and the doubling of its debt ratio, so the chart stands alone."
+    },
+    {
+      "file": "france-debt-deficit.svg",
+      "glance": "France repeatedly runs deficits, and removing interest still leaves deficits in almost every recent year.",
+      "glance_matches_prose": true,
+      "encodings": "Pink bars represent the overall balance, explained by the red on-chart bar key; the solid blue line and equal-sized filled blue dots represent annual balances excluding interest, explained by the blue line key. Red and blue value labels repeat those series distinctions; the black horizontal line marks zero.",
+      "encodings_clear": true,
+      "shows": "Annual overall and primary balances, with their separation representing interest payments and annotations giving interest costs in 2020 and 2025.",
+      "form_fits": true,
+      "fix": "Make the latest deficit decomposition explicit with a bracket labelled “2.2% of GDP: interest” between the 2025 primary and overall balances."
+    },
+    {
+      "file": "france-debt-spending-revenue.svg",
+      "glance": "France both spends and collects substantially more relative to GDP than the EU overall.",
+      "glance_matches_prose": true,
+      "encodings": "Blue lines represent France and grey lines the EU27, identified by direct endpoint labels; solid lines represent spending and dashed lines revenue, explained in an on-chart key and repeated in endpoint labels. Equal-sized filled red dots highlight France’s two 2019 values, with adjacent dated labels.",
+      "encodings_clear": true,
+      "shows": "Spending and revenue relative to GDP for France and the EU since 1995, including 2019 French values and all four 2025 endpoints.",
+      "form_fits": true,
+      "fix": "Add an explicit annotation that France’s spending premium exceeds its revenue premium by 2 percentage points of GDP; the current picture leaves the central deficit comparison to mental subtraction."
+    }
+  ],
+  "top_change": "Use the functional spending data to replace the vague explanation of high spending with a quantified account of the largest services and benefits and which components increased relative to GDP.",
+  "publishable": "with-edits",
+  "lessons": [
+    {
+      "rule": "When an explanation rests on a large spending total, identify its largest components and quantify which ones changed.",
+      "evidence": "The story makes spending central but leaves the supplied functional breakdown unused."
+    },
+    {
+      "rule": "Test whether a change-based explanation survives a different meaningful starting year.",
+      "evidence": "The prose uses 2019, while the outline’s 2017 comparison shows falling spending and a larger revenue decline."
+    },
+    {
+      "rule": "Distinguish growth in a debt stock from growth in its ratio to income, and explain the conditions for stabilising the ratio.",
+      "evidence": "The story documents a falling ratio alongside rising euro debt but never answers the stabilisation question."
+    },
+    {
+      "rule": "Attribute causal explanations or show evidence that distinguishes them from plausible alternatives.",
+      "evidence": "The interest-rate explanation is attributed to INSEE; the claim that inflation caused the 2020–2023 ratio decline is not."
+    },
+    {
+      "rule": "Put the comparison that carries the argument directly on the chart.",
+      "evidence": "The spending chart labels four levels but leaves the reader to calculate France’s excess deficit over the EU."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 2,
+      "why": "The headline and sections consistently argue that persistent deficits, mostly excluding interest, underpin the debt buildup, while explicitly limiting the crisis diagnosis."
+    },
+    "depth": {
+      "score": 1,
+      "why": "The primary-balance comparison tests the interest explanation, but the central spending category remains unpacked and debt-ratio stabilisation unexplained."
+    },
+    "charts": {
+      "score": 1,
+      "why": "The forms and encodings support the prose, but the spending chart requires mental arithmetic to establish the central excess-deficit comparison and also carries a separate historical-change point."
+    },
+    "honesty": {
+      "score": 0,
+      "why": "The prose attributes the 2020–2023 ratio decline to inflation without attribution or evidence separating inflation from real growth; a named source or decomposition would settle it."
+    },
+    "reader_questions": {
+      "score": 1,
+      "why": "Debt, borrowing and interest are answered, but peer comparisons and spending composition are partial, and stabilisation is unanswered despite being within analytical reach."
+    },
+    "prose": {
+      "score": 1,
+      "why": "Mostly plain and orderly, but “€3,595.5 billion” is unnecessarily precise, the methods paragraph is bulky, and the final claim that debt has not stopped rising blurs the earlier distinction between the stock and its ratio."
+    }
+  },
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+  "prompt_sha256": "dbf74ad9d65f084106df30d32224e9ac953fe029462932046c3b48b17fa5f8f9",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 42380,
+      "cached_input_tokens": 8704,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2325,
+      "reasoning_output_tokens": 151
+    },
+    "calls": 2
+  }
+}
