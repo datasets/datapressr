@@ -18,7 +18,8 @@
 // appear in the material).
 
 import { randomInt } from "node:crypto";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join, relative, sep } from "node:path";
 import * as claude from "./adapters/claude.mjs";
 import * as codex from "./adapters/codex.mjs";
@@ -27,6 +28,7 @@ import { familyOf, pickCritic } from "./adapters/index.mjs";
 import { detectSlug, parseProse, splitFriction, splitFrontmatter, svgTexts } from "./checkers/story.mjs";
 import { findRunDir, findRunDirs } from "./checkers/run-checks.mjs";
 import { appendRow } from "./ledger.mjs";
+import * as render from "./render.mjs";
 import { assertValid, OPEN_MODE_DIMENSIONS, SCORE_DIMENSIONS, validateCase, validateCritiqueAbsolute, validateCritiquePairwise } from "./schema.mjs";
 import { sha256 } from "./versions.mjs";
 
@@ -211,8 +213,9 @@ function feedbackBlock(feedback) {
 
 const questionList = (qs) => qs.map((q, i) => `${i + 1}. ${q}`).join("\n");
 
-function storyBlock(label, m, { outline }) {
+function storyBlock(label, m, { outline, images = false }) {
   const parts = [];
+  if (images) parts.push(`PNG renders of the embedded charts are attached as images, in the order the charts are listed below (image 1 is the first chart). Judge colour, markers, legibility and clipping from the images; the SVG source and text labels are there to check exact values.`);
   if (outline && m.outline) parts.push(fileBlock(`${label} OUTLINE`, m.outline));
   parts.push(fileBlock(`${label} PROSE`, `${m.title ? `Title: ${m.title}\n\n` : ""}${m.prose}`));
   for (const c of m.charts) {
@@ -237,7 +240,7 @@ export function questionsPrompt({ rubric, kase }) {
   ]);
 }
 
-export function absolutePrompt({ rubric, kase, questions, material, feedback }) {
+export function absolutePrompt({ rubric, kase, questions, material, feedback, images = false }) {
   const dims = kase.data_mode === "open" ? [...SCORE_DIMENSIONS, ...OPEN_MODE_DIMENSIONS] : SCORE_DIMENSIONS;
   return join2([
     rubric.sections.get("Role"),
@@ -248,7 +251,7 @@ export function absolutePrompt({ rubric, kase, questions, material, feedback }) 
     `## Your reader questions (written before you read the story)\n\n${questionList(questions)}`,
     referencesBlock(kase),
     feedbackBlock(feedback),
-    `## The story\n\n${storyBlock("STORY", material, { outline: true })}`,
+    `## The story\n\n${storyBlock("STORY", material, { outline: true, images })}`,
     `Answer with JSON only, fields in this order: reader_questions (all ${questions.length}, in order), missed_findings, charts (one per embedded chart, in order), top_change, publishable, lessons (at most 5), scores (${dims.join(", ")}).`,
   ]);
 }
@@ -532,12 +535,13 @@ const readRun = (runDir) => JSON.parse(readFileSync(join(runDir, "run.json"), "u
 const pad = (n) => String(n).padStart(2, "0");
 const stamp = (d) => `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}-${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}`;
 
-function criticArgs({ critic, config, root, kind, prompt, jsonSchema, meta }) {
+function criticArgs({ critic, config, root, kind, prompt, jsonSchema, meta, images }) {
   return {
     kind,
     prompt,
     jsonSchema,
     meta,
+    ...(images?.length ? { images } : {}),
     model: critic.model,
     root,
     timeoutMs: config.timeouts_ms?.critic,
@@ -563,7 +567,8 @@ const withCost = (critic, costs) => ({ ...critic, model_actual: costs.get().mode
 
 // Absolute critique of one run: critique-<version>-<n>.json and .md in the run directory and a
 // `score` ledger row (status critic_failed, with the errors, when two attempts fail).
-export async function scoreRun({ root, evalsDir, runDir, rubricId, critic, calibrate = false, config, adapters = CRITIC_ADAPTERS, now = () => new Date(), log = () => {} }) {
+// png: attach PNG renders of the charts (lib/render.mjs; Codex critic only, which takes images).
+export async function scoreRun({ root, evalsDir, runDir, rubricId, critic, calibrate = false, png = false, config, adapters = CRITIC_ADAPTERS, renderer = render, now = () => new Date(), log = () => {} }) {
   const run = readRun(runDir);
   const kase = readCase(evalsDir, run.domain, run.case_id);
   const rubric = loadRubric(evalsDir, rubricId ?? latestRubricId(evalsDir, run.domain));
@@ -572,26 +577,36 @@ export async function scoreRun({ root, evalsDir, runDir, rubricId, critic, calib
   const redact = redactor([run]);
   const material = storyMaterial(runDir, { dataMode: kase.data_mode, redact });
   const feedback = calibrate ? readOwnerFeedback(root, kase) : null;
+  let images = [];
+  let imageDir = null;
+  if (png) {
+    if (critic.vendor === "claude") throw new Error("--png: the Claude critic recipe takes no images; use --critic codex (or fake)");
+    const a = renderer.available();
+    if (!a.ok) throw new Error(`--png: ${a.reason}`);
+    imageDir = mkdtempSync(join(tmpdir(), "evals-png-"));
+    images = await renderer.renderCharts(material.charts.filter((c) => !c.missing), imageDir);
+  }
   const costs = tally();
-  const base = { kind: "score", run_id: run.run_id, rubric: rubric.id, rubric_sha256: rubric.sha256, ...(calibrate ? { calibrate: true } : {}) };
+  const base = { kind: "score", run_id: run.run_id, rubric: rubric.id, rubric_sha256: rubric.sha256, ...(calibrate ? { calibrate: true } : {}), ...(png ? { png: true } : {}) };
 
   log(`scoring ${run.run_id} with ${critic.vendor} ${critic.model} (rubric ${rubric.id})`);
   const q = await askQuestions({ rubric, kase, critic, adapter, config, root, costs });
   let result = q.ok ? null : { ok: false, errors: q.errors.map((e) => `questions: ${e}`) };
   let prompt = null;
   if (q.ok) {
-    prompt = absolutePrompt({ rubric, kase, questions: q.value, material, feedback });
+    prompt = absolutePrompt({ rubric, kase, questions: q.value, material, feedback, images: images.length > 0 });
     const meta = { questions: q.value, charts: material.charts.map((c) => c.file), dataMode: kase.data_mode };
     result = await callWithRetry({
       adapter,
       costs,
-      args: criticArgs({ critic, config, root, kind: "absolute", prompt, jsonSchema: absoluteSchema(kase.data_mode), meta }),
+      args: criticArgs({ critic, config, root, kind: "absolute", prompt, jsonSchema: absoluteSchema(kase.data_mode), meta, images }),
       build: (o) => {
         const b = buildAbsolute(o, { rubric: rubric.id, critic: withCost(critic, costs), questions: q.value, dataMode: kase.data_mode, calibrate });
         return b.ok ? { ok: true, value: b.critique } : b;
       },
     });
   }
+  if (imageDir) rmSync(imageDir, { recursive: true, force: true });
   const c = costs.get();
   const criticRec = { ...critic, model_actual: c.model_actual };
   const at = now().toISOString();
@@ -604,7 +619,7 @@ export async function scoreRun({ root, evalsDir, runDir, rubricId, critic, calib
   let n = 1;
   while (existsSync(join(runDir, `critique-${version}-${n}.json`))) n++;
   const name = `critique-${version}-${n}`;
-  const critique = { ...result.value, critic: criticRec, rubric_sha256: rubric.sha256, prompt_sha256: sha256(prompt), cost: { cost_usd: c.cost_usd, usage: c.usage, calls: c.calls } };
+  const critique = { ...result.value, critic: criticRec, ...(png ? { png_images: images.length } : {}), rubric_sha256: rubric.sha256, prompt_sha256: sha256(prompt), cost: { cost_usd: c.cost_usd, usage: c.usage, calls: c.calls } };
   writeFileSync(join(runDir, `${name}.json`), `${JSON.stringify(critique, null, 2)}\n`);
   writeFileSync(join(runDir, `${name}.md`), renderCritique(critique, { runId: run.run_id }));
   const row = appendRow(join(evalsDir, "ledger.jsonl"), {

@@ -1,0 +1,164 @@
+{
+  "rubric": "story/v1",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "What makes France’s debt situation a crisis now, rather than simply a high level of public debt?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How large are France’s debt, annual deficit and interest bill relative to its economy, its past and comparable countries?",
+      "answered": "partly",
+      "where": "The opening, “The deficit also has a revenue side,” and “Repeated gaps accumulate into debt” give debt and deficit levels and histories; the interest bill and international comparisons are missing."
+    },
+    {
+      "q": "What has driven the debt problem—spending, weak revenues, slow growth or higher borrowing costs—and what evidence shows which matters most?",
+      "answered": "partly",
+      "where": "“Bigger bills, but not always a bigger share of the economy” and “The deficit also has a revenue side” distinguish spending levels from growth and explain recent revenue weakness, but do not compare the contributions of growth and borrowing costs."
+    },
+    {
+      "q": "What changed, and when, to make investors or policymakers more concerned about France’s ability to manage its debt?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How do France’s political divisions and membership of the euro affect its ability to respond?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "Who bears the costs of the debt problem and of the main proposals to address it?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "What would it take to stabilise France’s debt, and what could make the situation worse?",
+      "answered": "no",
+      "where": ""
+    }
+  ],
+  "missed_findings": [
+    "The supplied figures show that the 2022–2024 deficit deterioration of 1.1 percentage points of GDP reflects a 2.5-point revenue decline partly offset by a 1.4-point spending decline, a stronger central finding than the spending ranking.",
+    "The debt ratio rose 9.5 percentage points between end-2023 and June 2026 despite the annual deficit narrowing in 2025, which deserves an explanation of why improvement need not mean stabilisation.",
+    "The 5.1% overall deficit and IMF estimate of a 3% primary deficit suggest an interest bill around 2.1% of GDP in 2025, but their definitions and vintages need reconciliation before presenting that estimate.",
+    "There is no dated evidence of market stress or a policy trigger that would establish why this is a crisis now.",
+    "Comparable-country benchmarks, political and euro-area constraints, and the distributional consequences of proposed remedies are absent.",
+    "A debt-stabilisation calculation using explicit growth and effective interest-rate assumptions would show the scale of adjustment required and the risks to it."
+  ],
+  "charts": [
+    {
+      "file": "france-public-finances-snapshot.svg",
+      "shows": "France spent €153 billion more than it received in 2025, with receipts covering about €91 of every €100 spent.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-spending.svg",
+      "shows": "Social protection and health account for 57.1% of 2024 public spending, with all ten spending purposes ranked.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-social.svg",
+      "shows": "Old age accounts for more than half of social protection spending and almost a quarter of all public spending.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-evolution.svg",
+      "shows": "Social protection increased in euros but fell as a share of GDP since 2014; health's share rose, and individual benefit categories moved differently.",
+      "form_fits": true,
+      "fix": "Reduce the composition to the aggregate history and nominal-growth annotation; the nine-category comparison adds a second analytical task that obscures the headline."
+    },
+    {
+      "file": "france-public-finances-gap.svg",
+      "shows": "Spending exceeded revenue throughout 1995–2025, and revenue fell faster than spending relative to GDP between 2022 and 2024.",
+      "form_fits": true,
+      "fix": "Annotate the 2022–2024 movements directly on the lines so the recent deterioration is visible without consulting the footnote."
+    },
+    {
+      "file": "france-public-finances-deficits.svg",
+      "shows": "The deficit narrowed from 5.8% of GDP in 2024 to 5.1% in 2025, remaining above its 2019 level.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-debt.svg",
+      "shows": "Debt rose over the longer term, fell relative to GDP after the pandemic, then reached 119% of GDP in June 2026.",
+      "form_fits": true,
+      "fix": "Highlight the 9.5-percentage-point rise since end-2023 to make the renewed deterioration explicit."
+    }
+  ],
+  "top_change": "Rebuild the story around why persistent deficits have become an urgent debt-management problem now, using dated evidence of concern and debt-stabilisation arithmetic; compress the spending inventory to supporting context.",
+  "publishable": "no",
+  "lessons": [
+    {
+      "rule": "Make the central argument answer the commissioned question before choosing supporting detail.",
+      "evidence": "The commission asks why there is a debt crisis; the headline and opening instead ask where public money goes."
+    },
+    {
+      "rule": "Distinguish evidence of a large debt stock from evidence of an immediate crisis.",
+      "evidence": "The story establishes debt of 119% of GDP but supplies no market-stress evidence or dated policy trigger."
+    },
+    {
+      "rule": "Use changes in fiscal components to explain deterioration; spending rankings alone cannot establish its cause.",
+      "evidence": "The revenue decline between 2022 and 2024 explains the widening gap more directly than the three spending-composition charts."
+    },
+    {
+      "rule": "Connect a falling deficit to the conditions required for a stable debt ratio.",
+      "evidence": "The story reports an improving 2025 deficit and renewed debt growth without explaining how both can occur."
+    },
+    {
+      "rule": "Preserve distinctions between nominal growth, GDP shares and service volumes.",
+      "evidence": "The story clearly explains why social protection can cost 31% more euros while taking a smaller share of GDP, without claiming that services increased proportionately."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 0,
+      "why": "The spending-composition argument answers a different question and never establishes why France faces a debt crisis now."
+    },
+    "depth": {
+      "score": 1,
+      "why": "Attributed revenue and inflation mechanisms provide useful explanation, but urgency, debt dynamics and the relative roles of growth and interest remain unexplained."
+    },
+    "charts": {
+      "score": 1,
+      "why": "The charts are labelled and mostly well matched to their points, but the evolution composition carries several points and the evidence chiefly supports a spending explainer."
+    },
+    "honesty": {
+      "score": 2,
+      "why": "Sources, periods, units and revision caveats are supplied; causal explanations are attributed, and the prose explicitly limits claims about services, ageing and default."
+    },
+    "reader_questions": {
+      "score": 0,
+      "why": "Five questions are unanswered and two receive partial answers, including no answer to the defining question of why this is a crisis now."
+    },
+    "prose": {
+      "score": 1,
+      "why": "Most sentences are plain and precise, but extensive spending-category qualifications displace the commissioned explanation, while “cycle-adjusted assessment” is left undefined."
+    }
+  },
+  "rubric_sha256": "86d8957be324276c3935864fcee67cfd3f1f06fc2b6e6add82dc15b78a0da22f",
+  "prompt_sha256": "bdeed6d74b4d48c3c9e37c62d7ee71a75b28e34f5d3a12793e2ca86574acd098",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 42841,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2030,
+      "reasoning_output_tokens": 95
+    },
+    "calls": 2
+  }
+}

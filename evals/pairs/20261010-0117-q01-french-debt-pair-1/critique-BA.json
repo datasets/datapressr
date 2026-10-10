@@ -1,0 +1,59 @@
+{
+  "rubric": "story/v1",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "BA",
+  "shown": {
+    "story_1": "B",
+    "story_2": "A"
+  },
+  "preferred": "B",
+  "margin": "clear",
+  "why": "Story 1 needs substantially fewer edits: “The gap has a revenue side” explains the recent deterioration with spending and revenue ratios, attributes causes to INSEE, and uses IMF estimates to address the alternative explanation of a merely temporary downturn. Its labelled deficit and debt charts provide useful historical context, while the spending section correctly distinguishes a programme’s size from its contribution to deterioration. Story 2 largely inventories dataset codes, leaves figures such as “-5.1” and the spending-function amounts without units, and provides no causal argument. Its charts lack series identification, and its debt chart misleadingly stacks gross and net debt as though they were additive. Neither draft establishes why this is a crisis now—dated borrowing-cost or financing evidence would help settle that—and both need substantial reporting on politics, European institutions, consequences and debt stabilisation.",
+  "reader_questions": [
+    {
+      "q": "What makes France’s debt situation a crisis now, and what evidence distinguishes it from a serious but manageable fiscal problem?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "How large are France’s debt, budget deficit and interest payments relative to its economy, its own history and comparable European countries?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "What caused the debt to accumulate, and how much reflects persistent spending and revenue choices versus economic shocks and weak growth?",
+      "A": "no",
+      "B": "partly"
+    },
+    {
+      "q": "What changed, and when, to make investors or policymakers more concerned about France’s ability to manage its debt?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "How do France’s political divisions, euro membership and European institutions affect its ability to resolve the problem?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "Who bears the consequences of the debt problem and of the tax increases or spending cuts proposed to address it?",
+      "A": "no",
+      "B": "no"
+    },
+    {
+      "q": "What would have to happen to stabilise France’s debt burden, and what could instead turn the current strains into a more severe crisis?",
+      "A": "no",
+      "B": "no"
+    }
+  ],
+  "prompt_sha256": "c1db848b0efc0cdd9a7dcb9f53a1a38984efb185cb3e613577856fc1bc22cb0a",
+  "rubric_sha256": "86d8957be324276c3935864fcee67cfd3f1f06fc2b6e6add82dc15b78a0da22f"
+}

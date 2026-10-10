@@ -62,12 +62,16 @@ No owner-judged pairs yet. The critic's pairwise verdict stands alone for small 
 
 ### Calibration
 
-No calibration hit rates recorded yet (datapressr-hcn.8 writes them to `evals/calibration/<domain>/*.json`).
+| Rubric | Set | Hits |
+|---|---|---|
+| story/v1 | q01 round 1 (draft 1; anchors may use these remarks) | 4 of 6 |
+| story/v1 | q01 round 2 (draft 2; held out), PNG renders | 0 of 5 |
+| story/v1 | q01 round 2 (draft 2; held out), SVG text | 0 of 5 |
 
 ### Critic and isolation
 
-- Critic fallback: 0 of 9 critiques (absolute and pairwise) used the fallback critic.
-- Critic validation failures: 0 of 8 absolute critiques recorded as critic_failed.
+- Critic fallback: 0 of 12 critiques (absolute and pairwise) used the fallback critic.
+- Critic validation failures: 0 of 10 absolute critiques recorded as critic_failed.
 - Leaks caught: 0 of 2 runs flagged leaked.
 
 Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):

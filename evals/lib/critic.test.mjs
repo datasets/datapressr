@@ -13,11 +13,13 @@ import { fileURLToPath } from "node:url";
 import * as fake from "./adapters/fake.mjs";
 import {
   absoluteSchema,
+  allRunDirs,
   buildAbsolute,
   buildPairwise,
   latestRubricId,
   loadRubric,
   pairResult,
+  findRunDir,
   pairRuns,
   parseRubric,
   readerProse,
@@ -461,5 +463,54 @@ test("score and pair with --critic fake through the CLI, on fake-writer runs", (
     assert.match(readFileSync(join(root, "evals/REPORT.md"), "utf8"), /Absolute scores, rubric story\/v1/);
   } finally {
     rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("calibration runs resolve by id but stay out of --all", () => {
+  const evalsDir = mkdtempSync(join(tmpdir(), "evals-calib-"));
+  try {
+    const live = join(evalsDir, "runs", "story", "q01", "20261010-0000-q01-fake-fake-abc1234-1");
+    const calib = join(evalsDir, "calibration", "story", "q01", "20261008-0000-q01-french-debt-historical-draft1-0");
+    for (const d of [live, calib]) {
+      mkdirSync(d, { recursive: true });
+      writeFileSync(join(d, "run.json"), "{}\n");
+    }
+    writeFileSync(join(evalsDir, "calibration", "story", "round-2.json"), "{}\n");
+    assert.equal(findRunDir(evalsDir, "20261008-0000-q01-french-debt-historical-draft1-0"), calib);
+    assert.equal(findRunDir(evalsDir, "20261010-0000-q01-fake-fake-abc1234-1"), live);
+    assert.deepEqual(allRunDirs(evalsDir), [live]);
+    assert.throws(() => findRunDir(evalsDir, "nope"), /no run nope/);
+  } finally {
+    rmSync(evalsDir, { recursive: true, force: true });
+  }
+});
+
+test("score --png: renders charts, attaches them to the critique call only, refuses Claude and a missing rasteriser", async () => {
+  const { root, evalsDir, cleanup } = setup();
+  try {
+    const runId = "20261010-0900-t01-demo-fake-fake-1abcdef-1";
+    const runDir = writeRun(evalsDir, runId);
+    const rendered = [];
+    const renderer = {
+      available: () => ({ ok: true }),
+      renderCharts: (charts, dir) => charts.map((c, i) => (rendered.push(c.raw), join(dir, `chart-${i + 1}.png`))),
+    };
+    const { calls, adapters } = capture();
+    const res = await scoreRun({ root, evalsDir, runDir, critic: FAKE, config, adapters, png: true, renderer, now: clock() });
+    assert.ok(res.ok, JSON.stringify(res.errors));
+    assert.equal(calls[0].images, undefined, "no images in the questions step");
+    assert.equal(calls[1].images.length, 1);
+    assert.match(calls[1].prompt, /PNG renders of the embedded charts are attached/);
+    assert.ok(!rendered[0].includes(runId), "the rendered SVG is the redacted one");
+    assert.equal(readLedger(join(evalsDir, "ledger.jsonl")).pop().png, true);
+    assert.equal(JSON.parse(readFileSync(res.file, "utf8")).png_images, 1);
+    // Without --png the prompt says nothing about images.
+    const plain = capture();
+    await scoreRun({ root, evalsDir, runDir, critic: FAKE, config, adapters: plain.adapters, now: clock() });
+    assert.ok(!plain.calls[1].prompt.includes("PNG renders"));
+    await assert.rejects(scoreRun({ root, evalsDir, runDir, critic: { ...FAKE, vendor: "claude" }, config, adapters: { claude: { critic: async () => ({}) } }, png: true, renderer, now: clock() }), /takes no images/);
+    await assert.rejects(scoreRun({ root, evalsDir, runDir, critic: FAKE, config, adapters, png: true, renderer: { available: () => ({ ok: false, reason: "no qlmanage" }) }, now: clock() }), /no qlmanage/);
+  } finally {
+    cleanup();
   }
 });

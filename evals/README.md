@@ -6,7 +6,7 @@ House style: plain Node, no build step, no npm dependencies; results are files i
 
 ## Status
 
-Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and the isolation canary (`datapressr-hcn.3`), the Codex writer and automatic critic vendor choice (`datapressr-hcn.4`), the full report and owner capture (`datapressr-hcn.9`), the critic with its v1 rubric, `score` and `pair` (`datapressr-hcn.5`). What works today:
+Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and the isolation canary (`datapressr-hcn.3`), the Codex writer and automatic critic vendor choice (`datapressr-hcn.4`), the full report and owner capture (`datapressr-hcn.9`), the critic with its v1 rubric, `score` and `pair` (`datapressr-hcn.5`), and the critic's calibration on France (`datapressr-hcn.8`; results in [`LESSONS.md`](LESSONS.md#critic-calibration): held-out hit rate 0 of 5, negative control passes, `story/v1` frozen). What works today:
 
 ```sh
 node evals/run.mjs run story/q01-french-debt --writer fake     # free plumbing test
@@ -16,7 +16,7 @@ node evals/run.mjs run story/q01-french-debt --writer claude   # paid (caps in c
 node evals/run.mjs canary --writer codex                       # tokens only (about 40k input, mostly cached, on gpt-6-luna); required before any Codex run
 node evals/run.mjs canary --writer codex --weaken              # negative control: real HOME, so ~/.agents/skills load; must FAIL
 node evals/run.mjs critic-choice --writer claude               # free: which critic vendor and model `score` would use, and why
-node evals/run.mjs score <run_id|--all> [--critic auto|claude|codex|fake] [--critic-model <id>] [--rubric story/v1] [--calibrate]
+node evals/run.mjs score <run_id|--all> [--critic auto|claude|codex|fake] [--critic-model <id>] [--rubric story/v1] [--calibrate] [--png]
 node evals/run.mjs pair <run_id> <run_id> [--critic auto|claude|codex|fake] [--critic-model <id>] [--rubric story/v1] [--calibrate]
 node evals/run.mjs check <run_id|--all>                       # deterministic checks: checks.json + a ledger row
 node evals/run.mjs report                                      # regenerate evals/REPORT.md (also: npm run eval:report)
@@ -61,7 +61,9 @@ After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or 
 | `lib/checkers/story.mjs` | The six story checks S1–S6 (below); `run-checks.mjs` is the `check` subcommand, which `run` also calls after collecting artefacts; `offline-preload.mjs` blocks the network for chart rebuilds |
 | `lib/report.mjs` | Writes `REPORT.md` (sections below); `renderReport(rows, ctx)` is pure, `reportContext` gathers skill history from git and the installed CLI versions |
 | `lib/critic.mjs` | The critic: rubric loading, prompt assembly, output schemas, validation with one retry, Markdown rendering, and the `score` and `pair` subcommands |
-| `rubrics/<domain>/vN.md` | The critic's instructions; a new version is a new file with its change log in the header (never sent to the critic) |
+| `rubrics/<domain>/vN.md` | The critic's instructions; a new version is a new file with its change log in the header (never sent to the critic). A version is frozen once calibrated (`story/v1` since `datapressr-hcn.8`): its hash covers the whole file, so even a header edit splits its scores |
+| `lib/render.mjs` | PNG renders of chart SVGs for `score --png`: headless Chrome at 2x, cropped with `sips` (macOS) |
+| `calibration/<domain>/` | Critic calibration: `<case>/<run_id>/` run-0 directories (historical drafts and a negative control; `score` and `pair` find them by id, `--all` skips them), `build-runs.mjs` to rebuild them, and `*.json` hit rates that the report reads |
 | `lib/owner.mjs` | The `owner` subcommand: blind pair judgements, single-run remarks, rounds to publishable |
 | `lib/adapters/fake.mjs` | Zero-cost writer for tests |
 | `lib/stage.mjs` | Blind workspace staging, the `node_modules` cache, artefact collection |
@@ -93,6 +95,8 @@ A run id is `<YYYYMMDD-HHMM>-<case>-<vendor>-<model-short>-<skill7>-<n>` (UTC). 
 - **Pairwise** (`pair`): both runs must be of the same case. A coin toss decides which is `A`; `pairs/<pair_id>/A` and `B` get the reader prose (title-only frontmatter, no friction notes) and the SVGs it embeds. The critic judges twice, order `AB` then `BA`; it sees the stories by position as Story 1 and Story 2 and answers which it would publish with fewer edits (`1`, `2` or `tie`), the margin (`clear` or `slight`), why, and the reader questions each answers. The stored judgements use the pair's labels (`shown` records which label held each position). The `pair` row's result is a win only when both orders prefer the same run; a split is a tie.
 
 What the critic sees: the rubric's sections for the step (never its header), the case question, type, data mode, as_of and word budget, the case's references, and the story: outline (absolute mode only), prose, each embedded SVG as source (long path data elided, so colours and markers stay) with the text labels drawn on it, and `DATA.md` in open mode. Owner feedback only with `--calibrate`. It never sees the skill, other files in the run (run.json, checks, earlier critiques, transcripts), `LESSONS.md`, run dates, or any run id, skill or harness tree or skill ref; those are redacted wherever they appear in the material. The tests in `lib/critic.test.mjs` prove this with marker files.
+
+`--png` (absolute mode, Codex critic only) also attaches a PNG render of each chart, so the critic can judge colour, markers and clipping; the row and critique record `png`. Calibration found it necessary but not sufficient for visual remarks, so it is off by default.
 
 Critic choice: `--critic auto` (the default) uses `pickCritic` (the other vendor when available, else the writer's vendor with the fallback family); `--critic claude|codex` forces a vendor (the fallback family when it is the writer's); `--critic-model` overrides the model (cheap smoke tests), never the writer's own; `--critic fake` is free and deterministic. Both vendors run with tools off and a JSON schema (`claude -p --json-schema`, `codex exec --output-schema`). An answer that fails the call or validation is retried once; then `score` appends a `critic_failed` row and `pair` removes the half-written pair and exits non-zero.
 

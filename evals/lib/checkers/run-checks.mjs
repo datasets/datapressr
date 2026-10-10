@@ -20,9 +20,11 @@ const CHECKERS = {
   },
 };
 
-// Every run directory under evals/runs/<domain>/<case>/<run_id>/ that has a run.json.
-export function findRunDirs(evalsDir) {
-  const runs = join(evalsDir, "runs");
+// Every run directory under evals/runs/<domain>/<case>/<run_id>/ that has a run.json. `sub`
+// "calibration" lists the critic's calibration runs instead (historical drafts and negative
+// controls, datapressr-hcn.8), which `--all` never includes.
+export function findRunDirs(evalsDir, sub = "runs") {
+  const runs = join(evalsDir, sub);
   if (!existsSync(runs)) return [];
   const out = [];
   const dirs = (p) => readdirSync(p).filter((n) => statSync(join(p, n)).isDirectory()).sort();
@@ -34,8 +36,9 @@ export function findRunDirs(evalsDir) {
 }
 
 export function findRunDir(evalsDir, runId) {
-  const dir = findRunDirs(evalsDir).find((d) => d.split(sep).pop() === runId);
-  if (!dir) throw new Error(`no run ${runId} under ${join(evalsDir, "runs")}`);
+  const named = (d) => d.split(sep).pop() === runId;
+  const dir = findRunDirs(evalsDir).find(named) ?? findRunDirs(evalsDir, "calibration").find(named);
+  if (!dir) throw new Error(`no run ${runId} under ${join(evalsDir, "runs")} or ${join(evalsDir, "calibration")}`);
   return dir;
 }
 

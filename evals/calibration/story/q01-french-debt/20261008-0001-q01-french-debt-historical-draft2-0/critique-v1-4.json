@@ -1,0 +1,164 @@
+{
+  "rubric": "story/v1",
+  "mode": "absolute",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "model_actual": null
+  },
+  "calibrate": false,
+  "reader_questions": [
+    {
+      "q": "What makes France’s debt situation a crisis now, rather than simply a high level of public debt?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How large are France’s debt, annual deficit and interest bill relative to its economy, its own history and comparable countries?",
+      "answered": "partly",
+      "where": "The opening snapshot, “The deficit also has a revenue side” and “Repeated gaps accumulate into debt” give debt and deficit levels and historical comparisons; the interest bill and international comparisons are missing."
+    },
+    {
+      "q": "What has driven the debt problem, and how much comes from spending, taxation, weak growth or higher borrowing costs?",
+      "answered": "partly",
+      "where": "“Bigger bills, but not always a bigger share of the economy” and “The deficit also has a revenue side” explain spending composition, indexation and recent revenue weakness, but do not quantify the contributions of growth, tax policy and borrowing costs."
+    },
+    {
+      "q": "What changed, and when, to make investors or policymakers more worried about France’s ability to manage its debt?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "How do France’s political constraints and membership of the euro affect its ability to resolve the problem?",
+      "answered": "no",
+      "where": ""
+    },
+    {
+      "q": "Who is affected by the debt crisis, and who would bear the costs of measures to address it?",
+      "answered": "partly",
+      "where": "“The biggest commitment is social protection” identifies recipients of public spending, but never connects them, taxpayers or service users to the consequences of the debt problem or proposed remedies."
+    },
+    {
+      "q": "What would have to change to stabilise France’s debt, and what could make the situation materially worse?",
+      "answered": "no",
+      "where": ""
+    }
+  ],
+  "missed_findings": [
+    "The story supplies no dated evidence of financing stress or a loss of policy credibility, so it never establishes whether “crisis” is the right description.",
+    "The supplied figures show the deficit widening by 1.1 percentage points of GDP between 2022 and 2024 because revenue fell by 2.5 points while spending fell by 1.4 points; this is the clearest quantified explanation and deserves the lead.",
+    "The debt chart shows a 9.5-percentage-point rise between end-2023 and June 2026, a recent reversal that the prose leaves unquantified and unexplained.",
+    "The interest bill, its change over time and comparable countries’ fiscal positions are missing, preventing the reader from judging how exceptional or costly France’s position is.",
+    "The story omits the political and euro-area constraints on adjustment and the distribution of costs among taxpayers, benefit recipients and public-service users.",
+    "No debt-stabilisation calculation connects the primary balance, borrowing costs and nominal growth, leaving the reader without a benchmark for the adjustment required."
+  ],
+  "charts": [
+    {
+      "file": "france-public-finances-snapshot.svg",
+      "shows": "Spending exceeded revenue by €153 billion in 2025; receipts covered roughly 91% of spending.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-spending.svg",
+      "shows": "Social protection and health together accounted for 57.1% of public spending in 2024.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-social.svg",
+      "shows": "Old age accounts for more than half of social protection, with the other benefit categories separately identified.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-evolution.svg",
+      "shows": "Social protection grew in euros but declined relative to GDP between 2014 and 2024, alongside longer histories and nine subgroup comparisons.",
+      "form_fits": true,
+      "fix": "Remove the nine-category lower panel from the main story so the chart concentrates on the nominal-growth versus GDP-share finding."
+    },
+    {
+      "file": "france-public-finances-gap.svg",
+      "shows": "Spending exceeded revenue throughout 1995–2025, and revenue fell faster than spending relative to GDP between 2022 and 2024.",
+      "form_fits": true,
+      "fix": "Annotate the 2022–2024 movements directly on the lines to make the recent deficit-widening mechanism the visual focus."
+    },
+    {
+      "file": "france-public-finances-deficits.svg",
+      "shows": "The annual deficit narrowed from 5.8% to 5.1% of GDP in 2025 but remained above its 2019 level.",
+      "form_fits": true,
+      "fix": ""
+    },
+    {
+      "file": "france-public-finances-debt.svg",
+      "shows": "Debt rose over the longer term, fell relative to GDP after 2020, then reached 119% in June 2026.",
+      "form_fits": true,
+      "fix": "Highlight the 9.5-percentage-point increase since end-2023 to focus attention on the recent deterioration."
+    }
+  ],
+  "top_change": "Rebuild the story around whether and why France faces a debt crisis now, leading with dated evidence of fiscal or financing pressure and explaining why political constraints, growth and borrowing costs make stabilisation difficult; compress the spending inventory to supporting context.",
+  "publishable": "no",
+  "lessons": [
+    {
+      "rule": "Answer the commissioned question in the opening claim, and use descriptive breakdowns only where they advance that answer.",
+      "evidence": "The commission asks why there is a debt crisis; the title and opening instead ask where public money goes."
+    },
+    {
+      "rule": "Distinguish a large debt stock from a current crisis using dated evidence of financing conditions or policy constraints.",
+      "evidence": "The story reports debt of 119% of GDP without showing investor concern, a policy trigger or an inability to finance spending."
+    },
+    {
+      "rule": "Separate spending levels from explanations of changes in the deficit.",
+      "evidence": "Social protection dominates the budget, but the 2022–2024 deficit deterioration occurred while spending fell relative to GDP and revenue fell further."
+    },
+    {
+      "rule": "Preserve counter-evidence and distinguish nominal amounts from economic burdens.",
+      "evidence": "The story correctly retains the 2025 deficit improvement and explains why a 31% nominal increase in social protection can accompany a declining GDP share."
+    },
+    {
+      "rule": "Give each chart one principal finding and reserve detailed inventories for supporting material.",
+      "evidence": "The evolution figure combines aggregate histories, nine subgroup comparisons and nominal-growth accounting in one visual block."
+    }
+  ],
+  "scores": {
+    "argument": {
+      "score": 0,
+      "why": "The coherent argument about spending composition and revenue does not answer the commissioned question about why France faces a debt crisis."
+    },
+    "depth": {
+      "score": 1,
+      "why": "Attributed explanations of revenue weakness and indexation challenge a simple welfare-spending account, but the central questions about crisis timing and debt sustainability remain unexplained."
+    },
+    "charts": {
+      "score": 1,
+      "why": "The charts are labelled, sourced and generally well matched to their data, but the evolution figure carries several points and the collection mainly supports a spending explainer."
+    },
+    "honesty": {
+      "score": 2,
+      "why": "The supplied figures are internally consistent, sources and vintages are identified, causal explanations are attributed, and limits concerning nominal growth, revisions and default prediction are explicit."
+    },
+    "reader_questions": {
+      "score": 0,
+      "why": "Four questions are unanswered, including why this is a crisis now; the remaining three receive only partial answers."
+    },
+    "prose": {
+      "score": 1,
+      "why": "Most sentences are plain and specific, but accounting-category explanations consume scarce space while “cycle-adjusted assessment” and “taxable bases” receive insufficient explanation."
+    }
+  },
+  "rubric_sha256": "86d8957be324276c3935864fcee67cfd3f1f06fc2b6e6add82dc15b78a0da22f",
+  "prompt_sha256": "9a66f37e2ad8433fd543deec8e417cda58d09fcfb445708c6984a1f5676c8432",
+  "cost": {
+    "cost_usd": null,
+    "usage": {
+      "input_tokens": 42847,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 2069,
+      "reasoning_output_tokens": 80
+    },
+    "calls": 2
+  }
+}
