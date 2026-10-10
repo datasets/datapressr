@@ -70,8 +70,13 @@ for (const { domain, id, dir } of cases) {
 
 test("config pins full model IDs (no aliases) and the per-run caps", () => {
   const ids = [...Object.values(config.models).flatMap((m) => Object.values(m)), ...Object.values(config.families)];
-  for (const id of ids) assert.match(id, /^[a-z]+(?:-[a-z0-9]+)*-\d[a-z0-9-]*$/, `${id} looks like an alias`);
+  for (const id of ids) assert.match(id, /^[a-z]+(?:-[a-z0-9]+)*-\d[a-z0-9.-]*$/, `${id} looks like an alias`);
   assert.deepEqual(config.caps, { fixed: { max_usd: 20, max_turns: 100 }, open: { max_usd: 30, max_turns: 150 } });
   assert.deepEqual(config.critic_preference, { claude: "codex", codex: "claude" });
-  assert.deepEqual(config.critic_fallback, { opus: "sonnet" });
+  // Each fallback family differs from the writer's, so the critic is never the writer's model.
+  assert.equal(config.critic_fallback.opus, "sonnet");
+  for (const [from, to] of Object.entries(config.critic_fallback)) {
+    assert.notEqual(from, to);
+    assert.ok(config.families[from] && config.families[to], `${from} -> ${to} are both in families`);
+  }
 });

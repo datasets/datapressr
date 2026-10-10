@@ -1,12 +1,13 @@
 // The `run` subcommand (design section 4.2): resolve versions, refuse a dirty skill tree, gate
 // on a passing canary (staged writers), stage a blind workspace, run the writer adapter, collect
 // artefacts, leak-scan the transcript, write run.json, append a ledger row and regenerate the
-// report. The fake writer skips staging and the gate; the Codex writer arrives in
-// datapressr-hcn.4 (H3).
+// report. The fake writer skips staging and the gate; Claude and Codex writers are staged and
+// gated.
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 import * as claude from "./adapters/claude.mjs";
+import * as codex from "./adapters/codex.mjs";
 import * as fake from "./adapters/fake.mjs";
 import { gateFromLedger } from "./canary.mjs";
 import { scanTranscript } from "./leakscan.mjs";
@@ -17,8 +18,8 @@ import { writeReport } from "./report.mjs";
 import { assertValid, validateCase, validateRun } from "./schema.mjs";
 import { caseHash, harnessVersion, isAncestorOfMain, sha256, skillVersion, treeHash } from "./versions.mjs";
 
-export const ADAPTERS = { fake, claude };
-const NOT_YET = { codex: "datapressr-hcn.4 (H3)" };
+export const ADAPTERS = { fake, claude, codex };
+const NOT_YET = {};
 
 export function loadConfig(evalsDir) {
   return JSON.parse(readFileSync(join(evalsDir, "config.json"), "utf8"));

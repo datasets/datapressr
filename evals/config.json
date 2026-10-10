@@ -8,20 +8,26 @@
     "codex": {
       "writer": "gpt-6-astra",
       "critic": "gpt-6-astra",
-      "canary": "gpt-6-astra"
+      "canary": "gpt-6-luna"
     }
   },
   "families": {
     "opus": "claude-opus-5-5",
     "sonnet": "claude-sonnet-5-5",
-    "haiku": "claude-haiku-5-5"
+    "haiku": "claude-haiku-5-5",
+    "astra": "gpt-6-astra",
+    "sol": "gpt-6.1-sol",
+    "luna": "gpt-6-luna"
   },
   "critic_preference": {
     "claude": "codex",
     "codex": "claude"
   },
   "critic_fallback": {
-    "opus": "sonnet"
+    "opus": "sonnet",
+    "sonnet": "opus",
+    "astra": "sol",
+    "sol": "astra"
   },
   "caps": {
     "fixed": { "max_usd": 20, "max_turns": 100 },

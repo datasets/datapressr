@@ -8,11 +8,12 @@ import { mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSyn
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as claude from "./adapters/claude.mjs";
-import { CHART_OUT, PROBE_SCRIPT, evaluateCanary, requireCanary } from "./canary.mjs";
+import * as codex from "./adapters/codex.mjs";
+import { CHART_OUT, PROBE_SCRIPT, codexCanaryPrompt, evaluateCanary, evaluateCodexCanary, requireCanary } from "./canary.mjs";
 import { appendRow, readLedger } from "./ledger.mjs";
 import { runCase } from "./runner.mjs";
 import { ensureModulesCache } from "./stage.mjs";
-import { fakeClaudeBin, stagingRepo } from "./fixture-staging.mjs";
+import { fakeClaudeBin, fakeCodexBin, stagingRepo } from "./fixture-staging.mjs";
 
 const SHA = "a".repeat(64);
 const row = (over = {}) => ({ schema: 1, kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "c1", vendor: "claude", cli_version: "2.1.296", recipe_sha256: SHA, mode: "fixed", pass: true, ...over });
@@ -162,5 +163,80 @@ test("with a passing canary a staged run collects the writer's files, hashes the
     assert.deepEqual(b.run.isolation.leaks, [{ tool: "Read", path: "/Users/someone/src/datapressr/AGENTS.md" }]);
   } finally {
     cleanup(root, cacheRoot, clean.dir, leaky.dir);
+  }
+});
+
+// --- the Codex canary verdict ------------------------------------------------
+
+function codexTranscript({ root, home, network = false }) {
+  const item = (it) => JSON.stringify({ type: "item.completed", item: it });
+  const out = `== head_repo\n# DataPressr — AI Agent Instructions\n== ls_repo\nAGENTS.md\nNEXT.md\nskills\n== ls_claude\nCLAUDE.md\nsettings.json\n== curl\nhttp_code=${network ? "200 exit=0" : "000 exit=6"}\n== fetch\n${network ? "fetch_status=200" : "fetch_error=ENOTFOUND"}\n== chart\nCHART_OK\n== end\n`;
+  return [
+    JSON.stringify({ type: "thread.started", thread_id: "t" }),
+    item({ id: "i1", type: "command_execution", command: `/bin/zsh -lc 'sh ${PROBE_SCRIPT}'`, aggregated_output: out, exit_code: 0 }),
+    item({ id: "i2", type: "command_execution", command: `/bin/zsh -lc 'head -1 ${join(root, "AGENTS.md")}'`, aggregated_output: "# DataPressr — AI Agent Instructions\n", exit_code: 0 }),
+    item({ id: "i3", type: "agent_message", text: "DONE" }),
+    JSON.stringify({ type: "turn.completed", usage: { input_tokens: 1, output_tokens: 1 } }),
+  ].join("\n");
+}
+
+test("Codex canary: disk reads are recorded as open; user skills, memories, plugins and network fail it", () => {
+  const d = fixtureDirs();
+  try {
+    writeFileSync(join(d.ws, CHART_OUT), "<svg></svg>\n");
+    assert.match(codexCanaryPrompt({ root: d.root }), new RegExp(`head -1 '${join(d.root, "AGENTS.md")}'`));
+    const homeReport = { entries: ["auth.json", "skills"], skills: [], system_skills: ["imagegen", "skill-creator"], plugins_cache: [], apps_cache: [], memory_rows: 0, memories_dir: [] };
+    const common = { transcript: codexTranscript(d), homeReport, workspace: d.ws, root: d.root, home: d.home, homes: d.homes, userSkills: ["humanizer", "brainstorming", "skill-creator"], resultText: "DONE\nSKILLS: imagegen, skill-creator, story\nINSTRUCTIONS: NONE" };
+
+    const ok = evaluateCodexCanary(common);
+    assert.equal(ok.pass, true, JSON.stringify(ok.probes, null, 1));
+    for (const name of ["shell_read_repo", "head_repo", "ls_repo", "ls_claude"]) assert.equal(ok.probes[name].status, "open", name);
+    for (const name of ["curl", "fetch"]) assert.equal(ok.probes[name].status, "blocked", name);
+    for (const name of ["chart_offline", "skills", "memories", "session", "leak_scan"]) assert.equal(ok.probes[name].status, "ok", name);
+
+    const fail = (over, probe, pattern) => {
+      const v = evaluateCodexCanary({ ...common, ...over });
+      assert.equal(v.pass, false, probe);
+      assert.notEqual(v.probes[probe].status, "ok", probe);
+      if (pattern) assert.match(v.probes[probe].evidence, pattern);
+    };
+    fail({ resultText: "DONE\nSKILLS: imagegen, humanizer:humanizer, brainstorming\nINSTRUCTIONS: NONE" }, "skills", /USER SKILLS: humanizer:humanizer, brainstorming/);
+    fail({ resultText: "DONE" }, "skills", /no SKILLS line/);
+    fail({ homeReport: { ...homeReport, skills: ["humanizer"] } }, "skills");
+    fail({ homeReport: { ...homeReport, memory_rows: 2 } }, "memories", /memory rows in temp home: 2/);
+    fail({ resultText: "DONE\nSKILLS: NONE\nINSTRUCTIONS: Markdown: never hard-wrap. One line per paragraph." }, "memories", /quoted/);
+    fail({ homeReport: { ...homeReport, plugins_cache: ["google-drive"], apps_cache: ["codex_apps_tools"] } }, "session", /plugin google-drive; apps cache codex_apps_tools/);
+    fail({ transcript: codexTranscript({ ...d, network: true }) }, "curl");
+    fail({ transcript: `${codexTranscript(d)}\n${JSON.stringify({ type: "item.completed", item: { id: "w", type: "web_search", query: "france debt" } })}` }, "session", /WebSearch/);
+    fail({ transcript: codexTranscript(d).split("\n").filter((l) => !l.includes("head -1")).join("\n") }, "leak_scan");
+
+    // A skill the CLI ships (a system skill) is not a user skill even if the user has one of that name.
+    assert.equal(evaluateCodexCanary({ ...common, resultText: "DONE\nSKILLS: skill-creator\nINSTRUCTIONS: NONE" }).probes.skills.status, "ok");
+    // Open mode does not probe the network.
+    assert.equal(evaluateCodexCanary({ ...common, transcript: codexTranscript({ ...d, network: true }), mode: "open" }).probes.curl, undefined);
+  } finally {
+    rmSync(d.base, { recursive: true, force: true });
+  }
+});
+
+test("a Codex writer runs staged and gated like Claude: tokens, no cost, the leak scan over its items", async () => {
+  const { root, cacheRoot } = stagedRepoWithCache();
+  const fake = fakeCodexBin();
+  const authDir = mkdtempSync(join(tmpdir(), "evals-codexauth-"));
+  writeFileSync(join(authDir, "auth.json"), "{}\n");
+  const adapter = { ...codex, cliVersion: () => "7.7.7", write: (o) => codex.write({ ...o, bin: fake.bin, authFile: join(authDir, "auth.json") }) };
+  try {
+    await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "codex", adapters: { codex: adapter }, cacheRoot }), /no canary on record for codex 7\.7\.7/);
+    appendRow(join(root, "evals/ledger.jsonl"), { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "cx", vendor: "codex", cli_version: "7.7.7", recipe_sha256: codex.recipeHash("fixed"), mode: "fixed", pass: true });
+    const [r] = await runCase({ root, caseRef: "story/t01-demo", writer: "codex", adapters: { codex: adapter }, cacheRoot });
+    assert.deepEqual(r.run.artefacts.map((x) => x.path), ["site/stories/fake.md"]);
+    assert.equal(r.run.isolation.canary_run_id, "cx");
+    assert.equal(r.run.writer.vendor, "codex");
+    assert.equal(r.run.cost_usd, null);
+    assert.equal(r.run.cost_basis, null);
+    assert.deepEqual(r.run.usage, { input_tokens: 100, cached_input_tokens: 40, output_tokens: 7 });
+    assert.deepEqual(r.run.flags, []);
+  } finally {
+    cleanup(root, cacheRoot, fake.dir, authDir);
   }
 });

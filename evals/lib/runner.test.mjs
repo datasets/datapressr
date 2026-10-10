@@ -85,7 +85,7 @@ test("repeats get distinct run ids; real writers and unknown cases are refused c
     assert.ok(results[0].runId.startsWith("20261010-0905-t01-demo-fake-fake-"));
     assert.equal(readLedger(join(root, "evals/ledger.jsonl")).filter((r) => r.kind === "run").length, 2);
 
-    await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "codex" }), /datapressr-hcn\.4/);
+    await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "gemini" }), /unknown writer "gemini"/);
     await assert.rejects(runCase({ root, caseRef: "story/nope", writer: "fake" }), /no case/);
   } finally {
     rmSync(root, { recursive: true, force: true });

@@ -69,3 +69,21 @@ test("tool calls are extracted only from assistant tool_use blocks; URLs are not
   assert.deepEqual(toolCallsFromTranscript(t).map((c) => c.tool), ["Bash"]);
   assert.deepEqual(pathsIn("see https://example.com/etc/passwd and file:///etc/hosts", HOME).absolute, []);
 });
+
+test("Codex exec --json items are scanned: shell commands, file changes, MCP calls; started events are not doubled", () => {
+  const item = (type, it) => JSON.stringify({ type, item: it });
+  const t = [
+    item("item.started", { id: "c1", type: "command_execution", command: `/bin/zsh -lc 'head -1 ${HOME}/src/repo/AGENTS.md'` }),
+    item("item.completed", { id: "c1", type: "command_execution", command: `/bin/zsh -lc 'head -1 ${HOME}/src/repo/AGENTS.md'`, aggregated_output: `${HOME}/.ssh/x` }),
+    item("item.completed", { id: "f1", type: "file_change", changes: [{ path: `${WS}/site/stories/a.md`, kind: "add" }, { path: `${HOME}/notes.md`, kind: "update" }] }),
+    item("item.completed", { id: "m1", type: "mcp_tool_call", server: "drive", tool: "read", arguments: { path: `${HOME}/Drive/x` } }),
+    item("item.completed", { id: "a1", type: "agent_message", text: `I read ${HOME}/.codex/config.toml` }),
+  ].join("\n");
+  assert.equal(toolCallsFromTranscript(t).length, 4);
+  const leaks = scanTranscript(t, { workspaces: [WS], home: HOME, rootExists: () => true });
+  assert.deepEqual(leaks, [
+    { tool: "Bash", path: `${HOME}/src/repo/AGENTS.md` },
+    { tool: "Write", path: `${HOME}/notes.md` },
+    { tool: "mcp:drive:read", path: `${HOME}/Drive/x` },
+  ]);
+});

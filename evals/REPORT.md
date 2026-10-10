@@ -42,5 +42,7 @@ Canary status (latest per vendor, CLI version and mode; weakened canaries are ne
 |---|---|---|---|---|---|
 | claude | 2.1.296 | fixed | recipe | 20261010-0028-canary-claude-haiku-5-5-1 | PASS |
 | claude | 2.1.296 | fixed | weakened | 20261010-0028-canary-claude-haiku-5-5-weakened-1 | FAIL (expected) |
+| codex | 0.161.0 | fixed | recipe | 20261010-0038-canary-codex-gpt-6-luna-1 | PASS |
+| codex | 0.161.0 | fixed | weakened | 20261010-0038-canary-codex-gpt-6-luna-weakened-1 | FAIL (expected) |
 
 - Installed claude CLI: 2.1.296 (fixed mode): canary passed.

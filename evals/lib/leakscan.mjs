@@ -11,7 +11,18 @@ import { isAbsolute, normalize, relative, resolve, sep } from "node:path";
 // shared temp dir (the sandbox's own scratch space). Not $TMPDIR: other workspaces live there.
 export const DEFAULT_ALLOWED_PREFIXES = ["/usr/", "/bin/", "/sbin/", "/opt/homebrew/", "/dev/null", "/dev/stdin", "/dev/stdout", "/dev/stderr", "/dev/fd/", "/tmp/", "/private/tmp/"];
 
-// Tool calls from a stream-json transcript: assistant message content blocks of type tool_use.
+// A Codex `exec --json` item as a tool call in the Claude shape: shell commands as Bash, file
+// changes as Write (one per path), MCP calls and web searches by name.
+function codexCalls(item) {
+  if (item.type === "command_execution") return [{ id: item.id, tool: "Bash", input: { command: item.command } }];
+  if (item.type === "file_change") return (item.changes ?? []).map((c, i) => ({ id: `${item.id}:${i}`, tool: "Write", input: { file_path: c.path } }));
+  if (item.type === "mcp_tool_call") return [{ id: item.id, tool: `mcp:${item.server ?? "?"}:${item.tool ?? "?"}`, input: item.arguments ?? {} }];
+  if (item.type === "web_search") return [{ id: item.id, tool: "WebSearch", input: { query: item.query ?? "" } }];
+  return [];
+}
+
+// Tool calls from a transcript: Claude stream-json (assistant content blocks of type tool_use)
+// or Codex `exec --json` (completed items; the started event of the same item is skipped).
 export function toolCallsFromTranscript(text) {
   const calls = [];
   for (const line of String(text).split("\n")) {
@@ -20,6 +31,10 @@ export function toolCallsFromTranscript(text) {
     try {
       ev = JSON.parse(line);
     } catch {
+      continue;
+    }
+    if (ev?.type === "item.completed" && ev.item) {
+      calls.push(...codexCalls(ev.item));
       continue;
     }
     const content = ev?.message?.content;

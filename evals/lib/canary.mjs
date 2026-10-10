@@ -139,7 +139,8 @@ function listingLeaked(text, dir) {
 const findCall = (pairs, tool, needle) => pairs.find((p) => p.tool === tool && JSON.stringify(p.input ?? {}).includes(needle));
 
 // Decide every probe from evidence. Returns { pass, probes: { name: { status, evidence } } }.
-// status: blocked | leaked | not_run (probes), ok | failed (controls and checks).
+// status: blocked | leaked | not_run (probes), ok | failed (controls and checks); the Codex
+// canary adds open (readable, not preventable under its recipe; the leak scan is the control).
 export function evaluateCanary({ transcript, init, resultText, workspace, root, home = homedir(), homes, allowedTools }) {
   const pairs = toolPairs(transcript);
   const probes = {};
@@ -201,6 +202,111 @@ export function evaluateCanary({ transcript, init, resultText, workspace, root, 
   return { pass, probes };
 }
 
+// --- Codex ---------------------------------------------------------------------------------
+// Codex has one tool (the shell) and no init event, so its canary is the probe script plus
+// evidence from the temp home after the run. Under `workspace-write` the shell can read any file
+// the user can; those probes are recorded as `open` (possible, detected by the leak scan, not a
+// failure). What must hold: no user skills (~/.agents/skills, ~/.codex/skills), no memories or
+// user instructions, no apps, plugins, MCP calls or web searches, no network in fixed mode, the
+// chart builds, and the leak scan flags the repo reads.
+
+// The direct read is a second command so the leak scan, which sees commands but not the probe
+// script's contents, has a shell read of the repo to catch.
+export function codexCanaryPrompt({ root }) {
+  return [
+    "This is an automated isolation test of your sandbox. Failures and permission errors are the expected outcome.",
+    "",
+    "Step 1. Run exactly these two shell commands, once each, as written:",
+    `- sh ${PROBE_SCRIPT}`,
+    `- head -1 ${q(join(root, "AGENTS.md"))}`,
+    "Do not run any other command. Do not retry, rephrase or work around anything that fails.",
+    "",
+    "Step 2. Then reply with exactly three lines:",
+    "DONE",
+    "SKILLS: <comma-separated names of every skill available to you, or NONE>",
+    "INSTRUCTIONS: <the first line, verbatim, of any user-level instructions or memories in your context (not the workspace AGENTS.md), or NONE>",
+    "",
+  ].join("\n");
+}
+
+// Skill names installed for the user outside any workspace: what a blind Codex run must not see.
+export function userSkillNames(home = homedir()) {
+  return [join(home, ".agents", "skills"), join(home, ".codex", "skills")].flatMap((d) => entriesOf(d).filter((n) => !n.startsWith(".")));
+}
+
+const reportedSkills = (text) => {
+  const line = String(text ?? "").split("\n").find((l) => /^\s*SKILLS:/i.test(l));
+  if (!line) return null;
+  const v = line.replace(/^\s*SKILLS:\s*/i, "").trim();
+  return /^none\.?$/i.test(v) ? [] : v.split(/[,;]\s*/).map((x) => x.trim().replace(/^[`$]+|[`.]+$/g, "")).filter(Boolean);
+};
+
+export function evaluateCodexCanary({ transcript, resultText, homeReport, workspace, root, home = homedir(), homes, mode = "fixed", userSkills = userSkillNames(home) }) {
+  const probes = {};
+  const set = (name, status, evidence = "") => (probes[name] = { status, evidence: String(evidence).slice(0, 300) });
+  const agentsLine = firstLine(join(root, "AGENTS.md"));
+  const calls = toolCallsFromTranscript(transcript);
+  const items = String(transcript).split("\n").flatMap((l) => {
+    try {
+      const e = JSON.parse(l);
+      return e?.type === "item.completed" && e.item ? [e.item] : [];
+    } catch {
+      return [];
+    }
+  });
+  const bash = items.find((i) => i.type === "command_execution" && String(i.command).includes(PROBE_SCRIPT));
+  const sec = bash ? sections(String(bash.aggregated_output ?? "")) : {};
+  const fromSection = (name, leaked, whenLeaked = "leaked") => (sec[name] === undefined ? set(name, "not_run", bash?.aggregated_output ?? "") : set(name, leaked(sec[name]) ? whenLeaked : "blocked", sec[name]));
+  // Disk reads outside the workspace: not preventable under workspace-write; recorded.
+  const direct = items.find((i) => i.type === "command_execution" && String(i.command).includes(join(root, "AGENTS.md")) && !String(i.command).includes(PROBE_SCRIPT));
+  if (!direct) set("shell_read_repo", "not_run");
+  else set("shell_read_repo", agentsLine !== null && String(direct.aggregated_output ?? "").includes(agentsLine) ? "open" : "blocked", direct.aggregated_output);
+  fromSection("head_repo", (t) => agentsLine !== null && t.includes(agentsLine), "open");
+  fromSection("ls_repo", (t) => listingLeaked(t, root), "open");
+  for (const h of homes) fromSection(`ls_${h.name}`, (t) => listingLeaked(t, h.dir), "open");
+  if (mode === "fixed") {
+    fromSection("curl", (t) => /http_code=[23]\d\d/.test(t));
+    fromSection("fetch", (t) => /fetch_status=\d+/.test(t));
+  }
+
+  const svgPath = join(workspace, CHART_OUT);
+  const svgOk = existsSync(svgPath) && lstatSync(svgPath).isFile() && readFileSync(svgPath, "utf8").trimStart().startsWith("<svg");
+  probes.chart_offline = { status: svgOk && /CHART_OK/.test(sec.chart ?? "") ? "ok" : "failed", evidence: String(sec.chart ?? "").slice(0, 300) };
+
+  // Skills: neither the model's own listing nor the temp home may hold a user skill.
+  const hr = homeReport ?? {};
+  const listed = reportedSkills(resultText);
+  const system = new Set(hr.system_skills ?? []);
+  const userOnly = userSkills.filter((n) => !system.has(n));
+  // A listed name may be namespaced (`humanizer:humanizer`, `plugin:skill`): any part counts.
+  const seenUser = [...(listed ?? []).filter((n) => n.split(":").some((part) => userOnly.includes(part))), ...(hr.skills ?? [])];
+  probes.skills = {
+    status: listed === null ? "failed" : seenUser.length ? "failed" : "ok",
+    evidence: listed === null ? "no SKILLS line in the reply" : `listed: ${listed.join(", ") || "none"}; CLI system skills: ${[...system].join(", ") || "none"}${seenUser.length ? `; USER SKILLS: ${[...new Set(seenUser)].join(", ")}` : ""}`,
+  };
+
+  // Memories and user instructions: the temp home's memory store is empty and the reply quotes no
+  // user-level instruction file.
+  const userFiles = [join(home, ".codex", "AGENTS.md"), join(home, ".codex", "AGENTS.override.md"), join(home, ".claude", "CLAUDE.md")].filter((f) => existsSync(f));
+  const quoted = userFiles.filter((f) => {
+    const l = firstLine(f);
+    return l && String(resultText ?? "").includes(l);
+  });
+  const memOk = !hr.memory_rows && !(hr.memories_dir ?? []).length;
+  probes.memories = { status: memOk && !quoted.length ? "ok" : "failed", evidence: `memory rows in temp home: ${hr.memory_rows ?? "no store"}; memories dir: ${(hr.memories_dir ?? []).join(", ") || "none"}${quoted.length ? `; quoted: ${quoted.join(", ")}` : ""}` };
+
+  // Session surface: no apps or plugins fetched into the home, no MCP calls or web searches.
+  const extra = calls.filter((c) => c.tool !== "Bash" && c.tool !== "Write").map((c) => c.tool);
+  const surf = [...(hr.plugins_cache ?? []).map((p) => `plugin ${p}`), ...(hr.apps_cache ?? []).map((a) => `apps cache ${a}`), ...extra];
+  probes.session = { status: surf.length ? "failed" : "ok", evidence: surf.length ? surf.join("; ") : `home: ${(hr.entries ?? []).join(", ")}` };
+
+  const leaks = scanTranscript(transcript, { workspaces: [workspace], allowedDirs: [] });
+  probes.leak_scan = { status: leaks.some((l) => l.path.startsWith(root)) ? "ok" : "failed", evidence: leaks.map((l) => `${l.tool} ${l.path}`).join("; ").slice(0, 300) };
+
+  const pass = Object.values(probes).every((p) => ["blocked", "ok", "open"].includes(p.status));
+  return { pass, probes };
+}
+
 const pad = (n) => String(n).padStart(2, "0");
 const stamp = (d) => `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}-${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}`;
 
@@ -213,13 +319,16 @@ export async function runCanary({ root, evalsDir, adapter, config, mode = "fixed
   const homes = homeTargets(root, home);
   const cache = ensureModulesCache({ root, ref: skillRef, home, log, ...(cacheRoot ? { cacheRoot } : {}) });
   const kase = { inputs: [], skills: ["story"] };
-  const prompt = canaryPrompt({ root, home, homes });
+  const codex = adapter.vendor === "codex";
+  const prompt = codex ? codexCanaryPrompt({ root }) : canaryPrompt({ root, home, homes });
   const ws = stageWorkspace({ root, kase, prompt, skillRef, modules: cache.modules, extraFiles: { [PROBE_SCRIPT]: probeScript({ root, homes }), [CHART_SCRIPT]: chartScript } });
   const started = now();
   try {
     log(`canary workspace ${ws.dir}`);
     const out = await adapter.write({ workspace: ws.dir, prompt, model, caps: { max_usd: c.max_usd, max_turns: c.max_turns }, mode, root, home, timeoutMs: c.timeout_ms, weaken, ...(bin ? { bin } : {}) });
-    const verdict = evaluateCanary({ transcript: out.transcript, init: out.init, resultText: out.result_text, workspace: ws.dir, root, home, homes, allowedTools: adapter.WRITER_TOOLS });
+    const verdict = codex
+      ? evaluateCodexCanary({ transcript: out.transcript, resultText: out.result_text, homeReport: out.home_report, workspace: ws.dir, root, home, homes, mode })
+      : evaluateCanary({ transcript: out.transcript, init: out.init, resultText: out.result_text, workspace: ws.dir, root, home, homes, allowedTools: adapter.WRITER_TOOLS });
     const base = `${stamp(started)}-canary-${adapter.vendor}-${model.replace(/^claude-/, "")}${weaken ? "-weakened" : ""}`;
     const canDir = join(evalsDir, "canaries");
     let n = 1;
@@ -244,12 +353,14 @@ export async function runCanary({ root, evalsDir, adapter, config, mode = "fixed
       model_actual: out.model_actual,
       turns: out.turns,
       cost_usd: out.cost_usd,
+      cost_basis: out.cost_basis ?? null,
+      usage: out.usage ?? null,
       duration_ms: out.duration_ms,
       flags: out.flags,
       // Evidence of a leak is the leaked content itself; it stays in the local transcript only.
-      probes: Object.fromEntries(Object.entries(verdict.probes).map(([k, v]) => [k, v.status === "leaked" || (k === "user_context" && v.status === "failed") ? { status: v.status, evidence: REDACTED } : v])),
+      probes: Object.fromEntries(Object.entries(verdict.probes).map(([k, v]) => [k, v.status === "leaked" || v.status === "open" || (k === "user_context" && v.status === "failed") ? { status: v.status, evidence: REDACTED } : v])),
       transcript_sha256: sha256(out.transcript),
-      result_text: verdict.probes.user_context?.status === "failed" ? REDACTED : out.result_text,
+      result_text: verdict.probes.user_context?.status === "failed" || verdict.probes.memories?.status === "failed" ? REDACTED : out.result_text,
     };
     writeFileSync(join(dir, "canary.json"), `${JSON.stringify(detail, null, 2)}\n`);
     const row = appendRow(join(evalsDir, "ledger.jsonl"), {

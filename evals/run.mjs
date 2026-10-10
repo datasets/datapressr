@@ -1,17 +1,19 @@
 #!/usr/bin/env node
 // Thin dispatcher for the eval harness. See evals/README.md.
-//   node evals/run.mjs run <domain>/<case> --writer fake [--skill-ref <commit>] [--allow-dirty] [--repeat N]
+//   node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--repeat N]
 //   node evals/run.mjs check <run_id|--all>
 //   node evals/run.mjs report
 //   node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md [--scores A.prose=1,B.prose=2]
 //   node evals/run.mjs owner <run_id> --remarks-file f.md [--scores prose=1] | owner --rounds <case_id> <n>
-//   node evals/run.mjs canary --writer claude [--mode fixed] [--weaken]
+//   node evals/run.mjs canary --writer claude|codex [--mode fixed] [--weaken]
+//   node evals/run.mjs critic-choice --writer claude|codex      (free: which critic score would use)
 
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { checkCommand } from "./lib/checkers/run-checks.mjs";
 import { runCanary } from "./lib/canary.mjs";
+import { availabilityChecker, pickCritic } from "./lib/adapters/index.mjs";
 import { ownerCommand } from "./lib/owner.mjs";
 import { writeReport } from "./lib/report.mjs";
 import { ADAPTERS, loadConfig, runCase } from "./lib/runner.mjs";
@@ -26,14 +28,15 @@ const PLANNED = {
 };
 
 const USAGE = `usage:
-  node evals/run.mjs run <domain>/<case> --writer fake [--skill-ref <commit>] [--allow-dirty] [--repeat N]
+  node evals/run.mjs run <domain>/<case> --writer fake|claude|codex [--skill-ref <commit>] [--allow-dirty] [--repeat N]
   node evals/run.mjs check <run_id|--all>
   node evals/run.mjs report
   node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md [--scores A.prose=1,B.prose=2]
   node evals/run.mjs owner <pair_id> --reveal
   node evals/run.mjs owner <run_id> --remarks-file f.md [--scores argument=1,prose=2]
   node evals/run.mjs owner --rounds <case_id> <n> [--remarks-file f.md]
-  node evals/run.mjs canary --writer claude [--mode fixed] [--weaken]
+  node evals/run.mjs canary --writer claude|codex [--mode fixed] [--weaken]
+  node evals/run.mjs critic-choice --writer claude|codex
 planned: ${Object.entries(PLANNED).map(([k, v]) => `${k} (${v})`).join(", ")}`;
 
 async function main(argv) {
@@ -77,12 +80,24 @@ async function main(argv) {
       options: { writer: { type: "string" }, mode: { type: "string", default: "fixed" }, weaken: { type: "boolean", default: false } },
     });
     const adapter = ADAPTERS[values.writer];
-    if (!adapter?.needsCanary) throw new Error(`canary needs a real writer (claude); got ${JSON.stringify(values.writer)}`);
+    if (!adapter?.needsCanary) throw new Error(`canary needs a real writer (claude or codex); got ${JSON.stringify(values.writer)}`);
     const { detail } = await runCanary({ root, evalsDir, adapter, config: loadConfig(evalsDir), mode: values.mode, weaken: values.weaken, log: (m) => console.log(m) });
     for (const [name, p] of Object.entries(detail.probes)) console.log(`  ${p.status.padEnd(8)} ${name}`);
-    console.log(`canary ${detail.run_id}: ${detail.pass ? "PASS" : "FAIL"} (${detail.vendor} ${detail.cli_version}, recipe ${detail.recipe_sha256.slice(0, 12)}, ${detail.mode}${detail.weakened ? ", weakened" : ""}; ${detail.model_actual}, ${detail.turns} turns, ${detail.cost_usd} USD)`);
+    console.log(`canary ${detail.run_id}: ${detail.pass ? "PASS" : "FAIL"} (${detail.vendor} ${detail.cli_version}, recipe ${detail.recipe_sha256.slice(0, 12)}, ${detail.mode}${detail.weakened ? ", weakened" : ""}; ${detail.model_actual ?? detail.model}, ${detail.turns} turns, ${detail.cost_usd === null ? `tokens ${JSON.stringify(detail.usage)}` : `${detail.cost_usd} USD`})`);
     console.log(`wrote evals/canaries/${detail.run_id}/canary.json and a canary row in evals/ledger.jsonl`);
     if (!detail.pass) process.exitCode = 1;
+    return;
+  }
+  if (command === "critic-choice") {
+    const { values } = parseArgs({ args: rest, options: { writer: { type: "string" } } });
+    if (!values.writer) throw new Error(USAGE);
+    const config = loadConfig(evalsDir);
+    const available = availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
+    for (const v of ["claude", "codex"]) {
+      const a = available(v);
+      console.log(`  ${v.padEnd(7)} ${a.ok ? `available (CLI ${a.cli_version}, canary ${a.canary_run_id})` : `unavailable: ${a.reason}`}`);
+    }
+    console.log(JSON.stringify(pickCritic(values.writer, { config, available })));
     return;
   }
   if (command === "report") {

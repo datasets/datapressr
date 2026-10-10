@@ -53,3 +53,48 @@ out({ type: "result", subtype: ${JSON.stringify(isError ? "error_max_budget_usd"
   chmodSync(bin, 0o755);
   return { dir, bin, argv: () => JSON.parse(readFileSync(join(dir, "argv.json"), "utf8")), settings: () => JSON.parse(readFileSync(join(dir, "settings.json"), "utf8")) };
 }
+
+// A fake `codex`: --version, `login status` (logged in when CODEX_HOME/auth.json exists), or an
+// exec that records its argv and environment, writes a story into -C <dir>, leaves a canned
+// skills dir in CODEX_HOME (plus a fetched plugin with `plugins: true`) and prints `exec --json` events.
+export function fakeCodexBin({ fail = false, plugins = false } = {}) {
+  const dir = mkdtempSync(join(tmpdir(), "evals-fakecodex-"));
+  const bin = join(dir, "codex");
+  writeFileSync(
+    bin,
+    `#!${process.execPath}
+const fs = require("node:fs"), path = require("node:path");
+const args = process.argv.slice(2);
+if (args[0] === "--version") { console.log("codex-cli 7.7.7"); process.exit(0); }
+const home = process.env.CODEX_HOME;
+if (args[0] === "login") {
+  if (fs.existsSync(path.join(home, "auth.json"))) { console.log("Logged in using ChatGPT"); process.exit(0); }
+  console.log("Not logged in"); process.exit(1);
+}
+fs.writeFileSync(${JSON.stringify(join(dir, "argv.json"))}, JSON.stringify(args));
+fs.writeFileSync(${JSON.stringify(join(dir, "env.json"))}, JSON.stringify({ HOME: process.env.HOME, CODEX_HOME: home, homeFiles: fs.readdirSync(home) }));
+const cwd = args[args.indexOf("-C") + 1];
+const last = args[args.indexOf("-o") + 1];
+fs.mkdirSync(path.join(home, "skills/.system/imagegen"), { recursive: true });
+${plugins ? 'fs.mkdirSync(path.join(home, "plugins/cache/google-drive"), { recursive: true });' : ""}
+const out = (e) => console.log(JSON.stringify(e));
+out({ type: "thread.started", thread_id: "t" });
+out({ type: "turn.started" });
+const sandbox = args[args.indexOf("--sandbox") + 1];
+let answer = "DONE";
+if (sandbox === "workspace-write") {
+  fs.mkdirSync(path.join(cwd, "site/stories"), { recursive: true });
+  fs.writeFileSync(path.join(cwd, "site/stories/fake.md"), "# Fake story\\n");
+  out({ type: "item.completed", item: { id: "i1", type: "file_change", changes: [{ path: path.join(cwd, "site/stories/fake.md"), kind: "add" }], status: "completed" } });
+  out({ type: "item.completed", item: { id: "i2", type: "command_execution", command: "/bin/zsh -lc 'ls'", aggregated_output: "site", exit_code: 0, status: "completed" } });
+} else {
+  answer = JSON.stringify({ verdict: "ok" });
+}
+out({ type: "item.completed", item: { id: "i3", type: "agent_message", text: answer } });
+${fail ? 'out({ type: "turn.failed", error: { message: "boom" } }); process.exit(1);' : 'out({ type: "turn.completed", usage: { input_tokens: 100, cached_input_tokens: 40, output_tokens: 7 } });'}
+fs.writeFileSync(last, answer);
+`,
+  );
+  chmodSync(bin, 0o755);
+  return { dir, bin, argv: () => JSON.parse(readFileSync(join(dir, "argv.json"), "utf8")), env: () => JSON.parse(readFileSync(join(dir, "env.json"), "utf8")) };
+}
