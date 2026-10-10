@@ -3,6 +3,8 @@
 //   node evals/run.mjs run <domain>/<case> --writer fake [--skill-ref <commit>] [--allow-dirty] [--repeat N]
 //   node evals/run.mjs check <run_id|--all>
 //   node evals/run.mjs report
+//   node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md [--scores A.prose=1,B.prose=2]
+//   node evals/run.mjs owner <run_id> --remarks-file f.md [--scores prose=1] | owner --rounds <case_id> <n>
 //   node evals/run.mjs canary --writer claude [--mode fixed] [--weaken]
 
 import { dirname, join } from "node:path";
@@ -10,6 +12,7 @@ import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { checkCommand } from "./lib/checkers/run-checks.mjs";
 import { runCanary } from "./lib/canary.mjs";
+import { ownerCommand } from "./lib/owner.mjs";
 import { writeReport } from "./lib/report.mjs";
 import { ADAPTERS, loadConfig, runCase } from "./lib/runner.mjs";
 import { repoRoot } from "./lib/versions.mjs";
@@ -20,13 +23,16 @@ const root = repoRoot(evalsDir);
 const PLANNED = {
   score: "datapressr-hcn.5 (H4)",
   pair: "datapressr-hcn.5 (H4)",
-  owner: "datapressr-hcn.9 (H8)",
 };
 
 const USAGE = `usage:
   node evals/run.mjs run <domain>/<case> --writer fake [--skill-ref <commit>] [--allow-dirty] [--repeat N]
   node evals/run.mjs check <run_id|--all>
   node evals/run.mjs report
+  node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md [--scores A.prose=1,B.prose=2]
+  node evals/run.mjs owner <pair_id> --reveal
+  node evals/run.mjs owner <run_id> --remarks-file f.md [--scores argument=1,prose=2]
+  node evals/run.mjs owner --rounds <case_id> <n> [--remarks-file f.md]
   node evals/run.mjs canary --writer claude [--mode fixed] [--weaken]
 planned: ${Object.entries(PLANNED).map(([k, v]) => `${k} (${v})`).join(", ")}`;
 
@@ -82,6 +88,25 @@ async function main(argv) {
   if (command === "report") {
     writeReport(join(evalsDir, "ledger.jsonl"), join(evalsDir, "REPORT.md"));
     console.log("wrote evals/REPORT.md");
+    return;
+  }
+  if (command === "owner") {
+    const { values, positionals } = parseArgs({
+      args: rest,
+      allowPositionals: true,
+      options: {
+        preferred: { type: "string" },
+        "remarks-file": { type: "string" },
+        scores: { type: "string" },
+        rounds: { type: "string" },
+        reveal: { type: "boolean", default: false },
+      },
+    });
+    const target = values.rounds === undefined ? positionals[0] : undefined;
+    if (values.rounds === undefined && positionals.length !== 1) throw new Error(USAGE);
+    ownerCommand({ evalsDir, target, values, positionals, log: (m) => console.log(m) });
+    writeReport(join(evalsDir, "ledger.jsonl"), join(evalsDir, "REPORT.md"));
+    console.log("updated evals/ledger.jsonl and evals/REPORT.md");
     return;
   }
   if (PLANNED[command]) throw new Error(`"${command}" is not implemented yet; it arrives in ${PLANNED[command]}`);

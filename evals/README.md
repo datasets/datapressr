@@ -6,7 +6,7 @@ House style: plain Node, no build step, no npm dependencies; results are files i
 
 ## Status
 
-Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and the isolation canary (`datapressr-hcn.3`). What works today:
+Walking skeleton (`datapressr-hcn.2`) plus blind staging, the Claude writer and the isolation canary (`datapressr-hcn.3`), the full report and owner capture (`datapressr-hcn.9`). What works today:
 
 ```sh
 node evals/run.mjs run story/q01-french-debt --writer fake     # free plumbing test
@@ -14,13 +14,14 @@ node evals/run.mjs canary --writer claude                      # about 0.003 USD
 node evals/run.mjs canary --writer claude --weaken             # negative control: no deny rules, must FAIL
 node evals/run.mjs run story/q01-french-debt --writer claude   # paid (caps in config.json); refused without a passing canary
 node evals/run.mjs check <run_id|--all>                       # deterministic checks: checks.json + a ledger row
-node evals/run.mjs report                                      # regenerate evals/REPORT.md
+node evals/run.mjs report                                      # regenerate evals/REPORT.md (also: npm run eval:report)
+node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md   # blind owner judgement, then reveal
 npm test                                                       # harness tests, no agent calls
 ```
 
 `run` options: `--skill-ref <commit>` (default `HEAD`), `--allow-dirty` (run even when `skills/<name>` has uncommitted changes; the run is flagged `dirty_skill`), `--repeat N`.
 
-Planned, each with its bead: `--writer codex` and automatic critic choice (`datapressr-hcn.4`), `score` and `pair` (`datapressr-hcn.5`), `owner` and the full report (`datapressr-hcn.9`), the open-mode recipe (`datapressr-hcn.12`). Calling one of these now prints which bead brings it.
+Planned, each with its bead: `--writer codex` and automatic critic choice (`datapressr-hcn.4`), `score` and `pair` (`datapressr-hcn.5`), the open-mode recipe (`datapressr-hcn.12`). Calling one of these now prints which bead brings it.
 
 The fake writer copies `lib/adapters/fake-artefacts/<domain>/` into the run. Fake runs exist to test the plumbing; do not commit their output to the real ledger.
 
@@ -45,7 +46,8 @@ After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or 
 | `lib/ledger.mjs` | Append (validated) and read `ledger.jsonl`; never rewrites |
 | `lib/runner.mjs` | The `run` flow |
 | `lib/checkers/story.mjs` | The six story checks S1–S6 (below); `run-checks.mjs` is the `check` subcommand, which `run` also calls after collecting artefacts; `offline-preload.mjs` blocks the network for chart rebuilds |
-| `lib/report.mjs` | Writes `REPORT.md` (per-case table of runs for now) |
+| `lib/report.mjs` | Writes `REPORT.md` (sections below); `renderReport(rows, ctx)` is pure, `reportContext` gathers skill history from git and the installed CLI versions |
+| `lib/owner.mjs` | The `owner` subcommand: blind pair judgements, single-run remarks, rounds to publishable |
 | `lib/adapters/fake.mjs` | Zero-cost writer for tests |
 | `lib/stage.mjs` | Blind workspace staging, the `node_modules` cache, artefact collection |
 | `lib/adapters/claude.mjs` | The Claude recipe: settings file, flags, writer and critic roles, stream-json parsing |
@@ -54,8 +56,8 @@ After every staged run `lib/leakscan.mjs` scans the tool calls for absolute (or 
 | `canaries/<id>/` | `canary.json` (probe statuses and redacted evidence); `transcript.jsonl` is gitignored |
 | `cases/<domain>/<id>/` | `case.json` and `prompt.md` |
 | `runs/<domain>/<case>/<run_id>/` | `run.json` and `artefacts/` (the writer's files at their workspace paths, e.g. `artefacts/site/stories/<slug>.md`); later `checks.json` and `critique*.json`. `transcript.jsonl` and `workspace.tar` are gitignored and hashed in `run.json` |
-| `pairs/<pair_id>/` | Blind `A/` and `B/` for the owner; `mapping.json` is gitignored |
-| `ledger.jsonl` | One row per event (`canary`, `run`, `check`, `score`, `pair`, `owner`), each with `schema: 1`; re-scoring appends |
+| `pairs/<pair_id>/` | Blind `A/` and `B/` for the owner; `mapping.json` (`{ "pair_id", "A": <run_id>, "B": <run_id> }`) is gitignored until `owner` records it as a `reveal` row |
+| `ledger.jsonl` | One row per event (`canary`, `run`, `check`, `score`, `pair`, `owner`, `reveal`), each with `schema: 1`; re-scoring appends |
 | `REPORT.md` | Generated; committed so trends read on GitHub |
 
 A run id is `<YYYYMMDD-HHMM>-<case>-<vendor>-<model-short>-<skill7>-<n>` (UTC). `run.json` records the skill tree and ref, the harness tree (and whether it differed from `HEAD`), the case hash (SHA-256 over `case.json`, `prompt.md` and the input tree ids), the writer, cost and turns, and a SHA-256 and size for every artefact.
@@ -65,6 +67,28 @@ A run id is `<YYYYMMDD-HHMM>-<case>-<vendor>-<model-short>-<skill7>-<n>` (UTC). 
 1. **Deterministic checks** (free): does the output meet the skill's own contract (artefacts present, word budget, every number in the prose visible in a chart, charts reproducible, inputs untouched, no dates past `as_of`). Failures here are the only automatic regressions.
 2. **Critic** from a different vendor than the writer (Codex for a Claude writer and vice versa; a different Claude model family when Codex is unavailable, recorded as a fallback). Its primary job is a blind side-by-side of old-skill and new-skill outputs, judged in both orders; its 0–2 checklist is for diagnosis.
 3. **Owner**: blind preference and verbatim remarks, the headline measure; the critic's agreement with the owner is the harness's own quality metric.
+
+## The report
+
+`node evals/run.mjs report` (or `npm run eval:report`) regenerates `REPORT.md` from the ledger; `run`, `check` and `owner` regenerate it too. It has no timestamp, so regenerating with nothing new changes nothing. Besides the ledger it reads the skill's git history (to order skill trees and list commits) and the installed CLI versions (for the canary flag). Sections:
+
+- **Flags.** Hard regression: a check that passed on every run of the previous skill tree for a case and fails on a run of the next tree (deterministic checks are the only automatic regressions). Soft flag: a pair where the older tree won in both orders. Leaked runs. A missing or failed canary for the installed CLI version and current recipe.
+- **Per skill change.** Each skill tree with runs, newest first: the cases run, the `git log --oneline a..b -- skills/<name>` range since the previous tree (with a compare link), win/tie/loss of new vs old in order-swapped pairs with n (a win only when both orders agree; split orders are a tie), and owner preferences once revealed. Then the skill commits after the earliest tree with runs that no pair covers (a pair old -> new covers the commits between them).
+- **Per case.** Runs newest first, one table per writer `model_actual`: date, run, skill tree, checks, cost, turns, flags; then one table of absolute scores per rubric version (never mixed), with the critic and publishable; then the pairs; then rounds to publishable and the owner's remarks, verbatim.
+- **Noise.** Per case, writer model and rubric: each dimension's range (min-max) per skill tree with n, and a comparison row that says higher or lower only when the ranges do not overlap, otherwise "no detectable change"; n=1 is an anecdote. Critic-only spread from re-scoring one run. No standard deviations or p-values.
+- **Harness quality.** Judge-owner agreement on pairs per rubric version (owner's preferred run against the critic's pair result; "neither" agrees with a tie; the critic stands alone for small edits only at 4 of 5), owner vs critic checklist scores where both exist, calibration hit rates (`calibration/<domain>/*.json`, each `{ rubric, label, hits, total }`), critic fallback rate, critic validation failures, leaks caught, and canary status per vendor.
+
+## Owner capture
+
+The owner's judgement is the headline measure, so it is recorded blind and verbatim. The agent shows the owner `pairs/<pair_id>/A` and `B` (prose and charts only), saves the reply exactly as given to a file, and runs:
+
+```sh
+node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file reply.md [--scores A.prose=1,B.prose=2]
+node evals/run.mjs owner <run_id> --remarks-file reply.md [--scores argument=2,prose=1]   # remarks on a single story
+node evals/run.mjs owner --rounds <case_id> <n> [--remarks-file notes.md]                 # review rounds a story took to reach the site
+```
+
+For a pair, `owner` appends the owner row first (A/B labels as the owner saw them, remarks byte for byte, never summarised); only then does it read `pairs/<pair_id>/mapping.json`, append a `reveal` row (which run was A and B, and the run the owner preferred) and print the agreement with the critic. A pair can be judged once; if the mapping was missing at the time, the owner row stays and `owner <pair_id> --reveal` finishes the reveal later. Do not open `mapping.json` or tell the owner which side is which before this.
 
 ## Story checks
 

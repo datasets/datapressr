@@ -178,3 +178,12 @@ test("run, score, pair, check and canary rows validate", () => {
   assert.ok(has(validateLedgerRow({ ...rows[1], scores: { argument: 5 } }), "scores.argument"));
   assert.ok(has(validateLedgerRow({ ...rows[0], kind: "nonsense" }), "kind"));
 });
+
+test("owner rows may be rounds-only; reveal rows name both runs", () => {
+  const at = "2026-10-10T12:00:00Z";
+  assert.deepEqual(validateLedgerRow({ schema: 1, kind: "owner", at, case_id: "q01-french-debt", rounds_to_publishable: 3 }).errors, []);
+  assert.ok(has(validateLedgerRow({ schema: 1, kind: "owner", at, case_id: "q01-french-debt", remarks: "x" }), "exactly one"));
+  const reveal = { schema: 1, kind: "reveal", at, pair_id: "p1", case_id: "q01-french-debt", owner_at: at, mapping: { A: "r1", B: "r2" }, preferred_run_id: null };
+  assert.deepEqual(validateLedgerRow(reveal).errors, []);
+  assert.ok(has(validateLedgerRow({ ...reveal, mapping: { A: "r1" } }), "mapping.B"));
+});

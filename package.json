@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
+    "eval:report": "node evals/run.mjs report",
     "validate": "node scripts/validate-datapackage.mjs",
     "check:invisible": "node scripts/check-invisible-characters.mjs ."
   }

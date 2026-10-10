@@ -8,7 +8,7 @@ export const CASE_TYPES = ["explanatory", "historical", "current-state", "market
 export const DATA_MODES = ["fixed", "open"];
 export const VENDORS = ["claude", "codex", "fake"];
 export const RUN_FLAGS = ["leaked", "over_budget", "failed", "dirty_skill", "fallback_critic"];
-export const LEDGER_KINDS = ["canary", "run", "check", "score", "pair", "owner"];
+export const LEDGER_KINDS = ["canary", "run", "check", "score", "pair", "owner", "reveal"];
 export const SCORE_DIMENSIONS = ["argument", "depth", "charts", "honesty", "reader_questions", "prose"];
 export const OPEN_MODE_DIMENSIONS = ["data_choice"];
 
@@ -340,10 +340,15 @@ const ROW_CHECKS = {
     c.string(r.case_hash, "case_hash", { pattern: SHA256 });
     c.string(r.skill_tree, "skill_tree", { pattern: GIT_OBJECT });
     c.string(r.harness_tree, "harness_tree", { pattern: GIT_OBJECT });
+    // skill_name and skill_ref arrived with datapressr-hcn.9; older rows lack them (the report
+    // falls back to the domain as the skill name).
+    c.string(r.skill_name, "skill_name", { pattern: SLUG, optional: true });
+    c.string(r.skill_ref, "skill_ref", { pattern: GIT_OBJECT, optional: true });
     if (c.isObject(r.writer, "writer")) {
       c.oneOf(r.writer.vendor, VENDORS, "writer.vendor");
       c.string(r.writer.model, "writer.model");
       c.string(r.writer.model_actual, "writer.model_actual", { nullable: true });
+      c.string(r.writer.cli_version, "writer.cli_version", { nullable: true, optional: true });
     }
     c.number(r.turns, "turns", { min: 0, integer: true, nullable: true });
     c.number(r.cost_usd, "cost_usd", { min: 0, nullable: true });
@@ -389,18 +394,34 @@ const ROW_CHECKS = {
     // A win only when both orders agree; otherwise a tie (null).
     c.string(r.winner_run_id, "winner_run_id", { nullable: true });
   },
+  // A pair row (blind preference), a single-run row (remarks on one story), or a rounds-only row
+  // (owner --rounds <case> <n>: how many review rounds a story took to reach the site).
   owner(c, r) {
     c.string(r.case_id, "case_id", { pattern: SLUG });
     const hasPair = typeof r.pair_id === "string" && r.pair_id !== "";
     const hasRun = typeof r.run_id === "string" && r.run_id !== "";
-    if (hasPair === hasRun) c.at("pair_id|run_id", "exactly one of pair_id or run_id is required");
+    const roundsOnly = !hasPair && !hasRun && typeof r.rounds_to_publishable === "number";
+    if (hasPair && hasRun) c.at("pair_id|run_id", "exactly one of pair_id or run_id is required");
+    else if (!hasPair && !hasRun && !roundsOnly) c.at("pair_id|run_id", "exactly one of pair_id or run_id is required (or rounds_to_publishable alone)");
     if (hasPair) c.oneOf(r.preferred, ["A", "B", "neither"], "preferred");
     else c.oneOf(r.preferred, ["A", "B", "neither"], "preferred", { optional: true, nullable: true });
-    c.string(r.remarks, "remarks");
+    c.string(r.remarks, "remarks", { optional: roundsOnly });
     if (r.scores !== undefined && r.scores !== null && c.isObject(r.scores, "scores")) {
       for (const [dim, v] of Object.entries(r.scores)) c.number(v, `scores.${dim}`, { min: 0, max: 2, integer: true });
     }
     c.number(r.rounds_to_publishable, "rounds_to_publishable", { min: 0, integer: true, optional: true, nullable: true });
+  },
+  // Written by `owner` only after the owner row: which run the owner saw as A and B, and the run
+  // the owner preferred (null for "neither"). mapping.json stays gitignored; this row is the record.
+  reveal(c, r) {
+    c.string(r.pair_id, "pair_id");
+    c.string(r.case_id, "case_id", { pattern: SLUG });
+    c.string(r.owner_at, "owner_at", { pattern: ISO_DATETIME });
+    if (c.isObject(r.mapping, "mapping")) {
+      c.string(r.mapping.A, "mapping.A");
+      c.string(r.mapping.B, "mapping.B");
+    }
+    c.string(r.preferred_run_id, "preferred_run_id", { nullable: true });
   },
 };
 
