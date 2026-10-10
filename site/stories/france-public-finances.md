@@ -1,6 +1,9 @@
 ---
 title: Where France’s public money goes
 description: What is growing, what old-age spending means, and why bigger euro bills can coexist with falling GDP shares.
+datahub:
+  slug: where-frances-public-money-goes
+  status: draft
 ---
 
 # Where France’s public money goes

@@ -94,6 +94,15 @@ Commit: `Story #N (<Title>): charts` — the `.mjs` and `.svg`s only.
 
 `<slug>.md`. Render the approved outline — **wording only; the argument is fixed**. Lead with the headline chart and one line. Embed charts as `![alt](<slug>-chart.svg)` with alt text that states what the chart shows, including the key values. Method last and short. Keep a short "Friction notes" section while the skill is still evolving, and state that the author's voice pass is outstanding.
 
+Frontmatter: `title`, one-line `description`, and a `datahub` block with the story's DataHub slug (short, title-derived, never a dataset name, since stories and datasets share a publication's namespace) and `status: draft`. Only after the voice pass or an explicit owner OK does it become `status: approved` with an `approved:` line giving the date and basis:
+
+```yaml
+datahub:
+  slug: wti-went-negative
+  status: draft          # or: approved
+  # approved: 2026-10-12 owner voice pass
+```
+
 Under the "Friction notes" heading, list every exempt number as a list item containing the word "exempt", with one nested item per number, written exactly as it appears in the prose, and its exempt kind:
 
 ```markdown

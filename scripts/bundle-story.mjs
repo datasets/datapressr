@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 // Build a DataHub-ready bundle for one story in site/stories/.
 //
-//   node scripts/bundle-story.mjs <story> [--slug <datahub-slug>] [--out <dir>]
+//   node scripts/bundle-story.mjs <story> [--publication <pub>] [--allow-draft]
+//                                 [--slug <datahub-slug>] [--out <dir>]
 //
 // <story> is the site file stem (oil-prices, keeling-curve, ...). Writes
 // <out>/<datahub-slug>/ (default out: .runtime/publish) containing README.md
 // and exactly the SVGs it references, nothing else. Prints the bundle path,
-// title and description as JSON. Publishes nothing.
+// slug, title, description and the `dh publish` command (argv) as JSON.
+// Publishes nothing.
 //
 // README.md is the story with only these changes, so DataHub renders it
 // correctly (docs/plans/2026-10-10-stories-on-datahub.md, sections 1-3):
@@ -21,9 +23,16 @@
 // if a relative link is left that does not resolve inside the bundle, or if
 // the result does not compile as DataHub MDX.
 //
-// The DataHub slug comes from --slug, else frontmatter `slug`, else the
-// kebab-cased title. It must not equal a dataset name: stories and datasets
-// share one namespace per publication.
+// The DataHub slug comes from --slug, else frontmatter `datahub.slug`, else
+// the kebab-cased title. It must not equal a dataset name: stories and
+// datasets share one namespace per publication.
+//
+// Approval gate (frontmatter `datahub.status`, see skills/story step 4):
+// `core` is always refused; a story without `status: approved` (and an
+// `approved:` date line) is refused unless the publication is `datapressr`
+// and --allow-draft is passed; any publication other than `datapressr` needs
+// a grant recorded in PUBLICATIONS below. --publication defaults to
+// $DATAHUB_PUBLICATION, else datapressr, as in skills/push.
 import { existsSync, mkdirSync, readFileSync, rmSync, statSync, copyFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -33,6 +42,13 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE_URL = 'https://datapressr.datahub.io';
 const REPO_URL = 'https://github.com/datasets/datapressr';
 const KEEP_FRONTMATTER = ['title', 'description', 'date'];
+
+// Publications a story may go to, with where the right to publish there is
+// recorded. Add `blog` only once Datopian has granted it (datahub-next-cyz.1,
+// datapressr-kh5.8), citing the grant.
+export const PUBLICATIONS = {
+  datapressr: 'DataPressr\'s own publication, datahub.io/datapressr (owner, 2026-10-10: fine for testing)',
+};
 
 export class BundleError extends Error {}
 
@@ -59,6 +75,34 @@ export const frontValue = (front, key) => {
   const m = new RegExp(`^${key}:[ \\t]*(.*)$`, 'm').exec(front);
   return m ? unquote(m[1]) : undefined;
 };
+
+// The nested `datahub:` frontmatter block: { slug, status, approved }.
+export function datahubMeta(front) {
+  const m = /^datahub:[ \t]*\n((?:[ \t]+.*\n?)*)/m.exec(front);
+  const meta = {};
+  if (!m) return meta;
+  for (const line of m[1].split('\n')) {
+    const kv = /^[ \t]+([A-Za-z_][\w-]*):[ \t]*(.*)$/.exec(line);
+    if (kv) meta[kv[1]] = unquote(kv[2]);
+  }
+  return meta;
+}
+
+// Throws unless this story may be published to `publication`.
+export function checkPublishable(meta, publication, { allowDraft = false } = {}) {
+  const pub = String(publication ?? '').toLowerCase();
+  if (!pub) throw new BundleError('No publication given');
+  if (pub === 'core') throw new BundleError('Refusing to publish to core: core datasets git-sync from github.com/datasets and stories do not belong there');
+  if (!Object.hasOwn(PUBLICATIONS, pub)) throw new BundleError(`No grant recorded for publication "${pub}" (PUBLICATIONS in scripts/bundle-story.mjs); stories go to datapressr until one is`);
+  const status = meta.status ?? 'draft';
+  if (!['draft', 'approved'].includes(status)) throw new BundleError(`datahub.status must be draft or approved, not "${status}"`);
+  if (status === 'approved') {
+    if (!/^\d{4}-\d{2}-\d{2}\b/.test(meta.approved ?? '')) throw new BundleError('datahub.status is approved but there is no `approved: <YYYY-MM-DD> <by whom, on what basis>` line');
+    return;
+  }
+  if (pub !== 'datapressr') throw new BundleError(`Story is a draft (datahub.status: ${status}); only datapressr takes drafts`);
+  if (!allowDraft) throw new BundleError('Story is a draft (datahub.status: draft); pass --allow-draft to publish it to datapressr, and only with an explicit owner OK');
+}
 
 export const kebab = (s) => s.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
@@ -94,7 +138,7 @@ export function datasetLinks(root = ROOT) {
   return map;
 }
 
-export function bundleStory(story, { slug, out = join(ROOT, '.runtime/publish'), root = ROOT } = {}) {
+export function bundleStory(story, { slug, publication = process.env.DATAHUB_PUBLICATION || 'datapressr', allowDraft = false, out = join(ROOT, '.runtime/publish'), root = ROOT } = {}) {
   const storiesDir = join(root, 'site/stories');
   const source = join(storiesDir, `${story}.md`);
   if (!existsSync(source)) throw new BundleError(`No story at ${relative(root, source)}`);
@@ -102,7 +146,9 @@ export function bundleStory(story, { slug, out = join(ROOT, '.runtime/publish'),
   const title = frontValue(front, 'title');
   const description = frontValue(front, 'description');
   if (!title) throw new BundleError(`${story}.md has no frontmatter title`);
-  slug ??= frontValue(front, 'slug') ?? kebab(title);
+  const meta = datahubMeta(front);
+  checkPublishable(meta, publication, { allowDraft });
+  slug ??= meta.slug ?? kebab(title);
   if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) throw new BundleError(`DataHub slug "${slug}" must be lowercase letters, digits and hyphens`);
   const datasets = collect(root);
   if (datasets.some((d) => d.name === slug)) throw new BundleError(`DataHub slug "${slug}" is already a dataset name; pass --slug`);
@@ -148,18 +194,23 @@ export function bundleStory(story, { slug, out = join(ROOT, '.runtime/publish'),
   writeFileSync(join(dir, 'README.md'), readme);
   const files = ['README.md'];
   for (const f of [...assets].sort()) { copyFileSync(join(storiesDir, f), join(dir, f)); files.push(f); }
-  return { dir, slug, title, description, files, readme };
+  const pub = publication.toLowerCase();
+  const command = ['dh', 'publish', dir, '--publication', pub, '--name', slug, '--title', title, '--description', description ?? ''];
+  return { dir, slug, publication: pub, status: meta.status ?? 'draft', title, description, files, command, readme };
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === resolve(process.argv[1])) {
   const args = process.argv.slice(2);
   const opt = (name) => { const i = args.indexOf(name); if (i < 0) return undefined; const v = args[i + 1]; args.splice(i, 2); return v; };
+  const flag = (name) => { const i = args.indexOf(name); if (i >= 0) args.splice(i, 1); return i >= 0; };
   const slug = opt('--slug');
   const outArg = opt('--out');
+  const publication = opt('--publication');
+  const allowDraft = flag('--allow-draft');
   const [story] = args;
-  if (!story) { console.error('usage: node scripts/bundle-story.mjs <story> [--slug <datahub-slug>] [--out <dir>]'); process.exit(2); }
+  if (!story) { console.error('usage: node scripts/bundle-story.mjs <story> [--publication <pub>] [--allow-draft] [--slug <datahub-slug>] [--out <dir>]'); process.exit(2); }
   try {
-    const result = bundleStory(story, { slug, ...(outArg ? { out: resolve(outArg) } : {}) });
+    const result = bundleStory(story, { slug, allowDraft, ...(publication ? { publication } : {}), ...(outArg ? { out: resolve(outArg) } : {}) });
     const { mdxError } = await import('../site/stories/mdx-check.mjs');
     const err = await mdxError(result.readme);
     if (err) throw new BundleError(`${relative(process.cwd(), join(result.dir, 'README.md'))}:${err.line}:${err.column}: does not compile as DataHub MDX: ${err.message}`);

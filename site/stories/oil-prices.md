@@ -1,6 +1,9 @@
 ---
 title: "WTI Went Negative. Brent Didn't."
 description: On 20 April 2020 the WTI spot price was -$36.98 a barrel, the only negative value in Brent and WTI prices going back to 1986. Brent that day was $17.36.
+datahub:
+  slug: wti-went-negative
+  status: draft
 ---
 
 # WTI Went Negative. Brent Didn't.
