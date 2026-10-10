@@ -80,6 +80,21 @@
       "severity": "fail",
       "message": "not applicable: the case has no as_of",
       "evidence": null
+    },
+    {
+      "id": "S7",
+      "pass": true,
+      "severity": "fail",
+      "message": "5 embedded SVG(s) free of NaN, Infinity, undefined and function source",
+      "evidence": {
+        "svgs": [
+          "france-debt-ratio.svg",
+          "france-debt-gap.svg",
+          "france-debt-neighbours.svg",
+          "france-debt-functions.svg",
+          "france-debt-interest.svg"
+        ]
+      }
     }
   ]
 }

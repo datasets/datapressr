@@ -26,6 +26,7 @@ A `<slug>-make-charts.mjs` next to the story. Start from [`make-charts-template.
 - **Direct labels, not legends.** Name each series at its end or in empty space; mark the points the prose cites with `Plot.dot` + `Plot.text`.
 - **Include the reference the argument needs** — a zero line, a threshold rule — and make the y-domain include every annotated value.
 - **Label units on the axis** (currency, per what, nominal or real).
+- **Pass constants, not functions, for `dx`, `dy`, `textAnchor` and `fontWeight`** (to vary them, split into two marks): Plot writes a function's source text into the SVG. Then `grep -E 'NaN|Infinity|undefined|=>'` the built SVG; it must find nothing.
 
 ## Check before committing
 

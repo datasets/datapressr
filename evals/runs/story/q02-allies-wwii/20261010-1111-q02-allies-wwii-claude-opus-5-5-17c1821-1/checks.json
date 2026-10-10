@@ -70,6 +70,24 @@
       "severity": "fail",
       "message": "not applicable: the case has no as_of",
       "evidence": null
+    },
+    {
+      "id": "S7",
+      "pass": false,
+      "severity": "fail",
+      "message": "1 broken value(s) in embedded SVGs: allies-won-munitions.svg: NaN in g@transform",
+      "evidence": {
+        "problems": [
+          {
+            "svg": "allies-won-munitions.svg",
+            "what": "NaN",
+            "element": "g",
+            "attribute": "transform",
+            "value": "translate(NaN,-22)"
+          }
+        ],
+        "count": 1
+      }
     }
   ]
 }

@@ -69,6 +69,24 @@
       "severity": "fail",
       "message": "not applicable: the case has no as_of",
       "evidence": null
+    },
+    {
+      "id": "S7",
+      "pass": false,
+      "severity": "fail",
+      "message": "1 broken value(s) in embedded SVGs: french-debt-balance.svg: function source in g@font-weight",
+      "evidence": {
+        "problems": [
+          {
+            "svg": "french-debt-balance.svg",
+            "what": "function source",
+            "element": "g",
+            "attribute": "font-weight",
+            "value": "(d) => (d.bold ? \"bold\" : \"normal\")"
+          }
+        ],
+        "count": 1
+      }
     }
   ]
 }

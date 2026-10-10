@@ -1,8 +1,8 @@
 // Deterministic story checks (design section 5.1): does a story meet the story skill's own
-// contract? Six checks, each returning { id, pass, severity, message, evidence }:
+// contract? Seven checks, each returning { id, pass, severity, message, evidence }:
 //   S1 artefacts exist        S2 prose word count        S3 every prose number on a chart
 //   S4 charts rebuild offline byte-identical               S5 inputs untouched
-//   S6 no date after as_of
+//   S6 no date after as_of    S7 embedded SVGs well formed (no NaN, undefined, leaked JS)
 // The checks run against a *workspace*: a directory laid out like the writer's repo
 // (site/stories/<slug>*, datasets/<name>/...). For a run, `materializeRunWorkspace` rebuilds it
 // in a temp dir from the case inputs (git archive at their pinned commits) plus the run's
@@ -17,7 +17,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const OFFLINE_PRELOAD = join(here, "offline-preload.mjs");
-export const CHECK_IDS = ["S1", "S2", "S3", "S4", "S5", "S6"];
+export const CHECK_IDS = ["S1", "S2", "S3", "S4", "S5", "S6", "S7"];
 const DEFAULT_WORDS = [300, 700];
 const BUILD_TIMEOUT_MS = 60_000;
 
@@ -274,7 +274,7 @@ export function detectSlug(storiesAbs) {
 
 const result = (id, pass, message, evidence = null, severity = "fail") => ({ id, pass, severity, message, evidence });
 
-// --- The six checks -------------------------------------------------------------
+// --- The seven checks -------------------------------------------------------------
 
 // S1: the skill's artefacts are present.
 export function checkArtefacts({ workspace, storiesDir, slug, dataMode }) {
@@ -422,7 +422,42 @@ export function checkAsOf({ workspace, storiesDir, slug, asOf }) {
     : result("S6", true, `no date after as_of ${asOf}`);
 }
 
-// Run all six checks on a workspace. Options:
+// Broken values in an SVG's markup. Attribute values (transforms, path data, coordinates, styles)
+// must hold no NaN, Infinity or `undefined`, and no JavaScript function source: Observable Plot
+// writes a function's source text into the SVG when one is passed for a constant-only option
+// (dx, textAnchor, fontWeight). Visible <text> must not read NaN or undefined. The WWII run's
+// legend sat at translate(NaN,-22) (datapressr-hcn.25).
+const BAD_ATTR = [
+  { what: "NaN", re: /\bNaN\b/ },
+  { what: "Infinity", re: /\bInfinity\b/ },
+  { what: "undefined", re: /\bundefined\b/ },
+  { what: "function source", re: /=>|\bfunction\b\s*[\w$]*\s*\(/ },
+];
+const BAD_TEXT = BAD_ATTR.filter((b) => b.what === "NaN" || b.what === "undefined");
+
+export function svgProblems(svg) {
+  const problems = [];
+  for (const tag of svg.matchAll(/<([A-Za-z][\w:-]*)\b((?:[^>"']|"[^"]*"|'[^']*')*)>/g)) {
+    for (const a of tag[2].matchAll(/([\w:-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)) {
+      const value = decodeEntities(a[2] ?? a[3]);
+      for (const { what, re } of BAD_ATTR) if (re.test(value)) problems.push({ what, element: tag[1], attribute: a[1], value: value.slice(0, 120) });
+    }
+  }
+  for (const t of svgTexts(svg)) for (const { what, re } of BAD_TEXT) if (re.test(t)) problems.push({ what, element: "text", attribute: null, value: t.slice(0, 120) });
+  return problems;
+}
+
+// S7: every SVG the prose embeds is free of NaN, Infinity, undefined and leaked function source.
+export function checkSvgSanity({ storiesAbs, images }) {
+  const svgs = images.filter((p) => p.endsWith(".svg") && !/^[a-z]+:/i.test(p) && existsSync(join(storiesAbs, p)));
+  const bad = [];
+  for (const p of svgs) for (const prob of svgProblems(readFileSync(join(storiesAbs, p), "utf8"))) bad.push({ svg: p, ...prob });
+  if (!bad.length) return result("S7", true, `${svgs.length} embedded SVG(s) free of NaN, Infinity, undefined and function source`, { svgs });
+  const summary = [...new Set(bad.map((b) => `${b.svg}: ${b.what}${b.attribute ? ` in ${b.element}@${b.attribute}` : " in text"}`))];
+  return result("S7", false, `${bad.length} broken value(s) in embedded SVGs: ${summary.slice(0, 5).join("; ")}${summary.length > 5 ? "; ..." : ""}`, { problems: bad.slice(0, 50), count: bad.length });
+}
+
+// Run all seven checks on a workspace. Options:
 //   workspace   absolute path laid out like the writer's repo
 //   storiesDir  where the story lives (default site/stories)
 //   slug        story slug (detected from the prose file when omitted)
@@ -446,6 +481,7 @@ export function checkStory({ workspace, storiesDir = "site/stories", slug, input
     build ? checkReproducible({ workspace, storiesDir, slug }) : result("S4", true, "skipped (build: false)", null, "warn"),
     checkInputs({ workspace, inputs, root }),
     checkAsOf({ workspace, storiesDir, slug, asOf }),
+    checkSvgSanity({ storiesAbs: sd, images: prose?.images ?? [] }),
   ];
   return results;
 }

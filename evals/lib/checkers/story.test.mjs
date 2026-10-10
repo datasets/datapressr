@@ -8,11 +8,11 @@ import { spawnSync } from "node:child_process";
 import { appendFileSync, cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { makeRepo } from "../fixture-repo.mjs";
 import { readLedger } from "../ledger.mjs";
 import { validateChecks } from "../schema.mjs";
-import { archiveInto, checkNumbers, checkStory, countWords, findDates, linkNodeModules, numberOnChart, parseProse, removeWorkspace, svgTexts, tokenizeNumbers } from "./story.mjs";
+import { archiveInto, checkNumbers, checkStory, checkSvgSanity, countWords, findDates, linkNodeModules, numberOnChart, OFFLINE_PRELOAD, parseProse, removeWorkspace, svgProblems, svgTexts, tokenizeNumbers } from "./story.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const STORIES = join(root, "site/stories");
@@ -110,6 +110,33 @@ test("SVG text: <text> and <tspan> contents, entities decoded, tooltips ignored"
   assert.deepEqual(svgTexts(svg), ["a & b", "−$36.98 x"]);
 });
 
+test("S7: NaN, Infinity, undefined and function source in SVG attributes or text are found", () => {
+  const what = (svg) => svgProblems(svg).map((p) => `${p.what}:${p.element}@${p.attribute ?? "text"}`);
+  // The WWII run's legend (datapressr-hcn.25), and the other ways a bad number reaches the markup.
+  assert.deepEqual(what(`<svg><g transform="translate(NaN,-22)"><text>x</text></g></svg>`), ["NaN:g@transform"]);
+  assert.deepEqual(what(`<svg><path d="M0,0L10,Infinity"/><rect x="-Infinity" y="undefined"/></svg>`), ["Infinity:path@d", "Infinity:rect@x", "undefined:rect@y"]);
+  // Plot writes a function's source when one is passed for fontWeight, textAnchor or dx; entities are decoded.
+  assert.deepEqual(what(`<svg><g font-weight="(d) =&gt; (d.bold ? &quot;bold&quot; : &quot;normal&quot;)"/><g text-anchor='function (d) { return "start"; }'/></svg>`), ["function source:g@font-weight", "function source:g@text-anchor"]);
+  // Visible text reading NaN or undefined is broken too.
+  assert.deepEqual(what(`<svg><text>NaN%</text><text><tspan>undefined</tspan></text></svg>`), ["NaN:text@text", "undefined:text@text"]);
+  // Clean markup, and words that merely contain the patterns, pass.
+  assert.deepEqual(what(`<svg aria-label="Nancy's functional chart"><g transform="translate(10,-22)"><path d="M0,0L1,2"/><text>Infinity pool, in 2020</text></g></svg>`), []);
+});
+
+test("S7: only SVGs the prose embeds are checked", () => {
+  const dir = mkdtempSync(join(tmpdir(), "evals-s7-"));
+  try {
+    writeFileSync(join(dir, "good.svg"), `<svg><g transform="translate(1,2)"/></svg>`);
+    writeFileSync(join(dir, "bad.svg"), `<svg><g transform="translate(NaN,2)"/></svg>`);
+    assert.equal(checkSvgSanity({ storiesAbs: dir, images: ["good.svg"] }).pass, true);
+    const r = checkSvgSanity({ storiesAbs: dir, images: ["good.svg", "bad.svg"] });
+    assert.equal(r.pass, false);
+    assert.deepEqual(r.evidence.problems.map((p) => [p.svg, p.what, p.value]), [["bad.svg", "NaN", "translate(NaN,2)"]]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 // --- Oracle: the published stories ---------------------------------------------
 
 // Inputs each story's chart build reads (S5 compares them with HEAD). Planetary Boundaries
@@ -174,7 +201,7 @@ for (const slug of Object.keys(ORACLE)) {
 
 // The base: a copy of the oil-prices story (which lists its exempt numbers in the skill's format),
 // checked with an as_of so S6 is active. It must pass
-// all six checks; each saboteur breaks one thing and must fail exactly that check.
+// all seven checks; each saboteur breaks one thing and must fail exactly that check.
 const SLUG = "oil-prices";
 const INPUT = "datasets/energy-and-commodities/oil-prices/data";
 const AS_OF = "2026-10-09";
@@ -193,7 +220,7 @@ function baseWorkspace() {
 const run = (ws) => checkStory({ workspace: ws, slug: SLUG, root, inputs: [{ path: INPUT, commit: "HEAD" }], asOf: AS_OF });
 const failed = (results) => results.filter((r) => !r.pass).map((r) => r.id);
 
-test("saboteur base: the oil-prices copy passes all six checks", { skip: buildSkip }, () => {
+test("saboteur base: the oil-prices copy passes all seven checks", { skip: buildSkip }, () => {
   const ws = baseWorkspace();
   try {
     const results = run(ws);
@@ -203,6 +230,19 @@ test("saboteur base: the oil-prices copy passes all six checks", { skip: buildSk
     removeWorkspace(ws);
   }
 });
+
+// Edit the chart build and re-run it offline so the committed SVGs match the rebuild (S4 holds).
+const sabotageBuild = (ws, fn) => {
+  const sd = join(ws, "site/stories");
+  edit(join(sd, `${SLUG}-make-charts.mjs`), fn);
+  const res = spawnSync(process.execPath, ["--import", pathToFileURL(OFFLINE_PRELOAD).href, `${SLUG}-make-charts.mjs`], { cwd: sd, encoding: "utf8", env: { PATH: process.env.PATH, HOME: process.env.HOME, TZ: "UTC", LANG: "C" } });
+  assert.equal(res.status, 0, res.stderr);
+};
+const BRENT_LABEL = 'text: () => "Brent", dx: 6, dy: -8, textAnchor: "start", fill: LINE2, fontWeight: "bold"';
+const replaceOnce = (from, to) => (s) => {
+  assert.ok(s.includes(from), `marker ${from} not found`);
+  return s.replace(from, to);
+};
 
 const SABOTEURS = {
   S1: { what: "a missing outline", apply: (ws) => rmSync(join(ws, "site/stories", `${SLUG}-outline.md`)) },
@@ -229,15 +269,27 @@ const SABOTEURS = {
     },
   },
   S6: { what: "a date after as_of", apply: (ws) => edit(proseFile(ws), insertBefore("## How this was made", "EIA expects to revise these figures in March 2031.\n\n")) },
+  S7: {
+    what: "a function passed for Plot's fontWeight (its source lands in the SVG)",
+    problem: "function source",
+    apply: (ws) => sabotageBuild(ws, replaceOnce(BRENT_LABEL, BRENT_LABEL.replace('fontWeight: "bold"', 'fontWeight: (d) => (d.price > 0 ? "bold" : "normal")'))),
+  },
+  "S7 NaN": {
+    what: "a NaN offset on a label (the WWII legend at translate(NaN,-22))",
+    expect: "S7",
+    problem: "NaN",
+    apply: (ws) => sabotageBuild(ws, replaceOnce(BRENT_LABEL, BRENT_LABEL.replace("dx: 6", "dx: Number(undefined)"))),
+  },
 };
 
-for (const [id, { what, apply }] of Object.entries(SABOTEURS)) {
-  test(`saboteur ${id}: ${what} fails exactly ${id}`, { skip: buildSkip }, () => {
+for (const [name, { what, apply, expect = name, problem }] of Object.entries(SABOTEURS)) {
+  test(`saboteur ${name}: ${what} fails exactly ${expect}`, { skip: buildSkip }, () => {
     const ws = baseWorkspace();
     try {
       apply(ws);
       const results = run(ws);
-      assert.deepEqual(failed(results), [id], JSON.stringify(results.filter((r) => !r.pass), null, 1));
+      assert.deepEqual(failed(results), [expect], JSON.stringify(results.filter((r) => !r.pass), null, 1));
+      if (problem) assert.deepEqual([...new Set(results.find((r) => r.id === expect).evidence.problems.map((p) => p.what))], [problem]);
     } finally {
       removeWorkspace(ws);
     }
@@ -257,7 +309,7 @@ test("check <run_id> and check --all write checks.json and append check rows", (
     const checksFile = join(caseRuns, runId, "checks.json");
     const first = JSON.parse(readFileSync(checksFile, "utf8"));
     assert.deepEqual(validateChecks(first).errors, []);
-    assert.deepEqual(first.results.map((r) => r.id), ["S1", "S2", "S3", "S4", "S5", "S6"]);
+    assert.deepEqual(first.results.map((r) => r.id), ["S1", "S2", "S3", "S4", "S5", "S6", "S7"]);
     // The fake story is a placeholder: everything holds except its length.
     assert.deepEqual(first.results.filter((r) => !r.pass).map((r) => r.id), ["S2"]);
 
@@ -270,7 +322,7 @@ test("check <run_id> and check --all write checks.json and append check rows", (
 
     const checkRows = readLedger(join(repo, "evals/ledger.jsonl")).filter((r) => r.kind === "check");
     assert.equal(checkRows.length, 3);
-    for (const row of checkRows) assert.deepEqual([row.run_id, row.checker, row.failed, row.passed], [runId, "story", ["S2"], 5]);
+    for (const row of checkRows) assert.deepEqual([row.run_id, row.checker, row.failed, row.passed], [runId, "story", ["S2"], 6]);
     assert.notEqual(cli(["check", "no-such-run"]).status, 0);
   } finally {
     rmSync(repo, { recursive: true, force: true });

@@ -84,12 +84,12 @@ Cases run: structure/co2-monthly (7 runs).
 
 | Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
 |---|---|---|---|---|---|---|---|
-| 2026-10-10 10:34 | [20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | pass (6) | 2.36 | 36 | leaked |
-| 2026-10-10 10:24 | [20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | pass (6) | 2.52 | 30 | leaked |
-| 2026-10-10 10:12 | [20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3 (5 pass) | 2.07 | 33 | leaked |
-| 2026-10-10 10:04 | [20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3 (5 pass) | 2.02 | 29 | leaked |
-| 2026-10-10 01:13 | [20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3 (5 pass) | 1.72 | 33 |  |
-| 2026-10-10 01:01 | [20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | pass (6) | 1.46 | 26 |  |
+| 2026-10-10 10:34 | [20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | fail S7 (6 pass) | 2.36 | 36 | leaked |
+| 2026-10-10 10:24 | [20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | pass (7) | 2.52 | 30 | leaked |
+| 2026-10-10 10:12 | [20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3, S7 (5 pass) | 2.07 | 33 | leaked |
+| 2026-10-10 10:04 | [20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3, S7 (5 pass) | 2.02 | 29 | leaked |
+| 2026-10-10 01:13 | [20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-0113-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3 (6 pass) | 1.72 | 33 |  |
+| 2026-10-10 01:01 | [20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-0101-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | pass (7) | 1.46 | 26 |  |
 
 Absolute scores, rubric story/v1 (diagnostic; 0-2):
 
@@ -126,7 +126,7 @@ Pairwise (blind, judged in both orders; a win only when both orders agree):
 
 | Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
 |---|---|---|---|---|---|---|---|
-| 2026-10-10 11:11 | [20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1](runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/run.json) | `17c1821` | claude | pass (6) | 5.11 | 62 | leaked |
+| 2026-10-10 11:11 | [20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1](runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/run.json) | `17c1821` | claude | fail S7 (6 pass) | 5.11 | 62 | leaked |
 
 Absolute scores, rubric story/v2 (diagnostic; 0-2):
 
