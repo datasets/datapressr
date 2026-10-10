@@ -60,6 +60,7 @@ Cases run: story/q01-french-debt (4 runs).
 
 #### Skill commits with no pairwise comparison on record
 
+- `46af661` evals: S7 fails embedded SVGs with NaN, undefined or leaked function source (hcn.25)
 - `6203aee` Story DataHub slug and approval fields; bundler gates drafts (datapressr-kh5.3)
 - `20c6d1e` Define the story skill's exempt-number list format (datapressr-hcn.17)
 - `5f62900` Make installed skills self-contained (datapressr-4ly.2)

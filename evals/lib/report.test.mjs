@@ -195,6 +195,18 @@ test("noise: runs given different writer prompts are never pooled (datapressr-hc
   assert.equal(promptKey({ run_id: "x", harness_tree: T0, writer: {} }).key, `harness:${T0}`);
 });
 
+test("a usage-limited run is no hard regression (datapressr-9lc)", () => {
+  const rows = [
+    run("a1", "2026-10-10T09:00:00.000Z", T1), run("a2", "2026-10-10T09:10:00.000Z", T1),
+    run("b1", "2026-10-10T10:00:00.000Z", T2, { flags: ["failed", "usage_limit"] }),
+    check("a1", "2026-10-10T11:00:00Z"), check("a2", "2026-10-10T11:00:00Z"), check("b1", "2026-10-10T11:00:00Z", ["S1", "S2"]),
+  ];
+  for (const row of rows) assert.deepEqual(validateLedgerRow(row).errors, [], row.run_id);
+  assert.doesNotMatch(section(renderReport(rows, ctx), "Flags"), /Hard regression/);
+  const unlimited = rows.map((r) => (r.run_id === "b1" && r.kind === "run" ? { ...r, flags: ["failed"] } : r));
+  assert.match(section(renderReport(unlimited, ctx), "Flags"), /Hard regression/);
+});
+
 test("readPrompts reads writer.prompt_sha256 from run.json for rows without it", () => {
   const dir = mkdtempSync(join(tmpdir(), "report-prompts-"));
   try {

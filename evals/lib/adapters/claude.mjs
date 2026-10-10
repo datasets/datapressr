@@ -171,6 +171,13 @@ export function modelActual(result) {
   return best;
 }
 
+// The subscription's usage limit (or the API's), as stream-json reports it: an assistant event or
+// the result with api_error "usage_limit_reached" (claude 2.1.296; the result's subtype is still
+// "success"). Every further run would hit it too.
+export function usageLimited(events) {
+  return events.some((e) => e?.api_error === "usage_limit_reached" || (e?.type === "result" && e.api_error_status === 429 && /limit/i.test(String(e.api_error ?? e.result ?? ""))));
+}
+
 export function summarise(result) {
   return {
     model_actual: modelActual(result),
@@ -240,10 +247,12 @@ export async function write({ workspace, prompt, model, caps, mode, root, timeou
     const args = writerArgs({ prompt, model, maxTurns: caps.max_turns, maxBudgetUsd: caps.max_usd, settingsPath, mode });
     const env = writerEnv({ weaken, shimBin: weaken ? null : makeShimDir(dir), runTmp: runTmp?.base });
     const proc = await execute({ bin: resolveBin(bin), args, cwd: workspace, timeoutMs, env });
-    const { init, result } = parseStream(proc.stdout);
+    const { init, result, events } = parseStream(proc.stdout);
     const s = summarise(result);
     const flags = [];
-    if (proc.timedOut || !result || proc.code !== 0 || s.is_error) flags.push("failed");
+    const limited = usageLimited(events);
+    if (proc.timedOut || !result || proc.code !== 0 || s.is_error || limited) flags.push("failed");
+    if (limited) flags.push("usage_limit");
     if (s.subtype === "error_max_turns" || s.subtype === "error_max_budget_usd") flags.push("over_budget");
     return {
       model,

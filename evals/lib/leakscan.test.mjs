@@ -4,7 +4,7 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { nestedAgentInvocations, pathsIn, scanTranscript, toolCallsFromTranscript } from "./leakscan.mjs";
+import { cwdSegments, nestedAgentInvocations, pathsIn, scanTranscript, toolCallsFromTranscript } from "./leakscan.mjs";
 
 const WS = "/private/var/folders/xx/T/evals-ws-abc";
 const HOME = "/Users/someone";
@@ -136,4 +136,69 @@ test("/tmp is not allowed as a whole: the shared Claude temp dir, /tmp itself an
     { tool: "Bash", path: "/tmp/scratch.txt" },
     { tool: "Bash", path: "/tmp/evt-zzz999/claude-501" },
   ]);
+});
+
+// --- datapressr-9lc: the false positives of structure round 1 and q01 ------------------------
+
+test("relative ../ paths resolve against the tracked cwd: cd in a command and across Claude's Bash calls", () => {
+  const t = transcript(
+    tool("Bash", { command: `cd ${WS}/datasets/climate/co2-ppm && wc -l archive/x.csv && cat ../../../AGENTS.md` }, "c1"),
+    tool("Bash", { command: "cp ../../../AGENTS.md AGENTS.md && ls ../.." }, "c2"), // still in co2-ppm
+    tool("Bash", { command: "(cd data && ls ../../../../TASK.md); cat ../../../../evil" }, "c3"), // subshell cd restored: 4 up from co2-ppm escapes
+    tool("Bash", { command: "cd site/stories 2>/dev/null; cd ../../../../.. && ls" }, "c4"), // relative cd out of the workspace is flagged
+    tool("Bash", { command: "cat ../x" }, "c5"), // the CLI reset the cwd to the workspace after c4
+  );
+  assert.deepEqual(scanTranscript(t, opts), [
+    { tool: "Bash", path: "../../../../evil" },
+    { tool: "Bash", path: "../../../../.." },
+    { tool: "Bash", path: "../x" },
+  ]);
+  const { segments, cwd } = cwdSegments("cd a/b && ls ../c; pushd \"d\"; cd -", "/w", HOME);
+  assert.deepEqual(segments.map((x) => x.cwd), ["/w", "/w/a/b", "/w/a/b", "/w/a/b/d"]);
+  assert.equal(cwd, "/w/a/b/d");
+  assert.equal(cwdSegments("cd ~/x", "/w", HOME).cwd, `${HOME}/x`);
+  assert.equal(cwdSegments("/bin/zsh -lc 'cd sub && ls ../..'", "/w", HOME).segments[1].cwd, "/w/sub");
+});
+
+test("a Codex command starts in the workspace every time: its cd does not carry over", () => {
+  const item = (it) => JSON.stringify({ type: "item.completed", item: it });
+  const t = [
+    item({ id: "c1", type: "command_execution", command: "/bin/zsh -lc 'cd datasets/a/b && cat ../../../AGENTS.md'" }),
+    item({ id: "c2", type: "command_execution", command: "/bin/zsh -lc 'cat ../../../AGENTS.md'" }),
+  ].join("\n");
+  assert.deepEqual(scanTranscript(t, opts), [{ tool: "Bash", path: "../../../AGENTS.md" }]);
+});
+
+test("a tool call the permission layer denied is recorded as blocked, not as a leak", () => {
+  const persisted = `${HOME}/.claude/projects/-private-var-folders-xx-T-evals-ws-abc/sess/tool-results/b1.txt`;
+  const result = (id, content, is_error = true) => JSON.stringify({ type: "user", message: { content: [{ type: "tool_result", tool_use_id: id, is_error, content }] } });
+  const lines = [
+    ev([tool("Read", { file_path: persisted }, "d1")]),
+    result("d1", "<tool_use_error>File is in a directory that is denied by your permission settings.</tool_use_error>"),
+    ev([tool("Bash", { command: "claude -p hi" }, "d2")]),
+    result("d2", [{ type: "text", text: "Permission to use Bash with command claude -p hi has been denied." }]),
+    ev([tool("Read", { file_path: `${HOME}/.ssh/id_rsa` }, "d3")]), // denied only in the result event's list
+    ev([tool("Read", { file_path: `${HOME}/notes.md` }, "e1")]),
+    result("e1", "<tool_use_error>File does not exist.</tool_use_error>"), // an error, not a denial: still a leak
+    JSON.stringify({ type: "result", subtype: "success", permission_denials: [{ tool_name: "Read", tool_use_id: "d3", tool_input: {} }] }),
+  ].join("\n");
+  assert.deepEqual(toolCallsFromTranscript(lines).map((c) => [c.id, c.denied === true]), [["d1", true], ["d2", true], ["d3", true], ["e1", false]]);
+  assert.deepEqual(scanTranscript(lines, opts), [
+    { tool: "Read", path: persisted, blocked: true },
+    { tool: "Bash", path: "nested agent: claude -p hi", kind: "nested_agent", blocked: true },
+    { tool: "Read", path: `${HOME}/.ssh/id_rsa`, blocked: true },
+    { tool: "Read", path: `${HOME}/notes.md` },
+  ]);
+});
+
+test("a quoted lone ~ (awk's match operator) is not the home directory; an unquoted one is", () => {
+  // (/Q4/ itself is a path-shaped token; the scan drops it because /Q4 is no top-level directory.)
+  assert.deepEqual(pathsIn("awk -F, '$4 ~ /Q4/ {print}' data.csv", HOME).absolute, ["/Q4/"]);
+  assert.deepEqual(pathsIn('awk "\\$1 !~ /x/" f', HOME).absolute, ["/x/"]);
+  assert.deepEqual(pathsIn("cd ~ && ls", HOME).absolute, [HOME]);
+  assert.deepEqual(pathsIn("ls ~", HOME).absolute, [HOME]);
+  assert.deepEqual(pathsIn("cat '~/.ssh/id_rsa'", HOME).absolute, [`${HOME}/.ssh/id_rsa`], "only a lone ~ is exempt");
+  assert.deepEqual(pathsIn("see https://x.org/a ~ b", HOME).absolute, [HOME], "URL blanking keeps offsets");
+  const t = transcript(tool("Bash", { command: "grep -v '^#' co2.csv | awk -F, '$4 ~ /Q4/'" }, "a1"));
+  assert.deepEqual(scanTranscript(t, opts), []);
 });

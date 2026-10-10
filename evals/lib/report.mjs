@@ -128,7 +128,8 @@ function hardRegressions(a) {
   const out = [];
   for (const [caseKey, list] of [...groupBy(a.runs, (r) => `${r.domain}/${r.case_id}\u0000${skillOf(r)}`)].sort(([x], [y]) => cmp(x, y))) {
     const [label, skill] = caseKey.split("\u0000");
-    const checked = list.filter((r) => a.checkByRun.has(r.run_id));
+    // A run cut short by the writer's usage limit (datapressr-9lc) fails checks for no reason of the skill's.
+    const checked = list.filter((r) => a.checkByRun.has(r.run_id) && !r.flags.includes("usage_limit"));
     const trees = [...new Set(checked.map((r) => r.skill_tree))].sort((x, y) => a.treeRank(skill, x) - a.treeRank(skill, y));
     for (let i = 1; i < trees.length; i++) {
       const prev = checked.filter((r) => r.skill_tree === trees[i - 1]);

@@ -23,7 +23,8 @@ export function stagingRepo() {
 }
 
 // A fake CLI: --version, or a run that writes a story into its cwd and prints stream-json.
-export function fakeClaudeBin({ leak = false, isError = false } = {}) {
+// denied: also a Read the CLI's deny rule refused (datapressr-9lc), which is blocked, not leaked.
+export function fakeClaudeBin({ leak = false, isError = false, denied = false } = {}) {
   const dir = mkdtempSync(join(tmpdir(), "evals-fakebin-"));
   const bin = join(dir, "claude");
   writeFileSync(
@@ -33,7 +34,12 @@ const fs = require("node:fs"), path = require("node:path");
 const args = process.argv.slice(2);
 if (args[0] === "--version") { console.log("9.9.9 (Claude Code)"); process.exit(0); }
 fs.writeFileSync(${JSON.stringify(join(dir, "argv.json"))}, JSON.stringify(args));
-const nested = require("node:child_process").spawnSync("claude", ["-p", "hi"], { encoding: "utf8" });
+// Only ever run the nested-agent shim: the first claude on PATH is run when it is the shim, never
+// the real CLI (the weakened recipe has no shim, and a real \`claude -p\` is a paid call with the
+// user's own config; until datapressr-9lc every \`npm test\` made one).
+const first = (process.env.PATH || "").split(":").map((d) => path.join(d, "claude")).find((p) => fs.existsSync(p));
+const isShim = first && fs.statSync(first).size < 4096 && fs.readFileSync(first, "utf8").includes("NESTED_AGENT_BLOCKED");
+const nested = isShim ? require("node:child_process").spawnSync(first, ["-p", "hi"], { encoding: "utf8" }) : { status: null, stderr: \`not run: \${first ?? "no claude"} on PATH is not the shim\` };
 fs.writeFileSync(${JSON.stringify(join(dir, "env.json"))}, JSON.stringify({ PATH: process.env.PATH, nested: { status: nested.status, stderr: nested.stderr } }));
 const settings = JSON.parse(fs.readFileSync(args[args.indexOf("--settings") + 1], "utf8"));
 fs.writeFileSync(${JSON.stringify(join(dir, "settings.json"))}, JSON.stringify(settings));
@@ -46,6 +52,7 @@ if (tools) {
   fs.writeFileSync(path.join(cwd, "site/stories/fake.md"), "# Fake story\\n");
   out({ type: "assistant", message: { content: [{ type: "tool_use", id: "t1", name: "Write", input: { file_path: path.join(cwd, "site/stories/fake.md"), content: "# Fake story" } }] } });
   ${leak ? 'out({ type: "assistant", message: { content: [{ type: "tool_use", id: "t2", name: "Read", input: { file_path: "/Users/someone/src/datapressr/AGENTS.md" } }] } });' : ""}
+  ${denied ? 'out({ type: "assistant", message: { content: [{ type: "tool_use", id: "t3", name: "Read", input: { file_path: "/Users/someone/.claude/projects/x/tool-results/b.txt" } }] } }); out({ type: "user", message: { content: [{ type: "tool_result", tool_use_id: "t3", is_error: true, content: "<tool_use_error>File is in a directory that is denied by your permission settings.</tool_use_error>" }] } });' : ""}
 }
 out({ type: "result", subtype: ${JSON.stringify(isError ? "error_max_budget_usd" : "success")}, is_error: ${isError}, num_turns: 3, duration_ms: 1234, total_cost_usd: 0.0123,
   usage: { input_tokens: 10, output_tokens: 20 }, modelUsage: { "claude-haiku-5-5": { costUSD: 0.0123, outputTokens: 20 } },

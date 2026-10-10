@@ -19,7 +19,7 @@ import { availabilityChecker, pickCritic } from "./lib/adapters/index.mjs";
 import { allRunDirs, findRunDir, pairRuns, resolveCritic, scoreRun, writersOf } from "./lib/critic.mjs";
 import { ownerCommand } from "./lib/owner.mjs";
 import { writeReport } from "./lib/report.mjs";
-import { ADAPTERS, loadConfig, runCase } from "./lib/runner.mjs";
+import { ADAPTERS, describeScore, loadConfig, runCase } from "./lib/runner.mjs";
 import { repoRoot } from "./lib/versions.mjs";
 
 const evalsDir = dirname(fileURLToPath(import.meta.url));
@@ -82,12 +82,10 @@ async function main(argv) {
       log: (m) => console.log(m),
     });
     for (const r of results) {
-      const s = r.score;
-      const scored = !s ? "not scored (--no-critic)" : s.status === "ok" ? `scored, publishable ${s.publishable} (${s.file})` : "critic_failed (run kept; retry with `score`)";
-      console.log(`wrote evals/runs/${r.run.domain}/${r.run.case_id}/${r.runId}/run.json; ${scored}`);
+      console.log(`wrote evals/runs/${r.run.domain}/${r.run.case_id}/${r.runId}/run.json; ${describeScore(r)}`);
     }
     console.log("updated evals/ledger.jsonl and evals/REPORT.md");
-    if (results.some((r) => r.score?.status === "critic_failed")) process.exitCode = 1;
+    if (results.some((r) => r.score?.status === "critic_failed" || r.run.flags.includes("usage_limit"))) process.exitCode = 1;
     return;
   }
   if (command === "check") {

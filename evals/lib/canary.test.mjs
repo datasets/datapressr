@@ -221,6 +221,7 @@ test("with a passing canary a staged run collects the writer's files, hashes the
   appendRow(ledger, { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "c-pass", vendor: "claude", cli_version: "9.9.9", recipe_sha256: claude.recipeHash("fixed"), mode: "fixed", pass: true });
   const clean = fakeClaudeBin();
   const leaky = fakeClaudeBin({ leak: true });
+  const refused = fakeClaudeBin({ denied: true });
   const adapterFor = (bin) => ({ ...claude, cliVersion: () => "9.9.9", write: (o) => claude.write({ ...o, bin }) });
   try {
     const [a] = await runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapterFor(clean.bin) }, cacheRoot });
@@ -242,8 +243,14 @@ test("with a passing canary a staged run collects the writer's files, hashes the
     const [b] = await runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapterFor(leaky.bin) }, cacheRoot });
     assert.deepEqual(b.run.flags, ["leaked"]);
     assert.deepEqual(b.run.isolation.leaks, [{ tool: "Read", path: "/Users/someone/src/datapressr/AGENTS.md" }]);
+
+    // A Read the deny rule refused is recorded as blocked and does not flag the run (datapressr-9lc).
+    const [c] = await runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapterFor(refused.bin) }, cacheRoot });
+    assert.deepEqual(c.run.flags, []);
+    assert.deepEqual(c.run.isolation.leaks, []);
+    assert.deepEqual(c.run.isolation.blocked, [{ tool: "Read", path: "/Users/someone/.claude/projects/x/tool-results/b.txt" }]);
   } finally {
-    cleanup(root, cacheRoot, clean.dir, leaky.dir);
+    cleanup(root, cacheRoot, clean.dir, leaky.dir, refused.dir);
   }
 });
 

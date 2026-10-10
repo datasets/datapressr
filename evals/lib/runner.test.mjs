@@ -9,7 +9,7 @@ import { existsSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { makeRepo, sh, write } from "./fixture-repo.mjs";
 import { readLedger } from "./ledger.mjs";
-import { runCase } from "./runner.mjs";
+import { describeScore, runCase } from "./runner.mjs";
 import * as fakeWriter from "./adapters/fake.mjs";
 import { validateRun } from "./schema.mjs";
 import { EMPTY_TREE, noSkillPrompt, writerPrompt } from "./stage.mjs";
@@ -224,4 +224,53 @@ test("--max-usd lowers the per-run dollar cap the writer gets, never raises it",
   } finally {
     rmSync(root, { recursive: true, force: true });
   }
+});
+
+test("a usage-limited run is flagged, not scored, and stops the remaining repeats (datapressr-9lc)", async () => {
+  const { root } = makeRepo();
+  try {
+    let calls = 0;
+    const adapters = { fake: { ...fakeWriter, write: async (args) => {
+      calls++;
+      const out = await fakeWriter.write(args);
+      return calls === 2 ? { ...out, flags: ["failed", "usage_limit"] } : out;
+    } } };
+    const logs = [];
+    const results = await runCase({ root, caseRef: "story/t01-demo", writer: "fake", repeat: 4, adapters, log: (m) => logs.push(m) });
+    assert.equal(calls, 2, "repeats 3 and 4 never start");
+    assert.equal(results.length, 2);
+    assert.equal(results[0].score.status, "ok");
+    assert.deepEqual(results[1].run.flags, ["failed", "usage_limit"]);
+    assert.equal(results[1].score, null);
+    assert.equal(results[1].skipped, "usage-limit");
+    assert.equal(describeScore(results[1]), "not scored (the writer hit its usage limit)");
+    assert.ok(logs.some((l) => /hit the writer's usage limit; 2 remaining repeats not started/.test(l)));
+    const rows = readLedger(join(root, "evals/ledger.jsonl"));
+    assert.equal(rows.filter((r) => r.kind === "run").length, 2);
+    assert.equal(rows.filter((r) => r.kind === "score").length, 1, "no critic call for the limited run");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("a domain with no rubric is skipped as no-rubric, not reported as --no-critic", async () => {
+  const { root } = makeRepo();
+  try {
+    rmSync(join(root, "evals/rubrics/story"), { recursive: true, force: true });
+    const [r] = await runCase({ root, caseRef: "story/t01-demo", writer: "fake" });
+    assert.equal(r.score, null);
+    assert.equal(r.skipped, "no-rubric");
+    assert.equal(describeScore(r), "not scored (no rubric for this domain yet)");
+    const [n] = await runCase({ root, caseRef: "story/t01-demo", writer: "fake", critic: null });
+    assert.equal(n.skipped, "no-critic");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("run says why a run was not scored: --no-critic, no rubric for the domain, usage limit", () => {
+  assert.equal(describeScore({ score: null, skipped: "no-critic" }), "not scored (--no-critic)");
+  assert.equal(describeScore({ score: null, skipped: "no-rubric" }), "not scored (no rubric for this domain yet)");
+  assert.equal(describeScore({ score: { status: "critic_failed" } }), "critic_failed (run kept; retry with `score`)");
+  assert.equal(describeScore({ score: { status: "ok", publishable: "yes", file: "c.json" } }), "scored, publishable yes (c.json)");
 });

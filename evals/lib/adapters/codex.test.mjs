@@ -191,3 +191,9 @@ test("authOk: logged in with an auth file, failing without", () => {
     rmSync(a.dir, { recursive: true, force: true });
   }
 });
+
+test("usage limit: a turn that failed on the account limit is detected (datapressr-9lc)", () => {
+  assert.equal(codex.usageLimited("You've hit your usage limit. Upgrade to Pro or try again at 7:00 AM."), true);
+  assert.equal(codex.usageLimited("stream disconnected before completion"), false);
+  assert.equal(codex.usageLimited(null), false);
+});

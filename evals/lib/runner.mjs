@@ -57,6 +57,16 @@ const pad = (n) => String(n).padStart(2, "0");
 function stamp(d) {
   return `${d.getUTCFullYear()}${pad(d.getUTCMonth() + 1)}${pad(d.getUTCDate())}-${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}`;
 }
+const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
+
+// One line for a run's critic outcome, as `run` prints it.
+export function describeScore({ score, skipped }) {
+  if (score) return score.status === "ok" ? `scored, publishable ${score.publishable} (${score.file})` : "critic_failed (run kept; retry with `score`)";
+  if (skipped === "no-rubric") return "not scored (no rubric for this domain yet)";
+  if (skipped === "usage-limit") return "not scored (the writer hit its usage limit)";
+  return "not scored (--no-critic)";
+}
+
 const modelShort = (model) => model.replace(/^claude-/, "").replace(/[^a-z0-9-]+/gi, "-").toLowerCase();
 
 // A staged writer (design 4.2 steps 3-6): blind workspace, the vendor recipe, then collect the
@@ -70,14 +80,17 @@ async function runStaged({ adapter, root, kase, prompt, skillRef, skills, model,
     const out = await adapter.write({ workspace: ws.dir, prompt, model, caps, mode: kase.data_mode, root, timeoutMs: config.timeouts_ms.writer });
     const collected = collectArtefacts(ws.dir, artefactDir, { baseline: ws.baseline });
     if (collected.skipped.length) log(`not collected (over 2 MB in total, or not a file): ${collected.skipped.join(", ")}`);
-    const leaks = scanTranscript(out.transcript, { workspaces: [ws.dir], allowedDirs: [cache.dir, ...(out.tmp_dirs ?? [])] });
+    // Hits from calls the CLI refused (a deny rule) are kept as `blocked`, not leaks (datapressr-9lc).
+    const hits = scanTranscript(out.transcript, { workspaces: [ws.dir], allowedDirs: [cache.dir, ...(out.tmp_dirs ?? [])] });
+    const blocked = hits.filter((h) => h.blocked).map(({ blocked: _, ...h }) => h);
+    const leaks = hits.filter((h) => !h.blocked);
     // Open mode: the project's own sites and repository, the case's forbidden domains and references.
     if (kase.data_mode === "open") leaks.push(...scanOpenMode(toolCallsFromTranscript(out.transcript), { forbiddenDomains: kase.forbidden_domains ?? [], references: kase.references ?? [] }));
     writeFileSync(join(runDir, "transcript.jsonl"), out.transcript);
     const tar = tarWorkspace(ws.dir, join(runDir, "workspace.tar"));
     const flags = [...out.flags];
     if (leaks.length) flags.push("leaked");
-    return { ...out, leaks, flags, transcript_sha256: sha256(out.transcript), workspace_sha256: sha256(tar), deleted: collected.deleted };
+    return { ...out, leaks, blocked, flags, transcript_sha256: sha256(out.transcript), workspace_sha256: sha256(tar), deleted: collected.deleted };
   } finally {
     removeWorkspace(ws.dir);
   }
@@ -138,9 +151,12 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
   const { kase, dir: caseDir } = loaded;
   const prompt = noSkill ? writerPrompt(noSkillPrompt(loaded.casePrompt, kase.skills), kase) : loaded.prompt;
   // A domain with no rubric yet (structure, until datapressr-8no.4) has no critic step.
+  // skipReason says why a run has no score (the `run` command prints it; datapressr-9lc).
+  let skipReason = critic ? null : "no-critic";
   if (critic && !existsSync(join(evalsDir, "rubrics", kase.domain))) {
     log(`no rubric for domain "${kase.domain}" in evals/rubrics/; critic skipped`);
     critic = null;
+    skipReason = "no-rubric";
   }
 
   // 1. Resolve versions.
@@ -195,7 +211,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
       skill,
       harness: { tree: harness.tree, dirty: harness.dirty, recipe_sha256: out.recipe_sha256 ?? null },
       writer: { vendor: writer, model: out.model, model_actual: out.model_actual, cli_version: out.cli_version, prompt_sha256: sha256(prompt) },
-      isolation: { canary_run_id: out.canary_run_id, network: out.network, leaks: out.leaks },
+      isolation: { canary_run_id: out.canary_run_id, network: out.network, leaks: out.leaks, ...(out.blocked?.length ? { blocked: out.blocked } : {}) },
       started_at: started.toISOString(),
       duration_ms: out.duration_ms,
       turns: out.turns,
@@ -230,8 +246,16 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
     });
     // 7. Deterministic checks (checks.json + a `check` ledger row), then the critic.
     const { checks } = checkRun({ root, evalsDir, runDir, harnessTree: harness.tree, now });
-    const score = critic ? await critiqueRun({ root, evalsDir, runDir, run, kase, critic, config, now, log }) : null;
-    results.push({ runId, runDir, run, checks, score });
+    // A run stopped by the account's usage limit has nothing to score, and every further repeat
+    // would hit the same limit: record it and stop (datapressr-9lc).
+    const limited = run.flags.includes("usage_limit");
+    const score = critic && !limited ? await critiqueRun({ root, evalsDir, runDir, run, kase, critic, config, now, log }) : null;
+    results.push({ runId, runDir, run, checks, score, skipped: score ? null : limited ? "usage-limit" : skipReason });
+    if (limited) {
+      const left = repeat - r - 1;
+      log(`${runId} hit the writer's usage limit; ${left ? `${plural(left, "remaining repeat")} not started` : "no repeats left"}`);
+      break;
+    }
   }
   writeReport(ledgerFile, join(evalsDir, "REPORT.md"));
   return results;

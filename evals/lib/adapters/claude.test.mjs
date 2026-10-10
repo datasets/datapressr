@@ -139,6 +139,8 @@ test("writer role: runs the recipe in the workspace, parses the result, removes 
 
     await claude.write({ workspace: ws, prompt: "x", model: "m", caps: { max_usd: 1, max_turns: 5 }, mode: "fixed", root: ROOT, home: HOME, timeoutMs: 30_000, bin: fake.bin, weaken: true });
     assert.ok(!/evals-settings-/.test(fake.env().PATH.split(":")[0]), "the weakened recipe has no shim");
+    // ... and the fake never runs the real claude it then finds on PATH (a paid call; datapressr-9lc).
+    assert.equal(fake.env().nested.status, null);
   } finally {
     rmSync(ws, { recursive: true, force: true });
     rmSync(fake.dir, { recursive: true, force: true });
@@ -174,4 +176,16 @@ test("critic role: no tools, structured output returned", async () => {
   } finally {
     rmSync(fake.dir, { recursive: true, force: true });
   }
+});
+
+test("usage limit: an api_error usage_limit_reached event is detected (datapressr-9lc)", () => {
+  // The shape claude 2.1.296 printed when three parallel runs hit the 5-hour subscription limit.
+  const events = [
+    { type: "assistant", error: "rate_limit", is_api_error_message: true, api_error: "usage_limit_reached", message: { content: [{ type: "text", text: "You've hit your session limit" }] } },
+    { type: "result", subtype: "success", is_error: true, api_error_status: 429, api_error: "usage_limit_reached", result: "You've hit your session limit · resets 7am" },
+  ];
+  assert.equal(claude.usageLimited(events), true);
+  assert.equal(claude.usageLimited([events[1]]), true);
+  assert.equal(claude.usageLimited([{ type: "result", subtype: "error_max_budget_usd", is_error: true }]), false);
+  assert.equal(claude.usageLimited([{ type: "result", api_error_status: 500, api_error: "overloaded" }]), false);
 });

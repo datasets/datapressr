@@ -166,6 +166,12 @@ export function parseEvents(text) {
   return { events, items: list, usage, model_actual: model, turns: completed ? toolCalls + 1 : toolCalls, last_message: messages.length ? messages[messages.length - 1].text : null, completed, failed };
 }
 
+// A turn that failed on the account's usage or rate limit ("You've hit your usage limit…").
+// Matched on the error message: codex-cli 0.161.0 gives no error code in exec --json.
+export function usageLimited(failedMessage) {
+  return typeof failedMessage === "string" && /usage limit|rate limit|quota/i.test(failedMessage);
+}
+
 // What ended up in the temp home after a run: evidence for the canary (skills the CLI installed,
 // whether apps or plugins were fetched, memory rows). Read before the home is removed.
 export function inspectHome(home) {
@@ -272,6 +278,7 @@ export async function write({ workspace, prompt, model, caps, mode, timeoutMs, b
     const home_report = inspectHome(home);
     const flags = [];
     if (proc.timedOut || proc.code !== 0 || !p.completed || p.failed) flags.push("failed");
+    if (usageLimited(p.failed)) flags.push("usage_limit");
     if (p.turns > caps.max_turns) flags.push("over_budget");
     return {
       model,

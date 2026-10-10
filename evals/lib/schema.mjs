@@ -8,7 +8,10 @@ export const LEDGER_SCHEMA = 1;
 export const CASE_TYPES = ["explanatory", "historical", "current-state", "markets", "periodic", "wrangling"];
 export const DATA_MODES = ["fixed", "open"];
 export const VENDORS = ["claude", "codex", "fake"];
-export const RUN_FLAGS = ["leaked", "over_budget", "failed", "dirty_skill", "fallback_critic", "no_skill"];
+// usage_limit (datapressr-9lc): the writer's account hit its subscription or rate limit; the run
+// also carries `failed`, the runner stops its remaining repeats and the report leaves it out of
+// regression flags.
+export const RUN_FLAGS = ["leaked", "over_budget", "failed", "dirty_skill", "fallback_critic", "no_skill", "usage_limit"];
 export const LEDGER_KINDS = ["canary", "run", "check", "score", "pair", "owner", "reveal"];
 export const SCORE_DIMENSIONS = ["argument", "depth", "charts", "honesty", "reader_questions", "prose"];
 export const OPEN_MODE_DIMENSIONS = ["data_choice"];
@@ -190,6 +193,8 @@ export function validateRun(run) {
     c.string(run.isolation.canary_run_id, "isolation.canary_run_id", { nullable: true });
     c.bool(run.isolation.network, "isolation.network");
     c.array(run.isolation.leaks, "isolation.leaks");
+    // Hits from tool calls the CLI's permission layer refused (datapressr-9lc): recorded, not leaks.
+    c.array(run.isolation.blocked, "isolation.blocked", { optional: true });
   }
   c.string(run.started_at, "started_at", { pattern: ISO_DATETIME });
   c.number(run.duration_ms, "duration_ms", { min: 0 });
