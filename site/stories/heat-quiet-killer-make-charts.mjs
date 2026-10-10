@@ -144,7 +144,9 @@ const last = years.at(-1);
     marks: [
       Plot.barX(bars, { y: "name", x: "deaths", fill: "part", order: ["other", "arizona", "all"] }),
       Plot.ruleX([0], { stroke: INK }),
-      Plot.text(ends, { y: "name", x: "deaths", text: "label", dx: 6, textAnchor: "start", fill: (d) => (d.name === heatName ? HEAT : INK), fontWeight: (d) => (d.name === heatName ? "bold" : "normal") }),
+      // Plot only accepts constants for fontWeight, so the heat label is its own mark.
+      Plot.text(ends.filter((d) => d.name !== heatName), { y: "name", x: "deaths", text: "label", dx: 6, textAnchor: "start", fill: INK }),
+      Plot.text(ends.filter((d) => d.name === heatName), { y: "name", x: "deaths", text: "label", dx: 6, textAnchor: "start", fill: HEAT, fontWeight: "bold" }),
       Plot.text([{ name: heatName, x: (heat - azTotal) / 2, t: `Other states ${fmt(heat - azTotal)}` }], { y: "name", x: "x", text: "t", fill: "white", fontWeight: "bold" }),
       Plot.text([{ name: heatName, x: heat - azTotal + azTotal / 2, t: `Arizona ${fmt(azTotal)}` }], { y: "name", x: "x", text: "t", fill: INK, fontWeight: "bold" }),
       Plot.ruleX([combined], { stroke: INK, strokeDasharray: "4,3" }),
