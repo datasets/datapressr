@@ -71,7 +71,7 @@ Deaths, injuries and property and crop damage caused by weather in the United St
 
 **Status:** structured · **Licence:** [PDDL-1.0](https://opendatacommons.org/licenses/pddl/) · **Source:** [NWS Weather Related Fatality and Injury Statistics — the hub page whose menu is the only listing of the annual summaries](https://www.weather.gov/hazstat/) (+2 more)
 
-[DataHub](https://datahub.io/datapressr/us-natural-hazard-statistics) · [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/us-natural-hazard-statistics) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/us-natural-hazard-statistics/README.md)
+[DataHub](https://datahub.io/datapressr/us-natural-hazard-statistics) · [folder](https://github.com/datasets/datapressr/tree/main/datasets/climate-and-environment/us-natural-hazard-statistics) · [README](https://github.com/datasets/datapressr/blob/main/datasets/climate-and-environment/us-natural-hazard-statistics/README.md) · story: [Heat Is the Quiet Killer](stories/heat-quiet-killer.md)
 
 <!-- hand-written:start (kept by scripts/build-datasets-page.mjs) -->
 

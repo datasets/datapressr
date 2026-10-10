@@ -15,3 +15,6 @@ dataset,population-growth,Population Growth,datasets/demographics/population-gro
 dataset,tesla-quarterly-deliveries,Tesla Quarterly Deliveries,datasets/transport/tesla-quarterly-deliveries,datahub,https://datahub.io/datapressr/tesla-quarterly-deliveries,live,2026-10-10
 dataset,us-natural-hazard-statistics,US Natural Hazard Statistics,datasets/climate-and-environment/us-natural-hazard-statistics,datahub,https://datahub.io/datapressr/us-natural-hazard-statistics,live,2026-10-10
 story,keeling-curve,The Keeling Curve,site/stories/keeling-curve.md,flowershow-drafts,https://datapressr-drafts-rufuspollock.flowershow.me/stories/keeling-curve,review,2026-10-10
+story,birth-rates,Most Countries Now Have Birth Rates Below Replacement,site/stories/birth-rates.md,flowershow-drafts,https://datapressr-drafts-rufuspollock.flowershow.me/stories/birth-rates,review,2026-10-10
+story,heat-quiet-killer,Heat Is the Quiet Killer,site/stories/heat-quiet-killer.md,flowershow-drafts,https://datapressr-drafts-rufuspollock.flowershow.me/stories/heat-quiet-killer,review,2026-10-10
+story,birth-rates,Most Countries Now Have Birth Rates Below Replacement,site/stories/birth-rates.md,artifact,https://claude.ai/artifact/EE39YgPbcyxTFxpzHhuHNs,review,2026-10-10

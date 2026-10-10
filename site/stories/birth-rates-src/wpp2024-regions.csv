@@ -1,0 +1,667 @@
+location,year,tfr,births_thousands,population_thousands
+World,1950,4.8519,91823.936,2493092.848
+World,1951,4.8164,92507.128,2536927.035
+World,1952,5.0008,97371.459,2584086.339
+World,1953,4.9223,97291.452,2634106.236
+World,1954,4.9978,100187.854,2685894.86
+World,1955,5.0031,101747.972,2740213.792
+World,1956,4.9309,101759.013,2795409.994
+World,1957,5.0684,106017.733,2852618.337
+World,1958,4.9321,104644.163,2911249.67
+World,1959,4.7395,101999.844,2965950.351
+World,1960,4.6963,102378.083,3015470.894
+World,1961,4.5712,100950.944,3064869.675
+World,1962,5.0217,112038.714,3123374.315
+World,1963,5.3081,119802.888,3192807.828
+World,1964,5.123,117292.2,3264487.339
+World,1965,5.0709,117837.004,3334533.703
+World,1966,4.961,117232.95,3404041.125
+World,1967,4.8525,116920.266,3473412.88
+World,1968,4.9628,121825.89,3545187.251
+World,1969,4.8657,122227.965,3619491.58
+World,1970,4.8251,124135.907,3694683.794
+World,1971,4.6791,123739.681,3769847.865
+World,1972,4.5446,123554.018,3844917.68
+World,1973,4.4163,123563.931,3920805.042
+World,1974,4.2591,122709.409,3996416.096
+World,1975,4.0797,121030.095,4070735.278
+World,1976,3.9745,121322.351,4144246.378
+World,1977,3.8497,120786.521,4217863.796
+World,1978,3.7871,122140.645,4292097.502
+World,1979,3.7712,125000.293,4368539.528
+World,1980,3.7437,127446.984,4447606.236
+World,1981,3.711,129715.837,4528777.306
+World,1982,3.7119,133206.504,4612673.421
+World,1983,3.5808,131967.708,4697327.574
+World,1984,3.5526,134365.258,4782175.519
+World,1985,3.5145,136373.957,4868943.466
+World,1986,3.5042,139301.162,4958072.838
+World,1987,3.4759,141346.561,5049746.398
+World,1988,3.3898,140985.956,5141992.542
+World,1989,3.3471,142249.031,5234431.732
+World,1990,3.3098,143461.425,5327803.11
+World,1991,3.1305,138306.865,5418735.892
+World,1992,3.0437,136591.255,5505989.816
+World,1993,2.9804,135632.145,5591544.797
+World,1994,2.9334,135142.908,5675551.256
+World,1995,2.8893,134850.043,5758878.982
+World,1996,2.8458,134321.023,5842055.734
+World,1997,2.8085,133985.669,5924787.816
+World,1998,2.7758,133857.525,6007066.69
+World,1999,2.7499,134058.675,6089006.34
+World,2000,2.7537,135758.482,6171702.994
+World,2001,2.7143,135379.993,6254936.46
+World,2002,2.6838,135396.478,6337730.342
+World,2003,2.6594,135700.801,6420361.634
+World,2004,2.6474,136596.328,6503377.772
+World,2005,2.63,137166.462,6586970.132
+World,2006,2.6249,138469.296,6671452.016
+World,2007,2.6227,139935.794,6757308.781
+World,2008,2.6264,141758.72,6844457.662
+World,2009,2.6213,142968.32,6932766.416
+World,2010,2.6021,143354.237,7021732.148
+World,2011,2.5881,143878.789,7110923.766
+World,2012,2.6069,146054.881,7201202.484
+World,2013,2.5724,145014.783,7291793.585
+World,2014,2.5644,145268.255,7381616.244
+World,2015,2.537,144333.945,7470491.872
+World,2016,2.5359,144854.1,7558554.526
+World,2017,2.5036,143601.801,7645617.954
+World,2018,2.4367,140332.732,7729902.78
+World,2019,2.3968,138596.791,7811293.698
+World,2020,2.3216,134719.611,7887001.292
+World,2021,2.2909,133448.839,7954448.392
+World,2022,2.2653,132475.391,8021407.192
+World,2023,2.2505,132110.264,8091734.93
+Sub-Saharan Africa,1950,6.4155,8310.284,177731.062
+Sub-Saharan Africa,1951,6.427,8505.194,181304.145
+Sub-Saharan Africa,1952,6.4366,8701.084,185013.703
+Sub-Saharan Africa,1953,6.4535,8907.831,188825.158
+Sub-Saharan Africa,1954,6.4673,9107.788,192769.696
+Sub-Saharan Africa,1955,6.4829,9317.466,196888.669
+Sub-Saharan Africa,1956,6.5009,9535.971,201178.737
+Sub-Saharan Africa,1957,6.5187,9761.802,205577.394
+Sub-Saharan Africa,1958,6.5332,9988.096,210028.163
+Sub-Saharan Africa,1959,6.5498,10216.175,214748.7
+Sub-Saharan Africa,1960,6.5659,10466.758,219820.623
+Sub-Saharan Africa,1961,6.5806,10727.818,225113.234
+Sub-Saharan Africa,1962,6.5976,11002.36,230623.386
+Sub-Saharan Africa,1963,6.6117,11275.103,236346
+Sub-Saharan Africa,1964,6.6258,11556.96,242307.451
+Sub-Saharan Africa,1965,6.6388,11849.841,248511.966
+Sub-Saharan Africa,1966,6.6643,12171.342,254912.869
+Sub-Saharan Africa,1967,6.6797,12485.562,261549.674
+Sub-Saharan Africa,1968,6.6927,12811.589,268475.144
+Sub-Saharan Africa,1969,6.7024,13150.331,275630.863
+Sub-Saharan Africa,1970,6.7158,13497.627,283033.232
+Sub-Saharan Africa,1971,6.7355,13873.636,290667.121
+Sub-Saharan Africa,1972,6.7517,14235.184,298473.037
+Sub-Saharan Africa,1973,6.7644,14605.733,306643.798
+Sub-Saharan Africa,1974,6.7791,15026.046,315258.888
+Sub-Saharan Africa,1975,6.7907,15455.547,324185.945
+Sub-Saharan Africa,1976,6.7915,15867.779,333365.29
+Sub-Saharan Africa,1977,6.7947,16295.389,342679.045
+Sub-Saharan Africa,1978,6.7977,16733.681,352645.331
+Sub-Saharan Africa,1979,6.7841,17216.683,363236.699
+Sub-Saharan Africa,1980,6.7667,17670.714,373827.002
+Sub-Saharan Africa,1981,6.744,18105.617,384980.074
+Sub-Saharan Africa,1982,6.718,18592.846,396903.737
+Sub-Saharan Africa,1983,6.6844,19107.405,408804.087
+Sub-Saharan Africa,1984,6.6397,19538.377,420838.333
+Sub-Saharan Africa,1985,6.5897,20003.33,433440.025
+Sub-Saharan Africa,1986,6.5422,20442.994,446351.096
+Sub-Saharan Africa,1987,6.4936,20915.467,459641.078
+Sub-Saharan Africa,1988,6.4374,21365.507,473070.612
+Sub-Saharan Africa,1989,6.3751,21810.559,486707.81
+Sub-Saharan Africa,1990,6.3004,22237.22,500656.278
+Sub-Saharan Africa,1991,6.2392,22693.296,514585.362
+Sub-Saharan Africa,1992,6.1782,23148.213,528794.961
+Sub-Saharan Africa,1993,6.1171,23649.09,543581.153
+Sub-Saharan Africa,1994,6.0616,24031.231,558242.346
+Sub-Saharan Africa,1995,6.0027,24713.731,573222.745
+Sub-Saharan Africa,1996,5.9359,25241.325,588869.542
+Sub-Saharan Africa,1997,5.8631,25705.464,604640.525
+Sub-Saharan Africa,1998,5.8112,26205.798,620974.701
+Sub-Saharan Africa,1999,5.7732,26871.664,637793.485
+Sub-Saharan Africa,2000,5.7346,27487.242,655013.271
+Sub-Saharan Africa,2001,5.6931,28090.914,672816.92
+Sub-Saharan Africa,2002,5.6487,28669.515,691215.832
+Sub-Saharan Africa,2003,5.6113,29302.251,710234.598
+Sub-Saharan Africa,2004,5.5849,29993.588,729934.789
+Sub-Saharan Africa,2005,5.5591,30737.648,750262.572
+Sub-Saharan Africa,2006,5.5235,31411.631,771165.355
+Sub-Saharan Africa,2007,5.4785,32029.477,792726.412
+Sub-Saharan Africa,2008,5.4479,32764.966,814993.898
+Sub-Saharan Africa,2009,5.3853,33337.692,837773.238
+Sub-Saharan Africa,2010,5.3232,33934.661,861277.238
+Sub-Saharan Africa,2011,5.2511,34510.58,885444.448
+Sub-Saharan Africa,2012,5.1717,35001.928,910127.862
+Sub-Saharan Africa,2013,5.0879,35460.582,935555.737
+Sub-Saharan Africa,2014,5.0128,35973.687,961284.438
+Sub-Saharan Africa,2015,4.9301,36344.181,987406.299
+Sub-Saharan Africa,2016,4.8423,36704.683,1013769.354
+Sub-Saharan Africa,2017,4.7665,37127.979,1040453.949
+Sub-Saharan Africa,2018,4.6843,37543.933,1068011.931
+Sub-Saharan Africa,2019,4.6003,37964.747,1096034.161
+Sub-Saharan Africa,2020,4.5172,38383.735,1124521.695
+Sub-Saharan Africa,2021,4.4534,39005.03,1153271.162
+Sub-Saharan Africa,2022,4.3866,39563.281,1182163.726
+Sub-Saharan Africa,2023,4.3224,40139.221,1212229.42
+Northern Africa and Western Asia,1950,6.5228,4779.38,100007.17
+Northern Africa and Western Asia,1951,6.5434,4916.175,102460.208
+Northern Africa and Western Asia,1952,6.5757,5064.133,105052.568
+Northern Africa and Western Asia,1953,6.5861,5197.363,107771.49
+Northern Africa and Western Asia,1954,6.5755,5313.151,110577.055
+Northern Africa and Western Asia,1955,6.5352,5403.19,113448.975
+Northern Africa and Western Asia,1956,6.5382,5525.598,116463.034
+Northern Africa and Western Asia,1957,6.4751,5589.567,119588.327
+Northern Africa and Western Asia,1958,6.4788,5705.964,122739.51
+Northern Africa and Western Asia,1959,6.5174,5849.92,125998.376
+Northern Africa and Western Asia,1960,6.5251,5973.593,129368.443
+Northern Africa and Western Asia,1961,6.5698,6131.743,132803.652
+Northern Africa and Western Asia,1962,6.6314,6307.076,136371.3
+Northern Africa and Western Asia,1963,6.6146,6416.388,140074.032
+Northern Africa and Western Asia,1964,6.5788,6511.137,143854.058
+Northern Africa and Western Asia,1965,6.5209,6588.833,147674.756
+Northern Africa and Western Asia,1966,6.4766,6688.288,151658.747
+Northern Africa and Western Asia,1967,6.4254,6787.331,155850.338
+Northern Africa and Western Asia,1968,6.3752,6896.169,160159.768
+Northern Africa and Western Asia,1969,6.3242,7020.921,164579.053
+Northern Africa and Western Asia,1970,6.2757,7158.852,169043.854
+Northern Africa and Western Asia,1971,6.2234,7299.973,173587.204
+Northern Africa and Western Asia,1972,6.1561,7420.631,178250.391
+Northern Africa and Western Asia,1973,6.0755,7524.468,183095.856
+Northern Africa and Western Asia,1974,6.0031,7647.375,188054.527
+Northern Africa and Western Asia,1975,5.9358,7784.199,193232.532
+Northern Africa and Western Asia,1976,5.87,7938.692,198771.005
+Northern Africa and Western Asia,1977,5.7853,8084.587,204453.463
+Northern Africa and Western Asia,1978,5.7051,8256.118,210301.355
+Northern Africa and Western Asia,1979,5.637,8458.698,216296.199
+Northern Africa and Western Asia,1980,5.5578,8638.039,222541.245
+Northern Africa and Western Asia,1981,5.4745,8802.531,229003.234
+Northern Africa and Western Asia,1982,5.3945,8958.427,235590.072
+Northern Africa and Western Asia,1983,5.304,9117.887,242389
+Northern Africa and Western Asia,1984,5.193,9222.047,249317.166
+Northern Africa and Western Asia,1985,5.0796,9334.507,256234.717
+Northern Africa and Western Asia,1986,4.9493,9392.341,263199.338
+Northern Africa and Western Asia,1987,4.8228,9431.719,270270.597
+Northern Africa and Western Asia,1988,4.7102,9502.358,277337.933
+Northern Africa and Western Asia,1989,4.5799,9518.433,284470.256
+Northern Africa and Western Asia,1990,4.4299,9492.431,291046.88
+Northern Africa and Western Asia,1991,4.3058,9493.966,297762.91
+Northern Africa and Western Asia,1992,4.1874,9512.413,305060.055
+Northern Africa and Western Asia,1993,4.0701,9516.398,312421.473
+Northern Africa and Western Asia,1994,3.9614,9543.245,319754.753
+Northern Africa and Western Asia,1995,3.834,9501.32,326832.548
+Northern Africa and Western Asia,1996,3.7151,9461.146,333837.486
+Northern Africa and Western Asia,1997,3.6382,9517.133,340846.355
+Northern Africa and Western Asia,1998,3.5671,9576.656,347965.07
+Northern Africa and Western Asia,1999,3.485,9613.391,355118.765
+Northern Africa and Western Asia,2000,3.4023,9628.477,362459.717
+Northern Africa and Western Asia,2001,3.3273,9661.891,369967.79
+Northern Africa and Western Asia,2002,3.2506,9683.134,377562.958
+Northern Africa and Western Asia,2003,3.2066,9801.904,385181.349
+Northern Africa and Western Asia,2004,3.1834,9976.508,392909.3
+Northern Africa and Western Asia,2005,3.1628,10165.55,400956.449
+Northern Africa and Western Asia,2006,3.1559,10395.37,409344.382
+Northern Africa and Western Asia,2007,3.1514,10643.956,418224.52
+Northern Africa and Western Asia,2008,3.1364,10863.454,427531.137
+Northern Africa and Western Asia,2009,3.1326,11087.147,436888.097
+Northern Africa and Western Asia,2010,3.1322,11310.492,446080.634
+Northern Africa and Western Asia,2011,3.1286,11505.407,455432.111
+Northern Africa and Western Asia,2012,3.1639,11823.304,465277.43
+Northern Africa and Western Asia,2013,3.1631,11998.98,475599.454
+Northern Africa and Western Asia,2014,3.1714,12186.609,486456.547
+Northern Africa and Western Asia,2015,3.1444,12266.797,497570.628
+Northern Africa and Western Asia,2016,3.0822,12200.21,508024.735
+Northern Africa and Western Asia,2017,3.0471,12210.732,517511.786
+Northern Africa and Western Asia,2018,2.9542,11980.199,526456.926
+Northern Africa and Western Asia,2019,2.8805,11824.821,535333.368
+Northern Africa and Western Asia,2020,2.8298,11737.736,543949.127
+Northern Africa and Western Asia,2021,2.7712,11603.735,552426.973
+Northern Africa and Western Asia,2022,2.7373,11594.814,562408.59
+Northern Africa and Western Asia,2023,2.7326,11764.184,572506.538
+Central and Southern Asia,1950,5.8876,21403.47,481649.426
+Central and Southern Asia,1951,5.9195,21941.706,492130.033
+Central and Southern Asia,1952,5.9582,22529.443,503178.469
+Central and Southern Asia,1953,5.9943,23120.176,514566.479
+Central and Southern Asia,1954,6.0301,23701.149,526454.836
+Central and Southern Asia,1955,6.0427,24213.19,538972.549
+Central and Southern Asia,1956,6.0548,24720.666,551955.594
+Central and Southern Asia,1957,6.0682,25236.556,565105.892
+Central and Southern Asia,1958,6.0758,25685.668,578666.827
+Central and Southern Asia,1959,6.0828,26169.514,592955.219
+Central and Southern Asia,1960,6.1134,26761.743,607744.293
+Central and Southern Asia,1961,6.1288,27299.434,623103.648
+Central and Southern Asia,1962,6.1422,27846.366,638815.814
+Central and Southern Asia,1963,6.1467,28351.068,654847.444
+Central and Southern Asia,1964,6.1446,28864.466,671289.914
+Central and Southern Asia,1965,6.1077,29268.01,687719.174
+Central and Southern Asia,1966,6.0572,29652.929,703980.188
+Central and Southern Asia,1967,6.0151,30105.387,720683.195
+Central and Southern Asia,1968,5.9588,30551.603,737787.872
+Central and Southern Asia,1969,5.8971,30966.756,755013.676
+Central and Southern Asia,1970,5.8483,31494.215,773019.387
+Central and Southern Asia,1971,5.795,32151.632,790705.722
+Central and Southern Asia,1972,5.7231,32713.86,808767.235
+Central and Southern Asia,1973,5.6526,33333.393,828337.702
+Central and Southern Asia,1974,5.5884,33941.925,848662.588
+Central and Southern Asia,1975,5.4858,34343.127,869736.336
+Central and Southern Asia,1976,5.4327,35113.582,891277.973
+Central and Southern Asia,1977,5.3364,35536.806,913489.668
+Central and Southern Asia,1978,5.2446,36140.943,935946.429
+Central and Southern Asia,1979,5.182,36979.522,959011.661
+Central and Southern Asia,1980,5.1479,37950.252,983002.138
+Central and Southern Asia,1981,5.0782,38671.693,1007546.279
+Central and Southern Asia,1982,5.0011,39319.936,1032752.986
+Central and Southern Asia,1983,4.9365,39949.968,1058575.683
+Central and Southern Asia,1984,4.8817,40672.223,1084940.575
+Central and Southern Asia,1985,4.7951,41116.247,1111735.808
+Central and Southern Asia,1986,4.737,41740.391,1139065.938
+Central and Southern Asia,1987,4.6356,41856.752,1166732.213
+Central and Southern Asia,1988,4.5291,42078.168,1194589.048
+Central and Southern Asia,1989,4.4316,42290.104,1222772.553
+Central and Southern Asia,1990,4.3348,42368.482,1251116.229
+Central and Southern Asia,1991,4.2303,42461.998,1279515.089
+Central and Southern Asia,1992,4.1197,42427.744,1308097.488
+Central and Southern Asia,1993,4.0162,42352.959,1336269.86
+Central and Southern Asia,1994,3.9243,42406.903,1363923.271
+Central and Southern Asia,1995,3.8295,42388.649,1391870.761
+Central and Southern Asia,1996,3.7377,42331.552,1420081.536
+Central and Southern Asia,1997,3.6597,42414.264,1448376.194
+Central and Southern Asia,1998,3.5796,42537.394,1476885.548
+Central and Southern Asia,1999,3.5129,42752.103,1505763.37
+Central and Southern Asia,2000,3.4602,43172.319,1534794.309
+Central and Southern Asia,2001,3.3926,43404.591,1563976.852
+Central and Southern Asia,2002,3.3014,43209.355,1592670.825
+Central and Southern Asia,2003,3.2126,42930.488,1621100.93
+Central and Southern Asia,2004,3.1312,42678.017,1649884.746
+Central and Southern Asia,2005,3.0504,42244.419,1678121.019
+Central and Southern Asia,2006,2.9803,42050.393,1705976.764
+Central and Southern Asia,2007,2.9084,41953.723,1733040.299
+Central and Southern Asia,2008,2.8557,42042.342,1759490.353
+Central and Southern Asia,2009,2.8178,42215.678,1786569.663
+Central and Southern Asia,2010,2.7522,41987.659,1813841.563
+Central and Southern Asia,2011,2.6945,41818.929,1840841.93
+Central and Southern Asia,2012,2.6442,41682.476,1867237.97
+Central and Southern Asia,2013,2.5937,41374.299,1892781.106
+Central and Southern Asia,2014,2.521,40517.96,1917606.35
+Central and Southern Asia,2015,2.5145,40665.925,1941567.065
+Central and Southern Asia,2016,2.504,40688.658,1965447.646
+Central and Southern Asia,2017,2.4364,39934.439,1989428.869
+Central and Southern Asia,2018,2.4231,40123.738,2013148.567
+Central and Southern Asia,2019,2.37,39622.087,2036731.406
+Central and Southern Asia,2020,2.3165,39081.337,2059942.244
+Central and Southern Asia,2021,2.294,39091.17,2081130.157
+Central and Southern Asia,2022,2.274,39141.419,2101809.055
+Central and Southern Asia,2023,2.2547,39083.385,2123893.323
+Eastern and South-Eastern Asia,1950,5.5419,33449.85,836464.176
+Eastern and South-Eastern Asia,1951,5.3833,33047.701,851473.534
+Eastern and South-Eastern Asia,1952,5.8752,36686.962,868735.789
+Eastern and South-Eastern Asia,1953,5.5774,35470.521,887672.723
+Eastern and South-Eastern Asia,1954,5.7292,37093.124,907147.688
+Eastern and South-Eastern Asia,1955,5.7023,37584.552,927907.698
+Eastern and South-Eastern Asia,1956,5.4316,36434.024,948479.725
+Eastern and South-Eastern Asia,1957,5.7944,39500.424,970084.83
+Eastern and South-Eastern Asia,1958,5.3499,37084.406,992037.068
+Eastern and South-Eastern Asia,1959,4.7267,33279.535,1008841.083
+Eastern and South-Eastern Asia,1960,4.5557,32510.408,1019337.525
+Eastern and South-Eastern Asia,1961,4.1562,30045.333,1028545.027
+Eastern and South-Eastern Asia,1962,5.528,40355.868,1046069.236
+Eastern and South-Eastern Asia,1963,6.3965,47233.746,1074015.746
+Eastern and South-Eastern Asia,1964,5.8735,43992.951,1103663.038
+Eastern and South-Eastern Asia,1965,5.8247,44289.001,1131754.952
+Eastern and South-Eastern Asia,1966,5.573,43116.535,1159509.777
+Eastern and South-Eastern Asia,1967,5.3118,41962.37,1186704.774
+Eastern and South-Eastern Asia,1968,5.7173,46103.919,1215782.508
+Eastern and South-Eastern Asia,1969,5.494,45486.496,1246878.253
+Eastern and South-Eastern Asia,1970,5.4228,46209.867,1278014.439
+Eastern and South-Eastern Asia,1971,5.0637,44588.703,1308692.634
+Eastern and South-Eastern Asia,1972,4.7981,43682.935,1338307.731
+Eastern and South-Eastern Asia,1973,4.5346,42807.458,1367262.628
+Eastern and South-Eastern Asia,1974,4.1376,40570.57,1394955.164
+Eastern and South-Eastern Asia,1975,3.7215,37957.794,1420448.372
+Eastern and South-Eastern Asia,1976,3.4721,36795.759,1444211.74
+Eastern and South-Eastern Asia,1977,3.1889,35049.486,1466934.097
+Eastern and South-Eastern Asia,1978,3.0862,35095.285,1489155.591
+Eastern and South-Eastern Asia,1979,3.0869,36179.17,1512086.553
+Eastern and South-Eastern Asia,1980,3.0539,36802.973,1536007.519
+Eastern and South-Eastern Asia,1981,3.0511,37725.499,1560778.895
+Eastern and South-Eastern Asia,1982,3.1321,39700.014,1587077.643
+Eastern and South-Eastern Asia,1983,2.8348,37054.646,1613227.69
+Eastern and South-Eastern Asia,1984,2.8305,38235.482,1638740.745
+Eastern and South-Eastern Asia,1985,2.8048,39209.6,1665216.968
+Eastern and South-Eastern Asia,1986,2.8246,40867.201,1692991.81
+Eastern and South-Eastern Asia,1987,2.8264,42296.75,1722353.488
+Eastern and South-Eastern Asia,1988,2.6707,41249.356,1751798.816
+Eastern and South-Eastern Asia,1989,2.6404,42036.273,1780879.272
+Eastern and South-Eastern Asia,1990,2.6215,42904.713,1810838.255
+Eastern and South-Eastern Asia,1991,2.2356,37650.174,1838246.511
+Eastern and South-Eastern Asia,1992,2.1063,35985.73,1862227.874
+Eastern and South-Eastern Asia,1993,2.0313,35110.799,1885214.849
+Eastern and South-Eastern Asia,1994,1.9771,34444.354,1907106.775
+Eastern and South-Eastern Asia,1995,1.9324,33831.109,1928449.612
+Eastern and South-Eastern Asia,1996,1.8908,33062.601,1949414.906
+Eastern and South-Eastern Asia,1997,1.8518,32290.495,1969786.653
+Eastern and South-Eastern Asia,1998,1.8213,31569.587,1989412.283
+Eastern and South-Eastern Asia,1999,1.8028,31059.707,2007955.654
+Eastern and South-Eastern Asia,2000,1.8511,31696.802,2026095.535
+Eastern and South-Eastern Asia,2001,1.7992,30661.38,2043846.653
+Eastern and South-Eastern Asia,2002,1.7869,30334.425,2060302.381
+Eastern and South-Eastern Asia,2003,1.7786,30092.311,2076016.259
+Eastern and South-Eastern Asia,2004,1.7933,30282.373,2091445.521
+Eastern and South-Eastern Asia,2005,1.7992,30372.622,2107132.928
+Eastern and South-Eastern Asia,2006,1.819,30772.209,2123271.345
+Eastern and South-Eastern Asia,2007,1.8419,31250.929,2139701.282
+Eastern and South-Eastern Asia,2008,1.8665,31786.5,2156408.278
+Eastern and South-Eastern Asia,2009,1.8785,32115.072,2173485.206
+Eastern and South-Eastern Asia,2010,1.8678,32048.401,2190839.734
+Eastern and South-Eastern Asia,2011,1.8704,32148.415,2207926.51
+Eastern and South-Eastern Asia,2012,1.9563,33627.92,2225808.996
+Eastern and South-Eastern Asia,2013,1.8936,32485.68,2243785.156
+Eastern and South-Eastern Asia,2014,1.9214,32848.988,2260819.292
+Eastern and South-Eastern Asia,2015,1.8534,31495.95,2276839.397
+Eastern and South-Eastern Asia,2016,1.8938,31969.199,2292381.911
+Eastern and South-Eastern Asia,2017,1.8834,31537.149,2307986.325
+Eastern and South-Eastern Asia,2018,1.7048,28248.071,2321415.856
+Eastern and South-Eastern Asia,2019,1.6637,27259.489,2332291.844
+Eastern and South-Eastern Asia,2020,1.4962,24218.744,2340521.473
+Eastern and South-Eastern Asia,2021,1.412,22556.504,2345241.128
+Eastern and South-Eastern Asia,2022,1.3598,21417.501,2348163.313
+Eastern and South-Eastern Asia,2023,1.3345,20722.138,2350145.73
+Latin America and the Caribbean,1950,5.7916,7304.86,167782.158
+Latin America and the Caribbean,1951,5.7951,7491.622,172178.661
+Latin America and the Caribbean,1952,5.7988,7677.255,176742.753
+Latin America and the Caribbean,1953,5.807,7866.05,181465.138
+Latin America and the Caribbean,1954,5.8176,8056.712,186352.246
+Latin America and the Caribbean,1955,5.8275,8246.046,191408.102
+Latin America and the Caribbean,1956,5.8427,8443.877,196635.241
+Latin America and the Caribbean,1957,5.8526,8637.209,202034.632
+Latin America and the Caribbean,1958,5.8583,8826.017,207597.407
+Latin America and the Caribbean,1959,5.8658,9021.964,213338.419
+Latin America and the Caribbean,1960,5.8657,9214.037,219267.873
+Latin America and the Caribbean,1961,5.8556,9397.352,225391.658
+Latin America and the Caribbean,1962,5.8459,9592.873,231696.476
+Latin America and the Caribbean,1963,5.8209,9771.375,238151.658
+Latin America and the Caribbean,1964,5.7635,9904.925,244733.711
+Latin America and the Caribbean,1965,5.6805,10002.701,251412.629
+Latin America and the Caribbean,1966,5.5802,10080.125,258167.638
+Latin America and the Caribbean,1967,5.4722,10153.578,264985.009
+Latin America and the Caribbean,1968,5.3639,10235.618,271854.375
+Latin America and the Caribbean,1969,5.2667,10347.179,278778.84
+Latin America and the Caribbean,1970,5.1699,10469.245,285740.932
+Latin America and the Caribbean,1971,5.0742,10597.976,292776.297
+Latin America and the Caribbean,1972,4.9696,10716.866,299924.709
+Latin America and the Caribbean,1973,4.8669,10838.502,307173.856
+Latin America and the Caribbean,1974,4.7495,10933.63,314507.388
+Latin America and the Caribbean,1975,4.6439,11050.709,321910.243
+Latin America and the Caribbean,1976,4.547,11182.987,329387.956
+Latin America and the Caribbean,1977,4.4519,11313.399,336994.37
+Latin America and the Caribbean,1978,4.3527,11429.467,344747.767
+Latin America and the Caribbean,1979,4.2491,11530.095,352587.367
+Latin America and the Caribbean,1980,4.1445,11615.805,360493.167
+Latin America and the Caribbean,1981,4.0496,11720.65,368410.521
+Latin America and the Caribbean,1982,3.9603,11829.89,376371.994
+Latin America and the Caribbean,1983,3.8642,11903.542,384476.547
+Latin America and the Caribbean,1984,3.7647,11943.528,392668.978
+Latin America and the Caribbean,1985,3.6699,11983.059,400865.352
+Latin America and the Caribbean,1986,3.5815,12027.805,409041.734
+Latin America and the Caribbean,1987,3.4828,12006.374,417217.347
+Latin America and the Caribbean,1988,3.3936,11994.576,425425.704
+Latin America and the Caribbean,1989,3.3167,12003.492,433640.834
+Latin America and the Caribbean,1990,3.2421,11999.21,441884.656
+Latin America and the Caribbean,1991,3.1688,11992.908,450078.868
+Latin America and the Caribbean,1992,3.0955,11958.844,458219.791
+Latin America and the Caribbean,1993,3.0381,11979.477,466312.645
+Latin America and the Caribbean,1994,2.9769,11962.497,474323.149
+Latin America and the Caribbean,1995,2.9173,11939.205,482311.061
+Latin America and the Caribbean,1996,2.8502,11873.14,490233.949
+Latin America and the Caribbean,1997,2.7941,11839.594,498098.89
+Latin America and the Caribbean,1998,2.7387,11797.968,505972.765
+Latin America and the Caribbean,1999,2.6743,11713.22,513769.077
+Latin America and the Caribbean,2000,2.6085,11603.539,521323.344
+Latin America and the Caribbean,2001,2.5427,11471.965,528625.86
+Latin America and the Caribbean,2002,2.4825,11343.362,535741.248
+Latin America and the Caribbean,2003,2.423,11202.884,542687.949
+Latin America and the Caribbean,2004,2.3806,11132.206,549493.92
+Latin America and the Caribbean,2005,2.3417,11069.698,556212.184
+Latin America and the Caribbean,2006,2.2969,10967.924,562854.9
+Latin America and the Caribbean,2007,2.2592,10894.513,569468.002
+Latin America and the Caribbean,2008,2.2324,10868.054,576049.103
+Latin America and the Caribbean,2009,2.2076,10843.675,582545.348
+Latin America and the Caribbean,2010,2.1813,10799.683,588907.843
+Latin America and the Caribbean,2011,2.1636,10790.123,595242.688
+Latin America and the Caribbean,2012,2.1346,10721.093,601576.921
+Latin America and the Caribbean,2013,2.1133,10678.003,607837.5
+Latin America and the Caribbean,2014,2.0963,10648.345,614015.236
+Latin America and the Caribbean,2015,2.0659,10542.289,620042.609
+Latin America and the Caribbean,2016,2.0147,10322.871,625922.644
+Latin America and the Caribbean,2017,1.9907,10238.395,631575.434
+Latin America and the Caribbean,2018,1.9733,10172.142,637012.16
+Latin America and the Caribbean,2019,1.9281,9957.406,642195.536
+Latin America and the Caribbean,2020,1.869,9660.792,646729.384
+Latin America and the Caribbean,2021,1.8447,9541.936,650465.29
+Latin America and the Caribbean,2022,1.824,9437.516,654366.79
+Latin America and the Caribbean,2023,1.8073,9354.81,658891.517
+Australia/New Zealand,1950,3.152,237.871,10088.013
+Australia/New Zealand,1951,3.1595,242.005,10369.816
+Australia/New Zealand,1952,3.2672,252.106,10628.452
+Australia/New Zealand,1953,3.2755,253.118,10863.832
+Australia/New Zealand,1954,3.2989,254.647,11094.524
+Australia/New Zealand,1955,3.3835,261.2,11344.853
+Australia/New Zealand,1956,3.4498,267.207,11609.504
+Australia/New Zealand,1957,3.5323,275.562,11872.463
+Australia/New Zealand,1958,3.5487,279.692,12132.631
+Australia/New Zealand,1959,3.5767,285.19,12393.518
+Australia/New Zealand,1960,3.5973,290.657,12660.294
+Australia/New Zealand,1961,3.6819,302.201,12930.19
+Australia/New Zealand,1962,3.5607,297.888,13191.641
+Australia/New Zealand,1963,3.4657,296.853,13451.379
+Australia/New Zealand,1964,3.2629,287.438,13717.02
+Australia/New Zealand,1965,3.0824,280.606,13993.97
+Australia/New Zealand,1966,2.9824,281.799,14275.068
+Australia/New Zealand,1967,2.9431,288.549,14533.938
+Australia/New Zealand,1968,2.9707,301.758,14784.538
+Australia/New Zealand,1969,2.9581,311.682,15056.78
+Australia/New Zealand,1970,2.9149,319.235,15421.588
+Australia/New Zealand,1971,2.9889,344.317,15865.129
+Australia/New Zealand,1972,2.7872,335.982,16224.154
+Australia/New Zealand,1973,2.5371,315.465,16497.673
+Australia/New Zealand,1974,2.4126,309.299,16760.726
+Australia/New Zealand,1975,2.2355,294.798,16988.021
+Australia/New Zealand,1976,2.102,283.151,17173.388
+Australia/New Zealand,1977,2.0556,281.565,17343.641
+Australia/New Zealand,1978,1.9829,276.233,17509.341
+Australia/New Zealand,1979,1.9491,275.687,17674.636
+Australia/New Zealand,1980,1.9249,276.601,17867.674
+Australia/New Zealand,1981,1.9541,286.025,18109.041
+Australia/New Zealand,1982,1.9429,289.938,18377.608
+Australia/New Zealand,1983,1.9303,293.26,18634.172
+Australia/New Zealand,1984,1.8833,289.712,18870.481
+Australia/New Zealand,1985,1.9059,296.298,19103.775
+Australia/New Zealand,1986,1.8885,296.715,19351.141
+Australia/New Zealand,1987,1.8829,299.492,19621.712
+Australia/New Zealand,1988,1.8851,304.23,19910.125
+Australia/New Zealand,1989,1.8909,309.309,20203.188
+Australia/New Zealand,1990,1.9518,322.992,20523.276
+Australia/New Zealand,1991,1.9018,318.435,20834.118
+Australia/New Zealand,1992,1.9208,323.991,21081.533
+Australia/New Zealand,1993,1.8942,320.192,21296.52
+Australia/New Zealand,1994,1.8744,316.797,21518.464
+Australia/New Zealand,1995,1.8514,313.362,21769.773
+Australia/New Zealand,1996,1.8308,310.921,22034.686
+Australia/New Zealand,1997,1.813,308.793,22281.862
+Australia/New Zealand,1998,1.7877,304.518,22513.088
+Australia/New Zealand,1999,1.7986,306.012,22745.536
+Australia/New Zealand,2000,1.8008,306.106,22990.045
+Australia/New Zealand,2001,1.7765,301.732,23257.196
+Australia/New Zealand,2002,1.7865,304.064,23546.474
+Australia/New Zealand,2003,1.7922,306.43,23842.041
+Australia/New Zealand,2004,1.817,312.149,24130.588
+Australia/New Zealand,2005,1.8693,322.293,24429.497
+Australia/New Zealand,2006,1.905,330.475,24772.5
+Australia/New Zealand,2007,2.022,354.076,25177.814
+Australia/New Zealand,2008,2.0492,364.004,25632.412
+Australia/New Zealand,2009,1.9993,361.636,26087.315
+Australia/New Zealand,2010,1.9842,364.895,26489.351
+Australia/New Zealand,2011,1.9505,363.069,26862.476
+Australia/New Zealand,2012,1.9566,369.205,27264.321
+Australia/New Zealand,2013,1.9031,365.388,27690.122
+Australia/New Zealand,2014,1.825,356.985,28118.584
+Australia/New Zealand,2015,1.8315,365.335,28562.031
+Australia/New Zealand,2016,1.8065,368.209,29044.733
+Australia/New Zealand,2017,1.7567,366.699,29543.79
+Australia/New Zealand,2018,1.7402,371.374,30020.553
+Australia/New Zealand,2019,1.675,364.131,30472.116
+Australia/New Zealand,2020,1.5995,352.547,30813.686
+Australia/New Zealand,2021,1.6478,363.015,31064.114
+Australia/New Zealand,2022,1.6431,362.351,31332.719
+Australia/New Zealand,2023,1.6434,363.575,31623.96
+Oceania (excluding Australia and New Zealand),1950,5.9561,111.115,2494.031
+Oceania (excluding Australia and New Zealand),1951,5.9859,114.786,2545.213
+Oceania (excluding Australia and New Zealand),1952,6.0067,118.225,2600.504
+Oceania (excluding Australia and New Zealand),1953,6.0407,121.739,2663.212
+Oceania (excluding Australia and New Zealand),1954,6.0416,124.578,2729.774
+Oceania (excluding Australia and New Zealand),1955,6.0805,128.04,2800.238
+Oceania (excluding Australia and New Zealand),1956,6.1048,131.085,2874.936
+Oceania (excluding Australia and New Zealand),1957,6.1416,134.347,2952.769
+Oceania (excluding Australia and New Zealand),1958,6.1637,137.188,3033.24
+Oceania (excluding Australia and New Zealand),1959,6.1796,139.8,3116.368
+Oceania (excluding Australia and New Zealand),1960,6.2088,142.703,3202.01
+Oceania (excluding Australia and New Zealand),1961,6.2345,145.426,3286.327
+Oceania (excluding Australia and New Zealand),1962,6.2651,148.902,3368.945
+Oceania (excluding Australia and New Zealand),1963,6.2509,151.278,3452.874
+Oceania (excluding Australia and New Zealand),1964,6.2502,154.153,3537.294
+Oceania (excluding Australia and New Zealand),1965,6.2199,156.693,3622.897
+Oceania (excluding Australia and New Zealand),1966,6.1992,159.644,3710.646
+Oceania (excluding Australia and New Zealand),1967,6.1558,161.932,3797.917
+Oceania (excluding Australia and New Zealand),1968,6.1205,164.588,3885.327
+Oceania (excluding Australia and New Zealand),1969,6.0887,167.312,3976.655
+Oceania (excluding Australia and New Zealand),1970,6.0377,169.634,4072.226
+Oceania (excluding Australia and New Zealand),1971,5.9747,171.777,4170.598
+Oceania (excluding Australia and New Zealand),1972,5.9004,173.686,4269.636
+Oceania (excluding Australia and New Zealand),1973,5.8261,174.757,4368.165
+Oceania (excluding Australia and New Zealand),1974,5.7514,175.92,4467.179
+Oceania (excluding Australia and New Zealand),1975,5.6933,177.778,4567.545
+Oceania (excluding Australia and New Zealand),1976,5.6352,179.813,4668.742
+Oceania (excluding Australia and New Zealand),1977,5.5652,181.653,4770.62
+Oceania (excluding Australia and New Zealand),1978,5.4793,183.307,4873.79
+Oceania (excluding Australia and New Zealand),1979,5.3927,185.062,4978.745
+Oceania (excluding Australia and New Zealand),1980,5.3186,187.362,5086.456
+Oceania (excluding Australia and New Zealand),1981,5.2563,190.494,5198.116
+Oceania (excluding Australia and New Zealand),1982,5.1887,193.814,5312.696
+Oceania (excluding Australia and New Zealand),1983,5.1454,198.172,5429.968
+Oceania (excluding Australia and New Zealand),1984,5.0816,201.726,5550.252
+Oceania (excluding Australia and New Zealand),1985,5.0169,205.187,5673.466
+Oceania (excluding Australia and New Zealand),1986,4.9446,208.221,5798.359
+Oceania (excluding Australia and New Zealand),1987,4.8826,211.479,5922.522
+Oceania (excluding Australia and New Zealand),1988,4.8251,214.856,6045.971
+Oceania (excluding Australia and New Zealand),1989,4.7572,217.371,6173.49
+Oceania (excluding Australia and New Zealand),1990,4.7059,220.516,6315.76
+Oceania (excluding Australia and New Zealand),1991,4.6488,223.021,6480.863
+Oceania (excluding Australia and New Zealand),1992,4.5868,226.994,6664.78
+Oceania (excluding Australia and New Zealand),1993,4.5311,231.992,6857.525
+Oceania (excluding Australia and New Zealand),1994,4.4554,235.921,7054.281
+Oceania (excluding Australia and New Zealand),1995,4.3881,240.104,7255.156
+Oceania (excluding Australia and New Zealand),1996,4.3418,245.598,7463.662
+Oceania (excluding Australia and New Zealand),1997,4.2874,251.004,7682.421
+Oceania (excluding Australia and New Zealand),1998,4.2287,256.355,7906.672
+Oceania (excluding Australia and New Zealand),1999,4.1841,262.607,8134.268
+Oceania (excluding Australia and New Zealand),2000,4.1294,268.127,8362.579
+Oceania (excluding Australia and New Zealand),2001,4.0847,273.484,8589.7
+Oceania (excluding Australia and New Zealand),2002,4.0419,278.355,8819.214
+Oceania (excluding Australia and New Zealand),2003,4.0015,283.341,9052.192
+Oceania (excluding Australia and New Zealand),2004,3.9502,287.535,9288.161
+Oceania (excluding Australia and New Zealand),2005,3.9059,291.961,9526.358
+Oceania (excluding Australia and New Zealand),2006,3.8662,296.741,9767.536
+Oceania (excluding Australia and New Zealand),2007,3.818,300.845,10011.888
+Oceania (excluding Australia and New Zealand),2008,3.7784,305.513,10257.624
+Oceania (excluding Australia and New Zealand),2009,3.7253,308.939,10505.887
+Oceania (excluding Australia and New Zealand),2010,3.6842,313.533,10764.415
+Oceania (excluding Australia and New Zealand),2011,3.6318,317.162,11027.289
+Oceania (excluding Australia and New Zealand),2012,3.5837,320.504,11285.85
+Oceania (excluding Australia and New Zealand),2013,3.5331,323.355,11543.476
+Oceania (excluding Australia and New Zealand),2014,3.4908,326.434,11799.852
+Oceania (excluding Australia and New Zealand),2015,3.4339,327.744,12052.647
+Oceania (excluding Australia and New Zealand),2016,3.3797,328.945,12302.186
+Oceania (excluding Australia and New Zealand),2017,3.3182,329.21,12549.864
+Oceania (excluding Australia and New Zealand),2018,3.2709,330.463,12794.604
+Oceania (excluding Australia and New Zealand),2019,3.2163,330.574,13032.072
+Oceania (excluding Australia and New Zealand),2020,3.1756,331.652,13265.288
+Oceania (excluding Australia and New Zealand),2021,3.1246,331.446,13494.098
+Oceania (excluding Australia and New Zealand),2022,3.0794,331.463,13716.631
+Oceania (excluding Australia and New Zealand),2023,3.0234,329.697,13938.827
+Europe and Northern America,1950,2.7775,16227.106,716876.811
+Europe and Northern America,1951,2.7692,16247.939,724465.425
+Europe and Northern America,1952,2.779,16342.251,732134.102
+Europe and Northern America,1953,2.7757,16354.654,740278.205
+Europe and Northern America,1954,2.8027,16536.705,748769.039
+Europe and Northern America,1955,2.8081,16594.288,757442.708
+Europe and Northern America,1956,2.8188,16700.585,766213.222
+Europe and Northern America,1957,2.8397,16882.266,775402.029
+Europe and Northern America,1958,2.8386,16937.132,785014.825
+Europe and Northern America,1959,2.8468,17037.746,794558.666
+Europe and Northern America,1960,2.8398,17018.184,804069.835
+Europe and Northern America,1961,2.8212,16901.637,813695.939
+Europe and Northern America,1962,2.7575,16487.381,823237.517
+Europe and Northern America,1963,2.7315,16307.077,832468.695
+Europe and Northern America,1964,2.6871,16020.17,841384.854
+Europe and Northern America,1965,2.5811,15401.319,849843.36
+Europe and Northern America,1966,2.5172,15082.288,857826.192
+Europe and Northern America,1967,2.4728,14975.557,865308.035
+Europe and Northern America,1968,2.4136,14760.646,872457.718
+Europe and Northern America,1969,2.3777,14777.288,879577.46
+Europe and Northern America,1970,2.3467,14817.232,886338.135
+Europe and Northern America,1971,2.2865,14711.667,893383.16
+Europe and Northern America,1972,2.1736,14274.874,900700.788
+Europe and Northern America,1973,2.0826,13964.155,907425.364
+Europe and Northern America,1974,2.0603,14104.644,913749.636
+Europe and Northern America,1975,2.0008,13966.143,919666.284
+Europe and Northern America,1976,1.965,13960.588,925390.284
+Europe and Northern America,1977,1.9446,14043.636,931198.892
+Europe and Northern America,1978,1.9132,14025.611,936917.898
+Europe and Northern America,1979,1.9079,14175.376,942667.669
+Europe and Northern America,1980,1.9018,14305.238,948781.035
+Europe and Northern America,1981,1.87,14213.328,954751.146
+Europe and Northern America,1982,1.8678,14321.639,960286.685
+Europe and Northern America,1983,1.8582,14342.828,965790.427
+Europe and Northern America,1984,1.8391,14262.163,971248.99
+Europe and Northern America,1985,1.8302,14225.729,976673.356
+Europe and Northern America,1986,1.8419,14325.494,982273.423
+Europe and Northern America,1987,1.8449,14328.528,987987.441
+Europe and Northern America,1988,1.8444,14276.905,993814.332
+Europe and Northern America,1989,1.8225,14063.49,999584.33
+Europe and Northern America,1990,1.8119,13915.861,1005421.776
+Europe and Northern America,1991,1.7625,13473.067,1011232.17
+Europe and Northern America,1992,1.7088,13007.326,1015843.334
+Europe and Northern America,1993,1.6503,12471.238,1019590.773
+Europe and Northern America,1994,1.6236,12201.96,1023628.217
+Europe and Northern America,1995,1.5933,11922.563,1027167.326
+Europe and Northern America,1996,1.5822,11794.74,1030119.967
+Europe and Northern America,1997,1.5696,11658.922,1033074.917
+Europe and Northern America,1998,1.568,11609.249,1035436.562
+Europe and Northern America,1999,1.5592,11479.971,1037726.186
+Europe and Northern America,2000,1.5786,11595.87,1040664.194
+Europe and Northern America,2001,1.5689,11514.036,1043855.49
+Europe and Northern America,2002,1.5779,11574.268,1047871.412
+Europe and Northern America,2003,1.6024,11781.192,1052246.315
+Europe and Northern America,2004,1.6211,11933.952,1056290.748
+Europe and Northern America,2005,1.6229,11962.271,1060329.125
+Europe and Northern America,2006,1.6579,12244.553,1064299.233
+Europe and Northern America,2007,1.6948,12508.275,1068958.565
+Europe and Northern America,2008,1.7255,12763.887,1074094.856
+Europe and Northern America,2009,1.7142,12698.481,1078911.661
+Europe and Northern America,2010,1.6977,12594.913,1083531.37
+Europe and Northern America,2011,1.6751,12425.104,1088146.316
+Europe and Northern America,2012,1.6884,12508.451,1092623.135
+Europe and Northern America,2013,1.6685,12328.496,1097001.035
+Europe and Northern America,2014,1.6829,12409.247,1101515.944
+Europe and Northern America,2015,1.6759,12325.724,1106451.197
+Europe and Northern America,2016,1.6717,12271.325,1111661.317
+Europe and Northern America,2017,1.6197,11857.198,1116567.937
+Europe and Northern America,2018,1.5839,11562.812,1121042.183
+Europe and Northern America,2019,1.5505,11273.536,1125203.195
+Europe and Northern America,2020,1.5134,10953.068,1127258.394
+Europe and Northern America,2021,1.525,10956.003,1127355.471
+Europe and Northern America,2022,1.4925,10627.046,1127446.368
+Europe and Northern America,2023,1.4696,10353.254,1128505.616

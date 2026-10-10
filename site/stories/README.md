@@ -7,6 +7,18 @@ description: Short data stories built from the datasets, each with charts as the
 
 Short data stories built from DataPressr datasets, newest first. Each one makes a single argument with charts as the evidence. Its outline, the argument and chart plan reviewed before any prose was written, is linked below the story.
 
+## [Most Countries Now Have Birth Rates Below Replacement](birth-rates.md)
+
+In 2023, 130 of 237 countries and territories had fertility below 2.1 children per woman, up from 60 in 1990, and most places already below it kept falling. Sub-Saharan Africa is where the fall is far from finished.
+
+[Outline](birth-rates-outline.md)
+
+## [Heat Is the Quiet Killer](heat-quiet-killer.md)
+
+Heat tops the National Weather Service's count of US weather deaths for 1997–2025, 2.5 times tornadoes. The count depends on who reports a death, and it misses most heat and cold deaths.
+
+[Outline](heat-quiet-killer-outline.md)
+
 ## [Where France’s public money goes](france-public-finances.md)
 
 What is growing, what old-age spending means, and why bigger euro bills can coexist with falling GDP shares.
