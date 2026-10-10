@@ -79,6 +79,7 @@ Someone other than the outline's author reviews it before any chart or prose wor
 - reproduces every number from the data with their own scan;
 - checks each chart plan row: fields exist, the transform is valid, dates exist, gaps and denominators are handled;
 - checks the argument makes no causal claim beyond the evidence, and that numbers weakening it are present;
+- **reader questions:** writes down, before reading the outline, the five to eight questions a curious reader brings to the topic, and says which the outline answers, partly answers or misses (`references/story-craft.md` §10). Correctness alone is not enough: an outline can pass every check and still be shallow;
 - returns **APPROVED** or numbered, line-referenced corrections.
 
 Record the verdict with the reviewer's identity, the exact revision reviewed (commit + file SHA-256) and the reproduced numbers. Corrections go back to the outline; re-review the new revision. Elapsed time is not approval. On story #3, round 1 caught an unsupported *why*, a mis-stated one-day move and an omitted counter-number; round 2 approved.
@@ -100,6 +101,8 @@ Commit: `Story #N (<Title>): prose`, together with the index-page links.
 ### 5. Voice pass — *human, separate*
 
 The author's "sounds like me" rewrite. The argument is fixed and the charts are independent, so this can happen any time and only touches wording. The skill ends at step 4; flag the voice pass as outstanding.
+
+Keep the owner's remarks on any draft verbatim in `docs/reviews/<slug>-user-feedback.md` (or the project's equivalent) before revising — they are the evidence for improving this skill.
 
 ## Common mistakes
 
