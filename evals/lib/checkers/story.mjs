@@ -149,9 +149,14 @@ const NUMBER_RE = new RegExp(
   "gu",
 );
 
+// A statement of rounding precision ("rounded to 0.1% of GDP", "to the nearest 5", "to 1 decimal
+// place", "2 significant figures") describes how numbers are shown, not a value in the data.
+const PRECISION_BEFORE = /\b(?:round(?:ed|s|ing)?(?:\s+(?:up|down|off))?|accurate|precise|precision)\s+(?:to|of)\s+(?:within\s+)?(?:the\s+nearest\s+)?$/i;
+const PRECISION_AFTER = /^\s*(?:decimal\s+places?|significant\s+(?:figures?|digits?)|d\.?p\.?|s\.?f\.?)(?![\p{L}])/iu;
+
 // Every number token in `text`, classified. kind: "number" (a data number the prose must back
 // with a chart), "year" (a bare 4-digit year 1800–2199), "date" (part of a date expression),
-// "ordinal" (1st, 21st), or "reference" (#3). Thousands separators (comma, thin and no-break
+// "ordinal" (1st, 21st), "precision" (a rounding precision, above), or "reference" (#3). Thousands separators (comma, thin and no-break
 // spaces), decimals, percentages, currencies (€, $, US$, £, EUR/USD) and magnitudes (trillion,
 // billion/bn, million/m, thousand/k) are understood; the unicode minus counts as a sign.
 export function tokenizeNumbers(text) {
@@ -178,6 +183,7 @@ export function tokenizeNumbers(text) {
     if (g.suffix && g.suffix !== "s") kind = "ordinal";
     else if (!currency && !percent && !magWord && !negative && decimals === 0 && !/[,\u00a0\u2009\u202f]/.test(g.num) && /^(1[89]\d\d|2[01]\d\d)$/.test(digits)) kind = "year";
     else if (g.suffix === "s") kind = "number"; // "1990s" is caught above as a year; "10s" is rare
+    if (kind === "number" && (PRECISION_BEFORE.test(masked.slice(Math.max(0, m.index - 60), m.index)) || PRECISION_AFTER.test(masked.slice(m.index + m[0].length)))) kind = "precision";
     tokens.push({ raw, kind, index: m.index, mantissa, decimals, scale, value: mantissa * scale * (negative ? -1 : 1), currency, percent, negative });
   }
   return tokens.sort((a, b) => a.index - b.index);
@@ -189,7 +195,7 @@ export function tokenizeNumbers(text) {
 export function numberOnChart(p, chartTokens) {
   const eps = 1e-9;
   return chartTokens.some((s) => {
-    if (s.kind === "ordinal" || s.kind === "reference" || s.kind === "date") return false;
+    if (s.kind === "ordinal" || s.kind === "reference" || s.kind === "date" || s.kind === "precision") return false;
     if (p.percent && s.currency) return false;
     if (p.currency && s.percent) return false;
     if (p.currency && s.currency && p.currency !== s.currency) return false;

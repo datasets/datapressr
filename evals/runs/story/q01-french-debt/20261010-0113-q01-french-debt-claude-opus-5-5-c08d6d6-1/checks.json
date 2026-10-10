@@ -29,7 +29,7 @@
       "id": "S3",
       "pass": false,
       "severity": "fail",
-      "message": "4 of 29 prose number(s) on no chart and not exempt: €64.7 billion, 5.7, 7.7, 0.1%",
+      "message": "3 of 28 prose number(s) on no chart and not exempt: €64.7 billion, 5.7, 7.7",
       "evidence": {
         "misses": [
           {
@@ -43,13 +43,9 @@
           {
             "number": "7.7",
             "context": "GDP more than the EU average and spends 7.7 points more. The recent widening has t"
-          },
-          {
-            "number": "0.1%",
-            "context": "lus published interest, each rounded to 0.1% of GDP. The argument and chart plan are"
           }
         ],
-        "checked": 29,
+        "checked": 28,
         "exempt": []
       }
     },

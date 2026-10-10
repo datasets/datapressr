@@ -49,6 +49,20 @@ test("numbers: years, dates, ordinals and references are not data numbers", () =
   assert.deepEqual(nums("a 31-year record"), ["31"]);
 });
 
+test("numbers: statements of rounding precision are not data numbers", () => {
+  assert.deepEqual(kinds("each rounded to 0.1% of GDP; rounded to the nearest 5 tonnes; accurate to 0.01 ppm"), ["precision:0.1%", "precision:5", "precision:0.01"]);
+  assert.deepEqual(kinds("shown to 1 decimal place, to 2 significant figures, rounds to 3 dp"), ["precision:1", "precision:2", "precision:3"]);
+  // A value the series climbs or falls to is still a data number; so is one merely near the word "rounded".
+  assert.deepEqual(nums("debt rose to 113.7% of GDP; the deficit fell to 5.8%; rounded, 64 regions; 4 decimal digits of 3.1"), ["113.7%", "5.8%", "64", "4", "3.1"]);
+  // The q01 pilot's methods line (run 20261010-0113, datapressr-hcn.20): S3 must not ask for 0.1% on a chart.
+  const prose = parseProse("# T\n\nThe primary balance is the published deficit plus published interest, each rounded to 0.1% of GDP. It was 2.9% in 2025.\n");
+  const s3 = checkNumbers({ prose, svgs: [{ text: ["−2.9"] }] });
+  assert.equal(s3.pass, true, s3.message);
+  assert.equal(s3.evidence.checked, 1);
+  // A precision figure printed on a chart does not back a prose data number.
+  assert.equal(numberOnChart(tokenizeNumbers("0.1%")[0], tokenizeNumbers("rounded to 0.1%")), false);
+});
+
 test("dates parse to year, month and day", () => {
   assert.deepEqual(findDates("10 Dec 1998 and Sept 2025").map(({ y, m, d }) => [y, m, d]), [[1998, 12, 10], [2025, 9, null]]);
 });
