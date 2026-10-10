@@ -2,6 +2,8 @@
 
 Date: 2026-10-10. Epic: `datapressr-hcn`. Harness: `evals/` (design [`docs/plans/2026-10-09-story-harness.md`](../plans/2026-10-09-story-harness.md), how to run it in [`evals/README.md`](../../evals/README.md)). Raw results: `evals/ledger.jsonl`, `evals/runs/story/`, `evals/calibration/story/` and `evals/pairs/`; the generated tables are in [`evals/REPORT.md`](../../evals/REPORT.md); lessons and calibration detail in [`evals/LESSONS.md`](../../evals/LESSONS.md). This note puts everything the story harness has measured so far in one place: what each measurement says about the story skill, what it says about the critic, and what to do next.
 
+**Owner: read the WWII story before section 5.** It is [`evals/runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/artefacts/site/stories/allies-won.md`](../../evals/runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/artefacts/site/stories/allies-won.md) (charts beside it; sources in `allies-won-src/`, including `DATA.md`). Do not open `critique-v2-1.*` in the run folder first.
+
 **Owner: judge the blind pair before reading the A/B section.** The pair is `evals/pairs/20261010-1047-q01-french-debt-pair-1/`; read only `A/` and `B/` (prose and charts), not `critique*.json` or `critique.md`. The A/B section below gives aggregate results but not which label is which.
 
 ## TL;DR
@@ -11,6 +13,7 @@ Date: 2026-10-10. Epic: `datapressr-hcn`. Harness: `evals/` (design [`docs/plans
 - **A deterministic difference too, small n.** Check S3 (every prose number is on a chart or listed as exempt) failed on both pre-edit runs and passed on both post-edit runs. Neither arm has the exempt-list format (`20c6d1e`), so this is not that fix.
 - **Two caveats keep this from being settled.** The critic's rubric v2 and the skill edit draw on the same owner remarks (unpack the biggest category), so the critic may be rewarding exactly what the treatment teaches; and q01 is the case the lessons came from. The owner's blind judgement (`datapressr-hcn.13`) and a run on a case the lessons did not come from are the independent checks.
 - **The critic is stable but biased.** Re-scoring the same story gives the same scores (one dimension moved by one point in three re-scores). Calibration on France found it misses most of what the owner noticed in round 2 (0 of 5 held out under v1), especially visual and reader-level confusion; v2 fixed the commission-scope problem but its round-2 check is not held out.
+- **First open-mode story (WWII).** The writer found, snapshotted and documented its own sources (Harrison, Goldsmith, Maddison via OWID, Wikipedia's casualty ranges) in 15 minutes for 5.11 USD, and passed every deterministic check; the critic said `no`, for real chart and comparison errors and for strategy questions outside the brief. Section 5.
 - **Cheap.** 12.2 USD at list price for all six Claude writer runs; every critique ran on the Codex subscription (tokens only). The design's 45-70 USD estimate for the A/B was about seven times too high.
 
 ## The setup in brief
@@ -137,6 +140,34 @@ Only then does the harness read the mapping, and the report's judge-owner agreem
 
 Cost: four writer runs 8.98 USD at list price (notional on the subscription), 6.8-10 minutes each; critic 616k input and 22.7k output tokens in 24 Codex calls (four absolute critiques, two re-scores, four pairs of three calls), no USD billed. The bead's estimate was 45-70 USD.
 
+## 5. Transfer case: q02 WWII, open mode (`datapressr-hcn.12`)
+
+**Question.** "Why did the Allies win the Second World War?", historical, open data mode: nothing provided, the writer finds, snapshots and documents its own data. The brief (`evals/cases/story/q02-allies-wwii/prompt.md`) asks for an argument built from measurable series (war production, manpower, coalition GDP with Harrison as the starting point, oil and raw materials, casualties), one series per chart, every number saying what it measures, disagreement between sources shown, and a plain statement of what the data does not test; sources snapshotted in `<slug>-src/` with `PROVENANCE.md`, and `DATA.md` listing what was searched, chosen and rejected, with licence and vintage. This is the transfer test of the France lessons: a case they did not come from, in a different story type and data mode.
+
+**Open-mode recipe** (design section 4.3, `evals/lib/opennet.mjs`). Web tools on, shell network allowlisted: the writer has `WebSearch` and `WebFetch` for any site except the project's own published sites (DataHub, Flowershow), and `curl` inside the sandbox reaches a list of 111 data-host patterns (encyclopaedias and Our World in Data, GitHub, research repositories and archives, economic-history and official statistics, UK universities, military and official history). Claude Code accepts no bare `*` or TLD wildcard in the sandbox allowlist, so the shell cannot be fully open. The project's GitHub repository cannot be blocked by domain, so a scan after the run flags any tool call naming an own site, the repository, a forbidden domain or a reference. The filesystem, temp-dir and nested-agent lock-down is the fixed-mode one, unchanged. Canary on Haiku: pass (`20261010-1108-canary-claude-haiku-5-5-1`, 0.019 USD; Wikipedia reachable from the shell, `example.com` and the own site not, `WebFetch` on the own site denied, `WebFetch` and `WebSearch` working elsewhere, the scan flags the own-site attempt); weakened, fail as it should (`…-1109-…-weakened-1`, 0.027 USD).
+
+**Skill.** HEAD (`8313117`; story tree `17c1821`, with `archive` and `structure` staged too), not the A/B's pinned `50e166b`. This is a single run on a new case, not an arm of a comparison, so there is no confound to hold fixed; HEAD contains every France lesson plus the exempt-list format (`20c6d1e`), which an open-mode story full of attributed figures needs to pass S3; and it is the skill a real story would use today.
+
+| Run | Writer | Critic | Rubric | Checks | Scores (arg/depth/charts/honesty/rq/prose/data_choice) | Publishable | Words | Cost USD | Turns | Minutes |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1` | claude-opus-5-5 | codex gpt-6-astra | story/v2 | all 6 pass (36 numbers; S1 includes DATA.md and PROVENANCE.md) | 1/1/1/0/0/1/1 | no | 691 | 5.11 | 62 | 15.0 |
+
+**Data the writer found** (from its `DATA.md`). Used: Harrison's corrected Excel of the chapter 1 tables of *The Economics of World War II* (1998; GDP 1938-45 at 1990 international dollars, armed forces, weapons in units); Goldsmith's 1946 combat-munitions estimates at US 1944 prices, transcribed from table 1 of Harrison's 1988 *Economic History Review* paper (author's postprint); the Maddison Project Database 2023 via Our World in Data (CC BY 4.0) as a second GDP estimate for a fixed country set; a pinned revision of Wikipedia's "World War II casualties" (CC BY-SA 4.0) for death ranges with named sources (Krivosheev vs Hartmann, Zemskov vs Andreev). Rejected: Wikipedia's raw-materials and oil table (largely "citation needed") and its copy of Goldsmith (omits Canada). Unreachable, recorded and not worked around: the Maddison Excel file (dataverse.nl redirects to a host not on the allowlist) and the 2020 CEPR e-book (cepr.org not listed). Oil is missing, and the story says so.
+
+**The story.** Four charts: munitions by coalition and country 1935-44 (Allies 3.1-3.6 times the Axis from 1942), coalition GDP 1938-45 with a two-source cross-check, a USSR/Germany ratio dot plot for 1942 and 1944, and death ranges for ten countries. It names Goldsmith and what his prices mean, attributes the eastern-front and Lend-Lease points to Harrison with a link, and ends with what the data cannot test. Leak scan: three flags, all reviewed as false positives (`cd ../..` back to the workspace root, and `cd $TMPDIR`, the run's own temp dir); no own-site, repository or forbidden-domain access.
+
+**What the critic said.** Publishable `no`. Its points split into three kinds:
+
+- Real defects, verified: the munitions legend is drawn at `translate(NaN,-22)`, so it is unusable; the deaths legend swatch does not match its marks; the "larger share of a larger economy" claim divides munitions and GDP for differently defined coalitions; tank counts against munitions value are two measures, not two sources disagreeing; annual production is written as weapons the USSR "had". These drive honesty 0.
+- Fair depth points: the US share of 1944 munitions (about 60%) is not stated; Japan and China are thin; two-decimal ratios and `$1,862bn` read heavily.
+- Out of the brief: strategy, Axis mistakes, contingency and theatre turning points, which the brief told the writer the data does not test and to say so. The critic sees the question, not the brief, so it scores reader_questions 0 partly for these. This is the v1 France problem (the critic grades the commission it imagines) again, now in open mode, where v2's fixed-data inventory does not apply.
+
+**Did the France lessons transfer?** Held: define source labels in plain words; answer "why" with attributed evidence; a chart for each comparison (S3 passes on 36 numbers); the equal-marker colour key on the dot plot. Partly: unpack the biggest category (by country on the chart, not in the prose); readable magnitudes; wordiness (691 words). Did not hold: name the denominator (the unmatched-coalition share claim); a real colour key on every chart (the NaN legend). Not exercised: keeping owner remarks. Detail per lesson in [`evals/LESSONS.md`](../../evals/LESSONS.md#france-owner-lessons-datapressr-hcn10). One run, so an anecdote.
+
+**What it says about the harness.** Open mode works end to end on the first try: the writer searched, downloaded, transcribed and snapshotted sources inside the sandbox, recorded what it could not reach instead of working around it, and every deterministic check passed. Candidate harness work: a check that fails any embedded SVG with `NaN` in it (S4's byte-identical rebuild cannot see a broken legend); the brief's scope for the critic in open mode (rubric `datapressr-hcn.14`); and the allowlist's first holes (repository redirect hosts, cepr.org).
+
+Cost: 5.11 USD at list price for the writer (62 turns, 15 minutes), against the bead's 20-30 USD estimate; canaries 0.046 USD; one Codex critique, about 49k input and 2.6k output tokens, no USD billed.
+
 ## Spend so far
 
 | Measurement | Claude writer USD (list) | Codex critic tokens (input / output) |
@@ -146,14 +177,15 @@ Cost: four writer runs 8.98 USD at list price (notional on the subscription), 6.
 | Calibration v2 (kept rows) | none | 514k / 19k |
 | Reference cases | none | 166k / 8.2k |
 | A/B, 4 runs, 6 critiques, 4 pairs | 8.98 | 616k / 22.7k |
-| Total | 12.16 | about 2.06M / 78k |
+| q02 WWII, open mode, 1 run, 1 critique, 2 canaries | 5.15 | about 49k / 2.6k |
+| Total | 17.31 | about 2.11M / 81k |
 
 Canaries add under 0.05 USD. Each Claude writer run is 1.5-2.5 USD and 5-10 minutes; each absolute critique about 40-50k input tokens, each pair about 90k.
 
 ## What's next
 
-1. **Owner judges the q01 pair** (`datapressr-hcn.13`): the independent check on the 4-0, and the first judge-owner agreement figure. Register the round-2-style hit criteria for v2 before reading the owner's remarks, so they double as the clean held-out test v2 has not had.
-2. **Test transfer** (design section 8's overfitting guard): run the post-edit skill on a case the France lessons did not come from. q03 (oil) is the obvious one: it has a published run 0 and a reference. Then the WWII open-data case (`datapressr-hcn.12`).
+1. **Owner judges the q01 pair and reads the WWII story** (`datapressr-hcn.13`): the independent check on the 4-0, the first judge-owner agreement figure, and the owner's remarks on the first open-mode story, recorded with `owner <run_id> --remarks-file`. Register the round-2-style hit criteria for v2 before reading the owner's remarks, so they double as the clean held-out test v2 has not had.
+2. **Test transfer** (design section 8's overfitting guard): run the post-edit skill on a case the France lessons did not come from. q03 (oil) is the obvious one: it has a published run 0 and a reference. The WWII open-data case (`datapressr-hcn.12`, section 5) is a first, single-run transfer check: some lessons held, two did not.
 3. **Next skill edit:** "state the difference or ratio, not just the two numbers" from the reference cases (two sources, qualifies under the edit rule). Pair it on q03 and q04 and one other case.
 4. **Rubric v3 candidates** (only against unseen remarks): an attributed answer to an out-of-reach question counts as `partly`; a less expert reader, or a forced "what would a reader get wrong" per chart, to catch what the owner found confusing; watch honesty's floor effect.
 5. **Harness fixes:** the leak scan's false positives (`datapressr-9lc`), and the report's noise table pools pre-notes pilot runs with post-notes runs on the same skill tree; it should segment by prompt hash as it does by model.

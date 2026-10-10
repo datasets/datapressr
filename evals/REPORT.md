@@ -15,6 +15,7 @@ Generated from `evals/ledger.jsonl` by `node evals/run.mjs report` (or `npm run 
 - Leaked run 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
+- Leaked run 20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1 (story/q02-allies-wwii): the transcript touched paths outside the workspace; see its run.json before using it.
 
 ## Per skill change
 
@@ -25,6 +26,18 @@ Generated from `evals/ledger.jsonl` by `node evals/run.mjs report` (or `npm run 
 Cases run: structure/co2-monthly (6 runs).
 
 ### story
+
+#### Tree `17c1821`, commit `6203aee` Story DataHub slug and approval fields; bundler gates drafts (datapressr-kh5.3)
+
+Cases run: story/q02-allies-wwii (1 run).
+
+What changed since `d6d4845`: `git log --oneline 50e166b..6203aee -- skills/story` ([compare](https://github.com/datasets/datapressr/compare/50e166b...6203aee))
+
+- `6203aee` Story DataHub slug and approval fields; bundler gates drafts (datapressr-kh5.3)
+- `20c6d1e` Define the story skill's exempt-number list format (datapressr-hcn.17)
+- `5f62900` Make installed skills self-contained (datapressr-4ly.2)
+
+Pairwise vs `d6d4845`: no comparison on record.
 
 #### Tree `d6d4845`, commit `50e166b` Put the owner's France feedback into the story skill (datapressr-hcn.10)
 
@@ -105,6 +118,22 @@ Pairwise (blind, judged in both orders; a win only when both orders agree):
 | 20261010-1046-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 | 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 | new | new | win for new |  |
 | 20261010-1047-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 | 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 | new | new | win for new |  |
 
+### story/q02-allies-wwii
+
+1 run over 1 skill tree. A single run is an anecdote.
+
+#### Writer claude-opus-5-5
+
+| Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
+|---|---|---|---|---|---|---|---|
+| 2026-10-10 11:11 | [20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1](runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/run.json) | `17c1821` | claude | pass (6) | 5.11 | 62 | leaked |
+
+Absolute scores, rubric story/v2 (diagnostic; 0-2):
+
+| Run | Skill tree | Critic | argument | depth | charts | honesty | reader_questions | prose | data_choice | Publishable |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1 | `17c1821` | codex gpt-6-astra | 1 | 1 | 1 | 0 | 0 | 1 | 1 | no |
+
 ### structure/co2-monthly
 
 13 runs over 2 skill trees.
@@ -153,6 +182,12 @@ Absolute scores per skill tree as min-max ranges with n (the latest score per ru
 |---|---|---|---|---|---|---|
 | `d6d4845` vs `c08d6d6` | no detectable change | no detectable change | no detectable change | no detectable change | no detectable change | no detectable change |
 
+### story/q02-allies-wwii, writer claude-opus-5-5, rubric story/v2
+
+| Skill tree | n | argument | depth | charts | honesty | reader_questions | prose | data_choice |
+|---|---|---|---|---|---|---|---|---|
+| `17c1821` | 1 (anecdote) | 1 | 1 | 1 | 0 | 0 | 1 | 1 |
+
 ### Critic-only spread (one run re-scored)
 
 | Run | Rubric | n | argument | depth | charts | honesty | reader_questions | prose |
@@ -178,9 +213,9 @@ No owner-judged pairs yet. The critic's pairwise verdict stands alone for small 
 
 ### Critic and isolation
 
-- Critic fallback: 0 of 34 critiques (absolute and pairwise) used the fallback critic.
-- Critic validation failures: 0 of 24 absolute critiques recorded as critic_failed.
-- Leaks caught: 11 of 19 runs flagged leaked.
+- Critic fallback: 0 of 35 critiques (absolute and pairwise) used the fallback critic.
+- Critic validation failures: 0 of 25 absolute critiques recorded as critic_failed.
+- Leaks caught: 12 of 20 runs flagged leaked.
 
 Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):
 

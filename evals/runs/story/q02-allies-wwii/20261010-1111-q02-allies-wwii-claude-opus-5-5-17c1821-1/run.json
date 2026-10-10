@@ -1,0 +1,233 @@
+{
+  "run_id": "20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1",
+  "case_id": "q02-allies-wwii",
+  "domain": "story",
+  "case_hash": "9154826600e2041d7cce78f78635c24a6077ffe1ca328f10016d60952082acde",
+  "skill": {
+    "name": "story",
+    "ref": "83131176777b00212195b063eae537c6b8c71914",
+    "tree": "17c1821ea4ff49854a38507363da08f55b7b15f0",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "d59aca30e6af1c277f4f8a0f410bb443852d32d4",
+    "dirty": false,
+    "recipe_sha256": "0607afe57e6090177f50d7c9c2e5ab374fd83327ee85de865d8f9778138226b2"
+  },
+  "writer": {
+    "vendor": "claude",
+    "model": "claude-opus-5-5",
+    "model_actual": "claude-opus-5-5",
+    "cli_version": "2.1.296",
+    "prompt_sha256": "5a60fa0931b03453a33a25bdf238f002b62221a33a836f0961e62994c357d4d3"
+  },
+  "isolation": {
+    "canary_run_id": "20261010-1108-canary-claude-haiku-5-5-1",
+    "network": true,
+    "leaks": [
+      {
+        "tool": "Bash",
+        "path": "../../node_modules"
+      },
+      {
+        "tool": "Bash",
+        "path": "$TMPDIR"
+      },
+      {
+        "tool": "Bash",
+        "path": "../.."
+      }
+    ]
+  },
+  "started_at": "2026-10-10T11:11:45.340Z",
+  "duration_ms": 902893,
+  "turns": 62,
+  "cost_usd": 5.1067211,
+  "cost_basis": "list",
+  "usage": {
+    "input_tokens": 122,
+    "cache_creation_input_tokens": 222940,
+    "cache_read_input_tokens": 7707961,
+    "output_tokens": 87885,
+    "output_tokens_details": {
+      "thinking_tokens": 35654
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 222940,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1876,
+        "cache_read_input_tokens": 222483,
+        "cache_creation_input_tokens": 457,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 457
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "artefacts": [
+    {
+      "path": "site/stories/allies-won-deaths.svg",
+      "sha256": "ab88c3f38cc47285dfe15a355904a9b16293bc58d4978fec9c73647975a1155c",
+      "bytes": 11095
+    },
+    {
+      "path": "site/stories/allies-won-gdp.svg",
+      "sha256": "242eeb37fac9d4c95b655208c37a24c1835f76b9e4ef44196b6f893d3b65f68c",
+      "bytes": 10281
+    },
+    {
+      "path": "site/stories/allies-won-make-charts.mjs",
+      "sha256": "262ffe328a8ce5a7fa427bb3758e56014da0e3017ef5480b378d7ee9fd3f7b91",
+      "bytes": 16027
+    },
+    {
+      "path": "site/stories/allies-won-munitions.svg",
+      "sha256": "a0c273054f04727fcdf373c42bc58dea20fffe0d875732a260d7addc0254b03a",
+      "bytes": 15034
+    },
+    {
+      "path": "site/stories/allies-won-outline.md",
+      "sha256": "6ea677d340a430d6f91f75b9750ffc43785c8da9853732ba70b593c376159493",
+      "bytes": 16581
+    },
+    {
+      "path": "site/stories/allies-won-src/DATA.md",
+      "sha256": "4e4df7cbf18b7c077c55b156375f1fa74269e3e6fb77e942e61a98e28382ca20",
+      "bytes": 5799
+    },
+    {
+      "path": "site/stories/allies-won-src/PROVENANCE.md",
+      "sha256": "a3e9b4901efdb2636331f081494a0970984ca9d0a8b0c2a8116e2133afba3892",
+      "bytes": 5416
+    },
+    {
+      "path": "site/stories/allies-won-src/derive.mjs",
+      "sha256": "9bac6a8713645d27b3c21536d65bb833171247b8ede639b59066697c693f0894",
+      "bytes": 11060
+    },
+    {
+      "path": "site/stories/allies-won-src/export-xls.cjs",
+      "sha256": "3aa1ea6386c9a208d34a81a3a474b7a3300745308edbc041a9517f0d9be80d7d",
+      "bytes": 658
+    },
+    {
+      "path": "site/stories/allies-won-src/raw/harrison-1988-ehr-postprint.pdf",
+      "sha256": "e2b4265d5868eb7a80c2eca9871b8a6562238b8a5aacd15e48c67d8be4ab4995",
+      "bytes": 211784
+    },
+    {
+      "path": "site/stories/allies-won-src/raw/harrison-1998-chapter_1_tables.Tables.csv",
+      "sha256": "1da3bd76ceff3c145f5eb0c634691b047615c3a371a6f1295e788bbe6b7e9824",
+      "bytes": 40282
+    },
+    {
+      "path": "site/stories/allies-won-src/raw/harrison-1998-chapter_1_tables.xls",
+      "sha256": "377e94c4b0c8529a1ad5584af1e534f84cab808d7f924bdd846f0ed2447e4e51",
+      "bytes": 202240
+    },
+    {
+      "path": "site/stories/allies-won-src/raw/harrison-ww2-data-page.html",
+      "sha256": "df03840d3ff6dee293e48ed94230e5885402951aeac8e8bfd9c8d0a408a5a4fe",
+      "bytes": 34006
+    },
+    {
+      "path": "site/stories/allies-won-src/raw/maddison-2023-release-page.html",
+      "sha256": "1431fb746791d9918fd2aa3bc8f27e1b588324281567599cf08665e3e81ebedf",
+      "bytes": 40326
+    },
+    {
+      "path": "site/stories/allies-won-src/raw/owid-gdp-maddison-project-database-2023.csv",
+      "sha256": "86b1fae7e6219f258613367599f659cf15d752be3aef13231c9d814ac444fbd7",
+      "bytes": 508481
+    },
+    {
+      "path": "site/stories/allies-won-src/raw/owid-gdp-maddison-project-database-2023.metadata.json",
+      "sha256": "f79fb274a3701e58f4ffeb877c58eee104b646c621a6cbef92ef1a405091c3bd",
+      "bytes": 3260
+    },
+    {
+      "path": "site/stories/allies-won-src/raw/wikipedia-ww2-casualties-oldid1376835265.wiki",
+      "sha256": "922eddfba7203b1cb77da6e060b5286cd198e06095b6f9a1835a2370144e092d",
+      "bytes": 350178
+    },
+    {
+      "path": "site/stories/allies-won-src/tidy/armed-forces-harrison-1998.csv",
+      "sha256": "afeb464fd26a36ddbef76b1cafd42a2354918b307a659181464235a8d25c9b3d",
+      "bytes": 868
+    },
+    {
+      "path": "site/stories/allies-won-src/tidy/deaths-wikipedia-2026-09.csv",
+      "sha256": "075580022bbf7efd6affb064d18f8d9af4c24f45772eb64efff094237a64f4db",
+      "bytes": 2090
+    },
+    {
+      "path": "site/stories/allies-won-src/tidy/gdp-coalition-totals-harrison-1998.csv",
+      "sha256": "13fc7a05c1b8f72907bec2de588ee497c36ab99d641dd5dbc9a2fb47063f0cb8",
+      "bytes": 250
+    },
+    {
+      "path": "site/stories/allies-won-src/tidy/gdp-harrison-1998.csv",
+      "sha256": "f30bffeaea2dd6c86879100024721c8c1a3170292cf9d888555621ef07e7cb25",
+      "bytes": 1648
+    },
+    {
+      "path": "site/stories/allies-won-src/tidy/gdp-us-uk-vs-axis-two-sources.csv",
+      "sha256": "7cfbab1ba4c3bea81a851b43fac7db272f5beddd176daf275028e553dbfc1a79",
+      "bytes": 716
+    },
+    {
+      "path": "site/stories/allies-won-src/tidy/munitions-by-coalition-goldsmith-1946.csv",
+      "sha256": "5a919b2fd8baafa41459aca467a561f4d93573ec8503b8ab6d496a6396258959",
+      "bytes": 186
+    },
+    {
+      "path": "site/stories/allies-won-src/tidy/production-harrison-1998.csv",
+      "sha256": "0e898fe83f26331f02704bb23e3a9ea1c832c0612ae70735aa629dca39de0b8a",
+      "bytes": 9618
+    },
+    {
+      "path": "site/stories/allies-won-src/tidy/ussr-vs-germany.csv",
+      "sha256": "9ca2edfd59ef3771155b109d0960473b826d02de36bda798ccdec660cddc3dcc",
+      "bytes": 941
+    },
+    {
+      "path": "site/stories/allies-won-src/transcribed/goldsmith-1946-munitions-via-harrison-1988-table1.csv",
+      "sha256": "21f3538718e8b9017af70f844a4a5f601b72910cd2c8413ab0386893b53733f7",
+      "bytes": 604
+    },
+    {
+      "path": "site/stories/allies-won-src/transcribed/wikipedia-ww2-deaths-selected.csv",
+      "sha256": "075580022bbf7efd6affb064d18f8d9af4c24f45772eb64efff094237a64f4db",
+      "bytes": 2090
+    },
+    {
+      "path": "site/stories/allies-won-ussr-germany.svg",
+      "sha256": "02558c7354e9de941a8f9392bfdd5c7927bad3b8cd69f517b12b52129d72c952",
+      "bytes": 6300
+    },
+    {
+      "path": "site/stories/allies-won.md",
+      "sha256": "a1514c748885abecd5bbd6bc86dcd9b889b02ad9f7956eb6b312d5dd116cc7bd",
+      "bytes": 7613
+    }
+  ],
+  "transcript_sha256": "4a1d223e67cc21b19684c6ebba697056b72170219b50ffbe471babd90461c760",
+  "workspace_sha256": "b8ecf985e97f3c0afb7672c7a072786ef33eaba6eb90b6e8c0f9b8629141745e",
+  "flags": [
+    "leaked"
+  ]
+}

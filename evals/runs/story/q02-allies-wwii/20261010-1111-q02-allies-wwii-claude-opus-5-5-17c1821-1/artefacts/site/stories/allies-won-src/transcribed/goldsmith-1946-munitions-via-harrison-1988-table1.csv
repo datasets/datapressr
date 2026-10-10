@@ -1,0 +1,37 @@
+country,period,munitions_usd_bn_1944_prices
+USA,1935-39 average,0.3
+USA,1940,1.5
+USA,1941,4.5
+USA,1942,20
+USA,1943,38
+USA,1944,42
+Canada,1935-39 average,0
+Canada,1940,0
+Canada,1941,0.5
+Canada,1942,1
+Canada,1943,1.5
+Canada,1944,1.5
+UK,1935-39 average,0.5
+UK,1940,3.5
+UK,1941,6.5
+UK,1942,9
+UK,1943,11
+UK,1944,11
+USSR,1935-39 average,1.6
+USSR,1940,5
+USSR,1941,8.5
+USSR,1942,11.5
+USSR,1943,14
+USSR,1944,16
+Germany,1935-39 average,2.4
+Germany,1940,6
+Germany,1941,6
+Germany,1942,8.5
+Germany,1943,13.5
+Germany,1944,17
+Japan,1935-39 average,0.4
+Japan,1940,1
+Japan,1941,2
+Japan,1942,3
+Japan,1943,4.5
+Japan,1944,6

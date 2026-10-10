@@ -1,0 +1,21 @@
+country,side,measure,low,high,low_source,high_source,note
+Soviet Union,Allies,military,8668000,11400000,Krivosheev (1993/1997),Hartmann (2013),1946-91 borders incl. annexed territories
+Soviet Union,Allies,total,20000000,27000000,Zemskov (2013),"Andreev, Darsky & Kharkova (1993)",1946-91 borders incl. annexed territories
+China,Allies,military,2000000,3750000,Mitter (2013),Clodfelter (2002); Ho (1959),1937-45
+China,Allies,total,14000000,20000000,Mitter (2013),Ho (1959),1937-45
+Germany,Axis,military,4440000,5318000,Statistisches Jahrbuch BRD (1960),Overmans (2000),Nazi Germany 1935 borders plus Austria (Wikipedia row 'Nazi Germany')
+Germany,Axis,total,6900000,7400000,Wikipedia table (no single cited source),Wikipedia table (no single cited source),sum of military and civilian columns in the source row
+Poland,Allies,military,240000,240000,Gniazdowski (2007),Gniazdowski (2007),1939 borders
+Poland,Allies,total,5900000,6000000,Łuczak (1993),Łuczak (1993),1939 borders
+Japan,Axis,military,2100000,2300000,Dower (1986),Ishikida (2005; Ministry of Health and Welfare),
+Japan,Axis,total,2500000,3100000,Dower (1986),Ishikida (2005; Ministry of Health and Welfare),
+Yugoslavia,Allies,military,300000,446000,Dear & Foot (2005),Tomasevich (2001),
+Yugoslavia,Allies,total,1027000,1700000,Tomasevich (2001),Dear & Foot (2005),
+France,Allies,military,210000,210000,Frumkin (1951),Frumkin (1951),incl. colonies
+France,Allies,total,600000,600000,Frumkin (1951),Frumkin (1951),incl. colonies
+Italy,Axis,military,319200,341000,Albo d'Oro (Italian Ministry of Defence),Wikipedia table,1947 borders; excludes c. 20000 African conscripts
+Italy,Axis,total,492400,514000,Wikipedia table,Wikipedia table,1947 borders
+United Kingdom,Allies,military,383700,383700,CWGC Annual Report 2014-15,CWGC Annual Report 2014-15,incl. Crown Colonies
+United Kingdom,Allies,total,450900,450900,Wikipedia table,Wikipedia table,incl. Crown Colonies
+United States,Allies,military,407300,407300,Wikipedia table (US DoD),Wikipedia table (US DoD),
+United States,Allies,total,419400,419400,Wikipedia table,Wikipedia table,
