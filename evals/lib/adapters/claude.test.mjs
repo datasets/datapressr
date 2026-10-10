@@ -9,6 +9,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as claude from "./claude.mjs";
 import { sharedTmpDirs } from "./runtmp.mjs";
+import { OWN_SITES } from "../opennet.mjs";
 import { fakeClaudeBin } from "../fixture-staging.mjs";
 
 const ROOT = "/Users/someone/src/datapressr";
@@ -38,7 +39,27 @@ test("the weakened recipe drops only the read/edit denies, denyRead and the nest
   assert.notEqual(claude.recipeHash("fixed"), claude.recipeHash("fixed", { weaken: true }));
   assert.equal(claude.recipeHash("fixed"), claude.recipeHash("fixed"), "stable");
   assert.match(claude.recipeHash("fixed"), /^[0-9a-f]{64}$/);
-  assert.throws(() => claude.settingsFor({ mode: "open", root: ROOT, home: HOME }), /datapressr-hcn\.12/);
+  assert.throws(() => claude.settingsFor({ mode: "other", root: ROOT, home: HOME }), /unknown mode/);
+});
+
+test("open-mode settings: same filesystem and nested-agent rules, web tools except the own sites, shell on the data-host allowlist", () => {
+  const fixed = claude.settingsFor({ mode: "fixed", root: ROOT, home: HOME, sharedTmp: sharedTmpDirs(501) });
+  const open = claude.settingsFor({ mode: "open", root: ROOT, home: HOME, sharedTmp: sharedTmpDirs(501) });
+  const reads = fixed.permissions.deny.filter((r) => r !== "WebFetch" && r !== "WebSearch");
+  assert.deepEqual(open.permissions.deny, [...reads, ...OWN_SITES.map((d) => `WebFetch(domain:${d})`)]);
+  assert.ok(!open.permissions.deny.includes("WebSearch") && !open.permissions.deny.includes("WebFetch"));
+  assert.deepEqual(open.sandbox.filesystem, fixed.sandbox.filesystem);
+  assert.equal(open.sandbox.allowUnsandboxedCommands, false);
+  assert.deepEqual(open.sandbox.network.deniedDomains, OWN_SITES);
+  assert.ok(open.sandbox.network.allowedDomains.includes("ourworldindata.org"));
+  // Claude Code's sandbox rejects a bare "*" and TLD wildcards in allowedDomains.
+  for (const d of open.sandbox.network.allowedDomains) assert.match(d, /^(\*\.)?[a-z0-9-]+(\.[a-z0-9-]+)+$/, d);
+  for (const d of OWN_SITES) assert.ok(!open.sandbox.network.allowedDomains.includes(d), d);
+  const args = claude.writerArgs({ prompt: "P", model: "m", maxTurns: 1, maxBudgetUsd: 1, settingsPath: "/s", mode: "open" });
+  assert.equal(args[args.indexOf("--tools") + 1], "Read,Write,Edit,Glob,Grep,Bash,WebFetch,WebSearch");
+  assert.equal(args[args.indexOf("--allowedTools") + 1], "Read,Write,Edit,Glob,Grep,Bash,WebFetch,WebSearch");
+  assert.notEqual(claude.recipeHash("open"), claude.recipeHash("fixed"));
+  assert.equal(claude.recipeTemplate("fixed").args.join(" ").includes("WebFetch"), false, "fixed-mode args unchanged");
 });
 
 test("the recipe hash does not depend on machine paths, model or caps", () => {

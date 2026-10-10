@@ -23,30 +23,40 @@ import { deniedPaths } from "../stage.mjs";
 import { sha256 } from "../versions.mjs";
 import { NESTED_AGENTS, makeShimDir, resolveBin, shimTemplate, withShimPath } from "./nested.mjs";
 import { assertTmpOutsideShared, makeRunTmp, removeRunTmp, sharedTmpDirs } from "./runtmp.mjs";
+import { OPEN_ALLOWED_DOMAINS, OWN_SITES } from "../opennet.mjs";
 
 export const vendor = "claude";
 export const staged = true;
 export const needsCanary = true;
 
 export const WRITER_TOOLS = ["Read", "Write", "Edit", "Glob", "Grep", "Bash"];
+// Open mode adds the web tools (datapressr-hcn.12).
+export const OPEN_TOOLS = [...WRITER_TOOLS, "WebFetch", "WebSearch"];
+export const toolsFor = (mode) => (mode === "open" ? OPEN_TOOLS : WRITER_TOOLS);
 
 // Recipe version: bump when the recipe changes in a way the template below cannot see.
 // 2: nested agent CLIs denied and shimmed (datapressr-hcn.19).
 // 3: per-run CLAUDE_CODE_TMPDIR; the shared /tmp/claude-<uid> denied (datapressr-hcn.23).
+//    Open mode (datapressr-hcn.12) is new with this version, not a bump: the fixed-mode hash is unchanged.
 const RECIPE_VERSION = 3;
 
 // The harness settings file (passed with --settings). `weaken` drops the read-deny rules, the
 // sandbox denyRead list and the nested-agent denies (and the writer drops the PATH shim and the
 // per-run temp dir); it exists only to prove the canary fails without them.
+// Open mode (datapressr-hcn.12, ../opennet.mjs): WebFetch and WebSearch allowed (the tools come
+// from --allowedTools) except WebFetch on the project's own sites; the sandboxed shell reaches only
+// the data-host allowlist, with the own sites in deniedDomains. The filesystem and nested-agent
+// rules are the same as fixed mode.
 export function settingsFor({ mode, root, home = homedir(), weaken = false, sharedTmp = sharedTmpDirs() }) {
-  if (mode !== "fixed") throw new Error(`the Claude ${mode}-mode recipe is not defined yet; it arrives with the open-mode case (datapressr-hcn.12)`);
+  if (mode !== "fixed" && mode !== "open") throw new Error(`unknown mode ${mode}`);
   const denied = [...deniedPaths(root, home), ...sharedTmp];
   const deny = [];
   if (!weaken) {
     for (const p of denied) deny.push(`Read(/${p}/**)`, `Edit(/${p}/**)`);
     for (const a of NESTED_AGENTS) deny.push(`Bash(${a}:*)`);
   }
-  deny.push("WebFetch", "WebSearch");
+  if (mode === "fixed") deny.push("WebFetch", "WebSearch");
+  else for (const d of OWN_SITES) deny.push(`WebFetch(domain:${d})`);
   const filesystem = weaken ? {} : { denyRead: denied };
   return {
     permissions: { deny },
@@ -55,7 +65,7 @@ export function settingsFor({ mode, root, home = homedir(), weaken = false, shar
       autoAllowBashIfSandboxed: true,
       allowUnsandboxedCommands: false,
       filesystem,
-      network: { allowedDomains: [] },
+      network: mode === "fixed" ? { allowedDomains: [] } : { allowedDomains: [...OPEN_ALLOWED_DOMAINS], deniedDomains: [...OWN_SITES] },
     },
   };
 }
@@ -74,15 +84,16 @@ function baseFlags(settingsPath) {
   ];
 }
 
-export function writerArgs({ prompt, model, maxTurns, maxBudgetUsd, settingsPath }) {
+export function writerArgs({ prompt, model, maxTurns, maxBudgetUsd, settingsPath, mode = "fixed" }) {
+  const tools = toolsFor(mode);
   return [
     "-p", prompt,
     "--model", model,
     "--max-turns", String(maxTurns),
     "--max-budget-usd", String(maxBudgetUsd),
     ...baseFlags(settingsPath),
-    "--tools", WRITER_TOOLS.join(","),
-    "--allowedTools", WRITER_TOOLS.join(","),
+    "--tools", tools.join(","),
+    "--allowedTools", tools.join(","),
   ];
 }
 
@@ -101,7 +112,7 @@ export function recipeTemplate(mode, { weaken = false } = {}) {
     version: RECIPE_VERSION,
     mode,
     weaken,
-    args: writerArgs({ prompt: "<prompt>", model: "<model>", maxTurns: "<turns>", maxBudgetUsd: "<usd>", settingsPath: "<settings>" }),
+    args: writerArgs({ prompt: "<prompt>", model: "<model>", maxTurns: "<turns>", maxBudgetUsd: "<usd>", settingsPath: "<settings>", mode }),
     settings: settingsFor({ mode, root: "/<repo>", home: "/<home>", weaken, sharedTmp: sharedTmpDirs("<uid>") }),
     env: weaken ? {} : { ...shimTemplate(), CLAUDE_CODE_TMPDIR: "<run tmp>", TMPDIR: "<run tmp>" },
   };
@@ -226,7 +237,7 @@ export async function write({ workspace, prompt, model, caps, mode, root, timeou
   if (!weaken) assertTmpOutsideShared(tmpdir());
   const runTmp = weaken ? null : makeRunTmp();
   return withSettingsFile(settings, async (settingsPath, dir) => {
-    const args = writerArgs({ prompt, model, maxTurns: caps.max_turns, maxBudgetUsd: caps.max_usd, settingsPath });
+    const args = writerArgs({ prompt, model, maxTurns: caps.max_turns, maxBudgetUsd: caps.max_usd, settingsPath, mode });
     const env = writerEnv({ weaken, shimBin: weaken ? null : makeShimDir(dir), runTmp: runTmp?.base });
     const proc = await execute({ bin: resolveBin(bin), args, cwd: workspace, timeoutMs, env });
     const { init, result } = parseStream(proc.stdout);

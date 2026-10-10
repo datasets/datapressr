@@ -5,7 +5,7 @@
 //   node evals/run.mjs report
 //   node evals/run.mjs owner <pair_id> --preferred A|B|neither --remarks-file f.md [--scores A.prose=1,B.prose=2]
 //   node evals/run.mjs owner <run_id> --remarks-file f.md [--scores prose=1] | owner --rounds <case_id> <n>
-//   node evals/run.mjs canary --writer claude|codex [--mode fixed] [--weaken]
+//   node evals/run.mjs canary --writer claude|codex [--mode fixed|open] [--weaken]
 //   node evals/run.mjs critic-choice --writer claude|codex      (free: which critic score would use)
 //   node evals/run.mjs score <run_id|--all> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate] [--png]
 //   node evals/run.mjs pair <run_id> <run_id> [--rubric story/v1] [--overlay reference-pairwise] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]
@@ -33,7 +33,7 @@ const USAGE = `usage:
   node evals/run.mjs owner <pair_id> --reveal
   node evals/run.mjs owner <run_id> --remarks-file f.md [--scores argument=1,prose=2]
   node evals/run.mjs owner --rounds <case_id> <n> [--remarks-file f.md]
-  node evals/run.mjs canary --writer claude|codex [--mode fixed] [--weaken]
+  node evals/run.mjs canary --writer claude|codex [--mode fixed|open] [--weaken]
   node evals/run.mjs critic-choice --writer claude|codex
   node evals/run.mjs score <run_id|--all> [--rubric story/v1] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate] [--png]
   node evals/run.mjs pair <run_id> <run_id> [--rubric story/v1] [--overlay reference-pairwise] [--critic auto|claude|codex|fake] [--critic-model <id>] [--calibrate]`;

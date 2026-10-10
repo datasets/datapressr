@@ -12,7 +12,8 @@ import * as fake from "./adapters/fake.mjs";
 import { availabilityChecker } from "./adapters/index.mjs";
 import { gateFromLedger } from "./canary.mjs";
 import { CRITIC_ADAPTERS, latestRubricId, resolveCritic, scoreRun } from "./critic.mjs";
-import { scanTranscript } from "./leakscan.mjs";
+import { scanTranscript, toolCallsFromTranscript } from "./leakscan.mjs";
+import { scanOpenMode } from "./opennet.mjs";
 import { EMPTY_TREE, collectArtefacts, ensureModulesCache, noSkillPrompt, removeWorkspace, stageWorkspace, tarWorkspace, writerPrompt } from "./stage.mjs";
 import { checkRun } from "./checkers/run-checks.mjs";
 import { appendRow } from "./ledger.mjs";
@@ -38,7 +39,7 @@ export function loadCase(root, evalsDir, caseRef) {
   if (kase.id !== id || kase.domain !== domain) throw new Error(`case.json id/domain (${kase.domain}/${kase.id}) do not match its directory (${caseRef})`);
   // The writer gets the case prompt plus the harness's blind-run notes (stage.mjs).
   const casePrompt = readFileSync(join(dir, "prompt.md"), "utf8");
-  const prompt = writerPrompt(casePrompt);
+  const prompt = writerPrompt(casePrompt, kase);
   return { kase, prompt, casePrompt, dir };
 }
 
@@ -70,6 +71,8 @@ async function runStaged({ adapter, root, kase, prompt, skillRef, skills, model,
     const collected = collectArtefacts(ws.dir, artefactDir, { baseline: ws.baseline });
     if (collected.skipped.length) log(`not collected (over 2 MB in total, or not a file): ${collected.skipped.join(", ")}`);
     const leaks = scanTranscript(out.transcript, { workspaces: [ws.dir], allowedDirs: [cache.dir, ...(out.tmp_dirs ?? [])] });
+    // Open mode: the project's own sites and repository, the case's forbidden domains and references.
+    if (kase.data_mode === "open") leaks.push(...scanOpenMode(toolCallsFromTranscript(out.transcript), { forbiddenDomains: kase.forbidden_domains ?? [], references: kase.references ?? [] }));
     writeFileSync(join(runDir, "transcript.jsonl"), out.transcript);
     const tar = tarWorkspace(ws.dir, join(runDir, "workspace.tar"));
     const flags = [...out.flags];
@@ -133,7 +136,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
   const config = loadConfig(evalsDir);
   const loaded = loadCase(root, evalsDir, caseRef);
   const { kase, dir: caseDir } = loaded;
-  const prompt = noSkill ? writerPrompt(noSkillPrompt(loaded.casePrompt, kase.skills)) : loaded.prompt;
+  const prompt = noSkill ? writerPrompt(noSkillPrompt(loaded.casePrompt, kase.skills), kase) : loaded.prompt;
   // A domain with no rubric yet (structure, until datapressr-8no.4) has no critic step.
   if (critic && !existsSync(join(evalsDir, "rubrics", kase.domain))) {
     log(`no rubric for domain "${kase.domain}" in evals/rubrics/; critic skipped`);

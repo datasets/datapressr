@@ -9,6 +9,7 @@ import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readd
 import { homedir, tmpdir } from "node:os";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { git, sha256 } from "./versions.mjs";
+import { openModeNotes } from "./opennet.mjs";
 
 // Same marker as scripts/sync-dataset-agents.mjs (kept literal so staging does not depend on scripts/).
 export const AGENTS_MARKER = "<!-- repo-only: everything below this line stays in the root AGENTS.md and is not copied into datasets -->";
@@ -36,9 +37,11 @@ These notes come from the evaluation harness and are the same for every run.
 - **Do not rasterise the charts.** The workspace has no supported way to turn SVG into an image, so do not look for one (Quick Look, a browser, rsvg or ImageMagick). Check each chart from its SVG source instead (text labels, axis ticks, \`viewBox\` and widths), and say in the story's friction notes that the charts were not inspected visually.
 `;
 
-// The writer's prompt: the case prompt, then the blind-run notes.
-export function writerPrompt(casePrompt) {
-  return `${casePrompt.trimEnd()}\n\n${BLIND_RUN_NOTES}`;
+// The writer's prompt: the case prompt, then the blind-run notes; an open-mode case also gets the
+// network notes (opennet.mjs), so a fixed-mode prompt is byte-identical to before datapressr-hcn.12.
+export function writerPrompt(casePrompt, kase = {}) {
+  const open = kase.data_mode === "open" ? `\n\n${openModeNotes(kase.forbidden_domains ?? [])}\n` : "";
+  return `${casePrompt.trimEnd()}\n\n${BLIND_RUN_NOTES}${open}`;
 }
 
 // The git empty tree: the skill tree of a no-skill run (nothing from skills/ is staged).

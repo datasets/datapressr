@@ -9,7 +9,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import * as claude from "./adapters/claude.mjs";
 import * as codex from "./adapters/codex.mjs";
-import { CHART_OUT, NESTED_CLAUDE, NESTED_CODEX, PROBE_SCRIPT, codexCanaryPrompt, evaluateCanary, evaluateCodexCanary, requireCanary } from "./canary.mjs";
+import { CHART_OUT, NESTED_CLAUDE, NESTED_CODEX, OPEN_FETCH_URL, OPEN_OWN_URL, OPEN_SEARCH, PROBE_SCRIPT, canaryPrompt, codexCanaryPrompt, evaluateCanary, evaluateCodexCanary, probeScript, requireCanary } from "./canary.mjs";
 import { appendRow, readLedger } from "./ledger.mjs";
 import { runCase } from "./runner.mjs";
 import { ensureModulesCache } from "./stage.mjs";
@@ -126,6 +126,58 @@ test("a locked-down transcript passes; a leaky one fails probe by probe", () => 
     const skipped = evaluateCanary({ transcript: "", ...common, init: null });
     assert.equal(skipped.pass, false);
     assert.equal(skipped.probes.read_repo.status, "not_run", "a probe the model never ran is not a pass");
+  } finally {
+    rmSync(d.base, { recursive: true, force: true });
+  }
+});
+
+// Open mode (datapressr-hcn.12): the fixed transcript plus the open probes. `leak` lets the own
+// site through to the shell and to WebFetch; `noNet` breaks the positive controls.
+function openTranscript(d, { leak = false, noNet = false } = {}) {
+  const base = canaryTranscript({ ...d, leak: false }).split("\n");
+  const result = base.pop();
+  const open = `== curl_allowed\nhttp_code=${noNet ? "000 exit=56" : "200 exit=0"}\n== curl_own\nhttp_code=${leak ? "200 exit=0" : "000 exit=56"}\n`;
+  const withOpen = base.map((l) => l.replace("== chart\\n", `${open}== chart\\n`.replace(/\n/g, "\\n")));
+  const tu = (id, name, input) => JSON.stringify({ type: "assistant", message: { content: [{ type: "tool_use", id, name, input }] } });
+  const tr = (id, content, is_error = false) => JSON.stringify({ type: "user", message: { content: [{ type: "tool_result", tool_use_id: id, content, is_error }] } });
+  return [
+    ...withOpen,
+    tu("w1", "WebFetch", { url: OPEN_OWN_URL, prompt: "Return the page title." }),
+    leak ? tr("w1", "The page title is Stories - DataPressr") : tr("w1", "Permission to use WebFetch has been denied.", true),
+    tu("w2", "WebFetch", { url: OPEN_FETCH_URL, prompt: "Return the page title." }),
+    noNet ? tr("w2", "Unable to fetch", true) : tr("w2", "The page title is Example.com - Wikipedia"),
+    tu("s1", "WebSearch", { query: OPEN_SEARCH }),
+    noNet ? tr("s1", "Search failed", true) : tr("s1", "Links: [{\"title\":\"Maddison Project\",\"url\":\"https://www.rug.nl/ggdc/historicaldevelopment/maddison/\"}]"),
+    result,
+  ].join("\n");
+}
+
+test("open mode: the fixed probes plus allowlisted shell, own site blocked for shell and WebFetch, web tools working", () => {
+  const d = fixtureDirs();
+  try {
+    writeFileSync(join(d.ws, CHART_OUT), "<svg></svg>\n");
+    const tools = claude.toolsFor("open");
+    const init = { tools, mcp_servers: [], slash_commands: [], skills: [], plugins: [] };
+    const common = { init, resultText: "DONE\nSKILLS: NONE\nINSTRUCTIONS: NONE", workspace: d.ws, root: d.root, home: d.home, homes: d.homes, allowedTools: tools, tmpDirs: RUN_TMP, sharedTmp: [d.shared], mode: "open" };
+    const ok = evaluateCanary({ transcript: openTranscript(d), ...common });
+    assert.equal(ok.pass, true, JSON.stringify(ok.probes, null, 1));
+    for (const name of ["curl", "fetch", "curl_own", "webfetch_own", "read_repo", "head_repo"]) assert.equal(ok.probes[name].status, "blocked", name);
+    for (const name of ["curl_allowed", "webfetch_allowed", "websearch", "forbidden_scan", "session"]) assert.equal(ok.probes[name].status, "ok", name);
+
+    const leaky = evaluateCanary({ transcript: openTranscript(d, { leak: true }), ...common });
+    assert.equal(leaky.pass, false);
+    assert.equal(leaky.probes.curl_own.status, "leaked");
+    assert.equal(leaky.probes.webfetch_own.status, "leaked");
+
+    const dead = evaluateCanary({ transcript: openTranscript(d, { noNet: true }), ...common });
+    assert.equal(dead.pass, false, "positive controls: open mode must really reach the web");
+    for (const name of ["curl_allowed", "webfetch_allowed", "websearch"]) assert.equal(dead.probes[name].status, "failed", name);
+
+    // The open probes only exist in open mode; the fixed prompt and script are unchanged.
+    assert.ok(!canaryPrompt({ root: d.root, home: d.home, homes: d.homes }).includes("WebFetch"));
+    assert.ok(canaryPrompt({ root: d.root, home: d.home, homes: d.homes, mode: "open" }).includes(OPEN_OWN_URL));
+    assert.ok(!probeScript({ root: d.root, homes: d.homes }).includes("curl_allowed"));
+    assert.ok(probeScript({ root: d.root, homes: d.homes, mode: "open" }).includes("curl_allowed"));
   } finally {
     rmSync(d.base, { recursive: true, force: true });
   }
