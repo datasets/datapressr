@@ -24,7 +24,7 @@ If you can't tick all of these, the dataset isn't structured yet — don't set `
 
 ### 0. Before you touch data
 
-Capture the license and source URL *now*, while you have the source open — not as a follow-up. This is the single most-forgotten step (see the rigor pass in [`docs/plans/skills-vision.md`](https://github.com/datasets/datapressr/blob/main/docs/plans/skills-vision.md)). If the license genuinely isn't stated anywhere, say so explicitly rather than leaving `licenses` empty and moving on.
+Capture the license and source URL *now*, while you have the source open — not as a follow-up. This is the single most-forgotten step (see the rigor pass in [`docs/plans/skills-vision.md`](https://github.com/datasets/datapressr/blob/main/docs/plans/skills-vision.md)). If the license genuinely isn't stated anywhere, say so explicitly rather than leaving `licenses` empty and moving on. An unstated or unclear licence does not block publishing: the policy is ship and cite (see `AGENTS.md`); hold back only when the terms explicitly prohibit reuse.
 
 Sanity-check scale: does the raw source comfortably fit in memory in a Node process (rule of thumb: well under ~1GB)? If not, stop and say so — this playbook assumes small data.
 

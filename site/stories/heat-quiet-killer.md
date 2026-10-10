@@ -1,4 +1,5 @@
 ---
+publish: false
 title: "Heat Is the Quiet Killer"
 description: In the National Weather Service's count of US weather deaths for 1997–2025, heat comes first, 2.5 times tornadoes. The count depends on who reports a death, and it misses most heat and cold deaths.
 datahub:

@@ -73,7 +73,8 @@ function readStories(root) {
       const text = readFileSync(join(dir, f), "utf8");
       const title = /^title:\s*(.+)$/m.exec(text)?.[1].trim().replace(/^"(.*)"$/, "$1") ?? f;
       return { file: f, title, text };
-    });
+    })
+    .filter((s) => !/^publish:\s*false\s*$/m.test(s.text.split(/^---$/m)[1] ?? "")); // drafts are not on the live site
 }
 
 export function collect(root) {

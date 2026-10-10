@@ -36,7 +36,12 @@ for (const slug of slugs) {
       if (fs.existsSync(path.join(storiesDir, ref))) files.add(ref);
     }
   }
-  for (const f of files) fs.copyFileSync(path.join(storiesDir, f), path.join(stage, 'stories', f));
+  // Drafts carry `publish: false` to stay off the live site; the drafts site must publish them.
+  for (const f of files) {
+    const from = path.join(storiesDir, f), to = path.join(stage, 'stories', f);
+    if (f.endsWith('.md')) fs.writeFileSync(to, fs.readFileSync(from, 'utf8').replace(/^publish:\s*false\s*\n/m, ''));
+    else fs.copyFileSync(from, to);
+  }
   const text = fs.readFileSync(md, 'utf8');
   titles[slug] = (text.match(/^title:\s*["']?(.+?)["']?\s*$/m) || text.match(/^#\s+(.+)$/m) || [, slug])[1];
 }

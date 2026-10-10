@@ -1,4 +1,5 @@
 ---
+publish: false
 title: "Software's Slump Landed on the Youngest"
 description: Since late 2022, US employment of software developers aged 22 to 25 has fallen by a fifth in ADP payroll records while every group over 30 grew. Data to October 2026.
 datahub:

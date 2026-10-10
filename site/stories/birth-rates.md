@@ -1,4 +1,5 @@
 ---
+publish: false
 title: "Most Countries Now Have Birth Rates Below Replacement"
 description: In 2023, 130 of 237 countries and territories had fertility below 2.1 children per woman, up from 60 in 1990, and most places already below it kept falling. Sub-Saharan Africa is where the fall is far from finished.
 datahub:

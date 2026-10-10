@@ -1,4 +1,5 @@
 ---
+publish: false
 title: "Outline: Software's Slump Landed on the Youngest"
 description: The skeleton for the junior software developer hiring story: argument, order, key numbers, chart plan.
 ---

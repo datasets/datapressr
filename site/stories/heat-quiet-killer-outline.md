@@ -1,4 +1,5 @@
 ---
+publish: false
 title: "Outline: Heat Is the Quiet Killer"
 description: The skeleton for the heat story — argument, order, key numbers and chart plan, reviewed before any prose.
 ---

@@ -85,6 +85,7 @@ Minimal valid example:
 - Every file in `data/` that should be published must be in `resources`
 - `status` should reflect the lifecycle stage above
 - `licenses` and `sources` are **not optional** once the dataset leaves `stub`. We are republishing other people's data — record where it came from and what it's licensed under as soon as both are known. Use an SPDX id in `licenses[].name` when one applies (`CC-BY-4.0`, `ODbL-1.0`, `CC0-1.0`, `PDDL-1.0`...); if there's no SPDX id, use the license's own name and a link.
+- **Licence policy: ship and cite.** An unclear, missing or non-standard licence does not block publishing. Publish, and cite the source prominently (title, URL, retrieval date, suggested citation if the publisher gives one) in `sources`, the README and any story that uses it. Record what you found in `licenses` (e.g. `{ "name": "No licence stated", "path": "<terms page if any>" }`). Hold back only when the terms explicitly prohibit redistribution or reuse, and then tell the owner rather than deciding alone.
 - Every resource should declare a `schema` with a `type` per field and a `primaryKey` where one exists. This is what makes the dataset actually structured, not just "a CSV that exists."
 - Use `.datahubignore` to exclude scratch files, large intermediaries, raw downloads
 

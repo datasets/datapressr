@@ -1,4 +1,5 @@
 ---
+publish: false
 title: "Outline: Most Countries Now Have Birth Rates Below Replacement"
 description: The skeleton for the falling-birth-rates story — argument, order, key numbers, chart plan.
 ---
