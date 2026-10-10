@@ -28,7 +28,7 @@ The idea goes into **the project you are working in** — never into another pro
 
 ## Inside the DataPressr repo
 
-1. Where it goes, first match wins (see [Capturing ideas quickly](https://github.com/datasets/datapressr/blob/main/site/docs/capturing-ideas.md)):
+1. Where it goes, first match wins (see [Capturing ideas quickly](https://github.com/datasets/datapressr/blob/main/docs/capturing-ideas.md)):
    - **`bd` is available** (the default) → a bead: `bd create --title="dataset: <name>" --type=task --priority=3 --labels="dataset,inbox"` (add `story-candidate` for a story idea; see AGENTS.md's labeling convention).
    - **No `bd`** (e.g. a cloud session) → add one checklist line to the open **"Inbox — quick finds to triage"** issue in `datasets/datapressr`. Find it with `search_issues` (query: `Inbox quick finds to triage`) rather than a hardcoded issue number — it could be recreated or renumbered.
    - **Needs a long write-up or outside comment** → its own issue, titled `Wrangle and publish: <name>` or `Data story: <name>`, linked from the bead.

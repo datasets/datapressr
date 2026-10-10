@@ -1,11 +1,6 @@
----
-title: Capturing ideas quickly
-description: How to log a dataset idea, URL or factoid in seconds, without researching or downloading anything.
----
-
 # Capturing ideas quickly
 
-Most good ideas arrive as a bare URL or a half-sentence. The capture step exists so that nothing is lost and nothing is researched yet. It is the first stage of the [dataset lifecycle](lifecyle.md): preserve intent, near-zero friction.
+Most good ideas arrive as a bare URL or a half-sentence. The capture step exists so that nothing is lost and nothing is researched yet. It is the first stage of the [dataset lifecycle](../site/docs/lifecyle.md): preserve intent, near-zero friction.
 
 An entry has three parts and no more:
 
@@ -31,7 +26,7 @@ There is no markdown inbox file in this repo. Projects of your own that have no 
 
 ## Ideas that are really catalogs
 
-If the source is a portal or a knowledge base where each entry is itself a dataset (for example [Global Social Norms — Everyday Norms](https://www.globalsocialnorms.org/everyday-norms)), capture it the same way and add a note: "likely a catalog". When it is picked up, the [catalog-as-repo pattern](pattern-catalog-as-repo.md) applies.
+If the source is a portal or a knowledge base where each entry is itself a dataset (for example [Global Social Norms — Everyday Norms](https://www.globalsocialnorms.org/everyday-norms)), capture it the same way and add a note: "likely a catalog". When it is picked up, the [catalog-as-repo pattern](../site/docs/pattern-catalog-as-repo.md) applies.
 
 ## Asking your assistant
 

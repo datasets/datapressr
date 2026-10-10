@@ -24,6 +24,7 @@ This directory holds maintainer and agent material outside the published `site/`
 - [Story harness, round 1](benchmarks/story-round-1.md): everything the story eval harness has measured so far: the q01 pilot, critic calibration v1 vs v2, the q03/q04 reference cases and the first A/B of a story-skill edit (post-edit wins 4 of 4 blind pairs), with per-run tables and what's next. See also the [structure eval, co2-monthly round 1](benchmarks/eval-structure-co2-round-1.md).
 - [Session protocol](next-session-brief.md), [migration audit](next-audit.md) and [cloud handoff log](handoffs/cloud-queue.md): agent coordination and dated execution evidence.
 - [What to review now](review.md): the owner's review queue up to the v1 release (2026-09-18), moved off the public site; later review items carry the `review-after` label in Beads.
+- [Capturing ideas quickly](capturing-ideas.md): where a new dataset idea or URL gets logged (bead by default, Inbox issue without `bd`, own issue for long write-ups).
 - [Inbox triage](inbox-triage.md), [GitHub issue reconciliation](github-issue-reconciliation.md) and [Project Drawdown comparison](project-drawdown-comparison.md): decision context; check the corresponding Beads for current outcomes.
 
 ## Documentation split — 2026-09-20
