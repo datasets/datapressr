@@ -1,0 +1,96 @@
+{
+  "checker": "story",
+  "results": [
+    {
+      "id": "S1",
+      "pass": true,
+      "severity": "fail",
+      "message": "outline, chart build, 4 embedded SVG(s) and prose present",
+      "evidence": {
+        "svgs": [
+          "france-debt-crisis-debt.svg",
+          "france-debt-crisis-gap.svg",
+          "france-debt-crisis-vs-eu.svg",
+          "france-debt-crisis-interest.svg"
+        ]
+      }
+    },
+    {
+      "id": "S2",
+      "pass": true,
+      "severity": "fail",
+      "message": "632 words (budget 300–700)",
+      "evidence": {
+        "words": 632,
+        "min": 300,
+        "max": 700
+      }
+    },
+    {
+      "id": "S3",
+      "pass": true,
+      "severity": "fail",
+      "message": "all 35 prose number(s) appear on a chart or the exempt list",
+      "evidence": {
+        "checked": 35,
+        "exempt": [
+          "€23.0bn",
+          "€8.0bn",
+          "1.4",
+          "4.0%",
+          "1.9",
+          "55.3",
+          "57.2",
+          "0.9",
+          "53.0",
+          "52.1",
+          "2.9",
+          "2.1",
+          "7.7"
+        ]
+      }
+    },
+    {
+      "id": "S4",
+      "pass": true,
+      "severity": "fail",
+      "message": "two offline builds reproduce 4 SVG(s) byte for byte",
+      "evidence": {
+        "svgs": [
+          "france-debt-crisis-debt.svg",
+          "france-debt-crisis-gap.svg",
+          "france-debt-crisis-interest.svg",
+          "france-debt-crisis-vs-eu.svg"
+        ]
+      }
+    },
+    {
+      "id": "S5",
+      "pass": true,
+      "severity": "fail",
+      "message": "1 input(s) identical to their pinned commits",
+      "evidence": null
+    },
+    {
+      "id": "S6",
+      "pass": true,
+      "severity": "fail",
+      "message": "not applicable: the case has no as_of",
+      "evidence": null
+    },
+    {
+      "id": "S7",
+      "pass": true,
+      "severity": "fail",
+      "message": "4 embedded SVG(s) free of NaN, Infinity, undefined and function source",
+      "evidence": {
+        "svgs": [
+          "france-debt-crisis-debt.svg",
+          "france-debt-crisis-gap.svg",
+          "france-debt-crisis-vs-eu.svg",
+          "france-debt-crisis-interest.svg"
+        ]
+      }
+    }
+  ]
+}

@@ -27,6 +27,17 @@ Cases run: structure/co2-monthly (6 runs).
 
 ### story
 
+#### Tree `10a38a0`, commit `79ec745` story skill: state the difference or ratio, don't leave two numbers to compare
+
+Cases run: story/q01-french-debt (1 run).
+
+What changed since `17c1821`: `git log --oneline 6203aee..79ec745 -- skills/story` ([compare](https://github.com/datasets/datapressr/compare/6203aee...79ec745))
+
+- `79ec745` story skill: state the difference or ratio, don't leave two numbers to compare
+- `46af661` evals: S7 fails embedded SVGs with NaN, undefined or leaked function source (hcn.25)
+
+Pairwise vs `17c1821`: no comparison on record.
+
 #### Tree `17c1821`, commit `6203aee` Story DataHub slug and approval fields; bundler gates drafts (datapressr-kh5.3)
 
 Cases run: story/q02-allies-wwii (1 run).
@@ -60,6 +71,7 @@ Cases run: story/q01-french-debt (4 runs).
 
 #### Skill commits with no pairwise comparison on record
 
+- `79ec745` story skill: state the difference or ratio, don't leave two numbers to compare
 - `46af661` evals: S7 fails embedded SVGs with NaN, undefined or leaked function source (hcn.25)
 - `6203aee` Story DataHub slug and approval fields; bundler gates drafts (datapressr-kh5.3)
 - `20c6d1e` Define the story skill's exempt-number list format (datapressr-hcn.17)
@@ -79,12 +91,13 @@ Cases run: structure/co2-monthly (7 runs).
 
 ### story/q01-french-debt
 
-6 runs over 2 skill trees.
+7 runs over 3 skill trees.
 
 #### Writer claude-opus-5-5
 
 | Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
 |---|---|---|---|---|---|---|---|
+| 2026-10-11 19:18 | [20261011-1918-q01-french-debt-claude-opus-5-5-10a38a0-1](runs/story/q01-french-debt/20261011-1918-q01-french-debt-claude-opus-5-5-10a38a0-1/run.json) | `10a38a0` | claude | pass (7) | 2.76 | 37 |  |
 | 2026-10-10 10:34 | [20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | fail S7 (6 pass) | 2.36 | 36 | leaked |
 | 2026-10-10 10:24 | [20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | pass (7) | 2.52 | 30 | leaked |
 | 2026-10-10 10:12 | [20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1](runs/story/q01-french-debt/20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1/run.json) | `c08d6d6` | claude | fail S3, S7 (5 pass) | 2.07 | 33 | leaked |
@@ -103,6 +116,7 @@ Absolute scores, rubric story/v2 (diagnostic; 0-2):
 
 | Run | Skill tree | Critic | argument | depth | charts | honesty | reader_questions | prose | Publishable |
 |---|---|---|---|---|---|---|---|---|---|
+| 20261011-1918-q01-french-debt-claude-opus-5-5-10a38a0-1 | `10a38a0` | codex gpt-6-astra | 2 | 1 | 1 | 1 | 1 | 1 | with-edits |
 | 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 | `d6d4845` | codex gpt-6-astra | 2 | 1 | 1 | 1 | 1 | 1 | with-edits |
 | 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 | `d6d4845` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 2 | with-edits |
 | 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 | `c08d6d6` | codex gpt-6-astra | 2 | 1 | 1 | 0 | 1 | 1 | with-edits |
@@ -182,11 +196,13 @@ Absolute scores per skill tree as min-max ranges with n (the latest score per ru
 
 | Skill tree | n | argument | depth | charts | honesty | reader_questions | prose |
 |---|---|---|---|---|---|---|---|
+| `10a38a0` | 1 (anecdote) | 2 | 1 | 1 | 1 | 1 | 1 |
 | `d6d4845` | 2 | 2 | 1 | 1 | 0-1 | 1 | 1-2 |
 | `c08d6d6` | 2 | 2 | 1 | 1 | 0-2 | 1 | 1 |
 
 | Comparison | argument | depth | charts | honesty | reader_questions | prose |
 |---|---|---|---|---|---|---|
+| `10a38a0` vs `d6d4845` | anecdote (n=1) | anecdote (n=1) | anecdote (n=1) | anecdote (n=1) | anecdote (n=1) | anecdote (n=1) |
 | `d6d4845` vs `c08d6d6` | no detectable change | no detectable change | no detectable change | no detectable change | no detectable change | no detectable change |
 
 ### story/q02-allies-wwii, writer claude-opus-5-5, rubric story/v2, prompt `5a60fa0`
@@ -220,9 +236,9 @@ No owner-judged pairs yet. The critic's pairwise verdict stands alone for small 
 
 ### Critic and isolation
 
-- Critic fallback: 0 of 35 critiques (absolute and pairwise) used the fallback critic.
-- Critic validation failures: 0 of 25 absolute critiques recorded as critic_failed.
-- Leaks caught: 12 of 20 runs flagged leaked.
+- Critic fallback: 0 of 36 critiques (absolute and pairwise) used the fallback critic.
+- Critic validation failures: 0 of 26 absolute critiques recorded as critic_failed.
+- Leaks caught: 12 of 21 runs flagged leaked.
 
 Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):
 
