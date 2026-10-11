@@ -15,7 +15,7 @@ A short piece of writing that makes **one argument** the data supports, with the
 5. **Default spine: finding → what it is → what it says → wrinkle → method.**
    1. The finding — chart + one line.
    2. What you're looking at — the record, who made it, over what period. Brief. Name the units and what kind of measurement it is (spot vs futures, nominal vs real, monthly mean vs single reading). Say what each source category label means in plain words (what an official category actually covers and pays for) before the reader has to ask.
-   3. What it says — 2–4 concrete claims, each a number.
+   3. What it says — 2–4 concrete claims, each a number. When two numbers are being compared, state the difference or ratio; don't leave the reader to do the sum.
    4. The wrinkle — the caveat or complication. Often a second chart.
    5. How this was made — short, last, skippable. Link the build script and the dataset.
    The spine has held for a single series (Keeling), a multi-indicator scoreboard (Planetary Boundaries) and a two-resource comparison at one moment (WTI/Brent). Not yet tested on a genuinely dashboard-shaped story; if one breaks it, say so in the outline rather than forcing it.
