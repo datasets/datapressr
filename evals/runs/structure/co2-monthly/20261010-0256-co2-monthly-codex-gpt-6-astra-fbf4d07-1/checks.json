@@ -48,14 +48,10 @@
     },
     {
       "id": "D5",
-      "pass": false,
+      "pass": true,
       "severity": "fail",
-      "message": "no licence with an SPDX-shaped name",
-      "evidence": {
-        "problems": [
-          "no licence with an SPDX-shaped name"
-        ]
-      }
+      "message": "structured, licence USE OF NOAA GML DATA, source on gml.noaa.gov, 1 typed resource(s) with primaryKey",
+      "evidence": null
     },
     {
       "id": "D6",

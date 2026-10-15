@@ -48,14 +48,10 @@
     },
     {
       "id": "D5",
-      "pass": false,
+      "pass": true,
       "severity": "fail",
-      "message": "no licence with an SPDX-shaped name",
-      "evidence": {
-        "problems": [
-          "no licence with an SPDX-shaped name"
-        ]
-      }
+      "message": "structured, licence USE OF NOAA GML DATA, source on gml.noaa.gov, 1 typed resource(s) with primaryKey",
+      "evidence": null
     },
     {
       "id": "D6",
@@ -128,14 +124,10 @@
     },
     {
       "id": "D11",
-      "pass": false,
+      "pass": true,
       "severity": "fail",
-      "message": "build.ts header comment lacks: licence",
-      "evidence": {
-        "missing": [
-          "licence"
-        ]
-      }
+      "message": "build.ts header has source URL, retrieval date and licence",
+      "evidence": null
     },
     {
       "id": "D12",

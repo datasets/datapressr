@@ -16,6 +16,8 @@ Generated from `evals/ledger.jsonl` by `node evals/run.mjs report` (or `npm run 
 - Leaked run 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1 (story/q02-allies-wwii): the transcript touched paths outside the workspace; see its run.json before using it.
+- Missing canary for the installed CLI (claude 2.1.301, fixed mode, recipe eb5a76ea3d64); run `node evals/run.mjs canary --writer claude --mode fixed` before any paid run.
+- Missing canary for the installed CLI (claude 2.1.301, open mode, recipe 0607afe57e60); run `node evals/run.mjs canary --writer claude --mode open` before any paid run.
 
 ## Per skill change
 
@@ -85,6 +87,7 @@ Cases run: structure/co2-monthly (7 runs).
 
 #### Skill commits with no pairwise comparison on record
 
+- `2c7072b` Clarify source fidelity and provenance in structure skill
 - `07c29e1` Drafts stay off the live site (publish: false) until approved; licence policy: ship and cite; owner review beads
 
 ## Per case
@@ -157,7 +160,7 @@ Absolute scores, rubric story/v2 (diagnostic; 0-2):
 
 | Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
 |---|---|---|---|---|---|---|---|
-| 2026-10-10 05:19 | [20261010-0519-co2-monthly-claude-opus-5-5-fbf4d07-1](runs/structure/co2-monthly/20261010-0519-co2-monthly-claude-opus-5-5-fbf4d07-1/run.json) | `fbf4d07` | claude | fail D5, D8, D9, D10, D11, D12 (7 pass) | 0.85 | 19 | leaked |
+| 2026-10-10 05:19 | [20261010-0519-co2-monthly-claude-opus-5-5-fbf4d07-1](runs/structure/co2-monthly/20261010-0519-co2-monthly-claude-opus-5-5-fbf4d07-1/run.json) | `fbf4d07` | claude | fail D8, D9, D10, D11, D12 (8 pass) | 0.85 | 19 | leaked |
 | 2026-10-10 05:17 | [20261010-0517-co2-monthly-claude-opus-5-5-noskill-1](runs/structure/co2-monthly/20261010-0517-co2-monthly-claude-opus-5-5-noskill-1/run.json) | `4b825dc` | claude | fail D8, D9, D10, D11, D12 (8 pass) | 0.69 | 17 | leaked, no_skill |
 | 2026-10-10 05:14 | [20261010-0514-co2-monthly-claude-opus-5-5-noskill-1](runs/structure/co2-monthly/20261010-0514-co2-monthly-claude-opus-5-5-noskill-1/run.json) | `4b825dc` | claude | fail D8, D9, D10, D11, D12 (8 pass) | 0.68 | 15 | leaked, no_skill |
 | 2026-10-10 05:12 | [20261010-0512-co2-monthly-claude-opus-5-5-noskill-1](runs/structure/co2-monthly/20261010-0512-co2-monthly-claude-opus-5-5-noskill-1/run.json) | `4b825dc` | claude | fail D8, D9, D10, D11, D12 (8 pass) | 0.75 | 17 | leaked, no_skill |
@@ -172,9 +175,9 @@ Absolute scores, rubric story/v2 (diagnostic; 0-2):
 
 | Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
 |---|---|---|---|---|---|---|---|
-| 2026-10-10 02:58 | [20261010-0258-co2-monthly-codex-gpt-6-astra-fbf4d07-1](runs/structure/co2-monthly/20261010-0258-co2-monthly-codex-gpt-6-astra-fbf4d07-1/run.json) | `fbf4d07` | codex | fail D5, D11 (11 pass) |  | 16 |  |
-| 2026-10-10 02:56 | [20261010-0256-co2-monthly-codex-gpt-6-astra-fbf4d07-1](runs/structure/co2-monthly/20261010-0256-co2-monthly-codex-gpt-6-astra-fbf4d07-1/run.json) | `fbf4d07` | codex | fail D5, D11 (11 pass) |  | 13 |  |
-| 2026-10-10 02:50 | [20261010-0250-co2-monthly-codex-gpt-6-astra-fbf4d07-1](runs/structure/co2-monthly/20261010-0250-co2-monthly-codex-gpt-6-astra-fbf4d07-1/run.json) | `fbf4d07` | codex | fail D5, D11 (11 pass) |  | 11 |  |
+| 2026-10-10 02:58 | [20261010-0258-co2-monthly-codex-gpt-6-astra-fbf4d07-1](runs/structure/co2-monthly/20261010-0258-co2-monthly-codex-gpt-6-astra-fbf4d07-1/run.json) | `fbf4d07` | codex | pass (13) |  | 16 |  |
+| 2026-10-10 02:56 | [20261010-0256-co2-monthly-codex-gpt-6-astra-fbf4d07-1](runs/structure/co2-monthly/20261010-0256-co2-monthly-codex-gpt-6-astra-fbf4d07-1/run.json) | `fbf4d07` | codex | fail D11 (12 pass) |  | 13 |  |
+| 2026-10-10 02:50 | [20261010-0250-co2-monthly-codex-gpt-6-astra-fbf4d07-1](runs/structure/co2-monthly/20261010-0250-co2-monthly-codex-gpt-6-astra-fbf4d07-1/run.json) | `fbf4d07` | codex | fail D11 (12 pass) |  | 11 |  |
 
 ## Noise
 
@@ -251,5 +254,5 @@ Canary status (latest per vendor, CLI version and mode; weakened canaries are ne
 | codex | 0.161.0 | fixed | recipe | 20261010-0212-canary-codex-gpt-6-luna-1 | PASS |
 | codex | 0.161.0 | fixed | weakened | 20261010-0212-canary-codex-gpt-6-luna-weakened-1 | FAIL (expected) |
 
-- Installed claude CLI: 2.1.296 (fixed mode): canary passed.
-- Installed claude CLI: 2.1.296 (open mode): canary passed.
+- Installed claude CLI: 2.1.301 (fixed mode): no canary on record.
+- Installed claude CLI: 2.1.301 (open mode): no canary on record.
