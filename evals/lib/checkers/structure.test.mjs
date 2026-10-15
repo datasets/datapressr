@@ -16,7 +16,7 @@ import { runCase } from "../runner.mjs";
 import { validateCase, validateChecks } from "../schema.mjs";
 import { git } from "../versions.mjs";
 import { archiveInto } from "./story.mjs";
-import { CHECK_IDS, checkStructure, normalise, parseCsv, readReference } from "./structure.mjs";
+import { CHECK_IDS, checkContract, checkProvenance, checkStructure, normalise, parseCsv, readReference } from "./structure.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const caseDir = join(root, "evals/cases/structure/co2-monthly");
@@ -90,6 +90,84 @@ test("the case validates, and its hand-read anchors are verbatim lines of the pi
   assert.equal(ref.rows.length, golden.rows);
   assert.equal(raw.split("\n").filter((l) => l && !l.startsWith("#")).length - 1, golden.rows, "rows = non-comment raw lines minus the header");
 });
+
+// --- Metadata and provenance --------------------------------------------------------
+
+const termsUrl = "https://gml.noaa.gov/ccgg/trends/";
+for (const { name, licenses, pass } of [
+  { name: "terms title with HTTPS URL", licenses: [{ name: "USE OF NOAA GML DATA", path: termsUrl }], pass: true },
+  { name: "terms title with HTTP URL", licenses: [{ name: "USE OF NOAA GML DATA", path: "http://gml.noaa.gov/ccgg/trends/" }], pass: true },
+  { name: "trimmed terms title", licenses: [{ name: "  USE OF NOAA GML DATA  ", path: termsUrl }], pass: true },
+  { name: "explicit No licence stated with URL", licenses: [{ name: "No licence stated", path: termsUrl }], pass: true },
+  { name: "legacy identifier-shaped name without URL", licenses: [{ name: "PDDL-1.0" }], pass: true },
+  { name: "trimmed identifier-shaped name", licenses: [{ name: "  PDDL-1.0  " }], pass: true },
+  { name: "syntactic compatibility without registry validation", licenses: [{ name: "Unregistered-Identifier" }], pass: true },
+  { name: "terms title without path", licenses: [{ name: "USE OF NOAA GML DATA" }], pass: false },
+  { name: "empty name", licenses: [{ name: "", path: termsUrl }], pass: false },
+  { name: "whitespace-only name", licenses: [{ name: "  ", path: termsUrl }], pass: false },
+  { name: "non-string name", licenses: [{ name: 123, path: termsUrl }], pass: false },
+  { name: "empty path", licenses: [{ name: "USE OF NOAA GML DATA", path: "" }], pass: false },
+  { name: "whitespace-only path", licenses: [{ name: "USE OF NOAA GML DATA", path: "  " }], pass: false },
+  { name: "malformed path", licenses: [{ name: "USE OF NOAA GML DATA", path: "https://" }], pass: false },
+  { name: "relative path", licenses: [{ name: "USE OF NOAA GML DATA", path: "/terms" }], pass: false },
+  { name: "non-HTTP(S) path", licenses: [{ name: "USE OF NOAA GML DATA", path: "ftp://gml.noaa.gov/terms" }], pass: false },
+  { name: "missing licenses", licenses: undefined, pass: false },
+  { name: "empty licenses", licenses: [], pass: false },
+]) {
+  test(`D5: ${name} ${pass ? "passes" : "fails"}`, { skip }, () => {
+    const ws = oracleWorkspace();
+    try {
+      const dir = join(ws, DS);
+      editJson(join(dir, "datapackage.json"), (p) => { p.licenses = licenses; });
+      const result = checkContract(dir, golden.source_domain);
+      assert.equal(result.id, "D5");
+      assert.equal(result.pass, pass, result.message);
+    } finally {
+      rmSync(ws, { recursive: true, force: true });
+    }
+  });
+}
+
+const sourceLine = "// Source: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv";
+const retrievedLine = "// Retrieved: 2026-08-30.";
+for (const { name, header, pass } of [
+  ...["Terms", "Licence", "License", "Terms of use"].map((label) => ({ name: `populated ${label} declaration`, header: `${sourceLine}\n${retrievedLine}\n// ${label}: USE OF NOAA GML DATA`, pass: true })),
+  { name: "explicit No licence stated declaration", header: `${sourceLine}\n${retrievedLine}\n// No licence stated`, pass: true },
+  { name: "No licence stated as licence value", header: `${sourceLine}\n${retrievedLine}\n// Licence: No licence stated`, pass: true },
+  { name: "multiline block comment", header: `/*\n * Source: https://gml.noaa.gov/ccgg/trends/\n * Retrieved: 2026-08-30\n * Terms: USE OF NOAA GML DATA\n */`, pass: true },
+  { name: "actual NOAA subdomain", header: `// Source: https://data.gml.noaa.gov/co2.csv\n${retrievedLine}\n// License: USE OF NOAA GML DATA`, pass: true },
+  { name: "HTTP source", header: `// Source: http://gml.noaa.gov/co2.csv\n${retrievedLine}\n// License: USE OF NOAA GML DATA`, pass: true },
+  ...["Download", "Downloaded", "Fetched", "Accessed", "Snapshot"].map((label) => ({ name: `${label} date label`, header: `${sourceLine}\n// ${label}: 2026-08-30\n// License: USE OF NOAA GML DATA`, pass: true })),
+  { name: "missing terms", header: `${sourceLine}\n${retrievedLine}`, pass: false },
+  ...["Terms", "Licence", "License"].map((label) => ({ name: `blank ${label} declaration`, header: `${sourceLine}\n${retrievedLine}\n// ${label}:   `, pass: false })),
+  { name: "blank terms before unrelated prose", header: `${sourceLine}\n${retrievedLine}\n// Terms:\n// Run: node build.ts`, pass: false },
+  { name: "keyword-only prose", header: `${sourceLine}\n${retrievedLine}\n// Review license and terms of use before reuse.`, pass: false },
+  { name: "terms after executable code", header: `${sourceLine}\n${retrievedLine}\nconst first = 1;\n// Terms: USE OF NOAA GML DATA`, pass: false },
+  { name: "terms after code following a block comment", header: `/* Source: https://gml.noaa.gov/co2.csv\nRetrieved: 2026-08-30 */ const first = 1;\n// License: USE OF NOAA GML DATA`, pass: false },
+  { name: "NOAA lookalike hostname", header: `// Source: https://gml.noaa.gov.evil.example/co2.csv\n${retrievedLine}\n// License: No licence stated`, pass: false },
+  { name: "NOAA text in unrelated URL path", header: `// Source: https://example.org/gml.noaa.gov/co2.csv\n${retrievedLine}\n// License: No licence stated`, pass: false },
+  { name: "NOAA text as URL userinfo", header: `// Source: https://gml.noaa.gov@evil.example/co2.csv\n${retrievedLine}\n// License: No licence stated`, pass: false },
+  { name: "non-HTTP(S) source", header: `// Source: ftp://gml.noaa.gov/co2.csv\n${retrievedLine}\n// License: No licence stated`, pass: false },
+  { name: "unrelated date after blank retrieval label", header: `${sourceLine}\n// Retrieved:\n// Release date: 2026-08-30\n// License: No licence stated`, pass: false },
+  { name: "unlabelled date", header: `${sourceLine}\n// 2026-08-30\n// License: No licence stated`, pass: false },
+  // Verbatim opening comment from the Codex 0258 historical build. The terms line has no URL.
+  { name: "Codex 0258 header with separate source and Terms lines", header: "// Run offline: node build.ts (Node 22+ with built-in TypeScript support).\n// Source: https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.csv\n// Retrieved: 2026-08-30. Input: archive/co2_mm_mlo.csv, never modified.\n// Terms: USE OF NOAA GML DATA, quoted in the snapshot and datapackage.json.", pass: true },
+]) {
+  test(`D11: ${name} ${pass ? "passes" : "fails"}`, { skip }, () => {
+    const ws = oracleWorkspace();
+    try {
+      const dir = join(ws, DS);
+      const file = join(dir, "build.ts");
+      const original = readFileSync(file, "utf8");
+      writeFileSync(file, `${header}\n${original.slice(original.indexOf("import "))}`);
+      const result = checkProvenance(dir);
+      assert.equal(result.id, "D11");
+      assert.equal(result.pass, pass, result.message);
+    } finally {
+      rmSync(ws, { recursive: true, force: true });
+    }
+  });
+}
 
 // --- Oracle ------------------------------------------------------------------------
 

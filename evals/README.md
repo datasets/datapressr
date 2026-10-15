@@ -171,13 +171,13 @@ The structure domain evaluates the `structure` skill: a writer turns an archived
 | D2 | With the committed `data/*.csv` deleted, `node build.ts` succeeds offline (network blocked by `offline-preload.mjs`) and writes at least one CSV |
 | D3 | A second offline build gives byte-identical CSVs, identical to the committed ones |
 | D4 | This repo's `scripts/validate-datapackage.mjs` (not the workspace copy) reports no errors and no warnings |
-| D5 | `status` is `structured`; a licence with an SPDX-shaped name; a `sources[].path` on `gml.noaa.gov`; every resource has typed fields and a `primaryKey` |
+| D5 | `status` is `structured`; a licence with a trimmed, nonempty identifier-shaped name (syntactic compatibility, not verified SPDX membership) or a nonempty name and valid HTTP(S) terms URL in `path`; a `sources[].path` on `gml.noaa.gov`; every resource has typed fields and a `primaryKey` |
 | D6 | Every `data/*.csv` has snake_case headers, LF line endings, a trailing newline and no BOM; no `dialect` block |
 | D7 | The monthly CSV has exactly 821 observation rows |
 | D8 | The hand-read anchors (1958-03, 1974-05, 1984-04, 2000-06, 2026-07) are on their rows, in the column bound to each role |
 | D9 | No cell holds a NOAA sentinel (`-1`, `-9.99`, `-0.99`, `-99.99`), and the non-zero per-column empty counts are {194, 195, 196} as a multiset |
 | D10 | Every reference column has a writer column with the same value multiset (empty and sentinel cells count as missing, dates compare by month, numbers by value); `decimal_date` may be absent, which is reported |
-| D11 | `build.ts` opens with a comment naming a `gml.noaa.gov` URL, a retrieval date and the licence |
+| D11 | `build.ts` opens with comments containing an HTTP(S) URL whose parsed hostname is `gml.noaa.gov` or its subdomain, a date on a retrieval/download/fetched/accessed/snapshot-labelled line, and a populated `License:`, `Licence:` or `Terms:` declaration (including `No licence stated`, also accepted on its own); the terms line needs no URL of its own |
 | D12 | The date column is `YYYY-MM-DD` throughout; the day of month chosen is reported |
 | D13 | Every input file is byte-identical to its pinned commit; files added beside it (an `archive/PROVENANCE.md`, say) are listed, not failed |
 

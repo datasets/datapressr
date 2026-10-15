@@ -225,10 +225,21 @@ export function checkValidator(root, dir) {
   return result("D4", pass, pass ? `validator clean (${notes.length} note(s))` : `validator: ${errors.length} error(s), ${warnings.length} warning(s): ${[...errors, ...warnings].join("; ")}`, { errors, warnings, notes });
 }
 
-const SPDX_SHAPED = /^[A-Za-z0-9][A-Za-z0-9.+-]*$/;
+// Legacy compatibility is syntactic only; this does not verify SPDX registry membership.
+const IDENTIFIER_SHAPED = /^[A-Za-z0-9][A-Za-z0-9.+-]*$/;
 
-// D5: status structured, an SPDX-shaped licence, a source on the expected domain, and every
-// resource typed with a primaryKey.
+function httpUrl(value) {
+  if (typeof value !== "string" || !value.trim()) return null;
+  try {
+    const url = new URL(value);
+    return ["http:", "https:"].includes(url.protocol) ? url : null;
+  } catch {
+    return null;
+  }
+}
+
+// D5: status structured, an identifier-shaped licence name or a nonempty name plus HTTP(S)
+// terms URL, a source on the expected domain, and every resource typed with a primaryKey.
 export function checkContract(dir, sourceDomain) {
   let pkg;
   try {
@@ -239,7 +250,10 @@ export function checkContract(dir, sourceDomain) {
   const problems = [];
   if (pkg.status !== "structured") problems.push(`status is ${JSON.stringify(pkg.status)}, not "structured"`);
   if (!Array.isArray(pkg.licenses) || !pkg.licenses.length) problems.push("no licenses");
-  else if (!pkg.licenses.some((l) => typeof l?.name === "string" && SPDX_SHAPED.test(l.name))) problems.push("no licence with an SPDX-shaped name");
+  else if (!pkg.licenses.some((l) => {
+    const name = typeof l?.name === "string" ? l.name.trim() : "";
+    return name && (IDENTIFIER_SHAPED.test(name) || httpUrl(l.path));
+  })) problems.push("no licence with an identifier-shaped name or a name and path");
   if (!Array.isArray(pkg.sources) || !pkg.sources.some((s) => typeof s?.path === "string" && s.path.includes(sourceDomain))) problems.push(`no sources[].path on ${sourceDomain}`);
   const resources = Array.isArray(pkg.resources) ? pkg.resources : [];
   if (!resources.length) problems.push("no resources");
@@ -343,29 +357,32 @@ export function checkGoldenDiff(target, reference, golden) {
     : result("D10", true, `${k}/${reference.header.length} reference columns matched by value${note}`, { matched, allowed_missing: allowed });
 }
 
-// D11: build.ts opens with a comment naming the source URL, the retrieval date and the licence.
+// D11: opening comments name a genuine NOAA HTTP(S) URL, a retrieval-labelled date, and a
+// populated License/Licence/Terms declaration (or explicitly state No licence stated).
 export function checkProvenance(dir) {
   const p = join(dir, "build.ts");
   if (!existsSync(p)) return result("D11", false, "no build.ts");
-  const lines = readFileSync(p, "utf8").split("\n");
+  let remaining = readFileSync(p, "utf8").trimStart();
+  if (remaining.startsWith("#!")) remaining = remaining.slice(remaining.indexOf("\n") + 1).trimStart();
   const head = [];
-  let inBlock = false;
-  for (const line of lines) {
-    const t = line.trim();
-    if (inBlock) {
-      head.push(t);
-      if (t.includes("*/")) inBlock = false;
-    } else if (t === "" || t.startsWith("#!") || t.startsWith("//")) head.push(t);
-    else if (t.startsWith("/*")) {
-      head.push(t);
-      inBlock = !t.includes("*/");
+  while (remaining) {
+    if (remaining.startsWith("//")) {
+      const end = remaining.indexOf("\n");
+      head.push(remaining.slice(2, end < 0 ? undefined : end).trim());
+      remaining = end < 0 ? "" : remaining.slice(end + 1).trimStart();
+    } else if (remaining.startsWith("/*")) {
+      const end = remaining.indexOf("*/", 2);
+      const comment = remaining.slice(2, end < 0 ? undefined : end);
+      head.push(...comment.split("\n").map((line) => line.trim().replace(/^\*\s?/, "").trim()));
+      remaining = end < 0 ? "" : remaining.slice(end + 2).trimStart();
     } else break;
   }
   const text = head.join("\n");
+  const sourceUrls = (text.match(/https?:\/\/[^\s<>"')\]]+/gi) ?? []).map((value) => httpUrl(value.replace(/[.,;]+$/, "")));
   const missing = [];
-  if (!/https?:\/\/\S*gml\.noaa\.gov/i.test(text)) missing.push("source URL");
-  if (!/retriev|download|fetched|accessed|snapshot/i.test(text) || !/\b\d{4}-\d{2}-\d{2}\b/.test(text)) missing.push("retrieval date");
-  if (!/licen[cs]e|public domain|PDDL|CC0|CC-BY|terms of use/i.test(text)) missing.push("licence");
+  if (!sourceUrls.some((url) => url && (url.hostname === "gml.noaa.gov" || url.hostname.endsWith(".gml.noaa.gov")))) missing.push("source URL");
+  if (!head.some((line) => /^(?:retriev(?:ed|al)|download(?:ed)?|fetched|accessed|snapshot)\b.*\b\d{4}-\d{2}-\d{2}\b/i.test(line))) missing.push("retrieval date");
+  if (!head.some((line) => /^(?:licen[cs]e|terms(?: of use)?)\s*:\s*\S/i.test(line) || /^no licen[cs]e stated\b/i.test(line))) missing.push("licence");
   return missing.length ? result("D11", false, `build.ts header comment lacks: ${missing.join(", ")}`, { missing }) : result("D11", true, "build.ts header has source URL, retrieval date and licence");
 }
 
