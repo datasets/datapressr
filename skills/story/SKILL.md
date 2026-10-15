@@ -37,6 +37,7 @@ Chart-build dependencies live in one scoped `package.json` in that folder (`@obs
 - Three artefacts committed, in order, **each its own commit**: outline → charts → prose.
 - The argument is stated in **one sentence** in the outline.
 - The outline was **reviewed and approved before charts or prose** (see step 2). The approval is recorded with the reviewer, the exact revision (commit and file hash) and the reproduced numbers.
+- Before any handoff for shipping, the finished draft has an independent agent's **APPROVED** editorial review using [the final-review template](references/editorial-review.md), with reviewer identity, exact commit and file SHA-256s, reproduced evidence and a saved review artifact (step 4). Outline approval alone does not clear this gate.
 - Every chart: Observable Plot per `references/charting.md`, a committed `.svg`, **annotated on the chart** (direct labels, marked moments), byte-identical across two builds. One chart = one idea.
 - Prose is **300–700 words**, follows `references/voice-guide.md`, does not narrate the chart, and **every data number in the prose is on a chart** — except the exempt kinds listed in `references/story-craft.md` §4, which the prose's friction notes list explicitly (format in step 4).
 - No causal claim the data can't support: explanations are attributed to a named, linked source.
@@ -111,9 +112,15 @@ Under the "Friction notes" heading, list every exempt number as a list item cont
   - $9.10: all-time low outside the chart's window
 ```
 
-Before committing, check: word count (300–700, excluding frontmatter, alt text and friction notes); every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. A second, quick review of the prose against the outline is cheap and catches overstatement (story #3's caught an "all holders" that the source said was "some").
+Before committing, check: word count (300–700, excluding frontmatter, alt text and friction notes); every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. Follow the project's draft visibility rules: in DataPressr, both outline and prose also carry `publish: false` and stay out of the public stories index until owner approval.
 
 Commit: `Story #N (<Title>): prose`, together with the index-page links.
+
+**Final editorial review — mandatory gate before handoff for shipping.** Give an independent agent with no hand in writing or revising the story the committed outline, prose, charts, build script, exact data and source context, plus [the review instructions and template](references/editorial-review.md). The outline reviewer may return if they did not write or revise the artifacts. The reviewer starts with reader questions, then independently checks interest and coverage honesty, evidence and calculations, argument and counterevidence, chart integrity and desktop/phone rendering, writing and house voice, and reproducibility and draft readiness. They record the strongest objection and most valuable revision, supported by specific evidence; checklist scores cannot average away a failure.
+
+Save their completed review in the project's internal review folder (DataPressr: `docs/reviews/<slug>-editorial-review.md`), recording reviewer identity, reviewed commit, SHA-256 manifest and evidence. Require **APPROVED** or numbered, located **CHANGES_REQUIRED** with a concrete fix and verification for each. Resolve required changes and obtain independent re-review of the new revision before presenting the story for shipping. An unavailable reviewer or incomplete check leaves the gate open. Changes to the argument or chart plan return to step 2; material changes to title, claims, numbers, charts or method after approval require final re-review, including after a human voice pass.
+
+Handoff links the exact approved draft and review artifact, summarises the verdict and remaining human voice/owner stage. Agent approval clears this draft handoff only: it cannot certify the author's voice, change publication status or authorise publishing.
 
 ### 5. Voice pass — *human, separate*
 
