@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "task": "datapressr-8no.9.7",
+  "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+  "baseline_manifest": "evals/calibration/story/baseline-2026-10-17.json",
+  "owner_brief": {
+    "path": "docs/research/data-story-research.md",
+    "commit": "2e411017853a15746b45012d4e8ac0b6f8b345d8",
+    "git_type": "blob",
+    "git_object": "d0dead1a2f23ef0abd34f07e90aaa63545cdb52f",
+    "sha256": "fc1e401b989e34bf2d6611e2dd5d5f032f3f15c8f760c6d086c6d4784de3ea53"
+  },
+  "status": "Known/development partition frozen before this programme’s detailed source assessment; no clean holdout currently established.",
+  "holdouts": {
+    "source_holdouts": [],
+    "evaluation_case_holdouts": [],
+    "reserved_topic_families": [],
+    "reason": "This local audit established no defensibly fresh source identities or metadata-only topic reservations. All nine supplied summaries and q01–q04 are exposed.",
+    "future_selection": "An independent custodian must identify two new journalism topic families from metadata only and record actual source identities/access before reservation. This is future work, not an existing reservation.",
+    "comparison_limit": "hcn.27 is exploratory unless fresh sources and an appropriate fresh evaluation case are established before detailed exposure. A fresh source and a fresh evaluation case are distinct requirements."
+  },
+  "roles": {
+    "coordinator": "/root: owns Beads/integration and future assignments.",
+    "recorder": "/root/scoring_audit: exposed to owner brief and historical evidence; not an independent holdout judge.",
+    "development_researcher": "Assigned under .9.3; permitted all known-development entries.",
+    "candidate_author": "Assigned under .9.4; development material only until comparison freeze.",
+    "holdout_custodian": "Not yet assigned; separate context and protected storage required before future reservation.",
+    "independent_reviewer": "Different agent assigned by coordinator; review pending.",
+    "owner": "Actual reader judgments recorded verbatim; neither agent scores nor manual analyst coding substitutes."
+  },
+  "access_protocol": [
+    "No external article body fetched during this task; committed owner summaries and existing harness evidence were read.",
+    "Timestamp proves manifest creation, not absence of earlier reading by other agents or people; unknown exposure is not untouched.",
+    "Future reserved bodies, analyses, expected findings, scores, A/B mappings and future owner replies stay outside candidate-author context/workspace until frozen evaluation. No protected storage was created here.",
+    "Journalism, long visual narratives, teaching and practitioner explanations remain separate categories."
+  ],
+  "replacement_rules": [
+    "Group related threads/articles/studies/datasets as one family; new URL is not a clean holdout.",
+    "Before substantive reading, custodian may replace inaccessible reservation using metadata only, recording old/new identities, date and access reason.",
+    "Exposure marks item consumed/development; after evaluation begins, a replacement requires a new preregistration and retained failure record, never favorable-result selection.",
+    "If no clean holdout exists, preserve exploratory limitation; do not relabel known material."
+  ],
+  "sources": [
+    {
+      "id": "jbm-london",
+      "title": "Britain’s dependence on London",
+      "url": "https://threadreaderapp.com/thread/1689950429403037697.html",
+      "related_urls_same_family": [],
+      "topic_family": "regional-economic-concentration",
+      "category": "short-journalism",
+      "partition": "known-development",
+      "purpose": "Editorial development",
+      "prior_exposure": "Argument/approach/usefulness summarized in owner brief (discussion 2026-10-11); summary read in planning. Earlier detailed reading unknown.",
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "access_status": "Not checked in this task; brief reports earlier text retrieval, not verified charts/datasets/current access.",
+      "rights_status": "Unverified; access does not imply redistribution permission. Public outputs limited to citations, links and original observations.",
+      "source_snapshot_sha256": null,
+      "untouched_holdout": false,
+      "replacement_rule": "Retain inaccessible item as documented development gap; substitutes are development unless independently reserved before exposure."
+    },
+    {
+      "id": "jbm-gender-politics",
+      "title": "Ideological divide between young men and women",
+      "url": "https://threadreaderapp.com/thread/1750849189834022932.html",
+      "related_urls_same_family": [],
+      "topic_family": "gender-and-generational-politics",
+      "category": "short-journalism",
+      "partition": "known-development",
+      "purpose": "Editorial development",
+      "prior_exposure": "Argument/approach/usefulness summarized in owner brief (discussion 2026-10-11); summary read in planning. Earlier detailed reading unknown.",
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "access_status": "Not checked in this task; brief reports earlier text retrieval, not verified charts/datasets/current access.",
+      "rights_status": "Unverified; access does not imply redistribution permission. Public outputs limited to citations, links and original observations.",
+      "source_snapshot_sha256": null,
+      "untouched_holdout": false,
+      "replacement_rule": "Retain inaccessible item as documented development gap; substitutes are development unless independently reserved before exposure."
+    },
+    {
+      "id": "jbm-rent-control",
+      "title": "Evidence on rent control",
+      "url": "https://bsky.app/profile/jburnmurdoch.ft.com/post/3mx2kxpixo22x",
+      "related_urls_same_family": [
+        "https://www.sciencedirect.com/science/article/pii/S1051137724000020"
+      ],
+      "topic_family": "housing-rent-control",
+      "category": "short-journalism",
+      "partition": "known-development",
+      "purpose": "Editorial development",
+      "prior_exposure": "Argument/approach/usefulness summarized in owner brief (discussion 2026-10-11); summary read in planning. Earlier detailed reading unknown.",
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "access_status": "Not checked in this task; brief reports earlier text retrieval, not verified charts/datasets/current access.",
+      "rights_status": "Unverified; access does not imply redistribution permission. Public outputs limited to citations, links and original observations.",
+      "source_snapshot_sha256": null,
+      "untouched_holdout": false,
+      "replacement_rule": "Retain inaccessible item as documented development gap; substitutes are development unless independently reserved before exposure."
+    },
+    {
+      "id": "chalabi-spending",
+      "title": "Families spend £489 each week - on what?",
+      "url": "https://www.theguardian.com/news/datablog/2013/dec/11/families-spend-489-each-week-on-what",
+      "related_urls_same_family": [],
+      "topic_family": "household-expenditure",
+      "category": "short-journalism",
+      "partition": "known-development",
+      "purpose": "Editorial development",
+      "prior_exposure": "Argument/approach/usefulness summarized in owner brief (discussion 2026-10-11); summary read in planning. Earlier detailed reading unknown.",
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "access_status": "Not checked in this task; brief reports earlier text retrieval, not verified charts/datasets/current access.",
+      "rights_status": "Unverified; access does not imply redistribution permission. Public outputs limited to citations, links and original observations.",
+      "source_snapshot_sha256": null,
+      "untouched_holdout": false,
+      "replacement_rule": "Retain inaccessible item as documented development gap; substitutes are development unless independently reserved before exposure."
+    },
+    {
+      "id": "chalabi-pay",
+      "title": "UK median weekly pay is £517 - but who earns that?",
+      "url": "https://www.theguardian.com/news/datablog/2013/dec/12/uk-median-weekly-pay-is-517-but-who-earns-that",
+      "related_urls_same_family": [],
+      "topic_family": "earnings-distribution",
+      "category": "short-journalism",
+      "partition": "known-development",
+      "purpose": "Editorial development",
+      "prior_exposure": "Argument/approach/usefulness summarized in owner brief (discussion 2026-10-11); summary read in planning. Earlier detailed reading unknown.",
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "access_status": "Not checked in this task; brief reports earlier text retrieval, not verified charts/datasets/current access.",
+      "rights_status": "Unverified; access does not imply redistribution permission. Public outputs limited to citations, links and original observations.",
+      "source_snapshot_sha256": null,
+      "untouched_holdout": false,
+      "replacement_rule": "Retain inaccessible item as documented development gap; substitutes are development unless independently reserved before exposure."
+    },
+    {
+      "id": "guardian-inflation",
+      "title": "Egg prices have quadrupled, chicken has doubled",
+      "url": "https://www.theguardian.com/business/datablog/2025/mar/22/egg-prices-us-inflation-cost",
+      "related_urls_same_family": [],
+      "topic_family": "consumer-price-inflation",
+      "category": "short-journalism",
+      "partition": "known-development",
+      "purpose": "Editorial development",
+      "prior_exposure": "Argument/approach/usefulness summarized in owner brief (discussion 2026-10-11); summary read in planning. Earlier detailed reading unknown.",
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "access_status": "Not checked in this task; brief reports earlier text retrieval, not verified charts/datasets/current access.",
+      "rights_status": "Unverified; access does not imply redistribution permission. Public outputs limited to citations, links and original observations.",
+      "source_snapshot_sha256": null,
+      "untouched_holdout": false,
+      "replacement_rule": "Retain inaccessible item as documented development gap; substitutes are development unless independently reserved before exposure."
+    },
+    {
+      "id": "ft-coronavirus",
+      "title": "Coronavirus tracker",
+      "url": "https://www.ft.com/content/a2901ce8-5eb7-4633-b89c-cbdf5b386938",
+      "related_urls_same_family": [],
+      "topic_family": "pandemic-international-mortality",
+      "category": "long-visual-journalism",
+      "partition": "known-development",
+      "purpose": "Editorial development",
+      "prior_exposure": "Argument/approach/usefulness summarized in owner brief (discussion 2026-10-11); summary read in planning. Earlier detailed reading unknown.",
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "access_status": "Not checked in this task; brief reports earlier text retrieval, not verified charts/datasets/current access.",
+      "rights_status": "Unverified; access does not imply redistribution permission. Public outputs limited to citations, links and original observations.",
+      "source_snapshot_sha256": null,
+      "untouched_holdout": false,
+      "replacement_rule": "Retain inaccessible item as documented development gap; substitutes are development unless independently reserved before exposure."
+    },
+    {
+      "id": "seeing-theory",
+      "title": "Regression Analysis",
+      "url": "https://seeing-theory.brown.edu/regression-analysis/",
+      "related_urls_same_family": [],
+      "topic_family": "regression-teaching",
+      "category": "interactive-teaching",
+      "partition": "known-development",
+      "purpose": "Teaching/visual-explanation reference, distinct from journalism",
+      "prior_exposure": "Argument/approach/usefulness summarized in owner brief (discussion 2026-10-11); summary read in planning. Earlier detailed reading unknown.",
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "access_status": "Not checked in this task; brief reports earlier text retrieval, not verified charts/datasets/current access.",
+      "rights_status": "Unverified; access does not imply redistribution permission. Public outputs limited to citations, links and original observations.",
+      "source_snapshot_sha256": null,
+      "untouched_holdout": false,
+      "replacement_rule": "Retain inaccessible item as documented development gap; substitutes are development unless independently reserved before exposure."
+    },
+    {
+      "id": "bostock-example",
+      "title": "For Example",
+      "url": "https://bost.ocks.org/mike/example/",
+      "related_urls_same_family": [],
+      "topic_family": "examples-and-visual-explanation",
+      "category": "illustrated-talk",
+      "partition": "known-development",
+      "purpose": "Teaching/visual-explanation reference, distinct from journalism",
+      "prior_exposure": "Argument/approach/usefulness summarized in owner brief (discussion 2026-10-11); summary read in planning. Earlier detailed reading unknown.",
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "access_status": "Not checked in this task; brief reports earlier text retrieval, not verified charts/datasets/current access.",
+      "rights_status": "Unverified; access does not imply redistribution permission. Public outputs limited to citations, links and original observations.",
+      "source_snapshot_sha256": null,
+      "untouched_holdout": false,
+      "replacement_rule": "Retain inaccessible item as documented development gap; substitutes are development unless independently reserved before exposure."
+    }
+  ],
+  "historical_cases": [
+    {
+      "id": "q01-french-debt",
+      "topic_family": "french-fiscal-accounts",
+      "partition": "known-development",
+      "purpose": "Regression and exposed calibration diagnostics",
+      "prior_exposure": "Historical prompts, outputs and critiques are documented in docs/benchmarks/story-round-1.md and evals/LESSONS.md.",
+      "source_holdout": false,
+      "evaluation_case_holdout": false,
+      "untouched_holdout": false,
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "access_status": "Local committed case and evidence inspected; external reference access not rechecked.",
+      "rights_status": "No new rights assessment; case metadata and historical evidence retain their stated source limitations.",
+      "identity_manifest": "baseline-2026-10-17.json",
+      "replacement_rule": "New judgments on known topics do not restore untouched status."
+    },
+    {
+      "id": "q02-allies-wwii",
+      "topic_family": "second-world-war-coalition-resources",
+      "partition": "known-development",
+      "purpose": "Regression and exposed calibration diagnostics",
+      "prior_exposure": "Historical prompts, outputs and critiques are documented in docs/benchmarks/story-round-1.md and evals/LESSONS.md.",
+      "source_holdout": false,
+      "evaluation_case_holdout": false,
+      "untouched_holdout": false,
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "access_status": "Local committed case and evidence inspected; external reference access not rechecked.",
+      "rights_status": "No new rights assessment; case metadata and historical evidence retain their stated source limitations.",
+      "identity_manifest": "baseline-2026-10-17.json",
+      "replacement_rule": "New judgments on known topics do not restore untouched status."
+    },
+    {
+      "id": "q03-wti-negative",
+      "topic_family": "oil-futures-and-negative-prices",
+      "partition": "known-development",
+      "purpose": "Regression and exposed calibration diagnostics",
+      "prior_exposure": "Historical prompts, outputs and critiques are documented in docs/benchmarks/story-round-1.md and evals/LESSONS.md.",
+      "source_holdout": false,
+      "evaluation_case_holdout": false,
+      "untouched_holdout": false,
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "access_status": "Local committed case and evidence inspected; external reference access not rechecked.",
+      "rights_status": "No new rights assessment; case metadata and historical evidence retain their stated source limitations.",
+      "identity_manifest": "baseline-2026-10-17.json",
+      "replacement_rule": "New judgments on known topics do not restore untouched status."
+    },
+    {
+      "id": "q04-co2-rising",
+      "topic_family": "atmospheric-co2-trends",
+      "partition": "known-development",
+      "purpose": "Regression and exposed calibration diagnostics",
+      "prior_exposure": "Historical prompts, outputs and critiques are documented in docs/benchmarks/story-round-1.md and evals/LESSONS.md.",
+      "source_holdout": false,
+      "evaluation_case_holdout": false,
+      "untouched_holdout": false,
+      "assigned_roles": [
+        "development_researcher",
+        "candidate_author"
+      ],
+      "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+      "access_status": "Local committed case and evidence inspected; external reference access not rechecked.",
+      "rights_status": "No new rights assessment; case metadata and historical evidence retain their stated source limitations.",
+      "identity_manifest": "baseline-2026-10-17.json",
+      "replacement_rule": "New judgments on known topics do not restore untouched status."
+    }
+  ]
+}

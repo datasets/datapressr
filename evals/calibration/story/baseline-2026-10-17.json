@@ -1,0 +1,308 @@
+{
+  "schema_version": 1,
+  "task": "datapressr-8no.9.7",
+  "recorded_at_utc": "2026-10-16T23:37:52.010614+00:00",
+  "baseline_commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+  "selection": "Approved .9.5 baseline, not later Beads-only HEAD.",
+  "trees": [
+    {
+      "path": "skills/story",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "tree",
+      "git_object": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
+    },
+    {
+      "path": "evals",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "tree",
+      "git_object": "a6ddcbf0c343acb9117cfb8317bbae069b0fcb2a"
+    }
+  ],
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "29bdc37d0294784377abad78f4427bee51436b07",
+      "sha256": "0c8d34abfa209d9e57a22f03764b7f8fbd58080c2be9eaeb2c85d57d3450baff"
+    },
+    {
+      "path": "package.json",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "cb8dbee3be6c5c11bdcc0b3abd3ee00bdf49787e",
+      "sha256": "8791806d96d6d9827f711545afd80b206702e094a50355075ca32d30014de157"
+    },
+    {
+      "path": "site/stories/package.json",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "b2dcb2ab0a4cabbfb4dd5bc9efc17659f6f844ea",
+      "sha256": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa"
+    },
+    {
+      "path": "site/stories/package-lock.json",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "5b052745753feb45ca2febf4f0b4e46bdcf80c10",
+      "sha256": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb"
+    },
+    {
+      "path": "evals/run.mjs",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "8aefa70f159a54f2967e54c4296de1cd3752ff2c",
+      "sha256": "8d6f5d2265f17348a0b16e28c108217856a4fa5f2923d99276d65a5501806d7d"
+    },
+    {
+      "path": "evals/config.json",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "eeb7485c527986a9201f2d053f49b6f59733cc51",
+      "sha256": "575cd7040737dd17ae779745aecdd67ecccef9118ad8d8a81815180451ccb80c"
+    },
+    {
+      "path": "evals/lib/stage.mjs",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "de3475ccbf571ebe2ea3bc18ace4e29afdbdb8a8",
+      "sha256": "24327be380b812244e87141c4018c70707452eb360b95708b6176795b9ad475c"
+    },
+    {
+      "path": "evals/lib/checkers/story.mjs",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "2f27141b2ab74e4ccd24edc5c608b391676e1653",
+      "sha256": "892de003537414de48e28103e58f26e7889dcfdf856343dcaea203d640b73f0b"
+    },
+    {
+      "path": "evals/rubrics/story/v1.md",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "438b123fed18958c4898e775278ee3923bf55dab",
+      "sha256": "86d8957be324276c3935864fcee67cfd3f1f06fc2b6e6add82dc15b78a0da22f"
+    },
+    {
+      "path": "evals/rubrics/story/v2.md",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "c592eabffe445529177b27c6a794102e29bf08f6",
+      "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+    },
+    {
+      "path": "evals/rubrics/story/reference-pairwise.md",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "973611cba6ed4d78bea0ddf5eff1b7a705964e7d",
+      "sha256": "c0495e012e39940fd1f0bfffceebfc18c5cd4bbb133150d249794eca50526b35"
+    },
+    {
+      "path": "skills/story/SKILL.md",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "856c8fe96164fa09852e911472df6262f63c6067",
+      "sha256": "f36beaf742cac5b2fe71773b2421e2d592b52359781df69492ca20e8ca672f62"
+    },
+    {
+      "path": "skills/story/references/charting.md",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "cb2a10f1223000a0b07389d9e20c7906a100916f",
+      "sha256": "cc78bdeb1698896b30c88ee4565043d67f285a49770696a5cdee2d5d1348f112"
+    },
+    {
+      "path": "skills/story/references/editorial-review.md",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "d122962372af129471f56fc71ff2942c3980dbbd",
+      "sha256": "4aa893c687c070b8b7586046d8d1443b858961ca618f6c90f14073462aba0537"
+    },
+    {
+      "path": "skills/story/references/make-charts-template.mjs",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "210fb9ce9fc57908cfe8e0e194943fa0954d44d9",
+      "sha256": "4c0037c931f88e40c4c55a8674f99e328c52aee588867b7df6a033f77ce75c1c"
+    },
+    {
+      "path": "skills/story/references/story-craft.md",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "460e4ea75c850ac0e476df052ccf9df73f2e3b06",
+      "sha256": "768d00accbb7d5fb6d7e6adda9751e737528edf4dd5a9e53ca9042a6276e3a02"
+    },
+    {
+      "path": "skills/story/references/voice-guide.md",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "blob",
+      "git_object": "6b7d4fa2788b32dcb5f3fdcb231179779eb80911",
+      "sha256": "0c9cc370a99ae64d5c3a1a740bb10c3bd0bfdcffa8fc8868e59fa3c4a87a0f69"
+    }
+  ],
+  "owner_brief": {
+    "path": "docs/research/data-story-research.md",
+    "commit": "2e411017853a15746b45012d4e8ac0b6f8b345d8",
+    "git_type": "blob",
+    "git_object": "d0dead1a2f23ef0abd34f07e90aaa63545cdb52f",
+    "sha256": "fc1e401b989e34bf2d6611e2dd5d5f032f3f15c8f760c6d086c6d4784de3ea53"
+  },
+  "cases": [
+    {
+      "id": "q01-french-debt",
+      "case": {
+        "path": "evals/cases/story/q01-french-debt/case.json",
+        "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "git_type": "blob",
+        "git_object": "f22fd66c71cf60cc883aae0bca26cf3a6c4ca4ba",
+        "sha256": "f3b342c497794890a0fe370c2ceba77469e93464e6b302c1ac175fc6bd6dd345"
+      },
+      "prompt": {
+        "path": "evals/cases/story/q01-french-debt/prompt.md",
+        "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "git_type": "blob",
+        "git_object": "0b64a34e69ceaafca22c02e4139551c5e21e16a3",
+        "sha256": "39a5e7f638f59860916be7f177815bb762a8378c78251c2a1b0369db2e2cb448"
+      },
+      "data_mode": "fixed",
+      "inputs": [
+        {
+          "path": "datasets/france-public-finances",
+          "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+          "git_type": "tree",
+          "git_object": "ef1e1d863c52ad722d655b2d0c96157e4d0d661c"
+        }
+      ],
+      "skills": [
+        {
+          "path": "skills/story",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "tree",
+          "git_object": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
+        }
+      ],
+      "limit": "Input tree pins all committed files under this dataset path."
+    },
+    {
+      "id": "q02-allies-wwii",
+      "case": {
+        "path": "evals/cases/story/q02-allies-wwii/case.json",
+        "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "git_type": "blob",
+        "git_object": "58061fe91eabe699949423b4fb4f4e44f37a4c51",
+        "sha256": "dd772abe1dcd156c2721d305414d635b4a6f0705768d72d7c42f72f6295824ca"
+      },
+      "prompt": {
+        "path": "evals/cases/story/q02-allies-wwii/prompt.md",
+        "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "git_type": "blob",
+        "git_object": "edcfeb8dd59b7b0573a254ddf2760317f94d8cf8",
+        "sha256": "8ef82c2995b933fb27b63c8a598f691785298e4adc1688a6ff6dbc48bfbb05b1"
+      },
+      "data_mode": "open",
+      "inputs": [],
+      "skills": [
+        {
+          "path": "skills/story",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "tree",
+          "git_object": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
+        },
+        {
+          "path": "skills/archive",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "tree",
+          "git_object": "06feba2d876eb37ae0753c2076849d45e51d13d4"
+        },
+        {
+          "path": "skills/structure",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "tree",
+          "git_object": "a87af014e705caa4eb34742e0faede0ba6410bfe"
+        }
+      ],
+      "limit": "Historical open-mode source artifacts are not fixed-case input pins."
+    },
+    {
+      "id": "q03-wti-negative",
+      "case": {
+        "path": "evals/cases/story/q03-wti-negative/case.json",
+        "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "git_type": "blob",
+        "git_object": "3541501d6695ea884aa5e3356cfb4ef900b13adf",
+        "sha256": "5808aa53408b784f227bc9e9b82a6b0055bbec98036b28485c3aba3674cc53fc"
+      },
+      "prompt": {
+        "path": "evals/cases/story/q03-wti-negative/prompt.md",
+        "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "git_type": "blob",
+        "git_object": "0632d717aab2c5add74115158e7a38f5eabbddbb",
+        "sha256": "a2883317b9fb99bb9bb6424d84e3029ba4a905a64d560220d68ed9b20153b34c"
+      },
+      "data_mode": "fixed",
+      "inputs": [
+        {
+          "path": "datasets/energy-and-commodities/oil-prices",
+          "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+          "git_type": "tree",
+          "git_object": "96d121ee10a6172d38e39e1d81167a71baca2799"
+        }
+      ],
+      "skills": [
+        {
+          "path": "skills/story",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "tree",
+          "git_object": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
+        }
+      ],
+      "limit": "Input tree pins all committed files under this dataset path."
+    },
+    {
+      "id": "q04-co2-rising",
+      "case": {
+        "path": "evals/cases/story/q04-co2-rising/case.json",
+        "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "git_type": "blob",
+        "git_object": "84149199aea463e135a233ef78838f43c9fd5f6f",
+        "sha256": "a731d8d5af67ecba3cddcc739a5bd44ec084f43fa1df3757dc153688dd821f0e"
+      },
+      "prompt": {
+        "path": "evals/cases/story/q04-co2-rising/prompt.md",
+        "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "git_type": "blob",
+        "git_object": "7bd4dafb653313f4ab324d7ee3ee40d0937674e0",
+        "sha256": "c05288feeaddb94450ca2e73d09dcdab94affade962f03693191115392bbe816"
+      },
+      "data_mode": "fixed",
+      "inputs": [
+        {
+          "path": "datasets/climate-and-environment/co2-ppm",
+          "commit": "d478eed0802dfa37a583b8b39e1d84d2e8d4ef34",
+          "git_type": "tree",
+          "git_object": "33a3b4615cb94c35a94f7bfc3db13598cff9cce3"
+        }
+      ],
+      "skills": [
+        {
+          "path": "skills/story",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "tree",
+          "git_object": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
+        }
+      ],
+      "limit": "Input tree pins all committed files under this dataset path."
+    }
+  ],
+  "absent_dependencies": [
+    {
+      "path": "package-lock.json",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "status": "absent at baseline; do not invent a lockfile hash"
+    }
+  ],
+  "limits": [
+    "No candidate, runtime model, future rubric or fresh evaluation case is frozen here; comparison preregistration must add those identities.",
+    "No paid/subscription evaluation calls performed.",
+    "Committed identities do not include uncommitted working-tree edits."
+  ]
+}
