@@ -1,0 +1,1868 @@
+{
+  "document_type": "standalone-manual-diagnostic-results",
+  "procedure_id": "reference-led-manual-v1",
+  "task": "datapressr-8no.9.1",
+  "date": "2026-10-17",
+  "author": "/root/scoring_procedure",
+  "review_status": "awaiting-independent-review",
+  "method": "Manual post-hoc coding of exposed owner feedback, local historical artifacts and reviewed source assessment. No fresh independent critic execution or public-source re-fetch by scoring author.",
+  "claims": {
+    "diagnostic_procedure_exercised": true,
+    "blind_detection_demonstrated": false,
+    "judge_owner_calibration_demonstrated": false,
+    "generalisation_or_writer_improvement_demonstrated": false,
+    "clean_holdout_established": false,
+    "new_eval_calls": 0,
+    "new_writer_outputs": 0,
+    "new_owner_judgments": 0,
+    "new_eval_spend": 0
+  },
+  "consumed_revisions": {
+    "catalogue_commit": "deaed575c774ff79ef8b7cb7b31a861d172613ef",
+    "catalogue_revision": "exemplars-2026-10-17-v1",
+    "owner_brief_commit": "2e411017853a15746b45012d4e8ac0b6f8b345d8",
+    "baseline_commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+    "baseline_story_tree": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1",
+    "baseline_evals_tree": "a6ddcbf0c343acb9117cfb8317bbae069b0fcb2a"
+  },
+  "procedure_freeze": {
+    "scope": "Proposal identity/hash frozen before future owner responses, subject to recorded independent review revisions; historical exercise remains post-hoc.",
+    "files": [
+      {
+        "path": "evals/calibration/story/reference-led-candidate.md",
+        "sha256": "bd4f19af84e7b0777d11399a323ceefc4786befc1a7b4085dd188ad06d808d1e"
+      },
+      {
+        "path": "evals/calibration/story/reference-led-protocol.md",
+        "sha256": "9e5eda205adb48b18c9388bbef28aed981e6c0a824c8c953dbd7c51b892343f2"
+      }
+    ],
+    "future_changes": "New procedure identity/hash and retained prior results; no silent retroactive reclassification."
+  },
+  "runtime_boundary": {
+    "latest_rubric_expected": "story/v2",
+    "ordinary_score_keys": [
+      "argument",
+      "depth",
+      "charts",
+      "honesty",
+      "reader_questions",
+      "prose"
+    ],
+    "existing_open_mode_extra": [
+      "data_choice"
+    ],
+    "manual_dimension_keys": [
+      "interest",
+      "findings_depth",
+      "argument_counterevidence",
+      "explanation",
+      "chart_design",
+      "writing",
+      "reader_coverage"
+    ],
+    "installed_candidate": false,
+    "ledger_rows_added": 0,
+    "runner_schema_default_changes": false
+  },
+  "input_manifest": [
+    {
+      "path": "docs/research/data-story-exemplars.csv",
+      "sha256": "547fc62e8b2e889bd717f4cdd36d12d23f312d486543029c34742b0a235bf2c2",
+      "git_blob": "b88a61ce389087a91bbe20dd3a1e653d800b9cea"
+    },
+    {
+      "path": "docs/research/data-story-exemplar-notes.md",
+      "sha256": "9e6f40d7b4d87405c0a33378dedc5f21c25c305c6247d0d0926747960af8e12f",
+      "git_blob": "7137c8b2665dd25b48f9c348a527b8e761e202fd"
+    },
+    {
+      "path": "docs/research/data-story-research.md",
+      "sha256": "fc1e401b989e34bf2d6611e2dd5d5f032f3f15c8f760c6d086c6d4784de3ea53",
+      "git_blob": "d0dead1a2f23ef0abd34f07e90aaa63545cdb52f"
+    },
+    {
+      "path": "docs/reviews/france-public-finances-user-feedback.md",
+      "sha256": "0c710302fa3cb1998a04e75e4c9531fecf9fd969e2916a521f3aa92e2f777cf5",
+      "git_blob": "b5c62b0bec83b0989f9d0cb1920b4fa04e3b6d5c"
+    },
+    {
+      "path": "docs/reviews/france-public-finances-reader-critique.md",
+      "sha256": "76bbcb141b85b1b1c86c4bef6f1fe1fd2c7eee096f96d787516b3b3dbf3f9351",
+      "git_blob": "c665b6a9668e56686cb58ec1a1abc35c217c634d"
+    },
+    {
+      "path": "docs/benchmarks/story-round-1.md",
+      "sha256": "144b697186420bbba71b52353735c89eeea096750c22955b8ad073d000762e61",
+      "git_blob": "38ad6c2577e42bcbf602cef80c3aaf1d25660a9e"
+    },
+    {
+      "path": "evals/calibration/story/reference-partitions.json",
+      "sha256": "bf3815e69fbc8b5866798eebba067fa87d083a6cfe594b54be165c2e9a8e893a",
+      "git_blob": "bed5476dd005596b3f63f5f067b32e3a18d0c24c"
+    },
+    {
+      "path": "evals/calibration/story/baseline-2026-10-17.json",
+      "sha256": "9b3843dbfd5e6dd1c9442fbb69fcced72ad810124be2c9df52d6ac90689f46d5",
+      "git_blob": "aa69d73699c233f937a30e1b78d1d5178bfc2022"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt.json",
+      "sha256": "1b67e3d78b473b3cb887f322f775fd65065243158940c54a84a4943a18f282b6",
+      "git_blob": "1de3da959ad77e400d2bcd7251fd602a3f0a8b21"
+    },
+    {
+      "path": "evals/rubrics/story/v1.md",
+      "sha256": "86d8957be324276c3935864fcee67cfd3f1f06fc2b6e6add82dc15b78a0da22f",
+      "git_blob": "438b123fed18958c4898e775278ee3923bf55dab"
+    },
+    {
+      "path": "evals/rubrics/story/v2.md",
+      "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+      "git_blob": "c592eabffe445529177b27c6a794102e29bf08f6"
+    },
+    {
+      "path": "evals/rubrics/story/reference-pairwise.md",
+      "sha256": "c0495e012e39940fd1f0bfffceebfc18c5cd4bbb133150d249794eca50526b35",
+      "git_blob": "973611cba6ed4d78bea0ddf5eff1b7a705964e7d"
+    },
+    {
+      "path": "evals/lib/critic.mjs",
+      "sha256": "a898b0db1ec45d530cdfeace7fba4d2abd4983d3a43d56cf2ceddaeda769f1db",
+      "git_blob": "2c177ec7fcb8637cd4a92f2d248e3925686d4fa6"
+    },
+    {
+      "path": "evals/lib/schema.mjs",
+      "sha256": "27db2f9311720ae2cb5dd7cb9140a8c9033a0e06ac68e7aec89e8864f18f28e6",
+      "git_blob": "0d0128b87c8435397c0a1a4967de0061f486991b"
+    },
+    {
+      "path": "evals/README.md",
+      "sha256": "d3165efd2d951628a3dd1c853a26caf1e6d6a060bedb898172ec4cfae2a1351e",
+      "git_blob": "155d4e9ccd1c52e40c25c1207934ff708f7ad973"
+    },
+    {
+      "path": "evals/REPORT.md",
+      "sha256": "3fa641b938adc080ebc61de66daea5162a6c635515069ac06107305d90fdc0cf",
+      "git_blob": "d2de66c897f0b7266b98f4230d40edf5e85ad8b9"
+    },
+    {
+      "path": "evals/ledger.jsonl",
+      "sha256": "4aff3f8f71516aaed2531ac417bb9ac2ce39b46f2f6ab5679e92982e4c631808",
+      "git_blob": "390d3e23267cc4a4704ac765c69b851484828d9c"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances.md",
+      "sha256": "ad28875c32f53b7f6d77f86e4971ef2cd1e01c75a9aecf46797ab6d76dd1fc92",
+      "git_blob": "b5976fc592754ec7b382a64051618e10a0866d98"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v1-1.json",
+      "sha256": "d9051018a3be458e24a8495c74bed77891be30d2b557bde4ba1e13cd79f35983",
+      "git_blob": "18a05351196546211f20465f20901285ea379ba0"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v2-1.json",
+      "sha256": "2aa898ae8372c9c2a4aa0e64e2c77c308189b814b5312804e789e824731c3afa",
+      "git_blob": "8710ec9c00bc373b8df24324dab10d335313b696"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances.md",
+      "sha256": "281f81f39fea4bc196cebdd07fed7d9be2504ff99776b9acf0323a4fcaa7085f",
+      "git_blob": "86f69608e21e1324580952de487528f3d28ba848"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-6.json",
+      "sha256": "b8b79484f39a89687bb3111046657deee113d548a163bf6b8e11b6b419384a87",
+      "git_blob": "3c79601fb5dd614da6fd84f93de984dbc445bf8b"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-1.json",
+      "sha256": "16a518909a090e88ed09d2b31c109fd97ab7e15565a5f6cd90be0351d84163e5",
+      "git_blob": "fbf9cb79da274d3ee8ffa73791a2a4414ce37fb6"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-2.json",
+      "sha256": "2596c6b7522b71deb1c78f06631dc7a4790981d5ca28ad4ab5817739e2273085",
+      "git_blob": "64e68a4b05dbda392eb041ee3a3e429a01066706"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261010-0000-q01-french-debt-historical-weak-0/artefacts/site/stories/france-public-finances.md",
+      "sha256": "ffff6f2dd78c9acef50b53e7f13a48f871457be46ff6eb390f99f89772cf7a3f",
+      "git_blob": "1eb0e899feac7f2c92e9b06bfa22ee87a66bb109"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261010-0000-q01-french-debt-historical-weak-0/critique-v2-1.json",
+      "sha256": "56afcb039664785d7e280ec2682683e27536698fee97ff163b1cdcdcd1807ef2",
+      "git_blob": "17067bbcaa3968d23c87bd07d4b1cc316c7fde36"
+    },
+    {
+      "path": "evals/runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/artefacts/site/stories/allies-won.md",
+      "sha256": "a1514c748885abecd5bbd6bc86dcd9b889b02ad9f7956eb6b312d5dd116cc7bd",
+      "git_blob": "e0448fd224bcb478fba49b6bed2b3ccd6677024c"
+    },
+    {
+      "path": "evals/runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/artefacts/site/stories/allies-won-munitions.svg",
+      "sha256": "a0c273054f04727fcdf373c42bc58dea20fffe0d875732a260d7addc0254b03a",
+      "git_blob": "a7de667514995a1eae435f339fc3e7f0e11ef9f0"
+    },
+    {
+      "path": "evals/runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/critique-v2-1.json",
+      "sha256": "8b2bb61e6e82fac1825792b0fcedb747862e2c5ded68588d2044dc769a63ab3d",
+      "git_blob": "6fdd432d9094d1ffc5d3f5d4a9104f9f02c9b011"
+    },
+    {
+      "path": "evals/calibration/story/q03-wti-negative/20260918-0000-q03-wti-negative-historical-published-0/artefacts/site/stories/oil-prices.md",
+      "sha256": "dd5817c2ae6a6aef5a025a7b25a3bdb0408520cbca2a7f6a35c43ee2324604e5",
+      "git_blob": "8a5e7cc4e0cdc4cf3c6b0f6aabdf35371c6ff373"
+    },
+    {
+      "path": "evals/calibration/story/q03-wti-negative/20260918-0000-q03-wti-negative-historical-published-0/critique-v2-1.json",
+      "sha256": "1594d86ce407acaf26f72c5aec2e4f03a08e575d574ea535afb2d01dbabbef1d",
+      "git_blob": "13599ea9496653ebdff8d541974863f5a6a4a51d"
+    },
+    {
+      "path": "evals/calibration/story/q04-co2-rising/20260830-0000-q04-co2-rising-historical-published-0/critique-v2-1.json",
+      "sha256": "203004b9dd2f544dcedea891ab940a499d7254619f7f0629de410a7136458675",
+      "git_blob": "2cc851ba24e89bad22ffe81adeffd53061e1da89"
+    },
+    {
+      "path": "evals/pairs/20261010-0117-q01-french-debt-pair-1/critique.md",
+      "sha256": "d20196df7a2ba3c1d6cb791f4e6899ce799803ad39c5837e1a89e7fef25330b3",
+      "git_blob": "3a2b457fe7d186134aa7bbb1cc1edecd593116ab"
+    },
+    {
+      "path": "evals/pairs/20261010-0135-q01-french-debt-pair-1/critique.md",
+      "sha256": "5214b42a9e7dd9bfd13acbc739ce786a2621f712a29143bf6f882592cd24d843",
+      "git_blob": "c677919535a0d872e13b45d53cbc0b5a92b3fafa"
+    },
+    {
+      "path": "evals/pairs/20261010-0153-q01-french-debt-pair-1/critique.md",
+      "sha256": "d1485da070d6fca946a7df393ab8884bd4b8a687cca6a8f205a490f3c0584970",
+      "git_blob": "cfdefc4c9ffd1f8c35f835ff7bf0fb3683d6aa9a"
+    },
+    {
+      "path": "evals/pairs/20261010-0154-q01-french-debt-pair-1/critique.md",
+      "sha256": "c21df8c82bfb4f51d2f9211440edf74b9033f951b10dbc208c089a8846a51a12",
+      "git_blob": "33edf851f5b8f0f546f4ad588c98046f0e290335"
+    },
+    {
+      "path": "evals/pairs/20261010-0225-q03-wti-negative-pair-1/critique.md",
+      "sha256": "34e95c51d212258bef6e610c8c8ef93a79533bff52f8fca7b5719f5854f539f5",
+      "git_blob": "28567a78068c87659c3039b7e02414d378425e12"
+    },
+    {
+      "path": "evals/pairs/20261010-0226-q04-co2-rising-pair-1/critique.md",
+      "sha256": "bbf3f94c906997506babcd6692e122ce4a0e52cb337f668434d248e4e96ece12",
+      "git_blob": "255772a8fe95fd4437f581fa92ed5afc7a5b61f4"
+    },
+    {
+      "path": "evals/pairs/20261010-1044-q01-french-debt-pair-1/critique.md",
+      "sha256": "18ebd165645c13b3e4bd373322da2df6db2a147780d61ccee688cf7dc4b5df1d",
+      "git_blob": "4142932cecfa0f246e87efda3deeeee1742e628b"
+    },
+    {
+      "path": "evals/pairs/20261010-1045-q01-french-debt-pair-1/critique.md",
+      "sha256": "ffb9062351cb8379f4eb07fb4a25e032b771a73c5acef0b754382b4029be6e92",
+      "git_blob": "4497678efa3d3a68f8c12263d791359a48a91c67"
+    },
+    {
+      "path": "evals/pairs/20261010-1046-q01-french-debt-pair-1/critique.md",
+      "sha256": "e856f7aa442d4166e0480e3c1eb7f1284c0b426fd3129781b7cac4032839faa1",
+      "git_blob": "65e3656568dcc8311ef2b1f9f37b95003ef7267a"
+    },
+    {
+      "path": "evals/pairs/20261010-1047-q01-french-debt-pair-1/critique.md",
+      "sha256": "baef2ccd60a753976c26bfd5c2735f7231092d56641de3686964985a0ec32ac3",
+      "git_blob": "b174ab5717bdb04b514dfdb2d5dad491425823fe"
+    },
+    {
+      "path": "evals/LESSONS.md",
+      "revision": "deaed575c774ff79ef8b7cb7b31a861d172613ef",
+      "sha256": "105645a2874c3da31819d6b8fd0fcf1ee2de09f7211f44f949c857050025c2b4",
+      "note": "Consumed pre-append evidence; current file intentionally gains a relevant section."
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances-spending.svg",
+      "sha256": "d2b08dc963e0f6a122b9e472c5a951d981bd1624240899bdb435c0c7b61f0fc1",
+      "git_blob": "383beb17a2ad05bf7f884ddd73bf29c88525ebcf"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances-gap.svg",
+      "sha256": "21ec1123c47f8e6e32f2698a629243dbe631db9f3e8f82d9096e53cfcc2437dd",
+      "git_blob": "8c516f1d306895fc64c37e66472d18ec83474d25"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances-snapshot.svg",
+      "sha256": "9357cc3701374459bf9be711a1c6db0fd2487ceaf9e2e6cff4d8b22fd068eb90",
+      "git_blob": "eee1807f4cd715b04a092d44eff56db74f6fa12b"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-1.json",
+      "sha256": "d9af1d261c3121ec88b6693b344a43ae9c72c48398a95bb52c7874ed6253d191",
+      "git_blob": "c5ef53b35c0701d5578916c34b4021ef1c37e239"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances-evolution.svg",
+      "sha256": "c76de327dbd451a6746757f65f3c216ba38b240cf8a887cc1c45e9487b98ff65",
+      "git_blob": "d341110a87b64ffe23b684b28770a48e293afc3c"
+    },
+    {
+      "path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances-social.svg",
+      "sha256": "2e98a1d15d029178137818858a7fc0730cc82c313806b65e490eeffe1a6d3dab",
+      "git_blob": "2281af25eef00ba6469a4026bf218db0db7c20b1"
+    },
+    {
+      "path": "docs/reviews/france-public-finances-feedback-round2.png",
+      "sha256": "c64f77ab818421c656017df253131acc155c7b36e5c58762c44252fc10a74da1",
+      "git_blob": "8d4360f5f93d23839da2387bf76cbb55a336057e"
+    }
+  ],
+  "sample_accounting": {
+    "owner_persons": 1,
+    "owner_topics": 1,
+    "owner_drafts": 2,
+    "unique_historical_concerns": 11,
+    "round1_concerns": 6,
+    "round2_concerns": 5,
+    "manual_source_entries": 9,
+    "source_categories": {
+      "short-journalism": 6,
+      "long-visual-journalism": 1,
+      "interactive-teaching": 1,
+      "illustrated-talk": 1
+    },
+    "historical_controls": 4,
+    "historical_pairs": 10,
+    "historical_pair_order_judgments": 20,
+    "historic_skill_comparison_pairs": 4,
+    "historic_skill_comparison_unique_outputs": 4,
+    "owner_judged_pairs": 0,
+    "ledger_rows_read": 138,
+    "ledger_kinds": {
+      "canary": 22,
+      "check": 59,
+      "pair": 10,
+      "run": 21,
+      "score": 26
+    },
+    "limits": [
+      "Eleven concerns are not eleven independent stories; multiple render/critic variants reuse the same concerns.",
+      "Four skill-comparison pairs reuse two pre and two post outputs; order swaps are repeated judgments.",
+      "No historical pair-to-owner agreement can be computed; actual revision comments are not pair preferences."
+    ]
+  },
+  "historical_calibration": [
+    {
+      "rubric": "story/v1",
+      "set": "q01 round 1 (draft 1; anchors may use these remarks)",
+      "hits": 4,
+      "total": 6,
+      "critic": "codex gpt-6-astra, SVG text only, blind (no owner_feedback)",
+      "critique": "critique-v1-1",
+      "run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+      "current_exposure": "Known/exposed to this candidate author; no longer available as untouched evidence.",
+      "historical_holdout_status": "Training/exposed; no clean holdout claim."
+    },
+    {
+      "rubric": "story/v1",
+      "set": "q01 round 2 (draft 2; held out), SVG text",
+      "hits": 0,
+      "total": 5,
+      "critic": "codex gpt-6-astra, SVG text only, blind (no owner_feedback)",
+      "critique": "critique-v1-1 (and re-scores -2, -4)",
+      "run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+      "current_exposure": "Known/exposed to this candidate author; no longer available as untouched evidence.",
+      "historical_holdout_status": "Held out for v1 at that time only; no current candidate holdout."
+    },
+    {
+      "rubric": "story/v1",
+      "set": "q01 round 2 (draft 2; held out), PNG renders",
+      "hits": 0,
+      "total": 5,
+      "critic": "codex gpt-6-astra, SVG text plus headless-Chrome PNGs, blind (no owner_feedback)",
+      "critique": "critique-v1-6 (critique-v1-3 and -5 used broken renders; see LESSONS.md)",
+      "run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+      "current_exposure": "Known/exposed to this candidate author; no longer available as untouched evidence.",
+      "historical_holdout_status": "Held out for v1 at that time only; no current candidate holdout."
+    },
+    {
+      "rubric": "story/v2",
+      "set": "q01 round 1 (draft 1; anchors drew on these remarks)",
+      "hits": 6,
+      "total": 6,
+      "critic": "codex gpt-6-astra, blind (no owner_feedback), fixed-data inventory, SVG text only",
+      "critique": "critique-v2-1",
+      "run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+      "current_exposure": "Known/exposed to this candidate author; no longer available as untouched evidence.",
+      "historical_holdout_status": "Training/exposed; no clean holdout claim."
+    },
+    {
+      "rubric": "story/v2",
+      "set": "q01 round 2 (draft 2; seen by the v2 author, not held out), SVG text",
+      "hits": 1,
+      "total": 5,
+      "critic": "codex gpt-6-astra, blind (no owner_feedback), fixed-data inventory, SVG text only",
+      "critique": "critique-v2-1",
+      "run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+      "current_exposure": "Known/exposed to this candidate author; no longer available as untouched evidence.",
+      "historical_holdout_status": "Training/exposed; no clean holdout claim."
+    },
+    {
+      "rubric": "story/v2",
+      "set": "q01 round 2 (draft 2; seen by the v2 author, not held out), PNG renders",
+      "hits": 1,
+      "total": 5,
+      "critic": "codex gpt-6-astra, blind (no owner_feedback), fixed-data inventory, plus headless-Chrome PNGs",
+      "critique": "critique-v2-2",
+      "run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+      "current_exposure": "Known/exposed to this candidate author; no longer available as untouched evidence.",
+      "historical_holdout_status": "Training/exposed; no clean holdout claim."
+    }
+  ],
+  "owner_concern_mapping": [
+    {
+      "concern_id": "R1.1",
+      "owner_quote": "main thing missing is a deeper dive into the spending on social protection etc and how that is evolving",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft1",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": false,
+      "historical_v2_hit": true,
+      "historical_critic_evidence": {
+        "v1": "partial: lesson 2 separates the size of social protection from its contribution, but never asks what it contains",
+        "v2": "missed finding 4 and lesson 1: which benefits rose or fell, size vs contribution to change; depth reason names changes within the largest category"
+      },
+      "manual_dimensions": [
+        "findings_depth",
+        "explanation"
+      ],
+      "artifact_observation": "Draft 1 spending discussion stops at broad COFOG functions; the independent reader critique lists nine available GF10 children.",
+      "proposed_check": "Require category contents plus ranked contribution to change, with euro amounts and denominators.",
+      "limit": "Existing subgroup data supports a descriptive drill-down, not a causal ageing decomposition.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v2-1.json"
+      ],
+      "chart_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances-spending.svg"
+      ]
+    },
+    {
+      "concern_id": "R1.2",
+      "owner_quote": "numbers like €1,714.1 billion are hard to parse. isn't this just 1.7 trillion?",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft1",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": false,
+      "historical_v2_hit": true,
+      "historical_critic_evidence": {
+        "v1": "not raised, although the prose anchor names magnitudes the reader cannot picture",
+        "v2": "lesson 5 and prose 1: EUR 1,714.1bn, 1,561.6bn and 3,595.5bn need rounding"
+      },
+      "manual_dimensions": [
+        "writing"
+      ],
+      "artifact_observation": "Draft 1 headline magnitudes retain source-like precision; reader critique recommends about €1.7tn and €3.6tn.",
+      "proposed_check": "Test readable rounded magnitudes in prose against unchanged precise source values.",
+      "limit": "Do not discard source precision from CSVs or imply a unit conversion changes the value.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v2-1.json"
+      ],
+      "chart_paths": []
+    },
+    {
+      "concern_id": "R1.3",
+      "owner_quote": "even simple graphics are more effective htere than text",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft1",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": true,
+      "historical_v2_hit": true,
+      "historical_critic_evidence": {
+        "v1": "spending chart fix: move the footer's historical comparison into a small comparison graphic (not revenue vs spending specifically)",
+        "v2": "gap chart fix: put the footer's 2022-2024 changes on the lines; spending chart fix: add a change companion graphic"
+      },
+      "manual_dimensions": [
+        "chart_design",
+        "findings_depth"
+      ],
+      "artifact_observation": "Owner suggests an income/expenditure microcomparison; reader critique specifies aligned zero-based bars.",
+      "proposed_check": "Use a visual comparison with common year/unit and state the gap, rather than reward chart count.",
+      "limit": "The original v1 hit suggested a historical comparison graphic, not this exact income/expenditure chart.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v2-1.json"
+      ],
+      "chart_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances-gap.svg",
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances-spending.svg"
+      ]
+    },
+    {
+      "concern_id": "R1.4",
+      "owner_quote": "a bit wordy in places",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft1",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": true,
+      "historical_v2_hit": true,
+      "historical_critic_evidence": {
+        "v1": "prose 1: accounting cautions occupy substantial space",
+        "v2": "prose 1: methodological explanations displace the central answer (same standard as the v1 hit on 'accounting cautions take space')"
+      },
+      "manual_dimensions": [
+        "writing"
+      ],
+      "artifact_observation": "Accounting and methodological cautions displace the reader answer in draft 1.",
+      "proposed_check": "Trim repeated caveats; keep each necessary limitation next to the relevant claim.",
+      "limit": "A shorter draft can remain shallow; length alone is not the measure.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v2-1.json"
+      ],
+      "chart_paths": []
+    },
+    {
+      "concern_id": "R1.5",
+      "owner_quote": "not very deep or compelling article",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft1",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": true,
+      "historical_v2_hit": true,
+      "historical_critic_evidence": {
+        "v1": "argument 0, depth 1, publishable no",
+        "v2": "depth 1, argument 1, with-edits; spending detour and missing peer context"
+      },
+      "manual_dimensions": [
+        "interest",
+        "findings_depth",
+        "argument_counterevidence"
+      ],
+      "artifact_observation": "Owner explicitly distinguishes acceptable accounting from a compelling article; reader critique proposes the size-versus-growth tension.",
+      "proposed_check": "Name the assumption changed by a concrete comparison and compute its implication.",
+      "limit": "A historic low depth score matches the concern broadly; it is not evidence that reader appeal was calibrated.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v2-1.json"
+      ],
+      "chart_paths": []
+    },
+    {
+      "concern_id": "R1.6",
+      "owner_quote": "what questions would a user be coming from? are they well answer.",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft1",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": true,
+      "historical_v2_hit": true,
+      "historical_critic_evidence": {
+        "v1": "4 of 7 questions unanswered, 3 partly; near-automatic given the procedure",
+        "v2": "1 no, 5 partly, 1 set-aside of 7"
+      },
+      "manual_dimensions": [
+        "reader_coverage"
+      ],
+      "artifact_observation": "Independent reader critique lists fifteen questions with answered/partial/out-of-scope evidence.",
+      "proposed_check": "Prioritize in-reach reader questions before reading and locate actual answers; preserve the evidence gaps.",
+      "limit": "This post-hoc mapping cannot reproduce a genuine before-reading questions pass.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v2-1.json"
+      ],
+      "chart_paths": []
+    },
+    {
+      "concern_id": "R2.1",
+      "owner_quote": "colors are poor here (blue and greeN). let's have black-ish for revenue and red for expenditure or something ...",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft2",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": false,
+      "historical_v2_hit": false,
+      "historical_critic_evidence": {
+        "v1": "never raised",
+        "v2": "chart reading lists green revenue / blue spending and calls the encodings clear"
+      },
+      "manual_dimensions": [
+        "chart_design"
+      ],
+      "artifact_observation": "Draft 2 snapshot uses blue/green; v2 chart reading identifies the key and calls it clear.",
+      "proposed_check": "Record semantic distinction and effortless series identification, plus the owner preference for this story.",
+      "limit": "Black/red is this owner suggestion, not a universal factual gate or mandatory palette.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-6.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-2.json"
+      ],
+      "chart_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances-snapshot.svg"
+      ]
+    },
+    {
+      "concern_id": "R2.2",
+      "owner_quote": "the empty large circles are unclear what is 2024 and what is 2014?",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft2",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": false,
+      "historical_v2_hit": false,
+      "historical_critic_evidence": {
+        "v1": "partial in later re-scores: drop the nine-subgroup panel as a second task; never the year encoding",
+        "v2": "chart reading describes the hollow/filled key and calls it clear ('fill, colour and size redundantly distinguish years')"
+      },
+      "manual_dimensions": [
+        "chart_design"
+      ],
+      "artifact_observation": "Draft 2 evolution chart uses larger hollow grey 2014 and smaller filled blue 2024 dots; v2 decodes them and calls them clear.",
+      "proposed_check": "Check year decoding at delivered size separately from the ability to read an explanation; compare equal-sized solid keyed markers.",
+      "limit": "Actual owner confusion is evidence; an analyst reading it later is not a new five-second reader test.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-6.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-2.json"
+      ],
+      "chart_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances-evolution.svg"
+      ]
+    },
+    {
+      "concern_id": "R2.3",
+      "owner_quote": "what is old ager ... i want to dig down ... what does that mean ... and is that because of ageing population.",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft2",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": false,
+      "historical_v2_hit": false,
+      "historical_critic_evidence": {
+        "v1": "never raised; honesty praised the prose for limiting claims about ageing",
+        "v2": "never raised"
+      },
+      "manual_dimensions": [
+        "explanation",
+        "findings_depth",
+        "reader_coverage"
+      ],
+      "artifact_observation": "Draft 2 names old age and distinguishes survivors but does not explain ageing, recipients or payment levels; v2 never raises the compound concern.",
+      "proposed_check": "Define old age in everyday terms; separately identify demographic/payment mechanisms and the attributed evidence needed.",
+      "limit": "Two facets remain one historical concern. COFOG alone cannot identify ageing; fixed-input limits cannot justify fabricated causal findings.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-6.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-2.json"
+      ],
+      "chart_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances-social.svg",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances-evolution.svg"
+      ]
+    },
+    {
+      "concern_id": "R2.4",
+      "owner_quote": "Overall show me what is growing",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft2",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": false,
+      "historical_v2_hit": true,
+      "historical_critic_evidence": {
+        "v1": "never raised",
+        "v2": "evolution fix: a subgroup chart of percentage-point changes; missed finding: the subgroups that rose are left in chart labels"
+      },
+      "manual_dimensions": [
+        "findings_depth",
+        "chart_design"
+      ],
+      "artifact_observation": "Draft 2 labels nominal increase but does not directly rank all growth contributions; v2 asks for change bars and identifies subgroup growth left in labels.",
+      "proposed_check": "Show a ranked euro change and a distinct GDP-share change; state time window and main contributors.",
+      "limit": "Do not equate biggest category with fastest growth, nominal with real, or a chart label with an explained finding.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-6.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-2.json"
+      ],
+      "chart_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances-evolution.svg"
+      ]
+    },
+    {
+      "concern_id": "R2.5",
+      "owner_quote": "and how could social protection hade grown if in almost every area it shrnak",
+      "owner_source": "docs/reviews/france-public-finances-user-feedback.md",
+      "draft_id": "historical-draft2",
+      "coding": "manual-post-hoc-mapping",
+      "historical_v1_hit": false,
+      "historical_v2_hit": false,
+      "historical_critic_evidence": {
+        "v1": "the opposite: lesson 5 praises the story for explaining nominal growth vs falling GDP share clearly",
+        "v2": "glance_matches_prose yes; lesson 5 again treats size vs contribution as handled"
+      },
+      "manual_dimensions": [
+        "explanation",
+        "chart_design"
+      ],
+      "artifact_observation": "Draft 2 says 31% more euros and a fall from 24.5% to 23.7% of GDP; v2 praises the distinction as successful despite the owner screenshot concern.",
+      "proposed_check": "Put amount and share together, name GDP as the changing denominator, and test whether the visual first reading agrees with the prose.",
+      "limit": "This is a demonstrated comprehension failure, not proof that the nominal arithmetic is wrong; inflation-adjusted growth still needs a deflator.",
+      "draft_path": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances.md",
+      "critic_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-1.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-6.json",
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-2.json"
+      ],
+      "chart_paths": [
+        "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances-evolution.svg"
+      ],
+      "owner_screenshot_path": "docs/reviews/france-public-finances-feedback-round2.png"
+    }
+  ],
+  "candidate_hit_rate": null,
+  "candidate_hit_rate_reason": "All eleven owner concerns were already read during candidate design; mapping recognizes known concerns and is not blind anticipation.",
+  "historical_pairs": [
+    {
+      "pair_id": "20261010-0117-q01-french-debt-pair-1",
+      "description": "v1 easy weak control versus draft1",
+      "rubric": "story/v1",
+      "run_ids": [
+        "20261010-0000-q01-french-debt-historical-weak-0",
+        "20261008-0000-q01-french-debt-historical-draft1-0"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+          "margin": "clear"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+          "margin": "clear"
+        }
+      ],
+      "historical_winner_run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+      "manual_order_annotation": "both-orders-agree",
+      "evidence_path": "evals/pairs/20261010-0117-q01-french-debt-pair-1/critique.md",
+      "owner_judgment": null
+    },
+    {
+      "pair_id": "20261010-0135-q01-french-debt-pair-1",
+      "description": "v1 draft1 versus draft2",
+      "rubric": "story/v1",
+      "run_ids": [
+        "20261008-0000-q01-french-debt-historical-draft1-0",
+        "20261008-0001-q01-french-debt-historical-draft2-0"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+          "margin": "slight"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+          "margin": "slight"
+        }
+      ],
+      "historical_winner_run_id": null,
+      "manual_order_annotation": "order-disagreement",
+      "evidence_path": "evals/pairs/20261010-0135-q01-french-debt-pair-1/critique.md",
+      "owner_judgment": null
+    },
+    {
+      "pair_id": "20261010-0153-q01-french-debt-pair-1",
+      "description": "v2 easy weak control versus draft1",
+      "rubric": "story/v2",
+      "run_ids": [
+        "20261010-0000-q01-french-debt-historical-weak-0",
+        "20261008-0000-q01-french-debt-historical-draft1-0"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+          "margin": "clear"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+          "margin": "clear"
+        }
+      ],
+      "historical_winner_run_id": "20261008-0000-q01-french-debt-historical-draft1-0",
+      "manual_order_annotation": "both-orders-agree",
+      "evidence_path": "evals/pairs/20261010-0153-q01-french-debt-pair-1/critique.md",
+      "owner_judgment": null
+    },
+    {
+      "pair_id": "20261010-0154-q01-french-debt-pair-1",
+      "description": "v2 draft1 versus draft2",
+      "rubric": "story/v2",
+      "run_ids": [
+        "20261008-0000-q01-french-debt-historical-draft1-0",
+        "20261008-0001-q01-french-debt-historical-draft2-0"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+          "margin": "slight"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+          "margin": "slight"
+        }
+      ],
+      "historical_winner_run_id": "20261008-0001-q01-french-debt-historical-draft2-0",
+      "manual_order_annotation": "both-orders-agree",
+      "evidence_path": "evals/pairs/20261010-0154-q01-french-debt-pair-1/critique.md",
+      "owner_judgment": null
+    },
+    {
+      "pair_id": "20261010-0225-q03-wti-negative-pair-1",
+      "description": "q03 published versus EIA key-finding notes",
+      "rubric": "story/v2+reference-pairwise",
+      "run_ids": [
+        "20260918-0000-q03-wti-negative-historical-published-0",
+        "20200427-0000-q03-wti-negative-reference-eia-0"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20200427-0000-q03-wti-negative-reference-eia-0",
+          "margin": "slight"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20200427-0000-q03-wti-negative-reference-eia-0",
+          "margin": "slight"
+        }
+      ],
+      "historical_winner_run_id": "20200427-0000-q03-wti-negative-reference-eia-0",
+      "manual_order_annotation": "both-orders-agree",
+      "evidence_path": "evals/pairs/20261010-0225-q03-wti-negative-pair-1/critique.md",
+      "owner_judgment": null
+    },
+    {
+      "pair_id": "20261010-0226-q04-co2-rising-pair-1",
+      "description": "q04 published versus Climate.gov key-finding notes",
+      "rubric": "story/v2+reference-pairwise",
+      "run_ids": [
+        "20260830-0000-q04-co2-rising-historical-published-0",
+        "20250521-0000-q04-co2-rising-reference-climategov-0"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20250521-0000-q04-co2-rising-reference-climategov-0",
+          "margin": "clear"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20250521-0000-q04-co2-rising-reference-climategov-0",
+          "margin": "clear"
+        }
+      ],
+      "historical_winner_run_id": "20250521-0000-q04-co2-rising-reference-climategov-0",
+      "manual_order_annotation": "both-orders-agree",
+      "evidence_path": "evals/pairs/20261010-0226-q04-co2-rising-pair-1/critique.md",
+      "owner_judgment": null
+    },
+    {
+      "pair_id": "20261010-1044-q01-french-debt-pair-1",
+      "description": "Historical skill comparison reusing two pre and two post outputs",
+      "rubric": "story/v2",
+      "run_ids": [
+        "20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1",
+        "20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1",
+          "margin": "clear"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1",
+          "margin": "clear"
+        }
+      ],
+      "historical_winner_run_id": "20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1",
+      "manual_order_annotation": "both-orders-agree",
+      "evidence_path": "evals/pairs/20261010-1044-q01-french-debt-pair-1/critique.md",
+      "owner_judgment": null
+    },
+    {
+      "pair_id": "20261010-1045-q01-french-debt-pair-1",
+      "description": "Historical skill comparison reusing two pre and two post outputs",
+      "rubric": "story/v2",
+      "run_ids": [
+        "20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1",
+        "20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1",
+          "margin": "clear"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1",
+          "margin": "clear"
+        }
+      ],
+      "historical_winner_run_id": "20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1",
+      "manual_order_annotation": "both-orders-agree",
+      "evidence_path": "evals/pairs/20261010-1045-q01-french-debt-pair-1/critique.md",
+      "owner_judgment": null
+    },
+    {
+      "pair_id": "20261010-1046-q01-french-debt-pair-1",
+      "description": "Historical skill comparison reusing two pre and two post outputs",
+      "rubric": "story/v2",
+      "run_ids": [
+        "20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1",
+        "20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1",
+          "margin": "clear"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1",
+          "margin": "clear"
+        }
+      ],
+      "historical_winner_run_id": "20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1",
+      "manual_order_annotation": "both-orders-agree",
+      "evidence_path": "evals/pairs/20261010-1046-q01-french-debt-pair-1/critique.md",
+      "owner_judgment": null
+    },
+    {
+      "pair_id": "20261010-1047-q01-french-debt-pair-1",
+      "description": "Historical skill comparison reusing two pre and two post outputs",
+      "rubric": "story/v2",
+      "run_ids": [
+        "20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1",
+        "20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1"
+      ],
+      "judgements": [
+        {
+          "order": "AB",
+          "preferred_run_id": "20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1",
+          "margin": "clear"
+        },
+        {
+          "order": "BA",
+          "preferred_run_id": "20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1",
+          "margin": "clear"
+        }
+      ],
+      "historical_winner_run_id": "20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1",
+      "manual_order_annotation": "both-orders-agree",
+      "evidence_path": "evals/pairs/20261010-1047-q01-french-debt-pair-1/critique.md",
+      "owner_judgment": null
+    }
+  ],
+  "pair_interpretation": {
+    "v1_draft_pair": "Opposite underlying winners across AB/BA; aggregate tie and manual order-disagreement, both slight.",
+    "v2_draft_pair": "Draft2 in both orders, both slight; preference does not resolve four of five missed round2 concerns.",
+    "historic_skill_pairs": "Four post-edit wins, all clear, from four reused outputs on the France training topic; shared owner-derived treatment/rubric and leakage flags limit inference. Generated report keeps flags; benchmark notes reviewed them as false positives.",
+    "reference_pairs": "Professional references are own key-finding notes, not full licensed article/visual copies. q04 old story answered a different commission and references can use evidence outside fixed input; verdict is not a like-for-like skill measurement.",
+    "owner_agreement": null
+  },
+  "critic_error_audit": [
+    {
+      "id": "renderer-clipping",
+      "classification": "verified-technical-false-positive",
+      "evidence": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-3.json",
+      "basis": "LESSONS records Quick Look clipping wide charts, producing complaints about clipped delivered assets.",
+      "decision": "Retain critique but exclude from substantive visual calibration; renderer artifact, not a story defect."
+    },
+    {
+      "id": "renderer-duplicate-title",
+      "classification": "verified-technical-false-positive",
+      "evidence": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v1-5.json",
+      "basis": "LESSONS records an early Chrome render painting stray chart titles along the bottom.",
+      "decision": "Retain critique but exclude from substantive visual calibration; validate any changed renderer once."
+    },
+    {
+      "id": "q01-imagined-commission",
+      "classification": "documented-scoping-error",
+      "evidence": "evals/calibration/story/q01-french-debt/20261008-0000-q01-french-debt-historical-draft1-0/critique-v1-1.json",
+      "basis": "v1 penalized absent market/refinancing/political evidence outside fixed input; owner sought depth in fiscal accounts.",
+      "decision": "Freeze commission and permitted evidence before reader questions; do not label forbidden acquisition a missing finding."
+    },
+    {
+      "id": "q02-open-scope",
+      "classification": "documented-scoping-error",
+      "evidence": "evals/runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/critique-v2-1.json",
+      "basis": "Critic asked strategy/contingency questions outside open-mode brief, while real denominator/render defects also exist.",
+      "decision": "Supply identical permitted scope to future critic; preserve real defects separately."
+    },
+    {
+      "id": "q03-attribution",
+      "classification": "documented-attribution-scoring-mismatch",
+      "evidence": "evals/calibration/story/q03-wti-negative/20260918-0000-q03-wti-negative-historical-published-0/critique-v2-1.json",
+      "basis": "Headline mechanism is attributed to EIA, yet v2 marks why set-aside; attribution availability and causal identification are separate checks.",
+      "decision": "Manual answered-by-attribution status preserves explanation plus provenance question; runtime enums unchanged."
+    },
+    {
+      "id": "additional-critic-concerns",
+      "classification": "owner-unassessed",
+      "evidence": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-2.json",
+      "basis": "Peer comparisons, interest decomposition and IMF provenance critiques are not adjudicated by silence in the owner comments.",
+      "decision": "Do not count these as false positives or calculate precision from non-exhaustive feedback."
+    }
+  ],
+  "false_positive_rate": null,
+  "false_positive_rate_reason": "No exhaustive independent owner concern inventory or negative labels; technical/scoping examples are selected known errors, not a precision sample.",
+  "historical_controls": [
+    {
+      "id": "q01-weak-tour",
+      "kind": "actual-historical-easy-negative-control",
+      "artifact": "evals/calibration/story/q01-french-debt/20261010-0000-q01-french-debt-historical-weak-0/artefacts/site/stories/france-public-finances.md",
+      "critic": "evals/calibration/story/q01-french-debt/20261010-0000-q01-french-debt-historical-weak-0/critique-v2-1.json",
+      "manual_scope": "Dataset-tour opening, code lists, generic ending and invalid debt stack.",
+      "observed": "Lists available tables and GF codes; gross plus net debt stacked as if mutually exclusive.",
+      "manual_ratings": {
+        "interest": {
+          "value": 0,
+          "reason": "No concrete reader payoff beyond a tour."
+        },
+        "findings_depth": {
+          "value": 0,
+          "reason": "Available values stand in for analytical findings."
+        },
+        "argument_counterevidence": {
+          "value": 0,
+          "reason": "No explanatory answer."
+        },
+        "explanation": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "chart_design": {
+          "value": 0,
+          "reason": "Stack creates false total; series and units unclear."
+        },
+        "writing": {
+          "value": 0,
+          "reason": "Generic opening/ending and unexplained source codes."
+        },
+        "reader_coverage": {
+          "value": 0,
+          "reason": "Main fiscal explanation unanswered."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G2",
+          "status": "fail",
+          "scope": "Gross/net debt stack",
+          "reason": "Overlapping measures form no meaningful sum."
+        }
+      ],
+      "lesson": "A clear loss against this easy control does not validate detection of subtle owner concerns.",
+      "historical_result": "v1 and v2 six-zero scores; draft1 wins both orders clearly under each rubric.",
+      "next_action": "Retain as an easy floor check, alongside the harder controls below."
+    },
+    {
+      "id": "q01-draft2-superficial-compliance",
+      "kind": "actual-historical-hard-negative-control",
+      "artifact": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/artefacts/site/stories/france-public-finances.md",
+      "critic": "evals/calibration/story/q01-french-debt/20261008-0001-q01-french-debt-historical-draft2-0/critique-v2-2.json",
+      "manual_scope": "Present-but-confusing labels and growth/share explanation in owner round 2.",
+      "observed": "Category breakdown, year key and nominal/share wording all exist; owner still cannot decode years or reconcile growth with shrinking shares. Critic praises the latter.",
+      "manual_ratings": {
+        "interest": {
+          "value": 2,
+          "reason": "Opening asks where the money goes and which bills grow."
+        },
+        "findings_depth": {
+          "value": 1,
+          "reason": "Amounts and shares are present, but growth contributions are not made directly accessible."
+        },
+        "argument_counterevidence": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "explanation": {
+          "value": 1,
+          "reason": "Old-age label and denominator reconciliation do not answer this owner understanding."
+        },
+        "chart_design": {
+          "value": 1,
+          "reason": "Useful evidence is present; actual owner cannot decode year markers or first impression."
+        },
+        "writing": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "reader_coverage": {
+          "value": 1,
+          "reason": "Spending size covered; old-age/ageing and growth remain open for the actual owner."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G2",
+          "status": "unresolved",
+          "scope": "Nominal arithmetic versus comprehension",
+          "reason": "Owner confusion does not itself establish wrong arithmetic; deflator/mechanism checks remain separate."
+        },
+        {
+          "gate": "G4",
+          "status": "unresolved",
+          "scope": "Delivered reader comprehension",
+          "reason": "Historical owner screenshot/remarks document confusion; no new reader/render experiment occurred."
+        }
+      ],
+      "lesson": "Rewarding the existence of labels, categories or caveats repeats the observed failure.",
+      "historical_result": "v2 identifies 1/5 round2 concerns despite exposure; year/colour/old-age/growth-share concerns remain misses.",
+      "next_action": "Inspect actual reading behavior independently after freeze; show amount/share together and define categories."
+    },
+    {
+      "id": "q02-reproducible-but-invalid",
+      "kind": "actual-historical-hard-negative-control",
+      "artifact": "evals/runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/artefacts/site/stories/allies-won.md",
+      "critic": "evals/runs/story/q02-allies-wwii/20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1/critique-v2-1.json",
+      "manual_scope": "Economic-capacity comparison, production wording and broken legend.",
+      "observed": "Munitions coalition excludes countries present in GDP coalition; prose infers a production share. Annual production becomes weapons held; legend includes translate(NaN,-22).",
+      "manual_ratings": {
+        "interest": {
+          "value": 2,
+          "reason": "Capacity versus economic size offers a consequential explanation to investigate."
+        },
+        "findings_depth": {
+          "value": 1,
+          "reason": "Ratios are computed but the share inference uses incompatible group definitions."
+        },
+        "argument_counterevidence": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "explanation": {
+          "value": 1,
+          "reason": "Definitions and attribution help, but flow/stock and different-measure language confuse meaning."
+        },
+        "chart_design": {
+          "value": 0,
+          "reason": "Munitions legend invalid and deaths swatch does not match marks."
+        },
+        "writing": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G2",
+          "status": "fail",
+          "scope": "Larger share of a larger economy",
+          "reason": "Membership and measures differ; production is not a stock; count/value are not estimates of the same quantity."
+        },
+        {
+          "gate": "G4",
+          "status": "fail",
+          "scope": "Munitions legend",
+          "reason": "Invalid NaN transform is preserved by reproducible rebuilds."
+        }
+      ],
+      "lesson": "S4 byte-identical output cannot certify valid charts or inference.",
+      "historical_result": "Earlier six checks passed; current generated report records later S7 failure. One output, no transfer generalisation.",
+      "next_action": "Align coalitions and price/measure definitions; fix legend; retain capacity hook separately from gate failures."
+    },
+    {
+      "id": "q03-readable-but-comparison-left-to-reader",
+      "kind": "actual-historical-hard-negative-control",
+      "artifact": "evals/calibration/story/q03-wti-negative/20260918-0000-q03-wti-negative-historical-published-0/artefacts/site/stories/oil-prices.md",
+      "critic": "evals/calibration/story/q03-wti-negative/20260918-0000-q03-wti-negative-historical-published-0/critique-v2-1.json",
+      "manual_scope": "Opening price comparison, EIA attribution and computed contrast.",
+      "observed": "Gives WTI -36.98 and Brent 17.36 on 20 April but leaves their 54.34 dollar difference unstated; differentiates spot/futures and attributes expiry/storage to EIA.",
+      "manual_ratings": {
+        "interest": {
+          "value": 2,
+          "reason": "One benchmark below zero while another remains positive is a sharp puzzle."
+        },
+        "findings_depth": {
+          "value": 1,
+          "reason": "Hands the reader the ingredients rather than the roughly 54 dollar spread."
+        },
+        "argument_counterevidence": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "explanation": {
+          "value": 2,
+          "reason": "Separates local price observations, spot/futures and an explicitly attributed mechanism; this does not identify cause from prices alone."
+        },
+        "chart_design": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "writing": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G1",
+          "status": "unresolved",
+          "scope": "Attributed mechanism provenance under historic fixed-input commission",
+          "reason": "Named EIA source exists in prose; whether it was permitted/supplied is a separate scope question."
+        },
+        {
+          "gate": "G3",
+          "status": "unresolved",
+          "scope": "Current full reproduction",
+          "reason": "Historic six-check pass retained; no new story rebuild in this documentation exercise."
+        }
+      ],
+      "lesson": "All applicable historic checks and chart labels can pass while the useful computed finding is missing.",
+      "historical_result": "v2 1/1/2/2/1/1; EIA notes preferred in both orders slightly. No owner pair rating.",
+      "next_action": "State contrast; verify attributed source within commission without automatically erasing its explanatory content."
+    }
+  ],
+  "source_exercises": [
+    {
+      "source_id": "jbm-london",
+      "method": "manual-post-hoc-feature-coding-from-reviewed-catalogue",
+      "partition": "known-development",
+      "rating_scope": "Reported editorial structure and three inspected assets as described in accepted notes; not independent replication of the 14%.",
+      "evidence_locator": "docs/research/data-story-exemplar-notes.md#jbm-london-the-comparison-changes-when-its-unit-changes",
+      "catalogue_status": {
+        "argument": "verified",
+        "charts": "verified",
+        "data": "unresolved"
+      },
+      "manual_ratings": {
+        "interest": {
+          "value": 2,
+          "reason": "A national prosperity comparison changes when its dominant region is separated; clear reader payoff."
+        },
+        "findings_depth": {
+          "value": 2,
+          "reason": "Reported exclusion comparison and regional distribution expose what the aggregate hides; rating concerns the displayed analytical move, not recomputation."
+        },
+        "argument_counterevidence": {
+          "value": 2,
+          "reason": "Regional view, expanded countries and recovery context are followed by GDP/living-standard limits."
+        },
+        "explanation": {
+          "value": 1,
+          "reason": "Metric limits are visible, but exact boundary/vintage/weighting files are unrecovered."
+        },
+        "chart_design": {
+          "value": 1,
+          "reason": "Distribution and exclusion rules do useful work; varying dot sizes lack a visible size key."
+        },
+        "writing": {
+          "value": 2,
+          "reason": "Claim first, then compact comparison and caveat; structure specified in catalogue."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G1",
+          "status": "unresolved",
+          "scope": "Exact historical inputs and rights for adaptation",
+          "reason": "OECD source family found; vintage, PPP base, regional crosswalk and transformations missing."
+        },
+        {
+          "gate": "G2",
+          "status": "unresolved",
+          "scope": "Reported 14% exclusion",
+          "reason": "Must remove both output and population, then recompute; no exact reproduction in .9.3."
+        },
+        {
+          "gate": "G4",
+          "status": "unresolved",
+          "scope": "Dot-size meaning",
+          "reason": "Actual assets inspected by catalogue author; size encoding not documented by a visible key."
+        }
+      ],
+      "next_action": "Rebuild a bounded country comparison with fixed regional boundaries and population weights; retain GDP-versus-living-standard caveat.",
+      "uncertainty": "findings_depth could be 1 if the scope were verified quantitative depth rather than the displayed editorial move; no whole-story quality rank.",
+      "owner_rating": null
+    },
+    {
+      "source_id": "jbm-rent-control",
+      "method": "manual-post-hoc-feature-coding-from-reviewed-catalogue",
+      "partition": "known-development",
+      "rating_scope": "Four-post argument and inspected root image, not underlying review recoding.",
+      "evidence_locator": "docs/research/data-story-exemplar-notes.md#jbm-rent-control-translate-the-evidence-unit-before-the-conclusion",
+      "catalogue_status": {
+        "argument": "verified",
+        "charts": "verified",
+        "data": "unresolved"
+      },
+      "manual_ratings": {
+        "interest": {
+          "value": 2,
+          "reason": "Who gains and who loses is a specific policy trade-off, rather than a general rent topic."
+        },
+        "findings_depth": {
+          "value": 1,
+          "reason": "Outcome-separated signs reveal tensions but effect magnitude and quality remain absent."
+        },
+        "argument_counterevidence": {
+          "value": 2,
+          "reason": "Covered-tenant benefit stays visible alongside spillovers and a conditional conclusion."
+        },
+        "explanation": {
+          "value": 1,
+          "reason": "Housing shortage mechanism is offered, but coding and heterogeneous policy contexts constrain the synthesis."
+        },
+        "chart_design": {
+          "value": 1,
+          "reason": "Outcome rows clarify trade-offs; overlapping result dots prevent exact counts."
+        },
+        "writing": {
+          "value": 2,
+          "reason": "Question, trade-offs, qualification, mechanism and research link form a compact sequence."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G1",
+          "status": "unresolved",
+          "scope": "Result-to-study map and final review",
+          "reason": "Final review/supplement retrieval failed; 112 is review-wide study count, not per-row denominator."
+        },
+        {
+          "gate": "G2",
+          "status": "unresolved",
+          "scope": "Numerical or universal reuse",
+          "reason": "Sign counts cannot establish effect magnitudes or uniformly adverse outcomes; homelessness row is mixed."
+        }
+      ],
+      "next_action": "Recover final outcome-level coding before numerical reuse; never substitute a rent time series for a research synthesis.",
+      "uncertainty": "Argument rating concerns the conditional sequence. It does not certify research coding or policy effectiveness.",
+      "owner_rating": null
+    },
+    {
+      "source_id": "chalabi-spending",
+      "method": "manual-post-hoc-feature-coding-from-reviewed-catalogue",
+      "partition": "known-development",
+      "rating_scope": "Everyday-statistic hook and specific inspected chart/table comparisons, not an endorsement of all article calculations.",
+      "evidence_locator": "docs/research/data-story-exemplar-notes.md#chalabi-spending-preserve-the-whole-budget-denominator",
+      "catalogue_status": {
+        "argument": "verified",
+        "charts": "verified",
+        "data": "verified"
+      },
+      "manual_ratings": {
+        "interest": {
+          "value": 2,
+          "reason": "A familiar weekly household total becomes a question about what the average hides."
+        },
+        "findings_depth": {
+          "value": 1,
+          "reason": "Category and income views add detail, but faulty denominator/support limits the computed findings."
+        },
+        "argument_counterevidence": {
+          "value": 1,
+          "reason": "Subgroups and time basis matter, while income boundaries are used as spending comparisons without support from linked A5."
+        },
+        "explanation": {
+          "value": 1,
+          "reason": "Everyday categories help, but selected versus total spending remains unclear."
+        },
+        "chart_design": {
+          "value": 0,
+          "reason": "Income chart normalizes six categories to 100%, changing the whole-budget meaning of the inputs."
+        },
+        "writing": {
+          "value": 1,
+          "reason": "Topical subheads and observations are accessible, but income/spending/wealth distinctions need repair."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G1",
+          "status": "fail",
+          "scope": "Spending-level comparison using A5 £170 and £1,397",
+          "reason": "Reviewed linked A5 labels these as income-decile boundaries, not spending amounts. This does not rule out every unrecovered original table."
+        },
+        {
+          "gate": "G2",
+          "status": "fail",
+          "scope": "Housing share shown as whole-budget comparison",
+          "reason": "Bottom six percentages sum to 62: 25/62 is about 40.3%, not 25% of total. Top six sum to 52: 9/52 is about 17.3%, not 9% of total."
+        },
+        {
+          "gate": "G4",
+          "status": "fail",
+          "scope": "Rendered income chart denominator",
+          "reason": "Reviewed 100%-stacked render changes denominator without making the subset sufficiently clear."
+        }
+      ],
+      "next_action": "Keep the everyday question; include omitted spending remainder or label selected-spending denominator; replace unsupported income-boundary comparison.",
+      "uncertainty": "data_status verified covers A5 and payload retrieval only. Other original tables and full 2012 reconstruction remain unresolved.",
+      "owner_rating": null
+    },
+    {
+      "source_id": "chalabi-pay",
+      "method": "manual-post-hoc-feature-coding-from-reviewed-catalogue",
+      "partition": "known-development",
+      "rating_scope": "Accessible statistic-led prose and ONS comparisons; historical map unavailable.",
+      "evidence_locator": "docs/research/data-story-exemplar-notes.md#chalabi-pay-concise-explanation-needs-exact-percentage-language",
+      "catalogue_status": {
+        "argument": "verified",
+        "charts": "unavailable",
+        "data": "verified"
+      },
+      "manual_ratings": {
+        "interest": {
+          "value": 2,
+          "reason": "Asks whom a national median describes through recognizable earnings subgroups."
+        },
+        "findings_depth": {
+          "value": 1,
+          "reason": "Subgroup context adds value, but percentage comparison needs correction."
+        },
+        "argument_counterevidence": {
+          "value": 1,
+          "reason": "Defines headline population but group medians cannot identify unequal pay in identical jobs."
+        },
+        "explanation": {
+          "value": 2,
+          "reason": "Weekly/hourly and full/part-time distinctions make the statistic interpretable; this is conceptual clarity, not a factual gate pass."
+        },
+        "chart_design": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "writing": {
+          "value": 2,
+          "reason": "Number-led subheads and brief definitions provide an economical structure."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G2",
+          "status": "fail",
+          "scope": "Reversed hourly-pay percentage and CPI",
+          "reason": "ONS gives men £13.60/women £12.24: women 10% below men, reverse about 11.1%. ONS April CPI is 2.4%, versus article 2.3%."
+        },
+        {
+          "gate": "G4",
+          "status": "unresolved",
+          "scope": "Historical ONS cartogram",
+          "reason": "Relevant visual could not be inspected, so manual chart_design is null."
+        }
+      ],
+      "next_action": "Retain concise subgroup question; pin pay basis, correct percentages and CPI, and assess any replacement map directly.",
+      "uncertainty": "Writing/explanation ratings describe prose structure documented by the catalogue, not correctness; no visual inference from an inaccessible iframe.",
+      "owner_rating": null
+    },
+    {
+      "source_id": "jbm-gender-politics",
+      "method": "manual-post-hoc-feature-coding-from-reviewed-catalogue",
+      "partition": "known-development",
+      "rating_scope": "Reported thread sequence and five core inspected assets, not all 31 posts/media or harmonized underlying surveys.",
+      "evidence_locator": "docs/research/data-story-exemplar-notes.md#other-journalism-and-teaching",
+      "catalogue_status": {
+        "argument": "verified",
+        "charts": "verified",
+        "data": "unresolved"
+      },
+      "manual_ratings": {
+        "interest": {
+          "value": 2,
+          "reason": "A generation-wide label is challenged with sex-specific trajectories."
+        },
+        "findings_depth": {
+          "value": 2,
+          "reason": "Age/sex disaggregation and issue panels probe what aggregate classification hides; underlying replication remains unresolved."
+        },
+        "argument_counterevidence": {
+          "value": 1,
+          "reason": "Cross-country constructs differ; causal and demographic implications remain proposed rather than identified."
+        },
+        "explanation": {
+          "value": 1,
+          "reason": "Pattern and possible mechanisms are separated, but measures and smoothing cannot be harmonized from available inputs."
+        },
+        "chart_design": {
+          "value": 1,
+          "reason": "Inspected panels expose differences, but the Korean label needs its thread correction alongside the original asset."
+        },
+        "writing": {
+          "value": 1,
+          "reason": "Serial cases build an argument; the 31-post format is longer than the core short-story model."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G1",
+          "status": "unresolved",
+          "scope": "International comparability",
+          "reason": "US stated ideology and party support elsewhere differ; exact waves, weights and transformations missing."
+        },
+        {
+          "gate": "G2",
+          "status": "fail",
+          "scope": "Reuse of uncorrected Korean chart label",
+          "reason": "Thread correction must accompany or repair the original agree/disagree label; this is an asset-specific reuse failure."
+        }
+      ],
+      "next_action": "Prefer one clearly documented survey/item for adaptation; carry the correction with the chart and avoid causal extrapolation.",
+      "uncertainty": "Score 2 for disaggregation expresses a displayed feature, not a claim that the panels form a standardized dataset.",
+      "owner_rating": null
+    },
+    {
+      "source_id": "guardian-inflation",
+      "method": "manual-post-hoc-feature-coding-from-reviewed-catalogue",
+      "partition": "known-development",
+      "rating_scope": "Very short framing and ten-item illustration described in accepted assessment.",
+      "evidence_locator": "docs/research/data-story-exemplar-notes.md#other-journalism-and-teaching",
+      "catalogue_status": {
+        "argument": "verified",
+        "charts": "verified",
+        "data": "unresolved"
+      },
+      "manual_ratings": {
+        "interest": {
+          "value": 2,
+          "reason": "Familiar purchases make an abstract price change concrete."
+        },
+        "findings_depth": {
+          "value": 1,
+          "reason": "Paired endpoints show uneven change but not a weighted household-burden estimate."
+        },
+        "argument_counterevidence": {
+          "value": 1,
+          "reason": "Selected items and endpoint choice limit economy-wide interpretation."
+        },
+        "explanation": {
+          "value": 1,
+          "reason": "Item-specific unit exceptions are labelled, while endpoint provenance is unpinned."
+        },
+        "chart_design": {
+          "value": 1,
+          "reason": "Dollar labels support exact reading; expressive drawing sizes have no documented quantitative scaling rule."
+        },
+        "writing": {
+          "value": 2,
+          "reason": "Short introduction and source link let the comparison carry the narrative."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G1",
+          "status": "unresolved",
+          "scope": "Historical extract",
+          "reason": "Live BLS page is not the exact 2005/2025 endpoint-month snapshot."
+        },
+        {
+          "gate": "G2",
+          "status": "unresolved",
+          "scope": "Household-wide inference",
+          "reason": "Selected goods are not a weighted CPI basket; price changes alone do not quantify household burden."
+        }
+      ],
+      "next_action": "Pin months, series and units; state numeric price ratios/changes and basket limits; do not infer exact quantities from drawing area.",
+      "uncertainty": "No claim that the illustration is falsely scaled: its quantitative scaling rule is unspecified, so exact reading uses labels.",
+      "owner_rating": null
+    },
+    {
+      "source_id": "ft-coronavirus",
+      "method": "manual-post-hoc-feature-coding-from-reviewed-catalogue",
+      "partition": "known-development",
+      "rating_scope": "Access-gap accounting only; no body-based editorial rating.",
+      "evidence_locator": "docs/research/data-story-exemplar-notes.md#other-journalism-and-teaching",
+      "catalogue_status": {
+        "argument": "unavailable",
+        "charts": "unavailable",
+        "data": "unavailable"
+      },
+      "manual_ratings": {
+        "interest": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "findings_depth": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "argument_counterevidence": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "explanation": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "chart_design": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "writing": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G1",
+          "status": "unresolved",
+          "scope": "Exact tracker body and inputs",
+          "reason": "Subscription barrier despite Free to read title; no other FT project substituted."
+        },
+        {
+          "gate": "G4",
+          "status": "unresolved",
+          "scope": "Chart sequence and delivered visuals",
+          "reason": "No relevant chart was available for inspection."
+        }
+      ],
+      "next_action": "Retain an explicit unassessed entry; obtain legitimate access or leave the specific tracker unassessed.",
+      "uncertainty": "All seven ratings null. Reputation, owner summary and related repositories cannot fill the gap.",
+      "owner_rating": null
+    },
+    {
+      "source_id": "seeing-theory",
+      "method": "manual-post-hoc-feature-coding-from-reviewed-catalogue",
+      "partition": "known-development",
+      "rating_scope": "Teaching feature: OLS quartet I/IV selection and two retrieved hosted CSVs; no journalism score.",
+      "evidence_locator": "docs/research/data-story-exemplar-notes.md#other-journalism-and-teaching",
+      "catalogue_status": {
+        "argument": "verified",
+        "charts": "verified",
+        "data": "verified"
+      },
+      "manual_ratings": {
+        "interest": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "findings_depth": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "argument_counterevidence": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "explanation": {
+          "value": 2,
+          "reason": "Controlled I/IV selection connects visible configurations, fitted line and summaries; why plotting matters is demonstrated."
+        },
+        "chart_design": {
+          "value": 2,
+          "reason": "Catalogue observed changed points, residual squares and fitted summary for selected states; IV n=11, slope=.50, intercept=3.00."
+        },
+        "writing": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G1",
+          "status": "unresolved",
+          "scope": "Reuse rights/provenance and broader chapter",
+          "reason": "Code Apache-2.0 notice does not establish every deployed asset or hosted dataset licence."
+        },
+        {
+          "gate": "G4",
+          "status": "unresolved",
+          "scope": "Dragging/accessibility/other modules",
+          "reason": "Only I/IV selection is verified; initial empty axes require a choice, and untested interactions remain unresolved."
+        }
+      ],
+      "next_action": "For an original guide, give an informative default, prediction/check sequence and accessible fallback; test numerical and input behavior.",
+      "uncertainty": "Chart 2 is bounded to inspected selected OLS states, not the whole interactive or accessibility; no causal identification claim.",
+      "owner_rating": null
+    },
+    {
+      "source_id": "bostock-example",
+      "method": "manual-post-hoc-feature-coding-from-reviewed-catalogue",
+      "partition": "known-development",
+      "rating_scope": "Static explanatory sequence, not dynamic behavior or a journalism survey.",
+      "evidence_locator": "docs/research/data-story-exemplar-notes.md#other-journalism-and-teaching",
+      "catalogue_status": {
+        "argument": "verified",
+        "charts": "unresolved",
+        "data": "unresolved"
+      },
+      "manual_ratings": {
+        "interest": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "findings_depth": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "argument_counterevidence": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "explanation": {
+          "value": 2,
+          "reason": "A flawed example is connected to purpose, plausible alternative, mechanism and practical consequences."
+        },
+        "chart_design": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        },
+        "writing": {
+          "value": 1,
+          "reason": "Talk-like explanation repeatedly returns to a concrete example; scope is practitioner explanation, not concise news."
+        },
+        "reader_coverage": {
+          "value": null,
+          "reason": "Not assessed in this bounded feature exercise; no frozen complete reader-question set or sufficient relevant evidence."
+        }
+      },
+      "gate_observations": [
+        {
+          "gate": "G1",
+          "status": "unresolved",
+          "scope": "Exact historical code/data and rights",
+          "reason": "No blanket reuse licence or recovered original geometry/code."
+        },
+        {
+          "gate": "G4",
+          "status": "unresolved",
+          "scope": "Projection demonstration",
+          "reason": "Static assets loaded; historical iframe failed, so chart_design remains null for the dynamic claim."
+        }
+      ],
+      "next_action": "Adapt the explanatory sequence in an original before/after guide; do not claim the old interaction was tested.",
+      "uncertainty": "Not a systematic NYT survey or evidence about Tufte books; a static argument can be useful while the interactive delivery is unresolved.",
+      "owner_rating": null
+    }
+  ],
+  "actionable_diagnostics": [
+    {
+      "finding": "Reader comprehension is not label existence.",
+      "evidence": [
+        "R2.1",
+        "R2.2",
+        "R2.5",
+        "q01-draft2-superficial-compliance"
+      ],
+      "action": "Separate first impression, exact decoding and actual observed owner confusion; test unseen readers after freeze."
+    },
+    {
+      "finding": "Largest category, contribution to change and mechanism are distinct.",
+      "evidence": [
+        "R1.1",
+        "R2.3",
+        "R2.4"
+      ],
+      "action": "Unpack, rank changes and define the category; seek demographic/payment evidence only within allowed source scope."
+    },
+    {
+      "finding": "Strong hooks do not validate numbers or denominators.",
+      "evidence": [
+        "chalabi-spending",
+        "chalabi-pay",
+        "q02-reproducible-but-invalid"
+      ],
+      "action": "Retain interest diagnostics while blocking defective claim/asset reuse through G1/G2/G4."
+    },
+    {
+      "finding": "Research-synthesis and aggregate comparisons need explicit evidence units.",
+      "evidence": [
+        "jbm-rent-control",
+        "jbm-london",
+        "jbm-gender-politics"
+      ],
+      "action": "Name result versus study, outcome denominator, population weights, boundaries and construct differences before interpretation."
+    },
+    {
+      "finding": "Clear charts and deterministic compliance can leave a useful comparison unstated.",
+      "evidence": [
+        "q03-readable-but-comparison-left-to-reader",
+        "guardian-inflation"
+      ],
+      "action": "Compute the difference or ratio that makes the comparison matter, while retaining endpoint/unit limits."
+    },
+    {
+      "finding": "Access gaps and teaching references must stay distinct from verified journalism.",
+      "evidence": [
+        "ft-coronavirus",
+        "chalabi-pay",
+        "seeing-theory",
+        "bostock-example"
+      ],
+      "action": "Use nulls and bounded states; no inferred chart quality or forced news criterion."
+    }
+  ],
+  "remaining_limits": [
+    "No fresh owner feedback, independent blind critic, newly generated story or clean source/case holdout.",
+    "Manual feature ratings are author judgments on exposed material, not owner scores or calibrated harness diagnostics.",
+    "Source observations rely on accepted .9.3 assessment; London exact inputs, rent coding, international survey harmonization and inflation endpoints remain unresolved.",
+    "Spending linked A5/payload and pay bulletin checks are bounded primary-source findings, not full reconstruction of all historical article tables.",
+    "Independent review of these new artifacts remains required; hcn.14 owns later rubric reconciliation/promotion.",
+    "No extra manual dimension is accepted by the runtime schema, and this JSON is not intended as runtime input."
+  ]
+}
