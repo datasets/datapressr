@@ -1,0 +1,109 @@
+{
+  "run_id": "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+  "case_id": "q03-wti-negative",
+  "domain": "story",
+  "case_hash": "78afac2584621952bf39f0b3569dbdf206d51618391116e3a0e74ee4ab713ca6",
+  "skill": {
+    "name": "story",
+    "ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
+    "tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+    "dirty": false,
+    "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+  },
+  "writer": {
+    "vendor": "claude",
+    "model": "claude-opus-5-5",
+    "effort_requested": "high",
+    "model_actual": "claude-opus-5-5",
+    "cli_version": "2.1.302",
+    "prompt_sha256": "5608493b7e9092a497f0b91c862a778548d6e3b90cc9c33fa45b635c726a76ac"
+  },
+  "isolation": {
+    "canary_run_id": "20261017-2136-canary-claude-haiku-5-5-1",
+    "network": false,
+    "leaks": []
+  },
+  "started_at": "2026-10-17T22:08:26.254Z",
+  "duration_ms": 696739,
+  "turns": 51,
+  "cost_usd": 2.6006006,
+  "cost_basis": "list",
+  "usage": {
+    "input_tokens": 78,
+    "cache_creation_input_tokens": 110153,
+    "cache_read_input_tokens": 2737223,
+    "output_tokens": 58581,
+    "output_tokens_details": {
+      "thinking_tokens": 23640
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 110153,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1213,
+        "cache_read_input_tokens": 114167,
+        "cache_creation_input_tokens": 1259,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1259
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "artefacts": [
+    {
+      "path": "site/stories/oil-below-zero-day.svg",
+      "sha256": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6",
+      "bytes": 9400
+    },
+    {
+      "path": "site/stories/oil-below-zero-editorial-review.md",
+      "sha256": "d454beb5598b7dcd6daeed2813de3eeedbea900d89bca9d45c14f8e84256e141",
+      "bytes": 9115
+    },
+    {
+      "path": "site/stories/oil-below-zero-make-charts.mjs",
+      "sha256": "46b34c8c1108b7a933aceb82e168c0b6fda57c53fe56f6b7e7fbfc8e9d80e0fd",
+      "bytes": 7553
+    },
+    {
+      "path": "site/stories/oil-below-zero-months.svg",
+      "sha256": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e",
+      "bytes": 6285
+    },
+    {
+      "path": "site/stories/oil-below-zero-outline-review.md",
+      "sha256": "762c6556c72b95dff4124809a1d2d0db64445fa8ed8976d69dffa6bd1a6bdfe3",
+      "bytes": 5389
+    },
+    {
+      "path": "site/stories/oil-below-zero-outline.md",
+      "sha256": "0f4f4821ca3f5a5c22b225eb5758455c2bf1e1324bc6a5d89bef2d04c0174501",
+      "bytes": 9747
+    },
+    {
+      "path": "site/stories/oil-below-zero.md",
+      "sha256": "7c9a080eee111d62591394043a7424725d5c58dbe7b50c3ff5db2362466076e9",
+      "bytes": 7018
+    }
+  ],
+  "transcript_sha256": "22ef204194779bbcea5497973a41c9f184708c13c8f53533f1c5e581e8808d59",
+  "workspace_sha256": "21dc2d4f94f473387b7ce19161dc86957eaaff1ca7a93b0ad2013de15ef2f6f3",
+  "flags": []
+}

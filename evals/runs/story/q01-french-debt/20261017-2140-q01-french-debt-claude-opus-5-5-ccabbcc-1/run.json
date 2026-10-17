@@ -1,0 +1,119 @@
+{
+  "run_id": "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+  "case_id": "q01-french-debt",
+  "domain": "story",
+  "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+  "skill": {
+    "name": "story",
+    "ref": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+    "tree": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1",
+    "dirty": false
+  },
+  "harness": {
+    "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+    "dirty": false,
+    "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+  },
+  "writer": {
+    "vendor": "claude",
+    "model": "claude-opus-5-5",
+    "effort_requested": "high",
+    "model_actual": "claude-opus-5-5",
+    "cli_version": "2.1.302",
+    "prompt_sha256": "3fe1ed6d7a88a5b56c202aad28e93d38cacedc57e9635e99d73d34042ecc2575"
+  },
+  "isolation": {
+    "canary_run_id": "20261017-2136-canary-claude-haiku-5-5-1",
+    "network": false,
+    "leaks": []
+  },
+  "started_at": "2026-10-17T21:40:40.431Z",
+  "duration_ms": 899098,
+  "turns": 52,
+  "cost_usd": 3.7357342,
+  "cost_basis": "list",
+  "usage": {
+    "input_tokens": 92,
+    "cache_creation_input_tokens": 155443,
+    "cache_read_input_tokens": 4374611,
+    "output_tokens": 80845,
+    "output_tokens_details": {
+      "thinking_tokens": 33843
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 155443,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "global",
+    "iterations": [
+      {
+        "input_tokens": 2,
+        "output_tokens": 1208,
+        "cache_read_input_tokens": 159694,
+        "cache_creation_input_tokens": 1022,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1022
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard",
+    "fallback_credit": null
+  },
+  "artefacts": [
+    {
+      "path": "site/stories/french-debt-deficit.svg",
+      "sha256": "b546dba0a0ccd54679c3ca4abc894edb7b911ab1b308cf324bd50dca2809826e",
+      "bytes": 14197
+    },
+    {
+      "path": "site/stories/french-debt-editorial-review.md",
+      "sha256": "1d80d2a135bf8b8af1219cfc86d37b94c6d30d54b6511cc97e77303fd010e4e6",
+      "bytes": 9511
+    },
+    {
+      "path": "site/stories/french-debt-functions.svg",
+      "sha256": "a2c3bb93edc598c45025b431fd6bcd63349a0915ad8259ff074954133a603697",
+      "bytes": 6896
+    },
+    {
+      "path": "site/stories/french-debt-make-charts.mjs",
+      "sha256": "cbfef82fb6851bdcf798ac48d411e68f4d0e55c1afff95073fcb2da5d408010c",
+      "bytes": 16412
+    },
+    {
+      "path": "site/stories/french-debt-outline-review.md",
+      "sha256": "0e37b17403dbca577b5c24f2eea796bd0380f3a36ad865ec6c48e66be827df83",
+      "bytes": 8390
+    },
+    {
+      "path": "site/stories/french-debt-outline.md",
+      "sha256": "9ea2f004296254988105c127cb1f51ea564b9c6e9f31ddf8b3e3211e359c14a3",
+      "bytes": 13233
+    },
+    {
+      "path": "site/stories/french-debt-peers.svg",
+      "sha256": "7074aacbe36d15cccef6cac917ac029926a6cf7767bdd38b970bdf7e4e507f4d",
+      "bytes": 6397
+    },
+    {
+      "path": "site/stories/french-debt-ratio.svg",
+      "sha256": "6143c8e48c9bad446fe31a4b02118178072bc1cab9603742c53c194c372846ec",
+      "bytes": 8799
+    },
+    {
+      "path": "site/stories/french-debt.md",
+      "sha256": "f604cd8a7bf1dba1966bba4192050496039500ee9a7b9413043056f98ab85be9",
+      "bytes": 7776
+    }
+  ],
+  "transcript_sha256": "0892f2148a2c5c909a92472914e9d6b1de8de456e895eb7cd420654dea9c0470",
+  "workspace_sha256": "954fc5e9e27dca8f331a0e4727053203bc400138de735122330a78f5e598e1b3",
+  "flags": []
+}
