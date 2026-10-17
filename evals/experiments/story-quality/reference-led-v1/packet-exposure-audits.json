@@ -1,6 +1,6 @@
 {
   "document_type": "post-launch-packet-exposure-audit",
-  "status": "partial-five-packets",
+  "status": "partial-six-packets",
   "audits": [
     {
       "at": "2026-10-17T22:13:38.336644+00:00",
@@ -169,6 +169,79 @@
   "driver_disposition": "Preserve original-outline policy across all8. No retrospective sanitization or replacement readers. Inventory embedded author review/provenance and instruct readers not to use author verdicts as evidence. Distinguish frozen spontaneous chart/prose readings from stage3 diagnostics; report differential exposure.",
   "subsequent_packet_exposure_inventories": [
     {
+      "opaque_code": "M30755c",
+      "stage3_exposure_inventory": {
+        "opaque_code": "M30755c",
+        "source_outline": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q01-french-debt/20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/french-debt-outline.md",
+        "source_sha256": "9ea2f004296254988105c127cb1f51ea564b9c6e9f31ddf8b3e3211e359c14a3",
+        "packet_outline": "stage3/outline.md",
+        "packet_sha256": "243a72fa51399701534e1c2e77315f75b54026cdca2d3b49687bbd4e0c4ff077",
+        "exact_original_minus_frontmatter_comments": true,
+        "separate_review_files_copied": false,
+        "previous_omission_wording": [
+          "Writer editorial-review and outline-review files withheld to preserve independent review."
+        ],
+        "exposed_review_locations": [],
+        "embedded_review_section_present": false
+      }
+    },
+    {
+      "opaque_code": "Mb8941a",
+      "stage3_exposure_inventory": {
+        "opaque_code": "Mb8941a",
+        "source_outline": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-outline.md",
+        "source_sha256": "1e17e081cbc9903c7b7d897676be530f331cac8cf6995a87ebed9b55b8fec068",
+        "packet_outline": "stage3/outline.md",
+        "packet_sha256": "0fbe1478395714a377e41c68cbb45490965219897e92359f9661db0d42830678",
+        "exact_original_minus_frontmatter_comments": true,
+        "separate_review_files_copied": false,
+        "previous_omission_wording": [
+          "Writer editorial-review and outline-review files withheld to preserve independent review."
+        ],
+        "exposed_review_locations": [
+          {
+            "lines": [
+              88,
+              88
+            ],
+            "kind": "author self-review provenance/verdict pointer"
+          },
+          {
+            "lines": [
+              90,
+              139
+            ],
+            "kind": "embedded Outline review section, four historical author self-review rounds and verdicts"
+          },
+          {
+            "lines": [
+              94,
+              118,
+              126,
+              135
+            ],
+            "kind": "author workspace commit IDs and historical outline hashes"
+          },
+          {
+            "lines": [
+              109,
+              122,
+              130,
+              139
+            ],
+            "kind": "three corrections verdicts and self APPROVED verdict"
+          },
+          {
+            "lines": [
+              141,
+              143
+            ],
+            "kind": "post-outline-review note linking later editorial self-review and title change"
+          }
+        ]
+      }
+    },
+    {
       "opaque_code": "M9b1fee",
       "stage3_exposure_inventory": {
         "at": "2026-10-17T22:20:32.986561+00:00",
@@ -304,6 +377,33 @@
           }
         ],
         "review_policy": "Original outline retained; separate author-review files withheld; references/verdicts within outline are author context, not independent evidence."
+      }
+    },
+    {
+      "opaque_code": "Mf4bb1f",
+      "stage3_exposure_inventory": {
+        "path": "stage3/outline.md",
+        "mechanical_keyword_locations": [
+          {
+            "line": 31,
+            "heading": null,
+            "review_reference": false,
+            "process_hash_reference": true
+          },
+          {
+            "line": 66,
+            "heading": null,
+            "review_reference": true,
+            "process_hash_reference": false
+          },
+          {
+            "line": 69,
+            "heading": null,
+            "review_reference": true,
+            "process_hash_reference": true
+          }
+        ],
+        "policy": "Original outline retained; author judgments not independent evidence."
       }
     }
   ],

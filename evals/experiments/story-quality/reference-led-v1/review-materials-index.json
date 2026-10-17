@@ -6,7 +6,8 @@
     "Mb8941a",
     "M9b1fee",
     "Mbe53b2",
-    "M1d3194"
+    "M1d3194",
+    "Mf4bb1f"
   ],
   "files": [
     {
@@ -1709,6 +1710,349 @@
       "bytes": 596,
       "archived_relative_path": null,
       "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage1/chart-4.png",
+      "sha256": "0fb9e5b7132bf7d58a563cff30d80c3e6e0ecccc69820bf754fb73ced8e337b4",
+      "bytes": 85461,
+      "archived_relative_path": "Mf4bb1f/stage1/chart-4.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage1/chart-1.png",
+      "sha256": "a141e58ca67e11dc0fa7aa74d79c8e50367bc5f678e71d8b47725d10f8cec5b5",
+      "bytes": 108135,
+      "archived_relative_path": "Mf4bb1f/stage1/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage1/chart-3.png",
+      "sha256": "399abdaa71c577588430e868f95bc6809b10e5ac30b3e8f80428fdc3c06b1b54",
+      "bytes": 88271,
+      "archived_relative_path": "Mf4bb1f/stage1/chart-3.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage1/chart-2.png",
+      "sha256": "7c262cbec0d793aefe571b38def0cbb5b6b00832a77b85d1db01dfdb463c1b2c",
+      "bytes": 147168,
+      "archived_relative_path": "Mf4bb1f/stage1/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage1/READ-ME.md",
+      "sha256": "65d8fab86fd6ce0ee000e244fca14a6f06749407c6327c32194df61b2b5e636c",
+      "bytes": 282,
+      "archived_relative_path": "Mf4bb1f/stage1/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage1/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "Mf4bb1f/stage1/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage2/chart-4.png",
+      "sha256": "0fb9e5b7132bf7d58a563cff30d80c3e6e0ecccc69820bf754fb73ced8e337b4",
+      "bytes": 85461,
+      "archived_relative_path": "Mf4bb1f/stage2/chart-4.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage2/chart-1.png",
+      "sha256": "a141e58ca67e11dc0fa7aa74d79c8e50367bc5f678e71d8b47725d10f8cec5b5",
+      "bytes": 108135,
+      "archived_relative_path": "Mf4bb1f/stage2/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage2/chart-3.png",
+      "sha256": "399abdaa71c577588430e868f95bc6809b10e5ac30b3e8f80428fdc3c06b1b54",
+      "bytes": 88271,
+      "archived_relative_path": "Mf4bb1f/stage2/chart-3.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage2/chart-2.png",
+      "sha256": "7c262cbec0d793aefe571b38def0cbb5b6b00832a77b85d1db01dfdb463c1b2c",
+      "bytes": 147168,
+      "archived_relative_path": "Mf4bb1f/stage2/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage2/READ-ME.md",
+      "sha256": "78542511ff8ddc7c3696a4c98dcb589bad7c688cb3a39178bb0d95c4596a4bd3",
+      "bytes": 238,
+      "archived_relative_path": "Mf4bb1f/stage2/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage2/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "Mf4bb1f/stage2/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage2/story.md",
+      "sha256": "fbe4a1e4e22545ce328a576a832752c8d10b2d05940134ad0513af6bb4534681",
+      "bytes": 5363,
+      "archived_relative_path": "Mf4bb1f/stage2/story.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/outline.md",
+      "sha256": "7477f1d595bc16e8b6c7f72b0177a1f72da7a678c7e81b6b317866cac537a0dc",
+      "bytes": 10900,
+      "archived_relative_path": "Mf4bb1f/stage3/outline.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/chart-2.svg",
+      "sha256": "38b2962d0657df701c09dcdaf2be492d28cfed7b79a3707d6e13ee3231a60bf8",
+      "bytes": 8881,
+      "archived_relative_path": "Mf4bb1f/stage3/chart-2.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/READ-ME.md",
+      "sha256": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+      "bytes": 305,
+      "archived_relative_path": "Mf4bb1f/stage3/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/chart-3.svg",
+      "sha256": "607c5de406899612d6f01498fb761d71a5c698b19e55a3d874cf3d08d7a9fc4b",
+      "bytes": 5389,
+      "archived_relative_path": "Mf4bb1f/stage3/chart-3.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/chart-1.svg",
+      "sha256": "289219b7398db18c78ab32f6d1b8e30cef7da3a4b6fd2d5f3237655f983a47bf",
+      "bytes": 9166,
+      "archived_relative_path": "Mf4bb1f/stage3/chart-1.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/chart-4.svg",
+      "sha256": "6eed15eef4078bdb748b535849c802b347a896a2101590e20a01e4abed92918d",
+      "bytes": 6051,
+      "archived_relative_path": "Mf4bb1f/stage3/chart-4.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/reproduction-hashes.json",
+      "sha256": "e6a95320cf7073b20eb9262144c1541738910ba84d9ca43c1c61713d324f0a3d",
+      "bytes": 1078,
+      "archived_relative_path": "Mf4bb1f/stage3/reproduction-hashes.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/diagnostic-anchors.md",
+      "sha256": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+      "bytes": 6245,
+      "archived_relative_path": "Mf4bb1f/stage3/diagnostic-anchors.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "Mf4bb1f/stage3/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/REPRODUCTION.md",
+      "sha256": "836c4013a5d69af17ad5006d2b83bc6609bf9bfd0c12bbb4a18cde747aa68475",
+      "bytes": 520,
+      "archived_relative_path": "Mf4bb1f/stage3/REPRODUCTION.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/reader-questions.json",
+      "sha256": "9829751bfa646a3b6e5f98c286682810596c8d462a63605a136e0b307fc24c8a",
+      "bytes": 836,
+      "archived_relative_path": "Mf4bb1f/stage3/reader-questions.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/datapackage.json",
+      "sha256": "c4c1d6e2a250fc69f458b08440ee8b9839ec9f439c619bc7afc8fee9bae64120",
+      "bytes": 7457,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/source-labels.json",
+      "sha256": "339e1d74ee476a481448619b45c0b8c0bd7c6ad21bd9ffa51bd16ca3560ee281",
+      "bytes": 5167,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/.datahubignore",
+      "sha256": "8bed597fb175517b602beb28a3889cc625f45b8f8c6b4f6ca095525961b3a1e3",
+      "bytes": 137,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/README.md",
+      "sha256": "b780a0bdb60c3326d6f1c5b68d1749767cbb71c6b9bda11fd9c5fdfdaf5395b8",
+      "bytes": 6918,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/package-lock.json",
+      "sha256": "15950cdb66e1905ff3c25ac0ecd2bcf3ade422049c47bd8bdf17c8882de5078d",
+      "bytes": 18842,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/package.json",
+      "sha256": "a56cfd0a1e6cc6c814ba85aa5cb36822515fe710d12d8c743f252f93a17db504",
+      "bytes": 219,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/build.test.mjs",
+      "sha256": "411c590c336275939c9793a6d9cc09091c8cf114bd8c537b5eedc2b5f50e2e25",
+      "bytes": 1709,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/fetch.ts",
+      "sha256": "6920599443a818f7d6d03204c43f7f1badc48094bff8a24d3152efd942758259",
+      "bytes": 4445,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/build.ts",
+      "sha256": "4296b8ab1d975182ac19caaecfa6de6fdb29d70755d05aee78903fa892a3c2d8",
+      "bytes": 14555,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/archive/eurostat-reuse.html",
+      "sha256": "4cc370e90b5a080aa183a8d28ede05e6e54907f82aa3ee0c9d3d7657dea5259c",
+      "bytes": 178945,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/archive/insee-accounting-explainer.html",
+      "sha256": "ca59e2335f22dd0a16f615065632ff46478d6c6bbff88bbd139c8a203020cec1",
+      "bytes": 170759,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/archive/insee-reuse.html",
+      "sha256": "b24d448882fade5083b5a7a381793d8c91bb16e41579e03224386393ffbadeac",
+      "bytes": 55588,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/archive/insee-quarterly-debt.html",
+      "sha256": "cc7c3dfe575d76ac541d9b78bd54a58732c4cf74c84851f144b210634f7757df",
+      "bytes": 185827,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/archive/insee-spending-functions.html",
+      "sha256": "12a532188b6e42fad7aaff15909178a31c9d1d1dcd5b02d960c80faa4f245411",
+      "bytes": 160162,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/archive/fiscal.json",
+      "sha256": "482f823a1aa6418d2e0ca5407dd14d2870dd7a229c494feeb1c332e0ba9c7205",
+      "bytes": 67323,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/archive/manifest.json",
+      "sha256": "06c1f4668206a0edc2ce5428510ff4fc4043476b114bd1b10f981a9783e6489f",
+      "bytes": 3506,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/archive/insee-annual-accounts.html",
+      "sha256": "362b206541eba1e0aa01dc6e538b09c98c4732af5609079b4c0c38921fec000b",
+      "bytes": 143460,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/archive/functions.json",
+      "sha256": "24e04200aef4468eca52d1d17121896d94a370bb2058b43a2f1591133196dd78",
+      "bytes": 70372,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/scripts/validate-datapackage.mjs",
+      "sha256": "568629ed759cb7e1f4fbb6404586686583432ab76211bbc52cc68e7e348e9469",
+      "bytes": 7307,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/data/spending-functions.csv",
+      "sha256": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494",
+      "bytes": 467599,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/data/quarterly-debt.csv",
+      "sha256": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307",
+      "bytes": 5237,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/datasets/france-public-finances/data/fiscal-accounts.csv",
+      "sha256": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733",
+      "bytes": 854923,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/site/stories/package-lock.json",
+      "sha256": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+      "bytes": 120441,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/site/stories/package.json",
+      "sha256": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+      "bytes": 596,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/site/stories/france-debt-make-charts.mjs",
+      "sha256": "8e421e94d1653e37fc4ae8c2729ba913a8404b6e39079ef8bd67dc4f1e37332d",
+      "bytes": 13944,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
     }
   ],
   "dependencies": [
@@ -1731,11 +2075,16 @@
     {
       "original_relative_path": "M1d3194/stage3/site/stories/node_modules",
       "disposition": "omitted-dependency-symlink-not-followed"
+    },
+    {
+      "original_relative_path": "Mf4bb1f/stage3/site/stories/node_modules",
+      "disposition": "omitted-dependency-symlink-not-followed"
     }
   ],
   "discrepancies": [],
-  "archived_files": 108,
-  "archived_bytes": 4124670,
-  "all_original_regular_files": 243,
-  "policy": "Stage1/stage2 regular files and stage3 top-level regular files only. No packet edits; no node_modules traversal; original pinned sources/raw workspace remain provenance."
+  "archived_files": 132,
+  "archived_bytes": 5038333,
+  "all_original_regular_files": 292,
+  "policy": "Stage1/stage2 regular files and stage3 top-level regular files only. No packet edits; no node_modules traversal; original pinned sources/raw workspace remain provenance.",
+  "updated_at": "2026-10-17T23:05:47.961414+00:00"
 }

@@ -1,0 +1,29 @@
+{
+  "generated_chart_outputs": [
+    {
+      "file": "site/stories/france-debt-chart-balance.svg",
+      "sha256": "38b2962d0657df701c09dcdaf2be492d28cfed7b79a3707d6e13ee3231a60bf8"
+    },
+    {
+      "file": "site/stories/france-debt-chart-debt.svg",
+      "sha256": "289219b7398db18c78ab32f6d1b8e30cef7da3a4b6fd2d5f3237655f983a47bf"
+    },
+    {
+      "file": "site/stories/france-debt-chart-gap.svg",
+      "sha256": "607c5de406899612d6f01498fb761d71a5c698b19e55a3d874cf3d08d7a9fc4b"
+    },
+    {
+      "file": "site/stories/france-debt-chart-interest.svg",
+      "sha256": "6eed15eef4078bdb748b535849c802b347a896a2101590e20a01e4abed92918d"
+    }
+  ],
+  "build_code": [
+    "site/stories/france-debt-make-charts.mjs"
+  ],
+  "working_directory": "this stage3 directory",
+  "dependency_access": "Existing offline node_modules cache from original staged workspace; no install or network required.",
+  "original_build_code_transforms": "none",
+  "review_material_omissions": [
+    "Writer editorial-review and outline-review files withheld to preserve independent review."
+  ]
+}
