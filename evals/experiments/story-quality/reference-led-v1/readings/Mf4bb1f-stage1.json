@@ -1,0 +1,85 @@
+{
+  "packet_code": "Mf4bb1f",
+  "stage": 1,
+  "status": "frozen",
+  "access_log": [
+    {
+      "order": 1,
+      "operation": "rg --files",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mf4bb1f/stage1",
+      "purpose": "List stage1 files only"
+    },
+    {
+      "order": 2,
+      "operation": "cat",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mf4bb1f/stage1/READ-ME.md"
+    },
+    {
+      "order": 3,
+      "operation": "cat (same command, second file)",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mf4bb1f/stage1/commission.md"
+    },
+    {
+      "order": 4,
+      "operation": "tools.view_image",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mf4bb1f/stage1/chart-1.png",
+      "detail": "default high, displayed successfully"
+    },
+    {
+      "order": 5,
+      "operation": "tools.view_image",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mf4bb1f/stage1/chart-2.png",
+      "detail": "default high, displayed successfully"
+    },
+    {
+      "order": 6,
+      "operation": "tools.view_image",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mf4bb1f/stage1/chart-3.png",
+      "detail": "default high, displayed successfully"
+    },
+    {
+      "order": 7,
+      "operation": "tools.view_image",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mf4bb1f/stage1/chart-4.png",
+      "detail": "default high, displayed successfully"
+    }
+  ],
+  "commission": "Why is there a French debt crisis? Fixed supplied data; commissioned prose length 300–700 words.",
+  "charts": [
+    {
+      "chart": 1,
+      "what_happened": "French gross public debt rose from 60.5% of GDP in 2000 Q1 to 119.0% (€3.6 trillion) in 2026 Q2. There were abrupt increases in 2009 and 2020, continued accumulation during 2010–19, a decline to 109.5% in 2023 Q4, and renewed growth afterwards.",
+      "why": "The annotations make two abrupt episodes and a persistent upward drift look central to the debt buildup. Their dates suggest economic crises, but the chart itself does not identify causes or separate borrowing from changes in GDP.",
+      "uncertainty": "No source, definition beyond gross public debt, or actual-versus-forecast status is visible. The debt trajectory alone does not establish why this constitutes a crisis now. All text is readable."
+    },
+    {
+      "chart": 2,
+      "what_happened": "France runs a deficit throughout the displayed 1995–2025 period. It reached −8.9% of GDP in 2020 and remains −5.1% in 2025 after −5.8% in 2024. Germany achieved surpluses before 2020. France's latest deficit is substantially larger than the named peer endpoints.",
+      "why": "Repeated deficits provide an intuitive explanation for continued borrowing and debt accumulation. France did not restore a balanced budget in the periods between downturns; its weakness looks persistent and relatively pronounced recently.",
+      "uncertainty": "Peer trajectories are hard to assign: several gray solid/dashed lines lack a clear legend, while endpoint labels name Spain, Germany, EU27 and Italy. Spain's endpoint appears as a dot without an obvious corresponding trajectory. Labels allow latest-value comparison more confidently than historical comparison. No source or forecast status is visible. The chart does not explain whether deficits reflect revenue, spending or interest costs."
+    },
+    {
+      "chart": 3,
+      "what_happened": "In 2025 France collected revenue equal to 52.1% of GDP versus 46.4% for the EU27 average, a 5.7-point gap. Spending was 57.2% versus 49.5%, a larger 7.7-point gap. The biggest spending differences are cash social benefits (+2.9 points) and public-sector pay (+2.1). Interest adds only 0.3 point.",
+      "why": "The chart suggests France's larger deficit arises because its spending exceeds the EU average by more than its already elevated revenue does. Social benefits and public-sector pay account for much of the spending gap. This makes a purely low-revenue or unusually high-interest explanation less persuasive for the relative deficit.",
+      "uncertainty": "A cross-country spending comparison does not establish that spending is wasteful, which policies caused the gap, or what should be cut. EU27 average weighting, source, and actual-versus-forecast status are unspecified. 'Everything else' is sizable but unexplained. All labels are readable, and the axis supplies the otherwise absent title's comparison and year."
+    },
+    {
+      "chart": 4,
+      "what_happened": "France's interest burden declined from 3.6% of GDP (€45.5bn) in 1996 to 1.3% (€29.7bn) in 2020, then rose to 2.2% (€66.6bn) in 2025. It is slightly above the EU27's 1.9% and well below Italy's 3.9%.",
+      "why": "The recent increase in interest payments adds budget pressure, but the long decline occurred while debt grew. This suggests interest expense was not the main driver of the whole debt buildup. Changes in borrowing rates could explain the divergence, but rates are not plotted.",
+      "uncertainty": "The chart cannot distinguish effects of interest rates, debt size, refinancing timing and GDP. Nominal payments now exceed 1996 while the GDP share remains lower; the different units need care. No source or forecast status appears. All content is readable."
+    }
+  ],
+  "overall": {
+    "what_happened": "France accumulated a much larger public debt stock through persistent deficits and sharp jumps in 2009 and 2020. Deficits remained relatively large, the post-2020 debt-ratio improvement reversed, and interest costs have risen recently.",
+    "why": "The sequence points to a persistent mismatch between spending and revenue, with France's unusually high spending more than offsetting its high revenue relative to the EU average. Cash social benefits and government payroll dominate the relative spending gap. Interest adds recent pressure but looks too small to explain the longstanding accumulation on its own.",
+    "uncertainty": "The charts establish fiscal deterioration more directly than a crisis. They do not show market stress, financing access, political constraints or a sustainability threshold. Abrupt jumps coincide with recognizable crisis dates, but the supplied graphics do not establish those causal mechanisms. Data sources, status of recent values, and EU-average construction are missing."
+  },
+  "operational_limitations": [
+    "All four PNGs were viewed successfully, once each, in numeric order; no unreadable image content.",
+    "Chart 2 gray peer-series identification is visually ambiguous.",
+    "No prose, checklist, scoring, external information, parent or sibling paths, source repositories, history, mappings or other reviews were accessed.",
+    "Stage1 notes were recorded sequentially before viewing each next chart; this JSON is frozen before any stage2 release."
+  ]
+}
