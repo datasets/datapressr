@@ -1,0 +1,562 @@
+{
+  "packet_code": "Mb8941a",
+  "stage": 3,
+  "status": "frozen",
+  "reader_questions": [
+    {
+      "question": "What does debt crisis mean here?",
+      "answer": "The story establishes persistently rising indebtedness and newer interest pressure, but explicitly lacks market and political evidence. It does not establish a crisis threshold or define crisis precisely.",
+      "partly_unanswered": true
+    },
+    {
+      "question": "How has debt changed?",
+      "answer": "Debt/GDP rose from 60.5% in early 2000 to 119.0% in Q2 2026, with financial-crisis and Covid jumps and a 2020–2023 decline before renewed growth.",
+      "partly_unanswered": false
+    },
+    {
+      "question": "What contributed?",
+      "answer": "Persistent spending above revenue, crisis-era widening deficits and borrowing; current excess spending versus the EU is concentrated in cash benefits and payroll. The article attributes recent spending growth to pensions and interest but does not identify historical policy contributions.",
+      "partly_unanswered": true
+    },
+    {
+      "question": "Why concern now?",
+      "answer": "Interest spending reportedly rose 13.2% in 2024 and 14.3% in 2025, with a larger debt stock meeting higher rates. Why this became a political or market crisis at this moment remains unanswered.",
+      "partly_unanswered": true
+    },
+    {
+      "question": "How does it compare?",
+      "answer": "2025 France has higher revenue, spending and deficit than the selected peers/EU average; historical spending/GDP is only slightly higher than 1995, while debt/GDP roughly doubled since 2000. Peer debt levels and borrowing stress are not compared.",
+      "partly_unanswered": true
+    },
+    {
+      "question": "Observable versus uncertain consequences?",
+      "answer": "High debt and increasing interest spending are shown or reported. The article does not document service cuts, tax consequences, market stress or political effects; future sustainability remains uncertain.",
+      "partly_unanswered": true
+    },
+    {
+      "question": "What can evidence establish?",
+      "answer": "It establishes accounting trends and current comparative spending composition. It cannot identify individual policy causes, pension-specific cross-country gaps, market stress, political crisis, or which solution would work.",
+      "partly_unanswered": false
+    }
+  ],
+  "reader_question_timing": "Answers written before reading outline/data/code. Diagnostic anchors were inadvertently read in the same initial call as questions; spontaneous stage1/2 notes were already frozen and unchanged.",
+  "corrections_after_verification": [
+    "The story’s interest-growth claim is scoped incorrectly. Archived INSEE Figure 4 and surrounding prose report central-government interest growth of 14.3% in 2025 after 13.2% in 2024. General-government interest, excluding the Sifim correction, rose 11.2% after 13.9%. The story defines its government scope broadly, then uses the narrower rates without identifying the subset. My stage2 acceptance of these as general interest-growth figures needs this correction.",
+    "Germany’s 2.7% deficit comes directly from B9; the 2.6-point difference of displayed rounded revenue and expenditure does not demonstrate an error.",
+    "The nominal-denominator explanation is independently consistent: debt grows from 2663.9 to 3103.2 billion euros between end-2020 and end-2023 while implied annualised GDP grows from about 2318.5 to 2834.0 billion."
+  ],
+  "gates": {
+    "G1": {
+      "status": "fail",
+      "scope": "Central quantitative and attributed claims in delivered story, source scope and reuse basis",
+      "evidence": "Fiscal/debt vintages, S13 scope, units, sources and reuse basis are documented in manifest, README and archived reuse notices. But story interest paragraph uses central-government growth rates without identifying that narrower population; general-government source rates differ.",
+      "check_or_repair_needed": "Correct interest population/rates and state the interest accounting convention. Public-source authenticity beyond pinned packet remains unverified offline."
+    },
+    "G2": {
+      "status": "fail",
+      "scope": "Central chart arithmetic, stock/flow and nominal/share distinctions, and prose explanation",
+      "evidence": "Independent CSV calculations confirm all 31 deficits, endpoints, peer numbers, 7.7-point gap and component sum; 5.0/7.7 is about 65%. Debt/GDP denominator explanation holds. The 14.3/13.2 interest claim is a subset/whole mismatch. “Low revenue is not the explanation” exceeds what higher comparative revenue alone establishes.",
+      "check_or_repair_needed": "Repair the interest scope and qualify the revenue conclusion as a comparative accounting finding. Clarify “did not fall back” as failure to return to pre-shock levels, rather than absence of declines."
+    },
+    "G3": {
+      "status": "pass",
+      "scope": "Supplied dataset and four SVGs rebuilt offline in scratch, with pinned dependencies",
+      "evidence": "Node v26.4.0; build.ts passed archive hash/size and analytical assertions. Three CSVs and datapackage remained byte-identical. Validator returned zero errors/warnings. Corrupted-label test passed. Chart builder passed its assertions; all four SVG SHA-256 values exactly match supplied expected hashes. Packet hashes unchanged.",
+      "check_or_repair_needed": "Pass is limited to offline dataset/SVG reproduction. No live-source authenticity, full article/site build, or PNG renderer reproduction is established."
+    },
+    "G4": {
+      "status": "fail",
+      "scope": "Four delivered PNGs inspected in stages1/2 and corresponding rebuilt SVG definitions",
+      "evidence": "Main chart marks, values, units and trends correspond to checked data; no misleading bar baseline found. Charts 3 and 4 have actual axis-caption/source-note overlap. Chart 4’s economic-type/residual definition is obscured. Reproduction preserves the SVGs that produced these layout choices.",
+      "check_or_repair_needed": "Separate footer and axis text and inspect delivered renders again at reading size. PNG rendering implementation was not supplied or rerun; full site/mobile render remains unverified."
+    }
+  },
+  "manual_dimensions": {
+    "interest": {
+      "rating": 2,
+      "anchor": "Specific consequential puzzle or revealing comparison",
+      "evidence": "High revenue alongside an even greater spending share, plus nearly unchanged spending/GDP endpoints despite much greater debt, gives a concrete revision to a simple spending-spree account.",
+      "limits": "Does not establish a market/political crisis now; this rating does not approve factual errors."
+    },
+    "findings_depth": {
+      "rating": 2,
+      "anchor": "Computes relevant contrast and unpacks category carrying argument",
+      "evidence": "Charts 3–4 quantify the spending premium and identify cash benefits plus pay as 5.0 of 7.7 points, while the historical charts establish persistence and shock timing.",
+      "limits": "Cash benefits remain broad; no demographic/policy decomposition and no pension-specific EU gap."
+    },
+    "argument_counterevidence": {
+      "rating": 1,
+      "anchor": "Clear answer but material alternative or boundary omitted",
+      "evidence": "Sequence connects annual gaps, debt and peer spending; final section includes debt-ratio decline and flat long-term spending share.",
+      "limits": "Revenue-versus-spending conclusion remains overly exclusive; readily available revenue growth/new tax measures explaining 2025 improvement are omitted. Plausible adjacent 2 for bounded accounting narrative, but scope mismatch and omitted alternative support 1."
+    },
+    "explanation": {
+      "rating": 1,
+      "anchor": "Defines pattern but attribution scope remains unclear",
+      "evidence": "Defines general government and revenue; explains borrowing and nominal GDP denominator; attributes pension/interest mechanisms.",
+      "limits": "Interest attribution conflates central with general government and conventions differ from chart D41PAY; debt-flow adjustments remain simplified."
+    },
+    "chart_design": {
+      "rating": 1,
+      "anchor": "Useful evidence but decoding or annotation requires effort",
+      "evidence": "Main lines, dumbbells and component bars are legible, with direct labels and recoverable comparison years.",
+      "limits": "Footer overlap in charts 3/4 prevents clean reading of methodological annotations. Rating applies only to inspected static PNGs."
+    },
+    "writing": {
+      "rating": 1,
+      "anchor": "Understandable but key term or paragraph needs work",
+      "evidence": "Plain numerical prose with an intelligible sequence and candid final limits.",
+      "limits": "Title duplicated; crisis is undefined; taxes/revenue and general/central government need precision; “did not fall back” conflicts with later decline unless qualified."
+    },
+    "reader_coverage": {
+      "rating": 1,
+      "anchor": "Main question partly answered with important in-reach follow-ups open",
+      "evidence": "Answers scale, history and spending composition, identifies market/political limits.",
+      "limits": "Why now relies on incorrectly scoped interest rates; available explanation of recent deficit narrowing is omitted. Consequences and crisis definition remain largely open."
+    }
+  },
+  "calculations": {
+    "annual_deficits": {
+      "1995": -5.1,
+      "1996": -3.9,
+      "1997": -3.7,
+      "1998": -2.4,
+      "1999": -1.5,
+      "2000": -1.3,
+      "2001": -1.4,
+      "2002": -3.2,
+      "2003": -4.1,
+      "2004": -3.6,
+      "2005": -3.5,
+      "2006": -2.7,
+      "2007": -3.0,
+      "2008": -3.5,
+      "2009": -7.4,
+      "2010": -7.2,
+      "2011": -5.3,
+      "2012": -5.2,
+      "2013": -4.9,
+      "2014": -4.6,
+      "2015": -3.9,
+      "2016": -3.8,
+      "2017": -3.4,
+      "2018": -2.3,
+      "2019": -2.4,
+      "2020": -8.9,
+      "2021": -6.6,
+      "2022": -4.7,
+      "2023": -5.4,
+      "2024": -5.8,
+      "2025": -5.1
+    },
+    "peers": {
+      "FR": {
+        "TE": 57.2,
+        "TR": 52.1,
+        "B9": -5.1
+      },
+      "DE": {
+        "TE": 50.5,
+        "TR": 47.9,
+        "B9": -2.7
+      },
+      "IT": {
+        "TE": 51.2,
+        "TR": 48.1,
+        "B9": -3.1
+      },
+      "ES": {
+        "TE": 45.3,
+        "TR": 42.9,
+        "B9": -2.4
+      },
+      "EU27_2020": {
+        "TE": 49.5,
+        "TR": 46.4,
+        "B9": -3.1
+      }
+    },
+    "spending_items": {
+      "D62PAY": {
+        "FR": 19.4,
+        "EU": 16.5,
+        "difference": 2.9
+      },
+      "D1PAY": {
+        "FR": 12.4,
+        "EU": 10.3,
+        "difference": 2.1
+      },
+      "D632PAY": {
+        "FR": 6.4,
+        "EU": 5.4,
+        "difference": 1.0
+      },
+      "D3PAY": {
+        "FR": 1.9,
+        "EU": 1.4,
+        "difference": 0.5
+      },
+      "P51G": {
+        "FR": 4.4,
+        "EU": 3.9,
+        "difference": 0.5
+      },
+      "D41PAY": {
+        "FR": 2.2,
+        "EU": 1.9,
+        "difference": 0.3
+      },
+      "P2": {
+        "FR": 5.4,
+        "EU": 6.1,
+        "difference": -0.7
+      }
+    },
+    "residuals": {
+      "FR": 5.1,
+      "EU27_2020": 4.0
+    },
+    "debt_anchors": {
+      "2000-Q1": {
+        "period": "2000-Q1",
+        "period_end": "2000-03-31",
+        "gross_debt_eur_billions": "854.8",
+        "net_debt_eur_billions": "724",
+        "gross_debt_pct_gdp": "60.5",
+        "source_release_date": "2026-09-29"
+      },
+      "2007-Q4": {
+        "period": "2007-Q4",
+        "period_end": "2007-12-31",
+        "gross_debt_eur_billions": "1268.9",
+        "net_debt_eur_billions": "1144.4",
+        "gross_debt_pct_gdp": "65.5",
+        "source_release_date": "2026-09-29"
+      },
+      "2009-Q4": {
+        "period": "2009-Q4",
+        "period_end": "2009-12-31",
+        "gross_debt_eur_billions": "1627.2",
+        "net_debt_eur_billions": "1383.8",
+        "gross_debt_pct_gdp": "84.1",
+        "source_release_date": "2026-09-29"
+      },
+      "2019-Q4": {
+        "period": "2019-Q4",
+        "period_end": "2019-12-31",
+        "gross_debt_eur_billions": "2387.4",
+        "net_debt_eur_billions": "2164.4",
+        "gross_debt_pct_gdp": "98.2",
+        "source_release_date": "2026-09-29"
+      },
+      "2020-Q4": {
+        "period": "2020-Q4",
+        "period_end": "2020-12-31",
+        "gross_debt_eur_billions": "2663.9",
+        "net_debt_eur_billions": "2355.5",
+        "gross_debt_pct_gdp": "114.9",
+        "source_release_date": "2026-09-29"
+      },
+      "2023-Q4": {
+        "period": "2023-Q4",
+        "period_end": "2023-12-31",
+        "gross_debt_eur_billions": "3103.2",
+        "net_debt_eur_billions": "2873.8",
+        "gross_debt_pct_gdp": "109.5",
+        "source_release_date": "2026-09-29"
+      },
+      "2026-Q2": {
+        "period": "2026-Q2",
+        "period_end": "2026-06-30",
+        "gross_debt_eur_billions": "3595.5",
+        "net_debt_eur_billions": "3366.8",
+        "gross_debt_pct_gdp": "119",
+        "source_release_date": "2026-09-29"
+      }
+    },
+    "implied_gdp_bn": {
+      "2019-Q4": 2431.1608961303464,
+      "2020-Q4": 2318.4508268059185,
+      "2023-Q4": 2833.972602739726
+    },
+    "interest_shares": {
+      "1995": 3.5,
+      "2020": 1.3,
+      "2025": 2.2
+    },
+    "revenue_spending_1995": {
+      "TR": 50.9,
+      "TE": 56.1
+    }
+  },
+  "reproduction": {
+    "commands": [
+      {
+        "command": [
+          "node",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "v26.4.0\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "node",
+          "datasets/france-public-finances/build.ts"
+        ],
+        "exit_code": 0,
+        "stdout": "data/fiscal-accounts.csv: 7650 rows; 3124 empty observations\ndata/spending-functions.csv: 5760 rows; 960 empty observations\ndata/quarterly-debt.csv: 106 rows; 0 empty observations\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "node",
+          "datasets/france-public-finances/scripts/validate-datapackage.mjs",
+          "datasets/france-public-finances"
+        ],
+        "exit_code": 0,
+        "stdout": "✓ no errors\n\n0 error(s), 0 warning(s)\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "node",
+          "--test",
+          "datasets/france-public-finances/build.test.mjs"
+        ],
+        "exit_code": 0,
+        "stdout": "✔ rejects corrupted source category labels even when the archive manifest is refreshed (241.040583ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 275.21275\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "node",
+          "site/stories/french-debt-make-charts.mjs"
+        ],
+        "exit_code": 0,
+        "stdout": "wrote french-debt-gap.svg\nwrote french-debt-ratio.svg\nwrote french-debt-peers.svg\nwrote french-debt-extra-spending.svg\n",
+        "stderr": ""
+      }
+    ],
+    "chart_hashes": [
+      {
+        "file": "site/stories/french-debt-extra-spending.svg",
+        "sha256": "0c6ac944bb0f5502aac4648d3c75d8f7688cfbe6faf0c3c444ff7ba5027acd06",
+        "actual_sha256": "0c6ac944bb0f5502aac4648d3c75d8f7688cfbe6faf0c3c444ff7ba5027acd06",
+        "matches": true
+      },
+      {
+        "file": "site/stories/french-debt-gap.svg",
+        "sha256": "6fd3b49eb641504d1edc92e38bc0be0a4b1c04abc3ca649c896caa5b9ba8e744",
+        "actual_sha256": "6fd3b49eb641504d1edc92e38bc0be0a4b1c04abc3ca649c896caa5b9ba8e744",
+        "matches": true
+      },
+      {
+        "file": "site/stories/french-debt-peers.svg",
+        "sha256": "e899b79749f9ca816de4ad0dfc3eabef65d089f8b9a10686a999f5c5c7c106a7",
+        "actual_sha256": "e899b79749f9ca816de4ad0dfc3eabef65d089f8b9a10686a999f5c5c7c106a7",
+        "matches": true
+      },
+      {
+        "file": "site/stories/french-debt-ratio.svg",
+        "sha256": "f28b85bd0ed63b6fd0d5ff8ed213b084d143d9d2813a7ddf85b9f36d848112ef",
+        "actual_sha256": "f28b85bd0ed63b6fd0d5ff8ed213b084d143d9d2813a7ddf85b9f36d848112ef",
+        "matches": true
+      }
+    ],
+    "copied_dataset_files_unchanged_after_build": {
+      "datasets/france-public-finances/datapackage.json": true,
+      "datasets/france-public-finances/source-labels.json": true,
+      "datasets/france-public-finances/.datahubignore": true,
+      "datasets/france-public-finances/README.md": true,
+      "datasets/france-public-finances/package-lock.json": true,
+      "datasets/france-public-finances/package.json": true,
+      "datasets/france-public-finances/build.test.mjs": true,
+      "datasets/france-public-finances/fetch.ts": true,
+      "datasets/france-public-finances/build.ts": true,
+      "datasets/france-public-finances/archive/eurostat-reuse.html": true,
+      "datasets/france-public-finances/archive/insee-accounting-explainer.html": true,
+      "datasets/france-public-finances/archive/insee-reuse.html": true,
+      "datasets/france-public-finances/archive/insee-quarterly-debt.html": true,
+      "datasets/france-public-finances/archive/insee-spending-functions.html": true,
+      "datasets/france-public-finances/archive/fiscal.json": true,
+      "datasets/france-public-finances/archive/manifest.json": true,
+      "datasets/france-public-finances/archive/insee-annual-accounts.html": true,
+      "datasets/france-public-finances/archive/functions.json": true,
+      "datasets/france-public-finances/scripts/validate-datapackage.mjs": true,
+      "datasets/france-public-finances/data/spending-functions.csv": true,
+      "datasets/france-public-finances/data/quarterly-debt.csv": true,
+      "datasets/france-public-finances/data/fiscal-accounts.csv": true
+    },
+    "packet_input_hashes": {
+      "outline.md": "0fbe1478395714a377e41c68cbb45490965219897e92359f9661db0d42830678",
+      "chart-2.svg": "f28b85bd0ed63b6fd0d5ff8ed213b084d143d9d2813a7ddf85b9f36d848112ef",
+      "READ-ME.md": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+      "chart-3.svg": "e899b79749f9ca816de4ad0dfc3eabef65d089f8b9a10686a999f5c5c7c106a7",
+      "chart-1.svg": "6fd3b49eb641504d1edc92e38bc0be0a4b1c04abc3ca649c896caa5b9ba8e744",
+      "chart-4.svg": "0c6ac944bb0f5502aac4648d3c75d8f7688cfbe6faf0c3c444ff7ba5027acd06",
+      "reproduction-hashes.json": "4a50e3f04a64e4f853a232853a9a399f22f7ed66db9499c1229f1c1de0757dbf",
+      "diagnostic-anchors.md": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+      "commission.md": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "REPRODUCTION.md": "836c4013a5d69af17ad5006d2b83bc6609bf9bfd0c12bbb4a18cde747aa68475",
+      "reader-questions.json": "9829751bfa646a3b6e5f98c286682810596c8d462a63605a136e0b307fc24c8a",
+      "datasets/france-public-finances/datapackage.json": "c4c1d6e2a250fc69f458b08440ee8b9839ec9f439c619bc7afc8fee9bae64120",
+      "datasets/france-public-finances/source-labels.json": "339e1d74ee476a481448619b45c0b8c0bd7c6ad21bd9ffa51bd16ca3560ee281",
+      "datasets/france-public-finances/.datahubignore": "8bed597fb175517b602beb28a3889cc625f45b8f8c6b4f6ca095525961b3a1e3",
+      "datasets/france-public-finances/README.md": "b780a0bdb60c3326d6f1c5b68d1749767cbb71c6b9bda11fd9c5fdfdaf5395b8",
+      "datasets/france-public-finances/package-lock.json": "15950cdb66e1905ff3c25ac0ecd2bcf3ade422049c47bd8bdf17c8882de5078d",
+      "datasets/france-public-finances/package.json": "a56cfd0a1e6cc6c814ba85aa5cb36822515fe710d12d8c743f252f93a17db504",
+      "datasets/france-public-finances/build.test.mjs": "411c590c336275939c9793a6d9cc09091c8cf114bd8c537b5eedc2b5f50e2e25",
+      "datasets/france-public-finances/fetch.ts": "6920599443a818f7d6d03204c43f7f1badc48094bff8a24d3152efd942758259",
+      "datasets/france-public-finances/build.ts": "4296b8ab1d975182ac19caaecfa6de6fdb29d70755d05aee78903fa892a3c2d8",
+      "datasets/france-public-finances/archive/eurostat-reuse.html": "4cc370e90b5a080aa183a8d28ede05e6e54907f82aa3ee0c9d3d7657dea5259c",
+      "datasets/france-public-finances/archive/insee-accounting-explainer.html": "ca59e2335f22dd0a16f615065632ff46478d6c6bbff88bbd139c8a203020cec1",
+      "datasets/france-public-finances/archive/insee-reuse.html": "b24d448882fade5083b5a7a381793d8c91bb16e41579e03224386393ffbadeac",
+      "datasets/france-public-finances/archive/insee-quarterly-debt.html": "cc7c3dfe575d76ac541d9b78bd54a58732c4cf74c84851f144b210634f7757df",
+      "datasets/france-public-finances/archive/insee-spending-functions.html": "12a532188b6e42fad7aaff15909178a31c9d1d1dcd5b02d960c80faa4f245411",
+      "datasets/france-public-finances/archive/fiscal.json": "482f823a1aa6418d2e0ca5407dd14d2870dd7a229c494feeb1c332e0ba9c7205",
+      "datasets/france-public-finances/archive/manifest.json": "06c1f4668206a0edc2ce5428510ff4fc4043476b114bd1b10f981a9783e6489f",
+      "datasets/france-public-finances/archive/insee-annual-accounts.html": "362b206541eba1e0aa01dc6e538b09c98c4732af5609079b4c0c38921fec000b",
+      "datasets/france-public-finances/archive/functions.json": "24e04200aef4468eca52d1d17121896d94a370bb2058b43a2f1591133196dd78",
+      "datasets/france-public-finances/scripts/validate-datapackage.mjs": "568629ed759cb7e1f4fbb6404586686583432ab76211bbc52cc68e7e348e9469",
+      "datasets/france-public-finances/data/spending-functions.csv": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494",
+      "datasets/france-public-finances/data/quarterly-debt.csv": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307",
+      "datasets/france-public-finances/data/fiscal-accounts.csv": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733",
+      "site/stories/french-debt-make-charts.mjs": "d228ee80c81811f26f340c1ec1e44be2058f3fc20e1d982e08bd7053cbbb3d1a",
+      "site/stories/package-lock.json": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+      "site/stories/package.json": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa"
+    },
+    "packet_unchanged": true,
+    "accessed_packet_files_for_copy_and_hash": [
+      "outline.md",
+      "chart-2.svg",
+      "READ-ME.md",
+      "chart-3.svg",
+      "chart-1.svg",
+      "chart-4.svg",
+      "reproduction-hashes.json",
+      "diagnostic-anchors.md",
+      "commission.md",
+      "REPRODUCTION.md",
+      "reader-questions.json",
+      "datasets/france-public-finances/datapackage.json",
+      "datasets/france-public-finances/source-labels.json",
+      "datasets/france-public-finances/.datahubignore",
+      "datasets/france-public-finances/README.md",
+      "datasets/france-public-finances/package-lock.json",
+      "datasets/france-public-finances/package.json",
+      "datasets/france-public-finances/build.test.mjs",
+      "datasets/france-public-finances/fetch.ts",
+      "datasets/france-public-finances/build.ts",
+      "datasets/france-public-finances/archive/eurostat-reuse.html",
+      "datasets/france-public-finances/archive/insee-accounting-explainer.html",
+      "datasets/france-public-finances/archive/insee-reuse.html",
+      "datasets/france-public-finances/archive/insee-quarterly-debt.html",
+      "datasets/france-public-finances/archive/insee-spending-functions.html",
+      "datasets/france-public-finances/archive/fiscal.json",
+      "datasets/france-public-finances/archive/manifest.json",
+      "datasets/france-public-finances/archive/insee-annual-accounts.html",
+      "datasets/france-public-finances/archive/functions.json",
+      "datasets/france-public-finances/scripts/validate-datapackage.mjs",
+      "datasets/france-public-finances/data/spending-functions.csv",
+      "datasets/france-public-finances/data/quarterly-debt.csv",
+      "datasets/france-public-finances/data/fiscal-accounts.csv",
+      "site/stories/french-debt-make-charts.mjs",
+      "site/stories/package-lock.json",
+      "site/stories/package.json"
+    ]
+  },
+  "source_evidence": {
+    "insee-annual-accounts.html": [
+      "nières mesures visant à protéger ménages et entreprises des hausses des prix de l’énergie (boucliers tarifaires, etc.). La dépense d’intérêts (hors correction Sifim) reste soutenue, en augmentation de 6,5 Md€ (+11,2 %) après +7,1 Md€ (+13,9 %) en 2024, sous l’effet de la hausse de l’encours de dette et de la remontée des taux d’intérêt depuis 2022, malgré le reflux de l’inflation. Le déficit des administrations centrales s’établit à 130,3 milliards d’euros en 2025 Le besoin de financement des administrations publiques centrales, constituées de l’État et des ODAC, s’élève à 130,3 Md€ en 2025, en baisse de 22,2 Md€ par rapport à 2024. Le déficit de l’État, établi à 128,1 Md€, se réduit de 23,0 Md€ par rapport à 2024, tandis que le déficit des ODAC augmente légèrement de 0,8 Md€ pour s’établir à 2,2 Md€. Le",
+      " et gaz, ainsi que par la bascule des bonus écologiques automobiles sur le dispositif Certificats d’économie d’énergie. Enfin les dépenses d’intérêts sur la dette continuent d’augmenter fortement (+14,3 % en 2025 après +13,2 % en 2024) et sont essentiellement portées par la dépense de l’État (+6,7 Md€, après +5,4 Md€ en 2024). L’augmentation des dépenses d’intérêts sur les emprunts d’État à plus d’un an (OAT), résultant des hausses de l’encours et du taux d’intérêt moyen sur OAT, est légèrement atténuée par la baisse des taux d’intérêt sur les emprunts à moins d’un an. Les dépenses de transferts courants des APUC vers les autres sous-secteurs des administrations publiques (APU) sont de 63,0 Md€ en 2025, en baisse de 3,0 % par rapport à 2024. Les recettes des administrations centrales sont"
+    ],
+    "insee-spending-functions.html": [
+      " Ces dépenses sont majoritairement prises en charge par les administrations de sécurité sociale. Les dépenses liées aux pensions de retraites augmentent de 6,2 % et sont le principal facteur de hausse en 2024 (+23 Md€). Les prestations de retraite bénéficient de la revalorisation de 5,3 % pour le régime de base en janvier 2024 et de l’effet en année pleine de celles des pensions complémentaires de 4,9 % au 1 er novembre 2023. La fonction retraite comprend les prestations de retraite versées aux anciens agents de la fonction publique. En revanche, les cotisations sociales employeurs des agents de la fonction publique, permettant de financer ces prestations, apparaissent comme une dépense de rémunération de ces agents dans les différentes fonctions de la COFOG ( sources",
+      "icient de la revalorisation de 5,3 % pour le régime de base en janvier 2024 et de l’effet en année pleine de celles des pensions complémentaires de 4,9 % au 1 er novembre 2023. La fonction retraite comprend les prestations de retraite versées aux anciens agents de la fonction publique. En revanche, les cotisations sociales employeurs des agents de la fonction publique, permettant de financer ces prestations, apparaissent comme une dépense de rémunération de ces agents dans les différentes fonctions de la COFOG ( sources ). Par ailleurs, les dépenses en pension de réversion et de veuvage augmentent de 2 Md€. Les dépenses de compensation de perte de revenu liée à une inaptitude au travail pour cause de maladie, d’accident ou de handicap, ainsi que les dépenses de solida",
+      "Usage de l’argent public : les dépenses publiques par fonction en 2024 Une hausse des dépenses publiques portée par les retraites et la santé Maxime Diaz (Insee) En 2024, les dépenses publiques augmentent de 4,0 %, un peu plus vite que le PIB en valeur (+3,3 %). Elles représentent 57 % du PIB comme en 2023. Les dépenses en protection sociale (considérées hors santé dans cette publication) contribuent le plus à cette hausse (+2,2 points dont 1,4 point pour les retraites). Les dépenses en santé et en enseignement augmentent également (respectivement +0,7 point et +0,4 point de contribution à la hausse des dépenses totales), comme celles liées à la charge de la dette (+0,5 point). Les dépenses de soutien en affaires économiques atténuent la hausse (-0,7 point) du fait de ",
+      "(considérées hors santé dans cette publication) contribuent le plus à cette hausse (+2,2 points dont 1,4 point pour les retraites). Les dépenses en santé et en enseignement augmentent également (respectivement +0,7 point et +0,4 point de contribution à la hausse des dépenses totales), comme celles liées à la charge de la dette (+0,5 point). Les dépenses de soutien en affaires économiques atténuent la hausse (-0,7 point) du fait de la quasi-extinction des mesures prises en 2022 et 2023 qui visaient à restreindre les effets négatifs sur le pouvoir d’achat des prix de l’énergie. La défense contribue pour 0,2 point à la hausse. Depuis dix ans, le montant des dépenses de protection sociale a augmenté (+165 milliards d’euros), mais la part du PIB consacrée à la protection so",
+      "024 Les dépenses de protection sociale augmentent de 35 Md€ principalement du fait des mécanismes de revalorisation des retraites Les dépenses de santé augmentent de 11 Md€, portées par des volumes et des prix en hausse Des dépenses d’enseignement en hausse, portées par les mesures sur les rémunérations Les dépenses en affaires économiques diminuent fortement avec la fin du bouclier tarifaire sur l’électricité Les autres dépenses publiques augmentent de 19 Md€ en 2024 Encadré 1 – La part de la santé dans les dépenses publiques a augmenté de 1,3 point en 10 ans Encadré 2 – Les dépenses de défense en forte hausse depuis 2021 Les dépenses publiques augmentent de 4,0 % en 2024 En 2024, les dépenses publiques sont en hausse de 4,0 % (+64 Md€) en valeur et s’élèvent à 1 672 "
+    ],
+    "eurostat-reuse.html": [
+      "r additional rights if certain content depicts identifiable private individuals or includes third-party works. Reuse of statistical data, metadata, publications, and other dissemination tools published on this website for commercial or non-commercial purposes is authorised provided the source is acknowledged. The reuse policy of the European Commission is implemented by the Decision of 12 December 2011 . These general principles can be subject to conditions which may be specified in individual copyright notices. Therefore, users are advised to refer to the copyright information on the individual documents. Exceptions to these general principles are listed below. Exceptions The permission granted above does not extend to any material whose copyright is identified as belonging "
+    ]
+  },
+  "access_log": {
+    "stage3_directory_listed": "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3",
+    "packet_files_accessed": [
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/outline.md",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/chart-2.svg",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/READ-ME.md",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/chart-3.svg",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/chart-1.svg",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/chart-4.svg",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/reproduction-hashes.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/diagnostic-anchors.md",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/commission.md",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/REPRODUCTION.md",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/reader-questions.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/datapackage.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/source-labels.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/.datahubignore",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/README.md",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/package-lock.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/package.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/build.test.mjs",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/fetch.ts",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/build.ts",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/archive/eurostat-reuse.html",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/archive/insee-accounting-explainer.html",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/archive/insee-reuse.html",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/archive/insee-quarterly-debt.html",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/archive/insee-spending-functions.html",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/archive/fiscal.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/archive/manifest.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/archive/insee-annual-accounts.html",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/archive/functions.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/scripts/validate-datapackage.mjs",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/data/spending-functions.csv",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/data/quarterly-debt.csv",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/datasets/france-public-finances/data/fiscal-accounts.csv",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/site/stories/french-debt-make-charts.mjs",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/site/stories/package-lock.json",
+      "/tmp/datapressr-reference-led-v1-packets/Mb8941a/stage3/site/stories/package.json"
+    ],
+    "access_types": "All listed packet files copied and SHA-256 hashed; no node_modules tree exploration. Human-readable reads: initial questions/instructions/anchors/hashes; builder and build.ts and package.json files; test/validator/manifest/README/outline; four targeted source HTMLs parsed; CSVs independently calculated. Other files were read as build inputs or copy/hash bytes. fetch.ts was copied/hashed but never executed. Earlier chart renders remain available in conversation; no stage1/2 files reread or changed.",
+    "scratch_root": "/tmp/datapressr-reader-Mb8941a-scratch",
+    "scratch_artifacts": [
+      "/tmp/datapressr-reader-Mb8941a-scratch/source-excerpts.json",
+      "/tmp/datapressr-reader-Mb8941a-scratch/reproduction-results.json",
+      "/tmp/datapressr-reader-Mb8941a-scratch/reader-answers.json",
+      "/tmp/datapressr-reader-Mb8941a-scratch/calculations.json",
+      "/tmp/datapressr-reader-Mb8941a-scratch/targeted-source-evidence.json"
+    ],
+    "offline_dependency_root": "/Users/rgrp/.cache/datapressr-evals/node_modules/8984a9f462ae58e0/node_modules",
+    "dependency_access_limit": "Node imports accessed necessary transitive dependency files under the supplied cache; per-module filesystem reads were not instrumented. The supplied label-corruption test creates and removes a temporary france-label-* scratch directory; its randomized exact name was not printed.",
+    "ordered_operations": [
+      "Read reader questions, instructions and anchors",
+      "Wrote separate reader answers",
+      "Inspected executable scripts and outline",
+      "Copied packet to own scratch and linked permitted dependency cache",
+      "Ran offline dataset build, validator, label test and SVG builder",
+      "Compared hashes and packet immutability",
+      "Independently recomputed CSV values and inspected archived source passages",
+      "Wrote final diagnostic record"
+    ]
+  },
+  "exposure_disclosure": "Explicitly released outline.md contains author self-review rounds and APPROVED verdict despite omission notice. Encountered while reading the outline and reported to custodian. These verdicts were not used as verification or scoring evidence; no earlier record changed.",
+  "verification_limits": [
+    "No network, fetch, install, source refresh, repository or sibling exploration.",
+    "One large combined outline/script read and one source-excerpt output were truncated by tool output; executed scripts themselves were fully visible in prior reads, and decisive source passages were subsequently extracted separately.",
+    "Offline reproduction verifies internal consistency of supplied archive; it does not authenticate source websites or independently reproduce the entire article.",
+    "PNG rendering code and full site layout were not reproduced.",
+    "Exact dependency module access and temporary test directory name were not instrumented."
+  ],
+  "operational_issues": [
+    "Dataset node_modules link was absent; linked scratch dataset to supplied offline chart cache.",
+    "Embedded author self-review exposure disclosed above."
+  ],
+  "disposition": "repair-required for interest scope and delivered footer overlaps; retain editorial findings without an aggregate score."
+}
