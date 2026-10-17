@@ -1,0 +1,2737 @@
+{
+  "document_type": "reference-led-v1-exploratory-results",
+  "task": "datapressr-hcn.27",
+  "status": "synthesis-awaiting-independent-review",
+  "coding_freeze_commit": "137192c4f2fc76cc0951811fe3848601f7d9dcc6",
+  "mapping_sha256": "c5ea21a815e302cee90ea7b501f58bf15f2a5cbca22219e17c3a77f5ce687f60",
+  "source_identities": [
+    {
+      "path": "hypothesis-codes.json",
+      "sha256": "5f3ce2d62e091856dc961a35bf40d4c55a57ab62cb60385f9f208059b3efe512"
+    },
+    {
+      "path": "h-primary-selections.json",
+      "sha256": "3f1c37e4539106607f5f2c01e1174f277e674a1b31b45ff3093339aebb9ab969"
+    },
+    {
+      "path": "execution-plan.json",
+      "sha256": "996ea7620f2c0d6779e74006544e8d7d6a4067b1f76050976d8cb0879f0135b2"
+    },
+    {
+      "path": "execution-resolution.json",
+      "sha256": "d8c7ea8502278093cfbf390f1f4ed2b5af908bb4c8451527137d44b40bfccc0b"
+    },
+    {
+      "path": "reader-setup.json",
+      "sha256": "bbaa4c9ec36fada03183a4ce7cda5ecb9f3bb15727e3a5296d8ae1a3df72f181"
+    },
+    {
+      "path": "reading-index.json",
+      "sha256": "b82221625e117f7ecc635ade7cc1a22ec22f3120d00f83e41bc4566208b75179"
+    },
+    {
+      "path": "packet-exposure-audits.json",
+      "sha256": "b972e65581e4543185c3d68c9b952eafb552109fcfca7870adf05ca91463078f"
+    },
+    {
+      "path": "pair-execution-journal.json",
+      "sha256": "9d92b959d62f414e06811a70ef04fcca42ebdea1d7c9bc14ccab69df06492442"
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "ae2cbefa9a6359c8084c77e7ab3378f90f2d46bfbf8325c2058c7333a459ee30"
+    },
+    {
+      "path": "readings/M30755c-stage1.json",
+      "sha256": "e8881c3beb09e29ec8d431f0db14064eac9ce5eea99496721e97705c8a611632"
+    },
+    {
+      "path": "readings/M30755c-stage2.json",
+      "sha256": "35a76cb9da3c3c075d09ee842e84b6793ada5ef957e36a3063d511dad4e2073e"
+    },
+    {
+      "path": "readings/M30755c-stage3.json",
+      "sha256": "2a06b4e0f2b26f65918642443ffe919ae890219660788c51ce9b3fa696426bd2"
+    },
+    {
+      "path": "readings/Mb8941a-stage1.json",
+      "sha256": "0aa8aa85985a3d85a6915d576f523856a55f4ecc00284d2919229008b79b594a"
+    },
+    {
+      "path": "readings/Mb8941a-stage2.json",
+      "sha256": "f3de83a9c6e7a4bc685f30c62c6258b88c83e3929aa7edbd68f6e38109ea76ef"
+    },
+    {
+      "path": "readings/Mb8941a-stage3.json",
+      "sha256": "c984ffa68bb557aa92cd3b398bb4f79083a2bf5d45b0cf2624df268bc44e95de"
+    },
+    {
+      "path": "readings/M9b1fee-stage1.json",
+      "sha256": "dfe52f9afe5b7ada36478bb63ff15e7151d306ba5139ed1a501a02065d9782b1"
+    },
+    {
+      "path": "readings/M9b1fee-stage2.json",
+      "sha256": "8595c952bcce030edff4303f37ed9f6aef95cc437a4119957b685fd493479368"
+    },
+    {
+      "path": "readings/M9b1fee-stage3.json",
+      "sha256": "5b8b70d4009a08a881aedda96b87de5126f863aeedf700981e0b21427880dbcd"
+    },
+    {
+      "path": "readings/Mbe53b2-stage1.json",
+      "sha256": "8d0bde43c1f3b73d86b57a5cf7e1d84139db17393b9b976435ae232ecd8b4850"
+    },
+    {
+      "path": "readings/Mbe53b2-stage2.json",
+      "sha256": "e06fcc2fe564abe9192aaa860ada626b0e2ab717866690cbbe5df3977556c604"
+    },
+    {
+      "path": "readings/Mbe53b2-stage3.json",
+      "sha256": "eb5ce321c07b20ff4809dc5ef58dd59ab6d56596ccc6323a5b189001a1cf292a"
+    },
+    {
+      "path": "readings/M1d3194-stage1.json",
+      "sha256": "4e08d81b4dd92d4bd8eecca5935e812cee8ee855cd1564215703f5285d713f18"
+    },
+    {
+      "path": "readings/M1d3194-stage2.json",
+      "sha256": "2ff9e84448ab722936133b233102d0192b92bc3940ef8dc3b1c2f623b95cb60f"
+    },
+    {
+      "path": "readings/M1d3194-stage3.json",
+      "sha256": "8fbd730349d67757f5b2bdc17585be53fa596035925a33e865c778fbdb98e58b"
+    },
+    {
+      "path": "readings/Mf4bb1f-stage1.json",
+      "sha256": "9157fa80ceec381d6eec98cc01accb276d604b59e82ac89e230f44c9de9ceaf8"
+    },
+    {
+      "path": "readings/Mf4bb1f-stage2.json",
+      "sha256": "dad1581e5ac80d9bf8a4fa74f8f83e73aa057b80e574873d6c256d9c5843efdd"
+    },
+    {
+      "path": "readings/Mf4bb1f-stage3.json",
+      "sha256": "29ff2ae06d0f8663fd4ef83f0969b5612e791a65ae25cd7aa6fedb2b5982ef53"
+    },
+    {
+      "path": "readings/Mee832a-stage1.json",
+      "sha256": "95f7b67f178362d2cd9534fbd32b76351598c81160c321973a4ba1fee0d9558f"
+    },
+    {
+      "path": "readings/Mee832a-stage2.json",
+      "sha256": "0833747d762b8520331c7bf8d73c299301eab5e7dcaff461f196c3db5ab723ff"
+    },
+    {
+      "path": "readings/Mee832a-stage3.json",
+      "sha256": "9642f4158a211a41cbed03cb9bb8b2df2bcac238bc0da1848a16911e492729d0"
+    },
+    {
+      "path": "readings/M948761-stage1.json",
+      "sha256": "7787d1d5c8636dd7ce841a945c24c64880d0a9145ced68158ffc924316f16c1f"
+    },
+    {
+      "path": "readings/M948761-stage2.json",
+      "sha256": "a8adea6302712f52bda3af33fec687f8adc97e07f6a840935587e4c0d9845738"
+    },
+    {
+      "path": "readings/M948761-stage3.json",
+      "sha256": "3ecd155722348a54c10e8b50efaf65985cfb7e1b53c134faa113c779b0216974"
+    },
+    {
+      "path": "generation-progress.json",
+      "sha256": "644748e7f25bd38950bc0cf48e3ff0252b4a6988e29d020da293479f681c2aeb"
+    },
+    {
+      "path": "canary-claude.json",
+      "sha256": "b775cb8c42ec76ad86e58117c058e847708c16b7caf921938324add0afe6772d"
+    },
+    {
+      "path": "canary-codex.json",
+      "sha256": "a2ce791309fc8da9f8abd65c2ecf7d71def75a3ed637e8187a5c09f2b92edbf4"
+    },
+    {
+      "path": "design-review-opus.json",
+      "sha256": "de43b7b99ff1385c02f7ef0546619285b4635b5cc394c939b2340d9d16cf4cd1"
+    },
+    {
+      "path": "coder-input-audit.json",
+      "sha256": "65330bfd5592105d192ccaef855abbceaf28149a5a677a0f867b344aa49adb1d"
+    }
+  ],
+  "denominators": {
+    "scheduled_outputs": 8,
+    "completed_outputs": 8,
+    "scheduled_pairs": 4,
+    "complete_order_swapped_pairs": 4,
+    "topics": 2,
+    "manual_reader_sessions": 8,
+    "frozen_reading_records": 24,
+    "charts_nested_in_outputs": 24,
+    "relationships_nested_in_outputs": 51,
+    "owner_pair_responses": 0,
+    "owner_pair_responses_missing": 4,
+    "failed_writer_slots": 0,
+    "runtime_pair_failures": 0
+  },
+  "headline": {
+    "strict_runtime_outcomes": {
+      "baseline-win": 2,
+      "candidate-win": 2,
+      "tie": 0,
+      "order-disagreement": 0,
+      "incomplete": 0
+    },
+    "primary_hypothesis_directions": {
+      "H1": {
+        "tie": 4
+      },
+      "H2": {
+        "tie": 4
+      },
+      "H3": {
+        "tie": 4
+      }
+    },
+    "all_gates_pass_outputs": 0,
+    "conclusion": "No observed advantage on frozen primary hypothesis codes; runtime preference split 2\u20132. This exploratory comparison does not demonstrate general efficacy or a calibrated judge."
+  },
+  "outputs": [
+    {
+      "slot_id": "q01-french-debt-r1-baseline",
+      "output_code": "M30755c",
+      "topic": "q01-french-debt",
+      "arm": "baseline",
+      "replicate": 1,
+      "run_id": "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+      "H1": {
+        "code": "supported-payoff",
+        "reader_payoff": "Understand debt accumulation as persistent fiscal shortfalls and distinguish its accounting pattern from a new spending surge or interest alone; comparisons contextualize the fiscal part of the crisis question.",
+        "frozen_evidence": {
+          "locator": "readings/M30755c-stage2.json#/spontaneous",
+          "record": {
+            "overall_understanding": "The story explains the accumulation of French public debt as a persistent annual financing gap, punctuated by much larger gaps around major shocks. There was a post-pandemic decline in the debt ratio because nominal GDP outgrew debt, but the decline did not reverse the whole jump and has now reversed. The present gap remains substantial before paying interest, while rising interest adds a further burden. France already collects more relative to GDP than the displayed neighbours, and its unusually high spending exceeds that income. Spending composition has shifted toward pensions and health without a comparable long-term rise in its total GDP share. This is an account of persistent fiscal pressure rather than evidence for an immediate market or political crisis.",
+            "what_prose_adds_or_changes": [
+              "It explicitly distinguishes accumulated debt, annual deficits, and the GDP denominator, helping connect why the ratio can fall despite annual deficits.",
+              "It identifies the coverage of Maastricht debt as central government, local authorities and social security funds, valued at face value.",
+              "It adds the claim that France had the highest spending and revenue of the four countries in every year, not merely in the displayed 2025 snapshot.",
+              "It adds that Italy and the EU also ran deficits every year, which makes continuous deficits less specifically French than chart 2 alone might suggest.",
+              "It attributes rising interest to both a larger debt stock and rates rising since 2022, citing INSEE; that causal account is new to the prose.",
+              "It explicitly says revenue rose too and the gap remained open rather than continuously widening. The spending composition chart alone did not tell me this.",
+              "It expressly limits the answer to the commission: the packet cannot explain why crisis is the term used now without yields, ratings or parliamentary events. This matches my earlier unresolved distinction.",
+              "The production note supplies provenance, dates and conventions, including EUR67bn under the plotted Eurostat measure versus EUR64.7bn under an INSEE convention. I have not followed or verified those sources."
+            ],
+            "relationships_between_findings": [
+              "The annual deficits provide a flow counterpart to the rising debt stock; nominal GDP growth can nevertheless make their ratio fall.",
+              "Large deficit years coincide with the conspicuous upward debt steps, while primary deficits persist outside those shock years.",
+              "The comparison with Italy separates the burden of servicing past borrowing from the gap in the current budget before interest: Italy has a primary surplus in the snapshot despite a total deficit, whereas France does not.",
+              "High revenue and still higher spending coexist. The relative ranking does not by itself demonstrate whether revenue is adequate for the spending commitments.",
+              "Higher pension and health shares are partly offset by smaller shares elsewhere, so the categories that grew cannot simply be identified as the cause of the overall deficit.",
+              "The interest bill is rising recently but is smaller as a GDP share than in the late 1990s, so the current debt problem cannot be reduced to unprecedented interest costs."
+            ],
+            "support_and_uncertainty": [
+              "Most numerical claims directly match the charts. The multiple-year international rankings, yearly Italian/EU deficits and revenue trajectory are additional claims requiring the unreleased underlying data.",
+              "The heading Not a shortage of revenue feels more decisive than the comparison establishes. The evidence supports high revenue relative to this group, not that all feasible revenue increases are exhausted or that revenue is sufficient.",
+              "The shocks made the steps is a causal sentence; the charts establish matching dates and magnitudes but do not decompose mechanisms or isolate the effects of the shocks.",
+              "The sentence that each deficit adds to debt is a useful simplified explanation; no reconciliation of deficits to the measured gross debt stock is shown.",
+              "The claim about the cash-value economy growing faster follows from the ratio decline if debt growth is compared with GDP growth, but the underlying nominal series are absent here.",
+              "The provenance notes improve traceability but are assertions within this stage, not verified evidence. I did not open any links or the linked outline.",
+              "The prose explicitly prevents reading the pension/health changes as a causal allocation of the deficit, and makes clear that foreign debt figures are absent."
+            ],
+            "unanswered_questions": [
+              "What triggered crisis language now, and is there evidence of financing stress?",
+              "How much of the debt-ratio change reflects nominal GDP, net borrowing, or other balance-sheet changes?",
+              "What policies, economic conditions or revenue choices account for persistent primary deficits?",
+              "What explains the post-2023 reversal and the rise in interest in more quantitative detail?",
+              "What supports the all-years country rankings and the description of revenue growth?",
+              "How should the Eurostat and INSEE interest conventions be reconciled?",
+              "Which policy responses are practical, and what consequences would they have? The packet does not establish this."
+            ],
+            "reading_note": "The story title is duplicated. This does not change my substantive understanding."
+          }
+        },
+        "contrary_evidence": "Revenue-adequacy/tax exclusion is unsupported; no acute market/political crisis is established. Persistent deficits do not supply a complete debt-ratio decomposition.",
+        "code_locator": "hypothesis-codes.json#/outputs/1/H1"
+      },
+      "H2": {
+        "primary_code": "comparison-recoverable",
+        "primary_chart_id": "M30755c/chart-1.png",
+        "charts": [
+          {
+            "id": "M30755c/chart-1.png",
+            "primary": true,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M30755c-stage1.json#/charts/0",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "M30755c/chart-2.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M30755c-stage1.json#/charts/1",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "M30755c/chart-3.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M30755c-stage1.json#/charts/2",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "M30755c/chart-4.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M30755c-stage1.json#/charts/3",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          }
+        ]
+      },
+      "H3": {
+        "primary_code": "supported-link-understood",
+        "primary_relationship_id": "M30755c-primary-relationship",
+        "relationships": [
+          {
+            "id": "M30755c-primary-relationship",
+            "primary": true,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly recovers the selected relationship at its bounded descriptive/accounting level; numerical verification supports the contrasted findings. No causal identification beyond that scope credited.",
+            "verification_locators": [
+              "readings/M30755c-stage3.json#/calculation_checks",
+              "readings/M30755c-stage3.json#/gates"
+            ],
+            "uncertainty": "The first statement of the connection is L9 (\"Each deficit adds to the debt\"); the second empirical finding appears at L15. L7 combines historical levels, steps and nonreversal within the debt trajectory; these could be treated as distinct temporal findings, in which case L7 is an earlier implied relationship. Preserve this boundary ambiguity."
+          },
+          {
+            "id": "M30755c-R2",
+            "primary": false,
+            "code": "unsupported-link",
+            "reason": "Reader questions causal wording; numerical concurrence verified, causal decomposition absent.",
+            "verification_locators": [
+              "readings/M30755c-stage3.json#/calculation_checks",
+              "readings/M30755c-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M30755c-R3",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader explains denominator; source check reports nominal debt increase and declining ratio.",
+            "verification_locators": [
+              "readings/M30755c-stage3.json#/calculation_checks",
+              "readings/M30755c-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M30755c-R4",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader separates 2.9 primary deficit from 5.1 total and understands historical qualification; named INSEE attribution checked.",
+            "verification_locators": [
+              "readings/M30755c-stage3.json#/calculation_checks",
+              "readings/M30755c-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M30755c-R5",
+            "primary": false,
+            "code": "unsupported-link",
+            "reason": "Reader flags categorical heading; ranking does not prove sufficiency.",
+            "verification_locators": [
+              "readings/M30755c-stage3.json#/calculation_checks",
+              "readings/M30755c-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M30755c-R6",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader explicitly separates debt service from current primary gap; -3.1+3.9=0.8 versus -5.1+2.2=-2.9.",
+            "verification_locators": [
+              "readings/M30755c-stage3.json#/calculation_checks",
+              "readings/M30755c-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M30755c-R7",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader recognizes offsets and revenue boundary; function endpoints checked.",
+            "verification_locators": [
+              "readings/M30755c-stage3.json#/calculation_checks",
+              "readings/M30755c-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          }
+        ]
+      },
+      "gates": {
+        "G1": {
+          "source_locator": "readings/M30755c-stage3.json#/gates/0",
+          "record_verbatim": {
+            "gate": "G1",
+            "status": "pass",
+            "scope": "Pinned statistical central claims, population, units, dates, peer boundaries and the two explicit INSEE attributions; reuse basis for these sources.",
+            "evidence": [
+              "archive/manifest.json: all eight source sizes/hashes checked by build.ts; Python independently confirmed all eight hashes.",
+              "build.ts verifies S13 general government, annual Eurostat frequency, country/unit dimensions and 106 quarterly observations.",
+              "archive/insee-quarterly-debt.html, Pour en savoir plus: annual GDP at Q4, trailing four quarters adjusted GDP during the year.",
+              "archive/insee-annual-accounts.html: rate increases since 2022 and larger debt explicitly identified as interest-cost drivers.",
+              "archive/insee-spending-functions.html: headline and lead explicitly attribute 2024 expenditure rise to pensions and health.",
+              "archive/insee-reuse.html and eurostat-reuse.html document commercial/noncommercial reuse with attribution; story provides sources and vintage."
+            ],
+            "limitations": "This is a pinned-source verification, not a fresh-source authenticity audit. Full D41GPAY cross-check is not archived; README identifies that boundary. General shock causation and revenue sufficiency are assessed separately under G2."
+          }
+        },
+        "G2": {
+          "source_locator": "readings/M30755c-stage3.json#/gates/1",
+          "record_verbatim": {
+            "gate": "G2",
+            "status": "fail",
+            "scope": "Numerical claims pass the stated recomputations; explanatory wording needs narrowing.",
+            "evidence": [
+              "story.md, A deficit every year: The shocks made the steps asserts a causal relationship where the supplied charts establish concurrent deficit/debt movements; outline explicitly says the local data does not explain why 2009 and 2020 happened. No causal decomposition or explicit source attribution accompanies this sentence.",
+              "story.md, Not a shortage of revenue: higher revenue than three peers establishes relative scale, not adequacy relative to commitments. This heading excludes a substantive explanation the comparison cannot rule out.",
+              "All concrete checks listed below passed, including the peer ranks, deficit counts, primary balances and category endpoints."
+            ],
+            "next_action": "Describe the debt jumps as occurring during the shocks or supply an appropriately scoped attributed explanation; replace the revenue heading with a claim about high revenue and still higher spending. Qualify the simple deficit/debt-stock relationship if it is meant as an exact accounting identity.",
+            "limitations": "This repair-required status concerns causal/inferential strength, not incorrect plotted numerical values. The deficit/debt sentence is a simplification, not a demonstrated numerical reconciliation failure."
+          }
+        },
+        "G3": {
+          "source_locator": "readings/M30755c-stage3.json#/gates/2",
+          "record_verbatim": {
+            "gate": "G3",
+            "status": "pass",
+            "scope": "Pinned raw sources to three CSVs and datapackage; those CSVs to all four supplied SVGs.",
+            "evidence": [
+              "Offline chart build exit 0; all four hashes match reproduction-hashes.json and the anonymous SVGs.",
+              "Dataset build initially failed for missing jsdom at its package location. A scratch-only symlink to the supplied offline site/stories/node_modules allowed the unchanged build.ts to run successfully. No package fetch/install.",
+              "Raw build emitted 7650 fiscal rows (3124 empty), 5760 function rows (960 empty), 106 debt rows; all three resulting CSV hashes and datapackage bytes match the originals.",
+              "node --test build.test.mjs: 1 passed, detecting corrupted category labels despite a refreshed manifest.",
+              "node scripts/validate-datapackage.mjs .: zero errors and warnings."
+            ],
+            "limitations": "This establishes these transforms and assets, not independent adversarial completeness of the HTML parser. Dataset README still records archived status. No site-page renderer or PNG raster-generation command was supplied/tested."
+          }
+        },
+        "G4": {
+          "source_locator": "readings/M30755c-stage3.json#/gates/3",
+          "record_verbatim": {
+            "gate": "G4",
+            "status": "pass",
+            "scope": "Four delivered chart PNGs actually viewed in stage1, corresponding SVGs inspected and reproduced in stage3.",
+            "evidence": [
+              "chart-1.png: time series, zero baseline, units and annotations readable; SVG axis 0\u2013140 agrees with render. Outline says 0\u2013130, an outdated plan detail; final code/render agree.",
+              "chart-2.png: negative interest and negative primary parts, positive primary surplus above zero, explicit black net-balance ticks; the net total is correctly calculated and not mistaken for a positive-plus-negative combined bar extent.",
+              "chart-3.png: dot positions use disclosed 40\u201360 domain, not zero-based bar lengths; EU marked aggregate; textual deficit/primary columns match values.",
+              "chart-4.png: endpoint dumbbells, health separate from protection, old age explicitly nested, provisional latest values labeled; no total double-counting.",
+              "All SVGs parse; no NaN/Infinity tokens; anonymous SVG bytes equal rebuilt assets."
+            ],
+            "limitations": "Chart 2 surplus years require deliberate decoding, reflected in manual chart_design. No mobile layout or site interaction assessed; stage1 PNG view is the actual visual inspection rather than a new rasterization of the rebuild."
+          }
+        }
+      },
+      "dimensions": {
+        "interest": {
+          "source_locator": "readings/M30755c-stage3.json#/manual_dimensions/0",
+          "record_verbatim": {
+            "dimension": "interest",
+            "rating": 2,
+            "locator": "story.md opening and Not a shortage of revenue; chart-3.png",
+            "anchor": "A consequential comparison revises an assumption: France already collects unusually high revenue, yet spends more, while much of the current gap precedes interest.",
+            "limitation": "This does not establish why crisis language is timely; the heading is too categorical as noted in G2."
+          }
+        },
+        "findings_depth": {
+          "source_locator": "readings/M30755c-stage3.json#/manual_dimensions/1",
+          "record_verbatim": {
+            "dimension": "findings_depth",
+            "rating": 2,
+            "locator": "story.md A deficit every year and Where the money goes; charts 2 and 4",
+            "anchor": "Unpacks total deficit into interest and primary balance, and broad spending into old age/health and offsetting categories with endpoint magnitudes.",
+            "limitation": "No attribution of the long-term debt change to specific causes or stock-flow reconciliation; the depth is descriptive and accounting-based."
+          }
+        },
+        "argument_counterevidence": {
+          "source_locator": "readings/M30755c-stage3.json#/manual_dimensions/2",
+          "record_verbatim": {
+            "dimension": "argument_counterevidence",
+            "rating": 1,
+            "locator": "story.md post-pandemic decline, historic interest comparison, Italy comparison, pension/health caveat",
+            "anchor": "Clear connected argument with counterexamples, but revenue adequacy and causal shock claims remain more categorical than their support.",
+            "adjacent_rating": 2,
+            "adjacent_reason": "Numerous relevant counterexamples are present; narrowing the two overclaims would make the higher anchor plausible.",
+            "limitation": "Cannot assess omitted political/market explanations against unavailable sources."
+          }
+        },
+        "explanation": {
+          "source_locator": "readings/M30755c-stage3.json#/manual_dimensions/3",
+          "record_verbatim": {
+            "dimension": "explanation",
+            "rating": 1,
+            "locator": "story.md debt/deficit definitions; The shocks made the steps; INSEE interest attribution",
+            "anchor": "Measures and nominal-GDP denominator are explained, and interest attribution is named, but a central shock mechanism is asserted without identifying what the local data tests.",
+            "adjacent_rating": 2,
+            "adjacent_reason": "Most of the accounting explanation is concrete; the central causal wording prevents confidently choosing 2.",
+            "limitation": "No demand for an unavailable causal study; scoped descriptive wording would address much of this."
+          }
+        },
+        "chart_design": {
+          "source_locator": "readings/M30755c-stage3.json#/manual_dimensions/4",
+          "record_verbatim": {
+            "dimension": "chart_design",
+            "rating": 1,
+            "locator": "chart-2.png, 1998\u20132001 blue surplus/gray interest and black net ticks",
+            "anchor": "Useful and readable evidence, but the reader must distinguish the gray bar bottom from the net deficit in surplus years.",
+            "adjacent_rating": 2,
+            "adjacent_reason": "Other charts have clear labeled comparisons and appropriate axes; the second chart requires extra decoding.",
+            "limitation": "Evaluated delivered PNGs and matching SVGs, not responsive site states."
+          }
+        },
+        "writing": {
+          "source_locator": "readings/M30755c-stage3.json#/manual_dimensions/5",
+          "record_verbatim": {
+            "dimension": "writing",
+            "rating": 1,
+            "locator": "story.md duplicate title; Not a shortage of revenue; How this was made",
+            "anchor": "Generally plain and concrete, but a key implication needs work and the title repeats.",
+            "adjacent_rating": 2,
+            "adjacent_reason": "Most paragraphs are economical and figures carry clear units; categorical revenue implication is the substantive reservation.",
+            "limitation": "The duplicate title may be packaging; it alone would not justify this rating."
+          }
+        },
+        "reader_coverage": {
+          "source_locator": "readings/M30755c-stage3.json#/manual_dimensions/6",
+          "record_verbatim": {
+            "dimension": "reader_coverage",
+            "rating": 2,
+            "locator": "story.md final substantive paragraph and explicit foreign-debt boundary",
+            "anchor": "Answers the in-reach fiscal trajectory/comparison questions and explicitly identifies missing yields, ratings and parliamentary evidence for why crisis now.",
+            "limitation": "The original full commission is not conclusively answered; the score applies to prioritized in-reach questions, not proof of crisis."
+          }
+        }
+      },
+      "all_gates_pass": false,
+      "writer_check_passes": 7,
+      "writer_flags": [],
+      "writer_cost_usd_list": 3.7357342,
+      "run_source": {
+        "path": "../../../runs/story/q01-french-debt/20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1/run.json",
+        "sha256": "4e507c75db302149fbe4ff14e4b78fccdf5f3097831c149c812360a1c6303383"
+      },
+      "checks_source": {
+        "path": "../../../runs/story/q01-french-debt/20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1/checks.json",
+        "sha256": "f0fb94e2f211f98aa87c7e9e13a36f8596cf01de9372649e86dac5a0c3212279"
+      }
+    },
+    {
+      "slot_id": "q01-french-debt-r1-candidate",
+      "output_code": "Mb8941a",
+      "topic": "q01-french-debt",
+      "arm": "candidate",
+      "replicate": 1,
+      "run_id": "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+      "H1": {
+        "code": "supported-payoff",
+        "reader_payoff": "Understand debt accumulation as persistent fiscal shortfalls and distinguish its accounting pattern from a new spending surge or interest alone; comparisons contextualize the fiscal part of the crisis question.",
+        "frozen_evidence": {
+          "locator": "readings/Mb8941a-stage2.json#/spontaneous_story_understanding",
+          "record": "France has a chronic gap between government spending and revenue, with deficits in every displayed year. Borrowing to cover the gap accumulates debt, with the financial crisis and Covid producing large steps up. France collects a high revenue share compared with the selected peers, but spends an even larger share. Cash benefits and public-sector pay account for most of its spending premium. Spending as a GDP share has changed little across the full period, so the argument is about a persistent imbalance rather than a new spending surge. Rising interest costs add a newer pressure. The article explicitly limits its answer to the public-accounting side of the debt problem."
+        },
+        "contrary_evidence": "Revenue-adequacy/tax exclusion is unsupported; no acute market/political crisis is established. Persistent deficits do not supply a complete debt-ratio decomposition. Interest-growth population mismatch is a verified error; not used as support for the payoff.",
+        "code_locator": "hypothesis-codes.json#/outputs/4/H1"
+      },
+      "H2": {
+        "primary_code": "comparison-recoverable",
+        "primary_chart_id": "Mb8941a/chart-1.png",
+        "charts": [
+          {
+            "id": "Mb8941a/chart-1.png",
+            "primary": true,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/Mb8941a-stage1.json#/chart_readings/0",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "Mb8941a/chart-2.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/Mb8941a-stage1.json#/chart_readings/1",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "Mb8941a/chart-3.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/Mb8941a-stage1.json#/chart_readings/2",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "Mb8941a/chart-4.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/Mb8941a-stage1.json#/chart_readings/3",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          }
+        ]
+      },
+      "H3": {
+        "primary_code": "supported-link-understood",
+        "primary_relationship_id": "Mb8941a-primary-relationship",
+        "relationships": [
+          {
+            "id": "Mb8941a-primary-relationship",
+            "primary": true,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly recovers the selected relationship at its bounded descriptive/accounting level; numerical verification supports the contrasted findings. No causal identification beyond that scope credited.",
+            "verification_locators": [
+              "readings/Mb8941a-stage3.json#/calculations",
+              "readings/Mb8941a-stage3.json#/gates"
+            ],
+            "uncertainty": "The second finding is asserted in the lede and quantified later at L15; explicit causal language fixes the relationship in the lede. Chart 1 supports persistent spending/revenue comparison, while chart 2 supports the resulting debt trajectory."
+          },
+          {
+            "id": "Mb8941a-R2",
+            "primary": false,
+            "code": "unsupported-link",
+            "reason": "Reader flags overclaim; comparative levels cannot establish adequacy.",
+            "verification_locators": [
+              "readings/Mb8941a-stage3.json#/calculations",
+              "readings/Mb8941a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mb8941a-R3",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader recovers accounting decomposition, not pension-specific causal gap; (2.9+2.1)/7.7 about 65%.",
+            "verification_locators": [
+              "readings/Mb8941a-stage3.json#/calculations",
+              "readings/Mb8941a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mb8941a-R4",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader recognizes attributed addition; archived INSEE passage supports pension contribution and indexation, distinct from EU-gap attribution.",
+            "verification_locators": [
+              "readings/Mb8941a-stage3.json#/calculations",
+              "readings/Mb8941a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mb8941a-R5",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader explicitly rejects new-spending-surge reading; endpoint spending 56.1 to57.2 and revenue 50.9 to52.1.",
+            "verification_locators": [
+              "readings/Mb8941a-stage3.json#/calculations",
+              "readings/Mb8941a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mb8941a-R6",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader explicitly explains faster nominal GDP growth; verified implied GDP 2318.5 to2834.0.",
+            "verification_locators": [
+              "readings/Mb8941a-stage3.json#/calculations",
+              "readings/Mb8941a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mb8941a-R7",
+            "primary": false,
+            "code": "unsupported-link",
+            "reason": "Reader initially accepts rates; subsequent verification finds 14.3/13.2 central-government rates misapplied to general government (11.2/13.9).",
+            "verification_locators": [
+              "readings/Mb8941a-stage3.json#/calculations",
+              "readings/Mb8941a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          }
+        ]
+      },
+      "gates": {
+        "G1": {
+          "source_locator": "readings/Mb8941a-stage3.json#/gates/G1",
+          "record_verbatim": {
+            "status": "fail",
+            "scope": "Central quantitative and attributed claims in delivered story, source scope and reuse basis",
+            "evidence": "Fiscal/debt vintages, S13 scope, units, sources and reuse basis are documented in manifest, README and archived reuse notices. But story interest paragraph uses central-government growth rates without identifying that narrower population; general-government source rates differ.",
+            "check_or_repair_needed": "Correct interest population/rates and state the interest accounting convention. Public-source authenticity beyond pinned packet remains unverified offline."
+          }
+        },
+        "G2": {
+          "source_locator": "readings/Mb8941a-stage3.json#/gates/G2",
+          "record_verbatim": {
+            "status": "fail",
+            "scope": "Central chart arithmetic, stock/flow and nominal/share distinctions, and prose explanation",
+            "evidence": "Independent CSV calculations confirm all 31 deficits, endpoints, peer numbers, 7.7-point gap and component sum; 5.0/7.7 is about 65%. Debt/GDP denominator explanation holds. The 14.3/13.2 interest claim is a subset/whole mismatch. \u201cLow revenue is not the explanation\u201d exceeds what higher comparative revenue alone establishes.",
+            "check_or_repair_needed": "Repair the interest scope and qualify the revenue conclusion as a comparative accounting finding. Clarify \u201cdid not fall back\u201d as failure to return to pre-shock levels, rather than absence of declines."
+          }
+        },
+        "G3": {
+          "source_locator": "readings/Mb8941a-stage3.json#/gates/G3",
+          "record_verbatim": {
+            "status": "pass",
+            "scope": "Supplied dataset and four SVGs rebuilt offline in scratch, with pinned dependencies",
+            "evidence": "Node v26.4.0; build.ts passed archive hash/size and analytical assertions. Three CSVs and datapackage remained byte-identical. Validator returned zero errors/warnings. Corrupted-label test passed. Chart builder passed its assertions; all four SVG SHA-256 values exactly match supplied expected hashes. Packet hashes unchanged.",
+            "check_or_repair_needed": "Pass is limited to offline dataset/SVG reproduction. No live-source authenticity, full article/site build, or PNG renderer reproduction is established."
+          }
+        },
+        "G4": {
+          "source_locator": "readings/Mb8941a-stage3.json#/gates/G4",
+          "record_verbatim": {
+            "status": "fail",
+            "scope": "Four delivered PNGs inspected in stages1/2 and corresponding rebuilt SVG definitions",
+            "evidence": "Main chart marks, values, units and trends correspond to checked data; no misleading bar baseline found. Charts 3 and 4 have actual axis-caption/source-note overlap. Chart 4\u2019s economic-type/residual definition is obscured. Reproduction preserves the SVGs that produced these layout choices.",
+            "check_or_repair_needed": "Separate footer and axis text and inspect delivered renders again at reading size. PNG rendering implementation was not supplied or rerun; full site/mobile render remains unverified."
+          }
+        }
+      },
+      "dimensions": {
+        "interest": {
+          "source_locator": "readings/Mb8941a-stage3.json#/manual_dimensions/interest",
+          "record_verbatim": {
+            "rating": 2,
+            "anchor": "Specific consequential puzzle or revealing comparison",
+            "evidence": "High revenue alongside an even greater spending share, plus nearly unchanged spending/GDP endpoints despite much greater debt, gives a concrete revision to a simple spending-spree account.",
+            "limits": "Does not establish a market/political crisis now; this rating does not approve factual errors."
+          }
+        },
+        "findings_depth": {
+          "source_locator": "readings/Mb8941a-stage3.json#/manual_dimensions/findings_depth",
+          "record_verbatim": {
+            "rating": 2,
+            "anchor": "Computes relevant contrast and unpacks category carrying argument",
+            "evidence": "Charts 3\u20134 quantify the spending premium and identify cash benefits plus pay as 5.0 of 7.7 points, while the historical charts establish persistence and shock timing.",
+            "limits": "Cash benefits remain broad; no demographic/policy decomposition and no pension-specific EU gap."
+          }
+        },
+        "argument_counterevidence": {
+          "source_locator": "readings/Mb8941a-stage3.json#/manual_dimensions/argument_counterevidence",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Clear answer but material alternative or boundary omitted",
+            "evidence": "Sequence connects annual gaps, debt and peer spending; final section includes debt-ratio decline and flat long-term spending share.",
+            "limits": "Revenue-versus-spending conclusion remains overly exclusive; readily available revenue growth/new tax measures explaining 2025 improvement are omitted. Plausible adjacent 2 for bounded accounting narrative, but scope mismatch and omitted alternative support 1."
+          }
+        },
+        "explanation": {
+          "source_locator": "readings/Mb8941a-stage3.json#/manual_dimensions/explanation",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Defines pattern but attribution scope remains unclear",
+            "evidence": "Defines general government and revenue; explains borrowing and nominal GDP denominator; attributes pension/interest mechanisms.",
+            "limits": "Interest attribution conflates central with general government and conventions differ from chart D41PAY; debt-flow adjustments remain simplified."
+          }
+        },
+        "chart_design": {
+          "source_locator": "readings/Mb8941a-stage3.json#/manual_dimensions/chart_design",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Useful evidence but decoding or annotation requires effort",
+            "evidence": "Main lines, dumbbells and component bars are legible, with direct labels and recoverable comparison years.",
+            "limits": "Footer overlap in charts 3/4 prevents clean reading of methodological annotations. Rating applies only to inspected static PNGs."
+          }
+        },
+        "writing": {
+          "source_locator": "readings/Mb8941a-stage3.json#/manual_dimensions/writing",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Understandable but key term or paragraph needs work",
+            "evidence": "Plain numerical prose with an intelligible sequence and candid final limits.",
+            "limits": "Title duplicated; crisis is undefined; taxes/revenue and general/central government need precision; \u201cdid not fall back\u201d conflicts with later decline unless qualified."
+          }
+        },
+        "reader_coverage": {
+          "source_locator": "readings/Mb8941a-stage3.json#/manual_dimensions/reader_coverage",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Main question partly answered with important in-reach follow-ups open",
+            "evidence": "Answers scale, history and spending composition, identifies market/political limits.",
+            "limits": "Why now relies on incorrectly scoped interest rates; available explanation of recent deficit narrowing is omitted. Consequences and crisis definition remain largely open."
+          }
+        }
+      },
+      "all_gates_pass": false,
+      "writer_check_passes": 7,
+      "writer_flags": [],
+      "writer_cost_usd_list": 3.1438255999999996,
+      "run_source": {
+        "path": "../../../runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/run.json",
+        "sha256": "046b29696d7b682b63c5a1c1b8b89689f0247ef321332eef07b121407b583339"
+      },
+      "checks_source": {
+        "path": "../../../runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/checks.json",
+        "sha256": "ae44351c961b0bc9d0024127678fa7b80cc0437a61647e6011be1b082c86f8cf"
+      }
+    },
+    {
+      "slot_id": "q03-wti-negative-r1-candidate",
+      "output_code": "M9b1fee",
+      "topic": "q03-wti-negative",
+      "arm": "candidate",
+      "replicate": 1,
+      "run_id": "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+      "H1": {
+        "code": "supported-payoff",
+        "reader_payoff": "Distinguish an isolated WTI negative daily event from a shared oil-price slump and positive aggregates; this narrows the event that the commissioned why must explain.",
+        "frozen_evidence": {
+          "locator": "readings/M9b1fee-stage2.json#/spontaneous_understanding",
+          "record": "The story separates a broad collapse in oil prices during lockdowns from a one-day negative WTI price. WTI is tied to the inland Cushing hub; an expiring futures contract required physical delivery when storage was largely full or committed. Holders unable to receive oil needed to offload contracts urgently, eventually paying others to take them. Brent shared the slump but, according to the prose, its different settlement arrangements avoided the same delivery squeeze. This gives a coherent reason for both the shared monthly fall and the isolated WTI plunge."
+        },
+        "contrary_evidence": "Causal sources are unverified and spot/futures transmission remains unresolved; broad all-oil exclusivity is not supported. No credit is given to the proposed causal mechanism.",
+        "code_locator": "hypothesis-codes.json#/outputs/3/H1"
+      },
+      "H2": {
+        "primary_code": "comparison-recoverable",
+        "primary_chart_id": "M9b1fee/chart-1.png",
+        "charts": [
+          {
+            "id": "M9b1fee/chart-1.png",
+            "primary": true,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M9b1fee-stage1.json#/chart_readings/0",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "M9b1fee/chart-2.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M9b1fee-stage1.json#/chart_readings/1",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          }
+        ]
+      },
+      "H3": {
+        "primary_code": "supported-link-understood",
+        "primary_relationship_id": "M9b1fee-primary-relationship",
+        "relationships": [
+          {
+            "id": "M9b1fee-primary-relationship",
+            "primary": true,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly recovers the selected relationship at its bounded descriptive/accounting level; numerical verification supports the contrasted findings. No causal identification beyond that scope credited.",
+            "verification_locators": [
+              "readings/M9b1fee-stage3.json#/verification/calculations",
+              "readings/M9b1fee-stage3.json#/gates"
+            ],
+            "uncertainty": "Selected as the earliest implied relationship between two benchmark outcomes. There is a boundary ambiguity: these two outcomes can instead be considered components of one self-contained cross-benchmark comparison. Under that narrower interpretation the earliest relationship between separate broader findings would be the shared collapse versus the isolated negative event, located below. No reader interpretation has yet been opened to resolve implied-link understanding."
+          },
+          {
+            "id": "M9b1fee-R2",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly distinguishes common decline and isolated WTI extreme; CSV calculations verify changes.",
+            "verification_locators": [
+              "readings/M9b1fee-stage3.json#/verification/calculations",
+              "readings/M9b1fee-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M9b1fee-R3",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader understands averaging hides daily extreme; supplied aggregation values checked, not individual contract payments.",
+            "verification_locators": [
+              "readings/M9b1fee-stage3.json#/verification/calculations",
+              "readings/M9b1fee-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M9b1fee-R4",
+            "primary": false,
+            "code": "unassessable",
+            "reason": "Reader recognizes attribution and absence of local causal identification, but external source text not checked and spot/futures transmission remains missing. Neither verified mechanism support nor falsity can be assigned.",
+            "verification_locators": [
+              "readings/M9b1fee-stage3.json#/verification/calculations",
+              "readings/M9b1fee-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M9b1fee-R5",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader recognizes positive is not unaffected; 9.12 versus historical9.10 and WTI8.91 checked.",
+            "verification_locators": [
+              "readings/M9b1fee-stage3.json#/verification/calculations",
+              "readings/M9b1fee-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M9b1fee-R6",
+            "primary": false,
+            "code": "unassessable",
+            "reason": "Reader understands conceptual distinction; spot value verified, external futures-settlement source not verified in supplied record.",
+            "verification_locators": [
+              "readings/M9b1fee-stage3.json#/verification/calculations",
+              "readings/M9b1fee-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          }
+        ]
+      },
+      "gates": {
+        "G1": {
+          "source_locator": "readings/M9b1fee-stage3.json#/gates/G1",
+          "record_verbatim": {
+            "status": "unresolved",
+            "scope": "Entire story; local EIA dataset provenance is documented, causal context is not verified",
+            "evidence": [
+              "archive/PROVENANCE.md states source, download 2026-09-05, frequencies, units and public-domain/PDDL basis; datapackage defines measures.",
+              "outline.md outside-context section states CFTC and ICE were cited from author knowledge and not retrieved. Neither source text is supplied.",
+              "Broad statements about oil in general exceed the two-benchmark population."
+            ],
+            "check_needed": "Verify pinned CFTC and ICE source text, qualify comparison boundaries, and describe spot assessment/futures relationship."
+          }
+        },
+        "G2": {
+          "source_locator": "readings/M9b1fee-stage3.json#/gates/G2",
+          "record_verbatim": {
+            "status": "unresolved",
+            "scope": "CSV arithmetic passes; causal and contractual claims remain unverified",
+            "evidence": [
+              "Verified 10,236 WTI observations with one nonpositive observation, all central daily values, spread $54.34, weekly $3.32, rounded monthly falls 71%, historical minima. Full calculations attached.",
+              "Observation and explanation are explicitly separated, but Brent settlement and expiry/delivery terminology require source verification.",
+              "Same proportion is true only after rounding: -71.2274% versus -71.1233%."
+            ],
+            "check_needed": "Verify causal-source wording and distinguish expiration from delivery deadline; retain rounding scope."
+          }
+        },
+        "G3": {
+          "source_locator": "readings/M9b1fee-stage3.json#/gates/G3",
+          "record_verbatim": {
+            "status": "unresolved",
+            "scope": "CSV-to-SVG reproduction passes; raw XLS-to-CSV reproduction unresolved",
+            "evidence": [
+              "Unmodified chart script ran offline under Node v26.4.0; both outputs match supplied hashes and original SVGs.",
+              "All copied existing inputs retained their pre-run SHA256 values.",
+              "Raw build.ts failed with ERR_MODULE_NOT_FOUND for xlsx; exact supplied cache xlsx/package.json does not exist."
+            ],
+            "check_needed": "Supply pinned xlsx dependency offline and rerun workbook transformation with CSV hash comparison. No install or network attempted."
+          }
+        },
+        "G4": {
+          "source_locator": "readings/M9b1fee-stage3.json#/gates/G4",
+          "record_verbatim": {
+            "status": "pass",
+            "scope": "Two delivered static PNG chart views inspected at their supplied reading size, checked against chart transform and reproduced SVGs",
+            "evidence": [
+              "Numeric-order image inspection showed readable titles, axes, units, line end labels, zero rules, negative marker and annotations with no visible clipping.",
+              "Chart script uses own source rows per benchmark, explicit daily [-45,55] and monthly [0,80] scales, UTC dates, row-derived annotations.",
+              "SVG hash matches establish the supplied SVG transform; PNG rendering itself was inspected visually, not independently reproduced."
+            ],
+            "check_needed": "No material repair identified in inspected static renders; other display sizes and rendering pipeline remain outside scope."
+          }
+        }
+      },
+      "dimensions": {
+        "interest": {
+          "source_locator": "readings/M9b1fee-stage3.json#/manual_dimensions/interest",
+          "record_verbatim": {
+            "rating": 2,
+            "anchor": "Specific consequential puzzle or revealing comparison",
+            "evidence": "Negative prices are a concrete puzzle; daily WTI/Brent divergence versus matching monthly losses corrects the idea that all oil was worthless.",
+            "limit": "Interest does not validate the causal account."
+          }
+        },
+        "findings_depth": {
+          "source_locator": "readings/M9b1fee-stage3.json#/manual_dimensions/findings_depth",
+          "record_verbatim": {
+            "rating": 2,
+            "anchor": "Computes relevant contrast and shows what changes and by how much",
+            "evidence": "$54.34 same-day gap, one negative observation, daily reversal, weekly smoothing, and both monthly losses are computed and interpretable.",
+            "limit": "No quantitative decomposition of causes is possible from these inputs."
+          }
+        },
+        "argument_counterevidence": {
+          "source_locator": "readings/M9b1fee-stage3.json#/manual_dimensions/argument_counterevidence",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Clear answer but material boundary omitted",
+            "evidence": "Brent near its record low and a March price reversal temper the main comparison; absence of causal series is explicit. However universal oil wording and futures-to-spot transmission remain insufficiently bounded.",
+            "limit": "Adjacent 2 is plausible for the narrow descriptive comparison alone; lower anchor selected for whole commissioned explanation."
+          }
+        },
+        "explanation": {
+          "source_locator": "readings/M9b1fee-stage3.json#/manual_dimensions/explanation",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Defines pattern/category but central mechanism remains unclear",
+            "evidence": "The prose defines benchmarks, explains forced selling around delivery obligations, and scopes causal attribution. Yet it explains a futures mechanism for a spot series without the connecting assessment mechanics, and switches expiration to delivery deadline.",
+            "limit": "Adjacent 2 plausible if narrowed to explaining why an expiring physical-delivery futures contract could be negative; source verification pending."
+          }
+        },
+        "chart_design": {
+          "source_locator": "readings/M9b1fee-stage3.json#/manual_dimensions/chart_design",
+          "record_verbatim": {
+            "rating": 2,
+            "anchor": "Inspected visual makes intended comparison readable at a glance",
+            "evidence": "Blue WTI plunge below zero against positive gray Brent is unmistakable; monthly shared collapse and positive averages are clear with direct labels and exact values.",
+            "limit": "Daily note block is dense; small/mobile display not assessed. Monthly equal proportional change rests on annotation, not normalized line slopes."
+          }
+        },
+        "writing": {
+          "source_locator": "readings/M9b1fee-stage3.json#/manual_dimensions/writing",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Understandable but key term or paragraph needs work",
+            "evidence": "Plain benchmark definitions and short comparison statements aid understanding. Duplicate title, repeated one-day/one-benchmark phrasing, and delivery-deadline wording need editing.",
+            "limit": "Judges supplied Markdown, not an unseen rendered article; author self-review not used."
+          }
+        },
+        "reader_coverage": {
+          "source_locator": "readings/M9b1fee-stage3.json#/manual_dimensions/reader_coverage",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Main question partly answered with important follow-ups open",
+            "evidence": "Which price, when, size, duration, comparison and plausible mechanism are covered. Spot/futures connection and subsequent-recovery explanation remain open; other grades outside scope.",
+            "limit": "No requirement to manufacture recovery causes from absent data; these should be identified as gaps."
+          }
+        }
+      },
+      "all_gates_pass": false,
+      "writer_check_passes": 7,
+      "writer_flags": [],
+      "writer_cost_usd_list": 2.6006006,
+      "run_source": {
+        "path": "../../../runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/run.json",
+        "sha256": "2d505b2b69749623a6c9fea2ac6858e5c64b436b273b8573b72f933fa5837025"
+      },
+      "checks_source": {
+        "path": "../../../runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/checks.json",
+        "sha256": "b4cd2b0830b18aaba255ad62fe0f55bfa0ff25d7a9e48463b71f3c3b4d977721"
+      }
+    },
+    {
+      "slot_id": "q03-wti-negative-r1-baseline",
+      "output_code": "Mbe53b2",
+      "topic": "q03-wti-negative",
+      "arm": "baseline",
+      "replicate": 1,
+      "run_id": "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+      "H1": {
+        "code": "supported-payoff",
+        "reader_payoff": "Distinguish an isolated WTI negative daily event from a shared oil-price slump and positive aggregates; this narrows the event that the commissioned why must explain.",
+        "frozen_evidence": {
+          "locator": "readings/Mbe53b2-stage2.json#/story_understanding",
+          "record": "The story narrows the negative-oil headline to one daily WTI spot benchmark at Cushing on 20 April 2020. Both WTI and Brent had already lost about 70 percent before this event. WTI alone among these two series went briefly negative, with positive weekly and monthly averages. The proposed explanation is that a physically delivered WTI futures contract was about to expire: holders unable to store the oil at Cushing accepted negative prices to escape taking delivery. The spot benchmark went negative on the same day. Brent also suffered severely, nearly reaching its series low the next day."
+        },
+        "contrary_evidence": "Causal sources are unverified and spot/futures transmission remains unresolved; broad all-oil exclusivity is not supported. No credit is given to the proposed causal mechanism.",
+        "code_locator": "hypothesis-codes.json#/outputs/5/H1"
+      },
+      "H2": {
+        "primary_code": "comparison-recoverable",
+        "primary_chart_id": "Mbe53b2/chart-1.png",
+        "charts": [
+          {
+            "id": "Mbe53b2/chart-1.png",
+            "primary": true,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/Mbe53b2-stage1.json#/chart_readings/0",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "Mbe53b2/chart-2.png",
+            "primary": false,
+            "code": "requires-reconstruction",
+            "first_reading_locator": "readings/Mbe53b2-stage1.json#/chart_readings/1",
+            "reason": "First reader identifies clipped W title and uses prior chart/prose for WTI identity; standalone year also needs context."
+          }
+        ]
+      },
+      "H3": {
+        "primary_code": "supported-link-understood",
+        "primary_relationship_id": "Mbe53b2-primary-relationship",
+        "relationships": [
+          {
+            "id": "Mbe53b2-primary-relationship",
+            "primary": true,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly recovers the selected relationship at its bounded descriptive/accounting level; numerical verification supports the contrasted findings. No causal identification beyond that scope credited.",
+            "verification_locators": [
+              "readings/Mbe53b2-stage3.json#/verification/calculations",
+              "readings/Mbe53b2-stage3.json#/gates"
+            ],
+            "uncertainty": "Selected as the earliest implied relationship between two benchmark outcomes. There is a boundary ambiguity: these two outcomes can instead be considered components of one self-contained cross-benchmark comparison. Under that narrower interpretation the earliest relationship between separate broader findings would be the shared collapse versus the isolated negative event, located below. No reader interpretation has yet been opened to resolve implied-link understanding."
+          },
+          {
+            "id": "Mbe53b2-R2",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly distinguishes common decline and isolated WTI extreme; CSV calculations verify changes.",
+            "verification_locators": [
+              "readings/Mbe53b2-stage3.json#/verification/calculations",
+              "readings/Mbe53b2-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mbe53b2-R3",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader understands averaging hides daily extreme; supplied aggregation values checked, not individual contract payments.",
+            "verification_locators": [
+              "readings/Mbe53b2-stage3.json#/verification/calculations",
+              "readings/Mbe53b2-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mbe53b2-R4",
+            "primary": false,
+            "code": "unassessable",
+            "reason": "Reader recognizes attribution and absence of local causal identification, but external source text not checked and spot/futures transmission remains missing. Neither verified mechanism support nor falsity can be assigned.",
+            "verification_locators": [
+              "readings/Mbe53b2-stage3.json#/verification/calculations",
+              "readings/Mbe53b2-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mbe53b2-R5",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader recognizes positive is not unaffected; 9.12 versus historical9.10 and WTI8.91 checked.",
+            "verification_locators": [
+              "readings/Mbe53b2-stage3.json#/verification/calculations",
+              "readings/Mbe53b2-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mbe53b2-R6",
+            "primary": false,
+            "code": "unassessable",
+            "reason": "Reader understands conceptual distinction; spot value verified, external futures-settlement source not verified in supplied record.",
+            "verification_locators": [
+              "readings/Mbe53b2-stage3.json#/verification/calculations",
+              "readings/Mbe53b2-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          }
+        ]
+      },
+      "gates": {
+        "G1": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/gates/0",
+          "record_verbatim": {
+            "gate": "G1",
+            "status": "unresolved",
+            "scope": "Central causal account and full claim provenance; descriptive EIA measures separately documented.",
+            "evidence": "README and archive/PROVENANCE document EIA daily spot prices, nominal USD/barrel FOB, retrieval 2026-09-05, eight snapshots and public-domain/PDDL basis. Story limits comparison to WTI/Brent. CFTC report not supplied or opened; outline itself states its wording/link was unchecked.",
+            "check_needed": "Obtain and inspect pinned CFTC report for delivery, expiry, storage, selling behaviour and spot-price relevance. Current local provenance supports stated scope, not independent source authenticity."
+          }
+        },
+        "G2": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/gates/1",
+          "record_verbatim": {
+            "gate": "G2",
+            "status": "unresolved",
+            "scope": "Numerical claims checked successfully; causal identification remains unresolved.",
+            "evidence": "Independent CSV calculations confirm $55.29 drop, 70.067% and 70.544% declines, one negative WTI row of 10236, no negative Brent rows, historical lows, five-day mean 3.324 and 21-day April mean 16.547619. Rounded published values agree. Prose names CFTC but moves from futures liquidation to spot pricing without demonstrating transmission.",
+            "check_needed": "Verify regulator attribution and articulate the link to the measured spot series. No material numerical error found in checked claims."
+          }
+        },
+        "G3": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/gates/2",
+          "record_verbatim": {
+            "gate": "G3",
+            "status": "unresolved",
+            "scope": "Chart reproduction passes; full archive-to-CSV reproduction unavailable.",
+            "evidence": "Inspected chart builder before execution; rebuilt both SVGs offline in isolated scratch with Node v26.4.0 and supplied dependency link, matching both supplied hashes and original SVGs exactly. build.ts inspected and attempted but fails missing xlsx. CSV hashes unchanged because build failed, not evidence of regenerated CSVs. Direct validator function reports zero errors and warnings.",
+            "check_needed": "Supply offline xlsx dependency to reproduce eight CSVs from archived workbooks. PNG renderer identity/reproduction is not supplied here."
+          }
+        },
+        "G4": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/gates/3",
+          "record_verbatim": {
+            "gate": "G4",
+            "status": "fail",
+            "scope": "Delivered stage1/stage2 PNGs, particularly chart-2 title.",
+            "evidence": "Actual images viewed at delivered 1440x840 size in stages1/2. Chart2 title visibly starts 'W spot price' although builder's intended text is 'WTI spot price'. This loses the named benchmark in standalone asset. Numeric annotations and linear axes agree with checked data; zero line and daily/weekly/monthly comparison readable. Exact SVG rebuild does not resolve rendered title defect.",
+            "check_needed": "Repair missing title letters in delivered PNG and inspect rerender; verify renderer/font pipeline. No evidence that numeric geometry is misleading."
+          }
+        }
+      },
+      "dimensions": {
+        "interest": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/manual_dimensions/0",
+          "record_verbatim": {
+            "dimension": "interest",
+            "rating": 2,
+            "anchor": "Specific consequential puzzle or revealing comparison revises an assumption.",
+            "evidence": "Opening contrasts negative WTI with positive Brent; averages chart reveals why monthly data hides the event.",
+            "limit": "Editorial assessment does not verify causal claims."
+          }
+        },
+        "findings_depth": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/manual_dimensions/1",
+          "record_verbatim": {
+            "dimension": "findings_depth",
+            "rating": 2,
+            "anchor": "Computes relevant contrasts and shows change magnitude.",
+            "evidence": "70% preceding collapse, $55.29 one-trading-day fall, positive weekly/monthly averages and Brent's near-record low unpack magnitude and duration.",
+            "limit": "No storage, futures positions or wider oil-market breakdown supplied."
+          }
+        },
+        "argument_counterevidence": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/manual_dimensions/2",
+          "record_verbatim": {
+            "dimension": "argument_counterevidence",
+            "rating": 1,
+            "anchor": "Clear answer but material alternative or boundary omitted.",
+            "evidence": "Brent near-record low and two-series limitation counter a simplistic WTI-only crisis interpretation; however futures-to-spot connection and extent of storage constraint remain untested.",
+            "limit": "Plausible adjacent 2 for the narrow descriptive comparison, but commission asks why; strongest causal account is inaccessible."
+          }
+        },
+        "explanation": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/manual_dimensions/3",
+          "record_verbatim": {
+            "dimension": "explanation",
+            "rating": 1,
+            "anchor": "Defines pattern but leaves a central mechanism unclear.",
+            "evidence": "Explains spot vs futures, location and expiring delivery obligations, explicitly attributes CFTC; does not explain how futures liquidation produced the EIA spot observation or buyer economics.",
+            "limit": "Plausible adjacent 2 for scoped attribution, lowered because central connecting step remains missing."
+          }
+        },
+        "chart_design": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/manual_dimensions/4",
+          "record_verbatim": {
+            "dimension": "chart_design",
+            "rating": 1,
+            "anchor": "Useful evidence but decoding requires inference.",
+            "evidence": "Direct labels, marked negative point, explicit averages and zero line make intended comparisons clear, but clipped/incomplete chart2 benchmark title needs context; chart2 year recovered from chart1/prose.",
+            "limit": "Numerical interpretation is sound; no mobile/other reading-size renders inspected."
+          }
+        },
+        "writing": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/manual_dimensions/5",
+          "record_verbatim": {
+            "dimension": "writing",
+            "rating": 1,
+            "anchor": "Understandable but paragraph or implication needs work.",
+            "evidence": "Concrete prices and short sections make story easy to follow; duplicated headline and categorical opening followed by scope qualification need editing, and causal bridge is abrupt.",
+            "limit": "Most prose is plain; duplication is a delivery artifact rather than proof all writing is weak."
+          }
+        },
+        "reader_coverage": {
+          "source_locator": "readings/Mbe53b2-stage3.json#/manual_dimensions/6",
+          "record_verbatim": {
+            "dimension": "reader_coverage",
+            "rating": 1,
+            "anchor": "Main question partly answered, important follow-ups open.",
+            "evidence": "What, when, how much, duration, benchmark contrast covered. Storage/expiry account partly answers why. Negative transaction mechanics, spot transmission and subsequent recovery drivers stay open.",
+            "limit": "Other oil markets are a genuine supplied-data gap, so not treated as an omission that current CSVs could resolve."
+          }
+        }
+      },
+      "all_gates_pass": false,
+      "writer_check_passes": 7,
+      "writer_flags": [],
+      "writer_cost_usd_list": 2.5871962,
+      "run_source": {
+        "path": "../../../runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/run.json",
+        "sha256": "d9759e0383ffd5c29574a780793f63437cbb79f2e0cc05fe5d512e4971ab08a6"
+      },
+      "checks_source": {
+        "path": "../../../runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/checks.json",
+        "sha256": "179a0cda0ceef7eef9e73167d355840fe73457b99767b717d4f85af71e6d0e57"
+      }
+    },
+    {
+      "slot_id": "q01-french-debt-r2-candidate",
+      "output_code": "M1d3194",
+      "topic": "q01-french-debt",
+      "arm": "candidate",
+      "replicate": 2,
+      "run_id": "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
+      "H1": {
+        "code": "supported-payoff",
+        "reader_payoff": "Understand debt accumulation as persistent fiscal shortfalls and distinguish its accounting pattern from a new spending surge or interest alone; comparisons contextualize the fiscal part of the crisis question.",
+        "frozen_evidence": {
+          "locator": "readings/M1d3194-stage2.json#/spontaneous_story_understanding",
+          "record": "France has persistently spent more than it collected, creating deficits even when interest was relatively cheap. Debt rose in two large steps and was not brought back to previous levels. Recent borrowing is still mostly a non-interest shortfall. France raises high revenue relative to the displayed peers but spends further above them. Overall spending share changed little over the long interval because declines elsewhere, especially interest, offset rising old-age and health spending. That interest relief has started reversing, adding pressure to a budget that already runs a deficit."
+        },
+        "contrary_evidence": "Revenue-adequacy/tax exclusion is unsupported; no acute market/political crisis is established. Persistent deficits do not supply a complete debt-ratio decomposition.",
+        "code_locator": "hypothesis-codes.json#/outputs/0/H1"
+      },
+      "H2": {
+        "primary_code": "comparison-recoverable",
+        "primary_chart_id": "M1d3194/chart-1.png",
+        "charts": [
+          {
+            "id": "M1d3194/chart-1.png",
+            "primary": true,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M1d3194-stage1.json#/chart_notes/0",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "M1d3194/chart-2.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M1d3194-stage1.json#/chart_notes/1",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "M1d3194/chart-3.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M1d3194-stage1.json#/chart_notes/2",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "M1d3194/chart-4.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M1d3194-stage1.json#/chart_notes/3",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          }
+        ]
+      },
+      "H3": {
+        "primary_code": "supported-link-understood",
+        "primary_relationship_id": "M1d3194-primary-relationship",
+        "relationships": [
+          {
+            "id": "M1d3194-primary-relationship",
+            "primary": true,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly recovers the selected relationship at its bounded descriptive/accounting level; numerical verification supports the contrasted findings. No causal identification beyond that scope credited.",
+            "verification_locators": [
+              "readings/M1d3194-stage3.json#/calculations",
+              "readings/M1d3194-stage3.json#/gates"
+            ],
+            "uncertainty": "Explicit relationship in the lede; no uncertainty about its precedence. This selects the assertion, without judging its accounting sufficiency."
+          },
+          {
+            "id": "M1d3194-R2",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader explicitly explains faster nominal GDP growth; verification confirms 2663.9 to 3103.2 billion while ratio 114.9 to 109.5.",
+            "verification_locators": [
+              "readings/M1d3194-stage3.json#/calculations",
+              "readings/M1d3194-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M1d3194-R3",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "5.1 minus 2.2 = 2.9; reader recovers that most borrowing is non-interest.",
+            "verification_locators": [
+              "readings/M1d3194-stage3.json#/calculations",
+              "readings/M1d3194-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M1d3194-R4",
+            "primary": false,
+            "code": "unsupported-link",
+            "reason": "Reader flags sufficiency inference; peer ranking verifies levels but cannot rule out revenue contribution.",
+            "verification_locators": [
+              "readings/M1d3194-stage3.json#/calculations",
+              "readings/M1d3194-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M1d3194-R5",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader identifies offset; 1.6/(2.4+2.0)=36.36%.",
+            "verification_locators": [
+              "readings/M1d3194-stage3.json#/calculations",
+              "readings/M1d3194-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M1d3194-R6",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader understands reversal and named attribution; archived INSEE supports debt-stock/rate account, not a local causal estimate.",
+            "verification_locators": [
+              "readings/M1d3194-stage3.json#/calculations",
+              "readings/M1d3194-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          }
+        ]
+      },
+      "gates": {
+        "G1": {
+          "source_locator": "readings/M1d3194-stage3.json#/gates/G1",
+          "record_verbatim": {
+            "status": "pass",
+            "scope": "Pinned statistical measures and sources behind the four charts, descriptive central values and scoped INSEE recent-change attribution; documented reuse basis.",
+            "evidence": [
+              "Dataset manifest pins URLs, retrieval dates, sizes and SHA256; offline build verified all eight archived inputs.",
+              "Independent JSON-stat checks matched all 7650 fiscal and 5760 functional CSV cells.",
+              "README/datapackage specify general government, gross debt, percentage-of-GDP denominators, annual versus quarterly vintages and overlapping functional classifications.",
+              "Archived Eurostat reuse page permits statistical reuse with acknowledgement; archived INSEE page documents Open Licence 2.0 and source/date requirements.",
+              "Archived annual article supports interest-stock/rate attribution, inflation/indexation and revenue-measure context."
+            ],
+            "limits": "Pass does not cover the unsupported adequacy-of-revenue judgment, acute crisis framing, a current online-source refresh, or a legal audit of every downstream reuse condition. D41GPAY cross-check described in README is not itself archived; archived INSEE wording does confirm exclusion of SIFIM correction.",
+            "check_needed": "Scope revenue claim to observed comparison; retain source/date attribution and review reuse conditions for any new downstream use."
+          }
+        },
+        "G2": {
+          "source_locator": "readings/M1d3194-stage3.json#/gates/G2",
+          "record_verbatim": {
+            "status": "fail",
+            "scope": "Story section Not a shortage of revenue, particularly France does not collect too little.",
+            "evidence": [
+              "A higher revenue share than selected peers demonstrates relative level, not sufficiency for commitments or the absence of a revenue contribution to deficits.",
+              "Independent calculations confirm principal numbers: 31 deficit years, 23 above 3%, 26 larger than EU; 2.9-point primary deficit in 2025; 36.36% interest offset of old-age-plus-health rise.",
+              "Most other areas shrank is supported for the selected mutually exclusive set: excluding old age and health, 9 of 16 categories fell."
+            ],
+            "limits": "The failed scope is an analytical overclaim, not fabricated data. Fiscal arithmetic and source-attributed mechanisms otherwise check out. Persistent deficits are not a complete debt-ratio decomposition; the story acknowledges GDP growth but could more clearly mention stock-flow adjustments.",
+            "check_needed": "Replace adequacy judgment with high revenue relative to selected peers; avoid implying borrowing alone completely explains debt/GDP changes."
+          }
+        },
+        "G3": {
+          "source_locator": "readings/M1d3194-stage3.json#/gates/G3",
+          "record_verbatim": {
+            "status": "pass",
+            "scope": "Offline archived-input-to-CSV and supplied-chart-SVG reproduction in isolated scratch with existing supplied dependency cache.",
+            "evidence": [
+              "Node v26.4.0 rebuilt all three CSVs and datapackage byte-identically.",
+              "All four generated SVG hashes match supplied expected hashes and anonymous stage3 SVGs.",
+              "Dataset validator returned zero errors and zero warnings.",
+              "Supplied corrupted-source-label rejection test passed 1/1.",
+              "All copied original inputs and original packet files remained unchanged."
+            ],
+            "limits": "This is not a reproduction of the webpage or SVG-to-PNG rasterizer. No dependency installation or network retrieval occurred. Cache contents were used, not independently reinstalled from lock integrity records. Dataset remains status archived; this review does not substitute for full adversarial parser certification.",
+            "check_needed": "For full presentation reproduction, supply the delivery renderer and its pinned configuration."
+          }
+        },
+        "G4": {
+          "source_locator": "readings/M1d3194-stage3.json#/gates/G4",
+          "record_verbatim": {
+            "status": "unresolved",
+            "scope": "End-to-end delivered presentation renderer; inspected PNG charts and reproduced SVG geometry are a narrower checked scope.",
+            "evidence": [
+              "All four delivered PNGs inspected twice in numeric order; observed values, scales and labels correspond to recomputed data.",
+              "Chart 1 uses zero-based ratio scale; chart 2 bars share zero baseline; chart 3 common-scale dots use an explicit 40\u201360 domain; chart 4 diverges around zero and uses a non-overlapping category set.",
+              "Bottom source/axis text collides in charts 3 and 4; units and time periods were still recoverable.",
+              "Supplied SVGs reproduce byte-for-byte, but rasterization code/settings and full page render were not supplied/verified."
+            ],
+            "limits": "No finding of materially false numeric visual encoding; overlap is a real delivered layout issue, not evidence that numbers are wrong. Reading-size/mobile/browser presentation remains unverified.",
+            "check_needed": "Separate bottom annotations from axis labels and inspect final rendering at intended reading size using the actual pinned delivery renderer."
+          }
+        }
+      },
+      "dimensions": {
+        "interest": {
+          "source_locator": "readings/M1d3194-stage3.json#/manual_dimensions/interest",
+          "record_verbatim": {
+            "rating": 2,
+            "anchor": "Specific consequential comparison revises an assumption.",
+            "evidence": "The combination of doubled debt and much lower interest than in the 1990s, followed by reversal, makes the fiscal-pressure puzzle concrete.",
+            "scope": "Whole delivered story and charts.",
+            "limitation": "Does not establish an acute crisis."
+          }
+        },
+        "findings_depth": {
+          "source_locator": "readings/M1d3194-stage3.json#/manual_dimensions/findings_depth",
+          "record_verbatim": {
+            "rating": 2,
+            "anchor": "Computes relevant contrasts and unpacks the category carrying the argument.",
+            "evidence": "Old-age +2.4 and health +2.0 contrasted with total +1.2; interest decline accounts for over a third of the combined increase; borrowing is compared with interest and peer deficits.",
+            "scope": "Fiscal arithmetic and spending composition.",
+            "limitation": "Not a quantitative debt-ratio causal decomposition."
+          }
+        },
+        "argument_counterevidence": {
+          "source_locator": "readings/M1d3194-stage3.json#/manual_dimensions/argument_counterevidence",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Clear answer but a material alternative or boundary remains omitted.",
+            "evidence": "Story acknowledges falling ratio despite rising debt, small total spending change, recent deficit improvement and lower historical interest; nevertheless higher peer-relative revenue is used to rule out too little revenue without establishing that proposition.",
+            "scope": "Whole argument.",
+            "limitation": "A plausible adjacent 2 for descriptive fiscal sequence alone; lower rating reflects the central revenue judgment and limited crisis answer."
+          }
+        },
+        "explanation": {
+          "source_locator": "readings/M1d3194-stage3.json#/manual_dimensions/explanation",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Defines pattern but leaves a central mechanism unclear.",
+            "evidence": "Definitions and named INSEE attributions clarify stock/flow, ratio changes and recent interest pressure; mechanisms behind persistent deficits and crisis timing are not established.",
+            "scope": "Answer to commissioned why-crisis question.",
+            "limitation": "For the narrower descriptive arithmetic section, 2 is plausible; causal restraint is a strength but does not answer the broader mechanism."
+          }
+        },
+        "chart_design": {
+          "source_locator": "readings/M1d3194-stage3.json#/manual_dimensions/chart_design",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Useful evidence but decoding/annotation requires effort.",
+            "evidence": "Comparisons and values are clear, but source notes collide with x-axis labels in charts 3 and 4; chart 4 needs the bottom text to recover interval and units.",
+            "scope": "Four inspected PNGs.",
+            "limitation": "No mobile or full-page inspection. Core numeric reading remained possible."
+          }
+        },
+        "writing": {
+          "source_locator": "readings/M1d3194-stage3.json#/manual_dimensions/writing",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Understandable but a key implication/passage needs work.",
+            "evidence": "Plain numeric prose generally conveys the argument economically; France does not collect too little overstates the comparison, and Two steps up, none down requires the paragraph to qualify it.",
+            "scope": "Story text excluding synthetic duplicate heading.",
+            "limitation": "Adjacent 2 is plausible for most paragraphs. No penalty for custodian-confirmed packet title duplication."
+          }
+        },
+        "reader_coverage": {
+          "source_locator": "readings/M1d3194-stage3.json#/manual_dimensions/reader_coverage",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Main question partly answered, important follow-ups remain open.",
+            "evidence": "Debt path, persistent deficits, peer context and spending shifts are answered; crisis timing, observable consequences and why deficits persisted remain largely unanswered.",
+            "scope": "Commission and seven released reader questions.",
+            "limitation": "Several gaps require unavailable market/political data, which the prose explicitly acknowledges; in-reach revenue history and stock-flow caveats could still improve the answer."
+          }
+        }
+      },
+      "all_gates_pass": false,
+      "writer_check_passes": 7,
+      "writer_flags": [],
+      "writer_cost_usd_list": 3.504434,
+      "run_source": {
+        "path": "../../../runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/run.json",
+        "sha256": "35c2c0efd33a5da9ee65e52bf8af73b247d984929f486ea4cd5be791b644262e"
+      },
+      "checks_source": {
+        "path": "../../../runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/checks.json",
+        "sha256": "e0bf9d2cc02eca72e7c04db577e7c5bbcb38c56869fabd1d00c97ddcd6a65861"
+      }
+    },
+    {
+      "slot_id": "q01-french-debt-r2-baseline",
+      "output_code": "Mf4bb1f",
+      "topic": "q01-french-debt",
+      "arm": "baseline",
+      "replicate": 2,
+      "run_id": "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+      "H1": {
+        "code": "supported-payoff",
+        "reader_payoff": "Understand debt accumulation as persistent fiscal shortfalls and distinguish its accounting pattern from a new spending surge or interest alone; comparisons contextualize the fiscal part of the crisis question.",
+        "frozen_evidence": {
+          "locator": "readings/Mf4bb1f-stage2.json#/spontaneous_understanding",
+          "record": {
+            "central_story": "Persistent annual deficits are the recurring explanation for France's debt buildup. Crisis-year jumps in 2009 and 2020 were never fully reversed, and borrowing continued between them. France collects more revenue than the EU average but spends even more above that average, particularly on cash benefits and public employees. Rising interest bills now add pressure without yet reaching historically exceptional GDP shares.",
+            "relationships": "The story moves from accumulated debt to the recurring annual gap, then to the components of France's relative spending excess, and finally to the feedback from debt-service costs into that annual gap. It distinguishes a fiscal account of the buildup from a demonstrated market or political crisis.",
+            "what_changed_from_chart_reading": [
+              "The prose names the global financial crisis and pandemic as coincident with the major jumps, confirming my date-based inference without claiming to isolate all mechanisms.",
+              "Definitions identify quarterly Maastricht debt and annual Eurostat accounts, including government coverage, revenue categories and the meaning of the balance.",
+              "The text and alt text clarify that historical chart-2 lines are France, Germany and EU27; Italy and Spain appear as latest-value comparisons. This resolves much of the ambiguity I had about peer trajectories, although visual identification alone remains weaker.",
+              "It adds that the EU27 also ran deficits throughout, so persistent borrowing alone is not uniquely French; the scale is the distinguishing claim.",
+              "It adds social protection's 2024 spending share and benefit indexation, providing some institutional context beyond the spending bars.",
+              "It explicitly notes the 2025 deficit improvement and attributes it to faster revenue growth, including new tax measures.",
+              "Source names, release dates, an alternative INSEE interest figure and a parser-review caveat fill in provenance absent from the chart images.",
+              "It explicitly says the accounts cannot decide whether there is a crisis, matching my main concern from stage1."
+            ]
+          }
+        },
+        "contrary_evidence": "Revenue-adequacy/tax exclusion is unsupported; no acute market/political crisis is established. Persistent deficits do not supply a complete debt-ratio decomposition.",
+        "code_locator": "hypothesis-codes.json#/outputs/7/H1"
+      },
+      "H2": {
+        "primary_code": "comparison-recoverable",
+        "primary_chart_id": "Mf4bb1f/chart-1.png",
+        "charts": [
+          {
+            "id": "Mf4bb1f/chart-1.png",
+            "primary": true,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/Mf4bb1f-stage1.json#/charts/0",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "Mf4bb1f/chart-2.png",
+            "primary": false,
+            "code": "requires-reconstruction",
+            "first_reading_locator": "readings/Mf4bb1f-stage1.json#/charts/1",
+            "reason": "First reader cannot reliably assign gray peer trajectories; prose later resolves series versus endpoint-only identities."
+          },
+          {
+            "id": "Mf4bb1f/chart-3.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/Mf4bb1f-stage1.json#/charts/2",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "Mf4bb1f/chart-4.png",
+            "primary": false,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/Mf4bb1f-stage1.json#/charts/3",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          }
+        ]
+      },
+      "H3": {
+        "primary_code": "supported-link-understood",
+        "primary_relationship_id": "Mf4bb1f-primary-relationship",
+        "relationships": [
+          {
+            "id": "Mf4bb1f-primary-relationship",
+            "primary": true,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly recovers the selected relationship at its bounded descriptive/accounting level; numerical verification supports the contrasted findings. No causal identification beyond that scope credited.",
+            "verification_locators": [
+              "readings/Mf4bb1f-stage3.json#/calculations",
+              "readings/Mf4bb1f-stage3.json#/gates"
+            ],
+            "uncertainty": "\"Between them\" and \"another\" link distinct period findings within L7. Boundary ambiguity: if all of L7 counts as one debt-trajectory finding, the earliest cross-finding relationship is L9, linking that trajectory with an unbroken spending/revenue gap. Preserve selected L7 relationship without replacing it based on subsequent evidence."
+          },
+          {
+            "id": "Mf4bb1f-R2",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader understands flow/stock account as recurrent financing needs, with stock-flow adjustments left unspecified.",
+            "verification_locators": [
+              "readings/Mf4bb1f-stage3.json#/calculations",
+              "readings/Mf4bb1f-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mf4bb1f-R3",
+            "primary": false,
+            "code": "link-left-to-reader",
+            "reason": "Frozen reader expressly says GDP/inflation/adjustment distinction remains implicit; no supplied prose denominator explanation to credit.",
+            "verification_locators": [
+              "readings/Mf4bb1f-stage3.json#/calculations",
+              "readings/Mf4bb1f-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mf4bb1f-R4",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader recognizes EU also ran deficits throughout; 31 each and 2025 gaps verified.",
+            "verification_locators": [
+              "readings/Mf4bb1f-stage3.json#/calculations",
+              "readings/Mf4bb1f-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mf4bb1f-R5",
+            "primary": false,
+            "code": "unsupported-link",
+            "reason": "TR includes more than taxes; reader questions inference; G2 records invalid tax-specific conclusion.",
+            "verification_locators": [
+              "readings/Mf4bb1f-stage3.json#/calculations",
+              "readings/Mf4bb1f-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mf4bb1f-R6",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader recovers decomposition; 5.0 of7.7 GDP points.",
+            "verification_locators": [
+              "readings/Mf4bb1f-stage3.json#/calculations",
+              "readings/Mf4bb1f-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mf4bb1f-R7",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader explicitly recognizes both facts; 1.3 to2.2 versus3.6 in1996, euro ratio2.2418; mechanism for recent increase remains unexplained.",
+            "verification_locators": [
+              "readings/Mf4bb1f-stage3.json#/calculations",
+              "readings/Mf4bb1f-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          }
+        ]
+      },
+      "gates": {
+        "G1": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/gates/0",
+          "record_verbatim": {
+            "gate": "G1",
+            "status": "pass",
+            "scope": "Pinned central accounting claims, source definitions, vintages, geography and documented reuse basis",
+            "evidence": "Manifest pins eight sources and all eight hashes match. README/build define S13 general government, quarterly annual-GDP denominator, PC_GDP/current-euro units, EU27 aggregate and source vintages. Archived Eurostat reuse and INSEE Licence Ouverte pages document reuse with attribution. Attributed INSEE context was located in archived pages.",
+            "limit": "This verifies supplied snapshots and the documented reuse basis, not live-source authenticity or an acute-crisis claim. Tax-specific wording is excluded from this pass.",
+            "check_needed": "Tax claim needs a correctly defined tax comparison; no live source retrieval was permitted."
+          }
+        },
+        "G2": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/gates/1",
+          "record_verbatim": {
+            "gate": "G2",
+            "status": "fail",
+            "scope": "Specific categorical 'Not low taxes: higher spending' heading and 'The deficit does not come from a light tax burden' sentence",
+            "evidence": "The comparison supplied for that conclusion is TR, explicitly defined in the same prose and README as broader than taxes. A high total-revenue share does not alone identify the tax burden or rule out tax-policy contribution to the deficit. The descriptive revenue/spending arithmetic itself checks out.",
+            "check_needed": "Recast this as higher revenue accompanied by still-higher spending, or supply a tax-specific comparison and narrow the causal wording. Do not infer a blanket failure of the valid numerical results.",
+            "other_checked_scope": "Debt steps14.3/14.1/16.7; 31 negative French and EU balances; all 2025 peer deficits; spending gaps and1.1 residual; interest ratio2.2418 all recomputed. Coincidence wording and named INSEE attributions appropriately limit other causal claims."
+          }
+        },
+        "G3": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/gates/2",
+          "record_verbatim": {
+            "gate": "G3",
+            "status": "pass",
+            "scope": "Supplied offline CSV and four SVG reproduction under Node26.4.0",
+            "evidence": "After linking scratch dataset dependency lookup to the supplied existing story cache, build.ts passed, three CSVs matched original hashes, chart script produced four matching SVG hashes, validate-datapackage reported zero errors/warnings, and source-label corruption test passed.",
+            "limit": "Initial dataset build/test failed because dataset node_modules was absent; preserved in command log. Initial CSV hash matches were copy checks only; later rebuilt_csv_hashes establish actual reproduction. This is not independent adversarial certification of the entire HTML parser.",
+            "check_needed": "No further check needed for this narrow reproduction pass; dataset lifecycle review remains separate."
+          }
+        },
+        "G4": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/gates/3",
+          "record_verbatim": {
+            "gate": "G4",
+            "status": "pass",
+            "scope": "Four delivered PNGs inspected in stages1/2 and their corresponding SVG encodings inspected in supplied chart builder",
+            "evidence": "Visible numbers, domains and marker positions match verified data; no clipping or invalid geometry seen. Rebuilt SVG hashes match supplied originals. Chart2 uses dashed EU and solid German series, latest Spain/Italy dots, and deliberately displaced text labels.",
+            "limit": "Chart2 endpoint-label displacement makes matching gray series harder, recorded as editorial design friction. No production-page, mobile, interaction or PNG-rasterizer reproduction was supplied or performed.",
+            "check_needed": "For a broader delivery pass inspect actual publication viewport and rasterization; current pass is only the observed packet render."
+          }
+        }
+      },
+      "dimensions": {
+        "interest": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/dimensions/0",
+          "record_verbatim": {
+            "dimension": "interest",
+            "rating": 2,
+            "locator": "Opening debt contrast; 'Not low taxes' section; interest historical comparison",
+            "anchor": "Specific consequential comparison revises a simple debt-cost explanation: high revenue coexists with higher spending, and a doubled euro interest bill is still below the old GDP-share peak.",
+            "limitation": "Tax wording needs repair; the commission's crisis framing remains unestablished."
+          }
+        },
+        "findings_depth": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/dimensions/1",
+          "record_verbatim": {
+            "dimension": "findings_depth",
+            "rating": 2,
+            "locator": "Charts1 and3 and associated prose",
+            "anchor": "Computes shock-period and intervening debt changes, compares revenue/spending gaps, and decomposes the7.7-point spending excess into types including the5.0-point contribution of cash benefits/pay.",
+            "limitation": "Does not isolate causes of spending or decompose debt changes into GDP/borrowing/adjustments; depth pass is within shown accounting evidence."
+          }
+        },
+        "argument_counterevidence": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/dimensions/2",
+          "record_verbatim": {
+            "dimension": "argument_counterevidence",
+            "rating": 2,
+            "locator": "EU27 borrowing paragraph; final interest paragraphs; crisis caveat",
+            "anchor": "Sequence connects stock, flow, spending composition and interest while testing uniqueness and urgency with EU deficits,2025 deficit improvement, post2020 debt decline and historically/Italian higher interest burdens.",
+            "limitation": "The tax inference still needs repair. This dimension does not clear the failed claim-level gate."
+          }
+        },
+        "explanation": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/dimensions/3",
+          "record_verbatim": {
+            "dimension": "explanation",
+            "rating": 1,
+            "locator": "'What these numbers are' and interest feedback paragraph",
+            "anchor": "Defines measures and scopes attributed indexation, but leaves central debt-ratio dynamics and interest-cost mechanisms unclear.",
+            "limitation": "Adjacent2 plausible for the definitions and explicit limits; chose1 because the reader cannot explain falling debt/GDP amid deficits or distinguish interest-rate from debt-volume effects from the prose."
+          }
+        },
+        "chart_design": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/dimensions/4",
+          "record_verbatim": {
+            "dimension": "chart_design",
+            "rating": 1,
+            "locator": "Chart2 gray historical lines and end labels",
+            "anchor": "Charts offer useful comparisons and readable annotations, but gray peer-series decoding required prose/alt text and later code to resolve confidently.",
+            "limitation": "Charts1,3,4 individually approach2; overall inspected set receives lower supported anchor because chart2 requires inference. Not a misleading-data finding."
+          }
+        },
+        "writing": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/dimensions/5",
+          "record_verbatim": {
+            "dimension": "writing",
+            "rating": 2,
+            "locator": "Opening paragraph, definitions, deficit comparison, final crisis boundary",
+            "anchor": "Mostly economical, concrete language with magnitudes and benchmarks stated and limits explicitly supplied.",
+            "limitation": "Tax heading/sentence need correction; closing method paragraph is dense. Duplicate heading excluded on custody evidence."
+          }
+        },
+        "reader_coverage": {
+          "source_locator": "readings/Mf4bb1f-stage3.json#/dimensions/6",
+          "record_verbatim": {
+            "dimension": "reader_coverage",
+            "rating": 1,
+            "locator": "Commission versus final paragraph and four-section progression",
+            "anchor": "Broad fiscal buildup is answered; important in-reach follow-ups about debt/GDP changes and recent interest mechanics remain open, while acute-crisis evidence is correctly identified as missing.",
+            "limitation": "Would approach2 if commission were narrowly 'describe fiscal buildup'; genuine market/political gaps are not treated as evidence of a false crisis."
+          }
+        }
+      },
+      "all_gates_pass": false,
+      "writer_check_passes": 7,
+      "writer_flags": [],
+      "writer_cost_usd_list": 3.1727426,
+      "run_source": {
+        "path": "../../../runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/run.json",
+        "sha256": "f783ab28e006d8e9467f38ed72ec7f081292f89b01a5ecd51a419b141cb690df"
+      },
+      "checks_source": {
+        "path": "../../../runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/checks.json",
+        "sha256": "d0496ee1c249f0da8eb5cb3eb6cf78e175c8822d129e975a4cd0f802f7b27662"
+      }
+    },
+    {
+      "slot_id": "q03-wti-negative-r2-baseline",
+      "output_code": "Mee832a",
+      "topic": "q03-wti-negative",
+      "arm": "baseline",
+      "replicate": 2,
+      "run_id": "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+      "H1": {
+        "code": "supported-payoff",
+        "reader_payoff": "Distinguish an isolated WTI negative daily event from a shared oil-price slump and positive aggregates; this narrows the event that the commissioned why must explain.",
+        "frozen_evidence": {
+          "locator": "readings/Mee832a-stage2.json#/spontaneous_story_understanding",
+          "record": "The story explains a general COVID lockdown demand collapse and oil glut, plus a specific delivery and storage problem for WTI at Cushing as the May futures contract approached expiry. Traders unable to accept physical oil paid others to take their contracts. Brent also suffered from the glut but, according to the prose, its different settlement arrangement avoided this particular obligation. The negative daily spot quote lasted one day and did not make weekly or monthly averages negative."
+        },
+        "contrary_evidence": "Causal sources are unverified and spot/futures transmission remains unresolved; broad all-oil exclusivity is not supported. No credit is given to the proposed causal mechanism.",
+        "code_locator": "hypothesis-codes.json#/outputs/6/H1"
+      },
+      "H2": {
+        "primary_code": "comparison-recoverable",
+        "primary_chart_id": "Mee832a/chart-1.png",
+        "charts": [
+          {
+            "id": "Mee832a/chart-1.png",
+            "primary": true,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/Mee832a-stage1.json#/chart_notes/0",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "Mee832a/chart-2.png",
+            "primary": false,
+            "code": "requires-reconstruction",
+            "first_reading_locator": "readings/Mee832a-stage1.json#/chart_notes/1",
+            "reason": "Relation is correctly read, but first reader explicitly gets year from prior chart/commission rather than this chart."
+          }
+        ]
+      },
+      "H3": {
+        "primary_code": "supported-link-understood",
+        "primary_relationship_id": "Mee832a-primary-relationship",
+        "relationships": [
+          {
+            "id": "Mee832a-primary-relationship",
+            "primary": true,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly recovers the selected relationship at its bounded descriptive/accounting level; numerical verification supports the contrasted findings. No causal identification beyond that scope credited.",
+            "verification_locators": [
+              "readings/Mee832a-stage3.json#/verification/calculations",
+              "readings/Mee832a-stage3.json#/gates"
+            ],
+            "uncertainty": "Selected as the earliest implied relationship between two benchmark outcomes. There is a boundary ambiguity: these two outcomes can instead be considered components of one self-contained cross-benchmark comparison. Under that narrower interpretation the earliest relationship between separate broader findings would be the shared collapse versus the isolated negative event, located below. No reader interpretation has yet been opened to resolve implied-link understanding."
+          },
+          {
+            "id": "Mee832a-R2",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly distinguishes common decline and isolated WTI extreme; CSV calculations verify changes.",
+            "verification_locators": [
+              "readings/Mee832a-stage3.json#/verification/calculations",
+              "readings/Mee832a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mee832a-R3",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader understands averaging hides daily extreme; supplied aggregation values checked, not individual contract payments.",
+            "verification_locators": [
+              "readings/Mee832a-stage3.json#/verification/calculations",
+              "readings/Mee832a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mee832a-R4",
+            "primary": false,
+            "code": "unassessable",
+            "reason": "Reader recognizes attribution and absence of local causal identification, but external source text not checked and spot/futures transmission remains missing. Neither verified mechanism support nor falsity can be assigned.",
+            "verification_locators": [
+              "readings/Mee832a-stage3.json#/verification/calculations",
+              "readings/Mee832a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mee832a-R5",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader recognizes positive is not unaffected; 9.12 versus historical9.10 and WTI8.91 checked.",
+            "verification_locators": [
+              "readings/Mee832a-stage3.json#/verification/calculations",
+              "readings/Mee832a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "Mee832a-R6",
+            "primary": false,
+            "code": "unassessable",
+            "reason": "Reader understands conceptual distinction; spot value verified, external futures-settlement source not verified in supplied record.",
+            "verification_locators": [
+              "readings/Mee832a-stage3.json#/verification/calculations",
+              "readings/Mee832a-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          }
+        ]
+      },
+      "gates": {
+        "G1": {
+          "source_locator": "readings/Mee832a-stage3.json#/gates/G1",
+          "record_verbatim": {
+            "status": "unresolved",
+            "scope": "Source and scope of full causal answer",
+            "evidence": "README and archive provenance document EIA, retrieval 2026-09-05, daily/weekly/monthly/year measures, nominal US$/barrel FOB, dates and public-domain/PDDL reuse basis. Numerical claims trace to supplied rows. Central causal sources are URLs only; outline acknowledges unchecked memory citations.",
+            "check_needed": "Retrieve and pin EIA/IEA/ICE materials to verify expiry, liquidity, storage, demand and exact Brent settlement characterization. No web access authorized here."
+          }
+        },
+        "G2": {
+          "source_locator": "readings/Mee832a-stage3.json#/gates/G2",
+          "record_verbatim": {
+            "status": "unresolved",
+            "scope": "Whole answer; checked descriptive arithmetic passes",
+            "evidence": "Supplied data scan and explicit same-date percentage calculations confirm every central descriptive value, differences, counts and minima. Prose explicitly separates observation from attributed mechanism. Physical delivery versus cash settlement and linkage to spot quote not verified.",
+            "check_needed": "Verify named external sources and explanation of how futures distress connects to the daily spot quotation."
+          }
+        },
+        "G3": {
+          "source_locator": "readings/Mee832a-stage3.json#/gates/G3",
+          "record_verbatim": {
+            "status": "pass",
+            "scope": "Supplied CSVs to the two SVG charts only",
+            "evidence": "Inspected chart builder and scan before running unchanged copies offline. Node v26.4.0, both commands exit 0, both generated SVG SHA256 values exactly equal supplied hashes; source copies and all eight CSVs byte-identical after run.",
+            "check_needed": "Workbook-to-CSV build was inspected but not executed; this pass excludes raw-workbook reproduction and external source retrieval."
+          }
+        },
+        "G4": {
+          "source_locator": "readings/Mee832a-stage3.json#/gates/G4",
+          "record_verbatim": {
+            "status": "pass",
+            "scope": "Two delivered static PNG charts inspected in stages1/2 plus corresponding deterministic SVG builder",
+            "evidence": "Readable axes and labels, zero lines, full negative point in bounds, benchmark colors and step/monthly conventions match intended comparisons. Code uses independent calendars and data-derived annotations.",
+            "check_needed": "No browser/mobile/interactive assessment; chart2 year relies on article context. PNG rasterization itself not reproduced."
+          }
+        }
+      },
+      "dimensions": {
+        "interest": {
+          "source_locator": "readings/Mee832a-stage3.json#/dimensions/interest",
+          "record_verbatim": {
+            "rating": 2,
+            "evidence_and_anchor": "Title and opening pose a consequential puzzle: sellers pay buyers; comparison with positive Brent revises the broad phrase oil below zero.",
+            "limit": "Causal accuracy remains subject to source verification."
+          }
+        },
+        "findings_depth": {
+          "source_locator": "readings/Mee832a-stage3.json#/dimensions/findings_depth",
+          "record_verbatim": {
+            "rating": 2,
+            "evidence_and_anchor": "Chart1 and prose compute shared approximately70% drops, single-day benchmark divergence, then next-day convergence; chart2 demonstrates positive aggregates.",
+            "limit": "No storage or demand decomposition possible with supplied prices."
+          }
+        },
+        "argument_counterevidence": {
+          "source_locator": "readings/Mee832a-stage3.json#/dimensions/argument_counterevidence",
+          "record_verbatim": {
+            "rating": 2,
+            "evidence_and_anchor": "The wrinkle uses Brent $9.12 next day to show shared glut; positive weekly/monthly averages and spot/futures distinction bound the main claim.",
+            "limit": "Worldwide one-place framing exceeds direct two-benchmark coverage; strongest accessible price counterexample is nevertheless addressed."
+          }
+        },
+        "explanation": {
+          "source_locator": "readings/Mee832a-stage3.json#/dimensions/explanation",
+          "record_verbatim": {
+            "rating": 1,
+            "evidence_and_anchor": "Measure and negative payment are defined, named causal attribution is separated from data; however the central explanation switches from spot prices to expiring futures without explaining transmission. Anchor1: central mechanism remains unclear.",
+            "limit": "Adjacent2 plausible for the scoped storage/expiry story alone; full commission answer retains the linkage gap and unverified sources."
+          }
+        },
+        "chart_design": {
+          "source_locator": "readings/Mee832a-stage3.json#/dimensions/chart_design",
+          "record_verbatim": {
+            "rating": 2,
+            "evidence_and_anchor": "Actual PNGs make exceptional negative WTI against positive Brent and positive aggregates immediately legible; precise and first impression agree.",
+            "limit": "Chart2 year recovered through article/chart1; no alternate viewport checks."
+          }
+        },
+        "writing": {
+          "source_locator": "readings/Mee832a-stage3.json#/dimensions/writing",
+          "record_verbatim": {
+            "rating": 1,
+            "evidence_and_anchor": "Opening is concrete and comparisons clear, but low liquidity is not explained and the spot-to-futures switch leaves a paragraph needing work.",
+            "limit": "Packet duplicate heading is excluded from judgment of original body; adjacent2 plausible after central explanation clarification."
+          }
+        },
+        "reader_coverage": {
+          "source_locator": "readings/Mee832a-stage3.json#/dimensions/reader_coverage",
+          "record_verbatim": {
+            "rating": 1,
+            "evidence_and_anchor": "Answers price, date, magnitude, narrow benchmark scope and broad cause; leaves spot transmission and subsequent sustained recovery unexplained.",
+            "limit": "Recovery causation requires additional evidence; article could identify that gap explicitly. No claim that price data alone can answer it."
+          }
+        }
+      },
+      "all_gates_pass": false,
+      "writer_check_passes": 7,
+      "writer_flags": [],
+      "writer_cost_usd_list": 2.1921612,
+      "run_source": {
+        "path": "../../../runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/run.json",
+        "sha256": "c7829ef801bcb1f7bc0745089f306cecf470997bf31f3f39947a3c4b5e62ab8b"
+      },
+      "checks_source": {
+        "path": "../../../runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/checks.json",
+        "sha256": "d82f8b8e140da9718240e584fbc41f9ee19d374f942fd446862b91f6a4d81f39"
+      }
+    },
+    {
+      "slot_id": "q03-wti-negative-r2-candidate",
+      "output_code": "M948761",
+      "topic": "q03-wti-negative",
+      "arm": "candidate",
+      "replicate": 2,
+      "run_id": "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+      "H1": {
+        "code": "supported-payoff",
+        "reader_payoff": "Distinguish an isolated WTI negative daily event from a shared oil-price slump and positive aggregates; this narrows the event that the commissioned why must explain.",
+        "frozen_evidence": {
+          "locator": "readings/M948761-stage2.json#/spontaneous_story_understanding",
+          "record": "The pandemic depressed oil demand and both benchmarks. According to the attributed EIA explanation, constrained storage at inland Cushing collided with the approaching May futures contract expiration: holders unable to receive oil needed to sell, while few buyers could accommodate barrels. That produced the extraordinary one-day WTI negative price. The broad slump persisted, but the negative observation and huge Brent\u2013WTI gap were brief."
+        },
+        "contrary_evidence": "Causal sources are unverified and spot/futures transmission remains unresolved; broad all-oil exclusivity is not supported. No credit is given to the proposed causal mechanism.",
+        "code_locator": "hypothesis-codes.json#/outputs/2/H1"
+      },
+      "H2": {
+        "primary_code": "comparison-recoverable",
+        "primary_chart_id": "M948761/chart-1.png",
+        "charts": [
+          {
+            "id": "M948761/chart-1.png",
+            "primary": true,
+            "code": "comparison-recoverable",
+            "first_reading_locator": "readings/M948761-stage1.json#/charts/0",
+            "reason": "Frozen chart-only reader states the relation, direction and substantive comparison, not merely labels; subsequent numerical checks do not reverse it."
+          },
+          {
+            "id": "M948761/chart-2.png",
+            "primary": false,
+            "code": "requires-reconstruction",
+            "first_reading_locator": "readings/M948761-stage1.json#/charts/1",
+            "reason": "Relation is correctly read, but standalone chart lacks year as later chart_design note records; period identity requires surrounding context."
+          }
+        ]
+      },
+      "H3": {
+        "primary_code": "supported-link-understood",
+        "primary_relationship_id": "M948761-primary-relationship",
+        "relationships": [
+          {
+            "id": "M948761-primary-relationship",
+            "primary": true,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly recovers the selected relationship at its bounded descriptive/accounting level; numerical verification supports the contrasted findings. No causal identification beyond that scope credited.",
+            "verification_locators": [
+              "readings/M948761-stage3.json#/verification/calculations",
+              "readings/M948761-stage3.json#/gates"
+            ],
+            "uncertainty": "Selected as the earliest implied relationship between two benchmark outcomes. There is a boundary ambiguity: these two outcomes can instead be considered components of one self-contained cross-benchmark comparison. Under that narrower interpretation the earliest relationship between separate broader findings would be the shared collapse versus the isolated negative event, located below. No reader interpretation has yet been opened to resolve implied-link understanding."
+          },
+          {
+            "id": "M948761-R2",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader explicitly distinguishes common decline and isolated WTI extreme; CSV calculations verify changes.",
+            "verification_locators": [
+              "readings/M948761-stage3.json#/verification/calculations",
+              "readings/M948761-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M948761-R3",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Frozen reader understands averaging hides daily extreme; supplied aggregation values checked, not individual contract payments.",
+            "verification_locators": [
+              "readings/M948761-stage3.json#/verification/calculations",
+              "readings/M948761-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M948761-R4",
+            "primary": false,
+            "code": "unassessable",
+            "reason": "Reader recognizes attribution and absence of local causal identification, but external source text not checked and spot/futures transmission remains missing. Neither verified mechanism support nor falsity can be assigned.",
+            "verification_locators": [
+              "readings/M948761-stage3.json#/verification/calculations",
+              "readings/M948761-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M948761-R5",
+            "primary": false,
+            "code": "supported-link-understood",
+            "reason": "Reader recognizes positive is not unaffected; 9.12 versus historical9.10 and WTI8.91 checked.",
+            "verification_locators": [
+              "readings/M948761-stage3.json#/verification/calculations",
+              "readings/M948761-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          },
+          {
+            "id": "M948761-R6",
+            "primary": false,
+            "code": "unassessable",
+            "reason": "Reader understands conceptual distinction; spot value verified, external futures-settlement source not verified in supplied record.",
+            "verification_locators": [
+              "readings/M948761-stage3.json#/verification/calculations",
+              "readings/M948761-stage3.json#/gates"
+            ],
+            "uncertainty": "Source-verification limits and contrary corrections are preserved in verification_evidence; unsupported is not inferred solely from missing source verification."
+          }
+        ]
+      },
+      "gates": {
+        "G1": {
+          "source_locator": "readings/M948761-stage3.json#/gates/G1",
+          "record_verbatim": {
+            "status": "unresolved",
+            "scope": "Central source and scope support",
+            "evidence": "Pinned EIA workbooks, series metadata, Sep 2026 retrieval provenance and documented public-domain/PDDL basis support the spot series. Story's Why section attributes demand/storage/expiry mechanism to EIA, but that source text is absent and not opened. Two benchmarks cannot substantiate an unrestricted 'one price/one place' claim across all oil markets.",
+            "check_needed": "Pin the attributed EIA article, verify its scope and futures settlement claim, and bound exclusivity to these benchmarks."
+          }
+        },
+        "G2": {
+          "source_locator": "readings/M948761-stage3.json#/gates/G2",
+          "record_verbatim": {
+            "status": "pass",
+            "scope": "Recomputed numeric claims from supplied CSVs and explicit attribution boundary",
+            "evidence": "Counts, unique negative day, date values, 71%/72% declines, $54.34 gap, positive averages and historical comparators independently recomputed; no material arithmetic error. Why section explicitly distinguishes local observations from attributed mechanism.",
+            "check_needed": "Pass does not verify external mechanism or establish all-market exclusivity; those remain G1 scope issues."
+          }
+        },
+        "G3": {
+          "source_locator": "readings/M948761-stage3.json#/gates/G3",
+          "record_verbatim": {
+            "status": "unresolved",
+            "scope": "End-to-end raw workbook to delivered charts",
+            "evidence": "Unmodified chart script ran offline in scratch and both SVG SHA256s exactly matched. Dataset build failed before computation with missing xlsx package. No supplied files changed in scratch after attempted rebuild; original packet untouched.",
+            "check_needed": "Supply the authorized offline xlsx dependency and rerun raw-workbook build; compare all eight CSV hashes. Chart-stage reproducibility passes within its scope."
+          }
+        },
+        "G4": {
+          "source_locator": "readings/M948761-stage3.json#/gates/G4",
+          "record_verbatim": {
+            "status": "pass",
+            "scope": "Two delivered PNGs previously viewed plus inspected chart-builder encoding and exact SVG rebuild",
+            "evidence": "Both PNGs readable with zero reference, negative extreme and annotations corresponding to checked rows. No clipping or contradictory scaling observed. Source uses common y scale for benchmarks and step-before weekly averages. Rebuilt SVG hashes match original hashes.",
+            "check_needed": "PNG rasterization environment itself was not independently rerun. Chart2 lacks a standalone year, recoverable from article context; this is a decoding limitation rather than materially misleading geometry."
+          }
+        }
+      },
+      "dimensions": {
+        "interest": {
+          "source_locator": "readings/M948761-stage3.json#/dimensions/interest",
+          "record_verbatim": {
+            "rating": 2,
+            "anchor": "Specific consequential puzzle/revealing comparison",
+            "evidence": "Opening minus $36.98 WTI versus positive $17.36 Brent overturns an undifferentiated oil-price assumption.",
+            "limitation": "Does not establish complete coverage of oil markets."
+          }
+        },
+        "findings_depth": {
+          "source_locator": "readings/M948761-stage3.json#/dimensions/findings_depth",
+          "record_verbatim": {
+            "rating": 2,
+            "anchor": "Computes relevant contrast and quantifies change",
+            "evidence": "Shared 71%/72% decline, $54.34 one-day spread, next-day reconvergence and positive containing averages.",
+            "limitation": "Causal factors cannot be decomposed from the supplied price series."
+          }
+        },
+        "argument_counterevidence": {
+          "source_locator": "readings/M948761-stage3.json#/dimensions/argument_counterevidence",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Clear answer with material alternative/boundary omitted",
+            "evidence": "The wrinkle gives Brent's near-record low and lower historical monthly WTI value, but broad 'one price/one place' language outruns the two-series scope, and no substantive alternative mechanism is tested.",
+            "limitation": "Plausible adjacent 2 for descriptive argument alone, where same-day benchmark contrast and historical averaging counterexamples are strong; the why commission makes 1 safer."
+          }
+        },
+        "explanation": {
+          "source_locator": "readings/M948761-stage3.json#/dimensions/explanation",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Defines measures but leaves central mechanism unclear",
+            "evidence": "Why section names demand, storage and expiry and scopes attribution, but the chain connects futures holders to a spot-price outcome without explaining that transmission.",
+            "limitation": "Plausible adjacent 2 for the general negative-price mechanism and explicit uncertainty; choose 1 because the displayed measure versus causal account remains central."
+          }
+        },
+        "chart_design": {
+          "source_locator": "readings/M948761-stage3.json#/dimensions/chart_design",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Useful evidence with some decoding/context needed",
+            "evidence": "Both charts show readable extrema and precise labels; chart2 has March\u2013May day ticks but no year, and the weekly step's period needs its label and prose.",
+            "limitation": "Plausible adjacent 2 when embedded in the article with 2020 context. No unreadable content or misleading scale observed."
+          }
+        },
+        "writing": {
+          "source_locator": "readings/M948761-stage3.json#/dimensions/writing",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Understandable but a key term or implication needs work",
+            "evidence": "Concrete plain-language magnitude and seller-pays-buyer definition; spot versus futures distinction arrives in The wrinkle after the mechanism, leaving the connection unclear.",
+            "limitation": "Duplicate title excluded from author assessment because custody identifies packaging artifact."
+          }
+        },
+        "reader_coverage": {
+          "source_locator": "readings/M948761-stage3.json#/dimensions/reader_coverage",
+          "record_verbatim": {
+            "rating": 1,
+            "anchor": "Main question partly answered with important follow-ups open",
+            "evidence": "Answers which price, when, magnitude, duration and attributed mechanism. Subsequent recovery is reported without explanation, and spot/futures linkage remains open.",
+            "limitation": "No requirement to invent recovery evidence absent from supplied prices; identify that gap explicitly."
+          }
+        }
+      },
+      "all_gates_pass": false,
+      "writer_check_passes": 7,
+      "writer_flags": [],
+      "writer_cost_usd_list": 2.8551316000000004,
+      "run_source": {
+        "path": "../../../runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/run.json",
+        "sha256": "0299137accde810c81240d1c791a1389509c79bd4081cf26318126e2938b0eab"
+      },
+      "checks_source": {
+        "path": "../../../runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/checks.json",
+        "sha256": "4770796be028873a3c4982f3c40ddd844881260fa857fafba0076c1094a073f3"
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "pair_id": "q01-french-debt-r1",
+      "runtime_pair_id": "20261017-2327-q01-french-debt-pair-1",
+      "topic": "q01-french-debt",
+      "baseline_output": "M30755c",
+      "candidate_output": "Mb8941a",
+      "strict_runtime_outcome": "baseline-win",
+      "orders": [
+        {
+          "order": "AB",
+          "preferred_label": "B",
+          "winner_run_id": "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "winner_arm": "baseline",
+          "margin": "clear",
+          "why_verbatim": "Story 2 answers more of the available-data questions: \u201cA deficit every year\u201d separates the 2025 deficit into interest and a 2.9%-of-GDP primary deficit, and establishes that interest was historically higher relative to GDP. Its functions chart identifies the largest spending areas and their changes since 1995; Story 1 instead charts economic types against the EU and offers only an attributed pensions explanation for recent spending growth. Both honestly acknowledge that these accounts cannot establish an immediate market or political crisis, but neither adequately decomposes recent deterioration into revenue and spending changes or works out a debt-stabilising budget-and-growth combination. Story 1\u2019s directly labelled charts are straightforward, while Story 2\u2019s deficit chart needs stronger visual emphasis on the black total ticks because the blue bars above zero could suggest overall budget surpluses at a glance. That chart edit is outweighed by Story 2\u2019s substantially fuller explanation of spending composition and the deficit before interest.",
+          "source": "../../../pairs/20261017-2327-q01-french-debt-pair-1/critique-AB.json",
+          "sha256": "3a775b4a6eb06f83f97773daf6c771ae90fdfe098214a5d307bafe129b0f62ba"
+        },
+        {
+          "order": "BA",
+          "preferred_label": "B",
+          "winner_run_id": "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "winner_arm": "baseline",
+          "margin": "clear",
+          "why_verbatim": "Story 1\u2019s \u201cA deficit every year\u201d separates the 2025 deficit into interest and the remaining budget gap, answering an important question Story 2 leaves unfinished. Its spending-functions chart also shows the largest functions and their changing GDP shares; Story 2\u2019s useful extra-spending chart instead compares economic categories with the EU at one date. Story 2\u2019s directly labelled revenue-and-spending chart makes the persistent gap immediately clear, whereas Story 1\u2019s deficit chart requires closer attention to black total ticks when blue primary surpluses appear. Both peer charts clearly support their comparisons, but high revenue relative to neighbours does not establish whether weakening revenue contributed to France\u2019s recent deterioration, which neither story works out. Both honestly acknowledge the missing market and political evidence, and both explain GDP\u2019s denominator effect without working through the budget-and-growth conditions needed to stabilise debt.",
+          "source": "../../../pairs/20261017-2327-q01-french-debt-pair-1/critique-BA.json",
+          "sha256": "f0e5e8ba6530fe02be4b152563700487e81219bbadfba58108204461ffcad77d"
+        }
+      ],
+      "primary_hypothesis_directions": {
+        "H1": {
+          "baseline": "supported-payoff",
+          "candidate": "supported-payoff",
+          "direction": "tie"
+        },
+        "H2": {
+          "baseline": "comparison-recoverable",
+          "candidate": "comparison-recoverable",
+          "direction": "tie"
+        },
+        "H3": {
+          "baseline": "supported-link-understood",
+          "candidate": "supported-link-understood",
+          "direction": "tie"
+        }
+      },
+      "owner_response": "missing",
+      "costs": {
+        "calls": 3,
+        "cost_usd": null,
+        "usage": {
+          "input_tokens": 95221,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2428,
+          "reasoning_output_tokens": 1101
+        },
+        "critic": {
+          "vendor": "codex",
+          "model": "gpt-6-astra",
+          "fallback": false,
+          "fallback_reason": null,
+          "effort_requested": "high",
+          "model_actual": null
+        }
+      }
+    },
+    {
+      "pair_id": "q01-french-debt-r2",
+      "runtime_pair_id": "20261017-2329-q01-french-debt-pair-1",
+      "topic": "q01-french-debt",
+      "baseline_output": "Mf4bb1f",
+      "candidate_output": "M1d3194",
+      "strict_runtime_outcome": "candidate-win",
+      "orders": [
+        {
+          "order": "AB",
+          "preferred_label": "B",
+          "winner_run_id": "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
+          "winner_arm": "candidate",
+          "margin": "clear",
+          "why_verbatim": "Story 2 needs fewer substantive additions: \u201cWhat grew, and what made room\u201d identifies old-age and health spending growth and the offset from falling interest, whereas Story 1 mainly explains the spending gap against the EU. Story 2\u2019s revenue-and-spending chart clearly labels its black and red dots and immediately shows all five comparisons; Story 1 supplies only the EU spending/revenue comparison, and its balance chart leaves the grey solid and dashed histories insufficiently distinguished. Story 2 also explains that interest accounts for less than half the deficit and that the post-pandemic debt ratio fell despite rising euro debt, although it should explicitly give the remaining deficit of 2.9% of GDP in 2025. Both still need a quantified spending-versus-revenue decomposition of recent deterioration, fuller spending totals, and budget balances tied to periods of falling debt ratios. Both honestly acknowledge that these accounts cannot establish a borrowing-confidence crisis, with Story 2 making that limitation clear near the start.",
+          "source": "../../../pairs/20261017-2329-q01-french-debt-pair-1/critique-AB.json",
+          "sha256": "5a732cf82dbaeec5478d7bbf7c1c7bfc023938668d63595ae2d29a36ace449d5"
+        },
+        {
+          "order": "BA",
+          "preferred_label": "B",
+          "winner_run_id": "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
+          "winner_arm": "candidate",
+          "margin": "clear",
+          "why_verbatim": "Story 1 needs fewer substantive additions: its revenue\u2013spending chart compares all five economies, and its spending-change chart identifies old age and health as the largest long-run increases; Story 2 supplies only an EU comparison for spending and revenue and no functional growth analysis. Story 1 also explicitly shows that interest explains less than half the deficit, although both should state the remaining 2025 gap of 2.9% of GDP. Neither decomposes recent deficit deterioration into spending and revenue changes or explains budget balances during sustained debt-ratio declines, though Story 1 usefully distinguishes the post-2020 ratio decline from debt repayment. Story 1\u2019s comparison and change charts communicate their arguments with directly labelled marks, whereas Story 2\u2019s balance chart makes distinguishing the similar grey solid and dashed series unnecessarily difficult through displaced endpoint labels and no line-style key. Both honestly acknowledge that these accounts cannot establish a borrowing-confidence crisis, so that missing evidence does not count against either.",
+          "source": "../../../pairs/20261017-2329-q01-french-debt-pair-1/critique-BA.json",
+          "sha256": "2cf025f1b4ab5a6ee6f27b2559adb18e3cfb96f2300984b8f61e5cdab6211a7e"
+        }
+      ],
+      "primary_hypothesis_directions": {
+        "H1": {
+          "baseline": "supported-payoff",
+          "candidate": "supported-payoff",
+          "direction": "tie"
+        },
+        "H2": {
+          "baseline": "comparison-recoverable",
+          "candidate": "comparison-recoverable",
+          "direction": "tie"
+        },
+        "H3": {
+          "baseline": "supported-link-understood",
+          "candidate": "supported-link-understood",
+          "direction": "tie"
+        }
+      },
+      "owner_response": "missing",
+      "costs": {
+        "calls": 3,
+        "cost_usd": null,
+        "usage": {
+          "input_tokens": 91771,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2398,
+          "reasoning_output_tokens": 1013
+        },
+        "critic": {
+          "vendor": "codex",
+          "model": "gpt-6-astra",
+          "fallback": false,
+          "fallback_reason": null,
+          "effort_requested": "high",
+          "model_actual": null
+        }
+      }
+    },
+    {
+      "pair_id": "q03-wti-negative-r1",
+      "runtime_pair_id": "20261017-2330-q03-wti-negative-pair-1",
+      "topic": "q03-wti-negative",
+      "baseline_output": "Mbe53b2",
+      "candidate_output": "M9b1fee",
+      "strict_runtime_outcome": "baseline-win",
+      "orders": [
+        {
+          "order": "AB",
+          "preferred_label": "A",
+          "winner_run_id": "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "winner_arm": "baseline",
+          "margin": "slight",
+          "why_verbatim": "Story 1 needs slightly fewer edits because it explicitly limits its conclusions to the two benchmarks available, while Story 2 overstates the geographic conclusion in its title and ends by treating contract expiry as a delivery deadline. Both causal accounts rely on CFTC material outside the supplied inventory, and Story 2 additionally invokes ICE contract specifications; supporting source passages would be needed to verify those explanations, although both acknowledge that prices alone cannot test them. Story 2 usefully calculates the $54.34 gap and extends the recovery through 30 April, but neither story establishes the gap\u2019s historical exceptionalism or compares the slump\u2019s magnitude with earlier collapses. Both benchmark-chart pairs convey conclusions consistent with their prose, using directly labelled blue WTI and grey Brent lines, with clearly annotated red negative-price markers in the daily charts. Story 1\u2019s averages chart provides the clearest immediate comparison across frequencies: blue daily observations plunge below zero while black weekly segments and the labelled dashed grey monthly average remain positive.",
+          "source": "../../../pairs/20261017-2330-q03-wti-negative-pair-1/critique-AB.json",
+          "sha256": "00b85f58775c2e90a48f0c0d8cb57e548168f70b377fa1ad3263d8201b1333af"
+        },
+        {
+          "order": "BA",
+          "preferred_label": "A",
+          "winner_run_id": "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "winner_arm": "baseline",
+          "margin": "slight",
+          "why_verbatim": "Story 2 better establishes the roughly 70% collapse before the negative day and explicitly limits its conclusions to the two benchmarks observed. Its daily-versus-averages chart makes the smoothing effect immediately visible; both stories\u2019 chart pairs support their prose, with identifiable series colours and directly labelled red negative-price highlights. Story 1 supplies the useful $54.34 gap and a later recovery milestone, but neither story establishes the gap\u2019s historical rarity, clearly identifies when the decline accelerated, or compares earlier collapses adequately. Although the actual cause is outside the price data\u2019s reach, both stories introduce a CFTC report outside the supplied inventory, so their causal accounts require verification against that report rather than acceptance as supplied evidence. Story 1 additionally relies on an unavailable ICE specification and needs its concluding \u201cdelivery deadline\u201d distinguished from contract expiry.",
+          "source": "../../../pairs/20261017-2330-q03-wti-negative-pair-1/critique-BA.json",
+          "sha256": "ad605e7f0d72b98db3b4ea080ceec120b1b8da8cc060d18a608982b2b5fbe47e"
+        }
+      ],
+      "primary_hypothesis_directions": {
+        "H1": {
+          "baseline": "supported-payoff",
+          "candidate": "supported-payoff",
+          "direction": "tie"
+        },
+        "H2": {
+          "baseline": "comparison-recoverable",
+          "candidate": "comparison-recoverable",
+          "direction": "tie"
+        },
+        "H3": {
+          "baseline": "supported-link-understood",
+          "candidate": "supported-link-understood",
+          "direction": "tie"
+        }
+      },
+      "owner_response": "missing",
+      "costs": {
+        "calls": 3,
+        "cost_usd": null,
+        "usage": {
+          "input_tokens": 68774,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3555,
+          "reasoning_output_tokens": 2242
+        },
+        "critic": {
+          "vendor": "codex",
+          "model": "gpt-6-astra",
+          "fallback": false,
+          "fallback_reason": null,
+          "effort_requested": "high",
+          "model_actual": null
+        }
+      }
+    },
+    {
+      "pair_id": "q03-wti-negative-r2",
+      "runtime_pair_id": "20261017-2332-q03-wti-negative-pair-1",
+      "topic": "q03-wti-negative",
+      "baseline_output": "Mee832a",
+      "candidate_output": "M948761",
+      "strict_runtime_outcome": "candidate-win",
+      "orders": [
+        {
+          "order": "AB",
+          "preferred_label": "A",
+          "winner_run_id": "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+          "winner_arm": "candidate",
+          "margin": "slight",
+          "why_verbatim": "Story 1 needs fewer edits because it calculates the $54.34 benchmark gap, explicitly dates WTI\u2019s recovery to $35.57, and adds the December 1998 monthly comparison that Story 2 omits. Neither adequately identifies when the decline accelerated or establishes how exceptional the gap was historically. The causal question requires evidence outside the fixed price inventory, and both acknowledge that limitation, although Story 2\u2019s categorical explanation of Brent futures settlement would additionally need checking against the actual contract specification. Both daily charts communicate a shared collapse with an isolated WTI plunge, matching their prose; coloured labels identify blue WTI and grey Brent, and directly annotated larger red dots highlight the negative observation without implying another measured quantity. Both averages charts communicate positive averages around a negative daily observation, but Story 1 makes its encodings easier to follow with labels beside the blue daily line, heavier black weekly line and dashed grey April average; Story 2 switches to grey daily, blue weekly and black monthly lines and places their identifying text below zero, detached from the positive averages.",
+          "source": "../../../pairs/20261017-2332-q03-wti-negative-pair-1/critique-AB.json",
+          "sha256": "b8e8b75fa61978789b79ebecab7c4e58908a83e40e1cbe6f703045ed194c656f"
+        },
+        {
+          "order": "BA",
+          "preferred_label": "A",
+          "winner_run_id": "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+          "winner_arm": "candidate",
+          "margin": "clear",
+          "why_verbatim": "Story 2 needs fewer edits: \u201cWhat they show\u201d calculates the $54.34 divergence and dates the recovery to $35.57, while \u201cThe wrinkle\u201d adds a historical WTI monthly comparison missing from Story 1. Both benchmark charts convey a shared collapse interrupted by WTI\u2019s isolated negative observation, matching the prose; grey Brent, blue WTI and the larger red highlighted observation are labelled, with Story 2\u2019s endpoint labels easier to follow. Both averages charts convey positive averages despite the daily plunge, but Story 1\u2019s detached weekly label extends beyond the left edge, whereas Story 2 clearly labels its blue daily line, thicker black weekly line and grey dashed monthly line. Neither story explicitly identifies when the decline accelerated. The causal question is set aside because price records cannot establish demand, storage or expiry mechanisms: both acknowledge that limitation, and checking whether their external explanations appear in the supplied notes would settle their evidential standing.",
+          "source": "../../../pairs/20261017-2332-q03-wti-negative-pair-1/critique-BA.json",
+          "sha256": "b9475f4770b88a715767524d9647b9ef5f7cfbaaad199f93bc94f514be8fc57a"
+        }
+      ],
+      "primary_hypothesis_directions": {
+        "H1": {
+          "baseline": "supported-payoff",
+          "candidate": "supported-payoff",
+          "direction": "tie"
+        },
+        "H2": {
+          "baseline": "comparison-recoverable",
+          "candidate": "comparison-recoverable",
+          "direction": "tie"
+        },
+        "H3": {
+          "baseline": "supported-link-understood",
+          "candidate": "supported-link-understood",
+          "direction": "tie"
+        }
+      },
+      "owner_response": "missing",
+      "costs": {
+        "calls": 3,
+        "cost_usd": null,
+        "usage": {
+          "input_tokens": 69009,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3554,
+          "reasoning_output_tokens": 2118
+        },
+        "critic": {
+          "vendor": "codex",
+          "model": "gpt-6-astra",
+          "fallback": false,
+          "fallback_reason": null,
+          "effort_requested": "high",
+          "model_actual": null
+        }
+      }
+    }
+  ],
+  "by_topic": {
+    "q01-french-debt": {
+      "outputs": 4,
+      "pairs": 2,
+      "runtime_outcomes": {
+        "baseline-win": 1,
+        "candidate-win": 1
+      },
+      "primary_hypothesis_directions": {
+        "H1": {
+          "tie": 2
+        },
+        "H2": {
+          "tie": 2
+        },
+        "H3": {
+          "tie": 2
+        }
+      },
+      "by_arm": {
+        "baseline": {
+          "H1": {
+            "supported-payoff": 2
+          },
+          "H2_all_charts": {
+            "comparison-recoverable": 7,
+            "requires-reconstruction": 1
+          },
+          "H3_all_relationships": {
+            "supported-link-understood": 10,
+            "unsupported-link": 3,
+            "link-left-to-reader": 1
+          }
+        },
+        "candidate": {
+          "H1": {
+            "supported-payoff": 2
+          },
+          "H2_all_charts": {
+            "comparison-recoverable": 8
+          },
+          "H3_all_relationships": {
+            "supported-link-understood": 10,
+            "unsupported-link": 3
+          }
+        }
+      }
+    },
+    "q03-wti-negative": {
+      "outputs": 4,
+      "pairs": 2,
+      "runtime_outcomes": {
+        "baseline-win": 1,
+        "candidate-win": 1
+      },
+      "primary_hypothesis_directions": {
+        "H1": {
+          "tie": 2
+        },
+        "H2": {
+          "tie": 2
+        },
+        "H3": {
+          "tie": 2
+        }
+      },
+      "by_arm": {
+        "baseline": {
+          "H1": {
+            "supported-payoff": 2
+          },
+          "H2_all_charts": {
+            "comparison-recoverable": 2,
+            "requires-reconstruction": 2
+          },
+          "H3_all_relationships": {
+            "supported-link-understood": 8,
+            "unassessable": 4
+          }
+        },
+        "candidate": {
+          "H1": {
+            "supported-payoff": 2
+          },
+          "H2_all_charts": {
+            "comparison-recoverable": 3,
+            "requires-reconstruction": 1
+          },
+          "H3_all_relationships": {
+            "supported-link-understood": 8,
+            "unassessable": 4
+          }
+        }
+      }
+    }
+  },
+  "nested_counts": {
+    "H2": {
+      "comparison-recoverable": 20,
+      "requires-reconstruction": 4
+    },
+    "H3": {
+      "supported-link-understood": 36,
+      "unsupported-link": 6,
+      "unassessable": 8,
+      "link-left-to-reader": 1
+    }
+  },
+  "costs": {
+    "writer_usd_list": 23.791826,
+    "claude_canary_usd_list": 0.00389908,
+    "known_comparison_claude_usd_list": 23.79572508,
+    "codex_pair_calls": 12,
+    "codex_pair_usage": {
+      "input_tokens": 324775,
+      "output_tokens": 11935,
+      "reasoning_output_tokens": 6474
+    },
+    "codex_pair_usd": null,
+    "codex_canary_usage": {
+      "input_tokens": 32213,
+      "cached_input_tokens": 13440,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 424,
+      "reasoning_output_tokens": 255
+    },
+    "codex_canary_usd": null,
+    "separate_authorized_opus_design_review_usd_list": 0.5046058,
+    "built_in_reader_and_coder_cost": "not exposed; no dollar estimate invented",
+    "prior_unguarded_test_live_calls": "possible, count/spend unknown; prevents exhaustive session total",
+    "money_basis": "List-equivalent Claude usage distinct from actual subscription billing; Codex USD unknown, not zero."
+  },
+  "owner": "No actual owner preference/concern capture. No agreement or detection rate computed.",
+  "limitations": [
+    "Known q01/q03 development topics; no clean holdout or transfer estimate.",
+    "Three bundled instruction changes; individual-rule causal effects unidentified.",
+    "q01-H3 is targeted/in-sample, and frozen earliest relationships do not necessarily select the nominal/share passage; primary eligibility ambiguities retained.",
+    "Agent interpretations are not owner responses; all4 owner pair responses missing.",
+    "Exact served Codex/manual model and effort identities unavailable; requested CLI identity/effort controlled, not proof of service internals.",
+    "Codex external-read filesystem isolation unproven; transcript-level outside-read audit unavailable.",
+    "Manual instruction-level blinding, embedded author self-review after first readings and packet title promotion are documented. Original observations/codes not rewritten.",
+    "M1d3194 prompted question answers followed verification exposure; its spontaneous stages remain separately frozen.",
+    "Oil source-attributed mechanism documents are not supplied/verified; spot-to-futures bridge remains unresolved. Chart reproduction is not full workbook/renderer reproduction.",
+    "Gate pass scopes differ: Mee832a G3 passes CSV-to-SVG only, unlike full raw-source reproduction. Never pool those as equivalent end-to-end passes.",
+    "All8 supported-payoff/recoverable-primary-chart/understood-primary-link codes give a ceiling for these selected outputs; this does not settle complete causal explanation or invalidate secondary defects.",
+    "Invalid raw critic retries not retained; no retries used in recorded12paircalls.",
+    "Writer max_turns is requested API-round-trip control; reported num_turns counts differ. Do not equate counters or infer caps bypassed from emitted event counts.",
+    "Earlier unguarded inherited tests may have made live critic calls; their number/spend are unknown. Reported experiment figures are not exhaustive session totals.",
+    "Mbe53b2 prompted reader-question answers were recorded after diagnostic-anchor exposure, before outline/data/code inspection; distinct from M1d3194 answers after verification. Original records remain frozen."
+  ],
+  "handoff": {
+    "task": "datapressr-8no.9.6",
+    "scope": "Use frozen evidence for retain/revise/rollback decision; no skill changes or new executions made by this synthesis.",
+    "review_flags": [
+      "Inspect primary-code ceiling and stated eligibility ambiguity without recoding after unblinding.",
+      "Review secondary candidate France population-scope error and shared revenue/tax overclaims separately from appealing comparisons.",
+      "Preserve chart/rasterization uncertainty and scoped reproduction statuses rather than upgrading gates."
+    ]
+  },
+  "critic_manual_comparison": [
+    {
+      "pair": "q01-french-debt-r1",
+      "finding": "Critic baseline clear/clear; frozen H1/H2-primary/H3-primary tied. Reader candidate G1/G2/G4 failures do not disappear under equal primary codes.",
+      "locators": [
+        "pairs q01r1 AB/BA why",
+        "readings/Mb8941a-stage3.json#/gates"
+      ]
+    },
+    {
+      "pair": "q01-french-debt-r2",
+      "finding": "Critic candidate clear/clear for functional-spending analysis and comparator charts; manual writing baseline2/candidate1 and candidate G4 unresolved. Distinct judgments, not an owner-preference disagreement.",
+      "locators": [
+        "readings/Mf4bb1f-stage3.json#/dimensions",
+        "readings/M1d3194-stage3.json#/manual_dimensions",
+        "readings/M1d3194-stage3.json#/gates"
+      ]
+    },
+    {
+      "pair": "q03-wti-negative-r1",
+      "finding": "Critic baseline slight/slight; manual candidate chart_design2 versus baseline1, and baseline G4 fail. Frozen primary codes tied. Critic SVG/text modality differs from reader PNG inspection.",
+      "locators": [
+        "readings/M9b1fee-stage3.json#/manual_dimensions",
+        "readings/Mbe53b2-stage3.json#/manual_dimensions",
+        "readings/Mbe53b2-stage3.json#/gates"
+      ]
+    },
+    {
+      "pair": "q03-wti-negative-r2",
+      "finding": "Critic candidate slight/clear; manual baseline chart_design2 and argument_counterevidence2 versus candidate1/1. Frozen primary codes tied; no complete manual paired preference was elicited.",
+      "locators": [
+        "readings/Mee832a-stage3.json#/dimensions",
+        "readings/M948761-stage3.json#/dimensions"
+      ]
+    }
+  ],
+  "derivation_method": {
+    "pair_rule": "Read saved preferred canonical A/B label and each private mapping; resolve to run then arm. Same non-null arm both orders wins; both null=tie; otherwise disagreement; missing order=incomplete. Never swap saved BA preference again.",
+    "hypothesis_directions": "Compare exact frozen H1.code,H2.primary_code,H3.primary_code using execution-plan.manual_analysis ordinal lists; equal=tie; any unassessable=>no ordinal direction.",
+    "nested_counts": "Count every chart/relationship code within output; maintain scheduled 8output/4pair denominator and2topics.",
+    "ratings_and_gates": "Copy each original stage3 record verbatim and retain exact JSON-pointer locator; no rescoring, sum, gate substitution or scope harmonization.",
+    "costs": "Decimal sum eight writer run cost_usd fields, add Claude canary separately; sum four pair ledger usage/calls; keep nullable costs unknown and design review separate."
+  },
+  "primary_code_interpretation": {
+    "H1": "Bounded supported reader payoff, not a complete causal answer to the commission.",
+    "H3": "Narrower understood descriptive/accounting relationship, not validation of stronger causal ledes. In M1d3194/Mb8941a, understood persistent-deficit/debt connection does not prove full debt-ratio causation; denominator and stock-flow adjustments remain relevant.",
+    "eligibility": "Preserve frozen ambiguity about debt trajectory components versus separate findings (explicit in M30755c), and same-day oil benchmark contrast versus one self-contained comparison. No post-reveal reselection or recoding."
+  },
+  "coder_input_inventory_clarification": {
+    "source": "coder-input-audit.json",
+    "sha256": "65330bfd5592105d192ccaef855abbceaf28149a5a677a0f867b344aa49adb1d",
+    "original_delivered_index_preserved": true,
+    "indexed_files_verified": 114,
+    "reader_records_verified": 24,
+    "stale_fields": "Original index retained six-output scope/pending-eighth scan wording and preparation-time no-coder-launch status. Audit clarifies all-eight completion without rewriting delivered evidence.",
+    "screen_result": "No known treatment/run identity matches; generic codebook labels and five chart-axis baseline mentions do not map outputs to arms. No perfect-blinding guarantee."
+  }
+}
