@@ -1,0 +1,45 @@
+{
+  "document_type": "frozen-neutral-reader-setup",
+  "task": "datapressr-hcn.27",
+  "setter": "neutral_reader_setup",
+  "context": "Fresh fork_turns none; no tools, repository, hypotheses, skill changes, prior stories or reviews supplied. Only the two commissions and generic source inventory. Frozen before new writer outputs.",
+  "commissions": [
+    {
+      "case_id": "q01-french-debt",
+      "commission": "Why is there a French debt crisis?",
+      "reader_questions": [
+        "What does “debt crisis” mean in this case, and what evidence supports that description?",
+        "How has France’s public debt changed over time?",
+        "What contributed to those changes?",
+        "Why has the debt become a concern at this particular time?",
+        "How does France’s situation compare with relevant historical periods or other countries?",
+        "What consequences are already observable, and which remain uncertain?",
+        "What can the supplied evidence establish, and what questions does it leave unanswered?"
+      ]
+    },
+    {
+      "case_id": "q03-wti-negative",
+      "commission": "Why did the price of oil go below zero in April 2020?",
+      "reader_questions": [
+        "Which oil price went below zero, and what exactly did that price represent?",
+        "When did this happen, how far did the price fall, and how long did it remain negative?",
+        "What conditions and events contributed to the negative price?",
+        "How could a transaction at a negative price work for the parties involved?",
+        "How widespread was the event across oil markets?",
+        "What happened afterward, and what helps explain the subsequent movement in prices?",
+        "What can the supplied evidence establish, and what questions does it leave unanswered?"
+      ]
+    }
+  ],
+  "selected_first_pass_instruction": "View the charts before reading the prose. Record in your own words what you think happened, why you think it happened, and anything that remains unclear. Then read the prose and record anything you would add or change. Keep both sets of notes. Do this before viewing the outline or source verification.",
+  "reader_questions_instruction": "Show the commission’s reader questions only after the spontaneous notes have been recorded. Ask readers to answer from the packet and identify any questions they cannot yet answer.",
+  "driver_packet_recipe": {
+    "applies_to": "All eight manual output review sessions; no alternate prose-first arm.",
+    "stage_1": "Neutral commission plus anonymized chart renders only. Capture and freeze spontaneous interpretations.",
+    "stage_2": "Anonymized prose with neutral source references intact, no outline, treatment names, hypotheses or critic outcomes. Freeze prose interpretation and changes to chart reading. Then supply neutral reader questions.",
+    "stage_3": "Supply outline and permitted pinned source data for verification and diagnostic anchors after first readings frozen.",
+    "custody": "Separate per-output directory and fresh reviewer context. Mapping remains custodian-only. Preserve prose/chart content; remove metadata exposing run IDs/skill refs. Disclose unavoidable arm inference rather than rewriting content.",
+    "reviewer_configuration": "fork_turns none; inherited platform model with no override for every manual reviewer; actual served model/effort metadata unavailable and reported unknown.",
+    "hypothesis_coding": "Separate coder receives frozen readings plus codebook, no arm mapping. Partial blinding disclosed."
+  }
+}
