@@ -1,0 +1,47 @@
+{
+  "document_type": "post-coding-input-inventory-clarification",
+  "at": "2026-10-17T23:39:16.696223+00:00",
+  "original_index_sha256": "4a068e9e27e832b7c908d961661b5702042c9abb8cdc4a871c84a2a4c3d9b243",
+  "original_delivered_index_preserved": true,
+  "all_indexed_files_hash_verified": 114,
+  "outputs": 8,
+  "frozen_reader_records": 24,
+  "historical_status": "No-coder-launch describes preparation time, not current phase. Codes were subsequently frozen at137192c4.",
+  "stale_metadata": [
+    "scan_disposition.scope retained six-output wording",
+    "new_scan_findings_disposition retained pending-eighth wording despite unchanged generic match set"
+  ],
+  "current_scan_scope": "All114 indexed bundle files; text scan of JSON/Markdown, binary PNGs hash-verified.",
+  "known_run_or_treatment_identity_matches": [],
+  "generic_noncodebook_matches": [
+    {
+      "path": "readings/M30755c-stage3.json",
+      "line": 264,
+      "text": "        \"chart-1.png: time series, zero baseline, units and annotations readable; SVG axis 0\u2013140 agrees with render. Outline says 0\u2013130, an outdated plan detail; final code/render agree.\","
+    },
+    {
+      "path": "materials/M30755c/stage2/story.md",
+      "line": 5,
+      "text": "![Line chart of French gross public debt as a share of GDP by quarter, 2000 to mid-2026, on a zero baseline. It rises from 60.5% in early 2000 to 65.5% at the end of 2007, jumps to 84.1% at the end of 2009 and from 98.2% at the end of 2019 to 114.9% at the end of 2020, dips to 109.5% at the end of 2023, and reaches 119.0%, \u20ac3.6 trillion, in mid-2026.](chart-1.png)"
+    },
+    {
+      "path": "readings/Mb8941a-stage3.json",
+      "line": 70,
+      "text": "      \"evidence\": \"Main chart marks, values, units and trends correspond to checked data; no misleading bar baseline found. Charts 3 and 4 have actual axis-caption/source-note overlap. Chart 4\u2019s economic-type/residual definition is obscured. Reproduction preserves the SVGs that produced these layout choices.\","
+    },
+    {
+      "path": "materials/M9b1fee/stage2/story.md",
+      "line": 23,
+      "text": "![Monthly average spot prices for WTI and Brent, January 2019 to December 2020, US dollars per barrel, on a zero baseline. Brent averaged $63.65 and WTI $57.52 in January 2020. By April 2020 Brent averaged $18.38 and WTI $16.55, a fall of 71% for each. Neither monthly average goes below zero.](chart-2.png)"
+    },
+    {
+      "path": "readings/M1d3194-stage3.json",
+      "line": 109,
+      "text": "        \"Chart 1 uses zero-based ratio scale; chart 2 bars share zero baseline; chart 3 common-scale dots use an explicit 40\u201360 domain; chart 4 diverges around zero and uses a non-overlapping category set.\","
+    }
+  ],
+  "codebook_disposition": "Generic baseline/candidate labels describe hypotheses without mapping outputs to arms.",
+  "noncodebook_disposition": "All5 matches describe zero/bar/chart-axis baselines, not treatment identities.",
+  "limit": "Mechanical token screening and instructed access boundaries do not prove perfect blinding or filesystem isolation. Preserve all earlier exposure disclosures.",
+  "recoding": false
+}
