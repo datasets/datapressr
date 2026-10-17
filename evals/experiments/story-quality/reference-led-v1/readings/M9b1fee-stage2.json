@@ -1,0 +1,32 @@
+{
+  "packet_code": "M9b1fee",
+  "stage": 2,
+  "status": "Frozen spontaneous prose reading; no checklist, scoring or source verification",
+  "accessed_paths_in_order": [
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage2",
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage2/READ-ME.md",
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage2/commission.md",
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage2/story.md",
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage2/chart-1.png",
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage2/chart-2.png"
+  ],
+  "operational_issues": [],
+  "access_limitations": "No outside links followed. No source verification, source repositories, parent or sibling directories accessed. Stage1 record remained unchanged and was not reopened. Chart-first reading was available in conversation memory.",
+  "spontaneous_understanding": "The story separates a broad collapse in oil prices during lockdowns from a one-day negative WTI price. WTI is tied to the inland Cushing hub; an expiring futures contract required physical delivery when storage was largely full or committed. Holders unable to receive oil needed to offload contracts urgently, eventually paying others to take them. Brent shared the slump but, according to the prose, its different settlement arrangements avoided the same delivery squeeze. This gives a coherent reason for both the shared monthly fall and the isolated WTI plunge.",
+  "relationships_understood": [
+    "The daily chart shows the unusual divergence and rapid reversal; the monthly chart shows common background weakness and how aggregation hides the negative day.",
+    "Lockdowns reduced fuel demand, making the broad slump understandable. Delivery obligations plus unavailable storage made some WTI contracts burdens rather than valuable claims on oil. Expiry timing explains urgency.",
+    "The prose distinguishes the plotted EIA spot price of minus $36.98 from the widely remembered futures settlement of minus $37.63.",
+    "Brent did not go negative but nearly reached its historical daily low the next day. It could also trade below WTI on other days, so benchmark rankings were not fixed."
+  ],
+  "what_prose_adds_or_changes": "The prose supplies the missing causal explanation, defines the benchmarks and Cushing, identifies EIA as the price source, and attributes the mechanism to a CFTC report. It confirms my chart-only inference of shared weakness plus a WTI-specific short-lived disruption. It adds historical claims beyond the plotted windows, including the sole nonpositive daily WTI observation among 10,236 observations, monthly lows since 1999, and Brent nearly matching its 1998 low. The purpose of the March 31 and weekly-average annotations is clearer: they qualify benchmark ordering and illustrate smoothing. The distinction between price evidence and externally sourced explanation is explicit.",
+  "remaining_uncertainty_or_questions": [
+    "The causal account is about futures contracts while the main negative observation is a spot-price series. The prose distinguishes their numerical values but does not explicitly explain how futures forced selling translates into this EIA spot assessment.",
+    "The final phrase calls this the day before its delivery deadline, while earlier prose says the contract expired on April 21. I am left unsure whether expiration and delivery deadline mean the same event here.",
+    "The categorical cash-settlement description of Brent is important to the explanation, but I have not checked the linked contract specification and cannot judge its completeness from this packet.",
+    "The causal mechanism is plausible as narrated but the chart data cannot establish it; the prose appropriately acknowledges the absence of storage, positions and demand series.",
+    "The broad title about one place and one day and the statement that oil in general never cost less than nothing feel wider than the two-benchmark evidence, though the story repeatedly specifies its intended WTI focus.",
+    "Why exactly prices became positive again on expiry day is suggested by the contract timing but not explained in detail."
+  ],
+  "presentation_observations": "The title appears twice in the supplied Markdown. Charts remain readable. Historical comparisons and the mechanics answer depend on prose, not chart inspection. The methods paragraph provides reproducibility pointers, which I did not follow."
+}
