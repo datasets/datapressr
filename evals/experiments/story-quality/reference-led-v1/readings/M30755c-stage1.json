@@ -1,0 +1,126 @@
+{
+  "packet": "M30755c",
+  "stage": 1,
+  "overall_interpretation": "France has a long-running mismatch between government income and expenditure. Debt relative to the economy has nearly doubled since 2000, with conspicuous jumps around the financial crisis and pandemic and a renewed rise after 2023. Persistent deficits, including deficits before interest for more than two decades, make this more than a story about interest on inherited debt. France raises a large amount of revenue relative to GDP in the comparison shown, but spending exceeds it by an unusually large margin. The longer spending comparison suggests a shift toward old-age benefits and health within a roughly stable total GDP share, rather than a broad doubling of spending alongside the debt ratio. These pictures describe a fiscal problem but do not establish why it constitutes a crisis now.",
+  "charts": [
+    {
+      "filename": "chart-1.png",
+      "spontaneous_understanding": "The debt burden relative to GDP has climbed in steps and has recently resumed rising after a partial retreat.",
+      "evidence": [
+        "60.5% in early 2000 becomes 119.0% in mid-2026, labeled EUR3.6 trillion.",
+        "65.5% at end-2007 rises to 84.1% at end-2009 across the financial-crisis shading.",
+        "98.2% at end-2019 becomes 114.9% at end-2020 across the pandemic shading.",
+        "109.5% at end-2023 is followed by a rise to the latest point."
+      ],
+      "uncertainty": [
+        "The ratio alone cannot distinguish borrowing from changes in GDP.",
+        "Event shading establishes timing, not how much each event caused.",
+        "No source or actual-versus-forecast status is visible."
+      ]
+    },
+    {
+      "filename": "chart-2.png",
+      "spontaneous_understanding": "Annual budgets have remained in deficit, and the recent deficits would persist even with interest excluded. Interest has risen recently but is not the whole gap.",
+      "evidence": [
+        "Every black total tick is below zero from 1995 to 2025.",
+        "The last blue primary surplus is labeled 2001, +1.7.",
+        "Large total deficits are labeled -7.4 in 2009 and -8.9 in 2020.",
+        "2025 total deficit of 5.1 consists of interest 2.2 (EUR67bn) and deficit before interest 2.9.",
+        "Interest in 2020 is 1.3 (EUR30bn); 2024 total deficit is 5.8."
+      ],
+      "uncertainty": [
+        "The surplus years require reading the black tick separately from the bottom of the gray bar; the legend explains this but it takes attention.",
+        "The chart does not explain why the primary balance turned negative or stayed there.",
+        "A deficit each year need not imply the debt-to-GDP ratio rises each year, as chart 1 itself shows."
+      ]
+    },
+    {
+      "filename": "chart-3.png",
+      "spontaneous_understanding": "France stands out among these comparators for both high revenue and even higher spending, leaving the largest total and primary deficits shown.",
+      "evidence": [
+        "France revenue 52.1 and spending 57.2% of GDP leave a 5.1 gap and -2.9 balance before interest.",
+        "The EU aggregate has 46.4 revenue, 49.5 spending, a 3.1 deficit and -1.2 before interest.",
+        "Italy has a 3.1 total deficit despite a +0.8 balance before interest; Spain is at 0.0 before interest."
+      ],
+      "uncertainty": [
+        "The title saying France collects the most is supported only within the displayed comparison, not every country.",
+        "The axis begins at 40, explicitly disclosed.",
+        "Germany spending minus revenue appears to be 2.6 whereas the deficit column is 2.7; this could be rounding.",
+        "This snapshot does not establish tax capacity, waste, service quality, or a preferred remedy."
+      ]
+    },
+    {
+      "filename": "chart-4.png",
+      "spontaneous_understanding": "Spending has changed composition much more than its overall GDP share. Health and old-age benefits expanded, while several other categories and interest shrank.",
+      "evidence": [
+        "Total spending is 56.1% in 1995 and 57.3% in 2024.",
+        "Social protection rises from 22.0 to 23.7, including old age rising from 11.0 to 13.4.",
+        "Health rises from 6.9 to 8.9.",
+        "General public services falls from 8.3 to 6.2, including debt interest falling from 3.6 to 2.0.",
+        "Education falls from 5.8 to 5.1 and defence from 2.5 to 1.9.",
+        "Footnote says health is separate from social protection and 2024 figures are provisional."
+      ],
+      "uncertainty": [
+        "Only endpoints are shown, so total spending may have moved substantially in between.",
+        "A falling GDP share is not proof of a cut in nominal or real spending.",
+        "No demographic, service-volume, or price evidence is supplied to explain the category changes.",
+        "The comparison ends in 2024, earlier than the 2025 budget snapshot and 2026 debt endpoint."
+      ]
+    }
+  ],
+  "unsupported_interpretations": [
+    "An imminent default or loss of market access.",
+    "A causal claim that ageing, a particular government, or waste created the debt crisis.",
+    "That interest alone accounts for the deficit or the rise in debt.",
+    "That the government can solve the gap only by cutting spending or only by raising taxes.",
+    "That the crisis and pandemic account quantitatively for all the growth in debt."
+  ],
+  "readability_and_missing_content": "All four chart images and their labels were readable. No underlying sources, prose, forecasts methodology, market indicators, revenue history, or causal decomposition were available in this stage.",
+  "access_log": [
+    {
+      "tool": "exec_command",
+      "operation": "ls -la",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1"
+    },
+    {
+      "tool": "exec_command",
+      "operation": "cat",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/READ-ME.md",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/commission.md"
+      ]
+    },
+    {
+      "tool": "view_image",
+      "operation": "initial parallel image inspection",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/chart-1.png",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/chart-2.png",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/chart-3.png",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/chart-4.png"
+      ],
+      "display_order": [
+        3,
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "tool": "view_image",
+      "operation": "sequential numeric-order rereview",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/chart-1.png",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/chart-2.png",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/chart-3.png",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage1/chart-4.png"
+      ]
+    },
+    {
+      "tool": "exec_command",
+      "operation": "python3 JSON write and parse validation",
+      "path": "/tmp/datapressr-reader-M30755c-stage1.json"
+    }
+  ],
+  "protocol_note": "Initial image calls were batched alongside reading the instructions and their outputs appeared in order 3,1,4,2. On seeing the numeric-order instruction, I reviewed the images again sequentially as 1,2,3,4. No material outside the assigned stage1 directory was read; no packet file was modified."
+}
