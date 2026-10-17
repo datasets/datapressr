@@ -1,0 +1,18 @@
+{
+  "document_type": "pre-output-manual-packet-custody",
+  "mapping_sha256": "c5ea21a815e302cee90ea7b501f58bf15f2a5cbca22219e17c3a77f5ce687f60",
+  "mapping_storage": "custodian-only local file outside reviewer packet",
+  "opaque_codes": [
+    "M1d3194",
+    "M30755c",
+    "M948761",
+    "M9b1fee",
+    "Mb8941a",
+    "Mbe53b2",
+    "Mee832a",
+    "Mf4bb1f"
+  ],
+  "creation": "cryptographically random independent opaque code for each preregistered slot, allocated before any new output",
+  "content_policy": "Preserve chart/prose bytes except metadata/paths that identify the run or skill treatment; retain neutral source references. Progressive chart then prose then outline/data access. No hypothesis/candidate diff/critic results supplied to fresh readers.",
+  "release": "Mapping withheld from reviewers/coder until their original observations and codes are frozen; preserve original records after unblinding."
+}

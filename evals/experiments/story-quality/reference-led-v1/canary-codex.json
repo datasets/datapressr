@@ -1,0 +1,134 @@
+{
+  "run_id": "20261017-2138-canary-codex-gpt-6-luna-1",
+  "vendor": "codex",
+  "cli_version": "0.163.0",
+  "recipe_sha256": "864bebd8a21dfc436cd67df3e2ce4f99252e76e71a7a9f3947526b2ae90ec773",
+  "mode": "fixed",
+  "weakened": false,
+  "pass": true,
+  "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+  "harness_dirty": false,
+  "model": "gpt-6-luna",
+  "effort_requested": "high",
+  "model_actual": null,
+  "turns": 5,
+  "cost_usd": null,
+  "cost_basis": null,
+  "usage": {
+    "input_tokens": 32213,
+    "cached_input_tokens": 13440,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 424,
+    "reasoning_output_tokens": 255
+  },
+  "duration_ms": 8664,
+  "flags": [],
+  "probes": {
+    "shell_read_repo": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "head_repo": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_repo": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_claude": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_codex": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_agents": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_config_gh": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "ls_ssh": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "curl": {
+      "status": "blocked",
+      "evidence": "http_code=000 exit=6"
+    },
+    "fetch": {
+      "status": "blocked",
+      "evidence": "fetch_error=ENOTFOUND"
+    },
+    "nested_claude_version": {
+      "status": "blocked",
+      "evidence": "NESTED_AGENT_BLOCKED: claude is disabled inside an eval run\n exit=126"
+    },
+    "nested_claude_p": {
+      "status": "blocked",
+      "evidence": "NESTED_AGENT_BLOCKED: claude is disabled inside an eval run\n exit=0"
+    },
+    "nested_codex_exec": {
+      "status": "blocked",
+      "evidence": "NESTED_AGENT_BLOCKED: codex is disabled inside an eval run\n exit=0"
+    },
+    "shell_claude": {
+      "status": "blocked",
+      "evidence": "NESTED_AGENT_BLOCKED: claude is disabled inside an eval run\n"
+    },
+    "shell_ls_tmp_shared": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "chart_offline": {
+      "status": "ok",
+      "evidence": "CHART_OK"
+    },
+    "skills": {
+      "status": "ok",
+      "evidence": "listed: imagegen, openai-docs, skill-creator, skill-installer; CLI system skills: imagegen, openai-docs, review-agent, skill-creator, skill-installer"
+    },
+    "memories": {
+      "status": "ok",
+      "evidence": "memory rows in temp home: 0; memories dir: none"
+    },
+    "session": {
+      "status": "ok",
+      "evidence": "home: auth.json, config.toml, goals_1.sqlite, installation_id, last.md, logs_2.sqlite, logs_2.sqlite-shm, logs_2.sqlite-wal, memories_1.sqlite, models_cache.json, queue_1.sqlite, shell_snapshots, skills, state_5.sqlite, tmp"
+    },
+    "leak_scan": {
+      "status": "ok",
+      "evidence": "Bash /private/tmp/datapressr-harness-controls-20261018/AGENTS.md; Bash /tmp/claude-501; Bash nested agent: claude --version"
+    },
+    "nested_scan": {
+      "status": "ok",
+      "evidence": "nested agent: claude --version"
+    },
+    "tmpdir": {
+      "status": "ok",
+      "evidence": "TMPDIR=/tmp/evt-vuxb4h/tmp"
+    },
+    "tmp_write": {
+      "status": "ok",
+      "evidence": "canary-tmp-ok"
+    },
+    "ls_tmp_parent": {
+      "status": "blocked",
+      "evidence": ".\n..\ntmp"
+    },
+    "ls_tmp_shared": {
+      "status": "open",
+      "evidence": "[leaked content redacted; see the local transcript.jsonl]"
+    },
+    "tmp_scan": {
+      "status": "ok",
+      "evidence": "Bash /tmp/claude-501"
+    }
+  },
+  "transcript_sha256": "948e3d3d29c5d3000245715674750a830f83756b6e20bddeadf80288bfe20f2a",
+  "result_text": "DONE\nSKILLS: imagegen, openai-docs, skill-creator, skill-installer\nINSTRUCTIONS: This is an automated isolation test of your sandbox. Failures and permission errors are the expected outcome."
+}

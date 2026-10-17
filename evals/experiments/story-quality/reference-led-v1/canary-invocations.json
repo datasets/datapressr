@@ -1,0 +1,310 @@
+{
+  "schema": 1,
+  "harness_commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+  "preregistration_commit": "ec7b3082ff8c225e4a039654576e39aa1c515ce9",
+  "routes": {
+    "claude": "claude.ai Max subscription",
+    "codex": "ChatGPT subscription"
+  },
+  "override_present": {
+    "ANTHROPIC_API_KEY": false,
+    "ANTHROPIC_AUTH_TOKEN": false,
+    "ANTHROPIC_BASE_URL": false,
+    "CLAUDE_CODE_USE_BEDROCK": false,
+    "CLAUDE_CODE_USE_VERTEX": false,
+    "CLAUDE_CODE_USE_FOUNDRY": false,
+    "OPENAI_API_KEY": false
+  },
+  "executables": {
+    "node": "/opt/homebrew/bin/node",
+    "claude": "/opt/homebrew/bin/claude",
+    "codex": "/Users/rgrp/.local/bin/codex"
+  },
+  "versions": {
+    "node": "v26.4.0",
+    "claude": "2.1.302 (Claude Code)",
+    "codex": "codex-cli 0.163.0"
+  },
+  "config_sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+  "canary_limits": {
+    "max_usd": 0.05,
+    "max_turns": 6,
+    "timeout_ms": 300000
+  },
+  "events": [
+    {
+      "event": "start",
+      "vendor": "claude",
+      "at": "2026-10-17T21:36:15.901673+00:00",
+      "command": [
+        "node",
+        "evals/run.mjs",
+        "canary",
+        "--writer",
+        "claude",
+        "--mode",
+        "fixed"
+      ],
+      "config_sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64"
+    },
+    {
+      "event": "finish",
+      "vendor": "claude",
+      "at": "2026-10-17T21:36:27.623586+00:00",
+      "exit_code": 0,
+      "pass": true,
+      "ledger_record": {
+        "schema": 1,
+        "kind": "canary",
+        "at": "2026-10-17T21:36:16.041Z",
+        "run_id": "20261017-2136-canary-claude-haiku-5-5-1",
+        "vendor": "claude",
+        "cli_version": "2.1.302",
+        "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d",
+        "mode": "fixed",
+        "pass": true,
+        "weakened": false,
+        "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+        "model": "claude-haiku-5-5",
+        "effort_requested": "high",
+        "model_actual": "claude-haiku-5-5",
+        "cost_usd": 0.00389908,
+        "turns": 13,
+        "path": "canaries/20261017-2136-canary-claude-haiku-5-5-1",
+        "probes": {
+          "read_repo": "blocked",
+          "read_claude_md": "blocked",
+          "grep_repo": "blocked",
+          "glob_claude": "blocked",
+          "glob_codex": "blocked",
+          "glob_agents": "blocked",
+          "glob_config_gh": "blocked",
+          "glob_ssh": "blocked",
+          "head_repo": "blocked",
+          "ls_repo": "blocked",
+          "ls_claude": "blocked",
+          "ls_codex": "blocked",
+          "ls_agents": "blocked",
+          "ls_config_gh": "blocked",
+          "ls_ssh": "blocked",
+          "curl": "blocked",
+          "fetch": "blocked",
+          "nested_claude_version": "blocked",
+          "nested_claude_p": "blocked",
+          "nested_codex_exec": "blocked",
+          "bash_claude": "blocked",
+          "bash_codex": "blocked",
+          "bash_ls_tmp_shared": "blocked",
+          "chart_offline": "ok",
+          "session": "ok",
+          "user_context": "ok",
+          "leak_scan": "ok",
+          "nested_scan": "ok",
+          "tmpdir": "ok",
+          "tmp_write": "ok",
+          "ls_tmp_parent": "blocked",
+          "ls_tmp_shared": "blocked",
+          "tmp_scan": "ok"
+        }
+      },
+      "artifacts": [
+        {
+          "path": "evals/canaries/20261017-2136-canary-claude-haiku-5-5-1/canary.json",
+          "bytes": 6730,
+          "sha256": "b775cb8c42ec76ad86e58117c058e847708c16b7caf921938324add0afe6772d"
+        },
+        {
+          "path": "evals/canaries/20261017-2136-canary-claude-haiku-5-5-1/transcript.jsonl",
+          "bytes": 40180,
+          "sha256": "a70c156dd751d29f03d49c719c9d063559e66ad174054e0600099da119a34870"
+        }
+      ],
+      "log": "/tmp/datapressr-comparison-canary-claude.log",
+      "log_sha256": "62c7b0157115835371f14dc90834fe1d53aaf18ba7b95ed291cc0a2a21693094"
+    },
+    {
+      "event": "custodian-stop",
+      "at": "2026-10-17T21:36:51.853450+00:00",
+      "reason": "Claude CLI reported num_turns=13 despite configured --max-turns 6. Isolation pass is true; resource contract needs explicit reconciliation before further calls.",
+      "next_vendor_not_started": "codex"
+    },
+    {
+      "event": "turn-metric-investigation",
+      "at": "2026-10-17T21:37:51.607351+00:00",
+      "method": "Offline inspection of installed Claude native executable embedded implementation and preserved transcript",
+      "binary_sha256": "5262ce9de86243fed0d21edc39b271555d56780d0112e2b194439fe1c6662d37",
+      "raw_reported_num_turns": 13,
+      "assistant_unique_message_ids": 2,
+      "user_tool_result_events": 12,
+      "success_counter_source": "rt=V.engineDeferredSlash?0:1; on u.type===user, rt++; success result num_turns:rt",
+      "maxTurns_source_description": "Maximum number of agentic turns (API round-trips) before stopping",
+      "interpretation": "num_turns counts initial input plus tool-result user events here, not API round trips; 13 is not evidence that the six API-round-trip limit was exceeded. Actual service-side effort/enforcement not independently verified.",
+      "observed_duration_ms": 10296,
+      "observed_list_cost_usd": 0.00389908,
+      "next_call": "await driver reconciliation"
+    },
+    {
+      "event": "driver-disposition",
+      "at": "2026-10-17T21:38:00.434996+00:00",
+      "disposition": "Driver and independent controls_review accept metric clarification before next call. Raw num_turns=13 retained, unique assistant IDs=2 separately; requested maxTurns6 bounds agentic API round-trips, not emitted user-event counter. No ignored isolation/dollar/time bound observed. No retry. Proceed one Codex fixed canary under unchanged call/time contract; writers remain prohibited."
+    },
+    {
+      "event": "start",
+      "vendor": "codex",
+      "at": "2026-10-17T21:38:00.461909+00:00",
+      "command": [
+        "node",
+        "evals/run.mjs",
+        "canary",
+        "--writer",
+        "codex",
+        "--mode",
+        "fixed"
+      ],
+      "config_sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64"
+    },
+    {
+      "event": "finish",
+      "vendor": "codex",
+      "at": "2026-10-17T21:38:09.349398+00:00",
+      "exit_code": 0,
+      "pass": true,
+      "ledger_record": {
+        "schema": 1,
+        "kind": "canary",
+        "at": "2026-10-17T21:38:00.605Z",
+        "run_id": "20261017-2138-canary-codex-gpt-6-luna-1",
+        "vendor": "codex",
+        "cli_version": "0.163.0",
+        "recipe_sha256": "864bebd8a21dfc436cd67df3e2ce4f99252e76e71a7a9f3947526b2ae90ec773",
+        "mode": "fixed",
+        "pass": true,
+        "weakened": false,
+        "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+        "model": "gpt-6-luna",
+        "effort_requested": "high",
+        "model_actual": null,
+        "cost_usd": null,
+        "turns": 5,
+        "path": "canaries/20261017-2138-canary-codex-gpt-6-luna-1",
+        "probes": {
+          "shell_read_repo": "open",
+          "head_repo": "open",
+          "ls_repo": "open",
+          "ls_claude": "open",
+          "ls_codex": "open",
+          "ls_agents": "open",
+          "ls_config_gh": "open",
+          "ls_ssh": "open",
+          "curl": "blocked",
+          "fetch": "blocked",
+          "nested_claude_version": "blocked",
+          "nested_claude_p": "blocked",
+          "nested_codex_exec": "blocked",
+          "shell_claude": "blocked",
+          "shell_ls_tmp_shared": "open",
+          "chart_offline": "ok",
+          "skills": "ok",
+          "memories": "ok",
+          "session": "ok",
+          "leak_scan": "ok",
+          "nested_scan": "ok",
+          "tmpdir": "ok",
+          "tmp_write": "ok",
+          "ls_tmp_parent": "blocked",
+          "ls_tmp_shared": "open",
+          "tmp_scan": "ok"
+        }
+      },
+      "artifacts": [
+        {
+          "path": "evals/canaries/20261017-2138-canary-codex-gpt-6-luna-1/canary.json",
+          "bytes": 4420,
+          "sha256": "a2ce791309fc8da9f8abd65c2ecf7d71def75a3ed637e8187a5c09f2b92edbf4"
+        },
+        {
+          "path": "evals/canaries/20261017-2138-canary-codex-gpt-6-luna-1/transcript.jsonl",
+          "bytes": 12876,
+          "sha256": "948e3d3d29c5d3000245715674750a830f83756b6e20bddeadf80288bfe20f2a"
+        }
+      ],
+      "log": "/tmp/datapressr-comparison-canary-codex.log",
+      "log_sha256": "128db12d8b4fdd088205bca723088ec9dfb04b8563784291f7fc84f83dcd3e56"
+    },
+    {
+      "event": "detail-metadata",
+      "at": "2026-10-17T21:38:17.865603+00:00",
+      "run_id": "20261017-2136-canary-claude-haiku-5-5-1",
+      "vendor": "claude",
+      "pass": true,
+      "model": "claude-haiku-5-5",
+      "model_actual": "claude-haiku-5-5",
+      "effort_requested": "high",
+      "turns": 13,
+      "duration_ms": 10296,
+      "cost_usd": 0.00389908,
+      "cost_basis": "list",
+      "usage": {
+        "input_tokens": 4,
+        "cache_creation_input_tokens": 13160,
+        "cache_read_input_tokens": 21368,
+        "output_tokens": 2106,
+        "output_tokens_details": {
+          "thinking_tokens": 993
+        },
+        "server_tool_use": {
+          "web_search_requests": 0,
+          "web_fetch_requests": 0
+        },
+        "service_tier": "standard",
+        "cache_creation": {
+          "ephemeral_1h_input_tokens": 13160,
+          "ephemeral_5m_input_tokens": 0
+        },
+        "inference_geo": "global",
+        "iterations": [
+          {
+            "input_tokens": 2,
+            "output_tokens": 997,
+            "cache_read_input_tokens": 16095,
+            "cache_creation_input_tokens": 2338,
+            "cache_creation": {
+              "ephemeral_5m_input_tokens": 0,
+              "ephemeral_1h_input_tokens": 2338
+            },
+            "type": "message"
+          }
+        ],
+        "speed": "standard",
+        "fallback_credit": null
+      },
+      "flags": [],
+      "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d",
+      "harness_dirty": false
+    },
+    {
+      "event": "detail-metadata",
+      "at": "2026-10-17T21:38:17.865802+00:00",
+      "run_id": "20261017-2138-canary-codex-gpt-6-luna-1",
+      "vendor": "codex",
+      "pass": true,
+      "model": "gpt-6-luna",
+      "model_actual": null,
+      "effort_requested": "high",
+      "turns": 5,
+      "duration_ms": 8664,
+      "cost_usd": null,
+      "cost_basis": null,
+      "usage": {
+        "input_tokens": 32213,
+        "cached_input_tokens": 13440,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 424,
+        "reasoning_output_tokens": 255
+      },
+      "flags": [],
+      "recipe_sha256": "864bebd8a21dfc436cd67df3e2ce4f99252e76e71a7a9f3947526b2ae90ec773",
+      "harness_dirty": false
+    }
+  ]
+}
