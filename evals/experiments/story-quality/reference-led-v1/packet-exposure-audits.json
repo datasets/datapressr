@@ -1,6 +1,6 @@
 {
   "document_type": "post-launch-packet-exposure-audit",
-  "status": "partial-six-packets",
+  "status": "partial-seven-packets",
   "audits": [
     {
       "at": "2026-10-17T22:13:38.336644+00:00",
@@ -401,6 +401,21 @@
             "heading": null,
             "review_reference": true,
             "process_hash_reference": true
+          }
+        ],
+        "policy": "Original outline retained; author judgments not independent evidence."
+      }
+    },
+    {
+      "opaque_code": "Mee832a",
+      "stage3_exposure_inventory": {
+        "path": "stage3/outline.md",
+        "mechanical_keyword_locations": [
+          {
+            "line": 55,
+            "heading": null,
+            "review_reference": true,
+            "process_hash_reference": false
           }
         ],
         "policy": "Original outline retained; author judgments not independent evidence."

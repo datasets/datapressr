@@ -1,0 +1,13 @@
+{
+  "commission": "Why did the price of oil go below zero in April 2020?",
+  "reader_questions": [
+    "Which oil price went below zero, and what exactly did that price represent?",
+    "When did this happen, how far did the price fall, and how long did it remain negative?",
+    "What conditions and events contributed to the negative price?",
+    "How could a transaction at a negative price work for the parties involved?",
+    "How widespread was the event across oil markets?",
+    "What happened afterward, and what helps explain the subsequent movement in prices?",
+    "What can the supplied evidence establish, and what questions does it leave unanswered?"
+  ],
+  "instruction": "Show the commission\u2019s reader questions only after the spontaneous notes have been recorded. Ask readers to answer from the packet and identify any questions they cannot yet answer."
+}

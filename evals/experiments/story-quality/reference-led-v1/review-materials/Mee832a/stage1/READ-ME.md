@@ -1,0 +1,1 @@
+Read only this stage1 directory. View charts in numeric order and record spontaneous interpretations, uncertainty and any unreadable/missing content. Do not open parent/sibling directories or source repositories. Wait for the custodian to release prose after your notes are frozen.
