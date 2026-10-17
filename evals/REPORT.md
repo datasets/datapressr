@@ -4,6 +4,8 @@ Generated from `evals/ledger.jsonl` by `node evals/run.mjs report` (or `npm run 
 
 ## Flags
 
+- Soft flag on story/q01-french-debt: in pair 20261017-2327-q01-french-debt-pair-1 (rubric story/v2) the older tree `ccabbcc` beat the newer `92148d1` in both orders; needs a look.
+- Soft flag on story/q03-wti-negative: in pair 20261017-2330-q03-wti-negative-pair-1 (rubric story/v2) the older tree `ccabbcc` beat the newer `92148d1` in both orders; needs a look.
 - Leaked run 20261010-0250-co2-monthly-claude-opus-5-5-fbf4d07-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-0253-co2-monthly-claude-opus-5-5-fbf4d07-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-0255-co2-monthly-claude-opus-5-5-noskill-1 (structure/co2-monthly): the transcript touched paths outside the workspace; see its run.json before using it.
@@ -16,8 +18,7 @@ Generated from `evals/ledger.jsonl` by `node evals/run.mjs report` (or `npm run 
 - Leaked run 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 (story/q01-french-debt): the transcript touched paths outside the workspace; see its run.json before using it.
 - Leaked run 20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1 (story/q02-allies-wwii): the transcript touched paths outside the workspace; see its run.json before using it.
-- Missing canary for the installed CLI (claude 2.1.301, fixed mode, recipe eb5a76ea3d64); run `node evals/run.mjs canary --writer claude --mode fixed` before any paid run.
-- Missing canary for the installed CLI (claude 2.1.301, open mode, recipe 0607afe57e60); run `node evals/run.mjs canary --writer claude --mode open` before any paid run.
+- Missing canary for the installed CLI (claude 2.1.302, open mode, recipe ca10d98668e2); run `node evals/run.mjs canary --writer claude --mode open` before any paid run.
 
 ## Per skill change
 
@@ -28,6 +29,31 @@ Generated from `evals/ledger.jsonl` by `node evals/run.mjs report` (or `npm run 
 Cases run: structure/co2-monthly (6 runs).
 
 ### story
+
+#### Tree `92148d1`, commit `6f9c83c` Prepare three reference-led story skill candidates
+
+Cases run: story/q01-french-debt (2 runs), story/q03-wti-negative (2 runs).
+
+What changed since `ccabbcc`: `git log --oneline 07df5e3..6f9c83c -- skills/story` ([compare](https://github.com/datasets/datapressr/compare/07df5e3...6f9c83c))
+
+- `6f9c83c` Prepare three reference-led story skill candidates
+
+Pairwise vs `ccabbcc` (rubric story/v2): 2 wins, 0 ties, 2 losses (n=4 pairs).
+
+- 20261017-2327-q01-french-debt-pair-1 on q01-french-debt: loss
+- 20261017-2329-q01-french-debt-pair-1 on q01-french-debt: win
+- 20261017-2330-q03-wti-negative-pair-1 on q03-wti-negative: loss
+- 20261017-2332-q03-wti-negative-pair-1 on q03-wti-negative: win
+
+#### Tree `ccabbcc`, commit `07df5e3` Require independent final editorial review for story handoff
+
+Cases run: story/q01-french-debt (2 runs), story/q03-wti-negative (2 runs).
+
+What changed since `10a38a0`: `git log --oneline 79ec745..07df5e3 -- skills/story` ([compare](https://github.com/datasets/datapressr/compare/79ec745...07df5e3))
+
+- `07df5e3` Require independent final editorial review for story handoff
+
+Pairwise vs `10a38a0`: no comparison on record.
 
 #### Tree `10a38a0`, commit `79ec745` story skill: state the difference or ratio, don't leave two numbers to compare
 
@@ -73,6 +99,7 @@ Cases run: story/q01-french-debt (4 runs).
 
 #### Skill commits with no pairwise comparison on record
 
+- `07df5e3` Require independent final editorial review for story handoff
 - `79ec745` story skill: state the difference or ratio, don't leave two numbers to compare
 - `46af661` evals: S7 fails embedded SVGs with NaN, undefined or leaked function source (hcn.25)
 - `6203aee` Story DataHub slug and approval fields; bundler gates drafts (datapressr-kh5.3)
@@ -87,6 +114,7 @@ Cases run: structure/co2-monthly (7 runs).
 
 #### Skill commits with no pairwise comparison on record
 
+- `ebd1aa7` Fix structure skill example locator
 - `2c7072b` Clarify source fidelity and provenance in structure skill
 - `07c29e1` Drafts stay off the live site (publish: false) until approved; licence policy: ship and cite; owner review beads
 
@@ -94,12 +122,16 @@ Cases run: structure/co2-monthly (7 runs).
 
 ### story/q01-french-debt
 
-7 runs over 3 skill trees.
+11 runs over 5 skill trees.
 
 #### Writer claude-opus-5-5
 
 | Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
 |---|---|---|---|---|---|---|---|
+| 2026-10-17 22:50 | [20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1](runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/run.json) | `ccabbcc` | claude | pass (7) | 3.17 | 47 |  |
+| 2026-10-17 22:36 | [20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1](runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/run.json) | `92148d1` | claude | pass (7) | 3.50 | 47 |  |
+| 2026-10-17 21:56 | [20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1](runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/run.json) | `92148d1` | claude | pass (7) | 3.14 | 42 |  |
+| 2026-10-17 21:40 | [20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1](runs/story/q01-french-debt/20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1/run.json) | `ccabbcc` | claude | pass (7) | 3.74 | 52 |  |
 | 2026-10-11 19:18 | [20261011-1918-q01-french-debt-claude-opus-5-5-10a38a0-1](runs/story/q01-french-debt/20261011-1918-q01-french-debt-claude-opus-5-5-10a38a0-1/run.json) | `10a38a0` | claude | pass (7) | 2.76 | 37 |  |
 | 2026-10-10 10:34 | [20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | fail S7 (6 pass) | 2.36 | 36 | leaked |
 | 2026-10-10 10:24 | [20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1](runs/story/q01-french-debt/20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1/run.json) | `d6d4845` | claude | pass (7) | 2.52 | 30 | leaked |
@@ -135,6 +167,8 @@ Pairwise (blind, judged in both orders; a win only when both orders agree):
 | 20261010-1045-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 | 20261010-1004-q01-french-debt-claude-opus-5-5-c08d6d6-1 | new | new | win for new |  |
 | 20261010-1046-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261010-1024-q01-french-debt-claude-opus-5-5-d6d4845-1 | 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 | new | new | win for new |  |
 | 20261010-1047-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261010-1034-q01-french-debt-claude-opus-5-5-d6d4845-1 | 20261010-1012-q01-french-debt-claude-opus-5-5-c08d6d6-1 | new | new | win for new |  |
+| 20261017-2327-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1 | 20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1 | old | old | loss for new |  |
+| 20261017-2329-q01-french-debt-pair-1 | story/v2 | codex gpt-6-astra | 20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1 | 20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1 | new | new | win for new |  |
 
 ### story/q02-allies-wwii
 
@@ -151,6 +185,26 @@ Absolute scores, rubric story/v2 (diagnostic; 0-2):
 | Run | Skill tree | Critic | argument | depth | charts | honesty | reader_questions | prose | data_choice | Publishable |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 20261010-1111-q02-allies-wwii-claude-opus-5-5-17c1821-1 | `17c1821` | codex gpt-6-astra | 1 | 1 | 1 | 0 | 0 | 1 | 1 | no |
+
+### story/q03-wti-negative
+
+4 runs over 2 skill trees.
+
+#### Writer claude-opus-5-5
+
+| Date | Run | Skill tree | Writer | Checks | Cost USD | Turns | Flags |
+|---|---|---|---|---|---|---|---|
+| 2026-10-17 23:12 | [20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1](runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/run.json) | `92148d1` | claude | pass (7) | 2.86 | 51 |  |
+| 2026-10-17 23:02 | [20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1](runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/run.json) | `ccabbcc` | claude | pass (7) | 2.19 | 32 |  |
+| 2026-10-17 22:20 | [20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1](runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/run.json) | `ccabbcc` | claude | pass (7) | 2.59 | 36 |  |
+| 2026-10-17 22:08 | [20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1](runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/run.json) | `92148d1` | claude | pass (7) | 2.60 | 51 |  |
+
+Pairwise (blind, judged in both orders; a win only when both orders agree):
+
+| Pair | Rubric | Critic | New | Old | AB | BA | Result | Owner |
+|---|---|---|---|---|---|---|---|---|
+| 20261017-2330-q03-wti-negative-pair-1 | story/v2 | codex gpt-6-astra | 20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1 | 20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1 | old | old | loss for new |  |
+| 20261017-2332-q03-wti-negative-pair-1 | story/v2 | codex gpt-6-astra | 20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1 | 20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1 | new | new | win for new |  |
 
 ### structure/co2-monthly
 
@@ -239,20 +293,31 @@ No owner-judged pairs yet. The critic's pairwise verdict stands alone for small 
 
 ### Critic and isolation
 
-- Critic fallback: 0 of 36 critiques (absolute and pairwise) used the fallback critic.
+- Critic fallback: 0 of 40 critiques (absolute and pairwise) used the fallback critic.
 - Critic validation failures: 0 of 26 absolute critiques recorded as critic_failed.
-- Leaks caught: 12 of 21 runs flagged leaked.
+- Leaks caught: 12 of 29 runs flagged leaked.
 
-Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):
+Canary status (latest per vendor, CLI version, recipe and mode; weakened canaries are negative controls and must fail):
 
-| Vendor | CLI | Mode | Kind | Latest | Result |
-|---|---|---|---|---|---|
-| claude | 2.1.296 | fixed | recipe | 20261010-0211-canary-claude-haiku-5-5-1 | PASS |
-| claude | 2.1.296 | fixed | weakened | 20261010-0212-canary-claude-haiku-5-5-weakened-1 | FAIL (expected) |
-| claude | 2.1.296 | open | recipe | 20261010-1108-canary-claude-haiku-5-5-1 | PASS |
-| claude | 2.1.296 | open | weakened | 20261010-1109-canary-claude-haiku-5-5-weakened-1 | FAIL (expected) |
-| codex | 0.161.0 | fixed | recipe | 20261010-0212-canary-codex-gpt-6-luna-1 | PASS |
-| codex | 0.161.0 | fixed | weakened | 20261010-0212-canary-codex-gpt-6-luna-weakened-1 | FAIL (expected) |
+| Vendor | CLI | Mode | Recipe | Kind | Latest | Result |
+|---|---|---|---|---|---|---|
+| claude | 2.1.296 | fixed | 4cb65e6aaff2 | recipe | 20261010-0028-canary-claude-haiku-5-5-1 | PASS |
+| claude | 2.1.296 | fixed | 5cdd01e0464f | recipe | 20261010-0147-canary-claude-haiku-5-5-1 | PASS |
+| claude | 2.1.296 | fixed | eb5a76ea3d64 | recipe | 20261010-0211-canary-claude-haiku-5-5-1 | PASS |
+| claude | 2.1.296 | fixed | fc747ff8cffb | weakened | 20261010-0028-canary-claude-haiku-5-5-weakened-1 | FAIL (expected) |
+| claude | 2.1.296 | fixed | c50bbe39fda5 | weakened | 20261010-0147-canary-claude-haiku-5-5-weakened-1 | FAIL (expected) |
+| claude | 2.1.296 | fixed | 941bb68f687b | weakened | 20261010-0212-canary-claude-haiku-5-5-weakened-1 | FAIL (expected) |
+| claude | 2.1.296 | open | 0607afe57e60 | recipe | 20261010-1108-canary-claude-haiku-5-5-1 | PASS |
+| claude | 2.1.296 | open | ee3eb7a2a4b7 | weakened | 20261010-1109-canary-claude-haiku-5-5-weakened-1 | FAIL (expected) |
+| claude | 2.1.302 | fixed | 2e060dd7349c | recipe | 20261017-2136-canary-claude-haiku-5-5-1 | PASS |
+| codex | 0.161.0 | fixed | 3cbb5204a276 | recipe | 20261010-0038-canary-codex-gpt-6-luna-1 | PASS |
+| codex | 0.161.0 | fixed | f2af5ac289b8 | recipe | 20261010-0146-canary-codex-gpt-6-luna-1 | FAIL |
+| codex | 0.161.0 | fixed | 833020919fa2 | recipe | 20261010-0147-canary-codex-gpt-6-luna-1 | PASS |
+| codex | 0.161.0 | fixed | d9f5481a55c2 | recipe | 20261010-0212-canary-codex-gpt-6-luna-1 | PASS |
+| codex | 0.161.0 | fixed | bb86f848d829 | weakened | 20261010-0038-canary-codex-gpt-6-luna-weakened-1 | FAIL (expected) |
+| codex | 0.161.0 | fixed | 3d96d13c0c49 | weakened | 20261010-0147-canary-codex-gpt-6-luna-weakened-1 | FAIL (expected) |
+| codex | 0.161.0 | fixed | ff37d5894e24 | weakened | 20261010-0212-canary-codex-gpt-6-luna-weakened-1 | FAIL (expected) |
+| codex | 0.163.0 | fixed | 864bebd8a21d | recipe | 20261017-2138-canary-codex-gpt-6-luna-1 | PASS |
 
-- Installed claude CLI: 2.1.301 (fixed mode): no canary on record.
-- Installed claude CLI: 2.1.301 (open mode): no canary on record.
+- Installed claude CLI: 2.1.302 (fixed mode): canary passed.
+- Installed claude CLI: 2.1.302 (open mode): no canary on record.
