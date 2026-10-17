@@ -1,0 +1,1322 @@
+{
+  "document_type": "postexecution_writer_exposure_audit",
+  "created_at": "2026-10-17T23:46:27.211878+00:00",
+  "preregistration_requirement": "Analyse all outputs as assigned, including writers that did not read changed reference files. Record file-read exposure, network attempts, word/chart counts and cap hits from transcripts; unknown read exposure stays unknown.",
+  "preregistration_source": {
+    "path": "preregistration.md",
+    "line_1based": 77,
+    "sha256": "1184f41e536569f23f57da631dc8b0b3ec604dedf3c32903d58bf5836c50d0ba"
+  },
+  "analysis_denominator": "All eight assigned outputs retained; no exposure-based exclusion or rerun.",
+  "methods": {
+    "file_read_exposure": "Parse transcript JSONL assistant tool_use and matching user tool_result IDs. Verify archived workspace skill bytes against assigned git ref. For each Read/cat call, normalize whitespace and numbered Read prefixes, then test complete file text and every nonblank added diff line against returned content. Returned content is observed context exposure, not proof of attention, comprehension or use.",
+    "network": "Review visible tool names and lexical candidates in every Bash input using case-insensitive whole-word curl|wget|fetch|requests|urllib|http|https|npm|pip|git clone. Manually classify candidates, distinguish URLs written/edited/validated locally from executed requests. Report provider server_tool_use counters separately. No packet capture or complete indirect-call instrumentation exists.",
+    "word_counts": "Python: remove leading YAML frontmatter; narrative ends before first exact level-2 heading How this was made or Friction notes. Whole-body includes those appendices. Remove Markdown inline images entirely (including alt text), replace Markdown links with labels, remove angle-bracket tags, strip leading heading markers, remove *, ` and _, then count whitespace-separated tokens with len(text.split()). Includes headings, captions, numerals and punctuation-only whitespace tokens; this is a deterministic operational word count, not linguistic tokenization. Excludes YAML title; body heading title included. No fenced code present in selected stories.",
+    "chart_counts": "Count inline Markdown image occurrences ending .svg in final story and distinct referenced paths; verify files and hash bytes. Also count all persisted artefact .svg files. One SVG counts once regardless internal panels; counts are not sample sizes.",
+    "cap_hits": "Compare run duration/cost with frozen limits and inspect final result subtype/is_error/stop_reason plus run flags. Preserve raw CLI turns and distinct assistant IDs separately; do not compare raw turns to API-roundtrip cap. Success/end_turn supports no observed cap termination, not independent proof of service-side cap enforcement."
+  },
+  "records": [
+    {
+      "sequence": 1,
+      "slot_id": "q01-french-debt-r1-baseline",
+      "run_id": "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+      "assigned_arm": "baseline",
+      "skill_ref": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "source_directory": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q01-french-debt/20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+      "transcript_sha256": "0892f2148a2c5c909a92472914e9d6b1de8de456e895eb7cd420654dea9c0470",
+      "transcript_lines": 544,
+      "run_json_sha256": "4e507c75db302149fbe4ff14e4b78fccdf5f3097831c149c812360a1c6303383",
+      "workspace_tar_sha256": "954fc5e9e27dca8f331a0e4727053203bc400138de735122330a78f5e598e1b3",
+      "exposure": {
+        "R1": {
+          "file": "skills/story/SKILL.md",
+          "assigned_file_sha256": "f36beaf742cac5b2fe71773b2421e2d592b52359781df69492ca20e8ca672f62",
+          "workspace_tar_member": "./skills/story/SKILL.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 3,
+              "result_line_1based": 4,
+              "tool_use_id": "toolu_016zLZ9aYtw8VU1kyDWWNTFX",
+              "tool": "Read",
+              "input": {
+                "file_path": "/private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-3byGTc/skills/story/SKILL.md"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "5ad3c3fc1a5cda6934f1b431dc8f5af9e60513e2e8e4d1cd2db5f385cc39c40e",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 1
+            }
+          ]
+        },
+        "R2": {
+          "file": "skills/story/references/charting.md",
+          "assigned_file_sha256": "cc78bdeb1698896b30c88ee4565043d67f285a49770696a5cdee2d5d1348f112",
+          "workspace_tar_member": "./skills/story/references/charting.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 10,
+              "result_line_1based": 11,
+              "tool_use_id": "toolu_01GLiH2i3fLfZnRvUv3ahxEV",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/references/charting.md skills/story/references/make-charts-template.mjs; cat site/stories/package.json; ls site/stories/node_modules",
+                "description": "Read charting reference, template and package"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "8524fca597f6ec7d0603be95d97c53997d699b9a7fc701bed0ed6baf9d043984",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 2
+            }
+          ]
+        },
+        "R3": {
+          "file": "skills/story/references/voice-guide.md",
+          "assigned_file_sha256": "0c9cc370a99ae64d5c3a1a740bb10c3bd0bfdcffa8fc8868e59fa3c4a87a0f69",
+          "workspace_tar_member": "./skills/story/references/voice-guide.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 8,
+              "result_line_1based": 9,
+              "tool_use_id": "toolu_01FNtHCJzqRFosUwkZ83rT4z",
+              "tool": "Bash",
+              "input": {
+                "command": "cat TASK.md | head -5; ls skills/story/references; cat skills/story/references/story-craft.md skills/story/references/voice-guide.md",
+                "description": "Read story craft and voice references"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "268a2d0de1340dd936ccadb00af684c51f0f63cabcc52d88f370c56a211c1441",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 5
+            }
+          ]
+        }
+      },
+      "network": {
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "explicit_network_attempts_observed": 0,
+        "screened_candidates": [
+          {
+            "line_1based": 473,
+            "tool_use_id": "toolu_0164qDUKL9riT2B4wQ1FdyHj",
+            "tool": "Bash",
+            "input_sha256": "e533fd2bc9d765e8b7fad96491a22839b6073e9b06d4fe16885f18acbf82dcba",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              474
+            ]
+          },
+          {
+            "line_1based": 479,
+            "tool_use_id": "toolu_01Q9Wn4PpMK96vVd4V3V9xVb",
+            "tool": "Bash",
+            "input_sha256": "473d92df358bb4be022e3574810c112e529e24a41d3b84e3fe7e4eba4215d39b",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              480
+            ]
+          },
+          {
+            "line_1based": 502,
+            "tool_use_id": "toolu_011VbpMvijtdwqXXTPDvMA5W",
+            "tool": "Bash",
+            "input_sha256": "a4382a0422339630340837c18a97a4e91f5f86ba9f52de786446612c5b53a474",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              503
+            ]
+          },
+          {
+            "line_1based": 511,
+            "tool_use_id": "toolu_01Tny7nX6MP2tbtCrts1iH83",
+            "tool": "Bash",
+            "input_sha256": "b52dd1d9a8430e10f9ffc4f203b401c5a052cb6f4b1b211d00680c9232dfc3c0",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              512
+            ]
+          }
+        ],
+        "completeness": "No explicit networking call identified in visible tool invocations. Arbitrary subprocess/library networking and unlogged attempts remain unknown; absence is not proof of zero exposure.",
+        "harness_network_enabled": false,
+        "reported_leaks": []
+      },
+      "output_counts": {
+        "story_path": "artefacts/site/stories/french-debt.md",
+        "story_sha256": "f604cd8a7bf1dba1966bba4192050496039500ee9a7b9413043056f98ab85be9",
+        "narrative_words": 585,
+        "whole_body_words": 910,
+        "embedded_chart_occurrences": 4,
+        "distinct_embedded_chart_files": 4,
+        "embedded_charts": [
+          {
+            "reference": "french-debt-ratio.svg",
+            "sha256": "6143c8e48c9bad446fe31a4b02118178072bc1cab9603742c53c194c372846ec"
+          },
+          {
+            "reference": "french-debt-deficit.svg",
+            "sha256": "b546dba0a0ccd54679c3ca4abc894edb7b911ab1b308cf324bd50dca2809826e"
+          },
+          {
+            "reference": "french-debt-peers.svg",
+            "sha256": "7074aacbe36d15cccef6cac917ac029926a6cf7767bdd38b970bdf7e4e507f4d"
+          },
+          {
+            "reference": "french-debt-functions.svg",
+            "sha256": "a2c3bb93edc598c45025b431fd6bcd63349a0915ad8259ff074954133a603697"
+          }
+        ],
+        "all_svg_artifacts": 4
+      },
+      "caps": {
+        "assigned_max_usd_list_equivalent": 5,
+        "assigned_max_api_round_trips": 100,
+        "assigned_timeout_ms": 5400000,
+        "reported_cost_usd_list_equivalent": 3.7357342,
+        "duration_ms": 899098,
+        "raw_num_turns": 52,
+        "unique_assistant_message_ids": 46,
+        "terminal_line_1based": 544,
+        "terminal_subtype": "success",
+        "terminal_is_error": false,
+        "terminal_stop_reason": "end_turn",
+        "flags": [],
+        "budget_hit_observed": false,
+        "timeout_hit_observed": false,
+        "turn_cap_hit_observed": false,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "actual_api_round_trip_count": null,
+        "turn_semantics": "raw num_turns is user-event based in installed CLI; unique assistant message IDs are a separate observed proxy, not an independently verified API-roundtrip count."
+      }
+    },
+    {
+      "sequence": 2,
+      "slot_id": "q01-french-debt-r1-candidate",
+      "run_id": "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+      "assigned_arm": "candidate",
+      "skill_ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
+      "source_directory": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+      "transcript_sha256": "50746f53b7d36ca51ac9b318f5d0598bcc21b79c7469713d954f7536fae9d509",
+      "transcript_lines": 435,
+      "run_json_sha256": "046b29696d7b682b63c5a1c1b8b89689f0247ef321332eef07b121407b583339",
+      "workspace_tar_sha256": "94102820c236103dbfac1175a54a979823d63c32e79f1eab9e35d341297ccb89",
+      "exposure": {
+        "R1": {
+          "file": "skills/story/SKILL.md",
+          "assigned_file_sha256": "dc36079f819b7549ce42927075cfa08f776c94fc40776dc907a9f2e4484f54c6",
+          "workspace_tar_member": "./skills/story/SKILL.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 3,
+              "result_line_1based": 5,
+              "tool_use_id": "toolu_01RaFSYTjKGwgdaqUYAxaaMj",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/SKILL.md && ls skills/story && ls -R datasets/france-public-finances | head -50 && ls site site/stories 2>/dev/null",
+                "description": "Read story skill and list dataset files"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "3ce230ebfa6ea575cbddd212694d52a18d03c1bb76fcb7fdce4dfc4b9b459364",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 1,
+              "candidate_added_blocks_total": 1
+            }
+          ]
+        },
+        "R2": {
+          "file": "skills/story/references/charting.md",
+          "assigned_file_sha256": "086310e1e0068cfa3ca935e315bf05d4bb0ecfc5259b5ba304d17d33214e9129",
+          "workspace_tar_member": "./skills/story/references/charting.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 8,
+              "result_line_1based": 9,
+              "tool_use_id": "toolu_01Hex7p1oLujusSpduh5iWC3",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/references/charting.md skills/story/references/make-charts-template.mjs site/stories/package.json; ls site/stories/node_modules | head; ls skills/story/references",
+                "description": "Read charting guide and template"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "630bc66913ffa0004fb9dc1489b332e9245dc9cf771327160f59671c31612bab",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 2,
+              "candidate_added_blocks_total": 2
+            }
+          ]
+        },
+        "R3": {
+          "file": "skills/story/references/voice-guide.md",
+          "assigned_file_sha256": "e0dd6900727ab765fc80d8132447c5e5ff645c0c513b44dd5d230b349b030382",
+          "workspace_tar_member": "./skills/story/references/voice-guide.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 6,
+              "result_line_1based": 7,
+              "tool_use_id": "toolu_01NasCrHXbjC9f2R3qAmuC4i",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/references/story-craft.md skills/story/references/voice-guide.md",
+                "description": "Read story craft and voice guide"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "dcd1f112438442196abb8f910fdfafe977b89305c2a79e888e6de131acdf32c0",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 5,
+              "candidate_added_blocks_total": 5
+            }
+          ]
+        }
+      },
+      "network": {
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "explicit_network_attempts_observed": 0,
+        "screened_candidates": [],
+        "completeness": "No explicit networking call identified in visible tool invocations. Arbitrary subprocess/library networking and unlogged attempts remain unknown; absence is not proof of zero exposure.",
+        "harness_network_enabled": false,
+        "reported_leaks": []
+      },
+      "output_counts": {
+        "story_path": "artefacts/site/stories/french-debt.md",
+        "story_sha256": "f15abfddfaf538a59f31e5f0e8e20e2e953a33514a9571fe25abc596aeee425f",
+        "narrative_words": 477,
+        "whole_body_words": 785,
+        "embedded_chart_occurrences": 4,
+        "distinct_embedded_chart_files": 4,
+        "embedded_charts": [
+          {
+            "reference": "french-debt-gap.svg",
+            "sha256": "6fd3b49eb641504d1edc92e38bc0be0a4b1c04abc3ca649c896caa5b9ba8e744"
+          },
+          {
+            "reference": "french-debt-ratio.svg",
+            "sha256": "f28b85bd0ed63b6fd0d5ff8ed213b084d143d9d2813a7ddf85b9f36d848112ef"
+          },
+          {
+            "reference": "french-debt-peers.svg",
+            "sha256": "e899b79749f9ca816de4ad0dfc3eabef65d089f8b9a10686a999f5c5c7c106a7"
+          },
+          {
+            "reference": "french-debt-extra-spending.svg",
+            "sha256": "0c6ac944bb0f5502aac4648d3c75d8f7688cfbe6faf0c3c444ff7ba5027acd06"
+          }
+        ],
+        "all_svg_artifacts": 4
+      },
+      "caps": {
+        "assigned_max_usd_list_equivalent": 5,
+        "assigned_max_api_round_trips": 100,
+        "assigned_timeout_ms": 5400000,
+        "reported_cost_usd_list_equivalent": 3.1438255999999996,
+        "duration_ms": 730150,
+        "raw_num_turns": 42,
+        "unique_assistant_message_ids": 38,
+        "terminal_line_1based": 435,
+        "terminal_subtype": "success",
+        "terminal_is_error": false,
+        "terminal_stop_reason": "end_turn",
+        "flags": [],
+        "budget_hit_observed": false,
+        "timeout_hit_observed": false,
+        "turn_cap_hit_observed": false,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "actual_api_round_trip_count": null,
+        "turn_semantics": "raw num_turns is user-event based in installed CLI; unique assistant message IDs are a separate observed proxy, not an independently verified API-roundtrip count."
+      }
+    },
+    {
+      "sequence": 3,
+      "slot_id": "q03-wti-negative-r1-candidate",
+      "run_id": "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+      "assigned_arm": "candidate",
+      "skill_ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
+      "source_directory": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+      "transcript_sha256": "22ef204194779bbcea5497973a41c9f184708c13c8f53533f1c5e581e8808d59",
+      "transcript_lines": 357,
+      "run_json_sha256": "2d505b2b69749623a6c9fea2ac6858e5c64b436b273b8573b72f933fa5837025",
+      "workspace_tar_sha256": "21dc2d4f94f473387b7ce19161dc86957eaaff1ca7a93b0ad2013de15ef2f6f3",
+      "exposure": {
+        "R1": {
+          "file": "skills/story/SKILL.md",
+          "assigned_file_sha256": "dc36079f819b7549ce42927075cfa08f776c94fc40776dc907a9f2e4484f54c6",
+          "workspace_tar_member": "./skills/story/SKILL.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 3,
+              "result_line_1based": 5,
+              "tool_use_id": "toolu_01WcDKEK4sHatw28Zx5sQCPj",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/SKILL.md && ls skills/story && ls -R datasets/energy-and-commodities/oil-prices | head -50 && ls site site/stories 2>/dev/null",
+                "description": "Read story skill and list dataset files"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "6c33c04710ede29619009680f77b6572438be97b2b7920f06c015941dd60687d",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 1,
+              "candidate_added_blocks_total": 1
+            }
+          ]
+        },
+        "R2": {
+          "file": "skills/story/references/charting.md",
+          "assigned_file_sha256": "086310e1e0068cfa3ca935e315bf05d4bb0ecfc5259b5ba304d17d33214e9129",
+          "workspace_tar_member": "./skills/story/references/charting.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 11,
+              "result_line_1based": 12,
+              "tool_use_id": "toolu_01Bok5mFWU5c49VnJrmubDwm",
+              "tool": "Bash",
+              "input": {
+                "command": "cat charting.md make-charts-template.mjs editorial-review.md",
+                "description": "Read charting guide, template, review template"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "cbfc8f56da8d15d2125bddf2260b8388adcb1aa20ff6338b5483f95ff2fe9bd8",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 2,
+              "candidate_added_blocks_total": 2
+            }
+          ]
+        },
+        "R3": {
+          "file": "skills/story/references/voice-guide.md",
+          "assigned_file_sha256": "e0dd6900727ab765fc80d8132447c5e5ff645c0c513b44dd5d230b349b030382",
+          "workspace_tar_member": "./skills/story/references/voice-guide.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 9,
+              "result_line_1based": 10,
+              "tool_use_id": "toolu_01KZy8SsPNGziYNf7XuyUtjA",
+              "tool": "Bash",
+              "input": {
+                "command": "cd /private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-YgEVZD/skills/story/references && ls && cat story-craft.md voice-guide.md",
+                "description": "Read story craft and voice guide"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "f1ecf5a725736d5bef04a7ed3187741f16078da9d719f2c779eb26f9418b701a",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 5,
+              "candidate_added_blocks_total": 5
+            }
+          ]
+        }
+      },
+      "network": {
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "explicit_network_attempts_observed": 0,
+        "screened_candidates": [
+          {
+            "line_1based": 303,
+            "tool_use_id": "toolu_01HCq5Uphq7th2PDRVenNyDg",
+            "tool": "Bash",
+            "input_sha256": "8996bef3ca067a853b0e94bbce677b932b7ce97953183e527fedb868f70a7bce",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              304
+            ]
+          }
+        ],
+        "completeness": "No explicit networking call identified in visible tool invocations. Arbitrary subprocess/library networking and unlogged attempts remain unknown; absence is not proof of zero exposure.",
+        "harness_network_enabled": false,
+        "reported_leaks": []
+      },
+      "output_counts": {
+        "story_path": "artefacts/site/stories/oil-below-zero.md",
+        "story_sha256": "7c9a080eee111d62591394043a7424725d5c58dbe7b50c3ff5db2362466076e9",
+        "narrative_words": 522,
+        "whole_body_words": 870,
+        "embedded_chart_occurrences": 2,
+        "distinct_embedded_chart_files": 2,
+        "embedded_charts": [
+          {
+            "reference": "oil-below-zero-day.svg",
+            "sha256": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6"
+          },
+          {
+            "reference": "oil-below-zero-months.svg",
+            "sha256": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e"
+          }
+        ],
+        "all_svg_artifacts": 2
+      },
+      "caps": {
+        "assigned_max_usd_list_equivalent": 5,
+        "assigned_max_api_round_trips": 100,
+        "assigned_timeout_ms": 5400000,
+        "reported_cost_usd_list_equivalent": 2.6006006,
+        "duration_ms": 696739,
+        "raw_num_turns": 51,
+        "unique_assistant_message_ids": 39,
+        "terminal_line_1based": 357,
+        "terminal_subtype": "success",
+        "terminal_is_error": false,
+        "terminal_stop_reason": "end_turn",
+        "flags": [],
+        "budget_hit_observed": false,
+        "timeout_hit_observed": false,
+        "turn_cap_hit_observed": false,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "actual_api_round_trip_count": null,
+        "turn_semantics": "raw num_turns is user-event based in installed CLI; unique assistant message IDs are a separate observed proxy, not an independently verified API-roundtrip count."
+      }
+    },
+    {
+      "sequence": 4,
+      "slot_id": "q03-wti-negative-r1-baseline",
+      "run_id": "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+      "assigned_arm": "baseline",
+      "skill_ref": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "source_directory": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+      "transcript_sha256": "5ede2f89e5a0a1c881f5d2e1068b687c6837e621a99c23d3fb05c3615f9be5b4",
+      "transcript_lines": 401,
+      "run_json_sha256": "d9759e0383ffd5c29574a780793f63437cbb79f2e0cc05fe5d512e4971ab08a6",
+      "workspace_tar_sha256": "0b4f9c06bc50e881a9a7764fe9662198bfb31337faecd29ee50e6dc270a3c98a",
+      "exposure": {
+        "R1": {
+          "file": "skills/story/SKILL.md",
+          "assigned_file_sha256": "f36beaf742cac5b2fe71773b2421e2d592b52359781df69492ca20e8ca672f62",
+          "workspace_tar_member": "./skills/story/SKILL.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 3,
+              "result_line_1based": 5,
+              "tool_use_id": "toolu_01EvwxtvtRqE4F1cnXb4A33w",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/SKILL.md && ls skills/story && ls -R datasets/energy-and-commodities/oil-prices | head -50 && ls site site/stories 2>/dev/null | head",
+                "description": "Read story skill and list dataset files"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "218dde8e562b32409d73031f11003db23d56602b32cb04ff0fbad4c1b2b8b7b5",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 1
+            }
+          ]
+        },
+        "R2": {
+          "file": "skills/story/references/charting.md",
+          "assigned_file_sha256": "cc78bdeb1698896b30c88ee4565043d67f285a49770696a5cdee2d5d1348f112",
+          "workspace_tar_member": "./skills/story/references/charting.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 11,
+              "result_line_1based": 12,
+              "tool_use_id": "toolu_0126wiuzavGMfoB5urTjECrt",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/references/charting.md skills/story/references/make-charts-template.mjs skills/story/references/editorial-review.md; cat site/stories/package.json; ls site/stories/node_modules | head -30",
+                "description": "Read charting docs, template, review template"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "20595c1dbda7c689b70d01348483322a149bf7f13d7e70309bd28380f384317e",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 2
+            }
+          ]
+        },
+        "R3": {
+          "file": "skills/story/references/voice-guide.md",
+          "assigned_file_sha256": "0c9cc370a99ae64d5c3a1a740bb10c3bd0bfdcffa8fc8868e59fa3c4a87a0f69",
+          "workspace_tar_member": "./skills/story/references/voice-guide.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 9,
+              "result_line_1based": 10,
+              "tool_use_id": "toolu_01WW52xvdRagG2cH5y8Wraki",
+              "tool": "Bash",
+              "input": {
+                "command": "ls skills/story/references && cat skills/story/references/story-craft.md skills/story/references/voice-guide.md",
+                "description": "Read story craft and voice references"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "977c1746c5a576c1f25c1f819b826b630755cb086b981288b5d471c6260ea825",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 5
+            }
+          ]
+        }
+      },
+      "network": {
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "explicit_network_attempts_observed": 0,
+        "screened_candidates": [],
+        "completeness": "No explicit networking call identified in visible tool invocations. Arbitrary subprocess/library networking and unlogged attempts remain unknown; absence is not proof of zero exposure.",
+        "harness_network_enabled": false,
+        "reported_leaks": []
+      },
+      "output_counts": {
+        "story_path": "artefacts/site/stories/oil-below-zero.md",
+        "story_sha256": "75950408fb2fa2e029007c44afdf7d0473d3512cd3cf410e5f7f66afefa1c925",
+        "narrative_words": 513,
+        "whole_body_words": 909,
+        "embedded_chart_occurrences": 2,
+        "distinct_embedded_chart_files": 2,
+        "embedded_charts": [
+          {
+            "reference": "oil-below-zero-only-wti.svg",
+            "sha256": "c6f3292947d7837281701bc04e14f6dd6235d0cfebd778455a85f79bfa7cd3f2"
+          },
+          {
+            "reference": "oil-below-zero-averages.svg",
+            "sha256": "5068c84cdb3a54fd82e44acd7b91c5508b84e0639cfc4fba1e75b181bfb50df6"
+          }
+        ],
+        "all_svg_artifacts": 2
+      },
+      "caps": {
+        "assigned_max_usd_list_equivalent": 5,
+        "assigned_max_api_round_trips": 100,
+        "assigned_timeout_ms": 5400000,
+        "reported_cost_usd_list_equivalent": 2.5871962,
+        "duration_ms": 974659,
+        "raw_num_turns": 36,
+        "unique_assistant_message_ids": 34,
+        "terminal_line_1based": 401,
+        "terminal_subtype": "success",
+        "terminal_is_error": false,
+        "terminal_stop_reason": "end_turn",
+        "flags": [],
+        "budget_hit_observed": false,
+        "timeout_hit_observed": false,
+        "turn_cap_hit_observed": false,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "actual_api_round_trip_count": null,
+        "turn_semantics": "raw num_turns is user-event based in installed CLI; unique assistant message IDs are a separate observed proxy, not an independently verified API-roundtrip count."
+      }
+    },
+    {
+      "sequence": 5,
+      "slot_id": "q01-french-debt-r2-candidate",
+      "run_id": "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
+      "assigned_arm": "candidate",
+      "skill_ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
+      "source_directory": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
+      "transcript_sha256": "5f80c6f89cc59e4b1dea1cfa43bd3423ac3a65f4813a47557b525af745ef861e",
+      "transcript_lines": 650,
+      "run_json_sha256": "35c2c0efd33a5da9ee65e52bf8af73b247d984929f486ea4cd5be791b644262e",
+      "workspace_tar_sha256": "0e60954a4284870c7e6014403829cc2644658fef82600cfddbdabf8bab5f4c86",
+      "exposure": {
+        "R1": {
+          "file": "skills/story/SKILL.md",
+          "assigned_file_sha256": "dc36079f819b7549ce42927075cfa08f776c94fc40776dc907a9f2e4484f54c6",
+          "workspace_tar_member": "./skills/story/SKILL.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 3,
+              "result_line_1based": 4,
+              "tool_use_id": "toolu_01BiLsBGqB7xxKegmv8sLt58",
+              "tool": "Read",
+              "input": {
+                "file_path": "/private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-UbGFIG/skills/story/SKILL.md"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "7fb5042dce9f4db8c44807cddd1aae1a7ceed99456fd81294f389bf8dbc10530",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 1,
+              "candidate_added_blocks_total": 1
+            }
+          ]
+        },
+        "R2": {
+          "file": "skills/story/references/charting.md",
+          "assigned_file_sha256": "086310e1e0068cfa3ca935e315bf05d4bb0ecfc5259b5ba304d17d33214e9129",
+          "workspace_tar_member": "./skills/story/references/charting.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 10,
+              "result_line_1based": 11,
+              "tool_use_id": "toolu_01CHzjkrc7d2wfinYhYQJRr8",
+              "tool": "Bash",
+              "input": {
+                "command": "cd /private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-UbGFIG/skills/story/references && cat story-craft.md voice-guide.md charting.md make-charts-template.mjs editorial-review.md; cat ../../../site/stories/package.json",
+                "description": "Read story skill references"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "f0fb6d1926c2074d19637d4fc557557be6938d18899e8de05cba97fb5971298e",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 2,
+              "candidate_added_blocks_total": 2
+            }
+          ]
+        },
+        "R3": {
+          "file": "skills/story/references/voice-guide.md",
+          "assigned_file_sha256": "e0dd6900727ab765fc80d8132447c5e5ff645c0c513b44dd5d230b349b030382",
+          "workspace_tar_member": "./skills/story/references/voice-guide.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 10,
+              "result_line_1based": 11,
+              "tool_use_id": "toolu_01CHzjkrc7d2wfinYhYQJRr8",
+              "tool": "Bash",
+              "input": {
+                "command": "cd /private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-UbGFIG/skills/story/references && cat story-craft.md voice-guide.md charting.md make-charts-template.mjs editorial-review.md; cat ../../../site/stories/package.json",
+                "description": "Read story skill references"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "f0fb6d1926c2074d19637d4fc557557be6938d18899e8de05cba97fb5971298e",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 5,
+              "candidate_added_blocks_total": 5
+            }
+          ]
+        }
+      },
+      "network": {
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "explicit_network_attempts_observed": 0,
+        "screened_candidates": [
+          {
+            "line_1based": 516,
+            "tool_use_id": "toolu_01Gzd8ED8pMHrojzkd7i29nx",
+            "tool": "Bash",
+            "input_sha256": "12bdd500094f6186eb09c13aa8ac86ebba66906fc89830aeff4d01c07440e580",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              517
+            ]
+          },
+          {
+            "line_1based": 561,
+            "tool_use_id": "toolu_01FoCSwivzDsHTDHmNqGA7KA",
+            "tool": "Bash",
+            "input_sha256": "d4aba594666f3e4d15019725576923b415d8f90f9001c49971d73687c4711b57",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              562
+            ]
+          },
+          {
+            "line_1based": 641,
+            "tool_use_id": "toolu_01PB1bXjr3o4PeXv862RB7QT",
+            "tool": "Bash",
+            "input_sha256": "fd483a33fb16c42138a2dbcd2e4640c86037f4529e3c64ec1f19455fb03ab367",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              642
+            ]
+          }
+        ],
+        "completeness": "No explicit networking call identified in visible tool invocations. Arbitrary subprocess/library networking and unlogged attempts remain unknown; absence is not proof of zero exposure.",
+        "harness_network_enabled": false,
+        "reported_leaks": []
+      },
+      "output_counts": {
+        "story_path": "artefacts/site/stories/french-debt.md",
+        "story_sha256": "5c409ad3d06e5fc46481b04092148dc182996bacd0f584e055d54e0ae55ea7af",
+        "narrative_words": 573,
+        "whole_body_words": 849,
+        "embedded_chart_occurrences": 4,
+        "distinct_embedded_chart_files": 4,
+        "embedded_charts": [
+          {
+            "reference": "french-debt-ratio.svg",
+            "sha256": "2de44492dbad1166874749f9e1af3141dfbc4fb9dfeaeb04e261bb189ab702ee"
+          },
+          {
+            "reference": "french-debt-borrowing.svg",
+            "sha256": "9ef8612fe59fb566228ae3e35ce1e5dd2e215760f549e4437db953d860d336a3"
+          },
+          {
+            "reference": "french-debt-revenue-spending.svg",
+            "sha256": "73ebbf9f9ee33cac5402f5054f61b883db60c95af9c280c54caf2c06daf52849"
+          },
+          {
+            "reference": "french-debt-spending-change.svg",
+            "sha256": "8c5c07b2ba6a511a21d080a1ac4ac424d4caed6dc677390def7262884627d0be"
+          }
+        ],
+        "all_svg_artifacts": 4
+      },
+      "caps": {
+        "assigned_max_usd_list_equivalent": 5,
+        "assigned_max_api_round_trips": 100,
+        "assigned_timeout_ms": 5400000,
+        "reported_cost_usd_list_equivalent": 3.504434,
+        "duration_ms": 814408,
+        "raw_num_turns": 47,
+        "unique_assistant_message_ids": 40,
+        "terminal_line_1based": 650,
+        "terminal_subtype": "success",
+        "terminal_is_error": false,
+        "terminal_stop_reason": "end_turn",
+        "flags": [],
+        "budget_hit_observed": false,
+        "timeout_hit_observed": false,
+        "turn_cap_hit_observed": false,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "actual_api_round_trip_count": null,
+        "turn_semantics": "raw num_turns is user-event based in installed CLI; unique assistant message IDs are a separate observed proxy, not an independently verified API-roundtrip count."
+      }
+    },
+    {
+      "sequence": 6,
+      "slot_id": "q01-french-debt-r2-baseline",
+      "run_id": "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+      "assigned_arm": "baseline",
+      "skill_ref": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "source_directory": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+      "transcript_sha256": "d9dd484527d567e395cce497e9571f92802932d2cdb17894f1eddb0e67f90a7a",
+      "transcript_lines": 438,
+      "run_json_sha256": "f783ab28e006d8e9467f38ed72ec7f081292f89b01a5ecd51a419b141cb690df",
+      "workspace_tar_sha256": "992d4a7e0bbf8407e205668acf00e37aac708ab962d2b6beff13f277b3eb209d",
+      "exposure": {
+        "R1": {
+          "file": "skills/story/SKILL.md",
+          "assigned_file_sha256": "f36beaf742cac5b2fe71773b2421e2d592b52359781df69492ca20e8ca672f62",
+          "workspace_tar_member": "./skills/story/SKILL.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 3,
+              "result_line_1based": 5,
+              "tool_use_id": "toolu_015zG12fNe6gDwiVC8TzbQ3L",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/SKILL.md && ls -R datasets/france-public-finances | head -50 && ls site site/stories 2>/dev/null",
+                "description": "Read story skill and list dataset"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "eb632d31ef43f2fa34844ae5ab593f46200656ea57543270269c6e51aeb20edb",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 1
+            }
+          ]
+        },
+        "R2": {
+          "file": "skills/story/references/charting.md",
+          "assigned_file_sha256": "cc78bdeb1698896b30c88ee4565043d67f285a49770696a5cdee2d5d1348f112",
+          "workspace_tar_member": "./skills/story/references/charting.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 6,
+              "result_line_1based": 7,
+              "tool_use_id": "toolu_01FbV7D9q8i2zrYpTrBtGnMd",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/references/story-craft.md skills/story/references/voice-guide.md skills/story/references/charting.md",
+                "description": "Read story references"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "3ebd2e89244601f238d48f0bbd83aba9545301bdab3862e58871ac88be43e192",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 2
+            }
+          ]
+        },
+        "R3": {
+          "file": "skills/story/references/voice-guide.md",
+          "assigned_file_sha256": "0c9cc370a99ae64d5c3a1a740bb10c3bd0bfdcffa8fc8868e59fa3c4a87a0f69",
+          "workspace_tar_member": "./skills/story/references/voice-guide.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 6,
+              "result_line_1based": 7,
+              "tool_use_id": "toolu_01FbV7D9q8i2zrYpTrBtGnMd",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/references/story-craft.md skills/story/references/voice-guide.md skills/story/references/charting.md",
+                "description": "Read story references"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "3ebd2e89244601f238d48f0bbd83aba9545301bdab3862e58871ac88be43e192",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 5
+            }
+          ]
+        }
+      },
+      "network": {
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "explicit_network_attempts_observed": 0,
+        "screened_candidates": [
+          {
+            "line_1based": 385,
+            "tool_use_id": "toolu_01SpKwMcKVxuVGk5pFW4X3v8",
+            "tool": "Bash",
+            "input_sha256": "f73e0d07247e3f1c42938438563d6e79b6e812354d65440439004099aa48f649",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              386
+            ]
+          }
+        ],
+        "completeness": "No explicit networking call identified in visible tool invocations. Arbitrary subprocess/library networking and unlogged attempts remain unknown; absence is not proof of zero exposure.",
+        "harness_network_enabled": false,
+        "reported_leaks": []
+      },
+      "output_counts": {
+        "story_path": "artefacts/site/stories/france-debt.md",
+        "story_sha256": "05fdcbd58dcdb91032b39260ba57d613cf24fc49793945a457afb964947d31ff",
+        "narrative_words": 520,
+        "whole_body_words": 928,
+        "embedded_chart_occurrences": 4,
+        "distinct_embedded_chart_files": 4,
+        "embedded_charts": [
+          {
+            "reference": "france-debt-chart-debt.svg",
+            "sha256": "289219b7398db18c78ab32f6d1b8e30cef7da3a4b6fd2d5f3237655f983a47bf"
+          },
+          {
+            "reference": "france-debt-chart-balance.svg",
+            "sha256": "38b2962d0657df701c09dcdaf2be492d28cfed7b79a3707d6e13ee3231a60bf8"
+          },
+          {
+            "reference": "france-debt-chart-gap.svg",
+            "sha256": "607c5de406899612d6f01498fb761d71a5c698b19e55a3d874cf3d08d7a9fc4b"
+          },
+          {
+            "reference": "france-debt-chart-interest.svg",
+            "sha256": "6eed15eef4078bdb748b535849c802b347a896a2101590e20a01e4abed92918d"
+          }
+        ],
+        "all_svg_artifacts": 4
+      },
+      "caps": {
+        "assigned_max_usd_list_equivalent": 5,
+        "assigned_max_api_round_trips": 100,
+        "assigned_timeout_ms": 5400000,
+        "reported_cost_usd_list_equivalent": 3.1727426,
+        "duration_ms": 695397,
+        "raw_num_turns": 47,
+        "unique_assistant_message_ids": 35,
+        "terminal_line_1based": 438,
+        "terminal_subtype": "success",
+        "terminal_is_error": false,
+        "terminal_stop_reason": "end_turn",
+        "flags": [],
+        "budget_hit_observed": false,
+        "timeout_hit_observed": false,
+        "turn_cap_hit_observed": false,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "actual_api_round_trip_count": null,
+        "turn_semantics": "raw num_turns is user-event based in installed CLI; unique assistant message IDs are a separate observed proxy, not an independently verified API-roundtrip count."
+      }
+    },
+    {
+      "sequence": 7,
+      "slot_id": "q03-wti-negative-r2-baseline",
+      "run_id": "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+      "assigned_arm": "baseline",
+      "skill_ref": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "source_directory": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+      "transcript_sha256": "7c4d047bd1287faf95ecdd5caccb42580455add53b1e573a130d84caa2906829",
+      "transcript_lines": 347,
+      "run_json_sha256": "c7829ef801bcb1f7bc0745089f306cecf470997bf31f3f39947a3c4b5e62ab8b",
+      "workspace_tar_sha256": "ddce67e2856aad56b2f12dca6bd9432f302caff4bc71dc3ce364cd87ccd0c260",
+      "exposure": {
+        "R1": {
+          "file": "skills/story/SKILL.md",
+          "assigned_file_sha256": "f36beaf742cac5b2fe71773b2421e2d592b52359781df69492ca20e8ca672f62",
+          "workspace_tar_member": "./skills/story/SKILL.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 3,
+              "result_line_1based": 5,
+              "tool_use_id": "toolu_01Fnwe9dWijFP33v9U358ML7",
+              "tool": "Bash",
+              "input": {
+                "command": "cat skills/story/SKILL.md && ls -R skills/story site 2>/dev/null | head -50 && ls -la datasets/energy-and-commodities/oil-prices/",
+                "description": "Read story skill and list relevant dirs"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "770b3ae066c2d74e65669aa15db096ff8864acf01c051b84213fc14f5ebe2bc2",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 1
+            }
+          ]
+        },
+        "R2": {
+          "file": "skills/story/references/charting.md",
+          "assigned_file_sha256": "cc78bdeb1698896b30c88ee4565043d67f285a49770696a5cdee2d5d1348f112",
+          "workspace_tar_member": "./skills/story/references/charting.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 8,
+              "result_line_1based": 10,
+              "tool_use_id": "toolu_01H7F5NcnLeSNjvX41yY7XZd",
+              "tool": "Bash",
+              "input": {
+                "command": "cat charting.md make-charts-template.mjs editorial-review.md",
+                "description": "Read charting guide, template, review template"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "4cc77af6ec2a07def66d97d313f8026817512f263693f6df728bc615d0105c6d",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 2
+            }
+          ]
+        },
+        "R3": {
+          "file": "skills/story/references/voice-guide.md",
+          "assigned_file_sha256": "0c9cc370a99ae64d5c3a1a740bb10c3bd0bfdcffa8fc8868e59fa3c4a87a0f69",
+          "workspace_tar_member": "./skills/story/references/voice-guide.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "not_assigned_baseline_file_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 6,
+              "result_line_1based": 7,
+              "tool_use_id": "toolu_01DTWo2mP8VH61295NDfzx1D",
+              "tool": "Bash",
+              "input": {
+                "command": "cd /private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-k1TbAT/skills/story/references && cat story-craft.md voice-guide.md",
+                "description": "Read story craft and voice guide"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "20fe494963fefead5cbe2f3a96dbec0b174e0c99745d4eec5f8b79fc5a837f67",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 0,
+              "candidate_added_blocks_total": 5
+            }
+          ]
+        }
+      },
+      "network": {
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "explicit_network_attempts_observed": 0,
+        "screened_candidates": [
+          {
+            "line_1based": 124,
+            "tool_use_id": "toolu_0196iZ1RFxi61VWg4GarWTLL",
+            "tool": "Bash",
+            "input_sha256": "c15fcb8c2504cc2337a46321fe88dce9cfb3703d1a5c71c181850516e7233ad2",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              125
+            ]
+          }
+        ],
+        "completeness": "No explicit networking call identified in visible tool invocations. Arbitrary subprocess/library networking and unlogged attempts remain unknown; absence is not proof of zero exposure.",
+        "harness_network_enabled": false,
+        "reported_leaks": []
+      },
+      "output_counts": {
+        "story_path": "artefacts/site/stories/oil-below-zero.md",
+        "story_sha256": "dc66d02f9d16b144ac06b54a4c38952dddc7473dc22a79b1933ae7cf21af3734",
+        "narrative_words": 498,
+        "whole_body_words": 916,
+        "embedded_chart_occurrences": 2,
+        "distinct_embedded_chart_files": 2,
+        "embedded_charts": [
+          {
+            "reference": "oil-below-zero-daily.svg",
+            "sha256": "da26688faa54b457bb05c983aab6e250615b37471d603301840c71240262cc32"
+          },
+          {
+            "reference": "oil-below-zero-averages.svg",
+            "sha256": "d756b7edf77391cb89357a3852540ed9dc7f40261afeac9f48f9ccdf08f1d902"
+          }
+        ],
+        "all_svg_artifacts": 2
+      },
+      "caps": {
+        "assigned_max_usd_list_equivalent": 5,
+        "assigned_max_api_round_trips": 100,
+        "assigned_timeout_ms": 5400000,
+        "reported_cost_usd_list_equivalent": 2.1921612,
+        "duration_ms": 588743,
+        "raw_num_turns": 32,
+        "unique_assistant_message_ids": 30,
+        "terminal_line_1based": 347,
+        "terminal_subtype": "success",
+        "terminal_is_error": false,
+        "terminal_stop_reason": "end_turn",
+        "flags": [],
+        "budget_hit_observed": false,
+        "timeout_hit_observed": false,
+        "turn_cap_hit_observed": false,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "actual_api_round_trip_count": null,
+        "turn_semantics": "raw num_turns is user-event based in installed CLI; unique assistant message IDs are a separate observed proxy, not an independently verified API-roundtrip count."
+      }
+    },
+    {
+      "sequence": 8,
+      "slot_id": "q03-wti-negative-r2-candidate",
+      "run_id": "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+      "assigned_arm": "candidate",
+      "skill_ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
+      "source_directory": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+      "transcript_sha256": "96de2bd294641e555b5f1ce0c78127b76957460bf380d7a432b6513fda7750dc",
+      "transcript_lines": 454,
+      "run_json_sha256": "0299137accde810c81240d1c791a1389509c79bd4081cf26318126e2938b0eab",
+      "workspace_tar_sha256": "2899106610a58ee100ea18831b6ee7939bdd345f0d2e52042f91d4cbbde9f534",
+      "exposure": {
+        "R1": {
+          "file": "skills/story/SKILL.md",
+          "assigned_file_sha256": "dc36079f819b7549ce42927075cfa08f776c94fc40776dc907a9f2e4484f54c6",
+          "workspace_tar_member": "./skills/story/SKILL.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 3,
+              "result_line_1based": 4,
+              "tool_use_id": "toolu_01GLZoa4GyM5PPhxqpodQaXP",
+              "tool": "Read",
+              "input": {
+                "file_path": "/private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-PBG1Rs/skills/story/SKILL.md"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "7fb5042dce9f4db8c44807cddd1aae1a7ceed99456fd81294f389bf8dbc10530",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 1,
+              "candidate_added_blocks_total": 1
+            }
+          ]
+        },
+        "R2": {
+          "file": "skills/story/references/charting.md",
+          "assigned_file_sha256": "086310e1e0068cfa3ca935e315bf05d4bb0ecfc5259b5ba304d17d33214e9129",
+          "workspace_tar_member": "./skills/story/references/charting.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 17,
+              "result_line_1based": 18,
+              "tool_use_id": "toolu_01USPZWWEH77PR43JyB5mqKu",
+              "tool": "Read",
+              "input": {
+                "file_path": "/private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-PBG1Rs/skills/story/references/charting.md"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "2c0e1312d95b86f1900645f041682db165ac2211be4a1cebb70cc3a889bc267b",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 2,
+              "candidate_added_blocks_total": 2
+            }
+          ]
+        },
+        "R3": {
+          "file": "skills/story/references/voice-guide.md",
+          "assigned_file_sha256": "e0dd6900727ab765fc80d8132447c5e5ff645c0c513b44dd5d230b349b030382",
+          "workspace_tar_member": "./skills/story/references/voice-guide.md",
+          "workspace_file_matches_assigned_git_ref": true,
+          "assigned_file_read_status": "observed_full_return",
+          "changed_instruction_exposure": "observed_all_added_blocks_returned",
+          "internal_attention_or_application": "unknown",
+          "observations": [
+            {
+              "tool_line_1based": 15,
+              "result_line_1based": 16,
+              "tool_use_id": "toolu_014bB2xDgbzJwLJQgT1AYjtD",
+              "tool": "Read",
+              "input": {
+                "file_path": "/private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/evals-ws-PBG1Rs/skills/story/references/voice-guide.md"
+              },
+              "result_is_error": false,
+              "result_content_sha256": "dd99dca4047071bc172c7d675e59ce0bef8a5ccad239f47c4d49ab42c40cbc23",
+              "full_assigned_file_text_present_in_return": true,
+              "candidate_added_blocks_present": 5,
+              "candidate_added_blocks_total": 5
+            }
+          ]
+        }
+      },
+      "network": {
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "explicit_network_attempts_observed": 0,
+        "screened_candidates": [
+          {
+            "line_1based": 373,
+            "tool_use_id": "toolu_01S2n6kYuGw3Y76dtQfozkyK",
+            "tool": "Bash",
+            "input_sha256": "f7ac5e63915d9846335409439594bb96de46810deb3f7d784e47ac2d48ed699c",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              374
+            ]
+          },
+          {
+            "line_1based": 385,
+            "tool_use_id": "toolu_01Y1ufQEmYz3nP75MQGGMrHg",
+            "tool": "Bash",
+            "input_sha256": "141e99de82e00987e173dea4bc0f1a8bc30cabfee599735553a8bd12dd18487b",
+            "classification": "local_text_edit_or_local_validation_with_URL_literal; no network operation identified",
+            "tool_result_lines": [
+              387
+            ]
+          }
+        ],
+        "completeness": "No explicit networking call identified in visible tool invocations. Arbitrary subprocess/library networking and unlogged attempts remain unknown; absence is not proof of zero exposure.",
+        "harness_network_enabled": false,
+        "reported_leaks": []
+      },
+      "output_counts": {
+        "story_path": "artefacts/site/stories/oil-below-zero.md",
+        "story_sha256": "fd2fefe7d4132aa7a4379113b712df4bfd5bcddb4474253e26fbb8f32ff79f8c",
+        "narrative_words": 512,
+        "whole_body_words": 741,
+        "embedded_chart_occurrences": 2,
+        "distinct_embedded_chart_files": 2,
+        "embedded_charts": [
+          {
+            "reference": "oil-below-zero-benchmarks.svg",
+            "sha256": "ed47908094a9e217f59de29c68ab4d92aa79bb4ec536af7d633fec009e6df24a"
+          },
+          {
+            "reference": "oil-below-zero-averages.svg",
+            "sha256": "05fd33a08f67846db880c045a4a07894ca73a0fee23ce4719bb991a1372222c9"
+          }
+        ],
+        "all_svg_artifacts": 2
+      },
+      "caps": {
+        "assigned_max_usd_list_equivalent": 5,
+        "assigned_max_api_round_trips": 100,
+        "assigned_timeout_ms": 5400000,
+        "reported_cost_usd_list_equivalent": 2.8551316000000004,
+        "duration_ms": 736244,
+        "raw_num_turns": 51,
+        "unique_assistant_message_ids": 37,
+        "terminal_line_1based": 454,
+        "terminal_subtype": "success",
+        "terminal_is_error": false,
+        "terminal_stop_reason": "end_turn",
+        "flags": [],
+        "budget_hit_observed": false,
+        "timeout_hit_observed": false,
+        "turn_cap_hit_observed": false,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "actual_api_round_trip_count": null,
+        "turn_semantics": "raw num_turns is user-event based in installed CLI; unique assistant message IDs are a separate observed proxy, not an independently verified API-roundtrip count."
+      }
+    }
+  ],
+  "summary": {
+    "full_assigned_three_file_returns_observed_slots": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "all_three_candidate_changes_returned_slots": [
+      2,
+      3,
+      5,
+      8
+    ],
+    "network_attempts_observed": 0,
+    "network_absence_proven": false,
+    "cap_terminations_observed": 0,
+    "cap_impact_on_conclusions": "No observed budget/time/turn-cap termination truncates any assigned output. Exposure delivery is established for changed text in candidate slots; internal attention/application remains unknown. These diagnostics do not identify individual-rule causal effects or justify an exposure-filtered quality claim."
+  },
+  "limitations": [
+    "Postexecution audit added after results review; no frozen outcome, assignment, artifact or protocol modified.",
+    "All observed file text is preserved transcript tool-return evidence; hidden model context processing or attention cannot be verified.",
+    "Network screen cannot establish absence of indirect or unlogged network attempts.",
+    "Subprocess result telemetry and transcript completeness are not independent wire-level audits.",
+    "Raw source locations are preserved local worktree evidence; hashes permit matching archived copies."
+  ]
+}

@@ -156,6 +156,10 @@
     {
       "path": "coder-input-audit.json",
       "sha256": "65330bfd5592105d192ccaef855abbceaf28149a5a677a0f867b344aa49adb1d"
+    },
+    {
+      "path": "writer-exposure-audit.json",
+      "sha256": "f3227d6b44f4a1ea818998a46b9ba8830d542be9c19983cbd9af986ec52a7ed6"
     }
   ],
   "denominators": {
@@ -526,6 +530,25 @@
       "checks_source": {
         "path": "../../../runs/story/q01-french-debt/20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1/checks.json",
         "sha256": "f0fb94e2f211f98aa87c7e9e13a36f8596cf01de9372649e86dac5a0c3212279"
+      },
+      "writer_exposure": {
+        "source_locator": "writer-exposure-audit.json#/records/0",
+        "sequence": 1,
+        "R1_R2_R3_full_assigned_file_return_observed": true,
+        "candidate_added_blocks_returned": null,
+        "attention_comprehension_or_application": "unknown",
+        "narrative_words": 585,
+        "whole_body_words": 910,
+        "distinct_chart_files": 4,
+        "explicit_network_attempts_observed": 0,
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "cost_usd_list": 3.7357342,
+        "duration_ms": 899098,
+        "raw_num_turns": 52,
+        "unique_assistant_message_ids": 46,
+        "actual_api_round_trip_count": null
       }
     },
     {
@@ -776,6 +799,25 @@
       "checks_source": {
         "path": "../../../runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/checks.json",
         "sha256": "ae44351c961b0bc9d0024127678fa7b80cc0437a61647e6011be1b082c86f8cf"
+      },
+      "writer_exposure": {
+        "source_locator": "writer-exposure-audit.json#/records/1",
+        "sequence": 2,
+        "R1_R2_R3_full_assigned_file_return_observed": true,
+        "candidate_added_blocks_returned": true,
+        "attention_comprehension_or_application": "unknown",
+        "narrative_words": 477,
+        "whole_body_words": 785,
+        "distinct_chart_files": 4,
+        "explicit_network_attempts_observed": 0,
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "cost_usd_list": 3.1438255999999996,
+        "duration_ms": 730150,
+        "raw_num_turns": 42,
+        "unique_assistant_message_ids": 38,
+        "actual_api_round_trip_count": null
       }
     },
     {
@@ -1017,6 +1059,25 @@
       "checks_source": {
         "path": "../../../runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/checks.json",
         "sha256": "b4cd2b0830b18aaba255ad62fe0f55bfa0ff25d7a9e48463b71f3c3b4d977721"
+      },
+      "writer_exposure": {
+        "source_locator": "writer-exposure-audit.json#/records/2",
+        "sequence": 3,
+        "R1_R2_R3_full_assigned_file_return_observed": true,
+        "candidate_added_blocks_returned": true,
+        "attention_comprehension_or_application": "unknown",
+        "narrative_words": 522,
+        "whole_body_words": 870,
+        "distinct_chart_files": 2,
+        "explicit_network_attempts_observed": 0,
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "cost_usd_list": 2.6006006,
+        "duration_ms": 696739,
+        "raw_num_turns": 51,
+        "unique_assistant_message_ids": 39,
+        "actual_api_round_trip_count": null
       }
     },
     {
@@ -1253,6 +1314,25 @@
       "checks_source": {
         "path": "../../../runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/checks.json",
         "sha256": "179a0cda0ceef7eef9e73167d355840fe73457b99767b717d4f85af71e6d0e57"
+      },
+      "writer_exposure": {
+        "source_locator": "writer-exposure-audit.json#/records/3",
+        "sequence": 4,
+        "R1_R2_R3_full_assigned_file_return_observed": true,
+        "candidate_added_blocks_returned": null,
+        "attention_comprehension_or_application": "unknown",
+        "narrative_words": 513,
+        "whole_body_words": 909,
+        "distinct_chart_files": 2,
+        "explicit_network_attempts_observed": 0,
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "cost_usd_list": 2.5871962,
+        "duration_ms": 974659,
+        "raw_num_turns": 36,
+        "unique_assistant_message_ids": 34,
+        "actual_api_round_trip_count": null
       }
     },
     {
@@ -1524,6 +1604,25 @@
       "checks_source": {
         "path": "../../../runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/checks.json",
         "sha256": "e0bf9d2cc02eca72e7c04db577e7c5bbcb38c56869fabd1d00c97ddcd6a65861"
+      },
+      "writer_exposure": {
+        "source_locator": "writer-exposure-audit.json#/records/4",
+        "sequence": 5,
+        "R1_R2_R3_full_assigned_file_return_observed": true,
+        "candidate_added_blocks_returned": true,
+        "attention_comprehension_or_application": "unknown",
+        "narrative_words": 573,
+        "whole_body_words": 849,
+        "distinct_chart_files": 4,
+        "explicit_network_attempts_observed": 0,
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "cost_usd_list": 3.504434,
+        "duration_ms": 814408,
+        "raw_num_turns": 47,
+        "unique_assistant_message_ids": 40,
+        "actual_api_round_trip_count": null
       }
     },
     {
@@ -1802,6 +1901,25 @@
       "checks_source": {
         "path": "../../../runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/checks.json",
         "sha256": "d0496ee1c249f0da8eb5cb3eb6cf78e175c8822d129e975a4cd0f802f7b27662"
+      },
+      "writer_exposure": {
+        "source_locator": "writer-exposure-audit.json#/records/5",
+        "sequence": 6,
+        "R1_R2_R3_full_assigned_file_return_observed": true,
+        "candidate_added_blocks_returned": null,
+        "attention_comprehension_or_application": "unknown",
+        "narrative_words": 520,
+        "whole_body_words": 928,
+        "distinct_chart_files": 4,
+        "explicit_network_attempts_observed": 0,
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "cost_usd_list": 3.1727426,
+        "duration_ms": 695397,
+        "raw_num_turns": 47,
+        "unique_assistant_message_ids": 35,
+        "actual_api_round_trip_count": null
       }
     },
     {
@@ -2020,6 +2138,25 @@
       "checks_source": {
         "path": "../../../runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/checks.json",
         "sha256": "d82f8b8e140da9718240e584fbc41f9ee19d374f942fd446862b91f6a4d81f39"
+      },
+      "writer_exposure": {
+        "source_locator": "writer-exposure-audit.json#/records/6",
+        "sequence": 7,
+        "R1_R2_R3_full_assigned_file_return_observed": true,
+        "candidate_added_blocks_returned": null,
+        "attention_comprehension_or_application": "unknown",
+        "narrative_words": 498,
+        "whole_body_words": 916,
+        "distinct_chart_files": 2,
+        "explicit_network_attempts_observed": 0,
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "cost_usd_list": 2.1921612,
+        "duration_ms": 588743,
+        "raw_num_turns": 32,
+        "unique_assistant_message_ids": 30,
+        "actual_api_round_trip_count": null
       }
     },
     {
@@ -2245,6 +2382,25 @@
       "checks_source": {
         "path": "../../../runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/checks.json",
         "sha256": "4770796be028873a3c4982f3c40ddd844881260fa857fafba0076c1094a073f3"
+      },
+      "writer_exposure": {
+        "source_locator": "writer-exposure-audit.json#/records/7",
+        "sequence": 8,
+        "R1_R2_R3_full_assigned_file_return_observed": true,
+        "candidate_added_blocks_returned": true,
+        "attention_comprehension_or_application": "unknown",
+        "narrative_words": 512,
+        "whole_body_words": 741,
+        "distinct_chart_files": 2,
+        "explicit_network_attempts_observed": 0,
+        "provider_web_search_requests": 0,
+        "provider_web_fetch_requests": 0,
+        "cap_termination_status": "none_observed_success_end_turn",
+        "cost_usd_list": 2.8551316000000004,
+        "duration_ms": 736244,
+        "raw_num_turns": 51,
+        "unique_assistant_message_ids": 37,
+        "actual_api_round_trip_count": null
       }
     }
   ],
@@ -2733,5 +2889,17 @@
     "reader_records_verified": 24,
     "stale_fields": "Original index retained six-output scope/pending-eighth scan wording and preparation-time no-coder-launch status. Audit clarifies all-eight completion without rewriting delivered evidence.",
     "screen_result": "No known treatment/run identity matches; generic codebook labels and five chart-axis baseline mentions do not map outputs to arms. No perfect-blinding guarantee."
+  },
+  "writer_exposure_method": {
+    "source": "writer-exposure-audit.json",
+    "methods_verbatim": {
+      "file_read_exposure": "Parse transcript JSONL assistant tool_use and matching user tool_result IDs. Verify archived workspace skill bytes against assigned git ref. For each Read/cat call, normalize whitespace and numbered Read prefixes, then test complete file text and every nonblank added diff line against returned content. Returned content is observed context exposure, not proof of attention, comprehension or use.",
+      "network": "Review visible tool names and lexical candidates in every Bash input using case-insensitive whole-word curl|wget|fetch|requests|urllib|http|https|npm|pip|git clone. Manually classify candidates, distinguish URLs written/edited/validated locally from executed requests. Report provider server_tool_use counters separately. No packet capture or complete indirect-call instrumentation exists.",
+      "word_counts": "Python: remove leading YAML frontmatter; narrative ends before first exact level-2 heading How this was made or Friction notes. Whole-body includes those appendices. Remove Markdown inline images entirely (including alt text), replace Markdown links with labels, remove angle-bracket tags, strip leading heading markers, remove *, ` and _, then count whitespace-separated tokens with len(text.split()). Includes headings, captions, numerals and punctuation-only whitespace tokens; this is a deterministic operational word count, not linguistic tokenization. Excludes YAML title; body heading title included. No fenced code present in selected stories.",
+      "chart_counts": "Count inline Markdown image occurrences ending .svg in final story and distinct referenced paths; verify files and hash bytes. Also count all persisted artefact .svg files. One SVG counts once regardless internal panels; counts are not sample sizes.",
+      "cap_hits": "Compare run duration/cost with frozen limits and inspect final result subtype/is_error/stop_reason plus run flags. Preserve raw CLI turns and distinct assistant IDs separately; do not compare raw turns to API-roundtrip cap. Success/end_turn supports no observed cap termination, not independent proof of service-side cap enforcement."
+    },
+    "analysis": "All eight assigned outputs retained; exposure observation does not create an exclusion criterion or establish use.",
+    "summary": "Full assigned R1/R2/R3 file content observed in returned tool context for all8; all candidate additions returned in all4 candidate runs. No explicit network request or cap termination observed; indirect networking and service-side cap enforcement not proven."
   }
 }

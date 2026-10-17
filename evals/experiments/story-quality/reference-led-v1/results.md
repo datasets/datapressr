@@ -54,6 +54,25 @@ Gate scopes are not interchangeable. Mee832a G3 passes only CSV-to-SVG reconstru
 
 Runtime France replicate 1 prefers baseline clear/clear for the primary deficit and functional-spending analysis. Replicate 2 prefers candidate clear/clear for functional-spending growth and comparator charts, while manual writing favors its baseline 2 versus candidate 1 and the candidate’s G4 is unresolved. Oil replicate 1 prefers baseline slight/slight, whereas manual chart-design ratings favor candidate 2 versus baseline 1 and baseline G4 fails. Oil replicate 2 prefers candidate slight/clear, whereas manual baseline chart design and argument/counterevidence are 2 versus candidate 1. These are differences between bounded criteria/modalities, not a manufactured manual paired preference or owner disagreement. Every raw reason and order-specific file is linked in results.json.
 
+## Writer exposure and output size
+
+The [transcript/workspace audit](writer-exposure-audit.json) found the full assigned R1/R2/R3 files in returned tool context for all eight writers, and every candidate addition in all four candidate runs. Workspace skill bytes matched the assigned refs. Returned context establishes observed exposure, not attention, comprehension or application. All eight outputs remain analysed as assigned; none was excluded or rerun.
+
+| Output | Narrative words | Whole-body words | Charts | Observed explicit network requests | Observed cap termination |
+| --- | ---: | ---: | ---: | ---: | --- |
+| M30755c | 585 | 910 | 4 | 0 | none |
+| Mb8941a | 477 | 785 | 4 | 0 | none |
+| M9b1fee | 522 | 870 | 2 | 0 | none |
+| Mbe53b2 | 513 | 909 | 2 | 0 | none |
+| M1d3194 | 573 | 849 | 4 | 0 | none |
+| Mf4bb1f | 520 | 928 | 4 | 0 | none |
+| Mee832a | 498 | 916 | 2 | 0 | none |
+| M948761 | 512 | 741 | 2 | 0 | none |
+
+Narrative counts remove frontmatter and stop before the exact “How this was made” or “Friction notes” heading. Inline images/alt text are removed, link labels retained, markup stripped and whitespace-separated tokens counted; headings, captions, numerals and punctuation-only tokens count. Whole-body counts also include appendices. These are operational word counts, not model tokens. Distinct referenced SVGs count once regardless of panels; chart counts are not sample sizes. All narrative counts fall within the commissioned 300–700 range.
+
+Visible tool inputs and provider counters showed no explicit network requests; indirect subprocess/library requests and unlogged activity are not fully instrumented. Terminal success/end_turn, flags, duration and dollar usage showed no observed cap termination. Raw CLI turn events and distinct assistant IDs remain separate proxies, not verified API-round-trip counts or independent evidence of service-side enforcement. Exact per-run locators and counters are retained in results.json.
+
 ## Resources and accounting boundary
 
 The eight writers used $23.791826 list-equivalent; the Claude canary used $0.00389908, giving **$23.79572508 known Claude comparison usage**. The separately authorized Opus design review used $0.5046058 list-equivalent and is outside that comparison subtotal. These values are not subscription invoices.
