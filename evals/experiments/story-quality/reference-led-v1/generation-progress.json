@@ -762,6 +762,189 @@
       "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
       "skill_ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
       "skill_tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7"
+    },
+    {
+      "event": "finish",
+      "sequence": 2,
+      "slot_id": "q01-french-debt-r1-candidate",
+      "at": "2026-10-17T22:08:14.126147+00:00",
+      "exit_code": 0,
+      "stop_reasons": [],
+      "metadata": {
+        "run_id": "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+        "case_id": "q01-french-debt",
+        "domain": "story",
+        "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+        "skill": {
+          "name": "story",
+          "ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
+          "tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7",
+          "dirty": false
+        },
+        "harness": {
+          "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+          "dirty": false,
+          "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+        },
+        "writer": {
+          "vendor": "claude",
+          "model": "claude-opus-5-5",
+          "effort_requested": "high",
+          "model_actual": "claude-opus-5-5",
+          "cli_version": "2.1.302",
+          "prompt_sha256": "3fe1ed6d7a88a5b56c202aad28e93d38cacedc57e9635e99d73d34042ecc2575"
+        },
+        "isolation": {
+          "canary_run_id": "20261017-2136-canary-claude-haiku-5-5-1",
+          "network": false,
+          "leaks": []
+        },
+        "started_at": "2026-10-17T21:56:01.019Z",
+        "duration_ms": 730150,
+        "turns": 42,
+        "cost_usd": 3.1438255999999996,
+        "cost_basis": "list",
+        "usage": {
+          "input_tokens": 76,
+          "cache_creation_input_tokens": 136378,
+          "cache_read_input_tokens": 3227188,
+          "output_tokens": 70353,
+          "output_tokens_details": {
+            "thinking_tokens": 27824
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 136378,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "global",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 1020,
+              "cache_read_input_tokens": 140569,
+              "cache_creation_input_tokens": 1082,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 1082
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "flags": [],
+        "transcript_sha256": "50746f53b7d36ca51ac9b318f5d0598bcc21b79c7469713d954f7536fae9d509",
+        "workspace_sha256": "94102820c236103dbfac1175a54a979823d63c32e79f1eab9e35d341297ccb89"
+      },
+      "check_summary": {
+        "ledger": {
+          "schema": 1,
+          "kind": "check",
+          "at": "2026-10-17T22:08:13.728Z",
+          "run_id": "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+          "checker": "story",
+          "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+          "failed": [],
+          "warned": [],
+          "passed": 7
+        }
+      },
+      "artifacts": [
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-editorial-review.md",
+          "bytes": 11808,
+          "sha256": "c643fbee972eaa959b8820aeef32bdcab315a4617e05c6e65c4a8f8d3bc6cf69"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-extra-spending.svg",
+          "bytes": 5181,
+          "sha256": "0c6ac944bb0f5502aac4648d3c75d8f7688cfbe6faf0c3c444ff7ba5027acd06"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-gap.svg",
+          "bytes": 7875,
+          "sha256": "6fd3b49eb641504d1edc92e38bc0be0a4b1c04abc3ca649c896caa5b9ba8e744"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-make-charts.mjs",
+          "bytes": 14401,
+          "sha256": "d228ee80c81811f26f340c1ec1e44be2058f3fc20e1d982e08bd7053cbbb3d1a"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-outline.md",
+          "bytes": 21628,
+          "sha256": "1e17e081cbc9903c7b7d897676be530f331cac8cf6995a87ebed9b55b8fec068"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-peers.svg",
+          "bytes": 6096,
+          "sha256": "e899b79749f9ca816de4ad0dfc3eabef65d089f8b9a10686a999f5c5c7c106a7"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-ratio.svg",
+          "bytes": 8202,
+          "sha256": "f28b85bd0ed63b6fd0d5ff8ed213b084d143d9d2813a7ddf85b9f36d848112ef"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt.md",
+          "bytes": 6884,
+          "sha256": "f15abfddfaf538a59f31e5f0e8e20e2e953a33514a9571fe25abc596aeee425f"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/checks.json",
+          "bytes": 2075,
+          "sha256": "ae44351c961b0bc9d0024127678fa7b80cc0437a61647e6011be1b082c86f8cf"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/run.json",
+          "bytes": 3565,
+          "sha256": "046b29696d7b682b63c5a1c1b8b89689f0247ef321332eef07b121407b583339"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/transcript.jsonl",
+          "bytes": 827689,
+          "sha256": "50746f53b7d36ca51ac9b318f5d0598bcc21b79c7469713d954f7536fae9d509"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/workspace.tar",
+          "bytes": 3450368,
+          "sha256": "94102820c236103dbfac1175a54a979823d63c32e79f1eab9e35d341297ccb89"
+        }
+      ],
+      "log": "/tmp/datapressr-comparison-writer-2.log",
+      "log_sha256": "45cc214c501ad6832083e2b3d90c0210bc535836dc7c534b01dca26f1fd16767"
+    },
+    {
+      "event": "start",
+      "sequence": 3,
+      "slot_id": "q03-wti-negative-r1-candidate",
+      "at": "2026-10-17T22:08:26.122311+00:00",
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "run",
+        "story/q03-wti-negative",
+        "--writer",
+        "claude",
+        "--skill-ref",
+        "77c8c357f78390b1a986e9d684e5512587d245ab",
+        "--repeat",
+        "1",
+        "--max-usd",
+        "5",
+        "--no-critic"
+      ],
+      "config_sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+      "harness_commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+      "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+      "skill_ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
+      "skill_tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7"
     }
   ]
 }
