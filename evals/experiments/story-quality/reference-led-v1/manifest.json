@@ -1,0 +1,1275 @@
+{
+  "schema_version": 1,
+  "document_type": "story-skill-candidate-preparation-manifest",
+  "experiment_id": "reference-led-v1",
+  "task": "datapressr-8no.9.4",
+  "prepared_at": "2026-10-17",
+  "status": "candidate-preparation-only; no comparison executed; efficacy unestablished",
+  "scope": {
+    "rule_count": 3,
+    "changed_skill_files": [
+      "skills/story/SKILL.md",
+      "skills/story/references/charting.md",
+      "skills/story/references/voice-guide.md"
+    ],
+    "unchanged_guidance": [
+      "skills/story/references/story-craft.md",
+      "skills/story/references/editorial-review.md"
+    ],
+    "standalone": true,
+    "site_docs_direct_contradiction_found": false,
+    "site_docs_changed": false
+  },
+  "historical_baseline": {
+    "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+    "story": {
+      "tree": {
+        "path": "skills/story",
+        "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "git_type": "tree",
+        "git_object": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
+      },
+      "files": [
+        {
+          "path": "skills/story/SKILL.md",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "blob",
+          "git_object": "856c8fe96164fa09852e911472df6262f63c6067",
+          "sha256": "f36beaf742cac5b2fe71773b2421e2d592b52359781df69492ca20e8ca672f62"
+        },
+        {
+          "path": "skills/story/references/charting.md",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "blob",
+          "git_object": "cb2a10f1223000a0b07389d9e20c7906a100916f",
+          "sha256": "cc78bdeb1698896b30c88ee4565043d67f285a49770696a5cdee2d5d1348f112"
+        },
+        {
+          "path": "skills/story/references/editorial-review.md",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "blob",
+          "git_object": "d122962372af129471f56fc71ff2942c3980dbbd",
+          "sha256": "4aa893c687c070b8b7586046d8d1443b858961ca618f6c90f14073462aba0537"
+        },
+        {
+          "path": "skills/story/references/make-charts-template.mjs",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "blob",
+          "git_object": "210fb9ce9fc57908cfe8e0e194943fa0954d44d9",
+          "sha256": "4c0037c931f88e40c4c55a8674f99e328c52aee588867b7df6a033f77ce75c1c"
+        },
+        {
+          "path": "skills/story/references/story-craft.md",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "blob",
+          "git_object": "460e4ea75c850ac0e476df052ccf9df73f2e3b06",
+          "sha256": "768d00accbb7d5fb6d7e6adda9751e737528edf4dd5a9e53ca9042a6276e3a02"
+        },
+        {
+          "path": "skills/story/references/voice-guide.md",
+          "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "git_type": "blob",
+          "git_object": "6b7d4fa2788b32dcb5f3fdcb231179779eb80911",
+          "sha256": "0c9cc370a99ae64d5c3a1a740bb10c3bd0bfdcffa8fc8868e59fa3c4a87a0f69"
+        }
+      ]
+    },
+    "evals_snapshot": {
+      "path": "evals",
+      "commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "git_type": "tree",
+      "git_object": "a6ddcbf0c343acb9117cfb8317bbae069b0fcb2a"
+    },
+    "frozen_manifest": {
+      "path": "evals/calibration/story/baseline-2026-10-17.json",
+      "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+      "git_type": "blob",
+      "git_object": "aa69d73699c233f937a30e1b78d1d5178bfc2022",
+      "sha256": "9b3843dbfd5e6dd1c9442fbb69fcced72ad810124be2c9df52d6ac90689f46d5"
+    },
+    "role": "Historical baseline and dependency inventory, not a separate execution harness for the baseline arm. This is not the old 031eb45/50e166b experiment."
+  },
+  "candidate": {
+    "content_commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+    "content_parent_commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+    "story": {
+      "tree": {
+        "path": "skills/story",
+        "commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+        "git_type": "tree",
+        "git_object": "92148d1e210b6aec35ed1bff432a7d32e78044c7"
+      },
+      "files": [
+        {
+          "path": "skills/story/SKILL.md",
+          "commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+          "git_type": "blob",
+          "git_object": "e1612582950ebccdaacc8bab6a85bc738193d440",
+          "sha256": "dc36079f819b7549ce42927075cfa08f776c94fc40776dc907a9f2e4484f54c6"
+        },
+        {
+          "path": "skills/story/references/charting.md",
+          "commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+          "git_type": "blob",
+          "git_object": "3d5f43bd55e8850c8701acf6c73a177a982ccca7",
+          "sha256": "086310e1e0068cfa3ca935e315bf05d4bb0ecfc5259b5ba304d17d33214e9129"
+        },
+        {
+          "path": "skills/story/references/editorial-review.md",
+          "commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+          "git_type": "blob",
+          "git_object": "d122962372af129471f56fc71ff2942c3980dbbd",
+          "sha256": "4aa893c687c070b8b7586046d8d1443b858961ca618f6c90f14073462aba0537"
+        },
+        {
+          "path": "skills/story/references/make-charts-template.mjs",
+          "commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+          "git_type": "blob",
+          "git_object": "210fb9ce9fc57908cfe8e0e194943fa0954d44d9",
+          "sha256": "4c0037c931f88e40c4c55a8674f99e328c52aee588867b7df6a033f77ce75c1c"
+        },
+        {
+          "path": "skills/story/references/story-craft.md",
+          "commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+          "git_type": "blob",
+          "git_object": "460e4ea75c850ac0e476df052ccf9df73f2e3b06",
+          "sha256": "768d00accbb7d5fb6d7e6adda9751e737528edf4dd5a9e53ca9042a6276e3a02"
+        },
+        {
+          "path": "skills/story/references/voice-guide.md",
+          "commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+          "git_type": "blob",
+          "git_object": "6dd96203096b81ac5f353387be4468c6d290fbca",
+          "sha256": "e0dd6900727ab765fc80d8132447c5e5ff645c0c513b44dd5d230b349b030382"
+        }
+      ]
+    },
+    "hypotheses": {
+      "path": "evals/experiments/story-quality/reference-led-v1/hypotheses.md",
+      "commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+      "git_type": "blob",
+      "git_object": "996e0194395bb151fb129b9968a969612bd2f535",
+      "sha256": "0b525651ac5c1476a1e663cd2b2ac4ac7404c9fe1c8a1451a199f9818730da3a"
+    },
+    "manifest_self_pin": "This later manifest pins the immutable content commit. Its own blob/containing commit is recorded by independent review and driver handoff, avoiding self-reference.",
+    "tested_as_effective": false
+  },
+  "shared_execution_recipe": {
+    "role": "One available, pinned harness and case/package/input recipe for BOTH arms; only story skill tree differs. Proposed for hcn.27, not executed or fully preregistered here.",
+    "harness_commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+    "evals_tree": {
+      "path": "evals",
+      "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+      "git_type": "tree",
+      "git_object": "eeaa94b839e4faa5a093409120b82d0130364bb7"
+    },
+    "harness_lib": {
+      "tree": {
+        "path": "evals/lib",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "tree",
+        "git_object": "3c7ad7c47c8c1e43c51f4620aa6e36849613384b"
+      },
+      "files": [
+        {
+          "path": "evals/lib/adapters/claude.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "7b31a883321288a6eaa299613d98d583d02b782a",
+          "sha256": "e4ad4e4c9b33e95c6b2f9608dfa4a56e9fd37a8c33e40aadfdd5c66408e58f97"
+        },
+        {
+          "path": "evals/lib/adapters/claude.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "485ec446ae0368f3077b79382eb57bd1e4a18a27",
+          "sha256": "1bd55739e55fd8dc77dd8a768e0f6359a3c1612e3d9746a0e88771385f9e729a"
+        },
+        {
+          "path": "evals/lib/adapters/codex.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "35e9612c1b22b2bc953c22bcee9f5e6abde33917",
+          "sha256": "2ebcc3cc082ce3374128fccb5161b5377f19a3404f0613dd752e27c28fdf0be8"
+        },
+        {
+          "path": "evals/lib/adapters/codex.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "47aed66abe3723630a4796e145b83dd75d61d948",
+          "sha256": "6a22b5bf9aed6529bf0bbee4b75b65761efbac582edded85e6ab2a937ff804dc"
+        },
+        {
+          "path": "evals/lib/adapters/fake-artefacts/story/site/stories/fake-story-make-charts.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "b8204e077a258de5c167a86bd437ac6ce62347c3",
+          "sha256": "92171c983b3979fe57dc5702dfa5a57a0fd4bcc6d9b817b3ebe1ff17211b0a3d"
+        },
+        {
+          "path": "evals/lib/adapters/fake-artefacts/story/site/stories/fake-story-outline.md",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "2b61fd81b44659ea32401a0f775d4ec833d6928c",
+          "sha256": "c266ae5fed8b6602962b6f70109f5c61123494ef44146502671e8126a0a2cdae"
+        },
+        {
+          "path": "evals/lib/adapters/fake-artefacts/story/site/stories/fake-story-trend.svg",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "6c8d378b117793ece1401a1ad4ec187e4fef750a",
+          "sha256": "c4d20a3be2b4e42caaa43839e1904448ab65287b09cbb3342f8ac0b2db71d8fa"
+        },
+        {
+          "path": "evals/lib/adapters/fake-artefacts/story/site/stories/fake-story.md",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "efcb1023d19e0ad39d161fbf827f4cc12b882aa6",
+          "sha256": "047f5e4e9e7e2bcc3d2b7408bd820e244c93816c232748f92664f52f7f9af9d8"
+        },
+        {
+          "path": "evals/lib/adapters/fake.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "699d381472d43626dd9f4b86d48e3668f87ad983",
+          "sha256": "79e0a5b8446271ce7e97dff30e1d6a89b17b8c7376ff8e95bc7c03deb509be04"
+        },
+        {
+          "path": "evals/lib/adapters/index.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "9f9e83ac150665dfd5300d6614b0d36973c064d0",
+          "sha256": "98ad61359c694d6e2ac12e7bee901872382fd01340d72917d3142a60843205fe"
+        },
+        {
+          "path": "evals/lib/adapters/index.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "b477a96eccfae04f762b2863824ba7badb8616c7",
+          "sha256": "1f7f5a8f35837ad08e22aaf20e1844e08eee72d7a5e3374250f26ee3b553ffbb"
+        },
+        {
+          "path": "evals/lib/adapters/nested.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "bd3c4d65dc7c44c10e919e12d618189d77aa2e53",
+          "sha256": "5d902d997a44d825a8380919c710cd3e7519a4b2679cd206781d7c4cacaa869c"
+        },
+        {
+          "path": "evals/lib/adapters/runtmp.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "dcb3c2e5a816b2dd98fe553d20fbade83f638a53",
+          "sha256": "114c5f857d1d3913d990c93920d51348d5991ff497a801cf3f24c4e64d21fa67"
+        },
+        {
+          "path": "evals/lib/adapters/runtmp.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "ca555acfcd22309b389b7a2d8856d0d563c62d30",
+          "sha256": "f011b7f8e0798d663d0fe245d987e72a0b0255feb311571c4f7af6caae041089"
+        },
+        {
+          "path": "evals/lib/canary.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "3dff6410f367f29c0b7d2f545e0b92332cc57d9d",
+          "sha256": "f52c9bd8aba6605a25a2baa67e407964d4def5a804b9e26c7e0596e60d6dda00"
+        },
+        {
+          "path": "evals/lib/canary.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "4b4a15c1223c043543d2fd5f97c278ce8f8c6db6",
+          "sha256": "b2a3c3cbfb1804b82d8efc9bf0baae8392c4c442c2d108c69ff593e1b22ca817"
+        },
+        {
+          "path": "evals/lib/checkers/offline-preload.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "909a69a5a0d38a89dd02dcc4df708ea0fac345f3",
+          "sha256": "86f51a46c488b63413d76917c735d15688f87f6b57d35286359fd50d112453b7"
+        },
+        {
+          "path": "evals/lib/checkers/run-checks.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "c724a99667be8b32d6610b1deaf148ed8519e4cd",
+          "sha256": "ff989186a2a65b224a54cba72c4baf95372661cb6aa7ca72ee1a1ba4370f295b"
+        },
+        {
+          "path": "evals/lib/checkers/story.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "2f27141b2ab74e4ccd24edc5c608b391676e1653",
+          "sha256": "892de003537414de48e28103e58f26e7889dcfdf856343dcaea203d640b73f0b"
+        },
+        {
+          "path": "evals/lib/checkers/story.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "fff55d050c1aad159ef8785020d31e40a0f011e7",
+          "sha256": "b28815c9d8e2bc574d11ddc9f063a75d6f5cac52724bae6e63454badb0f84c6d"
+        },
+        {
+          "path": "evals/lib/checkers/structure.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "1da890ea57fb224e5e1e29bb38f872affaa570f6",
+          "sha256": "276cef9e682bd24fbc3d73fd64689380d7d155f0bf64803237de34059c44e67d"
+        },
+        {
+          "path": "evals/lib/checkers/structure.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "5dd0c4e21fd326ce05df857837fdeeabd6b41f12",
+          "sha256": "437fcb4d271c52831985c06135563bac99b9ed2eeb07b8beb6c1d1e04af40430"
+        },
+        {
+          "path": "evals/lib/critic.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "2c177ec7fcb8637cd4a92f2d248e3925686d4fa6",
+          "sha256": "a898b0db1ec45d530cdfeace7fba4d2abd4983d3a43d56cf2ceddaeda769f1db"
+        },
+        {
+          "path": "evals/lib/critic.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "746d6aaf6cfbbfff23ac56122ad9be7cd1a61feb",
+          "sha256": "c9469550de02fa5fca9222e98d9158dd910bbffcd1b8be01f7b1b9d6a8851094"
+        },
+        {
+          "path": "evals/lib/fixture-repo.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "71efbe4d7b8c44ae75edd62ccaca9fce3c1215a3",
+          "sha256": "32f3746f0be57af1172242722bb35e0b3b1863c40326586e7a6d436359c6fa28"
+        },
+        {
+          "path": "evals/lib/fixture-staging.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "22690f4a053fe26fb517cee0ab816fdec16ce353",
+          "sha256": "618ab97d5041469cf401f4b8655ffd95266ea4332dc3402906795870ff02b7ac"
+        },
+        {
+          "path": "evals/lib/leakscan.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "e14c9953ff971309e5c5a1c0afe7674dd18c356d",
+          "sha256": "3e9d4b5ed582e1125eea957239fb33e8b404167fd5dc81307a0b5011e75e88d4"
+        },
+        {
+          "path": "evals/lib/leakscan.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "83f9fb6517965da07ae2933059db86b9cd06d6d7",
+          "sha256": "65198d03d69240ef785b1e2608919d9025c87944c4dd1383a1ddedec7e4b44bf"
+        },
+        {
+          "path": "evals/lib/ledger.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "227b52926ca02e0de232e67934076079c3703c85",
+          "sha256": "461354d58158bfb99e1d5fad6f47cd1c590cedc86cf603c984c970f2cee022dd"
+        },
+        {
+          "path": "evals/lib/ledger.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "f756d9dab1956b34150c4f8f33851e52024bfa49",
+          "sha256": "7d8f3f51de9833fb7c53d09b25319ba70da6c5f2b253e8691ee386ded27bd1d5"
+        },
+        {
+          "path": "evals/lib/opennet.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "b10ced80ad11ac333a9c2a8eefa650d40ba74158",
+          "sha256": "db4b7a9295d10904a26d95d017416be90177c75d532270147c45099ecd1e78ea"
+        },
+        {
+          "path": "evals/lib/opennet.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "b93949af8123b64b08a27a949e611c330b398dea",
+          "sha256": "0eb39372a683729c9b2a9a7720ef00a53df500cb8a182393774fae24e4b3f72d"
+        },
+        {
+          "path": "evals/lib/owner.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "ac860876d28223ee009372247042384a552c521b",
+          "sha256": "3f673577e746554a3616c85e9cdd6393ba291c3b48264098fcc751789df8273d"
+        },
+        {
+          "path": "evals/lib/owner.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "7deb0ef2be7ec40c6d546552d314ec920c6d67c4",
+          "sha256": "cb57df5e033b18594f5cfc0d6a3fe613e8d8cc136bd9c2c7e76f0c890d127c12"
+        },
+        {
+          "path": "evals/lib/render.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "21ec29df58ce6987a559f598674aa2968bf4290e",
+          "sha256": "f07733509d5bbb86c4b5888f1fe1ce967a89c4ceecf12c832fdc6e20f797bb69"
+        },
+        {
+          "path": "evals/lib/report.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "6ebda338e262f23d0e0c1d2c797f3f8e361f4e99",
+          "sha256": "f03e9493f486170084e0efe2c4e05e732801a7d421dea968ce5c882a747842c6"
+        },
+        {
+          "path": "evals/lib/report.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "575f94f5ae9e06edec126a75dc7c0f278806e914",
+          "sha256": "20d84408567c01ff27eab6014a5fa80a73ae710f0adb4f44efa1f221f551448e"
+        },
+        {
+          "path": "evals/lib/runner.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "72f1fa4ba0ee7412332bde230d80f8278bbf44eb",
+          "sha256": "7e8cc251b7c9ddbdb07b3f23694f5dd60089d947c5173c52c4286938b9358718"
+        },
+        {
+          "path": "evals/lib/runner.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "ff0633ec95d882bfcb49cf3621bfa09264b34df0",
+          "sha256": "3d22bcc87efef143d77ec26a28c88ca1d4b3804fb24a03b5b69ad099bb101cee"
+        },
+        {
+          "path": "evals/lib/schema.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "0d0128b87c8435397c0a1a4967de0061f486991b",
+          "sha256": "27db2f9311720ae2cb5dd7cb9140a8c9033a0e06ac68e7aec89e8864f18f28e6"
+        },
+        {
+          "path": "evals/lib/schema.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "23be3ef142d0587b5a6dbce4f3cea2277068c1ed",
+          "sha256": "a01fc40ed95bfcc083e11c64959caa05dc608a134804ec12d48883179ce44508"
+        },
+        {
+          "path": "evals/lib/stage.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "de3475ccbf571ebe2ea3bc18ace4e29afdbdb8a8",
+          "sha256": "24327be380b812244e87141c4018c70707452eb360b95708b6176795b9ad475c"
+        },
+        {
+          "path": "evals/lib/stage.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "33a865daebe337265440914211b52ceb41e20c57",
+          "sha256": "a9d74138845d90ba80e8acb171dc9c2813e6bee93d931d9ac8f5a1c5953ddddf"
+        },
+        {
+          "path": "evals/lib/versions.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "5df89ff17a3551ea8e18e01dbbf1a417b127aacf",
+          "sha256": "1d8b2265470d2a97f66d26c70865212808a329fe338ba09f239fb0c3f5f8f412"
+        },
+        {
+          "path": "evals/lib/versions.test.mjs",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "7b3644c3484a345796d31f6dc4538d28db3877cb",
+          "sha256": "72cebbdd790888c57a71244ba9b221d15b0646096ca853222832ad30d889b2f4"
+        }
+      ]
+    },
+    "runtime_files": [
+      {
+        "path": "evals/run.mjs",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "8aefa70f159a54f2967e54c4296de1cd3752ff2c",
+        "sha256": "8d6f5d2265f17348a0b16e28c108217856a4fa5f2923d99276d65a5501806d7d"
+      },
+      {
+        "path": "evals/config.json",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "eeb7485c527986a9201f2d053f49b6f59733cc51",
+        "sha256": "575cd7040737dd17ae779745aecdd67ecccef9118ad8d8a81815180451ccb80c"
+      },
+      {
+        "path": "evals/rubrics/story/v1.md",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "438b123fed18958c4898e775278ee3923bf55dab",
+        "sha256": "86d8957be324276c3935864fcee67cfd3f1f06fc2b6e6add82dc15b78a0da22f"
+      },
+      {
+        "path": "evals/rubrics/story/v2.md",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "c592eabffe445529177b27c6a794102e29bf08f6",
+        "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+      },
+      {
+        "path": "evals/rubrics/story/reference-pairwise.md",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "973611cba6ed4d78bea0ddf5eff1b7a705964e7d",
+        "sha256": "c0495e012e39940fd1f0bfffceebfc18c5cd4bbb133150d249794eca50526b35"
+      }
+    ],
+    "runtime_behavior_diff_vs_historical_baseline": false,
+    "runtime_diff_checked_paths": [
+      "evals/run.mjs",
+      "evals/config.json",
+      "evals/lib",
+      "evals/cases/story",
+      "package.json",
+      "site/stories/package.json",
+      "site/stories/package-lock.json"
+    ],
+    "evals_tree_difference_reason": "Accepted calibration documents/results changed the complete evals tree after the historical baseline; this does not indicate runtime behavior changed.",
+    "packages": [
+      {
+        "path": "package.json",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "cb8dbee3be6c5c11bdcc0b3abd3ee00bdf49787e",
+        "sha256": "8791806d96d6d9827f711545afd80b206702e094a50355075ca32d30014de157"
+      },
+      {
+        "path": "site/stories/package.json",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "b2dcb2ab0a4cabbfb4dd5bc9efc17659f6f844ea",
+        "sha256": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa"
+      },
+      {
+        "path": "site/stories/package-lock.json",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "5b052745753feb45ca2febf4f0b4e46bdcf80c10",
+        "sha256": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb"
+      }
+    ],
+    "absent_dependencies": [
+      {
+        "path": "package-lock.json",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "status": "absent; no invented hash"
+      }
+    ],
+    "cases": [
+      {
+        "id": "q01-french-debt",
+        "selection_status": "proposed-known-case-exploratory-recipe; executor must preregister before use",
+        "case": {
+          "path": "evals/cases/story/q01-french-debt/case.json",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "f22fd66c71cf60cc883aae0bca26cf3a6c4ca4ba",
+          "sha256": "f3b342c497794890a0fe370c2ceba77469e93464e6b302c1ac175fc6bd6dd345"
+        },
+        "prompt": {
+          "path": "evals/cases/story/q01-french-debt/prompt.md",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "0b64a34e69ceaafca22c02e4139551c5e21e16a3",
+          "sha256": "39a5e7f638f59860916be7f177815bb762a8378c78251c2a1b0369db2e2cb448"
+        },
+        "case_directory": {
+          "tree": {
+            "path": "evals/cases/story/q01-french-debt",
+            "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+            "git_type": "tree",
+            "git_object": "db0b0fdff280eb128a451f58ddced4943f4c006c"
+          },
+          "files": [
+            {
+              "path": "evals/cases/story/q01-french-debt/case.json",
+              "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+              "git_type": "blob",
+              "git_object": "f22fd66c71cf60cc883aae0bca26cf3a6c4ca4ba",
+              "sha256": "f3b342c497794890a0fe370c2ceba77469e93464e6b302c1ac175fc6bd6dd345"
+            },
+            {
+              "path": "evals/cases/story/q01-french-debt/prompt.md",
+              "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+              "git_type": "blob",
+              "git_object": "0b64a34e69ceaafca22c02e4139551c5e21e16a3",
+              "sha256": "39a5e7f638f59860916be7f177815bb762a8378c78251c2a1b0369db2e2cb448"
+            }
+          ]
+        },
+        "data_mode": "fixed",
+        "input_snapshots": [
+          {
+            "tree": {
+              "path": "datasets/france-public-finances",
+              "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+              "git_type": "tree",
+              "git_object": "ef1e1d863c52ad722d655b2d0c96157e4d0d661c"
+            },
+            "files": [
+              {
+                "path": "datasets/france-public-finances/.datahubignore",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "e55987d8d58c61473124c3f0d6f3275cfdeb2d39",
+                "sha256": "8bed597fb175517b602beb28a3889cc625f45b8f8c6b4f6ca095525961b3a1e3"
+              },
+              {
+                "path": "datasets/france-public-finances/AGENTS.md",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "9708b15cffb8935a7056e274cecfd2fc582ac2d3",
+                "sha256": "17a023aa260d51f0166a0379969a89cdc9fb7594f752b029412aaa0078fe7828"
+              },
+              {
+                "path": "datasets/france-public-finances/README.md",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "73135c6ac8fc2698030e93ebee59811ed337e1f9",
+                "sha256": "b780a0bdb60c3326d6f1c5b68d1749767cbb71c6b9bda11fd9c5fdfdaf5395b8"
+              },
+              {
+                "path": "datasets/france-public-finances/archive/eurostat-reuse.html",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "d7758b5dd644827f2653ad60a5443435f4b77872",
+                "sha256": "4cc370e90b5a080aa183a8d28ede05e6e54907f82aa3ee0c9d3d7657dea5259c"
+              },
+              {
+                "path": "datasets/france-public-finances/archive/fiscal.json",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "372f262fb54c3430bb33234641710628197c0443",
+                "sha256": "482f823a1aa6418d2e0ca5407dd14d2870dd7a229c494feeb1c332e0ba9c7205"
+              },
+              {
+                "path": "datasets/france-public-finances/archive/functions.json",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "31446ae7496ef6d068ee32425f6faee1a0ba8ed0",
+                "sha256": "24e04200aef4468eca52d1d17121896d94a370bb2058b43a2f1591133196dd78"
+              },
+              {
+                "path": "datasets/france-public-finances/archive/insee-accounting-explainer.html",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "e3ded894a5434fe118841e8ddf58df987e129a93",
+                "sha256": "ca59e2335f22dd0a16f615065632ff46478d6c6bbff88bbd139c8a203020cec1"
+              },
+              {
+                "path": "datasets/france-public-finances/archive/insee-annual-accounts.html",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "9b86a4c0fd53cd2b5d1521f14dd68a1ec7b510e2",
+                "sha256": "362b206541eba1e0aa01dc6e538b09c98c4732af5609079b4c0c38921fec000b"
+              },
+              {
+                "path": "datasets/france-public-finances/archive/insee-quarterly-debt.html",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "6a0bdbb3162fe462da5c85c0212679555188f30c",
+                "sha256": "cc7c3dfe575d76ac541d9b78bd54a58732c4cf74c84851f144b210634f7757df"
+              },
+              {
+                "path": "datasets/france-public-finances/archive/insee-reuse.html",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "34d58c651a226d69ba914773d391546c75503a5c",
+                "sha256": "b24d448882fade5083b5a7a381793d8c91bb16e41579e03224386393ffbadeac"
+              },
+              {
+                "path": "datasets/france-public-finances/archive/insee-spending-functions.html",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "8e0f56a187ee2886867e90fc0cc4d546df5174ac",
+                "sha256": "12a532188b6e42fad7aaff15909178a31c9d1d1dcd5b02d960c80faa4f245411"
+              },
+              {
+                "path": "datasets/france-public-finances/archive/manifest.json",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "633a5a627204a4a817a8db6550cb8f9975f5b100",
+                "sha256": "06c1f4668206a0edc2ce5428510ff4fc4043476b114bd1b10f981a9783e6489f"
+              },
+              {
+                "path": "datasets/france-public-finances/build.test.mjs",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "5f28329dd92448069a6f327cc33393c6218048d9",
+                "sha256": "411c590c336275939c9793a6d9cc09091c8cf114bd8c537b5eedc2b5f50e2e25"
+              },
+              {
+                "path": "datasets/france-public-finances/build.ts",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "4834655358da39962b353ddd160db9ffd9ad67c8",
+                "sha256": "4296b8ab1d975182ac19caaecfa6de6fdb29d70755d05aee78903fa892a3c2d8"
+              },
+              {
+                "path": "datasets/france-public-finances/data/fiscal-accounts.csv",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "c4d4302df2b54ce4ab209a052704cac4b4beadc6",
+                "sha256": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733"
+              },
+              {
+                "path": "datasets/france-public-finances/data/quarterly-debt.csv",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "709ab5921ef35962a5a1615772e0cadce82d942e",
+                "sha256": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307"
+              },
+              {
+                "path": "datasets/france-public-finances/data/spending-functions.csv",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "be62489585cfe3493dfb208d3fd80dbd8615d09f",
+                "sha256": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494"
+              },
+              {
+                "path": "datasets/france-public-finances/datapackage.json",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "3c758ce9eef48dd70232a81bae9b420f33679def",
+                "sha256": "c4c1d6e2a250fc69f458b08440ee8b9839ec9f439c619bc7afc8fee9bae64120"
+              },
+              {
+                "path": "datasets/france-public-finances/fetch.ts",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "f0a8c31742cf12ced9df7a9d51afcfeb5dc87dba",
+                "sha256": "6920599443a818f7d6d03204c43f7f1badc48094bff8a24d3152efd942758259"
+              },
+              {
+                "path": "datasets/france-public-finances/package-lock.json",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "29e13bf3ab9ca973093ce1192f6ea0b6501025f1",
+                "sha256": "15950cdb66e1905ff3c25ac0ecd2bcf3ade422049c47bd8bdf17c8882de5078d"
+              },
+              {
+                "path": "datasets/france-public-finances/package.json",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "8ac3f4e6fa7c9d7eeba0a84c0d78e15baeb23017",
+                "sha256": "a56cfd0a1e6cc6c814ba85aa5cb36822515fe710d12d8c743f252f93a17db504"
+              },
+              {
+                "path": "datasets/france-public-finances/scripts/validate-datapackage.mjs",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "5d476071da2d8cd43532fe9ba0dc597763a88544",
+                "sha256": "568629ed759cb7e1f4fbb6404586686583432ab76211bbc52cc68e7e348e9469"
+              },
+              {
+                "path": "datasets/france-public-finances/source-labels.json",
+                "commit": "f0082afa2882866e8467ab232db74510a5cc5de0",
+                "git_type": "blob",
+                "git_object": "70956787dcceb79e75d146aacdd8ee3a6d354920",
+                "sha256": "339e1d74ee476a481448619b45c0b8c0bd7c6ad21bd9ffa51bd16ca3560ee281"
+              }
+            ]
+          }
+        ],
+        "existing_case_caps": {
+          "max_usd": 20,
+          "max_turns": 100,
+          "words": [
+            300,
+            700
+          ]
+        },
+        "caps_are_execution_authority": false,
+        "owner_reference_material_is_writer_input": false,
+        "writer_input_rule": "Stage only the pinned dataset snapshot and skill arm according to the pinned harness; do not supply owner comments or case-reference expected findings. Inspect staged inventory before execution."
+      },
+      {
+        "id": "q03-wti-negative",
+        "selection_status": "proposed-known-case-exploratory-recipe; executor must preregister before use",
+        "case": {
+          "path": "evals/cases/story/q03-wti-negative/case.json",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "3541501d6695ea884aa5e3356cfb4ef900b13adf",
+          "sha256": "5808aa53408b784f227bc9e9b82a6b0055bbec98036b28485c3aba3674cc53fc"
+        },
+        "prompt": {
+          "path": "evals/cases/story/q03-wti-negative/prompt.md",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "0632d717aab2c5add74115158e7a38f5eabbddbb",
+          "sha256": "a2883317b9fb99bb9bb6424d84e3029ba4a905a64d560220d68ed9b20153b34c"
+        },
+        "case_directory": {
+          "tree": {
+            "path": "evals/cases/story/q03-wti-negative",
+            "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+            "git_type": "tree",
+            "git_object": "916baa1c80a6a15fb1a73bc9e976c0059ee22ef7"
+          },
+          "files": [
+            {
+              "path": "evals/cases/story/q03-wti-negative/case.json",
+              "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+              "git_type": "blob",
+              "git_object": "3541501d6695ea884aa5e3356cfb4ef900b13adf",
+              "sha256": "5808aa53408b784f227bc9e9b82a6b0055bbec98036b28485c3aba3674cc53fc"
+            },
+            {
+              "path": "evals/cases/story/q03-wti-negative/prompt.md",
+              "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+              "git_type": "blob",
+              "git_object": "0632d717aab2c5add74115158e7a38f5eabbddbb",
+              "sha256": "a2883317b9fb99bb9bb6424d84e3029ba4a905a64d560220d68ed9b20153b34c"
+            }
+          ]
+        },
+        "data_mode": "fixed",
+        "input_snapshots": [
+          {
+            "tree": {
+              "path": "datasets/energy-and-commodities/oil-prices",
+              "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+              "git_type": "tree",
+              "git_object": "96d121ee10a6172d38e39e1d81167a71baca2799"
+            },
+            "files": [
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/.datahubignore",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "7ff28eac5169d3acd783403aae9acc8fc3a9f8b0",
+                "sha256": "9cc209bc3d96871ee9afb5d44a6df8ad56cfd44025c2cb1f1c4e2295e6b57b34"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/AGENTS.md",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "622eda7cc63161653982b20a18ebc4cf1a3a15d9",
+                "sha256": "2da744d624c2e232ca7187818a14fe66216e323699552401167df1cb872e0989"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/README.md",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "b0e1d07e7ef0834184bce208636f6852e2512eb4",
+                "sha256": "c19a46898884a6dfb464f8aa42f66546462ce8754e56b03c8473d4e56f6dab31"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/SUMMARY.md",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "2b6d1715f0481903aee8fd796926666e55b68edf",
+                "sha256": "5e486d8669c66a6b9cbc836711ecb9eb79c6a1d4c618c30f8bf68f1006b7e3e5"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/archive/PROVENANCE.md",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "9fbf47e69c2ba3fc637edbdf5ff1eae955e6a8a2",
+                "sha256": "584404f5b899886e862b690ad558ad057b11250fd156f57b22c0d169ee546007"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/archive/RBRTEa.xls",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "fb25309c0b8924426e825c0a164666d7175d8e8b",
+                "sha256": "05adfd66369bb5ea596e314cd1de18231ff41bbb150dbda66b57b2993ff9b77b"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/archive/RBRTEd.xls",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "2829984f08f1bb81626919a02d94db4a1a37f494",
+                "sha256": "ba7aa32a1e1dd6154179c581ee140e4b9bccbbc191ed521346142a14bc1701a7"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/archive/RBRTEm.xls",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "4a7d8eaaa86e0dcd3f80d31c412e45b73e4dc7ac",
+                "sha256": "41aa63e8650a305a168a396a55c1dbef19fa2db4af76530383a39166a12e692e"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/archive/RBRTEw.xls",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "85388775a67fb16a7d2d60c8fd280505a5c0dd66",
+                "sha256": "63a321d3944ab12501ea5278393fd0f89e900b1ff7e7e849fe851f43788db34b"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/archive/RWTCa.xls",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "2a867ac1796449a6480db15de0dfe2d2c43dd4e9",
+                "sha256": "3b90f21dc7a742d88c77081383184dd921db9999bcbcffe0310518e84bf86c4a"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/archive/RWTCd.xls",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "6d68273c3e79fb85352a792d19e4badfb7b16bad",
+                "sha256": "033dd3a93811377a18b8ff660fa14ffc888f57df1b2969f7ec8134b769814771"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/archive/RWTCm.xls",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "310c6ab4bfa84bcaba32c3321c8d506b66d363dc",
+                "sha256": "9dde869ade8ce6740e644b8a24e87c65ac8111f7453c63d8a8bd7a6351b6ef32"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/archive/RWTCw.xls",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "7155cd2660ee5717b75ac3629a3a217cda1f065d",
+                "sha256": "bb84bf8a80599c0f7025f95ac36c4fd97f7bb9459e9a42f5eb8e3dc31854805e"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/build.ts",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "5daa15898f7998a71b1e4d9bbf54a2855ceea2a3",
+                "sha256": "53d764d10a83b3c16e906528ed3529af7b60cb8e133d99b67388c7faff4e583c"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/data/brent-daily.csv",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "c9e8c5a4d60455e5bf67d727e46c7a1e5b4914bf",
+                "sha256": "a4d463ad97ce678cfa5ae2e92f5eabcae7b589a6b4c790631e20b2f50969a19b"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/data/brent-monthly.csv",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "9ed8d69e7cb89bf7e367ac633872ba7c71f9d636",
+                "sha256": "10ebf2a9869f95c75ab9415ae19f3b8a744a7558eca146c1ad499264fc96df28"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/data/brent-weekly.csv",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "23b3d110d0dd76c902b6ea2918a1e3f0656d1d30",
+                "sha256": "dc7525ff10d557d82acf6b70fa37f64348660946a00a7695b8cc9967b8df3d16"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/data/brent-year.csv",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "8227bf22f0a285b51acd446621709cfed0714241",
+                "sha256": "0ae43a2a7a108d0f8452769463ea6739f70d020f667f4c4b7b526d66e362238c"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/data/wti-daily.csv",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "40023e329a6817cb69faa91aeda7faceac13077a",
+                "sha256": "fe4e07893cfdba6905e8a955cb630308668ce760af21b351de005df2c5228dd1"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/data/wti-monthly.csv",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "38a04234ce1143abb0cfd440ba3a6f63b82b50c7",
+                "sha256": "3f2ea990044bc1df25dff8ad91bf224a6cda5bb5fc3ca8486061a40c23a2a696"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/data/wti-weekly.csv",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "22f1afa9677f97346c473c59433e6e9c9c2b4283",
+                "sha256": "19a2ae03f5d6dd4879c9462e039a1eb25044a44d8994404c6b93b86747a401fb"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/data/wti-year.csv",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "3f0359bed70e120c09e4271b686bf1d0fd87caaf",
+                "sha256": "b7c7e5b8b314c419d0cdc8cf413b84c8655b2917801c7579f3820ecc8014fe12"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/datapackage.json",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "800142950d63967a82da6eec7b865eb9d9792b18",
+                "sha256": "adab9f438634e63c839cbb9e31b5b81bed21a9e5490ff39ee6f8af1349fb49a0"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/enrich.test.mjs",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "948d20e3fed9d5f6cd7e4ba4208ab1e91b5259fd",
+                "sha256": "b9bee9fc9c9d27b25dae9b1cd0a0e93039de739cdc286c0d572796c75789a7d4"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/enrich.ts",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "9c8306b06517ae9305cfd16b15ad626452bf4763",
+                "sha256": "aee4ae3bd223dae36266006caddcd2037e1e46b1434683b01e11c368342db466"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/package-lock.json",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "b35b84bb43fafb52963169ef97de01a4b4b990dd",
+                "sha256": "731056926488af152f89fcd6fa96daf4b4e15de19b50f1b5bbf9a06c109269ca"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/package.json",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "d6fba77c42877afa2796169d7d084b66c771b4c4",
+                "sha256": "08aa612b462ad53b04d95f0482059f514faad7fffbe0c2b41bdee484503b85fa"
+              },
+              {
+                "path": "datasets/energy-and-commodities/oil-prices/scripts/validate-datapackage.mjs",
+                "commit": "5d0799a7ab2820e6bd8808835e213eab7d6aa9ac",
+                "git_type": "blob",
+                "git_object": "56895992477e41dc1bbc790a22707e495fd96896",
+                "sha256": "24513e1cfbfa759d5061053ad75acd454711c2ba629522997870688976866141"
+              }
+            ]
+          }
+        ],
+        "existing_case_caps": {
+          "max_usd": 20,
+          "max_turns": 100,
+          "words": [
+            300,
+            700
+          ]
+        },
+        "caps_are_execution_authority": false,
+        "owner_reference_material_is_writer_input": false,
+        "writer_input_rule": "Stage only the pinned dataset snapshot and skill arm according to the pinned harness; do not supply owner comments or case-reference expected findings. Inspect staged inventory before execution."
+      }
+    ],
+    "runtime_rubric": {
+      "explicit_selection": "story/v2",
+      "pin": {
+        "path": "evals/rubrics/story/v2.md",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "c592eabffe445529177b27c6a794102e29bf08f6",
+        "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+      },
+      "automatic_latest_selection_permitted_for_this_recipe": false,
+      "manual_diagnostics_are_runtime_scores": false
+    },
+    "arms": {
+      "baseline": {
+        "skill_commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "skill_tree": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
+      },
+      "candidate": {
+        "skill_commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+        "skill_tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7"
+      }
+    },
+    "arm_equality_conditions": [
+      "same harness commit and runtime files",
+      "same case, prompt and exact dataset snapshot per topic",
+      "same dependency package/lockfile versions and execution runtime",
+      "same writer model, effort, limits and permitted context",
+      "same critic model, effort, renderer, rubric and judgment limits",
+      "prespecified matching and both presentation orders; retain failed/capped/leaked outputs"
+    ],
+    "writer_options": {
+      "no_critic": true,
+      "production_multi_agent_workflow_tested": false
+    },
+    "execution_runtime": {
+      "preparation_node": "v26.4.0",
+      "executing_node_version": null,
+      "status": "Executor must freeze and use identical runtime for both arms."
+    },
+    "models": {
+      "planned_actual_writer_model": null,
+      "planned_actual_writer_effort": null,
+      "planned_actual_critic_model": null,
+      "planned_actual_critic_effort": null,
+      "verified_available_writer_model": null,
+      "verified_available_critic_model": null,
+      "configured_defaults_are_selected_or_available_models": false,
+      "defaults_pin": {
+        "path": "evals/config.json",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "eeb7485c527986a9201f2d053f49b6f59733cc51",
+        "sha256": "575cd7040737dd17ae779745aecdd67ecccef9118ad8d8a81815180451ccb80c"
+      },
+      "fallback_authorized": false,
+      "availability_canary_executed": false
+    },
+    "limits_and_authority": {
+      "aggregate_money_authorized": false,
+      "aggregate_token_limit": null,
+      "aggregate_time_limit": null,
+      "approved_budget_amount": null,
+      "status": "No paid or subscription model/evaluation calls authorized by this artifact. Existing case/config caps are not authority. hcn.27 must record actual account/model availability, explicit aggregate writer/critic/pair/canary/retry limits and stop conditions first."
+    },
+    "suggested_sample": {
+      "status": "proposal from reviewed programme; no outputs generated",
+      "topics": 2,
+      "outputs_per_arm_per_topic": 2,
+      "writer_outputs": 8,
+      "predetermined_matched_pairs": 4,
+      "orders_per_pair": 2,
+      "order_swaps_are_independent_outputs": false
+    },
+    "recipe_fully_frozen_for_execution": false,
+    "pending_before_execution": [
+      "independent acceptance of candidate and manifest",
+      "hcn.27 preregistration and explicit exploratory amendment if using known q01/q03",
+      "actual model/effort/runtime and account availability verification",
+      "explicit aggregate money/token/time authority for all call categories",
+      "current-recipe isolation canary, renderer validation and identical staged-input inventory",
+      "predetermined output pairing, blinded packets and private treatment mapping",
+      "fresh-case/source selection by independent custodian if a non-exploratory claim is sought"
+    ]
+  },
+  "evidence_inputs": {
+    "accepted_catalogue_commit": "deaed575c774ff79ef8b7cb7b31a861d172613ef",
+    "accepted_scoring_commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+    "source_and_owner_files": [
+      {
+        "path": "docs/research/data-story-exemplars.csv",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "b88a61ce389087a91bbe20dd3a1e653d800b9cea",
+        "sha256": "547fc62e8b2e889bd717f4cdd36d12d23f312d486543029c34742b0a235bf2c2"
+      },
+      {
+        "path": "docs/research/data-story-exemplar-notes.md",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "7137c8b2665dd25b48f9c348a527b8e761e202fd",
+        "sha256": "9e6f40d7b4d87405c0a33378dedc5f21c25c305c6247d0d0926747960af8e12f"
+      },
+      {
+        "path": "docs/research/data-story-research.md",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "d0dead1a2f23ef0abd34f07e90aaa63545cdb52f",
+        "sha256": "fc1e401b989e34bf2d6611e2dd5d5f032f3f15c8f760c6d086c6d4784de3ea53"
+      },
+      {
+        "path": "docs/reviews/france-public-finances-user-feedback.md",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "b5c62b0bec83b0989f9d0cb1920b4fa04e3b6d5c",
+        "sha256": "0c710302fa3cb1998a04e75e4c9531fecf9fd969e2916a521f3aa92e2f777cf5"
+      },
+      {
+        "path": "docs/reviews/france-public-finances-reader-critique.md",
+        "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+        "git_type": "blob",
+        "git_object": "c665b6a9668e56686cb58ec1a1abc35c217c634d",
+        "sha256": "76bbcb141b85b1b1c86c4bef6f1fe1fd2c7eee096f96d787516b3b3dbf3f9351"
+      }
+    ],
+    "partition_manifest": {
+      "path": "evals/calibration/story/reference-partitions.json",
+      "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+      "git_type": "blob",
+      "git_object": "bed5476dd005596b3f63f5f067b32e3a18d0c24c",
+      "sha256": "bf3815e69fbc8b5866798eebba067fa87d083a6cfe594b54be165c2e9a8e893a"
+    },
+    "manual_diagnostics": {
+      "procedure_id": "reference-led-manual-v1",
+      "files": [
+        {
+          "path": "evals/calibration/story/reference-led-candidate.md",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "d46b05d3011f81a7b7c66591332eaa556521fe3b",
+          "sha256": "bd4f19af84e7b0777d11399a323ceefc4786befc1a7b4085dd188ad06d808d1e"
+        },
+        {
+          "path": "evals/calibration/story/reference-led-protocol.md",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "85dbefb06d8cd9ae0ca618e600540e7232b381b8",
+          "sha256": "9e5eda205adb48b18c9388bbef28aed981e6c0a824c8c953dbd7c51b892343f2"
+        },
+        {
+          "path": "evals/calibration/story/reference-led-results.json",
+          "commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+          "git_type": "blob",
+          "git_object": "d26a294393586877fc483726be04d1f843cf0c2d",
+          "sha256": "9facb41d62956fe10eea0b60f62f4fd6456ce91cd2a1a6e527bbfd4824da44c9"
+        }
+      ],
+      "runtime_installed": false,
+      "manual_dimensions": [
+        "interest",
+        "findings_depth",
+        "argument_counterevidence",
+        "explanation",
+        "chart_design",
+        "writing",
+        "reader_coverage"
+      ]
+    },
+    "clean_source_holdout": false,
+    "fresh_case_holdout": false,
+    "reserved_topic_families": [],
+    "new_owner_judgments": 0,
+    "private_book_material_consumed": false
+  },
+  "verification": {
+    "quick_validate": {
+      "command": "python3 /Users/rgrp/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/story",
+      "result": "Skill is valid!",
+      "meaning": "Frontmatter/structure only; no efficacy claim"
+    },
+    "standalone_copy": {
+      "files_and_directories": 7,
+      "resolved_internal_markdown_links": 10,
+      "result": "pass; copied skill to isolated temporary directory, resolved each local Markdown link inside bundle"
+    },
+    "hypotheses_local_links": "pass",
+    "synthetic_example_arithmetic": "pass: 100/1000=10%;120/1500=8%; nominal numerator +20%, denominator +50%",
+    "npm_test": {
+      "command": "npm test",
+      "tests": 479,
+      "pass": 479,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "meaning": "Repository regression/structural checks; no new writer or critic efficacy calls"
+    },
+    "diff_check": "git diff --check passed before content commit",
+    "independent_review": "Outcome belongs to reviewer/driver handoff keyed to exact content and manifest; no self-approval asserted."
+  },
+  "comparison_execution": {
+    "task": "datapressr-hcn.27",
+    "executed": false,
+    "new_writer_outputs": 0,
+    "new_critic_calls": 0,
+    "new_owner_judgments": 0,
+    "new_eval_spend": 0,
+    "results": null
+  },
+  "decision_owner": "datapressr-8no.9.6",
+  "limits": [
+    "All three rules travel in one arm; per-rule diagnostics do not identify individual causal effects.",
+    "Known source/control recognition is exposed manual analysis, not calibration or blind detection.",
+    "q01/q03 recipe is exploratory and includes no fresh topic; no holdout identity is fabricated.",
+    "No improved quality, owner agreement, generalisation or retention decision is claimed.",
+    "Exact object identities pin existing committed material; future execution authority, models and protected judgments remain unset."
+  ]
+}
