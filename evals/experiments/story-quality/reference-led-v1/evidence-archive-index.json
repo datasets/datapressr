@@ -11,7 +11,8 @@
     "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
     "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
     "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
-    "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1"
+    "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+    "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1"
   ],
   "files": [
     {
@@ -805,6 +806,105 @@
       "disposition": "copied",
       "git_ignored": false,
       "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/workspace.tar",
+      "bytes": 3050496,
+      "source_sha256": "2899106610a58ee100ea18831b6ee7939bdd345f0d2e52042f91d4cbbde9f534",
+      "destination_sha256": "2899106610a58ee100ea18831b6ee7939bdd345f0d2e52042f91d4cbbde9f534",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:22:evals/runs/**/workspace.tar\tevals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/workspace.tar"
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/transcript.jsonl",
+      "bytes": 789674,
+      "source_sha256": "96de2bd294641e555b5f1ce0c78127b76957460bf380d7a432b6513fda7750dc",
+      "destination_sha256": "96de2bd294641e555b5f1ce0c78127b76957460bf380d7a432b6513fda7750dc",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:21:evals/runs/**/transcript.jsonl\tevals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/transcript.jsonl"
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/checks.json",
+      "bytes": 1843,
+      "source_sha256": "4770796be028873a3c4982f3c40ddd844881260fa857fafba0076c1094a073f3",
+      "destination_sha256": "4770796be028873a3c4982f3c40ddd844881260fa857fafba0076c1094a073f3",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/run.json",
+      "bytes": 3427,
+      "source_sha256": "0299137accde810c81240d1c791a1389509c79bd4081cf26318126e2938b0eab",
+      "destination_sha256": "0299137accde810c81240d1c791a1389509c79bd4081cf26318126e2938b0eab",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-averages.svg",
+      "bytes": 8741,
+      "source_sha256": "05fd33a08f67846db880c045a4a07894ca73a0fee23ce4719bb991a1372222c9",
+      "destination_sha256": "05fd33a08f67846db880c045a4a07894ca73a0fee23ce4719bb991a1372222c9",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-editorial-review.md",
+      "bytes": 11244,
+      "source_sha256": "eafa1887aa49bab565633457f25031808db6f1c733f012d68c60e1f4074a72f3",
+      "destination_sha256": "eafa1887aa49bab565633457f25031808db6f1c733f012d68c60e1f4074a72f3",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-benchmarks.svg",
+      "bytes": 11689,
+      "source_sha256": "ed47908094a9e217f59de29c68ab4d92aa79bb4ec536af7d633fec009e6df24a",
+      "destination_sha256": "ed47908094a9e217f59de29c68ab4d92aa79bb4ec536af7d633fec009e6df24a",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-outline.md",
+      "bytes": 9354,
+      "source_sha256": "875b1540a5baf2bcb0aa371ab2fe6361cb7e0d0039b2956bf2b7ee512dd12261",
+      "destination_sha256": "875b1540a5baf2bcb0aa371ab2fe6361cb7e0d0039b2956bf2b7ee512dd12261",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-make-charts.mjs",
+      "bytes": 9082,
+      "source_sha256": "fb849da5395e913de6aa9c93ce573e28b0f490838cebc9304fd641be8329b5e5",
+      "destination_sha256": "fb849da5395e913de6aa9c93ce573e28b0f490838cebc9304fd641be8329b5e5",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-outline-review.md",
+      "bytes": 5719,
+      "source_sha256": "cea0f21740ea88b6ba4ab9575893437f0a07afc177d5495bee4ae4a59dbd2280",
+      "destination_sha256": "cea0f21740ea88b6ba4ab9575893437f0a07afc177d5495bee4ae4a59dbd2280",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero.md",
+      "bytes": 5851,
+      "source_sha256": "fd2fefe7d4132aa7a4379113b712df4bfd5bcddb4474253e26fbb8f32ff79f8c",
+      "destination_sha256": "fd2fefe7d4132aa7a4379113b712df4bfd5bcddb4474253e26fbb8f32ff79f8c",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
     }
   ],
   "skipped_symlinks": [],
@@ -818,6 +918,6 @@
     "No ledger or REPORT was copied; driver must integrate selected ledger evidence independently.",
     "No symlinks followed; skipped symlinks, if any, require separate review."
   ],
-  "updated_at": "2026-10-17T23:13:22.824778+00:00",
-  "verification": "All cumulative source/destination hashes and sizes verified after slot7."
+  "updated_at": "2026-10-17T23:27:50.404951+00:00",
+  "verification": "All cumulative source/destination hashes and sizes verified after all8 writer slots."
 }

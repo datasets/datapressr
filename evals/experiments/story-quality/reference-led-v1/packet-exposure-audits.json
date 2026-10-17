@@ -1,6 +1,6 @@
 {
   "document_type": "post-launch-packet-exposure-audit",
-  "status": "partial-seven-packets",
+  "status": "all-eight-packets",
   "audits": [
     {
       "at": "2026-10-17T22:13:38.336644+00:00",
@@ -413,6 +413,33 @@
         "mechanical_keyword_locations": [
           {
             "line": 55,
+            "heading": null,
+            "review_reference": true,
+            "process_hash_reference": false
+          }
+        ],
+        "policy": "Original outline retained; author judgments not independent evidence."
+      }
+    },
+    {
+      "opaque_code": "M948761",
+      "stage3_exposure_inventory": {
+        "path": "stage3/outline.md",
+        "mechanical_keyword_locations": [
+          {
+            "line": 27,
+            "heading": null,
+            "review_reference": true,
+            "process_hash_reference": false
+          },
+          {
+            "line": 59,
+            "heading": null,
+            "review_reference": true,
+            "process_hash_reference": false
+          },
+          {
+            "line": 61,
             "heading": null,
             "review_reference": true,
             "process_hash_reference": false

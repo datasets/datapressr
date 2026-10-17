@@ -8,7 +8,8 @@
     "Mbe53b2",
     "M1d3194",
     "Mf4bb1f",
-    "Mee832a"
+    "Mee832a",
+    "M948761"
   ],
   "files": [
     {
@@ -2397,6 +2398,342 @@
       "bytes": 7586,
       "archived_relative_path": null,
       "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M948761/stage1/chart-1.png",
+      "sha256": "fe2cb1c85c642424a838a791b4d47b5126e9f908b1788fbf21fb30dd1248685b",
+      "bytes": 135840,
+      "archived_relative_path": "M948761/stage1/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage1/chart-2.png",
+      "sha256": "6ab65975c1512a8d02ca385fdaad6017b4f69249de2b223e207ed4c22f460ddf",
+      "bytes": 103349,
+      "archived_relative_path": "M948761/stage1/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage1/READ-ME.md",
+      "sha256": "65d8fab86fd6ce0ee000e244fca14a6f06749407c6327c32194df61b2b5e636c",
+      "bytes": 282,
+      "archived_relative_path": "M948761/stage1/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage1/commission.md",
+      "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+      "bytes": 132,
+      "archived_relative_path": "M948761/stage1/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage2/chart-1.png",
+      "sha256": "fe2cb1c85c642424a838a791b4d47b5126e9f908b1788fbf21fb30dd1248685b",
+      "bytes": 135840,
+      "archived_relative_path": "M948761/stage2/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage2/chart-2.png",
+      "sha256": "6ab65975c1512a8d02ca385fdaad6017b4f69249de2b223e207ed4c22f460ddf",
+      "bytes": 103349,
+      "archived_relative_path": "M948761/stage2/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage2/READ-ME.md",
+      "sha256": "78542511ff8ddc7c3696a4c98dcb589bad7c688cb3a39178bb0d95c4596a4bd3",
+      "bytes": 238,
+      "archived_relative_path": "M948761/stage2/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage2/commission.md",
+      "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+      "bytes": 132,
+      "archived_relative_path": "M948761/stage2/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage2/story.md",
+      "sha256": "a59b2735de59ab84ffdd8137f63b4004f477cd6361b6e673e450c524d0e22ade",
+      "bytes": 4393,
+      "archived_relative_path": "M948761/stage2/story.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/outline.md",
+      "sha256": "20e6263b3f5eb9587e2b9f9e98a3ac5de2c6c34b5e6046fcae47f0f1911210f0",
+      "bytes": 9134,
+      "archived_relative_path": "M948761/stage3/outline.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/chart-2.svg",
+      "sha256": "05fd33a08f67846db880c045a4a07894ca73a0fee23ce4719bb991a1372222c9",
+      "bytes": 8741,
+      "archived_relative_path": "M948761/stage3/chart-2.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/READ-ME.md",
+      "sha256": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+      "bytes": 305,
+      "archived_relative_path": "M948761/stage3/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/chart-1.svg",
+      "sha256": "ed47908094a9e217f59de29c68ab4d92aa79bb4ec536af7d633fec009e6df24a",
+      "bytes": 11689,
+      "archived_relative_path": "M948761/stage3/chart-1.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/reproduction-hashes.json",
+      "sha256": "9e732ab66f6bb81d4f62e43702ffab55d4f549b7c4172c98a8fbeac536c7f5f4",
+      "bytes": 773,
+      "archived_relative_path": "M948761/stage3/reproduction-hashes.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/diagnostic-anchors.md",
+      "sha256": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+      "bytes": 6245,
+      "archived_relative_path": "M948761/stage3/diagnostic-anchors.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/commission.md",
+      "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+      "bytes": 132,
+      "archived_relative_path": "M948761/stage3/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/REPRODUCTION.md",
+      "sha256": "836c4013a5d69af17ad5006d2b83bc6609bf9bfd0c12bbb4a18cde747aa68475",
+      "bytes": 520,
+      "archived_relative_path": "M948761/stage3/REPRODUCTION.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/reader-questions.json",
+      "sha256": "6648660d7cf31d11ab7d61c5c8cf894618ac322d7bcd8c6131ec36ccd12879d3",
+      "bytes": 878,
+      "archived_relative_path": "M948761/stage3/reader-questions.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/datapackage.json",
+      "sha256": "adab9f438634e63c839cbb9e31b5b81bed21a9e5490ff39ee6f8af1349fb49a0",
+      "bytes": 5794,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/SUMMARY.md",
+      "sha256": "5e486d8669c66a6b9cbc836711ecb9eb79c6a1d4c618c30f8bf68f1006b7e3e5",
+      "bytes": 5274,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/.datahubignore",
+      "sha256": "9cc209bc3d96871ee9afb5d44a6df8ad56cfd44025c2cb1f1c4e2295e6b57b34",
+      "bytes": 108,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/README.md",
+      "sha256": "c19a46898884a6dfb464f8aa42f66546462ce8754e56b03c8473d4e56f6dab31",
+      "bytes": 2396,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/package-lock.json",
+      "sha256": "731056926488af152f89fcd6fa96daf4b4e15de19b50f1b5bbf9a06c109269ca",
+      "bytes": 3685,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/package.json",
+      "sha256": "08aa612b462ad53b04d95f0482059f514faad7fffbe0c2b41bdee484503b85fa",
+      "bytes": 200,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/enrich.ts",
+      "sha256": "aee4ae3bd223dae36266006caddcd2037e1e46b1434683b01e11c368342db466",
+      "bytes": 7205,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/enrich.test.mjs",
+      "sha256": "b9bee9fc9c9d27b25dae9b1cd0a0e93039de739cdc286c0d572796c75789a7d4",
+      "bytes": 7532,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/build.ts",
+      "sha256": "53d764d10a83b3c16e906528ed3529af7b60cb8e133d99b67388c7faff4e583c",
+      "bytes": 5179,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEm.xls",
+      "sha256": "41aa63e8650a305a168a396a55c1dbef19fa2db4af76530383a39166a12e692e",
+      "bytes": 55296,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCd.xls",
+      "sha256": "033dd3a93811377a18b8ff660fa14ffc888f57df1b2969f7ec8134b769814771",
+      "bytes": 503808,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/archive/PROVENANCE.md",
+      "sha256": "584404f5b899886e862b690ad558ad057b11250fd156f57b22c0d169ee546007",
+      "bytes": 1786,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCa.xls",
+      "sha256": "3b90f21dc7a742d88c77081383184dd921db9999bcbcffe0310518e84bf86c4a",
+      "bytes": 35328,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCw.xls",
+      "sha256": "bb84bf8a80599c0f7025f95ac36c4fd97f7bb9459e9a42f5eb8e3dc31854805e",
+      "bytes": 131072,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCm.xls",
+      "sha256": "9dde869ade8ce6740e644b8a24e87c65ac8111f7453c63d8a8bd7a6351b6ef32",
+      "bytes": 55808,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEd.xls",
+      "sha256": "ba7aa32a1e1dd6154179c581ee140e4b9bccbbc191ed521346142a14bc1701a7",
+      "bytes": 492032,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEw.xls",
+      "sha256": "63a321d3944ab12501ea5278393fd0f89e900b1ff7e7e849fe851f43788db34b",
+      "bytes": 128000,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEa.xls",
+      "sha256": "05adfd66369bb5ea596e314cd1de18231ff41bbb150dbda66b57b2993ff9b77b",
+      "bytes": 35328,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/scripts/validate-datapackage.mjs",
+      "sha256": "24513e1cfbfa759d5061053ad75acd454711c2ba629522997870688976866141",
+      "bytes": 4565,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/data/brent-year.csv",
+      "sha256": "0ae43a2a7a108d0f8452769463ea6739f70d020f667f4c4b7b526d66e362238c",
+      "bytes": 676,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/data/wti-monthly.csv",
+      "sha256": "3f2ea990044bc1df25dff8ad91bf224a6cda5bb5fc3ca8486061a40c23a2a696",
+      "bytes": 8279,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/data/brent-monthly.csv",
+      "sha256": "10ebf2a9869f95c75ab9415ae19f3b8a744a7558eca146c1ad499264fc96df28",
+      "bytes": 8042,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/data/brent-daily.csv",
+      "sha256": "a4d463ad97ce678cfa5ae2e92f5eabcae7b589a6b4c790631e20b2f50969a19b",
+      "bytes": 168877,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/data/wti-daily.csv",
+      "sha256": "fe4e07893cfdba6905e8a955cb630308668ce760af21b351de005df2c5228dd1",
+      "bytes": 173278,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/data/brent-weekly.csv",
+      "sha256": "dc7525ff10d557d82acf6b70fa37f64348660946a00a7695b8cc9967b8df3d16",
+      "bytes": 34846,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/data/wti-year.csv",
+      "sha256": "b7c7e5b8b314c419d0cdc8cf413b84c8655b2917801c7579f3820ecc8014fe12",
+      "bytes": 687,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/datasets/energy-and-commodities/oil-prices/data/wti-weekly.csv",
+      "sha256": "19a2ae03f5d6dd4879c9462e039a1eb25044a44d8994404c6b93b86747a401fb",
+      "bytes": 35953,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M948761/stage3/site/stories/package-lock.json",
+      "sha256": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+      "bytes": 120441,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M948761/stage3/site/stories/package.json",
+      "sha256": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+      "bytes": 596,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M948761/stage3/site/stories/oil-below-zero-make-charts.mjs",
+      "sha256": "fb849da5395e913de6aa9c93ce573e28b0f490838cebc9304fd641be8329b5e5",
+      "bytes": 9082,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
     }
   ],
   "dependencies": [
@@ -2427,12 +2764,16 @@
     {
       "original_relative_path": "Mee832a/stage3/site/stories/node_modules",
       "disposition": "omitted-dependency-symlink-not-followed"
+    },
+    {
+      "original_relative_path": "M948761/stage3/site/stories/node_modules",
+      "disposition": "omitted-dependency-symlink-not-followed"
     }
   ],
   "discrepancies": [],
-  "archived_files": 150,
-  "archived_bytes": 5516603,
-  "all_original_regular_files": 341,
+  "archived_files": 168,
+  "archived_bytes": 6038575,
+  "all_original_regular_files": 389,
   "policy": "Stage1/stage2 regular files and stage3 top-level regular files only. No packet edits; no node_modules traversal; original pinned sources/raw workspace remain provenance.",
-  "updated_at": "2026-10-17T23:15:03.359618+00:00"
+  "updated_at": "2026-10-17T23:27:50.484425+00:00"
 }
