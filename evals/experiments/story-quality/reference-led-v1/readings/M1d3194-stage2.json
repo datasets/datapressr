@@ -1,0 +1,117 @@
+{
+  "packet_code": "M1d3194",
+  "stage": 2,
+  "status": "frozen",
+  "stage1_preservation": "Stage1 record not opened or modified during this stage; earlier rendering observations remain unchanged.",
+  "access_log": [
+    {
+      "order": 1,
+      "operation": "exec_command ls -la",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage2",
+      "result": "Listed direct stage2 entries only."
+    },
+    {
+      "order": 2,
+      "operation": "exec_command cat, consecutive input file",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage2/READ-ME.md",
+      "result": "Read full text."
+    },
+    {
+      "order": 3,
+      "operation": "exec_command cat, consecutive input file",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage2/commission.md",
+      "result": "Read full text."
+    },
+    {
+      "order": 4,
+      "operation": "exec_command cat, consecutive input file",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage2/story.md",
+      "result": "Read full text."
+    },
+    {
+      "order": 5,
+      "operation": "view_image via functions.exec; sequential calls, default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage2/chart-1.png",
+      "result": "Viewed rendered PNG once."
+    },
+    {
+      "order": 6,
+      "operation": "view_image via functions.exec; sequential calls, default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage2/chart-2.png",
+      "result": "Viewed rendered PNG once."
+    },
+    {
+      "order": 7,
+      "operation": "view_image via functions.exec; sequential calls, default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage2/chart-3.png",
+      "result": "Viewed rendered PNG once."
+    },
+    {
+      "order": 8,
+      "operation": "view_image via functions.exec; sequential calls, default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage2/chart-4.png",
+      "result": "Viewed rendered PNG once."
+    },
+    {
+      "order": 9,
+      "operation": "exec_command python3 exclusive-create JSON and chmod 0444",
+      "path": "/tmp/datapressr-reader-M1d3194-stage2.json",
+      "result": "Created these frozen stage2 notes; no input files read."
+    }
+  ],
+  "spontaneous_story_understanding": "France has persistently spent more than it collected, creating deficits even when interest was relatively cheap. Debt rose in two large steps and was not brought back to previous levels. Recent borrowing is still mostly a non-interest shortfall. France raises high revenue relative to the displayed peers but spends further above them. Overall spending share changed little over the long interval because declines elsewhere, especially interest, offset rising old-age and health spending. That interest relief has started reversing, adding pressure to a budget that already runs a deficit.",
+  "prose_adds_or_changes": [
+    {
+      "relationship": "Debt stock versus GDP ratio",
+      "addition": "The prose explains that the decline to 2023 reflected GDP growing faster than nominal debt, rather than nominal repayment. It defines debt coverage and face-value basis. This directly addresses a question from my chart reading, though the nominal historical debt series is not displayed."
+    },
+    {
+      "relationship": "Meaning of crisis",
+      "addition": "The prose explicitly limits its explanation to fiscal arithmetic, acknowledging that market and political aspects are outside the data. This clarifies scope but leaves the actual crisis-now question only partly answered."
+    },
+    {
+      "relationship": "Interest versus other borrowing",
+      "addition": "The prose makes the 2025 subtraction and implication explicit: 5.1% borrowing versus 2.2% interest means over half of borrowing reflects the rest of the budget. This confirms my chart-first interpretation."
+    },
+    {
+      "relationship": "Revenue and spending relative to peers",
+      "addition": "The heading Not a shortage of revenue and statement France does not collect too little go further than my chart reading. The comparison supports high revenue relative to these peers, but cannot alone determine whether revenue is sufficient for chosen commitments or rule out a revenue contribution to the problem."
+    },
+    {
+      "relationship": "Budget composition and interest relief",
+      "addition": "The text highlights that total spending rose only 1.2 GDP points and that the interest decline offset more than a third of the combined old-age and health increase. This makes the offset relationship more salient than in the chart alone."
+    },
+    {
+      "relationship": "Recent pressure and deficit improvement",
+      "addition": "The prose attributes higher 2025 interest to debt stock and rates since 2022, and says new revenue measures mainly explain deficit narrowing from 5.8% in 2024. It adds slower spending growth with inflation and lagged benefit indexation. These are source-attributed claims not independently visible in the figures."
+    },
+    {
+      "relationship": "Causes of spending composition",
+      "addition": "The text explicitly says the evidence does not establish why old-age and health spending grew. That appropriately leaves my demographic association tentative."
+    },
+    {
+      "relationship": "Definitions and dates",
+      "addition": "The method note explains provisional 2024 functional spending and lack of 2025 publication, resolving why chart 4 ends earlier. It notes interest-definition differences with INSEE and identifies source series."
+    }
+  ],
+  "uncertainty_and_unanswered_questions": [
+    "Why crisis now? There are no yields, ratings, financing constraints or political evidence, and prose acknowledges this.",
+    "How much of each debt/GDP jump came from borrowing, GDP changes or other stock adjustments? Persistent deficits are explanatory but not a complete quantitative decomposition.",
+    "Why were deficits persistent? No revenue history, policy chronology or demographic evidence identifies the underlying decisions and forces.",
+    "France does not collect too little reads as a judgment unsupported by the peer snapshot alone; relative revenue size does not establish fiscal sufficiency.",
+    "Two steps up, none down could initially sound as though no decline occurred, although the paragraph immediately explains the partial ratio decline and that neither full step was reversed.",
+    "The current interest reversal is visible, but its future size and sustainability consequences are not established.",
+    "Source links and reproduction claims have not been checked; this is a reader interpretation only."
+  ],
+  "rendering_and_reading_observations": [
+    "The story begins with the same H1 title twice.",
+    "Charts 3 and 4 retain the overlapping bottom source/axis text noted at stage1; prose and alt text help identify the date/unit but do not repair that rendering.",
+    "Prose read as raw Markdown, including alt text and link labels/targets; no browser page render or external links opened.",
+    "All four stage2 PNGs viewed again in numeric order. No source verification, checklist or scoring performed."
+  ],
+  "operational_limitations": [
+    "No external URLs followed, stage3 accessed, parent/sibling directories opened, or repository/source data consulted.",
+    "No factual audit of the attributed additions conducted."
+  ],
+  "next_stage": "Await neutral reader questions from custodian."
+}
