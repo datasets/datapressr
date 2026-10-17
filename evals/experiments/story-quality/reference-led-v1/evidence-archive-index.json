@@ -10,7 +10,8 @@
     "evals/canaries/20261017-2138-canary-codex-gpt-6-luna-1",
     "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
     "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
-    "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1"
+    "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+    "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1"
   ],
   "files": [
     {
@@ -696,6 +697,114 @@
       "disposition": "copied",
       "git_ignored": false,
       "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/workspace.tar",
+      "bytes": 3017216,
+      "source_sha256": "ddce67e2856aad56b2f12dca6bd9432f302caff4bc71dc3ce364cd87ccd0c260",
+      "destination_sha256": "ddce67e2856aad56b2f12dca6bd9432f302caff4bc71dc3ce364cd87ccd0c260",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:22:evals/runs/**/workspace.tar\tevals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/workspace.tar"
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/transcript.jsonl",
+      "bytes": 573519,
+      "source_sha256": "7c4d047bd1287faf95ecdd5caccb42580455add53b1e573a130d84caa2906829",
+      "destination_sha256": "7c4d047bd1287faf95ecdd5caccb42580455add53b1e573a130d84caa2906829",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:21:evals/runs/**/transcript.jsonl\tevals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/transcript.jsonl"
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/checks.json",
+      "bytes": 2038,
+      "source_sha256": "d82f8b8e140da9718240e584fbc41f9ee19d374f942fd446862b91f6a4d81f39",
+      "destination_sha256": "d82f8b8e140da9718240e584fbc41f9ee19d374f942fd446862b91f6a4d81f39",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/run.json",
+      "bytes": 3587,
+      "source_sha256": "c7829ef801bcb1f7bc0745089f306cecf470997bf31f3f39947a3c4b5e62ab8b",
+      "destination_sha256": "c7829ef801bcb1f7bc0745089f306cecf470997bf31f3f39947a3c4b5e62ab8b",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-daily.svg",
+      "bytes": 11173,
+      "source_sha256": "da26688faa54b457bb05c983aab6e250615b37471d603301840c71240262cc32",
+      "destination_sha256": "da26688faa54b457bb05c983aab6e250615b37471d603301840c71240262cc32",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-averages.svg",
+      "bytes": 8267,
+      "source_sha256": "d756b7edf77391cb89357a3852540ed9dc7f40261afeac9f48f9ccdf08f1d902",
+      "destination_sha256": "d756b7edf77391cb89357a3852540ed9dc7f40261afeac9f48f9ccdf08f1d902",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-editorial-review.md",
+      "bytes": 9061,
+      "source_sha256": "fd2ace2b36bdb1db560ed71ecca101ce1b7ba17d704655fdc46d4cb1f0447e83",
+      "destination_sha256": "fd2ace2b36bdb1db560ed71ecca101ce1b7ba17d704655fdc46d4cb1f0447e83",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-outline.md",
+      "bytes": 8947,
+      "source_sha256": "2333094f4a92fbcf9923dcc46785878a214de7b9d53b5b981a3e186b4eecdacd",
+      "destination_sha256": "2333094f4a92fbcf9923dcc46785878a214de7b9d53b5b981a3e186b4eecdacd",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-outline-scan.mjs",
+      "bytes": 1491,
+      "source_sha256": "03c1e72580197579c7bce876c2a2483d55eeb0a1e420899d3760f8345c69028b",
+      "destination_sha256": "03c1e72580197579c7bce876c2a2483d55eeb0a1e420899d3760f8345c69028b",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-make-charts.mjs",
+      "bytes": 7586,
+      "source_sha256": "8b2c6a1bb44eb4c4c8e7429e4358f1572582d8239544512226a3fee84788a623",
+      "destination_sha256": "8b2c6a1bb44eb4c4c8e7429e4358f1572582d8239544512226a3fee84788a623",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-outline-review.md",
+      "bytes": 5616,
+      "source_sha256": "9af157a0293cf9a10fe1b13998a97ec6b2114d8c092d51cf1ccd4538e7ca1aee",
+      "destination_sha256": "9af157a0293cf9a10fe1b13998a97ec6b2114d8c092d51cf1ccd4538e7ca1aee",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero.md",
+      "bytes": 6987,
+      "source_sha256": "dc66d02f9d16b144ac06b54a4c38952dddc7473dc22a79b1933ae7cf21af3734",
+      "destination_sha256": "dc66d02f9d16b144ac06b54a4c38952dddc7473dc22a79b1933ae7cf21af3734",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
     }
   ],
   "skipped_symlinks": [],
@@ -709,6 +818,6 @@
     "No ledger or REPORT was copied; driver must integrate selected ledger evidence independently.",
     "No symlinks followed; skipped symlinks, if any, require separate review."
   ],
-  "updated_at": "2026-10-17T23:03:31.365216+00:00",
-  "verification": "All cumulative source/destination hashes and sizes verified after slot6."
+  "updated_at": "2026-10-17T23:13:22.824778+00:00",
+  "verification": "All cumulative source/destination hashes and sizes verified after slot7."
 }
