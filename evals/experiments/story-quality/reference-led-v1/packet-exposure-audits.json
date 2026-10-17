@@ -1,6 +1,6 @@
 {
   "document_type": "post-launch-packet-exposure-audit",
-  "status": "partial-four-packets",
+  "status": "partial-five-packets",
   "audits": [
     {
       "at": "2026-10-17T22:13:38.336644+00:00",
@@ -77,6 +77,93 @@
       ],
       "finding": "Separate review files were withheld as claimed, but the original second outline itself includes author self-review history. Omission wording was file-specific and did not mean all author judgments were absent. Metadata screen did not remove embedded workspace commit/hash history, so stage3 exposes that provenance too.",
       "recommendation": "Preserve released packets and frozen readings. For all subsequent outputs consistently retain original outline content at stage3 under the frozen outline-supply protocol, while continuing to withhold separate review files. Add an external custodian notice, not edits to released packets: embedded author self-judgments are untrusted source context, not independent approval. Mechanically inventory/reveal their locations at stage3 and report differential exposure. Keep stage1/2 interpretations distinct from post-outline diagnostics; no reread/retry, no retrospective sanitizing, no claim stage3 was free of prior author judgments. Embedded workspace histories reveal process metadata but do not by themselves establish treatment mapping."
+    },
+    {
+      "at": "2026-10-17T22:53:41.279335+00:00",
+      "type": "title-duplication-provenance",
+      "scope": "No released packet/judgment changed; mechanical line locations only.",
+      "findings": [
+        {
+          "opaque_code": "M30755c",
+          "source_story": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q01-french-debt/20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/french-debt.md",
+          "source_sha256": "f604cd8a7bf1dba1966bba4192050496039500ee9a7b9413043056f98ab85be9",
+          "frontmatter_title_line": 2,
+          "source_body_start_line": 9,
+          "matching_title_in_original_body_lines": [
+            10
+          ],
+          "packet_title_occurrence_lines": [
+            1,
+            3
+          ],
+          "packet_sha256": "3999189e6baababf05d4379a9db21e63c15113915fd843f16fc80d89c30e7c4e",
+          "transformation": "Pinned readerProse returns title separately while preserving any same-title body heading; packet script prepends # title at line1, then preserved body. Same synthesis applied to every prepared packet."
+        },
+        {
+          "opaque_code": "Mb8941a",
+          "source_story": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt.md",
+          "source_sha256": "f15abfddfaf538a59f31e5f0e8e20e2e953a33514a9571fe25abc596aeee425f",
+          "frontmatter_title_line": 2,
+          "source_body_start_line": 9,
+          "matching_title_in_original_body_lines": [
+            10
+          ],
+          "packet_title_occurrence_lines": [
+            1,
+            3
+          ],
+          "packet_sha256": "563bf4addd9beff4b984ae8f85c0415d37b26ab86f9d212a05eef92fa804523c",
+          "transformation": "Pinned readerProse returns title separately while preserving any same-title body heading; packet script prepends # title at line1, then preserved body. Same synthesis applied to every prepared packet."
+        },
+        {
+          "opaque_code": "M9b1fee",
+          "source_story": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero.md",
+          "source_sha256": "7c9a080eee111d62591394043a7424725d5c58dbe7b50c3ff5db2362466076e9",
+          "frontmatter_title_line": 2,
+          "source_body_start_line": 9,
+          "matching_title_in_original_body_lines": [
+            10
+          ],
+          "packet_title_occurrence_lines": [
+            1,
+            3
+          ],
+          "packet_sha256": "e64c16cb62a28dc289ecb211d7ac391b853c2ff75424d510239083860b206232",
+          "transformation": "Pinned readerProse returns title separately while preserving any same-title body heading; packet script prepends # title at line1, then preserved body. Same synthesis applied to every prepared packet."
+        },
+        {
+          "opaque_code": "Mbe53b2",
+          "source_story": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero.md",
+          "source_sha256": "75950408fb2fa2e029007c44afdf7d0473d3512cd3cf410e5f7f66afefa1c925",
+          "frontmatter_title_line": 2,
+          "source_body_start_line": 9,
+          "matching_title_in_original_body_lines": [
+            10
+          ],
+          "packet_title_occurrence_lines": [
+            1,
+            3
+          ],
+          "packet_sha256": "f0c4e44aadb66928fa5bb718808672fe7504be397f79f77cb72cf3516e3ecd7f",
+          "transformation": "Pinned readerProse returns title separately while preserving any same-title body heading; packet script prepends # title at line1, then preserved body. Same synthesis applied to every prepared packet."
+        },
+        {
+          "opaque_code": "M1d3194",
+          "source_story": "/tmp/datapressr-harness-controls-20261018/evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt.md",
+          "source_sha256": "5c409ad3d06e5fc46481b04092148dc182996bacd0f584e055d54e0ae55ea7af",
+          "frontmatter_title_line": 2,
+          "source_body_start_line": 9,
+          "matching_title_in_original_body_lines": [
+            10
+          ],
+          "packet_title_occurrence_lines": [
+            1,
+            3
+          ],
+          "packet_sha256": "eec6f3b5f30e19ba607fcab8ca14647e84ff2847737b6ffa410ac73bdc6a4f0c",
+          "transformation": "Pinned readerProse returns title separately while preserving any same-title body heading; packet script prepends # title at line1, then preserved body. Same synthesis applied to every prepared packet."
+        }
+      ]
     }
   ],
   "driver_disposition": "Preserve original-outline policy across all8. No retrospective sanitization or replacement readers. Inventory embedded author review/provenance and instruct readers not to use author verdicts as evidence. Distinguish frozen spontaneous chart/prose readings from stage3 diagnostics; report differential exposure.",
@@ -194,6 +281,31 @@
         ],
         "review_policy": "Original outline retained; separate author-review files withheld; references/verdicts within outline are author context, not independent evidence."
       }
+    },
+    {
+      "opaque_code": "M1d3194",
+      "stage3_exposure_inventory": {
+        "at": "2026-10-17T22:50:47.922295+00:00",
+        "path": "stage3/outline.md",
+        "mechanical_keyword_locations": [
+          {
+            "line": 74,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": null
+          },
+          {
+            "line": 75,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": null
+          }
+        ],
+        "review_policy": "Original outline retained; separate author-review files withheld; references/verdicts within outline are author context, not independent evidence."
+      }
     }
-  ]
+  ],
+  "title_presentation_disposition": "Keep same synthesis for all8. Duplicate packet heading comes from promoting metadata title above existing single body heading; distinguish presentation artifact from original writer body. Fifth reader informed during stage3; prior4 records remain frozen and custody correction accompanies final analysis."
 }
