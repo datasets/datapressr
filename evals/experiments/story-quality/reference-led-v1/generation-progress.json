@@ -1484,6 +1484,194 @@
       "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
       "skill_ref": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
       "skill_tree": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
+    },
+    {
+      "event": "finish",
+      "sequence": 6,
+      "slot_id": "q01-french-debt-r2-baseline",
+      "at": "2026-10-17T23:02:14.701568+00:00",
+      "exit_code": 0,
+      "stop_reasons": [],
+      "metadata": {
+        "run_id": "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "case_id": "q01-french-debt",
+        "domain": "story",
+        "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+        "skill": {
+          "name": "story",
+          "ref": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+          "tree": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1",
+          "dirty": false
+        },
+        "harness": {
+          "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+          "dirty": false,
+          "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+        },
+        "writer": {
+          "vendor": "claude",
+          "model": "claude-opus-5-5",
+          "effort_requested": "high",
+          "model_actual": "claude-opus-5-5",
+          "cli_version": "2.1.302",
+          "prompt_sha256": "3fe1ed6d7a88a5b56c202aad28e93d38cacedc57e9635e99d73d34042ecc2575"
+        },
+        "isolation": {
+          "canary_run_id": "20261017-2136-canary-claude-haiku-5-5-1",
+          "network": false,
+          "leaks": []
+        },
+        "started_at": "2026-10-17T22:50:36.354Z",
+        "duration_ms": 695397,
+        "turns": 47,
+        "cost_usd": 3.1727426,
+        "cost_basis": "list",
+        "usage": {
+          "input_tokens": 70,
+          "cache_creation_input_tokens": 142182,
+          "cache_read_input_tokens": 3353533,
+          "output_tokens": 68215,
+          "output_tokens_details": {
+            "thinking_tokens": 28172
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 142182,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "global",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 1106,
+              "cache_read_input_tokens": 143041,
+              "cache_creation_input_tokens": 4414,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 4414
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "flags": [],
+        "transcript_sha256": "d9dd484527d567e395cce497e9571f92802932d2cdb17894f1eddb0e67f90a7a",
+        "workspace_sha256": "992d4a7e0bbf8407e205668acf00e37aac708ab962d2b6beff13f277b3eb209d"
+      },
+      "check_summary": {
+        "ledger": {
+          "schema": 1,
+          "kind": "check",
+          "at": "2026-10-17T23:02:14.331Z",
+          "run_id": "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "checker": "story",
+          "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+          "failed": [],
+          "warned": [],
+          "passed": 7
+        }
+      },
+      "artifacts": [
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/france-debt-chart-balance.svg",
+          "bytes": 8881,
+          "sha256": "38b2962d0657df701c09dcdaf2be492d28cfed7b79a3707d6e13ee3231a60bf8"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/france-debt-chart-debt.svg",
+          "bytes": 9166,
+          "sha256": "289219b7398db18c78ab32f6d1b8e30cef7da3a4b6fd2d5f3237655f983a47bf"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/france-debt-chart-gap.svg",
+          "bytes": 5389,
+          "sha256": "607c5de406899612d6f01498fb761d71a5c698b19e55a3d874cf3d08d7a9fc4b"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/france-debt-chart-interest.svg",
+          "bytes": 6051,
+          "sha256": "6eed15eef4078bdb748b535849c802b347a896a2101590e20a01e4abed92918d"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/france-debt-editorial-review.md",
+          "bytes": 8865,
+          "sha256": "e17527f1871588705b4a85460c2947e4f65d7dca39200d930dd5b4727e2674b6"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/france-debt-make-charts.mjs",
+          "bytes": 13944,
+          "sha256": "8e421e94d1653e37fc4ae8c2729ba913a8404b6e39079ef8bd67dc4f1e37332d"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/france-debt-outline-review.md",
+          "bytes": 6368,
+          "sha256": "8e92f86a665392f992e85407fe358a3092b7086cdba57e0b24d8a7a69ce266db"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/france-debt-outline.md",
+          "bytes": 11107,
+          "sha256": "4c8f862afc8c2ecbad3adcf38009666d05ec16e378e182d914ceceddaa829dbf"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/france-debt.md",
+          "bytes": 7885,
+          "sha256": "05fdcbd58dcdb91032b39260ba57d613cf24fc49793945a457afb964947d31ff"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/checks.json",
+          "bytes": 2054,
+          "sha256": "d0496ee1c249f0da8eb5cb3eb6cf78e175c8822d129e975a4cd0f802f7b27662"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/run.json",
+          "bytes": 3751,
+          "sha256": "f783ab28e006d8e9467f38ed72ec7f081292f89b01a5ecd51a419b141cb690df"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/transcript.jsonl",
+          "bytes": 900291,
+          "sha256": "d9dd484527d567e395cce497e9571f92802932d2cdb17894f1eddb0e67f90a7a"
+        },
+        {
+          "path": "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1/workspace.tar",
+          "bytes": 3398656,
+          "sha256": "992d4a7e0bbf8407e205668acf00e37aac708ab962d2b6beff13f277b3eb209d"
+        }
+      ],
+      "log": "/tmp/datapressr-comparison-writer-6.log",
+      "log_sha256": "daf8d137208be47ae35dacc9050361b8499783793dd04b67f8dfd5597010533b"
+    },
+    {
+      "event": "start",
+      "sequence": 7,
+      "slot_id": "q03-wti-negative-r2-baseline",
+      "at": "2026-10-17T23:02:28.959985+00:00",
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "run",
+        "story/q03-wti-negative",
+        "--writer",
+        "claude",
+        "--skill-ref",
+        "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "--repeat",
+        "1",
+        "--max-usd",
+        "5",
+        "--no-critic"
+      ],
+      "config_sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+      "harness_commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+      "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+      "skill_ref": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "skill_tree": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
     }
   ]
 }
