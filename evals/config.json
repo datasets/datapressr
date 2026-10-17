@@ -11,6 +11,10 @@
       "canary": "gpt-6-luna"
     }
   },
+  "efforts": {
+    "claude": { "writer": "high", "critic": "high" },
+    "codex": { "writer": "high", "critic": "high" }
+  },
   "families": {
     "opus": "claude-opus-5-5",
     "sonnet": "claude-sonnet-5-5",

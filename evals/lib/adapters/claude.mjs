@@ -84,11 +84,12 @@ function baseFlags(settingsPath) {
   ];
 }
 
-export function writerArgs({ prompt, model, maxTurns, maxBudgetUsd, settingsPath, mode = "fixed" }) {
+export function writerArgs({ prompt, model, effort, maxTurns, maxBudgetUsd, settingsPath, mode = "fixed" }) {
   const tools = toolsFor(mode);
   return [
     "-p", prompt,
     "--model", model,
+    ...(effort === undefined ? [] : ["--effort", effort]),
     "--max-turns", String(maxTurns),
     "--max-budget-usd", String(maxBudgetUsd),
     ...baseFlags(settingsPath),
@@ -97,8 +98,9 @@ export function writerArgs({ prompt, model, maxTurns, maxBudgetUsd, settingsPath
   ];
 }
 
-export function criticArgs({ prompt, model, maxTurns = 3, maxBudgetUsd, settingsPath, jsonSchema }) {
+export function criticArgs({ prompt, model, effort, maxTurns = 3, maxBudgetUsd, settingsPath, jsonSchema }) {
   const args = ["-p", prompt, "--model", model, "--max-turns", String(maxTurns), ...baseFlags(settingsPath), "--tools", ""];
+  if (effort !== undefined) args.push("--effort", effort);
   if (maxBudgetUsd !== undefined) args.push("--max-budget-usd", String(maxBudgetUsd));
   if (jsonSchema) args.push("--json-schema", typeof jsonSchema === "string" ? jsonSchema : JSON.stringify(jsonSchema));
   return args;
@@ -106,13 +108,13 @@ export function criticArgs({ prompt, model, maxTurns = 3, maxBudgetUsd, settings
 
 // The recipe with machine paths replaced by placeholders: what the recipe hash covers. Two
 // machines with the same CLI and recipe get the same hash; model and caps are not part of it.
-export function recipeTemplate(mode, { weaken = false } = {}) {
+export function recipeTemplate(mode, { weaken = false, effort } = {}) {
   return {
     vendor,
     version: RECIPE_VERSION,
     mode,
     weaken,
-    args: writerArgs({ prompt: "<prompt>", model: "<model>", maxTurns: "<turns>", maxBudgetUsd: "<usd>", settingsPath: "<settings>", mode }),
+    args: writerArgs({ prompt: "<prompt>", model: "<model>", effort, maxTurns: "<turns>", maxBudgetUsd: "<usd>", settingsPath: "<settings>", mode }),
     settings: settingsFor({ mode, root: "/<repo>", home: "/<home>", weaken, sharedTmp: sharedTmpDirs("<uid>") }),
     env: weaken ? {} : { ...shimTemplate(), CLAUDE_CODE_TMPDIR: "<run tmp>", TMPDIR: "<run tmp>" },
   };
@@ -238,13 +240,13 @@ export function writerEnv({ weaken = false, shimBin, runTmp, env = process.env }
   return { ...withShimPath(childEnv(env), shimBin), CLAUDE_CODE_TMPDIR: runTmp, TMPDIR: runTmp };
 }
 
-export async function write({ workspace, prompt, model, caps, mode, root, timeoutMs, bin = "claude", home = homedir(), weaken = false }) {
+export async function write({ workspace, prompt, model, effort, caps, mode, root, timeoutMs, bin = "claude", home = homedir(), weaken = false }) {
   const settings = settingsFor({ mode, root, home, weaken });
   const version = cliVersion(bin);
   if (!weaken) assertTmpOutsideShared(tmpdir());
   const runTmp = weaken ? null : makeRunTmp();
   return withSettingsFile(settings, async (settingsPath, dir) => {
-    const args = writerArgs({ prompt, model, maxTurns: caps.max_turns, maxBudgetUsd: caps.max_usd, settingsPath, mode });
+    const args = writerArgs({ prompt, model, effort, maxTurns: caps.max_turns, maxBudgetUsd: caps.max_usd, settingsPath, mode });
     const env = writerEnv({ weaken, shimBin: weaken ? null : makeShimDir(dir), runTmp: runTmp?.base });
     const proc = await execute({ bin: resolveBin(bin), args, cwd: workspace, timeoutMs, env });
     const { init, result, events } = parseStream(proc.stdout);
@@ -256,9 +258,10 @@ export async function write({ workspace, prompt, model, caps, mode, root, timeou
     if (s.subtype === "error_max_turns" || s.subtype === "error_max_budget_usd") flags.push("over_budget");
     return {
       model,
+      ...(effort === undefined ? {} : { effort_requested: effort }),
       model_actual: s.model_actual,
       cli_version: version,
-      recipe_sha256: recipeHash(mode, { weaken }),
+      recipe_sha256: recipeHash(mode, { weaken, effort }),
       duration_ms: s.duration_ms ?? proc.wall_ms,
       turns: s.turns,
       cost_usd: s.cost_usd,
@@ -281,12 +284,12 @@ export async function write({ workspace, prompt, model, caps, mode, root, timeou
 // Critic role: no tools; the answer is structured JSON when a schema is given. Runs from an
 // empty temp dir with the same deny rules, so even a misconfigured tool list could not read the
 // repo. Returns { output, model_actual, cost_usd, turns, usage, ok, error }.
-export async function critic({ prompt, model, jsonSchema, root, timeoutMs = 15 * 60_000, maxBudgetUsd, bin = "claude", home = homedir() }) {
+export async function critic({ prompt, model, effort, jsonSchema, root, timeoutMs = 15 * 60_000, maxBudgetUsd, bin = "claude", home = homedir() }) {
   const settings = settingsFor({ mode: "fixed", root, home });
   const cwd = mkdtempSync(join(tmpdir(), "evals-critic-"));
   try {
     return await withSettingsFile(settings, async (settingsPath) => {
-      const proc = await execute({ bin, args: criticArgs({ prompt, model, maxBudgetUsd, settingsPath, jsonSchema }), cwd, timeoutMs });
+      const proc = await execute({ bin, args: criticArgs({ prompt, model, effort, maxBudgetUsd, settingsPath, jsonSchema }), cwd, timeoutMs });
       const { result } = parseStream(proc.stdout);
       const s = summarise(result);
       let output = s.structured_output;
@@ -302,6 +305,7 @@ export async function critic({ prompt, model, jsonSchema, root, timeoutMs = 15 *
         ok,
         error: ok ? null : proc.timedOut ? "timeout" : s.subtype || proc.stderr.trim().slice(0, 500) || `exit ${proc.code}`,
         output: jsonSchema ? output : s.text,
+        ...(effort === undefined ? {} : { effort_requested: effort }),
         model_actual: s.model_actual,
         cost_usd: s.cost_usd,
         turns: s.turns,

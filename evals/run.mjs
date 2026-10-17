@@ -113,7 +113,7 @@ async function main(argv) {
     const { values } = parseArgs({ args: rest, options: { writer: { type: "string" } } });
     if (!values.writer) throw new Error(USAGE);
     const config = loadConfig(evalsDir);
-    const available = availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
+    const available = availabilityChecker({ config, ledgerFile: join(evalsDir, "ledger.jsonl") });
     for (const v of ["claude", "codex"]) {
       const a = available(v);
       console.log(`  ${v.padEnd(7)} ${a.ok ? `available (CLI ${a.cli_version}, canary ${a.canary_run_id})` : `unavailable: ${a.reason}`}`);
@@ -126,7 +126,7 @@ async function main(argv) {
     if (values.all === (positionals.length === 1) || positionals.length > 1) throw new Error(USAGE);
     if (values.overlay) throw new Error("--overlay applies to pair only");
     const config = loadConfig(evalsDir);
-    const available = availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
+    const available = availabilityChecker({ config, ledgerFile: join(evalsDir, "ledger.jsonl") });
     const dirs = values.all ? allRunDirs(evalsDir) : [findRunDir(evalsDir, positionals[0])];
     let failed = 0;
     for (const runDir of dirs) {
@@ -144,13 +144,17 @@ async function main(argv) {
     const { values, positionals } = parseArgs({ args: rest, allowPositionals: true, options: CRITIC_OPTIONS });
     if (positionals.length !== 2) throw new Error(USAGE);
     const config = loadConfig(evalsDir);
-    const available = availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
+    const available = availabilityChecker({ config, ledgerFile: join(evalsDir, "ledger.jsonl") });
     const runDirs = positionals.map((id) => findRunDir(evalsDir, id));
     const critic = resolveCritic({ spec: values.critic, model: values["critic-model"], writers: writersOf(runDirs), config, available });
-    const res = await pairRuns({ root, evalsDir, runDirs, rubricId: values.rubric, overlay: values.overlay, critic, calibrate: values.calibrate, config, log: (m) => console.log(m) });
+    let res;
+    try {
+      res = await pairRuns({ root, evalsDir, runDirs, rubricId: values.rubric, overlay: values.overlay, critic, calibrate: values.calibrate, config, log: (m) => console.log(m) });
+    } finally {
+      writeReport(join(evalsDir, "ledger.jsonl"), join(evalsDir, "REPORT.md"));
+    }
     console.log(`pair ${res.pairId}: ${res.row.winner_run_id ? "a win (both orders agree)" : "a tie (orders split or tied)"}; ${costLine(res.costs)}`);
     console.log(`wrote evals/pairs/${res.pairId}/A, B, critique-AB.json, critique-BA.json, critique.md and mapping.json (gitignored; do not open it before the owner judges)`);
-    writeReport(join(evalsDir, "ledger.jsonl"), join(evalsDir, "REPORT.md"));
     console.log("updated evals/ledger.jsonl and evals/REPORT.md");
     return;
   }

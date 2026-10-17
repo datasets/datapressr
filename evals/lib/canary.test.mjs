@@ -205,9 +205,9 @@ test("run refuses a staged writer without a passing canary, before anything is s
   try {
     await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapter }, cacheRoot }), /no canary on record for claude 9\.9\.9/);
     const ledger = join(root, "evals/ledger.jsonl");
-    appendRow(ledger, { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "c-old", vendor: "claude", cli_version: "9.9.8", recipe_sha256: claude.recipeHash("fixed"), mode: "fixed", pass: true });
+    appendRow(ledger, { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "c-old", vendor: "claude", cli_version: "9.9.8", recipe_sha256: claude.recipeHash("fixed", { effort: "high" }), mode: "fixed", pass: true });
     await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapter }, cacheRoot }), /no canary on record for claude 9\.9\.9/, "a canary for another CLI version does not count");
-    appendRow(ledger, { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "c-fail", vendor: "claude", cli_version: "9.9.9", recipe_sha256: claude.recipeHash("fixed"), mode: "fixed", pass: false });
+    appendRow(ledger, { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "c-fail", vendor: "claude", cli_version: "9.9.9", recipe_sha256: claude.recipeHash("fixed", { effort: "high" }), mode: "fixed", pass: false });
     await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapter }, cacheRoot }), /failed; isolation is not proven/);
     assert.deepEqual(readLedger(ledger).map((r) => r.kind), ["canary", "canary"], "no run recorded");
   } finally {
@@ -218,17 +218,19 @@ test("run refuses a staged writer without a passing canary, before anything is s
 test("with a passing canary a staged run collects the writer's files, hashes the transcript and flags leaks", async () => {
   const { root, cacheRoot } = stagedRepoWithCache();
   const ledger = join(root, "evals/ledger.jsonl");
-  appendRow(ledger, { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "c-pass", vendor: "claude", cli_version: "9.9.9", recipe_sha256: claude.recipeHash("fixed"), mode: "fixed", pass: true });
+  appendRow(ledger, { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "c-pass", vendor: "claude", cli_version: "9.9.9", recipe_sha256: claude.recipeHash("fixed", { effort: "high" }), mode: "fixed", pass: true });
   const clean = fakeClaudeBin();
   const leaky = fakeClaudeBin({ leak: true });
   const refused = fakeClaudeBin({ denied: true });
   const adapterFor = (bin) => ({ ...claude, cliVersion: () => "9.9.9", write: (o) => claude.write({ ...o, bin }) });
   try {
-    const [a] = await runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapterFor(clean.bin) }, cacheRoot });
+    const [a] = await runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapterFor(clean.bin) }, critic: null, cacheRoot });
     assert.deepEqual(a.run.artefacts.map((x) => x.path), ["site/stories/fake.md"]);
     assert.equal(a.run.isolation.canary_run_id, "c-pass");
     assert.deepEqual(a.run.isolation.leaks, []);
-    assert.equal(a.run.harness.recipe_sha256, claude.recipeHash("fixed"));
+    assert.equal(a.run.harness.recipe_sha256, claude.recipeHash("fixed", { effort: "high" }));
+    assert.equal(a.run.writer.effort_requested, "high");
+    assert.equal(a.score, null, "staging tests must never invoke an automatic real critic");
     assert.equal(a.run.writer.cli_version, "9.9.9");
     assert.equal(a.run.writer.model_actual, "claude-haiku-5-5");
     assert.equal(a.run.cost_basis, "list");
@@ -240,12 +242,12 @@ test("with a passing canary a staged run collects the writer's files, hashes the
     assert.ok(!cwd.startsWith(root));
     assert.deepEqual(a.run.flags, []);
 
-    const [b] = await runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapterFor(leaky.bin) }, cacheRoot });
+    const [b] = await runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapterFor(leaky.bin) }, critic: null, cacheRoot });
     assert.deepEqual(b.run.flags, ["leaked"]);
     assert.deepEqual(b.run.isolation.leaks, [{ tool: "Read", path: "/Users/someone/src/datapressr/AGENTS.md" }]);
 
     // A Read the deny rule refused is recorded as blocked and does not flag the run (datapressr-9lc).
-    const [c] = await runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapterFor(refused.bin) }, cacheRoot });
+    const [c] = await runCase({ root, caseRef: "story/t01-demo", writer: "claude", adapters: { claude: adapterFor(refused.bin) }, critic: null, cacheRoot });
     assert.deepEqual(c.run.flags, []);
     assert.deepEqual(c.run.isolation.leaks, []);
     assert.deepEqual(c.run.isolation.blocked, [{ tool: "Read", path: "/Users/someone/.claude/projects/x/tool-results/b.txt" }]);
@@ -333,9 +335,9 @@ test("a Codex writer runs staged and gated like Claude: tokens, no cost, the lea
   writeFileSync(join(authDir, "auth.json"), "{}\n");
   const adapter = { ...codex, cliVersion: () => "7.7.7", write: (o) => codex.write({ ...o, bin: fake.bin, authFile: join(authDir, "auth.json") }) };
   try {
-    await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "codex", adapters: { codex: adapter }, cacheRoot }), /no canary on record for codex 7\.7\.7/);
-    appendRow(join(root, "evals/ledger.jsonl"), { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "cx", vendor: "codex", cli_version: "7.7.7", recipe_sha256: codex.recipeHash("fixed"), mode: "fixed", pass: true });
-    const [r] = await runCase({ root, caseRef: "story/t01-demo", writer: "codex", adapters: { codex: adapter }, cacheRoot });
+    await assert.rejects(runCase({ root, caseRef: "story/t01-demo", writer: "codex", adapters: { codex: adapter }, critic: null, cacheRoot }), /no canary on record for codex 7\.7\.7/);
+    appendRow(join(root, "evals/ledger.jsonl"), { kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "cx", vendor: "codex", cli_version: "7.7.7", recipe_sha256: codex.recipeHash("fixed", { effort: "high" }), mode: "fixed", pass: true });
+    const [r] = await runCase({ root, caseRef: "story/t01-demo", writer: "codex", adapters: { codex: adapter }, critic: null, cacheRoot });
     assert.deepEqual(r.run.artefacts.map((x) => x.path), ["site/stories/fake.md"]);
     assert.equal(r.run.isolation.canary_run_id, "cx");
     assert.equal(r.run.writer.vendor, "codex");

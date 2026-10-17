@@ -91,6 +91,9 @@ test("the default canary probe uses the ledger gate for this CLI version and the
   const codex = await import("./codex.mjs");
   const row = { schema: 1, kind: "canary", at: "2026-10-10T00:00:00Z", run_id: "c9", vendor: "codex", cli_version: "0.161.0", recipe_sha256: codex.recipeHash("fixed"), mode: "fixed", pass: true };
   assert.equal(defaultProbes.canary(codex, "0.161.0", [row]).run_id, "c9");
+  assert.throws(() => defaultProbes.canary(codex, "0.161.0", [row], "high"), /no canary on record/);
+  const high = { ...row, recipe_sha256: codex.recipeHash("fixed", { effort: "high" }) };
+  assert.equal(defaultProbes.canary(codex, "0.161.0", [high], "high").run_id, "c9");
   assert.throws(() => defaultProbes.canary(codex, "0.162.0", [row]), /no canary on record/);
   assert.throws(() => defaultProbes.canary(codex, "0.161.0", [{ ...row, recipe_sha256: SHA }]), /no canary on record/);
 });

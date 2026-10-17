@@ -77,7 +77,7 @@ async function runStaged({ adapter, root, kase, prompt, skillRef, skills, model,
   const ws = stageWorkspace({ root, kase, prompt, skillRef, skills, modules: cache.modules });
   try {
     log(`workspace ${ws.dir}`);
-    const out = await adapter.write({ workspace: ws.dir, prompt, model, caps, mode: kase.data_mode, root, timeoutMs: config.timeouts_ms.writer });
+    const out = await adapter.write({ workspace: ws.dir, prompt, model, effort: config.efforts?.[adapter.vendor]?.writer, caps, mode: kase.data_mode, root, timeoutMs: config.timeouts_ms.writer });
     const collected = collectArtefacts(ws.dir, artefactDir, { baseline: ws.baseline });
     if (collected.skipped.length) log(`not collected (over 2 MB in total, or not a file): ${collected.skipped.join(", ")}`);
     // Hits from calls the CLI refused (a deny rule) are kept as `blocked`, not leaks (datapressr-9lc).
@@ -104,7 +104,7 @@ async function critiqueRun({ root, evalsDir, runDir, run, kase, critic, config, 
   const spec = critic.spec === "auto" && run.writer.vendor === "fake" ? "fake" : critic.spec;
   let resolved = null;
   try {
-    const available = critic.available ?? availabilityChecker({ ledgerFile: join(evalsDir, "ledger.jsonl") });
+    const available = critic.available ?? availabilityChecker({ config, ledgerFile: join(evalsDir, "ledger.jsonl") });
     resolved = resolveCritic({ spec, model: critic.model, writers: [{ vendor: run.writer.vendor, model: run.writer.model }], config, available });
     const res = await scoreRun({ root, evalsDir, runDir, critic: resolved, config, now, log, ...(critic.adapters ? { adapters: critic.adapters } : {}), ...(critic.readInput ? { readInput: critic.readInput } : {}) });
     if (res.ok) log(`scored ${run.run_id}: publishable ${res.row.publishable}, scores ${JSON.stringify(res.row.scores)}`);
@@ -172,7 +172,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
 
   const ledgerFile = join(evalsDir, "ledger.jsonl");
   // 2. Gate: a staged writer needs a passing canary for this CLI version, recipe and mode.
-  const canary = adapter.needsCanary ? gateFromLedger(ledgerFile, { vendor: adapter.vendor, cli_version: adapter.cliVersion(), recipe_sha256: adapter.recipeHash(kase.data_mode), mode: kase.data_mode }) : null;
+  const canary = adapter.needsCanary ? gateFromLedger(ledgerFile, { vendor: adapter.vendor, cli_version: adapter.cliVersion(), recipe_sha256: adapter.recipeHash(kase.data_mode, { effort: config.efforts?.[writer]?.writer }), mode: kase.data_mode }) : null;
   const results = [];
   for (let r = 0; r < repeat; r++) {
     const started = now();
@@ -210,7 +210,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
       case_hash: hash,
       skill,
       harness: { tree: harness.tree, dirty: harness.dirty, recipe_sha256: out.recipe_sha256 ?? null },
-      writer: { vendor: writer, model: out.model, model_actual: out.model_actual, cli_version: out.cli_version, prompt_sha256: sha256(prompt) },
+      writer: { vendor: writer, model: out.model, ...(out.effort_requested === undefined ? {} : { effort_requested: out.effort_requested }), model_actual: out.model_actual, cli_version: out.cli_version, prompt_sha256: sha256(prompt) },
       isolation: { canary_run_id: out.canary_run_id, network: out.network, leaks: out.leaks, ...(out.blocked?.length ? { blocked: out.blocked } : {}) },
       started_at: started.toISOString(),
       duration_ms: out.duration_ms,
@@ -239,7 +239,7 @@ export async function runCase({ root, evalsDir = join(root, "evals"), caseRef, w
       skill_ref: skill.ref,
       skill_tree: skill.tree,
       harness_tree: harness.tree,
-      writer: { vendor: writer, model: out.model, model_actual: out.model_actual, cli_version: out.cli_version ?? null, prompt_sha256: run.writer.prompt_sha256 },
+      writer: { vendor: writer, model: out.model, ...(out.effort_requested === undefined ? {} : { effort_requested: out.effort_requested }), model_actual: out.model_actual, cli_version: out.cli_version ?? null, prompt_sha256: run.writer.prompt_sha256 },
       turns: out.turns,
       cost_usd: out.cost_usd,
       flags: run.flags,
