@@ -1,0 +1,21 @@
+{
+  "generated_chart_outputs": [
+    {
+      "file": "site/stories/oil-below-zero-averages.svg",
+      "sha256": "5068c84cdb3a54fd82e44acd7b91c5508b84e0639cfc4fba1e75b181bfb50df6"
+    },
+    {
+      "file": "site/stories/oil-below-zero-only-wti.svg",
+      "sha256": "c6f3292947d7837281701bc04e14f6dd6235d0cfebd778455a85f79bfa7cd3f2"
+    }
+  ],
+  "build_code": [
+    "site/stories/oil-below-zero-make-charts.mjs"
+  ],
+  "working_directory": "this stage3 directory",
+  "dependency_access": "Existing offline node_modules cache from original staged workspace; no install or network required.",
+  "original_build_code_transforms": "none",
+  "review_material_omissions": [
+    "Writer editorial-review and outline-review files withheld to preserve independent review."
+  ]
+}

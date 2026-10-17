@@ -1,0 +1,1 @@
+Open only after custodian releases stage2. Read story.md and record prose interpretation and changes to your chart-first notes. Do not consult stage3/source verification. Freeze notes and wait for neutral reader questions from custodian.

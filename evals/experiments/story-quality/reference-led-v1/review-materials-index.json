@@ -1,0 +1,1741 @@
+{
+  "at": "2026-10-17T22:59:39.929291+00:00",
+  "type": "review-presentation-archive-index",
+  "codes": [
+    "M30755c",
+    "Mb8941a",
+    "M9b1fee",
+    "Mbe53b2",
+    "M1d3194"
+  ],
+  "files": [
+    {
+      "original_relative_path": "M30755c/stage1/chart-4.png",
+      "sha256": "7eca3881bcdc83b3cdb1b49f1224b6176f62bfeb0288f51dd0c4e4f4ddd39e0a",
+      "bytes": 146169,
+      "archived_relative_path": "M30755c/stage1/chart-4.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage1/chart-1.png",
+      "sha256": "18eda1779fe55a1c5b9571297e8e64b26d9963e1908ecc697b638390e53a5655",
+      "bytes": 124458,
+      "archived_relative_path": "M30755c/stage1/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage1/chart-3.png",
+      "sha256": "15f813ad844eead067a49ce9d7669ac0cf028267c487cb06a9875962acb17c5f",
+      "bytes": 94801,
+      "archived_relative_path": "M30755c/stage1/chart-3.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage1/chart-2.png",
+      "sha256": "1b0558c94ecf2cd037967b94057fc539033d4902b7451da5165636ea429a0fed",
+      "bytes": 111979,
+      "archived_relative_path": "M30755c/stage1/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage1/READ-ME.md",
+      "sha256": "65d8fab86fd6ce0ee000e244fca14a6f06749407c6327c32194df61b2b5e636c",
+      "bytes": 282,
+      "archived_relative_path": "M30755c/stage1/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage1/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "M30755c/stage1/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage2/chart-4.png",
+      "sha256": "7eca3881bcdc83b3cdb1b49f1224b6176f62bfeb0288f51dd0c4e4f4ddd39e0a",
+      "bytes": 146169,
+      "archived_relative_path": "M30755c/stage2/chart-4.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage2/chart-1.png",
+      "sha256": "18eda1779fe55a1c5b9571297e8e64b26d9963e1908ecc697b638390e53a5655",
+      "bytes": 124458,
+      "archived_relative_path": "M30755c/stage2/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage2/chart-3.png",
+      "sha256": "15f813ad844eead067a49ce9d7669ac0cf028267c487cb06a9875962acb17c5f",
+      "bytes": 94801,
+      "archived_relative_path": "M30755c/stage2/chart-3.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage2/chart-2.png",
+      "sha256": "1b0558c94ecf2cd037967b94057fc539033d4902b7451da5165636ea429a0fed",
+      "bytes": 111979,
+      "archived_relative_path": "M30755c/stage2/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage2/READ-ME.md",
+      "sha256": "78542511ff8ddc7c3696a4c98dcb589bad7c688cb3a39178bb0d95c4596a4bd3",
+      "bytes": 238,
+      "archived_relative_path": "M30755c/stage2/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage2/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "M30755c/stage2/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage2/story.md",
+      "sha256": "3999189e6baababf05d4379a9db21e63c15113915fd843f16fc80d89c30e7c4e",
+      "bytes": 5823,
+      "archived_relative_path": "M30755c/stage2/story.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/outline.md",
+      "sha256": "243a72fa51399701534e1c2e77315f75b54026cdca2d3b49687bbd4e0c4ff077",
+      "bytes": 13015,
+      "archived_relative_path": "M30755c/stage3/outline.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/chart-2.svg",
+      "sha256": "b546dba0a0ccd54679c3ca4abc894edb7b911ab1b308cf324bd50dca2809826e",
+      "bytes": 14197,
+      "archived_relative_path": "M30755c/stage3/chart-2.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/READ-ME.md",
+      "sha256": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+      "bytes": 305,
+      "archived_relative_path": "M30755c/stage3/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/chart-3.svg",
+      "sha256": "7074aacbe36d15cccef6cac917ac029926a6cf7767bdd38b970bdf7e4e507f4d",
+      "bytes": 6397,
+      "archived_relative_path": "M30755c/stage3/chart-3.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/chart-1.svg",
+      "sha256": "6143c8e48c9bad446fe31a4b02118178072bc1cab9603742c53c194c372846ec",
+      "bytes": 8799,
+      "archived_relative_path": "M30755c/stage3/chart-1.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/chart-4.svg",
+      "sha256": "a2c3bb93edc598c45025b431fd6bcd63349a0915ad8259ff074954133a603697",
+      "bytes": 6896,
+      "archived_relative_path": "M30755c/stage3/chart-4.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/reproduction-hashes.json",
+      "sha256": "454199bf4d933daf86f3b5ce3e524d74f366107190c9bb22c3ca23293d26d357",
+      "bytes": 1050,
+      "archived_relative_path": "M30755c/stage3/reproduction-hashes.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/diagnostic-anchors.md",
+      "sha256": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+      "bytes": 6245,
+      "archived_relative_path": "M30755c/stage3/diagnostic-anchors.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "M30755c/stage3/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/REPRODUCTION.md",
+      "sha256": "6ac9b095d5ac1a1293a3e167a62321105bb4917f0946e430ce6681a2fbb015f3",
+      "bytes": 535,
+      "archived_relative_path": "M30755c/stage3/REPRODUCTION.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/reader-questions.json",
+      "sha256": "4b007266171e6b418fdfeb1176d54a1ce8cfffaf3eb4b651536d5fa72e822509",
+      "bytes": 650,
+      "archived_relative_path": "M30755c/stage3/reader-questions.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/datapackage.json",
+      "sha256": "c4c1d6e2a250fc69f458b08440ee8b9839ec9f439c619bc7afc8fee9bae64120",
+      "bytes": 7457,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/source-labels.json",
+      "sha256": "339e1d74ee476a481448619b45c0b8c0bd7c6ad21bd9ffa51bd16ca3560ee281",
+      "bytes": 5167,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/.datahubignore",
+      "sha256": "8bed597fb175517b602beb28a3889cc625f45b8f8c6b4f6ca095525961b3a1e3",
+      "bytes": 137,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/README.md",
+      "sha256": "b780a0bdb60c3326d6f1c5b68d1749767cbb71c6b9bda11fd9c5fdfdaf5395b8",
+      "bytes": 6918,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/package-lock.json",
+      "sha256": "15950cdb66e1905ff3c25ac0ecd2bcf3ade422049c47bd8bdf17c8882de5078d",
+      "bytes": 18842,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/package.json",
+      "sha256": "a56cfd0a1e6cc6c814ba85aa5cb36822515fe710d12d8c743f252f93a17db504",
+      "bytes": 219,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/build.test.mjs",
+      "sha256": "411c590c336275939c9793a6d9cc09091c8cf114bd8c537b5eedc2b5f50e2e25",
+      "bytes": 1709,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/fetch.ts",
+      "sha256": "6920599443a818f7d6d03204c43f7f1badc48094bff8a24d3152efd942758259",
+      "bytes": 4445,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/build.ts",
+      "sha256": "4296b8ab1d975182ac19caaecfa6de6fdb29d70755d05aee78903fa892a3c2d8",
+      "bytes": 14555,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/archive/eurostat-reuse.html",
+      "sha256": "4cc370e90b5a080aa183a8d28ede05e6e54907f82aa3ee0c9d3d7657dea5259c",
+      "bytes": 178945,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/archive/insee-accounting-explainer.html",
+      "sha256": "ca59e2335f22dd0a16f615065632ff46478d6c6bbff88bbd139c8a203020cec1",
+      "bytes": 170759,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/archive/insee-reuse.html",
+      "sha256": "b24d448882fade5083b5a7a381793d8c91bb16e41579e03224386393ffbadeac",
+      "bytes": 55588,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/archive/insee-quarterly-debt.html",
+      "sha256": "cc7c3dfe575d76ac541d9b78bd54a58732c4cf74c84851f144b210634f7757df",
+      "bytes": 185827,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/archive/insee-spending-functions.html",
+      "sha256": "12a532188b6e42fad7aaff15909178a31c9d1d1dcd5b02d960c80faa4f245411",
+      "bytes": 160162,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/archive/fiscal.json",
+      "sha256": "482f823a1aa6418d2e0ca5407dd14d2870dd7a229c494feeb1c332e0ba9c7205",
+      "bytes": 67323,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/archive/manifest.json",
+      "sha256": "06c1f4668206a0edc2ce5428510ff4fc4043476b114bd1b10f981a9783e6489f",
+      "bytes": 3506,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/archive/insee-annual-accounts.html",
+      "sha256": "362b206541eba1e0aa01dc6e538b09c98c4732af5609079b4c0c38921fec000b",
+      "bytes": 143460,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/archive/functions.json",
+      "sha256": "24e04200aef4468eca52d1d17121896d94a370bb2058b43a2f1591133196dd78",
+      "bytes": 70372,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/scripts/validate-datapackage.mjs",
+      "sha256": "568629ed759cb7e1f4fbb6404586686583432ab76211bbc52cc68e7e348e9469",
+      "bytes": 7307,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/data/spending-functions.csv",
+      "sha256": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494",
+      "bytes": 467599,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/data/quarterly-debt.csv",
+      "sha256": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307",
+      "bytes": 5237,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/datasets/france-public-finances/data/fiscal-accounts.csv",
+      "sha256": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733",
+      "bytes": 854923,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/site/stories/french-debt-make-charts.mjs",
+      "sha256": "cbfef82fb6851bdcf798ac48d411e68f4d0e55c1afff95073fcb2da5d408010c",
+      "bytes": 16412,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/site/stories/package-lock.json",
+      "sha256": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+      "bytes": 120441,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M30755c/stage3/site/stories/package.json",
+      "sha256": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+      "bytes": 596,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage1/chart-4.png",
+      "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53",
+      "bytes": 130845,
+      "archived_relative_path": "Mb8941a/stage1/chart-4.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage1/chart-1.png",
+      "sha256": "6eda688408e35b21c73a49a19579629021bc0afdd25d3851a3cc3bbe5123dc08",
+      "bytes": 120033,
+      "archived_relative_path": "Mb8941a/stage1/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage1/chart-3.png",
+      "sha256": "df70adff04ec1eb87befb3face38ddda9c70d2ab9c733b6fae5de00b87bd5fd5",
+      "bytes": 79154,
+      "archived_relative_path": "Mb8941a/stage1/chart-3.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage1/chart-2.png",
+      "sha256": "05f34adb55545df83e18be6bfdf6c55cad34cd7ab623fbd5d9900ac046baaba7",
+      "bytes": 123077,
+      "archived_relative_path": "Mb8941a/stage1/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage1/READ-ME.md",
+      "sha256": "65d8fab86fd6ce0ee000e244fca14a6f06749407c6327c32194df61b2b5e636c",
+      "bytes": 282,
+      "archived_relative_path": "Mb8941a/stage1/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage1/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "Mb8941a/stage1/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage2/chart-4.png",
+      "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53",
+      "bytes": 130845,
+      "archived_relative_path": "Mb8941a/stage2/chart-4.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage2/chart-1.png",
+      "sha256": "6eda688408e35b21c73a49a19579629021bc0afdd25d3851a3cc3bbe5123dc08",
+      "bytes": 120033,
+      "archived_relative_path": "Mb8941a/stage2/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage2/chart-3.png",
+      "sha256": "df70adff04ec1eb87befb3face38ddda9c70d2ab9c733b6fae5de00b87bd5fd5",
+      "bytes": 79154,
+      "archived_relative_path": "Mb8941a/stage2/chart-3.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage2/chart-2.png",
+      "sha256": "05f34adb55545df83e18be6bfdf6c55cad34cd7ab623fbd5d9900ac046baaba7",
+      "bytes": 123077,
+      "archived_relative_path": "Mb8941a/stage2/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage2/READ-ME.md",
+      "sha256": "78542511ff8ddc7c3696a4c98dcb589bad7c688cb3a39178bb0d95c4596a4bd3",
+      "bytes": 238,
+      "archived_relative_path": "Mb8941a/stage2/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage2/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "Mb8941a/stage2/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage2/story.md",
+      "sha256": "563bf4addd9beff4b984ae8f85c0415d37b26ab86f9d212a05eef92fa804523c",
+      "bytes": 5037,
+      "archived_relative_path": "Mb8941a/stage2/story.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/outline.md",
+      "sha256": "0fbe1478395714a377e41c68cbb45490965219897e92359f9661db0d42830678",
+      "bytes": 21427,
+      "archived_relative_path": "Mb8941a/stage3/outline.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/chart-2.svg",
+      "sha256": "f28b85bd0ed63b6fd0d5ff8ed213b084d143d9d2813a7ddf85b9f36d848112ef",
+      "bytes": 8202,
+      "archived_relative_path": "Mb8941a/stage3/chart-2.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/READ-ME.md",
+      "sha256": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+      "bytes": 305,
+      "archived_relative_path": "Mb8941a/stage3/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/chart-3.svg",
+      "sha256": "e899b79749f9ca816de4ad0dfc3eabef65d089f8b9a10686a999f5c5c7c106a7",
+      "bytes": 6096,
+      "archived_relative_path": "Mb8941a/stage3/chart-3.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/chart-1.svg",
+      "sha256": "6fd3b49eb641504d1edc92e38bc0be0a4b1c04abc3ca649c896caa5b9ba8e744",
+      "bytes": 7875,
+      "archived_relative_path": "Mb8941a/stage3/chart-1.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/chart-4.svg",
+      "sha256": "0c6ac944bb0f5502aac4648d3c75d8f7688cfbe6faf0c3c444ff7ba5027acd06",
+      "bytes": 5181,
+      "archived_relative_path": "Mb8941a/stage3/chart-4.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/reproduction-hashes.json",
+      "sha256": "4a50e3f04a64e4f853a232853a9a399f22f7ed66db9499c1229f1c1de0757dbf",
+      "bytes": 1059,
+      "archived_relative_path": "Mb8941a/stage3/reproduction-hashes.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/diagnostic-anchors.md",
+      "sha256": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+      "bytes": 6245,
+      "archived_relative_path": "Mb8941a/stage3/diagnostic-anchors.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "Mb8941a/stage3/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/REPRODUCTION.md",
+      "sha256": "836c4013a5d69af17ad5006d2b83bc6609bf9bfd0c12bbb4a18cde747aa68475",
+      "bytes": 520,
+      "archived_relative_path": "Mb8941a/stage3/REPRODUCTION.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/reader-questions.json",
+      "sha256": "9829751bfa646a3b6e5f98c286682810596c8d462a63605a136e0b307fc24c8a",
+      "bytes": 836,
+      "archived_relative_path": "Mb8941a/stage3/reader-questions.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/datapackage.json",
+      "sha256": "c4c1d6e2a250fc69f458b08440ee8b9839ec9f439c619bc7afc8fee9bae64120",
+      "bytes": 7457,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/source-labels.json",
+      "sha256": "339e1d74ee476a481448619b45c0b8c0bd7c6ad21bd9ffa51bd16ca3560ee281",
+      "bytes": 5167,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/.datahubignore",
+      "sha256": "8bed597fb175517b602beb28a3889cc625f45b8f8c6b4f6ca095525961b3a1e3",
+      "bytes": 137,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/README.md",
+      "sha256": "b780a0bdb60c3326d6f1c5b68d1749767cbb71c6b9bda11fd9c5fdfdaf5395b8",
+      "bytes": 6918,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/package-lock.json",
+      "sha256": "15950cdb66e1905ff3c25ac0ecd2bcf3ade422049c47bd8bdf17c8882de5078d",
+      "bytes": 18842,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/package.json",
+      "sha256": "a56cfd0a1e6cc6c814ba85aa5cb36822515fe710d12d8c743f252f93a17db504",
+      "bytes": 219,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/build.test.mjs",
+      "sha256": "411c590c336275939c9793a6d9cc09091c8cf114bd8c537b5eedc2b5f50e2e25",
+      "bytes": 1709,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/fetch.ts",
+      "sha256": "6920599443a818f7d6d03204c43f7f1badc48094bff8a24d3152efd942758259",
+      "bytes": 4445,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/build.ts",
+      "sha256": "4296b8ab1d975182ac19caaecfa6de6fdb29d70755d05aee78903fa892a3c2d8",
+      "bytes": 14555,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/archive/eurostat-reuse.html",
+      "sha256": "4cc370e90b5a080aa183a8d28ede05e6e54907f82aa3ee0c9d3d7657dea5259c",
+      "bytes": 178945,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/archive/insee-accounting-explainer.html",
+      "sha256": "ca59e2335f22dd0a16f615065632ff46478d6c6bbff88bbd139c8a203020cec1",
+      "bytes": 170759,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/archive/insee-reuse.html",
+      "sha256": "b24d448882fade5083b5a7a381793d8c91bb16e41579e03224386393ffbadeac",
+      "bytes": 55588,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/archive/insee-quarterly-debt.html",
+      "sha256": "cc7c3dfe575d76ac541d9b78bd54a58732c4cf74c84851f144b210634f7757df",
+      "bytes": 185827,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/archive/insee-spending-functions.html",
+      "sha256": "12a532188b6e42fad7aaff15909178a31c9d1d1dcd5b02d960c80faa4f245411",
+      "bytes": 160162,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/archive/fiscal.json",
+      "sha256": "482f823a1aa6418d2e0ca5407dd14d2870dd7a229c494feeb1c332e0ba9c7205",
+      "bytes": 67323,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/archive/manifest.json",
+      "sha256": "06c1f4668206a0edc2ce5428510ff4fc4043476b114bd1b10f981a9783e6489f",
+      "bytes": 3506,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/archive/insee-annual-accounts.html",
+      "sha256": "362b206541eba1e0aa01dc6e538b09c98c4732af5609079b4c0c38921fec000b",
+      "bytes": 143460,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/archive/functions.json",
+      "sha256": "24e04200aef4468eca52d1d17121896d94a370bb2058b43a2f1591133196dd78",
+      "bytes": 70372,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/scripts/validate-datapackage.mjs",
+      "sha256": "568629ed759cb7e1f4fbb6404586686583432ab76211bbc52cc68e7e348e9469",
+      "bytes": 7307,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/data/spending-functions.csv",
+      "sha256": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494",
+      "bytes": 467599,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/data/quarterly-debt.csv",
+      "sha256": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307",
+      "bytes": 5237,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/datasets/france-public-finances/data/fiscal-accounts.csv",
+      "sha256": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733",
+      "bytes": 854923,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/site/stories/french-debt-make-charts.mjs",
+      "sha256": "d228ee80c81811f26f340c1ec1e44be2058f3fc20e1d982e08bd7053cbbb3d1a",
+      "bytes": 14401,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/site/stories/package-lock.json",
+      "sha256": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+      "bytes": 120441,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/site/stories/package.json",
+      "sha256": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+      "bytes": 596,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage1/chart-1.png",
+      "sha256": "c797d386b381a32d207262e72871f3094739b89cd780c07b1cde74fbf668c7c2",
+      "bytes": 159338,
+      "archived_relative_path": "M9b1fee/stage1/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage1/chart-2.png",
+      "sha256": "7195eb4e976b2b62ab693e72d12c828754a82fdfc0e36bab43d29e628a2d6722",
+      "bytes": 126671,
+      "archived_relative_path": "M9b1fee/stage1/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage1/READ-ME.md",
+      "sha256": "65d8fab86fd6ce0ee000e244fca14a6f06749407c6327c32194df61b2b5e636c",
+      "bytes": 282,
+      "archived_relative_path": "M9b1fee/stage1/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage1/commission.md",
+      "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+      "bytes": 132,
+      "archived_relative_path": "M9b1fee/stage1/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage2/chart-1.png",
+      "sha256": "c797d386b381a32d207262e72871f3094739b89cd780c07b1cde74fbf668c7c2",
+      "bytes": 159338,
+      "archived_relative_path": "M9b1fee/stage2/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage2/chart-2.png",
+      "sha256": "7195eb4e976b2b62ab693e72d12c828754a82fdfc0e36bab43d29e628a2d6722",
+      "bytes": 126671,
+      "archived_relative_path": "M9b1fee/stage2/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage2/READ-ME.md",
+      "sha256": "78542511ff8ddc7c3696a4c98dcb589bad7c688cb3a39178bb0d95c4596a4bd3",
+      "bytes": 238,
+      "archived_relative_path": "M9b1fee/stage2/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage2/commission.md",
+      "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+      "bytes": 132,
+      "archived_relative_path": "M9b1fee/stage2/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage2/story.md",
+      "sha256": "e64c16cb62a28dc289ecb211d7ac391b853c2ff75424d510239083860b206232",
+      "bytes": 4699,
+      "archived_relative_path": "M9b1fee/stage2/story.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/outline.md",
+      "sha256": "05602b0a022687a62071429b80f002c2aa23ef0011c207163d77a91f1b5e2ad5",
+      "bytes": 9530,
+      "archived_relative_path": "M9b1fee/stage3/outline.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/chart-2.svg",
+      "sha256": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e",
+      "bytes": 6285,
+      "archived_relative_path": "M9b1fee/stage3/chart-2.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/READ-ME.md",
+      "sha256": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+      "bytes": 305,
+      "archived_relative_path": "M9b1fee/stage3/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/chart-1.svg",
+      "sha256": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6",
+      "bytes": 9400,
+      "archived_relative_path": "M9b1fee/stage3/chart-1.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/reproduction-hashes.json",
+      "sha256": "857ac6475520210ec7a1fb22fd560cc20b2c57b41a4aece4c27bae9619db9aca",
+      "bytes": 764,
+      "archived_relative_path": "M9b1fee/stage3/reproduction-hashes.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/diagnostic-anchors.md",
+      "sha256": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+      "bytes": 6245,
+      "archived_relative_path": "M9b1fee/stage3/diagnostic-anchors.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/commission.md",
+      "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+      "bytes": 132,
+      "archived_relative_path": "M9b1fee/stage3/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/REPRODUCTION.md",
+      "sha256": "836c4013a5d69af17ad5006d2b83bc6609bf9bfd0c12bbb4a18cde747aa68475",
+      "bytes": 520,
+      "archived_relative_path": "M9b1fee/stage3/REPRODUCTION.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/reader-questions.json",
+      "sha256": "6648660d7cf31d11ab7d61c5c8cf894618ac322d7bcd8c6131ec36ccd12879d3",
+      "bytes": 878,
+      "archived_relative_path": "M9b1fee/stage3/reader-questions.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/datapackage.json",
+      "sha256": "adab9f438634e63c839cbb9e31b5b81bed21a9e5490ff39ee6f8af1349fb49a0",
+      "bytes": 5794,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/SUMMARY.md",
+      "sha256": "5e486d8669c66a6b9cbc836711ecb9eb79c6a1d4c618c30f8bf68f1006b7e3e5",
+      "bytes": 5274,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/.datahubignore",
+      "sha256": "9cc209bc3d96871ee9afb5d44a6df8ad56cfd44025c2cb1f1c4e2295e6b57b34",
+      "bytes": 108,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/README.md",
+      "sha256": "c19a46898884a6dfb464f8aa42f66546462ce8754e56b03c8473d4e56f6dab31",
+      "bytes": 2396,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/package-lock.json",
+      "sha256": "731056926488af152f89fcd6fa96daf4b4e15de19b50f1b5bbf9a06c109269ca",
+      "bytes": 3685,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/package.json",
+      "sha256": "08aa612b462ad53b04d95f0482059f514faad7fffbe0c2b41bdee484503b85fa",
+      "bytes": 200,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/enrich.ts",
+      "sha256": "aee4ae3bd223dae36266006caddcd2037e1e46b1434683b01e11c368342db466",
+      "bytes": 7205,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/enrich.test.mjs",
+      "sha256": "b9bee9fc9c9d27b25dae9b1cd0a0e93039de739cdc286c0d572796c75789a7d4",
+      "bytes": 7532,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/build.ts",
+      "sha256": "53d764d10a83b3c16e906528ed3529af7b60cb8e133d99b67388c7faff4e583c",
+      "bytes": 5179,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEm.xls",
+      "sha256": "41aa63e8650a305a168a396a55c1dbef19fa2db4af76530383a39166a12e692e",
+      "bytes": 55296,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCd.xls",
+      "sha256": "033dd3a93811377a18b8ff660fa14ffc888f57df1b2969f7ec8134b769814771",
+      "bytes": 503808,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/PROVENANCE.md",
+      "sha256": "584404f5b899886e862b690ad558ad057b11250fd156f57b22c0d169ee546007",
+      "bytes": 1786,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCa.xls",
+      "sha256": "3b90f21dc7a742d88c77081383184dd921db9999bcbcffe0310518e84bf86c4a",
+      "bytes": 35328,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCw.xls",
+      "sha256": "bb84bf8a80599c0f7025f95ac36c4fd97f7bb9459e9a42f5eb8e3dc31854805e",
+      "bytes": 131072,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCm.xls",
+      "sha256": "9dde869ade8ce6740e644b8a24e87c65ac8111f7453c63d8a8bd7a6351b6ef32",
+      "bytes": 55808,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEd.xls",
+      "sha256": "ba7aa32a1e1dd6154179c581ee140e4b9bccbbc191ed521346142a14bc1701a7",
+      "bytes": 492032,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEw.xls",
+      "sha256": "63a321d3944ab12501ea5278393fd0f89e900b1ff7e7e849fe851f43788db34b",
+      "bytes": 128000,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEa.xls",
+      "sha256": "05adfd66369bb5ea596e314cd1de18231ff41bbb150dbda66b57b2993ff9b77b",
+      "bytes": 35328,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/scripts/validate-datapackage.mjs",
+      "sha256": "24513e1cfbfa759d5061053ad75acd454711c2ba629522997870688976866141",
+      "bytes": 4565,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-year.csv",
+      "sha256": "0ae43a2a7a108d0f8452769463ea6739f70d020f667f4c4b7b526d66e362238c",
+      "bytes": 676,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-monthly.csv",
+      "sha256": "3f2ea990044bc1df25dff8ad91bf224a6cda5bb5fc3ca8486061a40c23a2a696",
+      "bytes": 8279,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-monthly.csv",
+      "sha256": "10ebf2a9869f95c75ab9415ae19f3b8a744a7558eca146c1ad499264fc96df28",
+      "bytes": 8042,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-daily.csv",
+      "sha256": "a4d463ad97ce678cfa5ae2e92f5eabcae7b589a6b4c790631e20b2f50969a19b",
+      "bytes": 168877,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-daily.csv",
+      "sha256": "fe4e07893cfdba6905e8a955cb630308668ce760af21b351de005df2c5228dd1",
+      "bytes": 173278,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-weekly.csv",
+      "sha256": "dc7525ff10d557d82acf6b70fa37f64348660946a00a7695b8cc9967b8df3d16",
+      "bytes": 34846,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-year.csv",
+      "sha256": "b7c7e5b8b314c419d0cdc8cf413b84c8655b2917801c7579f3820ecc8014fe12",
+      "bytes": 687,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-weekly.csv",
+      "sha256": "19a2ae03f5d6dd4879c9462e039a1eb25044a44d8994404c6b93b86747a401fb",
+      "bytes": 35953,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/site/stories/package-lock.json",
+      "sha256": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+      "bytes": 120441,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/site/stories/package.json",
+      "sha256": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+      "bytes": 596,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/site/stories/oil-below-zero-make-charts.mjs",
+      "sha256": "46b34c8c1108b7a933aceb82e168c0b6fda57c53fe56f6b7e7fbfc8e9d80e0fd",
+      "bytes": 7553,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage1/chart-1.png",
+      "sha256": "8793d444cb68caeb5334ffeaa12831c60b66169562841147901c9a3128562f44",
+      "bytes": 140094,
+      "archived_relative_path": "Mbe53b2/stage1/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage1/chart-2.png",
+      "sha256": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1",
+      "bytes": 117243,
+      "archived_relative_path": "Mbe53b2/stage1/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage1/READ-ME.md",
+      "sha256": "65d8fab86fd6ce0ee000e244fca14a6f06749407c6327c32194df61b2b5e636c",
+      "bytes": 282,
+      "archived_relative_path": "Mbe53b2/stage1/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage1/commission.md",
+      "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+      "bytes": 132,
+      "archived_relative_path": "Mbe53b2/stage1/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage2/chart-1.png",
+      "sha256": "8793d444cb68caeb5334ffeaa12831c60b66169562841147901c9a3128562f44",
+      "bytes": 140094,
+      "archived_relative_path": "Mbe53b2/stage2/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage2/chart-2.png",
+      "sha256": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1",
+      "bytes": 117243,
+      "archived_relative_path": "Mbe53b2/stage2/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage2/READ-ME.md",
+      "sha256": "78542511ff8ddc7c3696a4c98dcb589bad7c688cb3a39178bb0d95c4596a4bd3",
+      "bytes": 238,
+      "archived_relative_path": "Mbe53b2/stage2/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage2/commission.md",
+      "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+      "bytes": 132,
+      "archived_relative_path": "Mbe53b2/stage2/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage2/story.md",
+      "sha256": "f0c4e44aadb66928fa5bb718808672fe7504be397f79f77cb72cf3516e3ecd7f",
+      "bytes": 4356,
+      "archived_relative_path": "Mbe53b2/stage2/story.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/outline.md",
+      "sha256": "6c56c9d1e1442bd0424c0a17c7ac1d3b3d99e620bd25c4b2a8ddb2f9a74f426c",
+      "bytes": 14308,
+      "archived_relative_path": "Mbe53b2/stage3/outline.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/chart-2.svg",
+      "sha256": "5068c84cdb3a54fd82e44acd7b91c5508b84e0639cfc4fba1e75b181bfb50df6",
+      "bytes": 9318,
+      "archived_relative_path": "Mbe53b2/stage3/chart-2.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/READ-ME.md",
+      "sha256": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+      "bytes": 305,
+      "archived_relative_path": "Mbe53b2/stage3/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/chart-1.svg",
+      "sha256": "c6f3292947d7837281701bc04e14f6dd6235d0cfebd778455a85f79bfa7cd3f2",
+      "bytes": 10627,
+      "archived_relative_path": "Mbe53b2/stage3/chart-1.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/reproduction-hashes.json",
+      "sha256": "fa805b25a95293f4d760723ffa4caa9b3a08f218469e091ea6bd48f39d121cc1",
+      "bytes": 771,
+      "archived_relative_path": "Mbe53b2/stage3/reproduction-hashes.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/diagnostic-anchors.md",
+      "sha256": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+      "bytes": 6245,
+      "archived_relative_path": "Mbe53b2/stage3/diagnostic-anchors.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/commission.md",
+      "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+      "bytes": 132,
+      "archived_relative_path": "Mbe53b2/stage3/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/REPRODUCTION.md",
+      "sha256": "836c4013a5d69af17ad5006d2b83bc6609bf9bfd0c12bbb4a18cde747aa68475",
+      "bytes": 520,
+      "archived_relative_path": "Mbe53b2/stage3/REPRODUCTION.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/reader-questions.json",
+      "sha256": "6648660d7cf31d11ab7d61c5c8cf894618ac322d7bcd8c6131ec36ccd12879d3",
+      "bytes": 878,
+      "archived_relative_path": "Mbe53b2/stage3/reader-questions.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/datapackage.json",
+      "sha256": "adab9f438634e63c839cbb9e31b5b81bed21a9e5490ff39ee6f8af1349fb49a0",
+      "bytes": 5794,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/SUMMARY.md",
+      "sha256": "5e486d8669c66a6b9cbc836711ecb9eb79c6a1d4c618c30f8bf68f1006b7e3e5",
+      "bytes": 5274,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/.datahubignore",
+      "sha256": "9cc209bc3d96871ee9afb5d44a6df8ad56cfd44025c2cb1f1c4e2295e6b57b34",
+      "bytes": 108,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/README.md",
+      "sha256": "c19a46898884a6dfb464f8aa42f66546462ce8754e56b03c8473d4e56f6dab31",
+      "bytes": 2396,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/package-lock.json",
+      "sha256": "731056926488af152f89fcd6fa96daf4b4e15de19b50f1b5bbf9a06c109269ca",
+      "bytes": 3685,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/package.json",
+      "sha256": "08aa612b462ad53b04d95f0482059f514faad7fffbe0c2b41bdee484503b85fa",
+      "bytes": 200,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/enrich.ts",
+      "sha256": "aee4ae3bd223dae36266006caddcd2037e1e46b1434683b01e11c368342db466",
+      "bytes": 7205,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/enrich.test.mjs",
+      "sha256": "b9bee9fc9c9d27b25dae9b1cd0a0e93039de739cdc286c0d572796c75789a7d4",
+      "bytes": 7532,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/build.ts",
+      "sha256": "53d764d10a83b3c16e906528ed3529af7b60cb8e133d99b67388c7faff4e583c",
+      "bytes": 5179,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEm.xls",
+      "sha256": "41aa63e8650a305a168a396a55c1dbef19fa2db4af76530383a39166a12e692e",
+      "bytes": 55296,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCd.xls",
+      "sha256": "033dd3a93811377a18b8ff660fa14ffc888f57df1b2969f7ec8134b769814771",
+      "bytes": 503808,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/archive/PROVENANCE.md",
+      "sha256": "584404f5b899886e862b690ad558ad057b11250fd156f57b22c0d169ee546007",
+      "bytes": 1786,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCa.xls",
+      "sha256": "3b90f21dc7a742d88c77081383184dd921db9999bcbcffe0310518e84bf86c4a",
+      "bytes": 35328,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCw.xls",
+      "sha256": "bb84bf8a80599c0f7025f95ac36c4fd97f7bb9459e9a42f5eb8e3dc31854805e",
+      "bytes": 131072,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCm.xls",
+      "sha256": "9dde869ade8ce6740e644b8a24e87c65ac8111f7453c63d8a8bd7a6351b6ef32",
+      "bytes": 55808,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEd.xls",
+      "sha256": "ba7aa32a1e1dd6154179c581ee140e4b9bccbbc191ed521346142a14bc1701a7",
+      "bytes": 492032,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEw.xls",
+      "sha256": "63a321d3944ab12501ea5278393fd0f89e900b1ff7e7e849fe851f43788db34b",
+      "bytes": 128000,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEa.xls",
+      "sha256": "05adfd66369bb5ea596e314cd1de18231ff41bbb150dbda66b57b2993ff9b77b",
+      "bytes": 35328,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/scripts/validate-datapackage.mjs",
+      "sha256": "24513e1cfbfa759d5061053ad75acd454711c2ba629522997870688976866141",
+      "bytes": 4565,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/data/brent-year.csv",
+      "sha256": "0ae43a2a7a108d0f8452769463ea6739f70d020f667f4c4b7b526d66e362238c",
+      "bytes": 676,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/data/wti-monthly.csv",
+      "sha256": "3f2ea990044bc1df25dff8ad91bf224a6cda5bb5fc3ca8486061a40c23a2a696",
+      "bytes": 8279,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/data/brent-monthly.csv",
+      "sha256": "10ebf2a9869f95c75ab9415ae19f3b8a744a7558eca146c1ad499264fc96df28",
+      "bytes": 8042,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/data/brent-daily.csv",
+      "sha256": "a4d463ad97ce678cfa5ae2e92f5eabcae7b589a6b4c790631e20b2f50969a19b",
+      "bytes": 168877,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/data/wti-daily.csv",
+      "sha256": "fe4e07893cfdba6905e8a955cb630308668ce760af21b351de005df2c5228dd1",
+      "bytes": 173278,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/data/brent-weekly.csv",
+      "sha256": "dc7525ff10d557d82acf6b70fa37f64348660946a00a7695b8cc9967b8df3d16",
+      "bytes": 34846,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/data/wti-year.csv",
+      "sha256": "b7c7e5b8b314c419d0cdc8cf413b84c8655b2917801c7579f3820ecc8014fe12",
+      "bytes": 687,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/datasets/energy-and-commodities/oil-prices/data/wti-weekly.csv",
+      "sha256": "19a2ae03f5d6dd4879c9462e039a1eb25044a44d8994404c6b93b86747a401fb",
+      "bytes": 35953,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/site/stories/package-lock.json",
+      "sha256": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+      "bytes": 120441,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/site/stories/package.json",
+      "sha256": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+      "bytes": 596,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/site/stories/oil-below-zero-make-charts.mjs",
+      "sha256": "30e8ee761c5411dad7d5151463ba83271affb9ad442922c1e4bea7f98b962ac6",
+      "bytes": 8972,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M1d3194/stage1/chart-4.png",
+      "sha256": "9d53ea89520bd4bf1a553844f091f7d12a904f27b965f1f56abc964ee762af31",
+      "bytes": 134546,
+      "archived_relative_path": "M1d3194/stage1/chart-4.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage1/chart-1.png",
+      "sha256": "6d3dcac7dedbf1ee37ab1835f8c1d082075b37135f1385e488a7a748c957db8e",
+      "bytes": 121518,
+      "archived_relative_path": "M1d3194/stage1/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage1/chart-3.png",
+      "sha256": "25c13eaa59d5d3e30c9c592aaa1650009055379b9f8218e7970edda82fa5f3eb",
+      "bytes": 88639,
+      "archived_relative_path": "M1d3194/stage1/chart-3.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage1/chart-2.png",
+      "sha256": "b364dd4e03f04d06a95a506c6f35b000904562c57ff3d5e1106f21dc39574c7e",
+      "bytes": 106537,
+      "archived_relative_path": "M1d3194/stage1/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage1/READ-ME.md",
+      "sha256": "65d8fab86fd6ce0ee000e244fca14a6f06749407c6327c32194df61b2b5e636c",
+      "bytes": 282,
+      "archived_relative_path": "M1d3194/stage1/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage1/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "M1d3194/stage1/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage2/chart-4.png",
+      "sha256": "9d53ea89520bd4bf1a553844f091f7d12a904f27b965f1f56abc964ee762af31",
+      "bytes": 134546,
+      "archived_relative_path": "M1d3194/stage2/chart-4.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage2/chart-1.png",
+      "sha256": "6d3dcac7dedbf1ee37ab1835f8c1d082075b37135f1385e488a7a748c957db8e",
+      "bytes": 121518,
+      "archived_relative_path": "M1d3194/stage2/chart-1.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage2/chart-3.png",
+      "sha256": "25c13eaa59d5d3e30c9c592aaa1650009055379b9f8218e7970edda82fa5f3eb",
+      "bytes": 88639,
+      "archived_relative_path": "M1d3194/stage2/chart-3.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage2/chart-2.png",
+      "sha256": "b364dd4e03f04d06a95a506c6f35b000904562c57ff3d5e1106f21dc39574c7e",
+      "bytes": 106537,
+      "archived_relative_path": "M1d3194/stage2/chart-2.png",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage2/READ-ME.md",
+      "sha256": "78542511ff8ddc7c3696a4c98dcb589bad7c688cb3a39178bb0d95c4596a4bd3",
+      "bytes": 238,
+      "archived_relative_path": "M1d3194/stage2/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage2/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "M1d3194/stage2/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage2/story.md",
+      "sha256": "eec6f3b5f30e19ba607fcab8ca14647e84ff2847737b6ffa410ac73bdc6a4f0c",
+      "bytes": 5753,
+      "archived_relative_path": "M1d3194/stage2/story.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/outline.md",
+      "sha256": "b7860bb061d05411c2d8326afef1a2f6fec440a5961f603fe87137d2b106762f",
+      "bytes": 11710,
+      "archived_relative_path": "M1d3194/stage3/outline.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/chart-2.svg",
+      "sha256": "9ef8612fe59fb566228ae3e35ce1e5dd2e215760f549e4437db953d860d336a3",
+      "bytes": 8848,
+      "archived_relative_path": "M1d3194/stage3/chart-2.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/READ-ME.md",
+      "sha256": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+      "bytes": 305,
+      "archived_relative_path": "M1d3194/stage3/READ-ME.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/chart-3.svg",
+      "sha256": "73ebbf9f9ee33cac5402f5054f61b883db60c95af9c280c54caf2c06daf52849",
+      "bytes": 5303,
+      "archived_relative_path": "M1d3194/stage3/chart-3.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/chart-1.svg",
+      "sha256": "2de44492dbad1166874749f9e1af3141dfbc4fb9dfeaeb04e261bb189ab702ee",
+      "bytes": 9605,
+      "archived_relative_path": "M1d3194/stage3/chart-1.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/chart-4.svg",
+      "sha256": "8c5c07b2ba6a511a21d080a1ac4ac424d4caed6dc677390def7262884627d0be",
+      "bytes": 7206,
+      "archived_relative_path": "M1d3194/stage3/chart-4.svg",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/reproduction-hashes.json",
+      "sha256": "0961245c7831df8171cf54e0a2ba9ee4a03d676bac1273643a98513a95c54339",
+      "bytes": 1077,
+      "archived_relative_path": "M1d3194/stage3/reproduction-hashes.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/diagnostic-anchors.md",
+      "sha256": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+      "bytes": 6245,
+      "archived_relative_path": "M1d3194/stage3/diagnostic-anchors.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/commission.md",
+      "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+      "bytes": 113,
+      "archived_relative_path": "M1d3194/stage3/commission.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/REPRODUCTION.md",
+      "sha256": "836c4013a5d69af17ad5006d2b83bc6609bf9bfd0c12bbb4a18cde747aa68475",
+      "bytes": 520,
+      "archived_relative_path": "M1d3194/stage3/REPRODUCTION.md",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/reader-questions.json",
+      "sha256": "9829751bfa646a3b6e5f98c286682810596c8d462a63605a136e0b307fc24c8a",
+      "bytes": 836,
+      "archived_relative_path": "M1d3194/stage3/reader-questions.json",
+      "disposition": "archive-byte-exact"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/datapackage.json",
+      "sha256": "c4c1d6e2a250fc69f458b08440ee8b9839ec9f439c619bc7afc8fee9bae64120",
+      "bytes": 7457,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/source-labels.json",
+      "sha256": "339e1d74ee476a481448619b45c0b8c0bd7c6ad21bd9ffa51bd16ca3560ee281",
+      "bytes": 5167,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/.datahubignore",
+      "sha256": "8bed597fb175517b602beb28a3889cc625f45b8f8c6b4f6ca095525961b3a1e3",
+      "bytes": 137,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/README.md",
+      "sha256": "b780a0bdb60c3326d6f1c5b68d1749767cbb71c6b9bda11fd9c5fdfdaf5395b8",
+      "bytes": 6918,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/package-lock.json",
+      "sha256": "15950cdb66e1905ff3c25ac0ecd2bcf3ade422049c47bd8bdf17c8882de5078d",
+      "bytes": 18842,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/package.json",
+      "sha256": "a56cfd0a1e6cc6c814ba85aa5cb36822515fe710d12d8c743f252f93a17db504",
+      "bytes": 219,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/build.test.mjs",
+      "sha256": "411c590c336275939c9793a6d9cc09091c8cf114bd8c537b5eedc2b5f50e2e25",
+      "bytes": 1709,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/fetch.ts",
+      "sha256": "6920599443a818f7d6d03204c43f7f1badc48094bff8a24d3152efd942758259",
+      "bytes": 4445,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/build.ts",
+      "sha256": "4296b8ab1d975182ac19caaecfa6de6fdb29d70755d05aee78903fa892a3c2d8",
+      "bytes": 14555,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/archive/eurostat-reuse.html",
+      "sha256": "4cc370e90b5a080aa183a8d28ede05e6e54907f82aa3ee0c9d3d7657dea5259c",
+      "bytes": 178945,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/archive/insee-accounting-explainer.html",
+      "sha256": "ca59e2335f22dd0a16f615065632ff46478d6c6bbff88bbd139c8a203020cec1",
+      "bytes": 170759,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/archive/insee-reuse.html",
+      "sha256": "b24d448882fade5083b5a7a381793d8c91bb16e41579e03224386393ffbadeac",
+      "bytes": 55588,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/archive/insee-quarterly-debt.html",
+      "sha256": "cc7c3dfe575d76ac541d9b78bd54a58732c4cf74c84851f144b210634f7757df",
+      "bytes": 185827,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/archive/insee-spending-functions.html",
+      "sha256": "12a532188b6e42fad7aaff15909178a31c9d1d1dcd5b02d960c80faa4f245411",
+      "bytes": 160162,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/archive/fiscal.json",
+      "sha256": "482f823a1aa6418d2e0ca5407dd14d2870dd7a229c494feeb1c332e0ba9c7205",
+      "bytes": 67323,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/archive/manifest.json",
+      "sha256": "06c1f4668206a0edc2ce5428510ff4fc4043476b114bd1b10f981a9783e6489f",
+      "bytes": 3506,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/archive/insee-annual-accounts.html",
+      "sha256": "362b206541eba1e0aa01dc6e538b09c98c4732af5609079b4c0c38921fec000b",
+      "bytes": 143460,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/archive/functions.json",
+      "sha256": "24e04200aef4468eca52d1d17121896d94a370bb2058b43a2f1591133196dd78",
+      "bytes": 70372,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/scripts/validate-datapackage.mjs",
+      "sha256": "568629ed759cb7e1f4fbb6404586686583432ab76211bbc52cc68e7e348e9469",
+      "bytes": 7307,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/data/spending-functions.csv",
+      "sha256": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494",
+      "bytes": 467599,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/data/quarterly-debt.csv",
+      "sha256": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307",
+      "bytes": 5237,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/datasets/france-public-finances/data/fiscal-accounts.csv",
+      "sha256": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733",
+      "bytes": 854923,
+      "archived_relative_path": null,
+      "disposition": "omitted-pinned-source"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/site/stories/french-debt-make-charts.mjs",
+      "sha256": "69ca4d6ec2ae6e0f445e6c4ae332a76ab9f6ca44e0913f2fb17ea0d71434a466",
+      "bytes": 14308,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/site/stories/package-lock.json",
+      "sha256": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+      "bytes": 120441,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/site/stories/package.json",
+      "sha256": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+      "bytes": 596,
+      "archived_relative_path": null,
+      "disposition": "omitted-reproduction-source-preserved-in-writer-archive"
+    }
+  ],
+  "dependencies": [
+    {
+      "original_relative_path": "M30755c/stage3/site/stories/node_modules",
+      "disposition": "omitted-dependency-symlink-not-followed"
+    },
+    {
+      "original_relative_path": "Mb8941a/stage3/site/stories/node_modules",
+      "disposition": "omitted-dependency-symlink-not-followed"
+    },
+    {
+      "original_relative_path": "M9b1fee/stage3/site/stories/node_modules",
+      "disposition": "omitted-dependency-symlink-not-followed"
+    },
+    {
+      "original_relative_path": "Mbe53b2/stage3/site/stories/node_modules",
+      "disposition": "omitted-dependency-symlink-not-followed"
+    },
+    {
+      "original_relative_path": "M1d3194/stage3/site/stories/node_modules",
+      "disposition": "omitted-dependency-symlink-not-followed"
+    }
+  ],
+  "discrepancies": [],
+  "archived_files": 108,
+  "archived_bytes": 4124670,
+  "all_original_regular_files": 243,
+  "policy": "Stage1/stage2 regular files and stage3 top-level regular files only. No packet edits; no node_modules traversal; original pinned sources/raw workspace remain provenance."
+}
