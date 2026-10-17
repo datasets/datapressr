@@ -1,0 +1,97 @@
+{
+  "packet_code": "M1d3194",
+  "stage": 1,
+  "status": "frozen",
+  "basis": "Commission, stage1 instructions and four rendered PNGs only; no prose released.",
+  "access_log": [
+    {
+      "order": 1,
+      "operation": "exec_command ls -la",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage1",
+      "result": "Listed direct entries only; did not open parent or sibling directories."
+    },
+    {
+      "order": 2,
+      "operation": "exec_command cat, first file",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage1/commission.md",
+      "result": "Read commission: Why is there a French debt crisis? Fixed supplied data; commissioned prose length 300–700 words."
+    },
+    {
+      "order": 3,
+      "operation": "exec_command cat, second file",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage1/READ-ME.md",
+      "result": "Read restrictions and instruction to freeze spontaneous notes before prose."
+    },
+    {
+      "order": 4,
+      "operation": "view_image via functions.exec; default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage1/chart-1.png",
+      "result": "Rendered and visually inspected once."
+    },
+    {
+      "order": 5,
+      "operation": "view_image via functions.exec; default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage1/chart-2.png",
+      "result": "Rendered and visually inspected once."
+    },
+    {
+      "order": 6,
+      "operation": "view_image via functions.exec; default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage1/chart-3.png",
+      "result": "Rendered and visually inspected once."
+    },
+    {
+      "order": 7,
+      "operation": "view_image via functions.exec; default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M1d3194/stage1/chart-4.png",
+      "result": "Rendered and visually inspected once."
+    },
+    {
+      "order": 8,
+      "operation": "exec_command python3 exclusive-create JSON and chmod 0444",
+      "path": "/tmp/datapressr-reader-M1d3194-stage1.json",
+      "result": "Write these frozen stage1 notes; no other input files read."
+    }
+  ],
+  "chart_notes": [
+    {
+      "chart": 1,
+      "what_happened": "Government debt nearly doubled relative to GDP, from 59.7% at end-2000 to 119.0% in mid-2026 (€3.6 trillion). It rose particularly sharply between end-2007 and end-2009 (+18.6 points) and between end-2019 and end-2020 (+16.7 points). After falling to 109.5% at end-2023 it rose again.",
+      "why_i_think_it_happened": "The timing makes me think of the financial crisis and pandemic as shocks, but those causes are my associations, not stated or demonstrated in this chart. The line also suggests debt accumulation between shocks.",
+      "unclear_or_unsupported": "No split between extra borrowing and GDP movements, so the ratio alone cannot establish the cause of increases. It does not explain why the recent increase constitutes a crisis. The mid-2026 endpoint is not an end-year observation, despite the note about using Q4 for comparisons.",
+      "readability": "All substantive labels and source note readable."
+    },
+    {
+      "chart": 2,
+      "what_happened": "France borrowed in all 31 years from 1995 to 2025 and exceeded the 3% reference in 23 years. Deficits peaked around 2009 and 2020. The 2025 deficit was 5.1% of GDP. Interest costs declined from 3.6% near the start to 1.3% in 2020, then rose to 2.2% in 2025.",
+      "why_i_think_it_happened": "Persistent borrowing is a plausible explanation for accumulated debt. Since borrowing exceeds interest every year since 2002, spending excluding interest also exceeded revenue in those years. Falling interest costs did not eliminate borrowing; it is not solely an interest-payment problem.",
+      "unclear_or_unsupported": "The specific reasons for the non-interest imbalance are absent. The footer says France had a larger deficit than the EU27 in 26 of 31 years, but the comparator series is not shown for inspection.",
+      "readability": "The color/text labels make bars and line interpretable. Reference-line label overlays bars but remains readable."
+    },
+    {
+      "chart": 3,
+      "what_happened": "In 2025 France had the highest revenue share (52.1%) and spending share (57.2%) among the displayed countries and EU aggregate, and the largest deficit (5.1%). Its spending exceeded the EU27 aggregate by more than its revenue did.",
+      "why_i_think_it_happened": "This suggests the imbalance coexists with already high public revenue and still higher spending. It makes relative spending levels look relevant to the deficit, though it does not explain why those levels were chosen.",
+      "unclear_or_unsupported": "A one-year cross-section cannot show the causes of long-term debt growth or establish what spending/revenue level is appropriate. The selection of comparators is unexplained. Germany’s stated deficit differs by 0.1 point from rounded endpoints, which the note explains.",
+      "readability": "Numbers and categories readable. Bottom axis label and source/rounding note occupy overlapping vertical space, making the bottom cramped, though year and units can be recovered."
+    },
+    {
+      "chart": 4,
+      "what_happened": "From 1995 to 2024, old-age spending rose by 2.4 GDP points and health by 2.0, while general public services including interest fell by 2.1, including a 1.6-point fall in debt interest. Other displayed categories moved less. Total spending rose from 56.1% to 57.3% of GDP.",
+      "why_i_think_it_happened": "The composition of spending shifted toward old age and health; savings in interest and some other categories offset much of those increases. Aging comes to mind as a possible explanation, but demographic evidence is not supplied.",
+      "unclear_or_unsupported": "This shows changes in GDP shares rather than absolute spending changes. It does not establish the causes of old-age or health increases or connect each category to borrowing. Endpoint 2024 differs from the previous chart’s 2025. Five omitted categories each changed by less than 0.3 points, so shown bars are not a full accounting on their own.",
+      "readability": "Bottom axis title overlaps the final source/definition line. I can read the interval as 1995 to 2024 and unit as points of GDP, and read the source as Eurostat gov_10a_exp (COFOG), 2024 provisional. The bottom is unnecessarily crowded; main bars and values are clear."
+    }
+  ],
+  "overall_spontaneous_interpretation": {
+    "what_happened": "Debt rose over decades, with two large jumps and a renewed rise after 2023. Persistent deficits accompany this, despite a long period of cheaper interest. France spends and raises more relative to GDP than the displayed peers, with spending further above peers than revenue. Within spending, old age and health have taken more GDP share while interest has taken less.",
+    "why_i_think_it_happened": "The charts suggest repeated non-interest fiscal shortfalls and major shocks together explain debt accumulation. Changing spending composition toward old age and health may help explain budget pressure, but the causal chain is not fully established.",
+    "remaining_questions": "Why a crisis now, rather than merely high and rising debt? No financing-market pressure, refinancing exposure, interest-rate outlook, political constraints, revenue history, or GDP-growth decomposition is shown. I cannot assign the observed debt increase quantitatively to the categories or shocks from these charts alone."
+  },
+  "operational_limitations": [
+    "All four PNGs viewed in numeric order, once each, with default high-detail image tool; no OCR, raw data, external context, prose, source repositories, mappings or other reviews accessed.",
+    "Chart 3 and chart 4 have crowded/overlapping bottom text; I did not reopen or crop images.",
+    "No scores or checklist applied. Notes are frozen before any subsequent release."
+  ],
+  "next_stage": "Await custodian release; do not revise these notes."
+}
