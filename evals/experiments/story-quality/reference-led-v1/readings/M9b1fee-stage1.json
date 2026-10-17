@@ -1,0 +1,33 @@
+{
+  "packet_code": "M9b1fee",
+  "stage": 1,
+  "status": "Frozen spontaneous reading; no checklist or scores",
+  "commission": "Why did the price of oil go below zero in April 2020?",
+  "accessed_paths_in_order": [
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage1",
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage1/READ-ME.md",
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage1/commission.md",
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage1/chart-1.png",
+    "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage1/chart-2.png"
+  ],
+  "access_or_order_limitations": "None. Listed only the permitted directory, read instructions and commission, and viewed both PNGs in numeric order using the image tool. No outside sources accessed. The first attempt to save notes failed because python was unavailable; retried with python3.",
+  "chart_readings": [
+    {
+      "chart": "chart-1.png",
+      "what_happened": "WTI and Brent both fell sharply during March and April 2020, but WTI alone plunged below zero on April 20, to minus $36.98 per barrel. Brent stayed at $17.36 that day. WTI was positive again the next day, and both recovered to roughly the mid-$30s by late May. The negative price was a brief exception within a broader slump.",
+      "why_i_think_it_happened": "The comparison makes me suspect a problem specific to WTI at that moment, superimposed on something depressing both oil prices. The chart gives no mechanism for either event.",
+      "unclear_unsupported_or_unreadable": "The title says only WTI went negative, but the figure compares only two benchmarks, so I read that claim as confined to this pair and period. I cannot tell why a seller would accept a negative price, what makes Cushing WTI different from Brent, or what triggered the plunge and reversal. There is no visible data source. The lower-left annotations are readable but their purpose is not always obvious, especially March 31 and the weekly average. All text is legible."
+    },
+    {
+      "chart": "chart-2.png",
+      "what_happened": "Both monthly average prices fell about 71% between January and April 2020: WTI from $57.52 to $16.55 and Brent from $63.65 to $18.38. This was much larger than the fluctuations in 2019. Prices recovered substantially later in 2020 but ended below their January levels. Brent remained above WTI in these monthly averages.",
+      "why_i_think_it_happened": "Their closely matched decline suggests a shared market-wide shock; the figure supplies no evidence identifying it. Monthly averaging helps explain why a single negative day does not produce a negative April average.",
+      "unclear_unsupported_or_unreadable": "The causal question remains unanswered. There are no demand, supply, inventory, storage, or transaction-mechanics measures. There is no visible data source. Month labels are spaced widely, although the January and April annotations make the main comparison clear. All text is readable."
+    }
+  ],
+  "overall": {
+    "what_happened": "A broad oil-price collapse culminated in April 2020. Within it, one WTI daily price briefly went deeply negative while Brent did not. Both benchmarks nevertheless lost about the same percentage in monthly averages from January to April and later recovered part of the loss.",
+    "why_i_think_it_happened": "I infer a shared downward pressure plus an additional WTI-specific short-lived disruption. The images do not establish what those pressures were. I cannot answer the commissioned why question from them alone.",
+    "unclear_unsupported_or_unreadable": "The charts establish timing, size, duration, and comparison. They do not explain the economics of negative prices or the reason for the WTI/Brent difference. I would need prose or additional evidence connecting the price movements to a mechanism. No unreadable content."
+  }
+}

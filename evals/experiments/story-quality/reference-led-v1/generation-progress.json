@@ -945,6 +945,184 @@
       "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
       "skill_ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
       "skill_tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7"
+    },
+    {
+      "event": "finish",
+      "sequence": 3,
+      "slot_id": "q03-wti-negative-r1-candidate",
+      "at": "2026-10-17T22:20:05.982845+00:00",
+      "exit_code": 0,
+      "stop_reasons": [],
+      "metadata": {
+        "run_id": "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+        "case_id": "q03-wti-negative",
+        "domain": "story",
+        "case_hash": "78afac2584621952bf39f0b3569dbdf206d51618391116e3a0e74ee4ab713ca6",
+        "skill": {
+          "name": "story",
+          "ref": "77c8c357f78390b1a986e9d684e5512587d245ab",
+          "tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7",
+          "dirty": false
+        },
+        "harness": {
+          "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+          "dirty": false,
+          "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+        },
+        "writer": {
+          "vendor": "claude",
+          "model": "claude-opus-5-5",
+          "effort_requested": "high",
+          "model_actual": "claude-opus-5-5",
+          "cli_version": "2.1.302",
+          "prompt_sha256": "5608493b7e9092a497f0b91c862a778548d6e3b90cc9c33fa45b635c726a76ac"
+        },
+        "isolation": {
+          "canary_run_id": "20261017-2136-canary-claude-haiku-5-5-1",
+          "network": false,
+          "leaks": []
+        },
+        "started_at": "2026-10-17T22:08:26.254Z",
+        "duration_ms": 696739,
+        "turns": 51,
+        "cost_usd": 2.6006006,
+        "cost_basis": "list",
+        "usage": {
+          "input_tokens": 78,
+          "cache_creation_input_tokens": 110153,
+          "cache_read_input_tokens": 2737223,
+          "output_tokens": 58581,
+          "output_tokens_details": {
+            "thinking_tokens": 23640
+          },
+          "server_tool_use": {
+            "web_search_requests": 0,
+            "web_fetch_requests": 0
+          },
+          "service_tier": "standard",
+          "cache_creation": {
+            "ephemeral_1h_input_tokens": 110153,
+            "ephemeral_5m_input_tokens": 0
+          },
+          "inference_geo": "global",
+          "iterations": [
+            {
+              "input_tokens": 2,
+              "output_tokens": 1213,
+              "cache_read_input_tokens": 114167,
+              "cache_creation_input_tokens": 1259,
+              "cache_creation": {
+                "ephemeral_5m_input_tokens": 0,
+                "ephemeral_1h_input_tokens": 1259
+              },
+              "type": "message"
+            }
+          ],
+          "speed": "standard",
+          "fallback_credit": null
+        },
+        "flags": [],
+        "transcript_sha256": "22ef204194779bbcea5497973a41c9f184708c13c8f53533f1c5e581e8808d59",
+        "workspace_sha256": "21dc2d4f94f473387b7ce19161dc86957eaaff1ca7a93b0ad2013de15ef2f6f3"
+      },
+      "check_summary": {
+        "ledger": {
+          "schema": 1,
+          "kind": "check",
+          "at": "2026-10-17T22:20:05.532Z",
+          "run_id": "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+          "checker": "story",
+          "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+          "failed": [],
+          "warned": [],
+          "passed": 7
+        }
+      },
+      "artifacts": [
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-day.svg",
+          "bytes": 9400,
+          "sha256": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-editorial-review.md",
+          "bytes": 9115,
+          "sha256": "d454beb5598b7dcd6daeed2813de3eeedbea900d89bca9d45c14f8e84256e141"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-make-charts.mjs",
+          "bytes": 7553,
+          "sha256": "46b34c8c1108b7a933aceb82e168c0b6fda57c53fe56f6b7e7fbfc8e9d80e0fd"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-months.svg",
+          "bytes": 6285,
+          "sha256": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-outline-review.md",
+          "bytes": 5389,
+          "sha256": "762c6556c72b95dff4124809a1d2d0db64445fa8ed8976d69dffa6bd1a6bdfe3"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero-outline.md",
+          "bytes": 9747,
+          "sha256": "0f4f4821ca3f5a5c22b225eb5758455c2bf1e1324bc6a5d89bef2d04c0174501"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/artefacts/site/stories/oil-below-zero.md",
+          "bytes": 7018,
+          "sha256": "7c9a080eee111d62591394043a7424725d5c58dbe7b50c3ff5db2362466076e9"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/checks.json",
+          "bytes": 1781,
+          "sha256": "b4cd2b0830b18aaba255ad62fe0f55bfa0ff25d7a9e48463b71f3c3b4d977721"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/run.json",
+          "bytes": 3407,
+          "sha256": "2d505b2b69749623a6c9fea2ac6858e5c64b436b273b8573b72f933fa5837025"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/transcript.jsonl",
+          "bytes": 773369,
+          "sha256": "22ef204194779bbcea5497973a41c9f184708c13c8f53533f1c5e581e8808d59"
+        },
+        {
+          "path": "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1/workspace.tar",
+          "bytes": 3030528,
+          "sha256": "21dc2d4f94f473387b7ce19161dc86957eaaff1ca7a93b0ad2013de15ef2f6f3"
+        }
+      ],
+      "log": "/tmp/datapressr-comparison-writer-3.log",
+      "log_sha256": "8cfbe3136b2e4649419cd411a3ac7cb54220e4c649a68bf1b5912c167562a840"
+    },
+    {
+      "event": "start",
+      "sequence": 4,
+      "slot_id": "q03-wti-negative-r1-baseline",
+      "at": "2026-10-17T22:20:18.209114+00:00",
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "run",
+        "story/q03-wti-negative",
+        "--writer",
+        "claude",
+        "--skill-ref",
+        "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+        "--repeat",
+        "1",
+        "--max-usd",
+        "5",
+        "--no-critic"
+      ],
+      "config_sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+      "harness_commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+      "harness_tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+      "skill_ref": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+      "skill_tree": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1"
     }
   ]
 }
