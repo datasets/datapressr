@@ -44,8 +44,8 @@
     "critic_model_actual": null,
     "critic_effort": "high",
     "manual_reviewer_identity": null,
-    "manual_reviewer_model": null,
-    "manual_reviewer_effort": null,
+    "manual_reviewer_model": "Built-in collaboration inherited platform model; exact served identity unavailable from tool metadata.",
+    "manual_reviewer_effort": "Inherited platform configuration; no override, actual effort unavailable.",
     "cli_versions": null,
     "account_route": null,
     "canary_evidence": null,
@@ -123,11 +123,12 @@
         "git_type": "blob",
         "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
       }
-    ]
+    ],
+    "manual_reviewer_context": "fork_turns none; eight separate fresh reviewers using same requested platform route; neutral questions and chart-first order frozen in driver execution resolution."
   },
   "launch_gates": [
     "Verify existing subscription routing remains unchanged; owner continuation interpreted by driver as bounded comparison authorization. No API/pay-as-you-go switch or expansion.",
-    "Resolve exact available writer, critic and independent manual-review models/effort; prohibit silent fallback.",
+    "Verify exact writer/critic requested IDs and served-model metadata; manual reviewers use fresh fork_turns none built-in agents with consistent inherited platform configuration, whose exact model/effort metadata is unavailable and disclosed. No silent writer/critic fallback.",
     "Frozen CLI has no writer-model or effort flags. Review and pin any invocation/configuration changes in one common execution harness for both arms.",
     "Verify failed-pair structured questions/judgments/errors and aggregate calls/cost persistence at reviewed amended harness adc6fd1; invalid raw responses remain unavailable.",
     "Use recorded Codex subscription call/time contract with USD/token caps unavailable; record actual tokens. No API billing switch.",
