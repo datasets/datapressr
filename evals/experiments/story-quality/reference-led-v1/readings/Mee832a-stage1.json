@@ -1,0 +1,54 @@
+{
+  "packet": "Mee832a",
+  "stage": 1,
+  "commission": "Why did the price of oil go below zero in April 2020?",
+  "chart_notes": [
+    {
+      "chart": "chart-1.png",
+      "spontaneous_interpretation": "Both oil prices fell substantially from January into April. WTI alone briefly plunged below zero on Monday 20 April, to minus $36.98 per barrel, while Brent remained at $17.36. By Tuesday WTI was positive again at $8.91 and Brent was $9.12. Both recovered toward $40 by June. The negative event looks like a sharp one-day exception within a much broader decline and recovery.",
+      "why": "The chart does not give a cause. The contrasting WTI and Brent paths suggest the negative event was specific to WTI rather than a simultaneous negative price for all oil.",
+      "unclear_unsupported_or_unreadable": "No unreadable text. WTI and Brent are named but not explained. No visible source or explanation of what a negative spot price means, who pays whom, or why the one-day plunge occurred. Lines connect daily observations, so the time spent below zero within the day cannot be established."
+    },
+    {
+      "chart": "chart-2.png",
+      "spontaneous_interpretation": "The dramatic daily WTI low disappears below the positive weekly and monthly averages: the week ending 24 April averages $3.32, and April averages $16.55. The weekly and monthly series smooth the sharp daily movement. March to late May shows a fall and rebound, with the negative daily value concentrated in the middle of April.",
+      "why": "This explains how the choice of averaging period changes the picture, but still does not explain what caused the price to go negative.",
+      "unclear_unsupported_or_unreadable": "All labels are readable. The chart does not show a data source or explain the averaging calculation or treatment of non-trading days. Its year is supplied by the prior chart and commission rather than shown on this chart."
+    }
+  ],
+  "overall_interpretation": "Oil prices generally declined, but the below-zero event shown is a brief WTI daily spot-price observation on 20 April, not a negative Brent price or negative weekly/monthly WTI average. The charts establish the timing, size, benchmark specificity and sensitivity to aggregation. They do not supply an explanation for why it happened.",
+  "access_log": [
+    {
+      "order": 1,
+      "operation": "Directory listing",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mee832a/stage1",
+      "command": "ls -la /tmp/datapressr-reference-led-v1-packets/Mee832a/stage1"
+    },
+    {
+      "order": 2,
+      "operation": "Text read, first file in cat command",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mee832a/stage1/READ-ME.md"
+    },
+    {
+      "order": 3,
+      "operation": "Text read, second file in same cat command",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mee832a/stage1/commission.md"
+    },
+    {
+      "order": 4,
+      "operation": "view_image, default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mee832a/stage1/chart-1.png"
+    },
+    {
+      "order": 5,
+      "operation": "view_image, default high detail",
+      "path": "/tmp/datapressr-reference-led-v1-packets/Mee832a/stage1/chart-2.png"
+    },
+    {
+      "order": 6,
+      "operation": "Exclusive creation of this JSON, serialization validation, chmod 0444",
+      "path": "/tmp/datapressr-reader-Mee832a-stage1.json"
+    }
+  ],
+  "operational_limits": "Read only the released stage1 directory. No parent or sibling contents, repositories, web, other reviews, mappings, or implementation/model CLI calls accessed. Directory listing displayed the standard dot and dot-dot entries without opening them. Both PNGs viewed once in numeric order. Notes recorded together after viewing both charts. No external causal knowledge used. Output is frozen by exclusive creation and read-only permissions; no later stage consulted."
+}
