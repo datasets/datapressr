@@ -2,7 +2,7 @@
   "document_type": "frozen-manual-reading-index",
   "status": "in-progress",
   "scheduled_reader_sessions": 8,
-  "completed_reader_sessions": 6,
+  "completed_reader_sessions": 7,
   "reader_configuration": "Same inherited platform configuration; no override. Three progressive stages within each session; no replacement sessions.",
   "record_policy": "Earlier stage hashed and committed before releasing later materials. Raw JSON retained; no outcome normalization or arm mapping here.",
   "readers": [
@@ -177,6 +177,35 @@
           "path": "readings/Mf4bb1f-stage3.json",
           "sha256": "29ff2ae06d0f8663fd4ef83f0969b5612e791a65ae25cd7aa6fedb2b5982ef53",
           "bytes": 32553
+        }
+      ]
+    },
+    {
+      "opaque_code": "Mee832a",
+      "reader_agent": "reader_mee832a",
+      "fresh_context": "fork_turns none",
+      "model_override": null,
+      "served_model": "unavailable from platform metadata",
+      "served_effort": "unavailable from platform metadata",
+      "status": "three stages frozen",
+      "records": [
+        {
+          "stage": 1,
+          "path": "readings/Mee832a-stage1.json",
+          "sha256": "95f7b67f178362d2cd9534fbd32b76351598c81160c321973a4ba1fee0d9558f",
+          "bytes": 3919
+        },
+        {
+          "stage": 2,
+          "path": "readings/Mee832a-stage2.json",
+          "sha256": "0833747d762b8520331c7bf8d73c299301eab5e7dcaff461f196c3db5ab723ff",
+          "bytes": 4419
+        },
+        {
+          "stage": 3,
+          "path": "readings/Mee832a-stage3.json",
+          "sha256": "9642f4158a211a41cbed03cb9bb8b2df2bcac238bc0da1848a16911e492729d0",
+          "bytes": 15003
         }
       ]
     }

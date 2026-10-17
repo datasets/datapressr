@@ -1,0 +1,255 @@
+{
+  "packet": "Mee832a",
+  "stage": 3,
+  "preliminary_answers": {
+    "recorded_before_verification": true,
+    "answers": [
+      {
+        "question": 1,
+        "answer": "WTI daily nominal spot quote at Cushing, Oklahoma: minus $36.98 per barrel. Separate from minus $37.63 May WTI futures settlement."
+      },
+      {
+        "question": 2,
+        "answer": "20 April 2020, minus $36.98, one observed trading day; Friday 17 April $18.31 and Tuesday 21 April $8.91. Thus a $55.29 fall from Friday."
+      },
+      {
+        "question": 3,
+        "answer": "Prose attributes it to lockdown demand collapse, filling Cushing storage, low liquidity and imminent expiry of physically delivered May WTI futures on 21 April. No independent causal test supplied by charts."
+      },
+      {
+        "question": 4,
+        "answer": "Seller pays someone to accept oil; in the futures account a trader unable to take delivery pays another party to take the contract and obligation. Connection between the futures transaction and spot quote remains incompletely explained."
+      },
+      {
+        "question": 5,
+        "answer": "WTI went negative while Brent stayed positive. Cannot establish worldwide exclusivity from two benchmarks. Both experienced the broader price collapse."
+      },
+      {
+        "question": 6,
+        "answer": "WTI returned positive the next day; both benchmarks recovered toward $40 by June. Prose does not explain the sustained subsequent recovery; expiry timing helps suggest why the immediate squeeze was temporary."
+      },
+      {
+        "question": 7,
+        "answer": "Charts establish benchmark prices, timing, relative paths and positive weekly/monthly averages. Prose adds historical uniqueness and attributed causal explanation. Data alone cannot prove causation, storage conditions, actual individual contract payments, or worldwide scope."
+      }
+    ],
+    "access_log": [
+      {
+        "order": 1,
+        "operation": "cat",
+        "path": "/tmp/datapressr-reference-led-v1-packets/Mee832a/stage3/reader-questions.json"
+      },
+      {
+        "order": 2,
+        "operation": "exclusive JSON creation and chmod 0444",
+        "path": "/tmp/datapressr-reader-Mee832a-stage3-preliminary.json"
+      }
+    ]
+  },
+  "verification_corrections": [
+    "Preliminary numerical answers confirmed against supplied CSVs. Historical uniqueness counts and positive WTI aggregate minima now checked across all supplied rows.",
+    "April arithmetic mean is 16.547619 over 21 observations; week mean is 3.324 over five observations, matching rounded supplied aggregates.",
+    "Outline says external context URLs were cited from memory and unchecked; causal explanation remains attributed but unverified, not established by local data.",
+    "No correction to the identified gap between futures distress and the exact spot quotation, or missing explanation of sustained recovery."
+  ],
+  "custody_notices": {
+    "duplicate_title": "Custodian states duplication resulted from metadata-title promotion; stage2 observation pertains to packet presentation, not duplicate original body prose.",
+    "withheld_review": "Outline reference to author self-review was visible. No review opened or author verdict treated as independent evidence."
+  },
+  "verification": {
+    "copied_in_order": [
+      "site/stories/oil-below-zero-make-charts.mjs",
+      "site/stories/oil-below-zero-outline-scan.mjs",
+      "site/stories/package.json",
+      "site/stories/package-lock.json",
+      "datasets/energy-and-commodities/oil-prices/data/brent-daily.csv",
+      "datasets/energy-and-commodities/oil-prices/data/brent-monthly.csv",
+      "datasets/energy-and-commodities/oil-prices/data/brent-weekly.csv",
+      "datasets/energy-and-commodities/oil-prices/data/brent-year.csv",
+      "datasets/energy-and-commodities/oil-prices/data/wti-daily.csv",
+      "datasets/energy-and-commodities/oil-prices/data/wti-monthly.csv",
+      "datasets/energy-and-commodities/oil-prices/data/wti-weekly.csv",
+      "datasets/energy-and-commodities/oil-prices/data/wti-year.csv"
+    ],
+    "runs": [
+      {
+        "args": [
+          "node",
+          "--version"
+        ],
+        "exit_code": 0,
+        "stdout": "v26.4.0\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "node",
+          "site/stories/oil-below-zero-outline-scan.mjs",
+          "datasets/energy-and-commodities/oil-prices/data"
+        ],
+        "exit_code": 0,
+        "stdout": "rows 10236 9967 first 1986-01-02 1987-05-20\nwti<=0 [ { d: '2020-04-20', p: -36.98 } ] brent<=0 0\n2020-01-02 wti 61.17 brent 67.05\n2020-04-17 wti 18.31 brent 19.75\n2020-04-20 wti -36.98 brent 17.36\n2020-04-21 wti 8.91 brent 9.12\nbrent min { d: '1998-12-10', p: 9.1 }\nbrent drop to 04-20 0.7410887397464578 wti drop to 04-17 0.7006702632009155\nweek 5 3.3240000000000007\napril 21 16.54761904761905\nwti-weekly min { d: '2020-04-24', p: 3.32 }\nwti-monthly min { d: '1998-12-15', p: 11.35 }\nwti-year min { d: '1998-06-30', p: 14.42 }\nbrent-weekly min { d: '1998-12-11', p: 9.44 }\nbrent-monthly min { d: '1998-12-15', p: 9.82 }\nbrent-year min { d: '1998-06-30', p: 12.76 }\nwk 04-24 3.32 mo 04 16.55\n",
+        "stderr": ""
+      },
+      {
+        "args": [
+          "node",
+          "site/stories/oil-below-zero-make-charts.mjs"
+        ],
+        "exit_code": 0,
+        "stdout": "wrote oil-below-zero-daily.svg, oil-below-zero-averages.svg\n",
+        "stderr": ""
+      }
+    ],
+    "hashes": [
+      {
+        "file": "site/stories/oil-below-zero-averages.svg",
+        "sha256": "d756b7edf77391cb89357a3852540ed9dc7f40261afeac9f48f9ccdf08f1d902",
+        "actual_sha256": "d756b7edf77391cb89357a3852540ed9dc7f40261afeac9f48f9ccdf08f1d902",
+        "match": true
+      },
+      {
+        "file": "site/stories/oil-below-zero-daily.svg",
+        "sha256": "da26688faa54b457bb05c983aab6e250615b37471d603301840c71240262cc32",
+        "actual_sha256": "da26688faa54b457bb05c983aab6e250615b37471d603301840c71240262cc32",
+        "match": true
+      }
+    ],
+    "calculations": {
+      "wti_decline_percent": 70.06702632009156,
+      "brent_decline_percent": 70.54436987322894,
+      "next_day_gap": 0.21,
+      "brent_above_low": 0.02
+    },
+    "input_unchanged": {
+      "site/stories/oil-below-zero-make-charts.mjs": true,
+      "site/stories/oil-below-zero-outline-scan.mjs": true,
+      "site/stories/package.json": true,
+      "site/stories/package-lock.json": true,
+      "datasets/energy-and-commodities/oil-prices/data/brent-daily.csv": true,
+      "datasets/energy-and-commodities/oil-prices/data/brent-monthly.csv": true,
+      "datasets/energy-and-commodities/oil-prices/data/brent-weekly.csv": true,
+      "datasets/energy-and-commodities/oil-prices/data/brent-year.csv": true,
+      "datasets/energy-and-commodities/oil-prices/data/wti-daily.csv": true,
+      "datasets/energy-and-commodities/oil-prices/data/wti-monthly.csv": true,
+      "datasets/energy-and-commodities/oil-prices/data/wti-weekly.csv": true,
+      "datasets/energy-and-commodities/oil-prices/data/wti-year.csv": true
+    }
+  },
+  "gates": {
+    "G1": {
+      "status": "unresolved",
+      "scope": "Source and scope of full causal answer",
+      "evidence": "README and archive provenance document EIA, retrieval 2026-09-05, daily/weekly/monthly/year measures, nominal US$/barrel FOB, dates and public-domain/PDDL reuse basis. Numerical claims trace to supplied rows. Central causal sources are URLs only; outline acknowledges unchecked memory citations.",
+      "check_needed": "Retrieve and pin EIA/IEA/ICE materials to verify expiry, liquidity, storage, demand and exact Brent settlement characterization. No web access authorized here."
+    },
+    "G2": {
+      "status": "unresolved",
+      "scope": "Whole answer; checked descriptive arithmetic passes",
+      "evidence": "Supplied data scan and explicit same-date percentage calculations confirm every central descriptive value, differences, counts and minima. Prose explicitly separates observation from attributed mechanism. Physical delivery versus cash settlement and linkage to spot quote not verified.",
+      "check_needed": "Verify named external sources and explanation of how futures distress connects to the daily spot quotation."
+    },
+    "G3": {
+      "status": "pass",
+      "scope": "Supplied CSVs to the two SVG charts only",
+      "evidence": "Inspected chart builder and scan before running unchanged copies offline. Node v26.4.0, both commands exit 0, both generated SVG SHA256 values exactly equal supplied hashes; source copies and all eight CSVs byte-identical after run.",
+      "check_needed": "Workbook-to-CSV build was inspected but not executed; this pass excludes raw-workbook reproduction and external source retrieval."
+    },
+    "G4": {
+      "status": "pass",
+      "scope": "Two delivered static PNG charts inspected in stages1/2 plus corresponding deterministic SVG builder",
+      "evidence": "Readable axes and labels, zero lines, full negative point in bounds, benchmark colors and step/monthly conventions match intended comparisons. Code uses independent calendars and data-derived annotations.",
+      "check_needed": "No browser/mobile/interactive assessment; chart2 year relies on article context. PNG rasterization itself not reproduced."
+    }
+  },
+  "dimensions": {
+    "interest": {
+      "rating": 2,
+      "evidence_and_anchor": "Title and opening pose a consequential puzzle: sellers pay buyers; comparison with positive Brent revises the broad phrase oil below zero.",
+      "limit": "Causal accuracy remains subject to source verification."
+    },
+    "findings_depth": {
+      "rating": 2,
+      "evidence_and_anchor": "Chart1 and prose compute shared approximately70% drops, single-day benchmark divergence, then next-day convergence; chart2 demonstrates positive aggregates.",
+      "limit": "No storage or demand decomposition possible with supplied prices."
+    },
+    "argument_counterevidence": {
+      "rating": 2,
+      "evidence_and_anchor": "The wrinkle uses Brent $9.12 next day to show shared glut; positive weekly/monthly averages and spot/futures distinction bound the main claim.",
+      "limit": "Worldwide one-place framing exceeds direct two-benchmark coverage; strongest accessible price counterexample is nevertheless addressed."
+    },
+    "explanation": {
+      "rating": 1,
+      "evidence_and_anchor": "Measure and negative payment are defined, named causal attribution is separated from data; however the central explanation switches from spot prices to expiring futures without explaining transmission. Anchor1: central mechanism remains unclear.",
+      "limit": "Adjacent2 plausible for the scoped storage/expiry story alone; full commission answer retains the linkage gap and unverified sources."
+    },
+    "chart_design": {
+      "rating": 2,
+      "evidence_and_anchor": "Actual PNGs make exceptional negative WTI against positive Brent and positive aggregates immediately legible; precise and first impression agree.",
+      "limit": "Chart2 year recovered through article/chart1; no alternate viewport checks."
+    },
+    "writing": {
+      "rating": 1,
+      "evidence_and_anchor": "Opening is concrete and comparisons clear, but low liquidity is not explained and the spot-to-futures switch leaves a paragraph needing work.",
+      "limit": "Packet duplicate heading is excluded from judgment of original body; adjacent2 plausible after central explanation clarification."
+    },
+    "reader_coverage": {
+      "rating": 1,
+      "evidence_and_anchor": "Answers price, date, magnitude, narrow benchmark scope and broad cause; leaves spot transmission and subsequent sustained recovery unexplained.",
+      "limit": "Recovery causation requires additional evidence; article could identify that gap explicitly. No claim that price data alone can answer it."
+    }
+  },
+  "disposition": "verification-required for central external causal claims; scoped descriptive and chart reproduction checks pass. No total or preference computed.",
+  "access_log": [
+    {
+      "order": 1,
+      "operation": "read questions only",
+      "path": "stage3/reader-questions.json"
+    },
+    {
+      "order": 2,
+      "operation": "exclusive preliminary answer JSON written and chmod0444",
+      "path": "/tmp/datapressr-reader-Mee832a-stage3-preliminary.json"
+    },
+    {
+      "order": 3,
+      "operation": "ls -laR stage3 only; names and symlink target exposed, no external directory listing",
+      "path": "stage3"
+    },
+    {
+      "order": 4,
+      "operation": "cat files in listed order",
+      "paths": [
+        "stage3/READ-ME.md",
+        "stage3/REPRODUCTION.md",
+        "stage3/outline.md",
+        "stage3/diagnostic-anchors.md",
+        "stage3/reproduction-hashes.json"
+      ]
+    },
+    {
+      "order": 5,
+      "operation": "cat files in listed order",
+      "paths": [
+        "stage3/site/stories/oil-below-zero-make-charts.mjs",
+        "stage3/site/stories/oil-below-zero-outline-scan.mjs",
+        "stage3/site/stories/package.json",
+        "stage3/datasets/energy-and-commodities/oil-prices/build.ts",
+        "stage3/datasets/energy-and-commodities/oil-prices/archive/PROVENANCE.md",
+        "stage3/datasets/energy-and-commodities/oil-prices/README.md"
+      ]
+    },
+    {
+      "order": 6,
+      "operation": "Python copies files in verification.copied_in_order into own scratch; creates node_modules symlink to supplied stage3 dependency symlink; executes verification.runs in order. Node reads copied scan/chart source and CSVs and transitive cached dependencies; writes two scratch SVGs. Reads reproduction-hashes.json, reads generated SVG bytes, then compares source/copy bytes in copy order; writes scratch verification.json.",
+      "path": "/tmp/datapressr-reader-Mee832a-scratch"
+    },
+    {
+      "order": 7,
+      "operation": "Read preliminary JSON then scratch verification.json; exclusive final JSON creation, serialization validation, chmod0444",
+      "path": "/tmp/datapressr-reader-Mee832a-stage3.json"
+    }
+  ],
+  "access_log_base": "Relative stage3 paths resolve under /tmp/datapressr-reference-led-v1-packets/Mee832a. Node dependency runtime opens were not individually traced; only supplied offline cache was exposed. Tool wall times: questions0.000s, preliminary write0.011s, listing0.010s, outline/anchors read0.011s, scripts/provenance read0.011s, reproduction batch0.545s. No wall-clock reading timestamps captured.",
+  "limits": "Earlier records unchanged. Preliminary answers frozen before outline/data/anchors. Anchors read after preliminary answers and outline, ratings assigned after verification. No network, installs, repositories, parent/sibling contents, withheld reviews, packet edits, or model CLI calls. No raw workbook rebuild, source-source validity verification or rasterization rebuild. Exact tool/file operation ordering recorded; runtime dependency reads are scoped rather than syscall-level enumerated."
+}
