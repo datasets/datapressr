@@ -1,0 +1,77 @@
+{
+  "document_type": "frozen-hypothesis-coder-codebook-extraction",
+  "execution": "Preparation only; no coder launched; no output or reader content consumed.",
+  "source_identities": [
+    {
+      "path": "evals/experiments/story-quality/reference-led-v1/hypotheses.md",
+      "sha256": "0b525651ac5c1476a1e663cd2b2ac4ac7404c9fe1c8a1451a199f9818730da3a"
+    },
+    {
+      "path": "evals/experiments/story-quality/reference-led-v1/execution-plan.json",
+      "sha256": "996ea7620f2c0d6779e74006544e8d7d6a4067b1f76050976d8cb0879f0135b2"
+    }
+  ],
+  "hypothesis_paragraphs_verbatim": {
+    "H1": "**H1.** Relative to the baseline, candidate stories will more often let a masked reviewer state a specific reader payoff, identify the comparison supporting it, and explain how that comparison answers the commission. The reviewer writes that interpretation before seeing the outline or rule hypotheses, then verifies it against actual evidence. Code each output `supported-payoff`, `descriptive-only`, `unsupported-payoff` or `unassessable`, with passages/calculations. A question mark, promised usefulness, striking fact or named subgroup is insufficient. Report matched-pair direction and counts, with manual `interest`/`findings_depth` anchors as supporting evidence. Failure to improve supported interpretations, or improvement obtained through unsupported stakes, counts against H1. A well-supported confirmation can meet H1 without revising a prior belief.",
+    "H2": "**H2.** Relative to baseline, candidate charts will yield more correct chart-only interpretations of the intended comparison and fewer conflicts between first reading and precise reading. A masked reviewer records the conclusion, direction, unit/denominator and group/year identities before prose/outline, then records corrections and calculations needed after exact inspection. Code `comparison-recoverable`, `requires-reconstruction`, `misleading` or `unassessable` for each chart and explain why. Labels existing is not a pass; quoting a label without recovering the relation is reconstruction. Report output-level and matched-pair outcomes alongside chart counts, so extra charts do not create extra independent samples. Any actual owner reading is separately identified; this analyst exercise is not a timed reader experiment. No increase in recoverable comparisons, or more misleading first readings, counts against H2.",
+    "H3": "**H3.** Relative to baseline, candidate prose will better support a masked reviewer's account of how material findings fit together, what they imply, and what they do not establish. For each output, record passage-located relationships and the reviewer's interpretation before consulting the outline. After evidence checking, code `supported-link-understood`, `link-left-to-reader`, `unsupported-link` or `unassessable`. For an apparent amount/share contradiction, a successful interpretation must explain the changing denominator, not simply repeat both percentages; for a claimed mechanism it must distinguish attribution from local identification. Report relationship counts within outputs and matched-pair outcomes, with `explanation`/`writing` anchors; connective-word counts and shorter prose are not success metrics. No comprehension gain, or added causal overreach, counts against H3."
+  },
+  "manual_analysis_verbatim": {
+    "h1_order": [
+      "unsupported-payoff",
+      "descriptive-only",
+      "supported-payoff"
+    ],
+    "h2_order": [
+      "misleading",
+      "requires-reconstruction",
+      "comparison-recoverable"
+    ],
+    "h3_order": [
+      "unsupported-link",
+      "link-left-to-reader",
+      "supported-link-understood"
+    ],
+    "h2_primary_chart": "First embedded chart explicitly supporting the lede comparison; identify from prose before any chart codes. If none, mark no eligible chart and unassessable with reason.",
+    "h3_primary_relationship": "First relationship between distinct material findings stated or implied in narrative order; identify before assigning H3 codes. If none, link-left-to-reader unless story has only one self-contained finding, then unassessable.",
+    "unassessable": "Retain in all scheduled denominators; no ordinal direction when either output unassessable.",
+    "q01_h3": "targeted in-sample; never evidence of transfer",
+    "analysis_population": "as-assigned; unread references remain included, with read exposure reported separately"
+  },
+  "scope": {
+    "inputs_for_later_coder": "Frozen reader interpretations and evidence-located verification records for opaque output codes, neutral commission, supplied codebook; no arm mapping, skill contents, research examples or runtime outcomes.",
+    "blinding": "Partial: coder knows the hypotheses/codebook but not treatment mapping. Do not infer treatment from wording.",
+    "unit_structure": "Eight scheduled outputs nested in four predetermined pairs and two known-development topics; chart/relationship counts remain nested in outputs. No invented independence.",
+    "pairing": "Custodian supplies opaque predetermined pair membership separately after records freeze, without treatment identities. Record directional comparison between opaque codes; arm attribution occurs only after coding freezes."
+  },
+  "locator_requirements": {
+    "per_output": "Opaque output code, frozen reader-record locator, exact cited prose/chart passage and source/verification locator supporting the assigned H1 code.",
+    "per_chart": "Every chart gets its opaque chart ID, first-reading record locator, conclusion/direction/unit/denominator/group/year interpretation and corrections after inspection; cite evidence supporting H2 code.",
+    "per_relationship": "Every coded material relationship gets passage and frozen interpretation locators plus verification basis for support, omission or overreach.",
+    "primary_selection": "Use manual_analysis_verbatim primary chart/relationship rules before examining corresponding codes; record selection and locator explicitly. Do not choose whichever favors an outcome."
+  },
+  "denominators": {
+    "scheduled_outputs": 8,
+    "scheduled_pairs": 4,
+    "topics": 2,
+    "unassessable": "Retain all scheduled outputs/pairs in reporting. If either paired output is unassessable for a hypothesis, report no ordinal pair direction with reason; do not silently drop it or label it a tie.",
+    "missing": "Missing review or evidence is recorded as missing with reason, never invented code/agreement.",
+    "counts": "Report observed code counts and pair directions per topic plus full per-chart/per-relationship tables; nested evidence is not extra independent output."
+  },
+  "limitations": [
+    "All source/case families known-development, no clean holdout.",
+    "q01-H3 targeted in-sample; no transfer claim and cannot carry interpretation alone.",
+    "All three instruction changes bundled; individual-rule causal effects unidentified.",
+    "Agent first readings are not owner understanding, and no timed reading experiment exists.",
+    "Seven manual dimensions and validity gates stay separate; no total quality score or compensation for failed gates.",
+    "Frozen first readings remain distinct from later outline/source verification, including any documented exposure to embedded author self-review judgments. Author verdicts are not independent evidence.",
+    "No thresholds, p-values, generalization or retain/revise/rollback decision introduced by this extraction.",
+    "No runtime critic outcomes or arm mapping included."
+  ],
+  "ambiguities_to_preserve": [
+    "H1 paragraph provides categorical code per output; record contrary passages without replacing categorical evidence with a numeric average.",
+    "Primary H2 chart is the first embedded chart explicitly supporting the lede comparison; if relation is ambiguous, document ambiguity rather than choose retrospectively.",
+    "Primary H3 relationship may be stated or implied; identifying an implied relationship requires cited narrative/reader evidence. Preserve uncertain eligibility and the supplied single-finding exception, not a new threshold."
+  ],
+  "no_model_calls": true
+}

@@ -1,0 +1,232 @@
+{
+  "document_type": "runtime-pair-command-preparation-only",
+  "created_at": "2026-10-18",
+  "execution_authorized": false,
+  "cwd": "/tmp/datapressr-harness-controls-20261018",
+  "source_harness_commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+  "historical_preparation_harness_commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+  "skill_arms": {
+    "baseline": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+    "candidate": "77c8c357f78390b1a986e9d684e5512587d245ab"
+  },
+  "runtime_files_verified_at_source_commit": [
+    {
+      "path": "evals/run.mjs",
+      "sha256": "8be57972e2e9cb6ec55959dd879f7284e6b0d26d01b667e420d6f1bb5156b7a0",
+      "git_object": "02f0edf0c5f391511300d078d1727455e6b04884"
+    },
+    {
+      "path": "evals/config.json",
+      "sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+      "git_object": "5c9d1471af5248e65f5f11fa76627bac2ea74627"
+    },
+    {
+      "path": "evals/lib/critic.mjs",
+      "sha256": "b15115386dd887a62703deebb61e8f0736bbaf4af15cec9068aa383e7b903e95",
+      "git_object": "86de4d2a1d6e4faabcfc5aef7abc480d415b2e0c"
+    },
+    {
+      "path": "evals/lib/adapters/codex.mjs",
+      "sha256": "ea3d1dac7643cbf1fe008a25c0ef8ed4322afe2536a9c1ca3f10b75676abc677",
+      "git_object": "aa9c18f1a71f42229341168acb92bd047470e0eb"
+    },
+    {
+      "path": "evals/lib/adapters/index.mjs",
+      "sha256": "9ac6616e1736250be1dc096378769206f059faf5666975a2de071cb24dd8ff91",
+      "git_object": "d3eb767e31fe022dc8355774098b11edcf8dc569"
+    },
+    {
+      "path": "evals/rubrics/story/v2.md",
+      "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+      "git_object": "c592eabffe445529177b27c6a794102e29bf08f6"
+    }
+  ],
+  "pairs": [
+    {
+      "pair_id": "q01-french-debt-r1",
+      "slots": [
+        "q01-french-debt-r1-baseline",
+        "q01-french-debt-r1-candidate"
+      ],
+      "run_ids": [
+        "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1"
+      ],
+      "ready_inputs": true,
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "invocation_repetitions": 1,
+      "orders_inside_single_invocation": [
+        "AB",
+        "BA"
+      ],
+      "execution_authorized_by_this_file": false
+    },
+    {
+      "pair_id": "q01-french-debt-r2",
+      "slots": [
+        "q01-french-debt-r2-baseline",
+        "q01-french-debt-r2-candidate"
+      ],
+      "run_ids": [
+        "<PENDING:q01-french-debt-r2-baseline>",
+        "<PENDING:q01-french-debt-r2-candidate>"
+      ],
+      "ready_inputs": false,
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "<PENDING:q01-french-debt-r2-baseline>",
+        "<PENDING:q01-french-debt-r2-candidate>",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "invocation_repetitions": 1,
+      "orders_inside_single_invocation": [
+        "AB",
+        "BA"
+      ],
+      "execution_authorized_by_this_file": false
+    },
+    {
+      "pair_id": "q03-wti-negative-r1",
+      "slots": [
+        "q03-wti-negative-r1-baseline",
+        "q03-wti-negative-r1-candidate"
+      ],
+      "run_ids": [
+        "<PENDING:q03-wti-negative-r1-baseline>",
+        "<PENDING:q03-wti-negative-r1-candidate>"
+      ],
+      "ready_inputs": false,
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "<PENDING:q03-wti-negative-r1-baseline>",
+        "<PENDING:q03-wti-negative-r1-candidate>",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "invocation_repetitions": 1,
+      "orders_inside_single_invocation": [
+        "AB",
+        "BA"
+      ],
+      "execution_authorized_by_this_file": false
+    },
+    {
+      "pair_id": "q03-wti-negative-r2",
+      "slots": [
+        "q03-wti-negative-r2-baseline",
+        "q03-wti-negative-r2-candidate"
+      ],
+      "run_ids": [
+        "<PENDING:q03-wti-negative-r2-baseline>",
+        "<PENDING:q03-wti-negative-r2-candidate>"
+      ],
+      "ready_inputs": false,
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "<PENDING:q03-wti-negative-r2-baseline>",
+        "<PENDING:q03-wti-negative-r2-candidate>",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "invocation_repetitions": 1,
+      "orders_inside_single_invocation": [
+        "AB",
+        "BA"
+      ],
+      "execution_authorized_by_this_file": false
+    }
+  ],
+  "configuration_proof": {
+    "critic": "--critic codex and --critic-model gpt-6-astra explicitly override automatic choice; all writers Claude, so no same-vendor fallback",
+    "effort": "config.efforts.codex.critic=high -> resolveCritic.effort_requested -> criticArgs.effort -> codex flags -c model_reasoning_effort=\"high\"",
+    "rubric": "--rubric story/v2; no overlay/calibrate/png/absolute scores",
+    "timeout_ms_per_attempt": 900000,
+    "cost_limit": "Config critic_caps.max_usd_per_call=3 is passed but Codex adapter does not accept/enforce it. USD null; no hard dollar/token cap.",
+    "model_limit": "Requested identity fixed; model_actual may be null. Aggregate metadata does not prove each intermediate served identity. Report known limitation; reported mismatch stops further pairs."
+  },
+  "accounting": {
+    "operations_per_pair": [
+      "reader questions",
+      "AB judgment",
+      "BA judgment"
+    ],
+    "max_attempts_per_operation": 2,
+    "nominal_attempts_per_pair": 3,
+    "max_attempts_per_pair": 6,
+    "max_attempts_four_pairs": 24,
+    "max_cumulative_pair_seconds": 21600,
+    "canary_separate": {
+      "calls": 1,
+      "max_seconds": 300,
+      "already_in_execution_resolution": true
+    },
+    "max_codex_total_calls_including_canary": 25,
+    "retry": "Automatic once after adapter failure/throw or invalid response; no whole-pair retry, no separate reversed command. A disappointing valid judgment never triggers retry.",
+    "cost_collection": "Read calls,usage,cost_usd from pair or pair_failed ledger row and failure.json costs on failure. Null cost is unknown, not zero. known_cost_usd subtotal available in failure evidence."
+  },
+  "procedure": [
+    "Before each pair: verify source file hashes, fixed config/CLI/subscription route, canary matching current recipe, and both completed run identities/harness/input metadata. Do not inspect prose for selection.",
+    "Snapshot ledger byte length/hash and existing pair directory names. Write invocation journal start including exact argv, expected slots, limits and source hashes. Execute only after separate driver GO; sequential pair invocations and no concurrent ledger-mutating writer invocation preferred.",
+    "Capture stdout/stderr and exit code. Identify exactly one new ledger pair/pair_failed row matching both run IDs; preserve that row verbatim and its byte offset, pair_id and path. A failure before pair creation may have no row: retain exit/log and directory delta, stop for reconciliation.",
+    "Hash and retain complete new evals/pairs/PAIR_ID directory including A/B story+SVG copies,mapping.json,critique-AB.json,critique-BA.json,critique.md on success; failure.json and any successful partial order file on failure. Keep mapping/critic outcomes outside manual reviewer packets.",
+    "Hash run.json/checks.json references and pin source artifacts without modifying them. Keep ledger snapshot/delta and invocation log hashes, started/ended time,requested/actual model,requested effort,CLI version,calls/usage/nullable cost.",
+    "For a successful row validate calls between3 and6,critic vendor codex/model gpt-6-astra/effort_requested high,rubric story/v2 and exact hash. For pair_failed allow fewer calls, retain every attempt count/error and partial result. Sum actual calls against24 pair allowance.",
+    "Keep runtime AB/BA results sealed until independent manual readings/codes freeze. No owner mapping reveal before actual response capture; missing owner response remains missing."
+  ],
+  "stop_handling": [
+    "Do not run commands containing PENDING placeholders.",
+    "Any nonzero exit or pair_failed row stops new pair commands for driver assessment; never rerun that pair automatically.",
+    "Any wrong identity/changed source hash,repeated pair row,missing accounting,reported served-model mismatch or attempt count exceeding6 stops new calls.",
+    "If interrupted, preserve directory/ledger/logs; running attempt may have spent resources without final accounting. No retry until reconciled and no additional call authorized by this file.",
+    "Successful pair aggregate tie may mean both ties or order disagreement; retain both original judgments and derive strict interpretation later. Incomplete order is missing, not a tie."
+  ],
+  "discrepancies_and_limits": [
+    "Six-call reservation must include reader-question retries; four pair commands already give eight order judgments.",
+    "Frozen pair command has no image-render flag for paired critique: runtime critic sees SVG/text; manual PNG reading is separate.",
+    "No separate reader-questions.json written on success; questions are represented in successful judgment reader-question fields. Failure.json includes questions and question prompt hash. Do not promise full raw question-response retention.",
+    "Invalid retry response text is not retained; per-attempt raw audit unavailable.",
+    "Pinned pair CLI wraps pairRuns in try/finally writeReport, so report refresh is attempted after pairRuns success or failure. Pre-pair argument/config/run-resolution/critic-availability failure occurs before that try and does not refresh; a report-write failure can leave stale output or replace the surfaced error. Ledger and retained pair/failure artifacts remain primary evidence.",
+    "All artifacts reside in execution worktree, not automatically in root repository. Driver must archive owned evidence preserving hashes without copying private mappings into reviewer packets.",
+    "Plan pair order is q01r1,q01r2,q03r1,q03r2; pending run IDs filled mechanically from finish metadata without changing pairing."
+  ],
+  "model_calls_performed": 0,
+  "story_content_read": false,
+  "corrections": [
+    {
+      "finding": "Earlier proposal incorrectly stated pairRuns throw skips report refresh.",
+      "verification": "Re-read pinned adc6fd1 evals/run.mjs pair branch; try/finally writes report.",
+      "corrected": true
+    }
+  ]
+}
