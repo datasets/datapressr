@@ -1,0 +1,527 @@
+{
+  "packet_code": "Mf4bb1f",
+  "stage": 3,
+  "status": "frozen",
+  "preliminary_answers": [
+    "The story does not establish an acute debt crisis. It shows chronic fiscal imbalance, high and renewed debt growth, and rising interest costs, while explicitly withholding a crisis judgment because market and political indicators are absent.",
+    "Debt rose from 60.5% of GDP in 2000 Q1 to 119.0% (\u20ac3.6tn) in 2026 Q2, including jumps of 14.3 points in 2009 and 16.7 in 2020, 14.1 points across 2010\u201319, and a temporary decline to 109.5% at end-2023.",
+    "Thirty-one consecutive deficits, major shocks coinciding with the financial crisis and pandemic, and spending exceeding already-high revenue explain the broad pattern. Relative spending differences are concentrated in cash benefits and public payroll. The accounts do not identify policy choices or isolate GDP effects.",
+    "The renewed rise in debt and increase in interest payments from \u20ac29.7bn in 2020 to \u20ac66.6bn in 2025 give grounds for current concern. Why there is an acute crisis at this particular moment is not established.",
+    "France's 2025 deficit is larger than Germany's, Spain's, Italy's and the EU27's. Germany had pre-pandemic surpluses; the EU27 also consistently ran deficits. French interest is above the EU27 but below Italy and below France's own 1996 burden. Revenue and spending both exceed EU averages, spending by more.",
+    "Higher interest payments are an observable budget burden. Market-access difficulties, credit-rating consequences, political effects, future sustainability and policy responses are not demonstrated.",
+    "The evidence establishes accounting trends, relative fiscal positions and spending composition. It cannot establish a crisis threshold, causal policy mechanisms, future financing risks or remedies. Data provenance is described but parser review is outstanding."
+  ],
+  "preliminary_record": "/tmp/datapressr-reader-Mf4bb1f-stage3-preliminary.json",
+  "sequence": "Reader questions were read and preliminary answers written read-only before listing or opening any stage3 outline/data/anchors.",
+  "corrections_after_verification": [
+    "All independently recomputed central chart quantities agree with the supplied CSVs; no numerical correction to the preliminary answers.",
+    "The outline explicitly distinguishes stock-flow adjustments and confirms EU27 includes France. Those useful distinctions are less explicit in the delivered prose.",
+    "Everything else is a computed residual: 7.7 minus 6.6 = 1.1 percentage points, not an independently named spending category.",
+    "The README clarifies unflagged observations can be revised. The recent fiscal vintage is not equivalent to a guarantee of final figures.",
+    "Archived INSEE text supports the 41%/\u20ac693bn social-protection figures, indexation attribution, \u20ac23bn measures and the \u20ac64.7bn alternative interest measure with its Sifim footnote.",
+    "The two visible title headings are a packet metadata-promotion artifact according to the custodian, not duplicated original body text. Stage2 observation remains frozen, but this is not counted as an author writing defect."
+  ],
+  "gates": [
+    {
+      "gate": "G1",
+      "status": "pass",
+      "scope": "Pinned central accounting claims, source definitions, vintages, geography and documented reuse basis",
+      "evidence": "Manifest pins eight sources and all eight hashes match. README/build define S13 general government, quarterly annual-GDP denominator, PC_GDP/current-euro units, EU27 aggregate and source vintages. Archived Eurostat reuse and INSEE Licence Ouverte pages document reuse with attribution. Attributed INSEE context was located in archived pages.",
+      "limit": "This verifies supplied snapshots and the documented reuse basis, not live-source authenticity or an acute-crisis claim. Tax-specific wording is excluded from this pass.",
+      "check_needed": "Tax claim needs a correctly defined tax comparison; no live source retrieval was permitted."
+    },
+    {
+      "gate": "G2",
+      "status": "fail",
+      "scope": "Specific categorical 'Not low taxes: higher spending' heading and 'The deficit does not come from a light tax burden' sentence",
+      "evidence": "The comparison supplied for that conclusion is TR, explicitly defined in the same prose and README as broader than taxes. A high total-revenue share does not alone identify the tax burden or rule out tax-policy contribution to the deficit. The descriptive revenue/spending arithmetic itself checks out.",
+      "check_needed": "Recast this as higher revenue accompanied by still-higher spending, or supply a tax-specific comparison and narrow the causal wording. Do not infer a blanket failure of the valid numerical results.",
+      "other_checked_scope": "Debt steps14.3/14.1/16.7; 31 negative French and EU balances; all 2025 peer deficits; spending gaps and1.1 residual; interest ratio2.2418 all recomputed. Coincidence wording and named INSEE attributions appropriately limit other causal claims."
+    },
+    {
+      "gate": "G3",
+      "status": "pass",
+      "scope": "Supplied offline CSV and four SVG reproduction under Node26.4.0",
+      "evidence": "After linking scratch dataset dependency lookup to the supplied existing story cache, build.ts passed, three CSVs matched original hashes, chart script produced four matching SVG hashes, validate-datapackage reported zero errors/warnings, and source-label corruption test passed.",
+      "limit": "Initial dataset build/test failed because dataset node_modules was absent; preserved in command log. Initial CSV hash matches were copy checks only; later rebuilt_csv_hashes establish actual reproduction. This is not independent adversarial certification of the entire HTML parser.",
+      "check_needed": "No further check needed for this narrow reproduction pass; dataset lifecycle review remains separate."
+    },
+    {
+      "gate": "G4",
+      "status": "pass",
+      "scope": "Four delivered PNGs inspected in stages1/2 and their corresponding SVG encodings inspected in supplied chart builder",
+      "evidence": "Visible numbers, domains and marker positions match verified data; no clipping or invalid geometry seen. Rebuilt SVG hashes match supplied originals. Chart2 uses dashed EU and solid German series, latest Spain/Italy dots, and deliberately displaced text labels.",
+      "limit": "Chart2 endpoint-label displacement makes matching gray series harder, recorded as editorial design friction. No production-page, mobile, interaction or PNG-rasterizer reproduction was supplied or performed.",
+      "check_needed": "For a broader delivery pass inspect actual publication viewport and rasterization; current pass is only the observed packet render."
+    }
+  ],
+  "dimensions": [
+    {
+      "dimension": "interest",
+      "rating": 2,
+      "locator": "Opening debt contrast; 'Not low taxes' section; interest historical comparison",
+      "anchor": "Specific consequential comparison revises a simple debt-cost explanation: high revenue coexists with higher spending, and a doubled euro interest bill is still below the old GDP-share peak.",
+      "limitation": "Tax wording needs repair; the commission's crisis framing remains unestablished."
+    },
+    {
+      "dimension": "findings_depth",
+      "rating": 2,
+      "locator": "Charts1 and3 and associated prose",
+      "anchor": "Computes shock-period and intervening debt changes, compares revenue/spending gaps, and decomposes the7.7-point spending excess into types including the5.0-point contribution of cash benefits/pay.",
+      "limitation": "Does not isolate causes of spending or decompose debt changes into GDP/borrowing/adjustments; depth pass is within shown accounting evidence."
+    },
+    {
+      "dimension": "argument_counterevidence",
+      "rating": 2,
+      "locator": "EU27 borrowing paragraph; final interest paragraphs; crisis caveat",
+      "anchor": "Sequence connects stock, flow, spending composition and interest while testing uniqueness and urgency with EU deficits,2025 deficit improvement, post2020 debt decline and historically/Italian higher interest burdens.",
+      "limitation": "The tax inference still needs repair. This dimension does not clear the failed claim-level gate."
+    },
+    {
+      "dimension": "explanation",
+      "rating": 1,
+      "locator": "'What these numbers are' and interest feedback paragraph",
+      "anchor": "Defines measures and scopes attributed indexation, but leaves central debt-ratio dynamics and interest-cost mechanisms unclear.",
+      "limitation": "Adjacent2 plausible for the definitions and explicit limits; chose1 because the reader cannot explain falling debt/GDP amid deficits or distinguish interest-rate from debt-volume effects from the prose."
+    },
+    {
+      "dimension": "chart_design",
+      "rating": 1,
+      "locator": "Chart2 gray historical lines and end labels",
+      "anchor": "Charts offer useful comparisons and readable annotations, but gray peer-series decoding required prose/alt text and later code to resolve confidently.",
+      "limitation": "Charts1,3,4 individually approach2; overall inspected set receives lower supported anchor because chart2 requires inference. Not a misleading-data finding."
+    },
+    {
+      "dimension": "writing",
+      "rating": 2,
+      "locator": "Opening paragraph, definitions, deficit comparison, final crisis boundary",
+      "anchor": "Mostly economical, concrete language with magnitudes and benchmarks stated and limits explicitly supplied.",
+      "limitation": "Tax heading/sentence need correction; closing method paragraph is dense. Duplicate heading excluded on custody evidence."
+    },
+    {
+      "dimension": "reader_coverage",
+      "rating": 1,
+      "locator": "Commission versus final paragraph and four-section progression",
+      "anchor": "Broad fiscal buildup is answered; important in-reach follow-ups about debt/GDP changes and recent interest mechanics remain open, while acute-crisis evidence is correctly identified as missing.",
+      "limitation": "Would approach2 if commission were narrowly 'describe fiscal buildup'; genuine market/political gaps are not treated as evidence of a false crisis."
+    }
+  ],
+  "editorial_disposition": "Repair-required for the bounded tax inference; preserve numerical findings, counterevidence and explicit crisis limitation. No total or publication authorization.",
+  "custody_exposures": [
+    {
+      "when": "Stage3 release message before preliminary questions",
+      "exposure": "Custodian identified original outline lines31 process/hash,66 review reference,69 both and cautioned author verdicts are not independent evidence.",
+      "handling": "Recorded as custody information; did not seek withheld review files."
+    },
+    {
+      "when": "Stage3 outline read after preliminary answers frozen",
+      "exposure": "Outline includes author self-review approval, commit/hash and description of review rounds.",
+      "handling": "Not used as independent support for gates or dimensions."
+    },
+    {
+      "when": "Stage3 release message",
+      "exposure": "Custodian explained duplicate headings1/3 are metadata-title promotion above one original body heading.",
+      "handling": "Stage2 observation preserved; removed author-level duplication criticism."
+    }
+  ],
+  "access_log": [
+    {
+      "order": 1,
+      "operation": "cat",
+      "paths": [
+        "stage3/reader-questions.json"
+      ]
+    },
+    {
+      "order": 2,
+      "operation": "write exclusive/read-only preliminary answers",
+      "paths": [
+        "/tmp/datapressr-reader-Mf4bb1f-stage3-preliminary.json"
+      ]
+    },
+    {
+      "order": 3,
+      "operation": "rg --files",
+      "paths": [
+        "stage3"
+      ]
+    },
+    {
+      "order": 4,
+      "operation": "cat in order",
+      "paths": [
+        "stage3/READ-ME.md",
+        "stage3/REPRODUCTION.md",
+        "stage3/outline.md",
+        "stage3/diagnostic-anchors.md",
+        "stage3/reproduction-hashes.json"
+      ]
+    },
+    {
+      "order": 5,
+      "operation": "cat in order; inspect before execution",
+      "paths": [
+        "stage3/site/stories/france-debt-make-charts.mjs",
+        "stage3/datasets/france-public-finances/build.ts",
+        "stage3/datasets/france-public-finances/package.json",
+        "stage3/site/stories/package.json",
+        "stage3/datasets/france-public-finances/README.md"
+      ]
+    },
+    {
+      "order": 6,
+      "operation": "cat in order; inspect before execution",
+      "paths": [
+        "stage3/datasets/france-public-finances/build.test.mjs",
+        "stage3/datasets/france-public-finances/scripts/validate-datapackage.mjs",
+        "stage3/datasets/france-public-finances/archive/manifest.json"
+      ]
+    },
+    {
+      "order": 7,
+      "operation": "Copy stage3 to own scratch preserving dependency symlink; inspect symlink; execute reviewed scripts; hash CSVs and outputs",
+      "paths": [
+        "stage3 (recursive byte copy)",
+        "/tmp/datapressr-reader-Mf4bb1f-scratch"
+      ],
+      "details": "Commands/implicit input reads and timings retained in reproduction record. build.ts reads archive files, manifest, source-labels and datapackage; chart script reads fiscal/quarterly CSVs. Node resolves supplied cache dependencies. Test makes/removes its own temporary scratch."
+    },
+    {
+      "order": 8,
+      "operation": "Link own scratch dataset dependency lookup to supplied story cache; rerun build/test/validator; rehash rebuilt CSVs; extract source text",
+      "paths": [
+        "scratch/datasets/france-public-finances/node_modules",
+        "scratch/datasets/france-public-finances/archive/insee-annual-accounts.html",
+        "scratch/datasets/france-public-finances/archive/insee-spending-functions.html",
+        "scratch/datasets/france-public-finances/archive/eurostat-reuse.html",
+        "scratch/datasets/france-public-finances/archive/insee-reuse.html"
+      ],
+      "details": "Output was truncated because first broad regex matched too much; subsequent bounded excerpts resolve needed text."
+    },
+    {
+      "order": 9,
+      "operation": "Independent Python CSV calculations, manifest hash checks, bounded source excerpts",
+      "paths": [
+        "scratch/datasets/france-public-finances/data/fiscal-accounts.csv",
+        "scratch/datasets/france-public-finances/data/quarterly-debt.csv",
+        "scratch/datasets/france-public-finances/archive/manifest.json",
+        "scratch/datasets/france-public-finances/archive/* (eight pinned files for hashing)"
+      ],
+      "details": "Source excerpts from same four HTML files as order8. Saved calculations.json."
+    },
+    {
+      "order": 10,
+      "operation": "Search Sifim context, inspect lock jsdom versions, hash original SVGs and frozen records",
+      "paths": [
+        "scratch/datasets/france-public-finances/archive/insee-annual-accounts.html",
+        "scratch/datasets/france-public-finances/archive/insee-accounting-explainer.html",
+        "scratch/site/stories/package-lock.json",
+        "scratch/datasets/france-public-finances/package-lock.json",
+        "stage3/chart-1.svg",
+        "stage3/chart-2.svg",
+        "stage3/chart-3.svg",
+        "stage3/chart-4.svg",
+        "/tmp/datapressr-reader-Mf4bb1f-stage1.json",
+        "/tmp/datapressr-reader-Mf4bb1f-stage2.json"
+      ]
+    },
+    {
+      "order": 11,
+      "operation": "Assemble stage3 JSON from own scratch verification/calculations and own preliminary record; exclusive write and chmod444",
+      "paths": [
+        "scratch/verification-results.json",
+        "scratch/calculations.json",
+        "/tmp/datapressr-reader-Mf4bb1f-stage3-preliminary.json",
+        "/tmp/datapressr-reader-Mf4bb1f-stage3.json"
+      ]
+    }
+  ],
+  "operational_limitations": [
+    "Only supplied packet, own records/scratch and supplied offline dependency cache accessed. No network, fetch, install, model CLI, other packet, source repository or withheld review access.",
+    "Stage3 was byte-copied to scratch; packet unchanged. Copy includes unexecuted fetch.ts. No refresh was run.",
+    "Initial missing dataset dependency resolved through existing supplied cache without modifying packet. Cache target /Users/rgrp/.cache/datapressr-evals/node_modules/8984a9f462ae58e0/node_modules.",
+    "Command durations are recorded; no reliable per-reading wallclock start/end timestamps were captured. No reading-speed inference should be made.",
+    "Actual delivered PNGs were visually inspected in stages1/2; stage3 SVGs were hashed and renderer code inspected, not separately rasterized.",
+    "Frozen stage1 and stage2 hashes rechecked and match custodian values.",
+    "Human-readable source extraction output was once truncated; bounded re-extraction supplied the needed evidence. Entire source HTML was not manually read."
+  ],
+  "reproduction": {
+    "commands": [
+      {
+        "args": [
+          "node",
+          "--version"
+        ],
+        "cwd": "/tmp/datapressr-reader-Mf4bb1f-scratch",
+        "exit": 0,
+        "stdout": "v26.4.0\n",
+        "stderr": "",
+        "seconds": 0.017621994018554688
+      },
+      {
+        "args": [
+          "node",
+          "build.ts"
+        ],
+        "cwd": "/tmp/datapressr-reader-Mf4bb1f-scratch/datasets/france-public-finances",
+        "exit": 1,
+        "stdout": "",
+        "stderr": "node:internal/modules/package_json_reader:301\n  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\n        ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'jsdom' imported from /private/tmp/datapressr-reader-Mf4bb1f-scratch/datasets/france-public-finances/build.ts\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:704:20)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:724:38)\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:762:56)\n    at #resolve (node:internal/modules/esm/loader:686:17)\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:606:35)\n    at ModuleJob.syncLink (node:internal/modules/esm/module_job:164:33) {\n  code: 'ERR_MODULE_NOT_FOUND'\n}\n\nNode.js v26.4.0\n",
+        "seconds": 0.06250715255737305
+      },
+      {
+        "args": [
+          "node",
+          "scripts/validate-datapackage.mjs",
+          "."
+        ],
+        "cwd": "/tmp/datapressr-reader-Mf4bb1f-scratch/datasets/france-public-finances",
+        "exit": 0,
+        "stdout": "\u2713 no errors\n\n0 error(s), 0 warning(s)\n",
+        "stderr": "",
+        "seconds": 0.02736687660217285
+      },
+      {
+        "args": [
+          "node",
+          "--test",
+          "build.test.mjs"
+        ],
+        "cwd": "/tmp/datapressr-reader-Mf4bb1f-scratch/datasets/france-public-finances",
+        "exit": 1,
+        "stdout": "\u2716 rejects corrupted source category labels even when the archive manifest is refreshed (75.69325ms)\n\u2139 tests 1\n\u2139 suites 0\n\u2139 pass 0\n\u2139 fail 1\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 114.632167\n\n\u2716 failing tests:\n\ntest at build.test.mjs:10:1\n\u2716 rejects corrupted source category labels even when the archive manifest is refreshed (75.69325ms)\n  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Source category labels changed/. Input:\n  \n  'node:internal/modules/package_json_reader:301\\n' +\n    '  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\\n' +\n    '        ^\\n' +\n    '\\n' +\n    \"Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'jsdom' imported from /private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/france-label-1i2rti/build.ts\\n\" +\n    '    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)\\n' +\n    '    at packageResolve (node:internal/modules/esm/resolve:784:25)\\n' +\n    '    at moduleResolve (node:internal/modules/esm/resolve:873:18)\\n' +\n    '    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\\n' +\n    '    at #cachedDefaultResolve (node:internal/modules/esm/loader:704:20)\\n' +\n    '    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:724:38)\\n' +\n    '    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:762:56)\\n' +\n    '    at #resolve (node:internal/modules/esm/loader:686:17)\\n' +\n    '    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:606:35)\\n' +\n    '    at ModuleJob.syncLink (node:internal/modules/esm/module_job:164:33) {\\n' +\n    \"  code: 'ERR_MODULE_NOT_FOUND'\\n\" +\n    '}\\n' +\n    '\\n' +\n    'Node.js v26.4.0\\n'\n  \n      at TestContext.<anonymous> (file:///private/tmp/datapressr-reader-Mf4bb1f-scratch/datasets/france-public-finances/build.test.mjs:29:12)\n      at Test.runInAsyncScope (node:async_hooks:226:14)\n      at Test.run (node:internal/test_runner/test:1382:25)\n      at Test.start (node:internal/test_runner/test:1242:17)\n      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {\n    generatedMessage: true,\n    code: 'ERR_ASSERTION',\n    actual: \"node:internal/modules/package_json_reader:301\\n  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\\n        ^\\n\\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'jsdom' imported from /private/var/folders/5x/25b6j_851sq372gq0ypg00bw0000gn/T/france-label-1i2rti/build.ts\\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)\\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:704:20)\\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:724:38)\\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:762:56)\\n    at #resolve (node:internal/modules/esm/loader:686:17)\\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:606:35)\\n    at ModuleJob.syncLink (node:internal/modules/esm/module_job:164:33) {\\n  code: 'ERR_MODULE_NOT_FOUND'\\n}\\n\\nNode.js v26.4.0\\n\",\n    expected: /Source category labels changed/,\n    operator: 'match',\n    diff: 'simple'\n  }\n",
+        "stderr": "",
+        "seconds": 0.14392995834350586
+      },
+      {
+        "args": [
+          "node",
+          "site/stories/france-debt-make-charts.mjs"
+        ],
+        "cwd": "/tmp/datapressr-reader-Mf4bb1f-scratch",
+        "exit": 0,
+        "stdout": "wrote france-debt-chart-debt.svg\nwrote france-debt-chart-balance.svg\nwrote france-debt-chart-gap.svg\nwrote france-debt-chart-interest.svg\n",
+        "stderr": "",
+        "seconds": 0.5842549800872803
+      },
+      {
+        "args": [
+          "node",
+          "build.ts"
+        ],
+        "cwd": "/tmp/datapressr-reader-Mf4bb1f-scratch/datasets/france-public-finances",
+        "exit": 0,
+        "stdout": "data/fiscal-accounts.csv: 7650 rows; 3124 empty observations\ndata/spending-functions.csv: 5760 rows; 960 empty observations\ndata/quarterly-debt.csv: 106 rows; 0 empty observations\n",
+        "stderr": "",
+        "seconds": 0.34778690338134766
+      },
+      {
+        "args": [
+          "node",
+          "--test",
+          "build.test.mjs"
+        ],
+        "cwd": "/tmp/datapressr-reader-Mf4bb1f-scratch/datasets/france-public-finances",
+        "exit": 0,
+        "stdout": "\u2714 rejects corrupted source category labels even when the archive manifest is refreshed (246.593125ms)\n\u2139 tests 1\n\u2139 suites 0\n\u2139 pass 1\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 280.423584\n",
+        "stderr": "",
+        "seconds": 0.30721092224121094
+      },
+      {
+        "args": [
+          "node",
+          "scripts/validate-datapackage.mjs",
+          "."
+        ],
+        "cwd": "/tmp/datapressr-reader-Mf4bb1f-scratch/datasets/france-public-finances",
+        "exit": 0,
+        "stdout": "\u2713 no errors\n\n0 error(s), 0 warning(s)\n",
+        "stderr": "",
+        "seconds": 0.025446176528930664
+      }
+    ],
+    "hashes": [
+      {
+        "file": "datasets/france-public-finances/data/spending-functions.csv",
+        "expected": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494",
+        "actual": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494",
+        "match": true
+      },
+      {
+        "file": "datasets/france-public-finances/data/quarterly-debt.csv",
+        "expected": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307",
+        "actual": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307",
+        "match": true
+      },
+      {
+        "file": "datasets/france-public-finances/data/fiscal-accounts.csv",
+        "expected": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733",
+        "actual": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733",
+        "match": true
+      },
+      {
+        "file": "site/stories/france-debt-chart-balance.svg",
+        "expected": "38b2962d0657df701c09dcdaf2be492d28cfed7b79a3707d6e13ee3231a60bf8",
+        "actual": "38b2962d0657df701c09dcdaf2be492d28cfed7b79a3707d6e13ee3231a60bf8",
+        "match": true
+      },
+      {
+        "file": "site/stories/france-debt-chart-debt.svg",
+        "expected": "289219b7398db18c78ab32f6d1b8e30cef7da3a4b6fd2d5f3237655f983a47bf",
+        "actual": "289219b7398db18c78ab32f6d1b8e30cef7da3a4b6fd2d5f3237655f983a47bf",
+        "match": true
+      },
+      {
+        "file": "site/stories/france-debt-chart-gap.svg",
+        "expected": "607c5de406899612d6f01498fb761d71a5c698b19e55a3d874cf3d08d7a9fc4b",
+        "actual": "607c5de406899612d6f01498fb761d71a5c698b19e55a3d874cf3d08d7a9fc4b",
+        "match": true
+      },
+      {
+        "file": "site/stories/france-debt-chart-interest.svg",
+        "expected": "6eed15eef4078bdb748b535849c802b347a896a2101590e20a01e4abed92918d",
+        "actual": "6eed15eef4078bdb748b535849c802b347a896a2101590e20a01e4abed92918d",
+        "match": true
+      }
+    ],
+    "symlinks": [
+      {
+        "path": "/tmp/datapressr-reader-Mf4bb1f-scratch/site/stories/node_modules",
+        "target": "/Users/rgrp/.cache/datapressr-evals/node_modules/8984a9f462ae58e0/node_modules"
+      }
+    ],
+    "dependency_fix": "Linked scratch dataset node_modules to supplied story node_modules cache (contains jsdom30.0.1); no install.",
+    "rebuilt_csv_hashes": [
+      {
+        "file": "datasets/france-public-finances/data/spending-functions.csv",
+        "actual": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494",
+        "expected": "2387b6d41aa566a863b0e761889a99cb9acda23ed020e06e228972b390f9a494",
+        "match": true
+      },
+      {
+        "file": "datasets/france-public-finances/data/quarterly-debt.csv",
+        "actual": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307",
+        "expected": "bde7e6e1f2663b9156bf72b1d7f71a089929f679c7d888c91cf436dd5e0d2307",
+        "match": true
+      },
+      {
+        "file": "datasets/france-public-finances/data/fiscal-accounts.csv",
+        "actual": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733",
+        "expected": "5d03664891a916ada144ef29895f6e8940ad254ad3e56c00d7c014454a9b0733",
+        "match": true
+      }
+    ]
+  },
+  "calculations": {
+    "debt_steps": {
+      "2009": 14.3,
+      "2010_19": 14.1,
+      "2020": 16.7
+    },
+    "debt_latest": {
+      "period": "2026-Q2",
+      "period_end": "2026-06-30",
+      "gross_debt_eur_billions": "3595.5",
+      "net_debt_eur_billions": "3366.8",
+      "gross_debt_pct_gdp": "119",
+      "source_release_date": "2026-09-29"
+    },
+    "post2020_min": [
+      109.5,
+      "2023-Q4"
+    ],
+    "fr_negative_years": 31,
+    "eu_negative_years": 31,
+    "balances2025": {
+      "FR": -5.1,
+      "DE": -2.7,
+      "IT": -3.1,
+      "ES": -2.4,
+      "EU27_2020": -3.1
+    },
+    "gaps": {
+      "TR": 5.7,
+      "TE": 7.7,
+      "D62PAY": 2.9,
+      "D1PAY": 2.1,
+      "D632PAY": 1.0,
+      "P51G": 0.5,
+      "D3PAY": 0.5,
+      "D41PAY": 0.3,
+      "P2": -0.7
+    },
+    "interest_eur_million": {
+      "1996": 45535.5,
+      "2020": 29724.1,
+      "2025": 66635.9
+    },
+    "interest_ratio_2025_2020": 2.241813881665046,
+    "residual": 1.1,
+    "archive_hashes": [
+      {
+        "file": "fiscal.json",
+        "match": true
+      },
+      {
+        "file": "functions.json",
+        "match": true
+      },
+      {
+        "file": "insee-quarterly-debt.html",
+        "match": true
+      },
+      {
+        "file": "insee-annual-accounts.html",
+        "match": true
+      },
+      {
+        "file": "insee-spending-functions.html",
+        "match": true
+      },
+      {
+        "file": "insee-accounting-explainer.html",
+        "match": true
+      },
+      {
+        "file": "eurostat-reuse.html",
+        "match": true
+      },
+      {
+        "file": "insee-reuse.html",
+        "match": true
+      }
+    ],
+    "source_excerpts": [
+      {
+        "file": "insee-annual-accounts.html",
+        "term": "23,0 Md",
+        "text": " produits p\u00e9troliers. Les mesures nouvelles ont un effet positif sur les pr\u00e9l\u00e8vements obligatoires de 2025 \u00e0 hauteur de 23,0 Md\u20ac, incluant notamment des mesures exceptionnelles comme la contribution exceptionnelle sur les b\u00e9n\u00e9fices des grandes entreprises et celle sur le fret maritime (+8,0 Md\u20ac), ainsi que d\u2019autres mesures comme le reprofilage d"
+      },
+      {
+        "file": "insee-annual-accounts.html",
+        "term": "index\u00e9es",
+        "text": " % et +5,2 %). Les prestations sociales (retraite, ch\u00f4mage, remboursements m\u00e9dicaux, etc.), pour beaucoup d\u2019entre elles index\u00e9es sur l\u2019inflation pass\u00e9e, ralentissent (+23,6 Md\u20ac en 2025, soit +3,2 %, apr\u00e8s +38,4 Md\u20ac en 2024 soit +5,4 %). Elles progressent toutefois davantage que sur la p\u00e9riode 2009-2019 (+2,5 % en moyenne). Les pensions de retrait"
+      },
+      {
+        "file": "insee-annual-accounts.html",
+        "term": "64,7",
+        "text": "\u00e9mun\u00e9rations des salari\u00e9s 3 184,9 +1,3 97,0 +1,8 88,2 +3,4 370,0 +1,9 Charges d'int\u00e9r\u00eats 2 53,3 +14,3 6,0 -0,1 5,6 -2,7 64,7 +11,2 Prestations sociales en esp\u00e8ces et en nature 132,4 +2,4 31,4 +1,0 607,2 +3,4 771,0 +3,2 Transferts courants entre administrations publiques 63,0 -3,0 6,1 +2,7 20,3 +4,1 /// /// Autres transferts et subventions 129"
+      },
+      {
+        "file": "insee-spending-functions.html",
+        "term": "41 %, 693",
+        "text": " une contraction des d\u00e9penses en affaires \u00e9conomiques. En 2024, la protection sociale est le premier poste de d\u00e9penses (41 %, 693 milliards d\u2019euros), suivi de la sant\u00e9 (16 %, 261 milliards d\u2019euros) ( encadr\u00e9 1 ), puis des services g\u00e9n\u00e9raux (11 %, 181 milliards d\u2019euros), des affaires \u00e9conomiques (10 %, 166 milliards d\u2019euros) et de l\u2019enseignement (9"
+      },
+      {
+        "file": "eurostat-reuse.html",
+        "term": "Reuse of statistical data",
+        "text": "d to clear additional rights if certain content depicts identifiable private individuals or includes third-party works. Reuse of statistical data, metadata, publications, and other dissemination tools published on this website for commercial or non-commercial purposes is authorised provided the source is acknowledged. The reuse policy of the European Commission i"
+      },
+      {
+        "file": "insee-reuse.html",
+        "term": "Licence Ouverte / Open Licence version 2.0",
+        "text": "fus\u00e9es sur ce site (donn\u00e9es, bases de donn\u00e9es, publications, fichiers t\u00e9l\u00e9chargeables) sont mises \u00e0 disposition sous la Licence Ouverte / Open Licence version 2.0 (Etalab). Cette licence autorise la r\u00e9utilisation libre, y compris \u00e0 des fins commerciales, sous r\u00e9serve de mentionner la source sous la forme \u00ab Source : Insee \u00bb, de mentionner la date de derni\u00e8re mise \u00e0 jour des donn\u00e9e"
+      }
+    ]
+  }
+}
