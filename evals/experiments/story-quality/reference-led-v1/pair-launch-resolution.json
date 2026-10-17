@@ -1,0 +1,149 @@
+{
+  "document_type": "driver-pair-phase-go",
+  "at": "2026-10-17T23:26:55.418493+00:00",
+  "authorization": "Existing bounded comparison authorization recorded in execution-resolution.json; this handoff introduces no new scope.",
+  "proposal_sha256": "6db26362b9ad8c1d0f0c9217016b3152af4cd5cd108669a8d71e00e5a4acc53c",
+  "writer_phase_summary_sha256": "413167067621b42654bd3f0291d86f447d11ed43aa7483aed50d0bbe0733a9a4",
+  "common_harness_commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+  "commands": [
+    {
+      "pair_id": "q01-french-debt-r1",
+      "slots": [
+        "q01-french-debt-r1-baseline",
+        "q01-french-debt-r1-candidate"
+      ],
+      "run_ids": [
+        "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1"
+      ],
+      "ready_inputs": true,
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "invocation_repetitions": 1,
+      "orders_inside_single_invocation": [
+        "AB",
+        "BA"
+      ],
+      "execution_authorized_by_this_file": false
+    },
+    {
+      "pair_id": "q01-french-debt-r2",
+      "slots": [
+        "q01-french-debt-r2-baseline",
+        "q01-french-debt-r2-candidate"
+      ],
+      "run_ids": [
+        "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1"
+      ],
+      "ready_inputs": true,
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "invocation_repetitions": 1,
+      "orders_inside_single_invocation": [
+        "AB",
+        "BA"
+      ],
+      "execution_authorized_by_this_file": false
+    },
+    {
+      "pair_id": "q03-wti-negative-r1",
+      "slots": [
+        "q03-wti-negative-r1-baseline",
+        "q03-wti-negative-r1-candidate"
+      ],
+      "run_ids": [
+        "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1"
+      ],
+      "ready_inputs": true,
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "invocation_repetitions": 1,
+      "orders_inside_single_invocation": [
+        "AB",
+        "BA"
+      ],
+      "execution_authorized_by_this_file": false
+    },
+    {
+      "pair_id": "q03-wti-negative-r2",
+      "slots": [
+        "q03-wti-negative-r2-baseline",
+        "q03-wti-negative-r2-candidate"
+      ],
+      "run_ids": [
+        "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1"
+      ],
+      "ready_inputs": true,
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "invocation_repetitions": 1,
+      "orders_inside_single_invocation": [
+        "AB",
+        "BA"
+      ],
+      "execution_authorized_by_this_file": false
+    }
+  ],
+  "route": "Existing Codex ChatGPT subscription only; reverify route before launch, no API switch.",
+  "max_pair_cli_calls": 24,
+  "max_attempts_per_operation": 2,
+  "max_attempts_per_pair": 6,
+  "max_seconds_per_attempt": 900,
+  "usd_ceiling": null,
+  "usd_limitation": "No enforceable USD/token cap; report actual token usage and unknown USD, not zero.",
+  "critic_requested": "gpt-6-astra",
+  "effort_requested": "high",
+  "rubric": "story/v2",
+  "served_identity_limitation": "Actual model may be unavailable in CLI telemetry as disclosed before outputs; known mismatch stops.",
+  "stop": "Any nonzero exit/pair_failed, changed pins, missing accounting, known model mismatch or exceeded allowance pauses new pairs for driver assessment. No whole-pair rerun, fallback, extra probes, absolute critique or calibration overlay.",
+  "outcome_custody": "Seal judgments from manual readers and H coder. Driver will not synthesize outcomes until all readings and codes frozen.",
+  "journal": "/tmp/datapressr-comparison-pair-journal.json",
+  "phase_status": "authorized-pending-custodian-prechecks"
+}
