@@ -1,0 +1,608 @@
+{
+  "packet_code": "M9b1fee",
+  "stage": 3,
+  "status": "Frozen independent diagnostic; no total",
+  "reader_question_answers": [
+    {
+      "question": 1,
+      "answer": "Cushing WTI EIA daily spot crude price, nominal US dollars per barrel, minus $36.98. The May NYMEX futures settlement was a different measure at minus $37.63.",
+      "unanswered": "How the EIA spot assessment relates operationally to futures settlement."
+    },
+    {
+      "question": 2,
+      "answer": "April 20, 2020; minus $36.98, down $55.29 from $18.31 on April 17. Positive again at $8.91 April 21; one recorded negative day.",
+      "unanswered": null
+    },
+    {
+      "question": 3,
+      "answer": "The prose attributes this to lockdown fuel-demand loss, Cushing storage largely full or committed, and imminent expiry of physically delivered May WTI futures, forcing holders unable to accept delivery to sell.",
+      "unanswered": "Local data does not measure these causal factors."
+    },
+    {
+      "question": 4,
+      "answer": "The seller pays a buyer to assume the unwanted contract/delivery obligation; the buyer receives money for taking that burden.",
+      "unanswered": "Exact mechanics and participants, and the link to physical spot trades."
+    },
+    {
+      "question": 5,
+      "answer": "The negative observation is WTI only among the two benchmarks shown. Brent remained positive, although both monthly averages lost about 71% January-April.",
+      "unanswered": "Other oil grades and places are outside the evidence."
+    },
+    {
+      "question": 6,
+      "answer": "WTI returned to positive the next day and $19.23 April 30. Both benchmarks recovered later in 2020, remaining below January averages. Contract timing suggests why the exceptional episode ended.",
+      "unanswered": "The story does not establish reasons for the later broad recovery or explain the next-day reversal in detail."
+    },
+    {
+      "question": 7,
+      "answer": "Price data establishes dates, magnitudes, relative prices, and duration at daily/monthly resolutions. The causal account is externally attributed and is not tested by these series.",
+      "unanswered": "Storage, demand, positions, causal weight, precise spot/futures transmission and completeness of Brent settlement description."
+    }
+  ],
+  "question_answer_order": "Questions and anchors read together; answers saved separately before outline/source/code inspection. This differs from strictly reading anchors only after answers, but earlier spontaneous stage1/2 notes were already frozen.",
+  "corrections_to_prior_interpretation": [
+    "Causal account remains an attributed plausible explanation, not source-verified: outline discloses its sources were not retrieved.",
+    "Only WTI and one place should be understood within the compared benchmarks; other oil grades have not been tested.",
+    "Expiry and delivery deadline should not be treated as established synonyms.",
+    "Monthly falls are both 71% when rounded, not exactly identical."
+  ],
+  "author_context_exposure": {
+    "locator": "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/outline.md Friction notes and Outside context",
+    "exposure": "Read author self-review identification and withheld-review filename. Also read author claim that outside sources were cited from knowledge without retrieval.",
+    "handling": "Self-judgments treated as untrusted context, not independent evidence. Did not seek review files or referenced voice-guide. Verified only claims possible from allowed inputs."
+  },
+  "gates": {
+    "G1": {
+      "status": "unresolved",
+      "scope": "Entire story; local EIA dataset provenance is documented, causal context is not verified",
+      "evidence": [
+        "archive/PROVENANCE.md states source, download 2026-09-05, frequencies, units and public-domain/PDDL basis; datapackage defines measures.",
+        "outline.md outside-context section states CFTC and ICE were cited from author knowledge and not retrieved. Neither source text is supplied.",
+        "Broad statements about oil in general exceed the two-benchmark population."
+      ],
+      "check_needed": "Verify pinned CFTC and ICE source text, qualify comparison boundaries, and describe spot assessment/futures relationship."
+    },
+    "G2": {
+      "status": "unresolved",
+      "scope": "CSV arithmetic passes; causal and contractual claims remain unverified",
+      "evidence": [
+        "Verified 10,236 WTI observations with one nonpositive observation, all central daily values, spread $54.34, weekly $3.32, rounded monthly falls 71%, historical minima. Full calculations attached.",
+        "Observation and explanation are explicitly separated, but Brent settlement and expiry/delivery terminology require source verification.",
+        "Same proportion is true only after rounding: -71.2274% versus -71.1233%."
+      ],
+      "check_needed": "Verify causal-source wording and distinguish expiration from delivery deadline; retain rounding scope."
+    },
+    "G3": {
+      "status": "unresolved",
+      "scope": "CSV-to-SVG reproduction passes; raw XLS-to-CSV reproduction unresolved",
+      "evidence": [
+        "Unmodified chart script ran offline under Node v26.4.0; both outputs match supplied hashes and original SVGs.",
+        "All copied existing inputs retained their pre-run SHA256 values.",
+        "Raw build.ts failed with ERR_MODULE_NOT_FOUND for xlsx; exact supplied cache xlsx/package.json does not exist."
+      ],
+      "check_needed": "Supply pinned xlsx dependency offline and rerun workbook transformation with CSV hash comparison. No install or network attempted."
+    },
+    "G4": {
+      "status": "pass",
+      "scope": "Two delivered static PNG chart views inspected at their supplied reading size, checked against chart transform and reproduced SVGs",
+      "evidence": [
+        "Numeric-order image inspection showed readable titles, axes, units, line end labels, zero rules, negative marker and annotations with no visible clipping.",
+        "Chart script uses own source rows per benchmark, explicit daily [-45,55] and monthly [0,80] scales, UTC dates, row-derived annotations.",
+        "SVG hash matches establish the supplied SVG transform; PNG rendering itself was inspected visually, not independently reproduced."
+      ],
+      "check_needed": "No material repair identified in inspected static renders; other display sizes and rendering pipeline remain outside scope."
+    }
+  },
+  "manual_dimensions": {
+    "interest": {
+      "rating": 2,
+      "anchor": "Specific consequential puzzle or revealing comparison",
+      "evidence": "Negative prices are a concrete puzzle; daily WTI/Brent divergence versus matching monthly losses corrects the idea that all oil was worthless.",
+      "limit": "Interest does not validate the causal account."
+    },
+    "findings_depth": {
+      "rating": 2,
+      "anchor": "Computes relevant contrast and shows what changes and by how much",
+      "evidence": "$54.34 same-day gap, one negative observation, daily reversal, weekly smoothing, and both monthly losses are computed and interpretable.",
+      "limit": "No quantitative decomposition of causes is possible from these inputs."
+    },
+    "argument_counterevidence": {
+      "rating": 1,
+      "anchor": "Clear answer but material boundary omitted",
+      "evidence": "Brent near its record low and a March price reversal temper the main comparison; absence of causal series is explicit. However universal oil wording and futures-to-spot transmission remain insufficiently bounded.",
+      "limit": "Adjacent 2 is plausible for the narrow descriptive comparison alone; lower anchor selected for whole commissioned explanation."
+    },
+    "explanation": {
+      "rating": 1,
+      "anchor": "Defines pattern/category but central mechanism remains unclear",
+      "evidence": "The prose defines benchmarks, explains forced selling around delivery obligations, and scopes causal attribution. Yet it explains a futures mechanism for a spot series without the connecting assessment mechanics, and switches expiration to delivery deadline.",
+      "limit": "Adjacent 2 plausible if narrowed to explaining why an expiring physical-delivery futures contract could be negative; source verification pending."
+    },
+    "chart_design": {
+      "rating": 2,
+      "anchor": "Inspected visual makes intended comparison readable at a glance",
+      "evidence": "Blue WTI plunge below zero against positive gray Brent is unmistakable; monthly shared collapse and positive averages are clear with direct labels and exact values.",
+      "limit": "Daily note block is dense; small/mobile display not assessed. Monthly equal proportional change rests on annotation, not normalized line slopes."
+    },
+    "writing": {
+      "rating": 1,
+      "anchor": "Understandable but key term or paragraph needs work",
+      "evidence": "Plain benchmark definitions and short comparison statements aid understanding. Duplicate title, repeated one-day/one-benchmark phrasing, and delivery-deadline wording need editing.",
+      "limit": "Judges supplied Markdown, not an unseen rendered article; author self-review not used."
+    },
+    "reader_coverage": {
+      "rating": 1,
+      "anchor": "Main question partly answered with important follow-ups open",
+      "evidence": "Which price, when, size, duration, comparison and plausible mechanism are covered. Spot/futures connection and subsequent-recovery explanation remain open; other grades outside scope.",
+      "limit": "No requirement to manufacture recovery causes from absent data; these should be identified as gaps."
+    }
+  },
+  "verification": {
+    "copied_files": [
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/outline.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/chart-2.svg",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/READ-ME.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/chart-1.svg",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/reproduction-hashes.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/diagnostic-anchors.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/commission.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/REPRODUCTION.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/reader-questions.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/datapackage.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/SUMMARY.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/.datahubignore",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/README.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/package-lock.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/package.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/enrich.ts",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/enrich.test.mjs",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/build.ts",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEm.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCd.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/PROVENANCE.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCa.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCw.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCm.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEd.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEw.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEa.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/scripts/validate-datapackage.mjs",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-year.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-monthly.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-monthly.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-daily.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-daily.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-weekly.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-year.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-weekly.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/package-lock.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/package.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/oil-below-zero-make-charts.mjs"
+    ],
+    "symlinks": [
+      {
+        "path": "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/node_modules",
+        "target": "/Users/rgrp/.cache/datapressr-evals/node_modules/8984a9f462ae58e0/node_modules"
+      }
+    ],
+    "commands": [
+      {
+        "command": [
+          "node",
+          "--version"
+        ],
+        "cwd": "/tmp/datapressr-reader-M9b1fee-scratch",
+        "returncode": 0,
+        "stdout": "v26.4.0\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "node",
+          "datasets/energy-and-commodities/oil-prices/build.ts"
+        ],
+        "cwd": "/tmp/datapressr-reader-M9b1fee-scratch",
+        "returncode": 1,
+        "stdout": "",
+        "stderr": "node:internal/modules/package_json_reader:301\n  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);\n        ^\n\nError [ERR_MODULE_NOT_FOUND]: Cannot find package 'xlsx' imported from /private/tmp/datapressr-reader-M9b1fee-scratch/datasets/energy-and-commodities/oil-prices/build.ts\n    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)\n    at packageResolve (node:internal/modules/esm/resolve:784:25)\n    at moduleResolve (node:internal/modules/esm/resolve:873:18)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    at #cachedDefaultResolve (node:internal/modules/esm/loader:704:20)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:724:38)\n    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:762:56)\n    at #resolve (node:internal/modules/esm/loader:686:17)\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:606:35)\n    at ModuleJob.syncLink (node:internal/modules/esm/module_job:164:33) {\n  code: 'ERR_MODULE_NOT_FOUND'\n}\n\nNode.js v26.4.0\n"
+      },
+      {
+        "command": [
+          "node",
+          "site/stories/oil-below-zero-make-charts.mjs"
+        ],
+        "cwd": "/tmp/datapressr-reader-M9b1fee-scratch",
+        "returncode": 0,
+        "stdout": "wrote oil-below-zero-day.svg, oil-below-zero-months.svg\n",
+        "stderr": ""
+      }
+    ],
+    "hashes": [
+      {
+        "file": "outline.md",
+        "before": "05602b0a022687a62071429b80f002c2aa23ef0011c207163d77a91f1b5e2ad5",
+        "after": "05602b0a022687a62071429b80f002c2aa23ef0011c207163d77a91f1b5e2ad5",
+        "unchanged": true
+      },
+      {
+        "file": "chart-2.svg",
+        "before": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e",
+        "after": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e",
+        "unchanged": true
+      },
+      {
+        "file": "READ-ME.md",
+        "before": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+        "after": "ea7eaaf506684782b835f00b380740235c13964f25fee23bf96e004bd2c57a2a",
+        "unchanged": true
+      },
+      {
+        "file": "chart-1.svg",
+        "before": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6",
+        "after": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6",
+        "unchanged": true
+      },
+      {
+        "file": "reproduction-hashes.json",
+        "before": "857ac6475520210ec7a1fb22fd560cc20b2c57b41a4aece4c27bae9619db9aca",
+        "after": "857ac6475520210ec7a1fb22fd560cc20b2c57b41a4aece4c27bae9619db9aca",
+        "unchanged": true
+      },
+      {
+        "file": "diagnostic-anchors.md",
+        "before": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+        "after": "9caa1fa999f2b811c40f5c2054e6ec961c7aa5766203806e9159fb5faa35ac54",
+        "unchanged": true
+      },
+      {
+        "file": "commission.md",
+        "before": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+        "after": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+        "unchanged": true
+      },
+      {
+        "file": "REPRODUCTION.md",
+        "before": "836c4013a5d69af17ad5006d2b83bc6609bf9bfd0c12bbb4a18cde747aa68475",
+        "after": "836c4013a5d69af17ad5006d2b83bc6609bf9bfd0c12bbb4a18cde747aa68475",
+        "unchanged": true
+      },
+      {
+        "file": "reader-questions.json",
+        "before": "6648660d7cf31d11ab7d61c5c8cf894618ac322d7bcd8c6131ec36ccd12879d3",
+        "after": "6648660d7cf31d11ab7d61c5c8cf894618ac322d7bcd8c6131ec36ccd12879d3",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/datapackage.json",
+        "before": "adab9f438634e63c839cbb9e31b5b81bed21a9e5490ff39ee6f8af1349fb49a0",
+        "after": "adab9f438634e63c839cbb9e31b5b81bed21a9e5490ff39ee6f8af1349fb49a0",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/SUMMARY.md",
+        "before": "5e486d8669c66a6b9cbc836711ecb9eb79c6a1d4c618c30f8bf68f1006b7e3e5",
+        "after": "5e486d8669c66a6b9cbc836711ecb9eb79c6a1d4c618c30f8bf68f1006b7e3e5",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/.datahubignore",
+        "before": "9cc209bc3d96871ee9afb5d44a6df8ad56cfd44025c2cb1f1c4e2295e6b57b34",
+        "after": "9cc209bc3d96871ee9afb5d44a6df8ad56cfd44025c2cb1f1c4e2295e6b57b34",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/README.md",
+        "before": "c19a46898884a6dfb464f8aa42f66546462ce8754e56b03c8473d4e56f6dab31",
+        "after": "c19a46898884a6dfb464f8aa42f66546462ce8754e56b03c8473d4e56f6dab31",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/package-lock.json",
+        "before": "731056926488af152f89fcd6fa96daf4b4e15de19b50f1b5bbf9a06c109269ca",
+        "after": "731056926488af152f89fcd6fa96daf4b4e15de19b50f1b5bbf9a06c109269ca",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/package.json",
+        "before": "08aa612b462ad53b04d95f0482059f514faad7fffbe0c2b41bdee484503b85fa",
+        "after": "08aa612b462ad53b04d95f0482059f514faad7fffbe0c2b41bdee484503b85fa",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/enrich.ts",
+        "before": "aee4ae3bd223dae36266006caddcd2037e1e46b1434683b01e11c368342db466",
+        "after": "aee4ae3bd223dae36266006caddcd2037e1e46b1434683b01e11c368342db466",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/enrich.test.mjs",
+        "before": "b9bee9fc9c9d27b25dae9b1cd0a0e93039de739cdc286c0d572796c75789a7d4",
+        "after": "b9bee9fc9c9d27b25dae9b1cd0a0e93039de739cdc286c0d572796c75789a7d4",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/build.ts",
+        "before": "53d764d10a83b3c16e906528ed3529af7b60cb8e133d99b67388c7faff4e583c",
+        "after": "53d764d10a83b3c16e906528ed3529af7b60cb8e133d99b67388c7faff4e583c",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/archive/RBRTEm.xls",
+        "before": "41aa63e8650a305a168a396a55c1dbef19fa2db4af76530383a39166a12e692e",
+        "after": "41aa63e8650a305a168a396a55c1dbef19fa2db4af76530383a39166a12e692e",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/archive/RWTCd.xls",
+        "before": "033dd3a93811377a18b8ff660fa14ffc888f57df1b2969f7ec8134b769814771",
+        "after": "033dd3a93811377a18b8ff660fa14ffc888f57df1b2969f7ec8134b769814771",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/archive/PROVENANCE.md",
+        "before": "584404f5b899886e862b690ad558ad057b11250fd156f57b22c0d169ee546007",
+        "after": "584404f5b899886e862b690ad558ad057b11250fd156f57b22c0d169ee546007",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/archive/RWTCa.xls",
+        "before": "3b90f21dc7a742d88c77081383184dd921db9999bcbcffe0310518e84bf86c4a",
+        "after": "3b90f21dc7a742d88c77081383184dd921db9999bcbcffe0310518e84bf86c4a",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/archive/RWTCw.xls",
+        "before": "bb84bf8a80599c0f7025f95ac36c4fd97f7bb9459e9a42f5eb8e3dc31854805e",
+        "after": "bb84bf8a80599c0f7025f95ac36c4fd97f7bb9459e9a42f5eb8e3dc31854805e",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/archive/RWTCm.xls",
+        "before": "9dde869ade8ce6740e644b8a24e87c65ac8111f7453c63d8a8bd7a6351b6ef32",
+        "after": "9dde869ade8ce6740e644b8a24e87c65ac8111f7453c63d8a8bd7a6351b6ef32",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/archive/RBRTEd.xls",
+        "before": "ba7aa32a1e1dd6154179c581ee140e4b9bccbbc191ed521346142a14bc1701a7",
+        "after": "ba7aa32a1e1dd6154179c581ee140e4b9bccbbc191ed521346142a14bc1701a7",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/archive/RBRTEw.xls",
+        "before": "63a321d3944ab12501ea5278393fd0f89e900b1ff7e7e849fe851f43788db34b",
+        "after": "63a321d3944ab12501ea5278393fd0f89e900b1ff7e7e849fe851f43788db34b",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/archive/RBRTEa.xls",
+        "before": "05adfd66369bb5ea596e314cd1de18231ff41bbb150dbda66b57b2993ff9b77b",
+        "after": "05adfd66369bb5ea596e314cd1de18231ff41bbb150dbda66b57b2993ff9b77b",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/scripts/validate-datapackage.mjs",
+        "before": "24513e1cfbfa759d5061053ad75acd454711c2ba629522997870688976866141",
+        "after": "24513e1cfbfa759d5061053ad75acd454711c2ba629522997870688976866141",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/data/brent-year.csv",
+        "before": "0ae43a2a7a108d0f8452769463ea6739f70d020f667f4c4b7b526d66e362238c",
+        "after": "0ae43a2a7a108d0f8452769463ea6739f70d020f667f4c4b7b526d66e362238c",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/data/wti-monthly.csv",
+        "before": "3f2ea990044bc1df25dff8ad91bf224a6cda5bb5fc3ca8486061a40c23a2a696",
+        "after": "3f2ea990044bc1df25dff8ad91bf224a6cda5bb5fc3ca8486061a40c23a2a696",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/data/brent-monthly.csv",
+        "before": "10ebf2a9869f95c75ab9415ae19f3b8a744a7558eca146c1ad499264fc96df28",
+        "after": "10ebf2a9869f95c75ab9415ae19f3b8a744a7558eca146c1ad499264fc96df28",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/data/brent-daily.csv",
+        "before": "a4d463ad97ce678cfa5ae2e92f5eabcae7b589a6b4c790631e20b2f50969a19b",
+        "after": "a4d463ad97ce678cfa5ae2e92f5eabcae7b589a6b4c790631e20b2f50969a19b",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/data/wti-daily.csv",
+        "before": "fe4e07893cfdba6905e8a955cb630308668ce760af21b351de005df2c5228dd1",
+        "after": "fe4e07893cfdba6905e8a955cb630308668ce760af21b351de005df2c5228dd1",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/data/brent-weekly.csv",
+        "before": "dc7525ff10d557d82acf6b70fa37f64348660946a00a7695b8cc9967b8df3d16",
+        "after": "dc7525ff10d557d82acf6b70fa37f64348660946a00a7695b8cc9967b8df3d16",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/data/wti-year.csv",
+        "before": "b7c7e5b8b314c419d0cdc8cf413b84c8655b2917801c7579f3820ecc8014fe12",
+        "after": "b7c7e5b8b314c419d0cdc8cf413b84c8655b2917801c7579f3820ecc8014fe12",
+        "unchanged": true
+      },
+      {
+        "file": "datasets/energy-and-commodities/oil-prices/data/wti-weekly.csv",
+        "before": "19a2ae03f5d6dd4879c9462e039a1eb25044a44d8994404c6b93b86747a401fb",
+        "after": "19a2ae03f5d6dd4879c9462e039a1eb25044a44d8994404c6b93b86747a401fb",
+        "unchanged": true
+      },
+      {
+        "file": "site/stories/package-lock.json",
+        "before": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+        "after": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+        "unchanged": true
+      },
+      {
+        "file": "site/stories/package.json",
+        "before": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+        "after": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+        "unchanged": true
+      },
+      {
+        "file": "site/stories/oil-below-zero-make-charts.mjs",
+        "before": "46b34c8c1108b7a933aceb82e168c0b6fda57c53fe56f6b7e7fbfc8e9d80e0fd",
+        "after": "46b34c8c1108b7a933aceb82e168c0b6fda57c53fe56f6b7e7fbfc8e9d80e0fd",
+        "unchanged": true
+      }
+    ],
+    "chart_hash_comparisons": [
+      {
+        "file": "site/stories/oil-below-zero-day.svg",
+        "sha256": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6",
+        "actual": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6",
+        "match": true
+      },
+      {
+        "file": "site/stories/oil-below-zero-months.svg",
+        "sha256": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e",
+        "actual": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e",
+        "match": true
+      }
+    ],
+    "original_svg_hashes": {
+      "chart-1.svg": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6",
+      "chart-2.svg": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e"
+    },
+    "calculations": {
+      "wti_daily_count": 10236,
+      "wti_range": [
+        "1986-01-02",
+        "2026-09-01"
+      ],
+      "wti_nonpositive": [
+        {
+          "Date": "2020-04-20",
+          "Price": "-36.98"
+        }
+      ],
+      "brent_min": {
+        "Date": "1998-12-10",
+        "Price": "9.1"
+      },
+      "gap": 54.339999999999996,
+      "wti_fall": -55.28999999999999,
+      "wti_rebound": 45.89,
+      "weekly": 3.32,
+      "wti": {
+        "january": 57.52,
+        "april": 16.55,
+        "percent_change": -71.22739916550765,
+        "previous_lower_month": {
+          "Date": "1999-03-15",
+          "Price": "14.68"
+        },
+        "daily_annotations": {
+          "2020-03-31": 20.51,
+          "2020-04-17": 18.31,
+          "2020-04-20": -36.98,
+          "2020-04-21": 8.91,
+          "2020-04-30": 19.23
+        }
+      },
+      "brent": {
+        "january": 63.65,
+        "april": 18.38,
+        "percent_change": -71.12333071484682,
+        "previous_lower_month": {
+          "Date": "1999-06-15",
+          "Price": "15.86"
+        },
+        "daily_annotations": {
+          "2020-03-31": 14.85,
+          "2020-04-17": 19.75,
+          "2020-04-20": 17.36,
+          "2020-04-21": 9.12,
+          "2020-04-30": 18.11
+        }
+      }
+    }
+  },
+  "access_log": {
+    "ordered_explicit_reads_or_listings": [
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/reader-questions.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/diagnostic-anchors.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/READ-ME.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/REPRODUCTION.md",
+      "write /tmp/datapressr-reader-M9b1fee-questions.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/outline.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/reproduction-hashes.json",
+      "recursive filename listing only: /tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/oil-below-zero-make-charts.mjs",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/package.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/build.ts",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/package.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/PROVENANCE.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/datapackage.json"
+    ],
+    "copy_and_hash_reads": [
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/outline.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/chart-2.svg",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/READ-ME.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/chart-1.svg",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/reproduction-hashes.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/diagnostic-anchors.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/commission.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/REPRODUCTION.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/reader-questions.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/datapackage.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/SUMMARY.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/.datahubignore",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/README.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/package-lock.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/package.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/enrich.ts",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/enrich.test.mjs",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/build.ts",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEm.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCd.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/PROVENANCE.md",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCa.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCw.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RWTCm.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEd.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEw.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/archive/RBRTEa.xls",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/scripts/validate-datapackage.mjs",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-year.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-monthly.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-monthly.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-daily.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-daily.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/brent-weekly.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-year.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/datasets/energy-and-commodities/oil-prices/data/wti-weekly.csv",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/package-lock.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/package.json",
+      "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/oil-below-zero-make-charts.mjs"
+    ],
+    "scratch_access": "Same relative paths copied under /tmp/datapressr-reader-M9b1fee-scratch; all regular non-node_modules files hashed before and after. All eight CSVs parsed; chart program read five plotted/annotated CSVs and emitted two SVGs. Verification JSON written and read. Question-answer JSON read to embed here.",
+    "offline_dependency_access": [
+      {
+        "path": "/tmp/datapressr-reference-led-v1-packets/M9b1fee/stage3/site/stories/node_modules",
+        "target": "/Users/rgrp/.cache/datapressr-evals/node_modules/8984a9f462ae58e0/node_modules"
+      }
+    ],
+    "dependency_probe": "/Users/rgrp/.cache/datapressr-evals/node_modules/8984a9f462ae58e0/node_modules/xlsx/package.json (existence only; absent)",
+    "runtime_log_limit": "Exact Node transitive module file opens were not instrumented. Only supplied offline dependency link was used; no cache exploration beyond explicit xlsx existence check. Listed paths enumerate explicit reads and copied/hash-read files; runtime dependency closure is identified by cache root rather than an exhaustive syscall trace."
+  },
+  "verification_limits": [
+    "No network, fetch, package install, packet mutation, repository exploration, or withheld reviews.",
+    "Original SVG output checked by hash; supplied PNGs visually inspected in prior stages, not rerendered in this stage.",
+    "No live external-source retrieval; CFTC and ICE claims unresolved.",
+    "Raw workbook transform blocked by missing dependency; no claim of full dataset reproduction.",
+    "No historical harness results used. No broad deterministic article checker was supplied/run; named checks are script execution, SHA256 identity, independent CSV arithmetic, uniqueness/minimum calculations and visual inspection."
+  ],
+  "operational_issues": [
+    "Raw XLS build unavailable due to missing offline xlsx dependency."
+  ],
+  "disposition": "Verification required for central external source claims and full raw-input reproduction; no publication authorization inferred."
+}
