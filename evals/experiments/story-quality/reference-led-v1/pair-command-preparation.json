@@ -80,16 +80,16 @@
         "q01-french-debt-r2-candidate"
       ],
       "run_ids": [
-        "<PENDING:q01-french-debt-r2-baseline>",
-        "<PENDING:q01-french-debt-r2-candidate>"
+        "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1"
       ],
-      "ready_inputs": false,
+      "ready_inputs": true,
       "argv": [
         "node",
         "evals/run.mjs",
         "pair",
-        "<PENDING:q01-french-debt-r2-baseline>",
-        "<PENDING:q01-french-debt-r2-candidate>",
+        "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
         "--critic",
         "codex",
         "--critic-model",
@@ -111,16 +111,16 @@
         "q03-wti-negative-r1-candidate"
       ],
       "run_ids": [
-        "<PENDING:q03-wti-negative-r1-baseline>",
-        "<PENDING:q03-wti-negative-r1-candidate>"
+        "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1"
       ],
-      "ready_inputs": false,
+      "ready_inputs": true,
       "argv": [
         "node",
         "evals/run.mjs",
         "pair",
-        "<PENDING:q03-wti-negative-r1-baseline>",
-        "<PENDING:q03-wti-negative-r1-candidate>",
+        "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
         "--critic",
         "codex",
         "--critic-model",
@@ -142,16 +142,16 @@
         "q03-wti-negative-r2-candidate"
       ],
       "run_ids": [
-        "<PENDING:q03-wti-negative-r2-baseline>",
-        "<PENDING:q03-wti-negative-r2-candidate>"
+        "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1"
       ],
-      "ready_inputs": false,
+      "ready_inputs": true,
       "argv": [
         "node",
         "evals/run.mjs",
         "pair",
-        "<PENDING:q03-wti-negative-r2-baseline>",
-        "<PENDING:q03-wti-negative-r2-candidate>",
+        "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
         "--critic",
         "codex",
         "--critic-model",
@@ -228,5 +228,6 @@
       "verification": "Re-read pinned adc6fd1 evals/run.mjs pair branch; try/finally writes report.",
       "corrected": true
     }
-  ]
+  ],
+  "slot_resolution": "All8 exact frozen slot IDs mechanically resolved from completed journal finish metadata; all4 pairs ready, no output selection."
 }

@@ -1,0 +1,62 @@
+{
+  "packet": "M948761",
+  "stage": 1,
+  "notes_frozen": true,
+  "charts": [
+    {
+      "chart": "chart-1.png",
+      "spontaneous_interpretation": "Both Brent and WTI fell substantially from January into April 2020, with a particularly steep shared decline in March. WTI alone briefly plunged below zero on 20 April, to minus $36.98 per barrel; Brent remained positive at $17.36. WTI was positive again the next day. Both recovered toward $40 by late June, still well below January.",
+      "why": "The shared decline suggests a broad pressure on oil prices, while the isolated one-day WTI plunge suggests something specific to that benchmark or market. The chart supplies no actual causal evidence explaining either change.",
+      "unclear_unsupported_or_unreadable": "All labels are readable. The series are described as daily spot prices; the chart does not define Brent or WTI or explain the mechanism by which a spot price becomes negative. No source is visible. The January reference date is a selected point rather than the beginning of the series, and its selection is unexplained."
+    },
+    {
+      "chart": "chart-2.png",
+      "spontaneous_interpretation": "The negative WTI price was a one-day event on 20 April. The following day was $8.91, the week ending 24 April averaged a positive $3.32, and April averaged a positive $16.55. Weekly and monthly averaging conceal the below-zero observation. Prices recovered to $35.57 by 29 May.",
+      "why": "This chart explains how the observation's time scale changes the story, but it does not explain the economic cause of the negative price.",
+      "unclear_unsupported_or_unreadable": "Labels are readable. The claim 'the only day below zero' appears valid within the plotted March\u2013May interval but has no explicit broader scope. Week boundaries and averaging method are not defined. No source is visible. The monthly dashed line and weekly step line are distinguishable, although the step line requires reading its right-hand label."
+    }
+  ],
+  "overall": {
+    "what_happened": "Oil benchmarks declined sharply in early 2020. WTI briefly recorded a deeply negative daily spot price, unlike Brent. The negative observation disappears at weekly or monthly aggregation, and both benchmarks subsequently recovered part of their losses.",
+    "why": "The images establish the event's specificity and brevity but do not answer the commission's causal 'why'. There is no evidence here about demand, supply, storage, delivery obligations, or other mechanisms; any causal story would require additional material.",
+    "uncertainties": "The relationship between the displayed spot series and the event's market mechanism is unexplained. Sources, benchmark definitions, and averaging conventions are absent. Nothing was unreadable."
+  },
+  "access_log": [
+    {
+      "order": 1,
+      "operation": "exec_command",
+      "command": "ls -la /tmp/datapressr-reference-led-v1-packets/M948761/stage1",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M948761/stage1"
+      ],
+      "purpose": "List stage1 contents"
+    },
+    {
+      "order": 2,
+      "operation": "exec_command",
+      "command": "cat /tmp/datapressr-reference-led-v1-packets/M948761/stage1/READ-ME.md /tmp/datapressr-reference-led-v1-packets/M948761/stage1/commission.md",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M948761/stage1/READ-ME.md",
+        "/tmp/datapressr-reference-led-v1-packets/M948761/stage1/commission.md"
+      ],
+      "purpose": "Read instructions then commission"
+    },
+    {
+      "order": 3,
+      "operation": "view_image",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M948761/stage1/chart-1.png"
+    },
+    {
+      "order": 4,
+      "operation": "view_image",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M948761/stage1/chart-2.png"
+    },
+    {
+      "order": 5,
+      "operation": "exec_command/python3",
+      "path": "/tmp/datapressr-reader-M948761-stage1.json",
+      "purpose": "Exclusively create JSON notes; validate serialization and make file read-only"
+    }
+  ],
+  "operational_limits": "Only the stage1 directory listing, instructions, commission, and both chart images were inspected. Images were viewed once each in numeric order with the image tool's default high detail. Chart1 notes were recorded before viewing chart2. No parent or sibling content, repository, history, web, other reviews, mappings, or implementation/model CLI calls were accessed. Stage2 has not been opened. Output uses exclusive creation and read-only permissions to freeze these notes."
+}
