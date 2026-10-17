@@ -8,6 +8,10 @@ Story charts are authored with [Observable Plot](https://observablehq.com/plot/)
 
 (Dataset-page charts made by the `enrich` skill are different: declarative `views` in `datapackage.json`, no build step. Don't use Plot there, and don't use `views` for a story — they can't annotate.)
 
+## Choose the comparison before the chart form
+
+In the chart plan's existing purpose column, name the comparison the reader needs to make and the visual feature that exposes it. Choose the marks for that task: aligned positions on a common scale help compare values precisely; a distribution beside its aggregate shows how representative the headline is. For a question about who gains and loses, separate the affected groups or outcomes so a pooled result cannot hide the trade-off. A display of study-result directions can show disagreement across outcomes, but cannot show effect magnitude. Inspect the chart before reading its explanatory prose: does it make the intended comparison visible, or leave the reader to reconstruct it from labels? A chart can contain every cited number and still leave the question unanswered.
+
 ## The pattern
 
 A `<slug>-make-charts.mjs` next to the story. Start from [`make-charts-template.mjs`](make-charts-template.mjs) in this folder.

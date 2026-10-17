@@ -51,6 +51,8 @@ Chart-build dependencies live in one scoped `package.json` in that folder (`@obs
 
 Read the dataset's `SUMMARY.md` if it has been enriched — the consolidated stats table is the fastest way to find the extreme, the anomaly, the one-way series. (Story #3's finding — a single negative value among 25,415 — came from scanning one `min` column across eight resources.) Enrichment is **recommended, not required**: a story can consume a `structured` dataset directly, as stories #1 and #2 did. If you don't have an argument yet, run `enrich` first.
 
+Treat an extreme as a lead. Before fixing the argument, investigate a comparison that matters to the intended reader: what does the headline figure hide, which expectation does it test, or what everyday concern does it help explain? For example, compare national GDP per head with the regional distribution to ask how well the headline describes most regions; this does not measure household living standards. Choose the question the evidence can answer; a finding that confirms an expectation can still matter. A striking value alone does not establish the reader's payoff.
+
 Inspect the data before choosing; don't invent the argument in advance. Check every number you intend to use against the rows, not memory.
 
 If the upstream data can change under you (someone else's dataset, still updating), snapshot the exact files into `<slug>-src/` with a `PROVENANCE.md` (source, retrieval date, licence) so the charts stay reproducible. A dataset in the same repository can be read directly.
