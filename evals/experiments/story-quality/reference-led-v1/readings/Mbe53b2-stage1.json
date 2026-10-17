@@ -1,0 +1,33 @@
+{
+  "packet_code": "Mbe53b2",
+  "stage": 1,
+  "reading_status": "frozen spontaneous reading before prose release",
+  "accessed_paths_in_order": [
+    "/tmp/datapressr-reference-led-v1-packets/Mbe53b2/stage1",
+    "/tmp/datapressr-reference-led-v1-packets/Mbe53b2/stage1/READ-ME.md",
+    "/tmp/datapressr-reference-led-v1-packets/Mbe53b2/stage1/commission.md",
+    "/tmp/datapressr-reference-led-v1-packets/Mbe53b2/stage1/chart-1.png",
+    "/tmp/datapressr-reference-led-v1-packets/Mbe53b2/stage1/chart-2.png"
+  ],
+  "access_and_order_limitations": "Listed stage1 file names with rg --files. Read instructions then commission together. Viewed both PNGs in numeric order. No outside evidence accessed or viewing limitation. Initial save failed because python was unavailable; retried using python3.",
+  "commission": "Why did the price of oil go below zero in April 2020?",
+  "chart_readings": [
+    {
+      "chart": "chart-1.png",
+      "what_happened": "WTI and Brent both fell substantially from January into April 2020, by roughly 70 percent as of 17 April. WTI then plunged to minus $36.98 on 20 April while Brent stayed positive, before WTI immediately returned to positive territory. Both recovered toward $40 by June. The negative price looks like a brief, exceptional WTI event within a broader oil-price decline.",
+      "why_i_think_it_happened": "The paired lines suggest a common force behind the earlier decline and something specific to WTI behind the negative day. The chart does not identify either force. I cannot infer a demonstrated causal mechanism from these prices alone.",
+      "unclear_unsupported_or_unreadable": "Why WTI alone went negative is unanswered. There is no explanation of what a negative spot price means in practice or how these benchmarks are measured, and no visible source. The title says 2020 although only roughly the first half is displayed. Labels and the key negative point are otherwise easy to read."
+    },
+    {
+      "chart": "chart-2.png",
+      "what_happened": "The negative price lasted a single plotted trading day: WTI dropped $55.29 from $18.31 on 17 April to minus $36.98 on 20 April, then recovered to $8.91 on 21 April. The weekly average remained positive at $3.32 and the April average was $16.55. This makes the headline negative price look highly dependent on looking at daily observations; an average hides the short plunge.",
+      "why_i_think_it_happened": "The rapid bounce makes me think the plunge was a short-lived disruption rather than a sustained valuation of oil below zero. That is an interpretation of duration, not an explanation of its cause.",
+      "unclear_unsupported_or_unreadable": "The title visibly begins with a clipped or incomplete W spot price rather than a fully readable benchmark name; I understand WTI from the prior chart. How weekly and monthly averages treat non-trading days is unspecified. No source is visible. The chart clarifies timing and aggregation but still does not explain the negative-price mechanism."
+    }
+  ],
+  "overall": {
+    "what_happened": "Oil prices had already collapsed before a one-day WTI plunge below zero on 20 April. Brent did not go negative, and even the WTI week and month averages stayed positive. Prices subsequently recovered.",
+    "why_i_think_it_happened": "The evidence supports a broad market decline followed by an unusually brief WTI-specific event. It supplies no direct evidence about the cause of either.",
+    "unclear_unsupported_or_unreadable": "The central commissioned why question remains open: what made sellers accept a negative price, why on this date, and why for WTI rather than Brent? The charts provide magnitude, comparison, duration and averaging context, but no causal variables or explanation."
+  }
+}
