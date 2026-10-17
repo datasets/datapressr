@@ -1,0 +1,97 @@
+{
+  "document_type": "frozen-manual-reading-index",
+  "status": "in-progress",
+  "scheduled_reader_sessions": 8,
+  "completed_reader_sessions": 3,
+  "reader_configuration": "Same inherited platform configuration; no override. Three progressive stages within each session; no replacement sessions.",
+  "record_policy": "Earlier stage hashed and committed before releasing later materials. Raw JSON retained; no outcome normalization or arm mapping here.",
+  "readers": [
+    {
+      "opaque_code": "M30755c",
+      "reader_agent": "reader_m30755c",
+      "fresh_context": "fork_turns none",
+      "model_override": null,
+      "served_model": "unavailable from platform metadata",
+      "served_effort": "unavailable from platform metadata",
+      "status": "three stages frozen",
+      "records": [
+        {
+          "stage": 1,
+          "path": "readings/M30755c-stage1.json",
+          "sha256": "e8881c3beb09e29ec8d431f0db14064eac9ce5eea99496721e97705c8a611632",
+          "bytes": 7451
+        },
+        {
+          "stage": 2,
+          "path": "readings/M30755c-stage2.json",
+          "sha256": "35a76cb9da3c3c075d09ee842e84b6793ada5ef957e36a3063d511dad4e2073e",
+          "bytes": 6606
+        },
+        {
+          "stage": 3,
+          "path": "readings/M30755c-stage3.json",
+          "sha256": "2a06b4e0f2b26f65918642443ffe919ae890219660788c51ce9b3fa696426bd2",
+          "bytes": 26760
+        }
+      ]
+    },
+    {
+      "opaque_code": "Mb8941a",
+      "reader_agent": "reader_mb8941a",
+      "fresh_context": "fork_turns none",
+      "model_override": null,
+      "served_model": "unavailable from platform metadata",
+      "served_effort": "unavailable from platform metadata",
+      "status": "three stages frozen",
+      "records": [
+        {
+          "stage": 1,
+          "path": "readings/Mb8941a-stage1.json",
+          "sha256": "0aa8aa85985a3d85a6915d576f523856a55f4ecc00284d2919229008b79b594a",
+          "bytes": 5180
+        },
+        {
+          "stage": 2,
+          "path": "readings/Mb8941a-stage2.json",
+          "sha256": "f3de83a9c6e7a4bc685f30c62c6258b88c83e3929aa7edbd68f6e38109ea76ef",
+          "bytes": 5549
+        },
+        {
+          "stage": 3,
+          "path": "readings/Mb8941a-stage3.json",
+          "sha256": "c984ffa68bb557aa92cd3b398bb4f79083a2bf5d45b0cf2624df268bc44e95de",
+          "bytes": 37907
+        }
+      ]
+    },
+    {
+      "opaque_code": "M9b1fee",
+      "reader_agent": "reader_m9b1fee",
+      "fresh_context": "fork_turns none",
+      "model_override": null,
+      "served_model": "unavailable from platform metadata",
+      "served_effort": "unavailable from platform metadata",
+      "status": "three stages frozen",
+      "records": [
+        {
+          "stage": 1,
+          "path": "readings/M9b1fee-stage1.json",
+          "sha256": "dfe52f9afe5b7ada36478bb63ff15e7151d306ba5139ed1a501a02065d9782b1",
+          "bytes": 3869
+        },
+        {
+          "stage": 2,
+          "path": "readings/M9b1fee-stage2.json",
+          "sha256": "8595c952bcce030edff4303f37ed9f6aef95cc437a4119957b685fd493479368",
+          "bytes": 4480
+        },
+        {
+          "stage": 3,
+          "path": "readings/M9b1fee-stage3.json",
+          "sha256": "5b8b70d4009a08a881aedda96b87de5126f863aeedf700981e0b21427880dbcd",
+          "bytes": 37313
+        }
+      ]
+    }
+  ]
+}
