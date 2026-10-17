@@ -1,6 +1,6 @@
 {
   "document_type": "post-launch-packet-exposure-audit",
-  "status": "partial-two-packets",
+  "status": "partial-four-packets",
   "audits": [
     {
       "at": "2026-10-17T22:13:38.336644+00:00",
@@ -79,5 +79,121 @@
       "recommendation": "Preserve released packets and frozen readings. For all subsequent outputs consistently retain original outline content at stage3 under the frozen outline-supply protocol, while continuing to withhold separate review files. Add an external custodian notice, not edits to released packets: embedded author self-judgments are untrusted source context, not independent approval. Mechanically inventory/reveal their locations at stage3 and report differential exposure. Keep stage1/2 interpretations distinct from post-outline diagnostics; no reread/retry, no retrospective sanitizing, no claim stage3 was free of prior author judgments. Embedded workspace histories reveal process metadata but do not by themselves establish treatment mapping."
     }
   ],
-  "driver_disposition": "Preserve original-outline policy across all8. No retrospective sanitization or replacement readers. Inventory embedded author review/provenance and instruct readers not to use author verdicts as evidence. Distinguish frozen spontaneous chart/prose readings from stage3 diagnostics; report differential exposure."
+  "driver_disposition": "Preserve original-outline policy across all8. No retrospective sanitization or replacement readers. Inventory embedded author review/provenance and instruct readers not to use author verdicts as evidence. Distinguish frozen spontaneous chart/prose readings from stage3 diagnostics; report differential exposure.",
+  "subsequent_packet_exposure_inventories": [
+    {
+      "opaque_code": "M9b1fee",
+      "stage3_exposure_inventory": {
+        "at": "2026-10-17T22:20:32.986561+00:00",
+        "path": "stage3/outline.md",
+        "mechanical_keyword_locations": [
+          {
+            "line": 59,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": null
+          }
+        ],
+        "review_policy": "Original outline retained; separate author-review files withheld; references/verdicts within outline are author context, not independent evidence."
+      }
+    },
+    {
+      "opaque_code": "Mbe53b2",
+      "stage3_exposure_inventory": {
+        "at": "2026-10-17T22:36:59.570040+00:00",
+        "path": "stage3/outline.md",
+        "mechanical_keyword_locations": [
+          {
+            "line": 16,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": null
+          },
+          {
+            "line": 57,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": null
+          },
+          {
+            "line": 61,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": "## Outline review"
+          },
+          {
+            "line": 63,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": null
+          },
+          {
+            "line": 65,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": "### Round 1 \u2014 CHANGES_REQUIRED"
+          },
+          {
+            "line": 67,
+            "kinds": [
+              "author-review reference",
+              "process/hash provenance"
+            ],
+            "heading": null
+          },
+          {
+            "line": 91,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": "### Round 2"
+          },
+          {
+            "line": 93,
+            "kinds": [
+              "author-review reference",
+              "process/hash provenance"
+            ],
+            "heading": null
+          },
+          {
+            "line": 100,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": null
+          },
+          {
+            "line": 102,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": "### Round 3"
+          },
+          {
+            "line": 104,
+            "kinds": [
+              "author-review reference",
+              "process/hash provenance"
+            ],
+            "heading": null
+          },
+          {
+            "line": 106,
+            "kinds": [
+              "author-review reference"
+            ],
+            "heading": null
+          }
+        ],
+        "review_policy": "Original outline retained; separate author-review files withheld; references/verdicts within outline are author context, not independent evidence."
+      }
+    }
+  ]
 }
