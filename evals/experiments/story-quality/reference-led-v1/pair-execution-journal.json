@@ -1,0 +1,991 @@
+{
+  "launch_commit": "862a8c651d4d922e63923c18ed8762bb66ae6a51",
+  "launch_sha256": "0ae610152e22085de19e95d85f4f2b40e0d0d9e526fbe5c79697e59aca35585e",
+  "launch": {
+    "document_type": "driver-pair-phase-go",
+    "at": "2026-10-17T23:26:55.418493+00:00",
+    "authorization": "Existing bounded comparison authorization recorded in execution-resolution.json; this handoff introduces no new scope.",
+    "proposal_sha256": "6db26362b9ad8c1d0f0c9217016b3152af4cd5cd108669a8d71e00e5a4acc53c",
+    "writer_phase_summary_sha256": "413167067621b42654bd3f0291d86f447d11ed43aa7483aed50d0bbe0733a9a4",
+    "common_harness_commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+    "commands": [
+      {
+        "pair_id": "q01-french-debt-r1",
+        "slots": [
+          "q01-french-debt-r1-baseline",
+          "q01-french-debt-r1-candidate"
+        ],
+        "run_ids": [
+          "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1"
+        ],
+        "ready_inputs": true,
+        "argv": [
+          "node",
+          "evals/run.mjs",
+          "pair",
+          "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+          "--critic",
+          "codex",
+          "--critic-model",
+          "gpt-6-astra",
+          "--rubric",
+          "story/v2"
+        ],
+        "invocation_repetitions": 1,
+        "orders_inside_single_invocation": [
+          "AB",
+          "BA"
+        ],
+        "execution_authorized_by_this_file": false
+      },
+      {
+        "pair_id": "q01-french-debt-r2",
+        "slots": [
+          "q01-french-debt-r2-baseline",
+          "q01-french-debt-r2-candidate"
+        ],
+        "run_ids": [
+          "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1"
+        ],
+        "ready_inputs": true,
+        "argv": [
+          "node",
+          "evals/run.mjs",
+          "pair",
+          "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
+          "--critic",
+          "codex",
+          "--critic-model",
+          "gpt-6-astra",
+          "--rubric",
+          "story/v2"
+        ],
+        "invocation_repetitions": 1,
+        "orders_inside_single_invocation": [
+          "AB",
+          "BA"
+        ],
+        "execution_authorized_by_this_file": false
+      },
+      {
+        "pair_id": "q03-wti-negative-r1",
+        "slots": [
+          "q03-wti-negative-r1-baseline",
+          "q03-wti-negative-r1-candidate"
+        ],
+        "run_ids": [
+          "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1"
+        ],
+        "ready_inputs": true,
+        "argv": [
+          "node",
+          "evals/run.mjs",
+          "pair",
+          "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+          "--critic",
+          "codex",
+          "--critic-model",
+          "gpt-6-astra",
+          "--rubric",
+          "story/v2"
+        ],
+        "invocation_repetitions": 1,
+        "orders_inside_single_invocation": [
+          "AB",
+          "BA"
+        ],
+        "execution_authorized_by_this_file": false
+      },
+      {
+        "pair_id": "q03-wti-negative-r2",
+        "slots": [
+          "q03-wti-negative-r2-baseline",
+          "q03-wti-negative-r2-candidate"
+        ],
+        "run_ids": [
+          "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1"
+        ],
+        "ready_inputs": true,
+        "argv": [
+          "node",
+          "evals/run.mjs",
+          "pair",
+          "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+          "--critic",
+          "codex",
+          "--critic-model",
+          "gpt-6-astra",
+          "--rubric",
+          "story/v2"
+        ],
+        "invocation_repetitions": 1,
+        "orders_inside_single_invocation": [
+          "AB",
+          "BA"
+        ],
+        "execution_authorized_by_this_file": false
+      }
+    ],
+    "route": "Existing Codex ChatGPT subscription only; reverify route before launch, no API switch.",
+    "max_pair_cli_calls": 24,
+    "max_attempts_per_operation": 2,
+    "max_attempts_per_pair": 6,
+    "max_seconds_per_attempt": 900,
+    "usd_ceiling": null,
+    "usd_limitation": "No enforceable USD/token cap; report actual token usage and unknown USD, not zero.",
+    "critic_requested": "gpt-6-astra",
+    "effort_requested": "high",
+    "rubric": "story/v2",
+    "served_identity_limitation": "Actual model may be unavailable in CLI telemetry as disclosed before outputs; known mismatch stops.",
+    "stop": "Any nonzero exit/pair_failed, changed pins, missing accounting, known model mismatch or exceeded allowance pauses new pairs for driver assessment. No whole-pair rerun, fallback, extra probes, absolute critique or calibration overlay.",
+    "outcome_custody": "Seal judgments from manual readers and H coder. Driver will not synthesize outcomes until all readings and codes frozen.",
+    "journal": "/tmp/datapressr-comparison-pair-journal.json",
+    "phase_status": "authorized-pending-custodian-prechecks"
+  },
+  "preparation_sha256": "6db26362b9ad8c1d0f0c9217016b3152af4cd5cd108669a8d71e00e5a4acc53c",
+  "events": [
+    {
+      "event": "start",
+      "sequence": 1,
+      "pair_slot": "q01-french-debt-r1",
+      "at": "2026-10-17T23:27:59.412726+00:00",
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "ledger_before_bytes": 91700,
+      "ledger_before_sha256": "6df1dc86a1a7a72cd6b783ff7dab012feebc264d113102d0046b63f440ca5836",
+      "dirs_before": [
+        "20261010-0117-q01-french-debt-pair-1",
+        "20261010-0135-q01-french-debt-pair-1",
+        "20261010-0153-q01-french-debt-pair-1",
+        "20261010-0154-q01-french-debt-pair-1",
+        "20261010-0225-q03-wti-negative-pair-1",
+        "20261010-0226-q04-co2-rising-pair-1",
+        "20261010-1044-q01-french-debt-pair-1",
+        "20261010-1045-q01-french-debt-pair-1",
+        "20261010-1046-q01-french-debt-pair-1",
+        "20261010-1047-q01-french-debt-pair-1"
+      ],
+      "source_hashes": [
+        {
+          "path": "evals/run.mjs",
+          "sha256": "8be57972e2e9cb6ec55959dd879f7284e6b0d26d01b667e420d6f1bb5156b7a0",
+          "git_object": "02f0edf0c5f391511300d078d1727455e6b04884"
+        },
+        {
+          "path": "evals/config.json",
+          "sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+          "git_object": "5c9d1471af5248e65f5f11fa76627bac2ea74627"
+        },
+        {
+          "path": "evals/lib/critic.mjs",
+          "sha256": "b15115386dd887a62703deebb61e8f0736bbaf4af15cec9068aa383e7b903e95",
+          "git_object": "86de4d2a1d6e4faabcfc5aef7abc480d415b2e0c"
+        },
+        {
+          "path": "evals/lib/adapters/codex.mjs",
+          "sha256": "ea3d1dac7643cbf1fe008a25c0ef8ed4322afe2536a9c1ca3f10b75676abc677",
+          "git_object": "aa9c18f1a71f42229341168acb92bd047470e0eb"
+        },
+        {
+          "path": "evals/lib/adapters/index.mjs",
+          "sha256": "9ac6616e1736250be1dc096378769206f059faf5666975a2de071cb24dd8ff91",
+          "git_object": "d3eb767e31fe022dc8355774098b11edcf8dc569"
+        },
+        {
+          "path": "evals/rubrics/story/v2.md",
+          "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+          "git_object": "c592eabffe445529177b27c6a794102e29bf08f6"
+        }
+      ],
+      "recipe_sha256": "864bebd8a21dfc436cd67df3e2ce4f99252e76e71a7a9f3947526b2ae90ec773",
+      "canary_sha256": "a2ce791309fc8da9f8abd65c2ecf7d71def75a3ed637e8187a5c09f2b92edbf4",
+      "input_pins": [
+        {
+          "run_id": "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+          "prompt_sha256": "3fe1ed6d7a88a5b56c202aad28e93d38cacedc57e9635e99d73d34042ecc2575",
+          "harness": {
+            "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+            "dirty": false,
+            "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+          }
+        },
+        {
+          "run_id": "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
+          "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+          "prompt_sha256": "3fe1ed6d7a88a5b56c202aad28e93d38cacedc57e9635e99d73d34042ecc2575",
+          "harness": {
+            "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+            "dirty": false,
+            "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+          }
+        }
+      ],
+      "route": "ChatGPT subscription",
+      "cli_version": "0.163.0"
+    },
+    {
+      "event": "finish",
+      "sequence": 1,
+      "pair_slot": "q01-french-debt-r1",
+      "at": "2026-10-17T23:29:12.510604+00:00",
+      "exit_code": 0,
+      "stop_reasons": [],
+      "metadata": {
+        "kind": "pair",
+        "pair_id": "20261017-2327-q01-french-debt-pair-1",
+        "case_id": "q01-french-debt",
+        "run_ids": [
+          "20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1"
+        ],
+        "rubric": "story/v2",
+        "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+        "critic": {
+          "vendor": "codex",
+          "model": "gpt-6-astra",
+          "fallback": false,
+          "fallback_reason": null,
+          "effort_requested": "high",
+          "model_actual": null
+        },
+        "calls": 3,
+        "cost_usd": null,
+        "known_cost_usd": null,
+        "usage": {
+          "input_tokens": 95221,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2428,
+          "reasoning_output_tokens": 1101
+        },
+        "path": "pairs/20261017-2327-q01-french-debt-pair-1"
+      },
+      "raw_ledger_delta": "{\"schema\":1,\"kind\":\"pair\",\"at\":\"2026-10-17T23:27:59.554Z\",\"pair_id\":\"20261017-2327-q01-french-debt-pair-1\",\"case_id\":\"q01-french-debt\",\"run_ids\":[\"20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1\",\"20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1\"],\"rubric\":\"story/v2\",\"rubric_sha256\":\"0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5\",\"critic\":{\"vendor\":\"codex\",\"model\":\"gpt-6-astra\",\"fallback\":false,\"fallback_reason\":null,\"effort_requested\":\"high\",\"model_actual\":null},\"judgements\":[{\"order\":\"AB\",\"preferred_run_id\":\"20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1\",\"margin\":\"clear\"},{\"order\":\"BA\",\"preferred_run_id\":\"20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1\",\"margin\":\"clear\"}],\"winner_run_id\":\"20261017-2140-q01-french-debt-claude-opus-5-5-ccabbcc-1\",\"path\":\"pairs/20261017-2327-q01-french-debt-pair-1\",\"cost_usd\":null,\"usage\":{\"input_tokens\":95221,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":2428,\"reasoning_output_tokens\":1101},\"calls\":3}\n",
+      "ledger_after_bytes": 92724,
+      "ledger_after_sha256": "c6d7928a3e0cd9b52b201460f48471974f5d54f1157f4deca1b43ed9ace0e632",
+      "new_pair_directories": [
+        "20261017-2327-q01-french-debt-pair-1"
+      ],
+      "artifacts": [
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-extra-spending.svg",
+          "bytes": 5181,
+          "sha256": "0c6ac944bb0f5502aac4648d3c75d8f7688cfbe6faf0c3c444ff7ba5027acd06"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-gap.svg",
+          "bytes": 7875,
+          "sha256": "6fd3b49eb641504d1edc92e38bc0be0a4b1c04abc3ca649c896caa5b9ba8e744"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-peers.svg",
+          "bytes": 6096,
+          "sha256": "e899b79749f9ca816de4ad0dfc3eabef65d089f8b9a10686a999f5c5c7c106a7"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-ratio.svg",
+          "bytes": 8202,
+          "sha256": "f28b85bd0ed63b6fd0d5ff8ed213b084d143d9d2813a7ddf85b9f36d848112ef"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt.md",
+          "bytes": 5099,
+          "sha256": "865fcc68989cec81cd581c31e61ccaf3f4a0be560a81b1930e0f055e7bf45df6"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-deficit.svg",
+          "bytes": 14197,
+          "sha256": "b546dba0a0ccd54679c3ca4abc894edb7b911ab1b308cf324bd50dca2809826e"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-functions.svg",
+          "bytes": 6896,
+          "sha256": "a2c3bb93edc598c45025b431fd6bcd63349a0915ad8259ff074954133a603697"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-peers.svg",
+          "bytes": 6397,
+          "sha256": "7074aacbe36d15cccef6cac917ac029926a6cf7767bdd38b970bdf7e4e507f4d"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-ratio.svg",
+          "bytes": 8799,
+          "sha256": "6143c8e48c9bad446fe31a4b02118178072bc1cab9603742c53c194c372846ec"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt.md",
+          "bytes": 5884,
+          "sha256": "dc2a7310221053ff283f4cdcb8aec005c3b156d93ff853cbea17b128987cc183"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/critique-AB.json",
+          "bytes": 2937,
+          "sha256": "3a775b4a6eb06f83f97773daf6c771ae90fdfe098214a5d307bafe129b0f62ba"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/critique-BA.json",
+          "bytes": 2861,
+          "sha256": "f0e5e8ba6530fe02be4b152563700487e81219bbadfba58108204461ffcad77d"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/critique.md",
+          "bytes": 4396,
+          "sha256": "77ec500b61b837d93db31570b47433824820c224f1e3ed16b9cac027b7a57204"
+        },
+        {
+          "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/mapping.json",
+          "bytes": 188,
+          "sha256": "a65387f4a71045aacc6472fc9b6d8a117f9a87f04e9bf448c874a726204a0367"
+        }
+      ],
+      "log": "/tmp/datapressr-comparison-pair-1.log",
+      "log_sha256": "7eb6132f17d8e2763daa6601890e61feecc429e835882025a1694d67d76d88a0",
+      "sealed_files": [
+        "/tmp/datapressr-comparison-pair-1-ledger-before.jsonl",
+        "/tmp/datapressr-comparison-pair-1-ledger-delta.jsonl"
+      ]
+    },
+    {
+      "event": "start",
+      "sequence": 2,
+      "pair_slot": "q01-french-debt-r2",
+      "at": "2026-10-17T23:29:19.538189+00:00",
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+        "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "ledger_before_bytes": 92724,
+      "ledger_before_sha256": "c6d7928a3e0cd9b52b201460f48471974f5d54f1157f4deca1b43ed9ace0e632",
+      "dirs_before": [
+        "20261010-0117-q01-french-debt-pair-1",
+        "20261010-0135-q01-french-debt-pair-1",
+        "20261010-0153-q01-french-debt-pair-1",
+        "20261010-0154-q01-french-debt-pair-1",
+        "20261010-0225-q03-wti-negative-pair-1",
+        "20261010-0226-q04-co2-rising-pair-1",
+        "20261010-1044-q01-french-debt-pair-1",
+        "20261010-1045-q01-french-debt-pair-1",
+        "20261010-1046-q01-french-debt-pair-1",
+        "20261010-1047-q01-french-debt-pair-1",
+        "20261017-2327-q01-french-debt-pair-1"
+      ],
+      "source_hashes": [
+        {
+          "path": "evals/run.mjs",
+          "sha256": "8be57972e2e9cb6ec55959dd879f7284e6b0d26d01b667e420d6f1bb5156b7a0",
+          "git_object": "02f0edf0c5f391511300d078d1727455e6b04884"
+        },
+        {
+          "path": "evals/config.json",
+          "sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+          "git_object": "5c9d1471af5248e65f5f11fa76627bac2ea74627"
+        },
+        {
+          "path": "evals/lib/critic.mjs",
+          "sha256": "b15115386dd887a62703deebb61e8f0736bbaf4af15cec9068aa383e7b903e95",
+          "git_object": "86de4d2a1d6e4faabcfc5aef7abc480d415b2e0c"
+        },
+        {
+          "path": "evals/lib/adapters/codex.mjs",
+          "sha256": "ea3d1dac7643cbf1fe008a25c0ef8ed4322afe2536a9c1ca3f10b75676abc677",
+          "git_object": "aa9c18f1a71f42229341168acb92bd047470e0eb"
+        },
+        {
+          "path": "evals/lib/adapters/index.mjs",
+          "sha256": "9ac6616e1736250be1dc096378769206f059faf5666975a2de071cb24dd8ff91",
+          "git_object": "d3eb767e31fe022dc8355774098b11edcf8dc569"
+        },
+        {
+          "path": "evals/rubrics/story/v2.md",
+          "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+          "git_object": "c592eabffe445529177b27c6a794102e29bf08f6"
+        }
+      ],
+      "recipe_sha256": "864bebd8a21dfc436cd67df3e2ce4f99252e76e71a7a9f3947526b2ae90ec773",
+      "canary_sha256": "a2ce791309fc8da9f8abd65c2ecf7d71def75a3ed637e8187a5c09f2b92edbf4",
+      "input_pins": [
+        {
+          "run_id": "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+          "prompt_sha256": "3fe1ed6d7a88a5b56c202aad28e93d38cacedc57e9635e99d73d34042ecc2575",
+          "harness": {
+            "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+            "dirty": false,
+            "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+          }
+        },
+        {
+          "run_id": "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
+          "case_hash": "9c8e31bde2f4d945f50fba491b23301f79c9d3f1947e274b5e18ee17c90456f0",
+          "prompt_sha256": "3fe1ed6d7a88a5b56c202aad28e93d38cacedc57e9635e99d73d34042ecc2575",
+          "harness": {
+            "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+            "dirty": false,
+            "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+          }
+        }
+      ],
+      "route": "ChatGPT subscription",
+      "cli_version": "0.163.0"
+    },
+    {
+      "event": "finish",
+      "sequence": 2,
+      "pair_slot": "q01-french-debt-r2",
+      "at": "2026-10-17T23:30:24.146634+00:00",
+      "exit_code": 0,
+      "stop_reasons": [],
+      "metadata": {
+        "kind": "pair",
+        "pair_id": "20261017-2329-q01-french-debt-pair-1",
+        "case_id": "q01-french-debt",
+        "run_ids": [
+          "20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
+          "20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1"
+        ],
+        "rubric": "story/v2",
+        "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+        "critic": {
+          "vendor": "codex",
+          "model": "gpt-6-astra",
+          "fallback": false,
+          "fallback_reason": null,
+          "effort_requested": "high",
+          "model_actual": null
+        },
+        "calls": 3,
+        "cost_usd": null,
+        "known_cost_usd": null,
+        "usage": {
+          "input_tokens": 91771,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 2398,
+          "reasoning_output_tokens": 1013
+        },
+        "path": "pairs/20261017-2329-q01-french-debt-pair-1"
+      },
+      "raw_ledger_delta": "{\"schema\":1,\"kind\":\"pair\",\"at\":\"2026-10-17T23:29:19.661Z\",\"pair_id\":\"20261017-2329-q01-french-debt-pair-1\",\"case_id\":\"q01-french-debt\",\"run_ids\":[\"20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1\",\"20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1\"],\"rubric\":\"story/v2\",\"rubric_sha256\":\"0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5\",\"critic\":{\"vendor\":\"codex\",\"model\":\"gpt-6-astra\",\"fallback\":false,\"fallback_reason\":null,\"effort_requested\":\"high\",\"model_actual\":null},\"judgements\":[{\"order\":\"AB\",\"preferred_run_id\":\"20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1\",\"margin\":\"clear\"},{\"order\":\"BA\",\"preferred_run_id\":\"20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1\",\"margin\":\"clear\"}],\"winner_run_id\":\"20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1\",\"path\":\"pairs/20261017-2329-q01-french-debt-pair-1\",\"cost_usd\":null,\"usage\":{\"input_tokens\":91771,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":2398,\"reasoning_output_tokens\":1013},\"calls\":3}\n",
+      "ledger_after_bytes": 93748,
+      "ledger_after_sha256": "0d07b8777ab03ea7f35116c0b3e7f5aa8e85a39ca6f7f51463cbbb30e656bafc",
+      "new_pair_directories": [
+        "20261017-2329-q01-french-debt-pair-1"
+      ],
+      "artifacts": [
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-balance.svg",
+          "bytes": 8881,
+          "sha256": "38b2962d0657df701c09dcdaf2be492d28cfed7b79a3707d6e13ee3231a60bf8"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-debt.svg",
+          "bytes": 9166,
+          "sha256": "289219b7398db18c78ab32f6d1b8e30cef7da3a4b6fd2d5f3237655f983a47bf"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-gap.svg",
+          "bytes": 5389,
+          "sha256": "607c5de406899612d6f01498fb761d71a5c698b19e55a3d874cf3d08d7a9fc4b"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-interest.svg",
+          "bytes": 6051,
+          "sha256": "6eed15eef4078bdb748b535849c802b347a896a2101590e20a01e4abed92918d"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt.md",
+          "bytes": 5444,
+          "sha256": "924530c2f7b2cf43cf077ce23193490b7866372574433c5d919a4313f6fbe291"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-borrowing.svg",
+          "bytes": 8848,
+          "sha256": "9ef8612fe59fb566228ae3e35ce1e5dd2e215760f549e4437db953d860d336a3"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-ratio.svg",
+          "bytes": 9605,
+          "sha256": "2de44492dbad1166874749f9e1af3141dfbc4fb9dfeaeb04e261bb189ab702ee"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-revenue-spending.svg",
+          "bytes": 5303,
+          "sha256": "73ebbf9f9ee33cac5402f5054f61b883db60c95af9c280c54caf2c06daf52849"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-spending-change.svg",
+          "bytes": 7206,
+          "sha256": "8c5c07b2ba6a511a21d080a1ac4ac424d4caed6dc677390def7262884627d0be"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt.md",
+          "bytes": 5833,
+          "sha256": "85df3fa084578a2fd524e0e3f5554ad8e0288db89691a715dd2c512c587eaa7d"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/critique-AB.json",
+          "bytes": 2976,
+          "sha256": "5a732cf82dbaeec5478d7bbf7c1c7bfc023938668d63595ae2d29a36ace449d5"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/critique-BA.json",
+          "bytes": 3023,
+          "sha256": "2cf025f1b4ab5a6ee6f27b2559adb18e3cfb96f2300984b8f61e5cdab6211a7e"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/critique.md",
+          "bytes": 4597,
+          "sha256": "5d872b5fa958d4947ef3a88d41d2ad62f9aa1c26f7f098eb81c3ebc2cfc1f68e"
+        },
+        {
+          "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/mapping.json",
+          "bytes": 188,
+          "sha256": "65e10e98f8bfcd350eb20a19cd9075f9861ad755f55a78c280997ee359437140"
+        }
+      ],
+      "log": "/tmp/datapressr-comparison-pair-2.log",
+      "log_sha256": "e3b00f05e1776e9640f7bc230481a4731193164172d9855e7f370632c567bfbb",
+      "sealed_files": [
+        "/tmp/datapressr-comparison-pair-2-ledger-before.jsonl",
+        "/tmp/datapressr-comparison-pair-2-ledger-delta.jsonl"
+      ]
+    },
+    {
+      "event": "start",
+      "sequence": 3,
+      "pair_slot": "q03-wti-negative-r1",
+      "at": "2026-10-17T23:30:30.151730+00:00",
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "ledger_before_bytes": 93748,
+      "ledger_before_sha256": "0d07b8777ab03ea7f35116c0b3e7f5aa8e85a39ca6f7f51463cbbb30e656bafc",
+      "dirs_before": [
+        "20261010-0117-q01-french-debt-pair-1",
+        "20261010-0135-q01-french-debt-pair-1",
+        "20261010-0153-q01-french-debt-pair-1",
+        "20261010-0154-q01-french-debt-pair-1",
+        "20261010-0225-q03-wti-negative-pair-1",
+        "20261010-0226-q04-co2-rising-pair-1",
+        "20261010-1044-q01-french-debt-pair-1",
+        "20261010-1045-q01-french-debt-pair-1",
+        "20261010-1046-q01-french-debt-pair-1",
+        "20261010-1047-q01-french-debt-pair-1",
+        "20261017-2327-q01-french-debt-pair-1",
+        "20261017-2329-q01-french-debt-pair-1"
+      ],
+      "source_hashes": [
+        {
+          "path": "evals/run.mjs",
+          "sha256": "8be57972e2e9cb6ec55959dd879f7284e6b0d26d01b667e420d6f1bb5156b7a0",
+          "git_object": "02f0edf0c5f391511300d078d1727455e6b04884"
+        },
+        {
+          "path": "evals/config.json",
+          "sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+          "git_object": "5c9d1471af5248e65f5f11fa76627bac2ea74627"
+        },
+        {
+          "path": "evals/lib/critic.mjs",
+          "sha256": "b15115386dd887a62703deebb61e8f0736bbaf4af15cec9068aa383e7b903e95",
+          "git_object": "86de4d2a1d6e4faabcfc5aef7abc480d415b2e0c"
+        },
+        {
+          "path": "evals/lib/adapters/codex.mjs",
+          "sha256": "ea3d1dac7643cbf1fe008a25c0ef8ed4322afe2536a9c1ca3f10b75676abc677",
+          "git_object": "aa9c18f1a71f42229341168acb92bd047470e0eb"
+        },
+        {
+          "path": "evals/lib/adapters/index.mjs",
+          "sha256": "9ac6616e1736250be1dc096378769206f059faf5666975a2de071cb24dd8ff91",
+          "git_object": "d3eb767e31fe022dc8355774098b11edcf8dc569"
+        },
+        {
+          "path": "evals/rubrics/story/v2.md",
+          "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+          "git_object": "c592eabffe445529177b27c6a794102e29bf08f6"
+        }
+      ],
+      "recipe_sha256": "864bebd8a21dfc436cd67df3e2ce4f99252e76e71a7a9f3947526b2ae90ec773",
+      "canary_sha256": "a2ce791309fc8da9f8abd65c2ecf7d71def75a3ed637e8187a5c09f2b92edbf4",
+      "input_pins": [
+        {
+          "run_id": "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "case_hash": "78afac2584621952bf39f0b3569dbdf206d51618391116e3a0e74ee4ab713ca6",
+          "prompt_sha256": "5608493b7e9092a497f0b91c862a778548d6e3b90cc9c33fa45b635c726a76ac",
+          "harness": {
+            "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+            "dirty": false,
+            "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+          }
+        },
+        {
+          "run_id": "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
+          "case_hash": "78afac2584621952bf39f0b3569dbdf206d51618391116e3a0e74ee4ab713ca6",
+          "prompt_sha256": "5608493b7e9092a497f0b91c862a778548d6e3b90cc9c33fa45b635c726a76ac",
+          "harness": {
+            "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+            "dirty": false,
+            "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+          }
+        }
+      ],
+      "route": "ChatGPT subscription",
+      "cli_version": "0.163.0"
+    },
+    {
+      "event": "finish",
+      "sequence": 3,
+      "pair_slot": "q03-wti-negative-r1",
+      "at": "2026-10-17T23:32:13.879419+00:00",
+      "exit_code": 0,
+      "stop_reasons": [],
+      "metadata": {
+        "kind": "pair",
+        "pair_id": "20261017-2330-q03-wti-negative-pair-1",
+        "case_id": "q03-wti-negative",
+        "run_ids": [
+          "20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1"
+        ],
+        "rubric": "story/v2",
+        "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+        "critic": {
+          "vendor": "codex",
+          "model": "gpt-6-astra",
+          "fallback": false,
+          "fallback_reason": null,
+          "effort_requested": "high",
+          "model_actual": null
+        },
+        "calls": 3,
+        "cost_usd": null,
+        "known_cost_usd": null,
+        "usage": {
+          "input_tokens": 68774,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3555,
+          "reasoning_output_tokens": 2242
+        },
+        "path": "pairs/20261017-2330-q03-wti-negative-pair-1"
+      },
+      "raw_ledger_delta": "{\"schema\":1,\"kind\":\"pair\",\"at\":\"2026-10-17T23:30:30.287Z\",\"pair_id\":\"20261017-2330-q03-wti-negative-pair-1\",\"case_id\":\"q03-wti-negative\",\"run_ids\":[\"20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1\",\"20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1\"],\"rubric\":\"story/v2\",\"rubric_sha256\":\"0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5\",\"critic\":{\"vendor\":\"codex\",\"model\":\"gpt-6-astra\",\"fallback\":false,\"fallback_reason\":null,\"effort_requested\":\"high\",\"model_actual\":null},\"judgements\":[{\"order\":\"AB\",\"preferred_run_id\":\"20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1\",\"margin\":\"slight\"},{\"order\":\"BA\",\"preferred_run_id\":\"20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1\",\"margin\":\"slight\"}],\"winner_run_id\":\"20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1\",\"path\":\"pairs/20261017-2330-q03-wti-negative-pair-1\",\"cost_usd\":null,\"usage\":{\"input_tokens\":68774,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":3555,\"reasoning_output_tokens\":2242},\"calls\":3}\n",
+      "ledger_after_bytes": 94782,
+      "ledger_after_sha256": "a34c1ad3ff5e29f8a5c4b2be9d7ce61f51c3cf4f9dc6264566a53c2bec65361a",
+      "new_pair_directories": [
+        "20261017-2330-q03-wti-negative-pair-1"
+      ],
+      "artifacts": [
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/A/oil-below-zero-averages.svg",
+          "bytes": 9318,
+          "sha256": "5068c84cdb3a54fd82e44acd7b91c5508b84e0639cfc4fba1e75b181bfb50df6"
+        },
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/A/oil-below-zero-only-wti.svg",
+          "bytes": 10627,
+          "sha256": "c6f3292947d7837281701bc04e14f6dd6235d0cfebd778455a85f79bfa7cd3f2"
+        },
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/A/oil-below-zero.md",
+          "bytes": 4403,
+          "sha256": "02b25f2568a1f10fdbd231dd73e3ce8ab79bb2f377aa2b1c2136d6c4b28750e9"
+        },
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/B/oil-below-zero-day.svg",
+          "bytes": 9400,
+          "sha256": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6"
+        },
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/B/oil-below-zero-months.svg",
+          "bytes": 6285,
+          "sha256": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e"
+        },
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/B/oil-below-zero.md",
+          "bytes": 4739,
+          "sha256": "0b54cfabcdf7c20319d49509418aff0f0b02fd17a96d91cce4621ff71cb4c26b"
+        },
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/critique-AB.json",
+          "bytes": 2933,
+          "sha256": "00b85f58775c2e90a48f0c0d8cb57e548168f70b377fa1ad3263d8201b1333af"
+        },
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/critique-BA.json",
+          "bytes": 2768,
+          "sha256": "ad605e7f0d72b98db3b4ea080ceec120b1b8da8cc060d18a608982b2b5fbe47e"
+        },
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/critique.md",
+          "bytes": 4300,
+          "sha256": "24eb4eb5ba6b1307f5ea11b4015a58e8cdc411548b55f7caf32be9fbce536d69"
+        },
+        {
+          "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/mapping.json",
+          "bytes": 191,
+          "sha256": "b347b898869fdc343fe8900df3aa027a1cd0d4c74a7af674b5e85fa4be1252a0"
+        }
+      ],
+      "log": "/tmp/datapressr-comparison-pair-3.log",
+      "log_sha256": "b3693b1ce540f91caf8b4b8351fc03fc903c44b20be47aef3ff11d3a60b568cf",
+      "sealed_files": [
+        "/tmp/datapressr-comparison-pair-3-ledger-before.jsonl",
+        "/tmp/datapressr-comparison-pair-3-ledger-delta.jsonl"
+      ]
+    },
+    {
+      "event": "start",
+      "sequence": 4,
+      "pair_slot": "q03-wti-negative-r2",
+      "at": "2026-10-17T23:32:20.420276+00:00",
+      "argv": [
+        "node",
+        "evals/run.mjs",
+        "pair",
+        "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+        "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+        "--critic",
+        "codex",
+        "--critic-model",
+        "gpt-6-astra",
+        "--rubric",
+        "story/v2"
+      ],
+      "ledger_before_bytes": 94782,
+      "ledger_before_sha256": "a34c1ad3ff5e29f8a5c4b2be9d7ce61f51c3cf4f9dc6264566a53c2bec65361a",
+      "dirs_before": [
+        "20261010-0117-q01-french-debt-pair-1",
+        "20261010-0135-q01-french-debt-pair-1",
+        "20261010-0153-q01-french-debt-pair-1",
+        "20261010-0154-q01-french-debt-pair-1",
+        "20261010-0225-q03-wti-negative-pair-1",
+        "20261010-0226-q04-co2-rising-pair-1",
+        "20261010-1044-q01-french-debt-pair-1",
+        "20261010-1045-q01-french-debt-pair-1",
+        "20261010-1046-q01-french-debt-pair-1",
+        "20261010-1047-q01-french-debt-pair-1",
+        "20261017-2327-q01-french-debt-pair-1",
+        "20261017-2329-q01-french-debt-pair-1",
+        "20261017-2330-q03-wti-negative-pair-1"
+      ],
+      "source_hashes": [
+        {
+          "path": "evals/run.mjs",
+          "sha256": "8be57972e2e9cb6ec55959dd879f7284e6b0d26d01b667e420d6f1bb5156b7a0",
+          "git_object": "02f0edf0c5f391511300d078d1727455e6b04884"
+        },
+        {
+          "path": "evals/config.json",
+          "sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+          "git_object": "5c9d1471af5248e65f5f11fa76627bac2ea74627"
+        },
+        {
+          "path": "evals/lib/critic.mjs",
+          "sha256": "b15115386dd887a62703deebb61e8f0736bbaf4af15cec9068aa383e7b903e95",
+          "git_object": "86de4d2a1d6e4faabcfc5aef7abc480d415b2e0c"
+        },
+        {
+          "path": "evals/lib/adapters/codex.mjs",
+          "sha256": "ea3d1dac7643cbf1fe008a25c0ef8ed4322afe2536a9c1ca3f10b75676abc677",
+          "git_object": "aa9c18f1a71f42229341168acb92bd047470e0eb"
+        },
+        {
+          "path": "evals/lib/adapters/index.mjs",
+          "sha256": "9ac6616e1736250be1dc096378769206f059faf5666975a2de071cb24dd8ff91",
+          "git_object": "d3eb767e31fe022dc8355774098b11edcf8dc569"
+        },
+        {
+          "path": "evals/rubrics/story/v2.md",
+          "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+          "git_object": "c592eabffe445529177b27c6a794102e29bf08f6"
+        }
+      ],
+      "recipe_sha256": "864bebd8a21dfc436cd67df3e2ce4f99252e76e71a7a9f3947526b2ae90ec773",
+      "canary_sha256": "a2ce791309fc8da9f8abd65c2ecf7d71def75a3ed637e8187a5c09f2b92edbf4",
+      "input_pins": [
+        {
+          "run_id": "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "case_hash": "78afac2584621952bf39f0b3569dbdf206d51618391116e3a0e74ee4ab713ca6",
+          "prompt_sha256": "5608493b7e9092a497f0b91c862a778548d6e3b90cc9c33fa45b635c726a76ac",
+          "harness": {
+            "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+            "dirty": false,
+            "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+          }
+        },
+        {
+          "run_id": "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+          "case_hash": "78afac2584621952bf39f0b3569dbdf206d51618391116e3a0e74ee4ab713ca6",
+          "prompt_sha256": "5608493b7e9092a497f0b91c862a778548d6e3b90cc9c33fa45b635c726a76ac",
+          "harness": {
+            "tree": "a9fe4f24737df1ed244e12be3faddd80e0c4a8da",
+            "dirty": false,
+            "recipe_sha256": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d"
+          }
+        }
+      ],
+      "route": "ChatGPT subscription",
+      "cli_version": "0.163.0"
+    },
+    {
+      "event": "finish",
+      "sequence": 4,
+      "pair_slot": "q03-wti-negative-r2",
+      "at": "2026-10-17T23:34:00.805446+00:00",
+      "exit_code": 0,
+      "stop_reasons": [],
+      "metadata": {
+        "kind": "pair",
+        "pair_id": "20261017-2332-q03-wti-negative-pair-1",
+        "case_id": "q03-wti-negative",
+        "run_ids": [
+          "20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+          "20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1"
+        ],
+        "rubric": "story/v2",
+        "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+        "critic": {
+          "vendor": "codex",
+          "model": "gpt-6-astra",
+          "fallback": false,
+          "fallback_reason": null,
+          "effort_requested": "high",
+          "model_actual": null
+        },
+        "calls": 3,
+        "cost_usd": null,
+        "known_cost_usd": null,
+        "usage": {
+          "input_tokens": 69009,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 3554,
+          "reasoning_output_tokens": 2118
+        },
+        "path": "pairs/20261017-2332-q03-wti-negative-pair-1"
+      },
+      "raw_ledger_delta": "{\"schema\":1,\"kind\":\"pair\",\"at\":\"2026-10-17T23:32:20.571Z\",\"pair_id\":\"20261017-2332-q03-wti-negative-pair-1\",\"case_id\":\"q03-wti-negative\",\"run_ids\":[\"20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1\",\"20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1\"],\"rubric\":\"story/v2\",\"rubric_sha256\":\"0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5\",\"critic\":{\"vendor\":\"codex\",\"model\":\"gpt-6-astra\",\"fallback\":false,\"fallback_reason\":null,\"effort_requested\":\"high\",\"model_actual\":null},\"judgements\":[{\"order\":\"AB\",\"preferred_run_id\":\"20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1\",\"margin\":\"slight\"},{\"order\":\"BA\",\"preferred_run_id\":\"20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1\",\"margin\":\"clear\"}],\"winner_run_id\":\"20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1\",\"path\":\"pairs/20261017-2332-q03-wti-negative-pair-1\",\"cost_usd\":null,\"usage\":{\"input_tokens\":69009,\"cached_input_tokens\":0,\"cache_write_input_tokens\":0,\"output_tokens\":3554,\"reasoning_output_tokens\":2118},\"calls\":3}\n",
+      "ledger_after_bytes": 95815,
+      "ledger_after_sha256": "0f8dbdafde70a4f1b722d239f0d0112e7ba9f0ee1fc8789b32f78b345d8c99e1",
+      "new_pair_directories": [
+        "20261017-2332-q03-wti-negative-pair-1"
+      ],
+      "artifacts": [
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/A/oil-below-zero-averages.svg",
+          "bytes": 8741,
+          "sha256": "05fd33a08f67846db880c045a4a07894ca73a0fee23ce4719bb991a1372222c9"
+        },
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/A/oil-below-zero-benchmarks.svg",
+          "bytes": 11689,
+          "sha256": "ed47908094a9e217f59de29c68ab4d92aa79bb4ec536af7d633fec009e6df24a"
+        },
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/A/oil-below-zero.md",
+          "bytes": 4442,
+          "sha256": "1061e412a1c09e13dae901988bb349531d3f283d0f01f18dc6169347c4902c3f"
+        },
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/B/oil-below-zero-averages.svg",
+          "bytes": 8267,
+          "sha256": "d756b7edf77391cb89357a3852540ed9dc7f40261afeac9f48f9ccdf08f1d902"
+        },
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/B/oil-below-zero-daily.svg",
+          "bytes": 11173,
+          "sha256": "da26688faa54b457bb05c983aab6e250615b37471d603301840c71240262cc32"
+        },
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/B/oil-below-zero.md",
+          "bytes": 4461,
+          "sha256": "1efeee6c37c04c4c6e2894216d7f200788e33b0d452448728160d78e5b56c99f"
+        },
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/critique-AB.json",
+          "bytes": 3172,
+          "sha256": "b8e8b75fa61978789b79ebecab7c4e58908a83e40e1cbe6f703045ed194c656f"
+        },
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/critique-BA.json",
+          "bytes": 2983,
+          "sha256": "b9475f4770b88a715767524d9647b9ef5f7cfbaaad199f93bc94f514be8fc57a"
+        },
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/critique.md",
+          "bytes": 4754,
+          "sha256": "153df9a2ba73e4a3d36e4eecfa14ddb928534273b4f984f6dc5437db2b34eb10"
+        },
+        {
+          "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/mapping.json",
+          "bytes": 191,
+          "sha256": "137280503636a29bd72d424a540c0ead21c56780a0d67384119ffa7f536172f1"
+        }
+      ],
+      "log": "/tmp/datapressr-comparison-pair-4.log",
+      "log_sha256": "e7b81e284e9d6e764dbab2f3d8c322b26efb8895457bdbaaf1028664661c2e96",
+      "sealed_files": [
+        "/tmp/datapressr-comparison-pair-4-ledger-before.jsonl",
+        "/tmp/datapressr-comparison-pair-4-ledger-delta.jsonl"
+      ]
+    }
+  ],
+  "outcomes_sealed": true,
+  "completion_summary": {
+    "phase": "four_pairs_complete_hold",
+    "calls": 12,
+    "usage": {
+      "input_tokens": 324775,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 11935,
+      "reasoning_output_tokens": 6474
+    },
+    "cost_usd": null,
+    "served_identity_available": false,
+    "judgments_sealed": true,
+    "all_eight_order_files_present": true,
+    "verified_at": "2026-10-17T23:34:08.574075+00:00"
+  }
+}

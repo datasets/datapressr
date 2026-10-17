@@ -1,0 +1,60 @@
+{
+  "rubric": "story/v2",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "effort_requested": "high",
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "BA",
+  "shown": {
+    "story_1": "B",
+    "story_2": "A"
+  },
+  "preferred": "B",
+  "margin": "clear",
+  "why": "Story 1’s “A deficit every year” separates the 2025 deficit into interest and the remaining budget gap, answering an important question Story 2 leaves unfinished. Its spending-functions chart also shows the largest functions and their changing GDP shares; Story 2’s useful extra-spending chart instead compares economic categories with the EU at one date. Story 2’s directly labelled revenue-and-spending chart makes the persistent gap immediately clear, whereas Story 1’s deficit chart requires closer attention to black total ticks when blue primary surpluses appear. Both peer charts clearly support their comparisons, but high revenue relative to neighbours does not establish whether weakening revenue contributed to France’s recent deterioration, which neither story works out. Both honestly acknowledge the missing market and political evidence, and both explain GDP’s denominator effect without working through the budget-and-growth conditions needed to stabilise debt.",
+  "reader_questions": [
+    {
+      "q": "How large is France’s public debt relative to its economy, and when did it rise most sharply?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "What evidence distinguishes an immediate debt crisis from a serious but longstanding fiscal problem?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How persistent are France’s budget deficits, and has the recent deterioration come from weaker revenue, higher spending, or both relative to GDP?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How do France’s deficit, revenue and spending compare with Germany, Italy, Spain and the EU average?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "Which functions account for the largest shares of French public spending, and which have contributed most to its growth relative to GDP?",
+      "A": "partly",
+      "B": "yes"
+    },
+    {
+      "q": "How much of the deficit comes from interest payments, how has that burden changed, and how large is the deficit before interest?",
+      "A": "partly",
+      "B": "yes"
+    },
+    {
+      "q": "What would have to change in France’s budget balance and economic growth for debt to stop rising relative to GDP?",
+      "A": "partly",
+      "B": "partly"
+    }
+  ],
+  "prompt_sha256": "bd4098c12947709f040f014d81c2501b021dbeb4f1a6fa4a309d0dd2f8df68d8",
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+}

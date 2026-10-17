@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-17T23:36:58.280307+00:00",
+  "scope": "Driver and synthesis author may now combine frozen codes with treatment and pair outcomes; original readers/coder remain unexposed.",
+  "codes_frozen_commit": "137192c4f2fc76cc0951811fe3848601f7d9dcc6",
+  "codes_sha256": "5f3ce2d62e091856dc961a35bf40d4c55a57ab62cb60385f9f208059b3efe512",
+  "primary_sha256": "3f1c37e4539106607f5f2c01e1174f277e674a1b31b45ff3093339aebb9ab969",
+  "original_private_mapping_sha256": "c5ea21a815e302cee90ea7b501f58bf15f2a5cbca22219e17c3a77f5ce687f60",
+  "owner_responses": [],
+  "owner_response_status": "Not obtained; no owner blinding or calibration outcome claimed.",
+  "journal_sealed_flag": "Historical custody status at runtime completion, superseded for driver/synthesis only by this post-freeze unmasking record."
+}

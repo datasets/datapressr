@@ -12,7 +12,11 @@
     "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1",
     "evals/runs/story/q01-french-debt/20261017-2250-q01-french-debt-claude-opus-5-5-ccabbcc-1",
     "evals/runs/story/q03-wti-negative/20261017-2302-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
-    "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1"
+    "evals/runs/story/q03-wti-negative/20261017-2312-q03-wti-negative-claude-opus-5-5-92148d1-1",
+    "evals/pairs/20261017-2327-q01-french-debt-pair-1",
+    "evals/pairs/20261017-2329-q01-french-debt-pair-1",
+    "evals/pairs/20261017-2330-q03-wti-negative-pair-1",
+    "evals/pairs/20261017-2332-q03-wti-negative-pair-1"
   ],
   "files": [
     {
@@ -905,6 +909,616 @@
       "disposition": "copied",
       "git_ignored": false,
       "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/critique-BA.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/critique-BA.json",
+      "bytes": 2861,
+      "source_sha256": "f0e5e8ba6530fe02be4b152563700487e81219bbadfba58108204461ffcad77d",
+      "destination_sha256": "f0e5e8ba6530fe02be4b152563700487e81219bbadfba58108204461ffcad77d",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/critique.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/critique.md",
+      "bytes": 4396,
+      "source_sha256": "77ec500b61b837d93db31570b47433824820c224f1e3ed16b9cac027b7a57204",
+      "destination_sha256": "77ec500b61b837d93db31570b47433824820c224f1e3ed16b9cac027b7a57204",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/mapping.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/mapping.json",
+      "bytes": 188,
+      "source_sha256": "a65387f4a71045aacc6472fc9b6d8a117f9a87f04e9bf448c874a726204a0367",
+      "destination_sha256": "a65387f4a71045aacc6472fc9b6d8a117f9a87f04e9bf448c874a726204a0367",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:23:evals/pairs/**/mapping.json\tevals/pairs/20261017-2327-q01-french-debt-pair-1/mapping.json"
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/critique-AB.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/critique-AB.json",
+      "bytes": 2937,
+      "source_sha256": "3a775b4a6eb06f83f97773daf6c771ae90fdfe098214a5d307bafe129b0f62ba",
+      "destination_sha256": "3a775b4a6eb06f83f97773daf6c771ae90fdfe098214a5d307bafe129b0f62ba",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-peers.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-peers.svg",
+      "bytes": 6096,
+      "source_sha256": "e899b79749f9ca816de4ad0dfc3eabef65d089f8b9a10686a999f5c5c7c106a7",
+      "destination_sha256": "e899b79749f9ca816de4ad0dfc3eabef65d089f8b9a10686a999f5c5c7c106a7",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt.md",
+      "bytes": 5099,
+      "source_sha256": "865fcc68989cec81cd581c31e61ccaf3f4a0be560a81b1930e0f055e7bf45df6",
+      "destination_sha256": "865fcc68989cec81cd581c31e61ccaf3f4a0be560a81b1930e0f055e7bf45df6",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-extra-spending.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-extra-spending.svg",
+      "bytes": 5181,
+      "source_sha256": "0c6ac944bb0f5502aac4648d3c75d8f7688cfbe6faf0c3c444ff7ba5027acd06",
+      "destination_sha256": "0c6ac944bb0f5502aac4648d3c75d8f7688cfbe6faf0c3c444ff7ba5027acd06",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-gap.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-gap.svg",
+      "bytes": 7875,
+      "source_sha256": "6fd3b49eb641504d1edc92e38bc0be0a4b1c04abc3ca649c896caa5b9ba8e744",
+      "destination_sha256": "6fd3b49eb641504d1edc92e38bc0be0a4b1c04abc3ca649c896caa5b9ba8e744",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-ratio.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/A/french-debt-ratio.svg",
+      "bytes": 8202,
+      "source_sha256": "f28b85bd0ed63b6fd0d5ff8ed213b084d143d9d2813a7ddf85b9f36d848112ef",
+      "destination_sha256": "f28b85bd0ed63b6fd0d5ff8ed213b084d143d9d2813a7ddf85b9f36d848112ef",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-peers.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-peers.svg",
+      "bytes": 6397,
+      "source_sha256": "7074aacbe36d15cccef6cac917ac029926a6cf7767bdd38b970bdf7e4e507f4d",
+      "destination_sha256": "7074aacbe36d15cccef6cac917ac029926a6cf7767bdd38b970bdf7e4e507f4d",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt.md",
+      "bytes": 5884,
+      "source_sha256": "dc2a7310221053ff283f4cdcb8aec005c3b156d93ff853cbea17b128987cc183",
+      "destination_sha256": "dc2a7310221053ff283f4cdcb8aec005c3b156d93ff853cbea17b128987cc183",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-functions.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-functions.svg",
+      "bytes": 6896,
+      "source_sha256": "a2c3bb93edc598c45025b431fd6bcd63349a0915ad8259ff074954133a603697",
+      "destination_sha256": "a2c3bb93edc598c45025b431fd6bcd63349a0915ad8259ff074954133a603697",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-deficit.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-deficit.svg",
+      "bytes": 14197,
+      "source_sha256": "b546dba0a0ccd54679c3ca4abc894edb7b911ab1b308cf324bd50dca2809826e",
+      "destination_sha256": "b546dba0a0ccd54679c3ca4abc894edb7b911ab1b308cf324bd50dca2809826e",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-ratio.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2327-q01-french-debt-pair-1/B/french-debt-ratio.svg",
+      "bytes": 8799,
+      "source_sha256": "6143c8e48c9bad446fe31a4b02118178072bc1cab9603742c53c194c372846ec",
+      "destination_sha256": "6143c8e48c9bad446fe31a4b02118178072bc1cab9603742c53c194c372846ec",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/critique-BA.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/critique-BA.json",
+      "bytes": 3023,
+      "source_sha256": "2cf025f1b4ab5a6ee6f27b2559adb18e3cfb96f2300984b8f61e5cdab6211a7e",
+      "destination_sha256": "2cf025f1b4ab5a6ee6f27b2559adb18e3cfb96f2300984b8f61e5cdab6211a7e",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/critique.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/critique.md",
+      "bytes": 4597,
+      "source_sha256": "5d872b5fa958d4947ef3a88d41d2ad62f9aa1c26f7f098eb81c3ebc2cfc1f68e",
+      "destination_sha256": "5d872b5fa958d4947ef3a88d41d2ad62f9aa1c26f7f098eb81c3ebc2cfc1f68e",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/mapping.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/mapping.json",
+      "bytes": 188,
+      "source_sha256": "65e10e98f8bfcd350eb20a19cd9075f9861ad755f55a78c280997ee359437140",
+      "destination_sha256": "65e10e98f8bfcd350eb20a19cd9075f9861ad755f55a78c280997ee359437140",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:23:evals/pairs/**/mapping.json\tevals/pairs/20261017-2329-q01-french-debt-pair-1/mapping.json"
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/critique-AB.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/critique-AB.json",
+      "bytes": 2976,
+      "source_sha256": "5a732cf82dbaeec5478d7bbf7c1c7bfc023938668d63595ae2d29a36ace449d5",
+      "destination_sha256": "5a732cf82dbaeec5478d7bbf7c1c7bfc023938668d63595ae2d29a36ace449d5",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-interest.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-interest.svg",
+      "bytes": 6051,
+      "source_sha256": "6eed15eef4078bdb748b535849c802b347a896a2101590e20a01e4abed92918d",
+      "destination_sha256": "6eed15eef4078bdb748b535849c802b347a896a2101590e20a01e4abed92918d",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-gap.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-gap.svg",
+      "bytes": 5389,
+      "source_sha256": "607c5de406899612d6f01498fb761d71a5c698b19e55a3d874cf3d08d7a9fc4b",
+      "destination_sha256": "607c5de406899612d6f01498fb761d71a5c698b19e55a3d874cf3d08d7a9fc4b",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt.md",
+      "bytes": 5444,
+      "source_sha256": "924530c2f7b2cf43cf077ce23193490b7866372574433c5d919a4313f6fbe291",
+      "destination_sha256": "924530c2f7b2cf43cf077ce23193490b7866372574433c5d919a4313f6fbe291",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-balance.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-balance.svg",
+      "bytes": 8881,
+      "source_sha256": "38b2962d0657df701c09dcdaf2be492d28cfed7b79a3707d6e13ee3231a60bf8",
+      "destination_sha256": "38b2962d0657df701c09dcdaf2be492d28cfed7b79a3707d6e13ee3231a60bf8",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-debt.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/A/france-debt-chart-debt.svg",
+      "bytes": 9166,
+      "source_sha256": "289219b7398db18c78ab32f6d1b8e30cef7da3a4b6fd2d5f3237655f983a47bf",
+      "destination_sha256": "289219b7398db18c78ab32f6d1b8e30cef7da3a4b6fd2d5f3237655f983a47bf",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-borrowing.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-borrowing.svg",
+      "bytes": 8848,
+      "source_sha256": "9ef8612fe59fb566228ae3e35ce1e5dd2e215760f549e4437db953d860d336a3",
+      "destination_sha256": "9ef8612fe59fb566228ae3e35ce1e5dd2e215760f549e4437db953d860d336a3",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt.md",
+      "bytes": 5833,
+      "source_sha256": "85df3fa084578a2fd524e0e3f5554ad8e0288db89691a715dd2c512c587eaa7d",
+      "destination_sha256": "85df3fa084578a2fd524e0e3f5554ad8e0288db89691a715dd2c512c587eaa7d",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-revenue-spending.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-revenue-spending.svg",
+      "bytes": 5303,
+      "source_sha256": "73ebbf9f9ee33cac5402f5054f61b883db60c95af9c280c54caf2c06daf52849",
+      "destination_sha256": "73ebbf9f9ee33cac5402f5054f61b883db60c95af9c280c54caf2c06daf52849",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-ratio.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-ratio.svg",
+      "bytes": 9605,
+      "source_sha256": "2de44492dbad1166874749f9e1af3141dfbc4fb9dfeaeb04e261bb189ab702ee",
+      "destination_sha256": "2de44492dbad1166874749f9e1af3141dfbc4fb9dfeaeb04e261bb189ab702ee",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-spending-change.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2329-q01-french-debt-pair-1/B/french-debt-spending-change.svg",
+      "bytes": 7206,
+      "source_sha256": "8c5c07b2ba6a511a21d080a1ac4ac424d4caed6dc677390def7262884627d0be",
+      "destination_sha256": "8c5c07b2ba6a511a21d080a1ac4ac424d4caed6dc677390def7262884627d0be",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/critique-BA.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/critique-BA.json",
+      "bytes": 2768,
+      "source_sha256": "ad605e7f0d72b98db3b4ea080ceec120b1b8da8cc060d18a608982b2b5fbe47e",
+      "destination_sha256": "ad605e7f0d72b98db3b4ea080ceec120b1b8da8cc060d18a608982b2b5fbe47e",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/critique.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/critique.md",
+      "bytes": 4300,
+      "source_sha256": "24eb4eb5ba6b1307f5ea11b4015a58e8cdc411548b55f7caf32be9fbce536d69",
+      "destination_sha256": "24eb4eb5ba6b1307f5ea11b4015a58e8cdc411548b55f7caf32be9fbce536d69",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/mapping.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/mapping.json",
+      "bytes": 191,
+      "source_sha256": "b347b898869fdc343fe8900df3aa027a1cd0d4c74a7af674b5e85fa4be1252a0",
+      "destination_sha256": "b347b898869fdc343fe8900df3aa027a1cd0d4c74a7af674b5e85fa4be1252a0",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:23:evals/pairs/**/mapping.json\tevals/pairs/20261017-2330-q03-wti-negative-pair-1/mapping.json"
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/critique-AB.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/critique-AB.json",
+      "bytes": 2933,
+      "source_sha256": "00b85f58775c2e90a48f0c0d8cb57e548168f70b377fa1ad3263d8201b1333af",
+      "destination_sha256": "00b85f58775c2e90a48f0c0d8cb57e548168f70b377fa1ad3263d8201b1333af",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/A/oil-below-zero-averages.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/A/oil-below-zero-averages.svg",
+      "bytes": 9318,
+      "source_sha256": "5068c84cdb3a54fd82e44acd7b91c5508b84e0639cfc4fba1e75b181bfb50df6",
+      "destination_sha256": "5068c84cdb3a54fd82e44acd7b91c5508b84e0639cfc4fba1e75b181bfb50df6",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/A/oil-below-zero-only-wti.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/A/oil-below-zero-only-wti.svg",
+      "bytes": 10627,
+      "source_sha256": "c6f3292947d7837281701bc04e14f6dd6235d0cfebd778455a85f79bfa7cd3f2",
+      "destination_sha256": "c6f3292947d7837281701bc04e14f6dd6235d0cfebd778455a85f79bfa7cd3f2",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/A/oil-below-zero.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/A/oil-below-zero.md",
+      "bytes": 4403,
+      "source_sha256": "02b25f2568a1f10fdbd231dd73e3ce8ab79bb2f377aa2b1c2136d6c4b28750e9",
+      "destination_sha256": "02b25f2568a1f10fdbd231dd73e3ce8ab79bb2f377aa2b1c2136d6c4b28750e9",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/B/oil-below-zero-months.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/B/oil-below-zero-months.svg",
+      "bytes": 6285,
+      "source_sha256": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e",
+      "destination_sha256": "dcbc64456fd125847cfa3500ee888ae0ef4912fe9e21ebf35a4f14d3aba08e6e",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/B/oil-below-zero-day.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/B/oil-below-zero-day.svg",
+      "bytes": 9400,
+      "source_sha256": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6",
+      "destination_sha256": "aec0d11717917c7e752c49f95a3409af90e91f3c9e48837ae3a6665843add2f6",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2330-q03-wti-negative-pair-1/B/oil-below-zero.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2330-q03-wti-negative-pair-1/B/oil-below-zero.md",
+      "bytes": 4739,
+      "source_sha256": "0b54cfabcdf7c20319d49509418aff0f0b02fd17a96d91cce4621ff71cb4c26b",
+      "destination_sha256": "0b54cfabcdf7c20319d49509418aff0f0b02fd17a96d91cce4621ff71cb4c26b",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/critique-BA.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/critique-BA.json",
+      "bytes": 2983,
+      "source_sha256": "b9475f4770b88a715767524d9647b9ef5f7cfbaaad199f93bc94f514be8fc57a",
+      "destination_sha256": "b9475f4770b88a715767524d9647b9ef5f7cfbaaad199f93bc94f514be8fc57a",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/critique.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/critique.md",
+      "bytes": 4754,
+      "source_sha256": "153df9a2ba73e4a3d36e4eecfa14ddb928534273b4f984f6dc5437db2b34eb10",
+      "destination_sha256": "153df9a2ba73e4a3d36e4eecfa14ddb928534273b4f984f6dc5437db2b34eb10",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/mapping.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/mapping.json",
+      "bytes": 191,
+      "source_sha256": "137280503636a29bd72d424a540c0ead21c56780a0d67384119ffa7f536172f1",
+      "destination_sha256": "137280503636a29bd72d424a540c0ead21c56780a0d67384119ffa7f536172f1",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:23:evals/pairs/**/mapping.json\tevals/pairs/20261017-2332-q03-wti-negative-pair-1/mapping.json"
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/critique-AB.json",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/critique-AB.json",
+      "bytes": 3172,
+      "source_sha256": "b8e8b75fa61978789b79ebecab7c4e58908a83e40e1cbe6f703045ed194c656f",
+      "destination_sha256": "b8e8b75fa61978789b79ebecab7c4e58908a83e40e1cbe6f703045ed194c656f",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/A/oil-below-zero-averages.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/A/oil-below-zero-averages.svg",
+      "bytes": 8741,
+      "source_sha256": "05fd33a08f67846db880c045a4a07894ca73a0fee23ce4719bb991a1372222c9",
+      "destination_sha256": "05fd33a08f67846db880c045a4a07894ca73a0fee23ce4719bb991a1372222c9",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/A/oil-below-zero-benchmarks.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/A/oil-below-zero-benchmarks.svg",
+      "bytes": 11689,
+      "source_sha256": "ed47908094a9e217f59de29c68ab4d92aa79bb4ec536af7d633fec009e6df24a",
+      "destination_sha256": "ed47908094a9e217f59de29c68ab4d92aa79bb4ec536af7d633fec009e6df24a",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/A/oil-below-zero.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/A/oil-below-zero.md",
+      "bytes": 4442,
+      "source_sha256": "1061e412a1c09e13dae901988bb349531d3f283d0f01f18dc6169347c4902c3f",
+      "destination_sha256": "1061e412a1c09e13dae901988bb349531d3f283d0f01f18dc6169347c4902c3f",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/B/oil-below-zero-daily.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/B/oil-below-zero-daily.svg",
+      "bytes": 11173,
+      "source_sha256": "da26688faa54b457bb05c983aab6e250615b37471d603301840c71240262cc32",
+      "destination_sha256": "da26688faa54b457bb05c983aab6e250615b37471d603301840c71240262cc32",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/B/oil-below-zero-averages.svg",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/B/oil-below-zero-averages.svg",
+      "bytes": 8267,
+      "source_sha256": "d756b7edf77391cb89357a3852540ed9dc7f40261afeac9f48f9ccdf08f1d902",
+      "destination_sha256": "d756b7edf77391cb89357a3852540ed9dc7f40261afeac9f48f9ccdf08f1d902",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/pairs/20261017-2332-q03-wti-negative-pair-1/B/oil-below-zero.md",
+      "source_path": "/tmp/datapressr-harness-controls-20261018/evals/pairs/20261017-2332-q03-wti-negative-pair-1/B/oil-below-zero.md",
+      "bytes": 4461,
+      "source_sha256": "1efeee6c37c04c4c6e2894216d7f200788e33b0d452448728160d78e5b56c99f",
+      "destination_sha256": "1efeee6c37c04c4c6e2894216d7f200788e33b0d452448728160d78e5b56c99f",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/experiments/story-quality/reference-led-v1/pair-execution-journal.json",
+      "source_path": "/tmp/datapressr-comparison-pair-journal.json",
+      "bytes": 44092,
+      "source_sha256": "9d92b959d62f414e06811a70ef04fcca42ebdea1d7c9bc14ccab69df06492442",
+      "destination_sha256": "9d92b959d62f414e06811a70ef04fcca42ebdea1d7c9bc14ccab69df06492442",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-1.log",
+      "source_path": "/tmp/datapressr-comparison-pair-1.log",
+      "bytes": 534,
+      "source_sha256": "7eb6132f17d8e2763daa6601890e61feecc429e835882025a1694d67d76d88a0",
+      "destination_sha256": "7eb6132f17d8e2763daa6601890e61feecc429e835882025a1694d67d76d88a0",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-1.log"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-1-ledger-before.jsonl",
+      "source_path": "/tmp/datapressr-comparison-pair-1-ledger-before.jsonl",
+      "bytes": 91700,
+      "source_sha256": "6df1dc86a1a7a72cd6b783ff7dab012feebc264d113102d0046b63f440ca5836",
+      "destination_sha256": "6df1dc86a1a7a72cd6b783ff7dab012feebc264d113102d0046b63f440ca5836",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-1-ledger-before.jsonl"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-1-ledger-delta.jsonl",
+      "source_path": "/tmp/datapressr-comparison-pair-1-ledger-delta.jsonl",
+      "bytes": 1024,
+      "source_sha256": "92a6f9a65a89e4993eee9474c8280e8f534b2ac5db9f7f1007d6193aca329441",
+      "destination_sha256": "92a6f9a65a89e4993eee9474c8280e8f534b2ac5db9f7f1007d6193aca329441",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-1-ledger-delta.jsonl"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-2.log",
+      "source_path": "/tmp/datapressr-comparison-pair-2.log",
+      "bytes": 534,
+      "source_sha256": "e3b00f05e1776e9640f7bc230481a4731193164172d9855e7f370632c567bfbb",
+      "destination_sha256": "e3b00f05e1776e9640f7bc230481a4731193164172d9855e7f370632c567bfbb",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-2.log"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-2-ledger-before.jsonl",
+      "source_path": "/tmp/datapressr-comparison-pair-2-ledger-before.jsonl",
+      "bytes": 92724,
+      "source_sha256": "c6d7928a3e0cd9b52b201460f48471974f5d54f1157f4deca1b43ed9ace0e632",
+      "destination_sha256": "c6d7928a3e0cd9b52b201460f48471974f5d54f1157f4deca1b43ed9ace0e632",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-2-ledger-before.jsonl"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-2-ledger-delta.jsonl",
+      "source_path": "/tmp/datapressr-comparison-pair-2-ledger-delta.jsonl",
+      "bytes": 1024,
+      "source_sha256": "08e98e4cac7b5bfa905aed62ce5956b947ddd66a71a5cb01ca37b101240cde9e",
+      "destination_sha256": "08e98e4cac7b5bfa905aed62ce5956b947ddd66a71a5cb01ca37b101240cde9e",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-2-ledger-delta.jsonl"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-3.log",
+      "source_path": "/tmp/datapressr-comparison-pair-3.log",
+      "bytes": 537,
+      "source_sha256": "b3693b1ce540f91caf8b4b8351fc03fc903c44b20be47aef3ff11d3a60b568cf",
+      "destination_sha256": "b3693b1ce540f91caf8b4b8351fc03fc903c44b20be47aef3ff11d3a60b568cf",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-3.log"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-3-ledger-before.jsonl",
+      "source_path": "/tmp/datapressr-comparison-pair-3-ledger-before.jsonl",
+      "bytes": 93748,
+      "source_sha256": "0d07b8777ab03ea7f35116c0b3e7f5aa8e85a39ca6f7f51463cbbb30e656bafc",
+      "destination_sha256": "0d07b8777ab03ea7f35116c0b3e7f5aa8e85a39ca6f7f51463cbbb30e656bafc",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-3-ledger-before.jsonl"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-3-ledger-delta.jsonl",
+      "source_path": "/tmp/datapressr-comparison-pair-3-ledger-delta.jsonl",
+      "bytes": 1034,
+      "source_sha256": "6f5ba222b40bf7492dd7b22526f3680b88df9c98a6b1ba60bfce3bf802f8f99c",
+      "destination_sha256": "6f5ba222b40bf7492dd7b22526f3680b88df9c98a6b1ba60bfce3bf802f8f99c",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-3-ledger-delta.jsonl"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-4.log",
+      "source_path": "/tmp/datapressr-comparison-pair-4.log",
+      "bytes": 537,
+      "source_sha256": "e7b81e284e9d6e764dbab2f3d8c322b26efb8895457bdbaaf1028664661c2e96",
+      "destination_sha256": "e7b81e284e9d6e764dbab2f3d8c322b26efb8895457bdbaaf1028664661c2e96",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-4.log"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-4-ledger-before.jsonl",
+      "source_path": "/tmp/datapressr-comparison-pair-4-ledger-before.jsonl",
+      "bytes": 94782,
+      "source_sha256": "a34c1ad3ff5e29f8a5c4b2be9d7ce61f51c3cf4f9dc6264566a53c2bec65361a",
+      "destination_sha256": "a34c1ad3ff5e29f8a5c4b2be9d7ce61f51c3cf4f9dc6264566a53c2bec65361a",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-4-ledger-before.jsonl"
+    },
+    {
+      "path": ".runtime/reference-led-v1-sealed/datapressr-comparison-pair-4-ledger-delta.jsonl",
+      "source_path": "/tmp/datapressr-comparison-pair-4-ledger-delta.jsonl",
+      "bytes": 1033,
+      "source_sha256": "ec7aa474158a10d1ac7444072087de7bda80088c792a285a8377a36cbdf1d012",
+      "destination_sha256": "ec7aa474158a10d1ac7444072087de7bda80088c792a285a8377a36cbdf1d012",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:1:.runtime/\t.runtime/reference-led-v1-sealed/datapressr-comparison-pair-4-ledger-delta.jsonl"
     }
   ],
   "skipped_symlinks": [],
@@ -918,6 +1532,6 @@
     "No ledger or REPORT was copied; driver must integrate selected ledger evidence independently.",
     "No symlinks followed; skipped symlinks, if any, require separate review."
   ],
-  "updated_at": "2026-10-17T23:27:50.404951+00:00",
-  "verification": "All cumulative source/destination hashes and sizes verified after all8 writer slots."
+  "updated_at": "2026-10-17T23:35:24.720345+00:00",
+  "verification": "All selected pair/journal/sealed log copies byte-verified; earlier archived entries reverified."
 }

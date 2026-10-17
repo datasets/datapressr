@@ -1,0 +1,60 @@
+{
+  "rubric": "story/v2",
+  "mode": "pairwise",
+  "critic": {
+    "vendor": "codex",
+    "model": "gpt-6-astra",
+    "fallback": false,
+    "fallback_reason": null,
+    "effort_requested": "high",
+    "model_actual": null
+  },
+  "calibrate": false,
+  "order": "AB",
+  "shown": {
+    "story_1": "A",
+    "story_2": "B"
+  },
+  "preferred": "A",
+  "margin": "slight",
+  "why": "Story 1 needs slightly fewer edits because it explicitly limits its conclusions to the two benchmarks available, while Story 2 overstates the geographic conclusion in its title and ends by treating contract expiry as a delivery deadline. Both causal accounts rely on CFTC material outside the supplied inventory, and Story 2 additionally invokes ICE contract specifications; supporting source passages would be needed to verify those explanations, although both acknowledge that prices alone cannot test them. Story 2 usefully calculates the $54.34 gap and extends the recovery through 30 April, but neither story establishes the gap’s historical exceptionalism or compares the slump’s magnitude with earlier collapses. Both benchmark-chart pairs convey conclusions consistent with their prose, using directly labelled blue WTI and grey Brent lines, with clearly annotated red negative-price markers in the daily charts. Story 1’s averages chart provides the clearest immediate comparison across frequencies: blue daily observations plunge below zero while black weekly segments and the labelled dashed grey monthly average remain positive.",
+  "reader_questions": [
+    {
+      "q": "Which oil price went below zero, on what date and by how much, and do these data measure spot prices or futures contracts?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "What would make a seller pay someone to take oil, and what evidence would establish why that happened in April 2020?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How far had prices already fallen since the start of 2020, and when did the decline accelerate?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "What happened to Brent when WTI went negative, and how unusual was the gap between them?",
+      "A": "partly",
+      "B": "partly"
+    },
+    {
+      "q": "How many daily observations were negative, and how quickly did prices recover afterward?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "How different does April 2020 look in the daily prices versus the weekly and monthly averages?",
+      "A": "yes",
+      "B": "yes"
+    },
+    {
+      "q": "Was the negative price unprecedented in the available records, and how did the surrounding slump compare with earlier oil-price collapses?",
+      "A": "partly",
+      "B": "partly"
+    }
+  ],
+  "prompt_sha256": "38b9890f16412ef11419bbe8b3c8ac15f4b7a650af90b7c520e60a124b91aa60",
+  "rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+}
