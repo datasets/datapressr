@@ -1,0 +1,386 @@
+{
+  "packet": "M30755c",
+  "stage": 3,
+  "elicited_before_source_inspection": [
+    {
+      "question_topic": "What does debt crisis mean here?",
+      "answer_from_prose": "The prose describes persistent borrowing, a much higher debt ratio and a rising interest bill. It explicitly declines to establish a current market or political crisis; no yields, ratings or parliamentary evidence is supplied."
+    },
+    {
+      "question_topic": "How has debt changed?",
+      "answer_from_prose": "From 60.5% of GDP in early 2000 to 119.0%, EUR3.6tn, in mid-2026; large steps around 2008–09 and 2020; partial retreat to 109.5% in 2023, then renewed increase."
+    },
+    {
+      "question_topic": "What contributed?",
+      "answer_from_prose": "Persistent deficits, including primary deficits since 2002, accompany debt accumulation; shock years have especially large deficits. Nominal GDP growing faster than debt explains the post-pandemic ratio decline. Interest adds to the gap and is said to rise with debt and rates. The causal contribution of particular spending programmes is not established."
+    },
+    {
+      "question_topic": "Why concern now?",
+      "answer_from_prose": "The renewed rise after 2023 and interest growth explain fiscal pressure. The reason for crisis language now remains unanswered and explicitly outside the evidence."
+    },
+    {
+      "question_topic": "Historical or international comparison?",
+      "answer_from_prose": "Interest as a GDP share was larger in 1995–2001. Total spending GDP share is similar in 1995 and 2024 despite different composition. France has higher revenue/spending than the four-country group and a worse 2025 primary balance than Italy. Italy and EU also have continuous deficits. Foreign debt comparisons are unavailable."
+    },
+    {
+      "question_topic": "Observable consequences and uncertainty?",
+      "answer_from_prose": "EUR67bn interest in 2025 versus EUR30bn in 2020 is an observable fiscal cost. Default, market access, effects on services, growth and politics remain unestablished."
+    },
+    {
+      "question_topic": "Evidence boundaries?",
+      "answer_from_prose": "It establishes the measured balances, debt trajectory and spending composition. It leaves specific policy causes, causal attribution, sustainability thresholds, current market stress and best responses unanswered."
+    }
+  ],
+  "access_log": [
+    {
+      "tool": "exec_command",
+      "operation": "ls -la",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3"
+    },
+    {
+      "tool": "exec_command",
+      "operation": "cat",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/reader-questions.json"
+    },
+    {
+      "tool": "exec_command",
+      "operation": "python3 write elicited answers before source inspection",
+      "path": "/tmp/datapressr-reader-M30755c-stage3.json"
+    },
+    {
+      "tool": "exec_command",
+      "operation": "cat",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/READ-ME.md",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/REPRODUCTION.md",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/diagnostic-anchors.md",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/outline.md",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/site/stories/french-debt-make-charts.mjs",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/reproduction-hashes.json",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/README.md",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/build.ts",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/manifest.json",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/site/stories/package.json",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/package.json",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/build.test.mjs",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/scripts/validate-datapackage.mjs"
+      ]
+    },
+    {
+      "tool": "exec_command",
+      "operation": "rg --files",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3"
+    },
+    {
+      "tool": "exec_command",
+      "operation": "sed ranges 165–380 and 145–166 to recover/inspect chart code after long combined output truncated",
+      "path": "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/site/stories/french-debt-make-charts.mjs"
+    },
+    {
+      "tool": "exec_command",
+      "operation": "Python shutil.copytree with symlinks=True: byte copy of entire permitted stage3 into scratch, no packet mutation",
+      "source": "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3",
+      "destination": "/tmp/datapressr-reader-M30755c-rebuild",
+      "copied_file_list": [
+        "outline.md",
+        "chart-2.svg",
+        "READ-ME.md",
+        "chart-3.svg",
+        "chart-1.svg",
+        "chart-4.svg",
+        "reproduction-hashes.json",
+        "diagnostic-anchors.md",
+        "commission.md",
+        "REPRODUCTION.md",
+        "reader-questions.json",
+        "datasets/france-public-finances/datapackage.json",
+        "datasets/france-public-finances/source-labels.json",
+        "datasets/france-public-finances/.datahubignore",
+        "datasets/france-public-finances/README.md",
+        "datasets/france-public-finances/package-lock.json",
+        "datasets/france-public-finances/package.json",
+        "datasets/france-public-finances/build.test.mjs",
+        "datasets/france-public-finances/fetch.ts",
+        "datasets/france-public-finances/build.ts",
+        "datasets/france-public-finances/archive/eurostat-reuse.html",
+        "datasets/france-public-finances/archive/insee-accounting-explainer.html",
+        "datasets/france-public-finances/archive/insee-reuse.html",
+        "datasets/france-public-finances/archive/insee-quarterly-debt.html",
+        "datasets/france-public-finances/archive/insee-spending-functions.html",
+        "datasets/france-public-finances/archive/fiscal.json",
+        "datasets/france-public-finances/archive/manifest.json",
+        "datasets/france-public-finances/archive/insee-annual-accounts.html",
+        "datasets/france-public-finances/archive/functions.json",
+        "datasets/france-public-finances/scripts/validate-datapackage.mjs",
+        "datasets/france-public-finances/data/spending-functions.csv",
+        "datasets/france-public-finances/data/quarterly-debt.csv",
+        "datasets/france-public-finances/data/fiscal-accounts.csv",
+        "site/stories/french-debt-make-charts.mjs",
+        "site/stories/package-lock.json",
+        "site/stories/package.json"
+      ]
+    },
+    {
+      "tool": "exec_command",
+      "operation": "Python regex-stripped HTML phrase inspection",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-annual-accounts.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-spending-functions.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-quarterly-debt.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-accounting-explainer.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-reuse.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/eurostat-reuse.html"
+      ]
+    },
+    {
+      "tool": "exec_command",
+      "operation": "Python hashlib checks",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/manifest.json",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/fiscal.json",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/functions.json",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-quarterly-debt.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-annual-accounts.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-spending-functions.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-accounting-explainer.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/insee-reuse.html",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/archive/eurostat-reuse.html"
+      ]
+    },
+    {
+      "tool": "exec_command",
+      "operation": "Python CSV arithmetic/read; before/after byte comparisons",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/data/fiscal-accounts.csv",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/data/quarterly-debt.csv",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/data/spending-functions.csv",
+        "/tmp/datapressr-reader-M30755c-rebuild/datasets/france-public-finances/data/fiscal-accounts.csv",
+        "/tmp/datapressr-reader-M30755c-rebuild/datasets/france-public-finances/data/quarterly-debt.csv",
+        "/tmp/datapressr-reader-M30755c-rebuild/datasets/france-public-finances/data/spending-functions.csv"
+      ]
+    },
+    {
+      "tool": "exec_command",
+      "operation": "node site/stories/french-debt-make-charts.mjs, twice; imported supplied offline cached modules; read scratch CSVs; wrote scratch SVGs",
+      "cwd": "/tmp/datapressr-reader-M30755c-rebuild"
+    },
+    {
+      "tool": "exec_command",
+      "operation": "node build.ts: first missing-jsdom failure; scratch node_modules symlink to ../../site/stories/node_modules; rerun success",
+      "cwd": "/tmp/datapressr-reader-M30755c-rebuild/datasets/france-public-finances",
+      "implicit_inputs": [
+        "build.ts",
+        "archive/manifest.json",
+        "source-labels.json",
+        "all eight manifest-listed archive files",
+        "datapackage.json",
+        "existing offline jsdom cache"
+      ],
+      "outputs": [
+        "data/fiscal-accounts.csv",
+        "data/spending-functions.csv",
+        "data/quarterly-debt.csv",
+        "datapackage.json"
+      ]
+    },
+    {
+      "tool": "exec_command",
+      "operation": "node scripts/validate-datapackage.mjs .",
+      "cwd": "/tmp/datapressr-reader-M30755c-rebuild/datasets/france-public-finances"
+    },
+    {
+      "tool": "exec_command",
+      "operation": "node --test build.test.mjs; supplied test makes and removes /tmp/france-label-* scratch with deliberate source-label mutation",
+      "cwd": "/tmp/datapressr-reader-M30755c-rebuild/datasets/france-public-finances"
+    },
+    {
+      "tool": "exec_command",
+      "operation": "Python XML parsing and hash comparison of anonymous SVGs, rebuilt SVGs, reproduction-hashes.json; comparisons of original/scratch datapackage.json",
+      "paths": [
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/chart-1.svg",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/chart-2.svg",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/chart-3.svg",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/chart-4.svg",
+        "/tmp/datapressr-reader-M30755c-rebuild/site/stories/french-debt-deficit.svg",
+        "/tmp/datapressr-reader-M30755c-rebuild/site/stories/french-debt-functions.svg",
+        "/tmp/datapressr-reader-M30755c-rebuild/site/stories/french-debt-peers.svg",
+        "/tmp/datapressr-reader-M30755c-rebuild/site/stories/french-debt-ratio.svg",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/reproduction-hashes.json",
+        "/tmp/datapressr-reference-led-v1-packets/M30755c/stage3/datasets/france-public-finances/datapackage.json",
+        "/tmp/datapressr-reader-M30755c-rebuild/datasets/france-public-finances/datapackage.json"
+      ]
+    },
+    {
+      "tool": "exec_command",
+      "operation": "Python read/update/JSON parse validation of stage3 response; final output hashes rechecked",
+      "path": "/tmp/datapressr-reader-M30755c-stage3.json"
+    }
+  ],
+  "gates": [
+    {
+      "gate": "G1",
+      "status": "pass",
+      "scope": "Pinned statistical central claims, population, units, dates, peer boundaries and the two explicit INSEE attributions; reuse basis for these sources.",
+      "evidence": [
+        "archive/manifest.json: all eight source sizes/hashes checked by build.ts; Python independently confirmed all eight hashes.",
+        "build.ts verifies S13 general government, annual Eurostat frequency, country/unit dimensions and 106 quarterly observations.",
+        "archive/insee-quarterly-debt.html, Pour en savoir plus: annual GDP at Q4, trailing four quarters adjusted GDP during the year.",
+        "archive/insee-annual-accounts.html: rate increases since 2022 and larger debt explicitly identified as interest-cost drivers.",
+        "archive/insee-spending-functions.html: headline and lead explicitly attribute 2024 expenditure rise to pensions and health.",
+        "archive/insee-reuse.html and eurostat-reuse.html document commercial/noncommercial reuse with attribution; story provides sources and vintage."
+      ],
+      "limitations": "This is a pinned-source verification, not a fresh-source authenticity audit. Full D41GPAY cross-check is not archived; README identifies that boundary. General shock causation and revenue sufficiency are assessed separately under G2."
+    },
+    {
+      "gate": "G2",
+      "status": "fail",
+      "scope": "Numerical claims pass the stated recomputations; explanatory wording needs narrowing.",
+      "evidence": [
+        "story.md, A deficit every year: The shocks made the steps asserts a causal relationship where the supplied charts establish concurrent deficit/debt movements; outline explicitly says the local data does not explain why 2009 and 2020 happened. No causal decomposition or explicit source attribution accompanies this sentence.",
+        "story.md, Not a shortage of revenue: higher revenue than three peers establishes relative scale, not adequacy relative to commitments. This heading excludes a substantive explanation the comparison cannot rule out.",
+        "All concrete checks listed below passed, including the peer ranks, deficit counts, primary balances and category endpoints."
+      ],
+      "next_action": "Describe the debt jumps as occurring during the shocks or supply an appropriately scoped attributed explanation; replace the revenue heading with a claim about high revenue and still higher spending. Qualify the simple deficit/debt-stock relationship if it is meant as an exact accounting identity.",
+      "limitations": "This repair-required status concerns causal/inferential strength, not incorrect plotted numerical values. The deficit/debt sentence is a simplification, not a demonstrated numerical reconciliation failure."
+    },
+    {
+      "gate": "G3",
+      "status": "pass",
+      "scope": "Pinned raw sources to three CSVs and datapackage; those CSVs to all four supplied SVGs.",
+      "evidence": [
+        "Offline chart build exit 0; all four hashes match reproduction-hashes.json and the anonymous SVGs.",
+        "Dataset build initially failed for missing jsdom at its package location. A scratch-only symlink to the supplied offline site/stories/node_modules allowed the unchanged build.ts to run successfully. No package fetch/install.",
+        "Raw build emitted 7650 fiscal rows (3124 empty), 5760 function rows (960 empty), 106 debt rows; all three resulting CSV hashes and datapackage bytes match the originals.",
+        "node --test build.test.mjs: 1 passed, detecting corrupted category labels despite a refreshed manifest.",
+        "node scripts/validate-datapackage.mjs .: zero errors and warnings."
+      ],
+      "limitations": "This establishes these transforms and assets, not independent adversarial completeness of the HTML parser. Dataset README still records archived status. No site-page renderer or PNG raster-generation command was supplied/tested."
+    },
+    {
+      "gate": "G4",
+      "status": "pass",
+      "scope": "Four delivered chart PNGs actually viewed in stage1, corresponding SVGs inspected and reproduced in stage3.",
+      "evidence": [
+        "chart-1.png: time series, zero baseline, units and annotations readable; SVG axis 0–140 agrees with render. Outline says 0–130, an outdated plan detail; final code/render agree.",
+        "chart-2.png: negative interest and negative primary parts, positive primary surplus above zero, explicit black net-balance ticks; the net total is correctly calculated and not mistaken for a positive-plus-negative combined bar extent.",
+        "chart-3.png: dot positions use disclosed 40–60 domain, not zero-based bar lengths; EU marked aggregate; textual deficit/primary columns match values.",
+        "chart-4.png: endpoint dumbbells, health separate from protection, old age explicitly nested, provisional latest values labeled; no total double-counting.",
+        "All SVGs parse; no NaN/Infinity tokens; anonymous SVG bytes equal rebuilt assets."
+      ],
+      "limitations": "Chart 2 surplus years require deliberate decoding, reflected in manual chart_design. No mobile layout or site interaction assessed; stage1 PNG view is the actual visual inspection rather than a new rasterization of the rebuild."
+    }
+  ],
+  "manual_dimensions": [
+    {
+      "dimension": "interest",
+      "rating": 2,
+      "locator": "story.md opening and Not a shortage of revenue; chart-3.png",
+      "anchor": "A consequential comparison revises an assumption: France already collects unusually high revenue, yet spends more, while much of the current gap precedes interest.",
+      "limitation": "This does not establish why crisis language is timely; the heading is too categorical as noted in G2."
+    },
+    {
+      "dimension": "findings_depth",
+      "rating": 2,
+      "locator": "story.md A deficit every year and Where the money goes; charts 2 and 4",
+      "anchor": "Unpacks total deficit into interest and primary balance, and broad spending into old age/health and offsetting categories with endpoint magnitudes.",
+      "limitation": "No attribution of the long-term debt change to specific causes or stock-flow reconciliation; the depth is descriptive and accounting-based."
+    },
+    {
+      "dimension": "argument_counterevidence",
+      "rating": 1,
+      "locator": "story.md post-pandemic decline, historic interest comparison, Italy comparison, pension/health caveat",
+      "anchor": "Clear connected argument with counterexamples, but revenue adequacy and causal shock claims remain more categorical than their support.",
+      "adjacent_rating": 2,
+      "adjacent_reason": "Numerous relevant counterexamples are present; narrowing the two overclaims would make the higher anchor plausible.",
+      "limitation": "Cannot assess omitted political/market explanations against unavailable sources."
+    },
+    {
+      "dimension": "explanation",
+      "rating": 1,
+      "locator": "story.md debt/deficit definitions; The shocks made the steps; INSEE interest attribution",
+      "anchor": "Measures and nominal-GDP denominator are explained, and interest attribution is named, but a central shock mechanism is asserted without identifying what the local data tests.",
+      "adjacent_rating": 2,
+      "adjacent_reason": "Most of the accounting explanation is concrete; the central causal wording prevents confidently choosing 2.",
+      "limitation": "No demand for an unavailable causal study; scoped descriptive wording would address much of this."
+    },
+    {
+      "dimension": "chart_design",
+      "rating": 1,
+      "locator": "chart-2.png, 1998–2001 blue surplus/gray interest and black net ticks",
+      "anchor": "Useful and readable evidence, but the reader must distinguish the gray bar bottom from the net deficit in surplus years.",
+      "adjacent_rating": 2,
+      "adjacent_reason": "Other charts have clear labeled comparisons and appropriate axes; the second chart requires extra decoding.",
+      "limitation": "Evaluated delivered PNGs and matching SVGs, not responsive site states."
+    },
+    {
+      "dimension": "writing",
+      "rating": 1,
+      "locator": "story.md duplicate title; Not a shortage of revenue; How this was made",
+      "anchor": "Generally plain and concrete, but a key implication needs work and the title repeats.",
+      "adjacent_rating": 2,
+      "adjacent_reason": "Most paragraphs are economical and figures carry clear units; categorical revenue implication is the substantive reservation.",
+      "limitation": "The duplicate title may be packaging; it alone would not justify this rating."
+    },
+    {
+      "dimension": "reader_coverage",
+      "rating": 2,
+      "locator": "story.md final substantive paragraph and explicit foreign-debt boundary",
+      "anchor": "Answers the in-reach fiscal trajectory/comparison questions and explicitly identifies missing yields, ratings and parliamentary evidence for why crisis now.",
+      "limitation": "The original full commission is not conclusively answered; the score applies to prioritized in-reach questions, not proof of crisis."
+    }
+  ],
+  "calculation_checks": {
+    "debt": "119.0 - 60.5 = 58.5 percentage points; 119/60.5 - 1 = 96.69%, supporting almost doubled. Shock-period differences 18.6 and 16.7 points; 2023-Q4 to 2026-Q2 +9.5.",
+    "post_pandemic": "2021-Q1 debt EUR2752.5bn, ratio 117.8; 2023-Q4 debt EUR3103.2bn, ratio 109.5. Debt rose while ratio fell, consistent with a faster-growing nominal denominator.",
+    "annual_counts": "Negative B9 in all 31 years for FR, IT and EU; DE 23, ES 28. FR primary surpluses only 1998–2001: 1.0,1.6,1.7,1.7.",
+    "primary_2025": "FR -5.1+2.2=-2.9; IT -3.1+3.9=+0.8; DE -2.7+1.1=-1.6; ES -2.4+2.4=0; EU -3.1+1.9=-1.2.",
+    "revenue_spending": "FR TR and TE exceed each of DE/IT/ES in every year 1995–2025. FR revenue 50.9 in 1995 versus 52.1 in 2025. 57.2-52.1=5.1 in 2025.",
+    "rounding": "Germany 50.5-47.9=2.6 vs B9 magnitude 2.7; the raw build checks balance identities within 0.11 point, consistent with rounded separately sourced observations.",
+    "interest": "2020 D41PAY EUR29724.1m rounds EUR30bn; 2025 EUR66635.9m rounds EUR67bn. GDP share 1.3 to 2.2. Every 1995–2001 interest share exceeds 2.2.",
+    "functions": "Total 56.1 to 57.3 (+1.2 points); old age 11.0 to 13.4 (+2.4); health 6.9 to 8.9 (+2.0); social protection 22.0 to 23.7 (+1.7); public services 8.3 to 6.2 (-2.1), including debt-interest 3.6 to 2.0 (-1.6). All displayed division endpoints agree with rows; totals read directly, subgroups not added to parents.",
+    "raw_source_checks": "Unchanged build.ts asserts archive hashes, labels and category dimensions, fiscal balance tolerance, group totals, coverage and quarterly table headers; rerun passed.",
+    "final_svg_hashes": [
+      {
+        "file": "site/stories/french-debt-deficit.svg",
+        "expected": "b546dba0a0ccd54679c3ca4abc894edb7b911ab1b308cf324bd50dca2809826e",
+        "actual": "b546dba0a0ccd54679c3ca4abc894edb7b911ab1b308cf324bd50dca2809826e",
+        "match": true
+      },
+      {
+        "file": "site/stories/french-debt-functions.svg",
+        "expected": "a2c3bb93edc598c45025b431fd6bcd63349a0915ad8259ff074954133a603697",
+        "actual": "a2c3bb93edc598c45025b431fd6bcd63349a0915ad8259ff074954133a603697",
+        "match": true
+      },
+      {
+        "file": "site/stories/french-debt-peers.svg",
+        "expected": "7074aacbe36d15cccef6cac917ac029926a6cf7767bdd38b970bdf7e4e507f4d",
+        "actual": "7074aacbe36d15cccef6cac917ac029926a6cf7767bdd38b970bdf7e4e507f4d",
+        "match": true
+      },
+      {
+        "file": "site/stories/french-debt-ratio.svg",
+        "expected": "6143c8e48c9bad446fe31a4b02118178072bc1cab9603742c53c194c372846ec",
+        "actual": "6143c8e48c9bad446fe31a4b02118178072bc1cab9603742c53c194c372846ec",
+        "match": true
+      }
+    ]
+  },
+  "interpretations_corrected_or_resolved": [
+    "The all-years peer ranking and continuous Italian/EU deficit claims were uncertain after prose-only reading; pinned tables verify them.",
+    "Germany apparent 0.1-point discrepancy is consistent with separate rounding; not a plotted arithmetic repair.",
+    "The recent interest explanation is genuinely present in the archived INSEE article; it remains attributed context, not an estimate from the local chart.",
+    "Chart 4 and annual fiscal series use different vintages/concepts: COFOG debt-interest 3.6 in 1995 is not the annual D41PAY 3.5. This does not invalidate either within-series comparison.",
+    "The outline planned 0–130 for chart 1 but delivered code/SVG/PNG use 0–140 consistently; no correction to my visual interpretation.",
+    "The original interest-convention question is only partly resolved: archived INSEE reports EUR64.7bn and Eurostat D41PAY yields EUR66.6bn; the separate D41GPAY cross-check described by README is not archived."
+  ],
+  "original_unanswered_questions_retained": [
+    "What triggered crisis language now, and is there financing stress?",
+    "How much of debt-ratio change reflects nominal GDP, net borrowing or other balance-sheet changes?",
+    "Which policies, conditions or revenue choices account for persistent primary deficits?",
+    "What explains the post-2023 reversal quantitatively?",
+    "Which responses are practical and with what consequences?",
+    "Full interest-convention reconciliation beyond the documented measures remains partly unverified."
+  ],
+  "limitations_and_boundaries": "No other packets, repository files, web or hidden mappings were consulted. The supplied offline dependency symlink is used only by the permitted builds. Code and outline comments were treated as material to verify, not instructions to obey. Stage1 and stage2 records remain unchanged. Original chart views retained from stage1; no fresh PNG view in stage3. No treatment inference, other-story comparison, sum of dimensions, or rule-specific hypothesis codes."
+}
