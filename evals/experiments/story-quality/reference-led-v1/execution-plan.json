@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "document_type": "exploratory-comparison-preregistration",
+  "experiment_id": "reference-led-v1",
+  "task": "datapressr-hcn.27",
+  "prepared_at": "2026-10-17",
+  "status": "preregistered-design-authorized-subscription-scope-launch-pending-canary-model-and-custody-gates",
+  "launch_authorized": true,
+  "preregistered_before_outputs": true,
+  "outputs_generated": 0,
+  "immutable_preparation": {
+    "path": "manifest.json",
+    "sha256": "ae2cbefa9a6359c8084c77e7ab3378f90f2d46bfbf8325c2058c7333a459ee30",
+    "commit": "4dedc73cb0c28df2e91c73710e09b81bb34d0c84"
+  },
+  "design": {
+    "scope": "instructions-only bundled intervention",
+    "exposure": "known-development exploratory; no fresh holdout",
+    "topics": 2,
+    "outputs": 8,
+    "matched_pairs": 4,
+    "independent_pair_judgments": 8,
+    "individual_rule_causality": false,
+    "production_workflow_efficacy": false
+  },
+  "pins": {
+    "common_harness_commit": "ef4f645bcc0392ec96794f3b2820a4e308e20b2e",
+    "baseline_commit": "34bfdfdd3cc46a7f534a06071b2a8a1d146dc79d",
+    "baseline_story_tree": "ccabbcc54d7c99d76f3b3ab752edfd7ddce52ae1",
+    "candidate_commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+    "candidate_story_tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7",
+    "runtime_rubric": "story/v2",
+    "runtime_rubric_sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5",
+    "manual_procedure": "reference-led-manual-v1",
+    "case_and_input_pins": "manifest.json /shared_execution_recipe/cases; all files and hashes inherited unchanged"
+  },
+  "execution_resolution": {
+    "writer_vendor": "claude",
+    "writer_model_requested": "claude-opus-5-5",
+    "writer_model_actual": null,
+    "writer_effort": "high",
+    "critic_vendor": "codex",
+    "critic_model_requested": "gpt-6-astra",
+    "critic_model_actual": null,
+    "critic_effort": "high",
+    "manual_reviewer_identity": null,
+    "manual_reviewer_model": null,
+    "manual_reviewer_effort": null,
+    "cli_versions": null,
+    "account_route": null,
+    "canary_evidence": null,
+    "renderer_evidence": null,
+    "execution_harness_commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+    "execution_harness_delta_review": "APPROVED by independent controls_review at exact adc6fd1bbe6461ea4a5e54593929b98c3c14cecc; guarded regression486/486 passed",
+    "aggregate_authority_record": "authorization object: exact owner continuation quote and bounded driver interpretation; no numeric user grant asserted",
+    "requested_configuration_status": "Exact requested configuration pinned in amended harness; selected-model availability and served-model provenance remain launch gates.",
+    "effort_actual_status": "Unknown: adapters expose effort_requested; require explicit requested flags/config/hash, do not infer served effort.",
+    "offline_preflight_commit": "b401dd02bbca72561e185b788de17a0f69dda02b",
+    "fixed_recipe_sha256": {
+      "claude": "2e060dd7349ca860d822930b06c02d7c884c63d738cc5e82104753f3ec4bf63d",
+      "codex": "864bebd8a21dfc436cd67df3e2ce4f99252e76e71a7a9f3947526b2ae90ec773"
+    },
+    "execution_harness_identities": [
+      {
+        "path": "evals",
+        "commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+        "git_object": "0743f22c8716b91a8d98c5ca3d28a6a6cb33c073",
+        "git_type": "tree"
+      },
+      {
+        "path": "evals/run.mjs",
+        "commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+        "git_object": "02f0edf0c5f391511300d078d1727455e6b04884",
+        "git_type": "blob",
+        "sha256": "8be57972e2e9cb6ec55959dd879f7284e6b0d26d01b667e420d6f1bb5156b7a0"
+      },
+      {
+        "path": "evals/config.json",
+        "commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+        "git_object": "5c9d1471af5248e65f5f11fa76627bac2ea74627",
+        "git_type": "blob",
+        "sha256": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64"
+      },
+      {
+        "path": "evals/lib/adapters/claude.mjs",
+        "commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+        "git_object": "512f98063e09298aad2dc462884a56df8b3a0c55",
+        "git_type": "blob",
+        "sha256": "53cdf129b8eb8141cf29d1a7d0cf91213037c708f5ebae3e3ee8e638982b1dc6"
+      },
+      {
+        "path": "evals/lib/adapters/codex.mjs",
+        "commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+        "git_object": "aa9c18f1a71f42229341168acb92bd047470e0eb",
+        "git_type": "blob",
+        "sha256": "ea3d1dac7643cbf1fe008a25c0ef8ed4322afe2536a9c1ca3f10b75676abc677"
+      },
+      {
+        "path": "evals/lib/adapters/index.mjs",
+        "commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+        "git_object": "d3eb767e31fe022dc8355774098b11edcf8dc569",
+        "git_type": "blob",
+        "sha256": "9ac6616e1736250be1dc096378769206f059faf5666975a2de071cb24dd8ff91"
+      },
+      {
+        "path": "evals/lib/critic.mjs",
+        "commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+        "git_object": "86de4d2a1d6e4faabcfc5aef7abc480d415b2e0c",
+        "git_type": "blob",
+        "sha256": "b15115386dd887a62703deebb61e8f0736bbaf4af15cec9068aa383e7b903e95"
+      },
+      {
+        "path": "evals/lib/canary.mjs",
+        "commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+        "git_object": "f3f6c3876dff95148e9b6a5ee8793df6ca6c6e32",
+        "git_type": "blob",
+        "sha256": "b0d5af74e3330480d9511fd4e4421d4345eb5f6c4466f3632814619700abc2c9"
+      },
+      {
+        "path": "evals/rubrics/story/v2.md",
+        "commit": "adc6fd1bbe6461ea4a5e54593929b98c3c14cecc",
+        "git_object": "c592eabffe445529177b27c6a794102e29bf08f6",
+        "git_type": "blob",
+        "sha256": "0ed8fb7c05c7f3a90c89f46e5ff1254355f960ab5ae6f50d91a2c0bb205ccae5"
+      }
+    ]
+  },
+  "launch_gates": [
+    "Verify existing subscription routing remains unchanged; owner continuation interpreted by driver as bounded comparison authorization. No API/pay-as-you-go switch or expansion.",
+    "Resolve exact available writer, critic and independent manual-review models/effort; prohibit silent fallback.",
+    "Frozen CLI has no writer-model or effort flags. Review and pin any invocation/configuration changes in one common execution harness for both arms.",
+    "Preserve failed pair artifacts, partial order judgments and costs before cleanup; frozen pair CLI does not do this.",
+    "Use recorded Codex subscription call/time contract with USD/token caps unavailable; record actual tokens. No API billing switch.",
+    "Run newly authorized fixed-mode canaries with current recipes and inspect renderer on both topic fixtures; stale canaries do not satisfy this.",
+    "Independent custodian freezes masked packet recipe and reader questions without treatment/hypothesis exposure.",
+    "Commit final execution resolution and exact protocol/hash before first writer output; any design change requires versioned amendment."
+  ],
+  "slots": [
+    {
+      "slot_id": "q01-french-debt-r1-baseline",
+      "sequence": 1,
+      "case": "q01-french-debt",
+      "replicate": 1,
+      "arm": "baseline",
+      "run_id": null,
+      "outcome": null
+    },
+    {
+      "slot_id": "q01-french-debt-r1-candidate",
+      "sequence": 2,
+      "case": "q01-french-debt",
+      "replicate": 1,
+      "arm": "candidate",
+      "run_id": null,
+      "outcome": null
+    },
+    {
+      "slot_id": "q03-wti-negative-r1-candidate",
+      "sequence": 3,
+      "case": "q03-wti-negative",
+      "replicate": 1,
+      "arm": "candidate",
+      "run_id": null,
+      "outcome": null
+    },
+    {
+      "slot_id": "q03-wti-negative-r1-baseline",
+      "sequence": 4,
+      "case": "q03-wti-negative",
+      "replicate": 1,
+      "arm": "baseline",
+      "run_id": null,
+      "outcome": null
+    },
+    {
+      "slot_id": "q01-french-debt-r2-candidate",
+      "sequence": 5,
+      "case": "q01-french-debt",
+      "replicate": 2,
+      "arm": "candidate",
+      "run_id": null,
+      "outcome": null
+    },
+    {
+      "slot_id": "q01-french-debt-r2-baseline",
+      "sequence": 6,
+      "case": "q01-french-debt",
+      "replicate": 2,
+      "arm": "baseline",
+      "run_id": null,
+      "outcome": null
+    },
+    {
+      "slot_id": "q03-wti-negative-r2-baseline",
+      "sequence": 7,
+      "case": "q03-wti-negative",
+      "replicate": 2,
+      "arm": "baseline",
+      "run_id": null,
+      "outcome": null
+    },
+    {
+      "slot_id": "q03-wti-negative-r2-candidate",
+      "sequence": 8,
+      "case": "q03-wti-negative",
+      "replicate": 2,
+      "arm": "candidate",
+      "run_id": null,
+      "outcome": null
+    }
+  ],
+  "pairs": [
+    {
+      "pair_id": "q01-french-debt-r1",
+      "slot_ids": [
+        "q01-french-debt-r1-baseline",
+        "q01-french-debt-r1-candidate"
+      ],
+      "orders": [
+        "AB",
+        "BA"
+      ],
+      "mapping_location": "private custodian journal; absent from reviewer packet",
+      "actual_pair_id": null
+    },
+    {
+      "pair_id": "q01-french-debt-r2",
+      "slot_ids": [
+        "q01-french-debt-r2-baseline",
+        "q01-french-debt-r2-candidate"
+      ],
+      "orders": [
+        "AB",
+        "BA"
+      ],
+      "mapping_location": "private custodian journal; absent from reviewer packet",
+      "actual_pair_id": null
+    },
+    {
+      "pair_id": "q03-wti-negative-r1",
+      "slot_ids": [
+        "q03-wti-negative-r1-baseline",
+        "q03-wti-negative-r1-candidate"
+      ],
+      "orders": [
+        "AB",
+        "BA"
+      ],
+      "mapping_location": "private custodian journal; absent from reviewer packet",
+      "actual_pair_id": null
+    },
+    {
+      "pair_id": "q03-wti-negative-r2",
+      "slot_ids": [
+        "q03-wti-negative-r2-baseline",
+        "q03-wti-negative-r2-candidate"
+      ],
+      "orders": [
+        "AB",
+        "BA"
+      ],
+      "mapping_location": "private custodian journal; absent from reviewer packet",
+      "actual_pair_id": null
+    }
+  ],
+  "proposed_limits": {
+    "authorized": true,
+    "currency": "USD",
+    "writer": {
+      "slots": 8,
+      "attempts_per_slot": 1,
+      "max_usd_per_slot": 5,
+      "max_turns_per_slot": 100,
+      "timeout_seconds_per_slot": 5400,
+      "maximum_usd": 40
+    },
+    "runtime_critic": {
+      "question_operations": 4,
+      "absolute_operations": 0,
+      "pair_order_operations": 8,
+      "max_attempts_per_operation": 2,
+      "timeout_seconds_per_attempt": 900,
+      "maximum_attempts": 24,
+      "maximum_usd": null,
+      "usd_cap_enforced": false
+    },
+    "manual_review": {
+      "outputs": 8,
+      "max_attempts_per_output": 1,
+      "maximum_attempts": 8,
+      "maximum_usd": null,
+      "execution_route": "fresh built-in subagents, eight independent sessions; no metered CLI calls",
+      "session_time_policy": "Custodian observes progress; no built-in API hard15-minute cap asserted."
+    },
+    "canaries": {
+      "vendors": 2,
+      "max_attempts_per_vendor": 1,
+      "max_turns_per_attempt": 6,
+      "timeout_seconds_per_attempt": 300,
+      "maximum_usd": null,
+      "claude_usd_ceiling": 0.05,
+      "codex_usd_ceiling": null
+    },
+    "maximum_total_attempts": 43,
+    "extra_availability_model_calls": 0,
+    "owner_capture_model_calls": 0,
+    "maximum_cli_invocations": 34,
+    "maximum_builtin_review_sessions": 8,
+    "cost_interpretation": "Claude: eight writer slots at $5 plus $0.05 canary, total $40.05 list-equivalent cap. Codex subscription:24 pair attempts at15min plus1 canary at5min; no enforceable USD/token ceiling, record actual tokens/account usage. Eight built-in reviewer sessions plus1 H-coder session separately counted; no asserted dollar debit. No API billing switch.",
+    "maximum_builtin_analysis_sessions": 1,
+    "claude_list_equivalent_ceiling_usd": 40.05,
+    "codex_dollar_and_token_ceiling": null,
+    "codex_max_calls": 25,
+    "codex_max_cumulative_seconds": 21900,
+    "maximum_total_attempts_meaning": "34 CLI invocations plus8 built-in review sessions plus1 built-in coding session; unlike CLI attempts a session may have multiple tool interactions."
+  },
+  "retry_policy": {
+    "writer_replacements": 0,
+    "runtime_critic": "Existing one automatic retry per question/order operation only for invalid response or call failure; retain aggregate attempt counts/errors and successful structured judgments. Invalid raw response text is not retained.",
+    "manual": "No fresh-session retry; staged tool reads within the same built-in session are permitted.",
+    "whole_pair_retries": 0,
+    "whole_experiment_retries": 0,
+    "exhaustion": "Stop; preserve missing and failed slots/pairs. No discretionary rerun."
+  },
+  "stop_rules": [
+    "Any writer input leak, forbidden network use, changed data/prompt/skill tree, or unexplained requested/actual model mismatch or changed requested effort stops all new calls.",
+    "Before each operation check the explicitly approved resource contract and reserve its allowed calls/time; do not claim hard dollar/token enforcement where the adapter has none.",
+    "Any missing required token or requested-effort provenance pauses new calls until reconciled; expected Codex USD null is disclosed, not a missing-cost error or zero resource cost.",
+    "Any canary or renderer failure stops launch; no weakened canary.",
+    "Writer timeout/cap/invalid artifact occupies its slot; keep failure and scheduled pair denominator. No replacement writer.",
+    "Retry exhaustion stops the current operation; preserve partial results and prevent automatic whole-pair retry.",
+    "No live editing of stories/skills in response to interim outcomes."
+  ],
+  "results": {
+    "status": "not-executed",
+    "writer_runs": [],
+    "runtime_critic_results": [],
+    "manual_results": [],
+    "owner_responses": [],
+    "costs": null,
+    "retention_decision": null
+  },
+  "manual_analysis": {
+    "h1_order": [
+      "unsupported-payoff",
+      "descriptive-only",
+      "supported-payoff"
+    ],
+    "h2_order": [
+      "misleading",
+      "requires-reconstruction",
+      "comparison-recoverable"
+    ],
+    "h3_order": [
+      "unsupported-link",
+      "link-left-to-reader",
+      "supported-link-understood"
+    ],
+    "h2_primary_chart": "First embedded chart explicitly supporting the lede comparison; identify from prose before any chart codes. If none, mark no eligible chart and unassessable with reason.",
+    "h3_primary_relationship": "First relationship between distinct material findings stated or implied in narrative order; identify before assigning H3 codes. If none, link-left-to-reader unless story has only one self-contained finding, then unassessable.",
+    "unassessable": "Retain in all scheduled denominators; no ordinal direction when either output unassessable.",
+    "q01_h3": "targeted in-sample; never evidence of transfer",
+    "analysis_population": "as-assigned; unread references remain included, with read exposure reported separately"
+  },
+  "evidence_limits": [
+    "Invocation journal plus structured questions/judgments/errors and aggregate call/cost evidence; no complete per-attempt raw critic response archive."
+  ],
+  "authorization": {
+    "user_quote": "keep going and you can subtask claude on opus for example if you want to ... or need to ...",
+    "interpretation_owner": "coordinating driver",
+    "scope": "User continuation after comparison handoff authorizes bounded existing-subscription comparison:8 Opus writer slots,4 order-swapped Codex pairs,2 canaries,8 built-in reviewers+1coder under fixed limits. This is driver scope interpretation, not a numeric dollar grant from user.",
+    "claude_route_verified": "Max subscription; driver readback",
+    "credential_environment_check": "Driver found ANTHROPIC_API_KEY/AUTH_TOKEN/BASE_URL/BEDROCK/VERTEX/FOUNDRY and OPENAI_API_KEY unset.",
+    "excluded": [
+      "API/pay-as-you-go billing switch",
+      "billing changes",
+      "expanded experiment",
+      "extra calls/retries/models beyond preregistration"
+    ],
+    "technical_gates_still_required": [
+      "reviewed common harness pin",
+      "current fixed-mode canaries",
+      "actual selected-model availability and provenance",
+      "staging/render evidence",
+      "frozen masking and neutral reader questions"
+    ]
+  }
+}
