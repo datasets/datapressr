@@ -1,0 +1,662 @@
+{
+  "stage": "primary-selection-only; awaiting driver freeze",
+  "codebook_rules": {
+    "primary_chart": "First embedded chart explicitly supporting the lede comparison; identify from prose before any chart codes. If none, mark no eligible chart and unassessable with reason.",
+    "primary_relationship": "First relationship between distinct material findings stated or implied in narrative order; identify before assigning H3 codes. If none, link-left-to-reader unless story has only one self-contained finding, then unassessable."
+  },
+  "scope": "Only codebook, custody notes and eight authorized story/commission files opened. No charts, readings, indexes, outline, external source, repository, treatment mapping or critic outcomes accessed. Repeated titles treated as packet presentation per custody notes. No H1/H2/H3 codes, scores, directions or quality verdicts assigned.",
+  "selections": [
+    {
+      "output_code": "M1d3194",
+      "commission_locator": "materials/M1d3194/stage2/commission.md:L3",
+      "lede_comparison": {
+        "description": "French debt rose from 59.7% of GDP in 2000 to 119.0% in June 2026; persistent deficits offered as the reason.",
+        "locators": [
+          "materials/M1d3194/stage2/story.md:L7"
+        ],
+        "quoted_passages": [
+          {
+            "locator": "materials/M1d3194/stage2/story.md:L7",
+            "text": "French public debt has doubled as a share of the economy since 2000, from 59.7% of GDP to 119.0% in June 2026. The reason in the accounts is plain: France has not balanced its budget in any year since at least 1995."
+          }
+        ]
+      },
+      "primary_chart": {
+        "embedded_reference": "chart-1.png",
+        "embedded_locator": "materials/M1d3194/stage2/story.md:L5",
+        "embedding_order": 1,
+        "eligible": true,
+        "reason": "First embedded chart; its story-embedded description explicitly displays the selected lede comparison. Image itself has not been opened.",
+        "ambiguity": "For the debt stories the chart supports the quantitative lede comparison, not necessarily the full causal explanation. No later chart substituted.",
+        "embedded_markdown": "![Line chart of French gross government debt as a share of GDP, quarterly, 2000 to mid-2026. It rises from 59.7% at end-2000 to 119.0% (€3.6 trillion) in mid-2026, with a step of +18.6 points from end-2007 (65.5%) to end-2009 (84.1%), another of +16.7 points from end-2019 (98.2%) to end-2020 (114.9%), and a dip to 109.5% at end-2023 before rising again.](chart-1.png)"
+      },
+      "primary_relationship": {
+        "selection_id": "M1d3194-primary-relationship",
+        "description": "Debt-ratio growth is linked explicitly to the absence of any balanced budget since at least 1995.",
+        "locators": [
+          "materials/M1d3194/stage2/story.md:L7"
+        ],
+        "distinct_findings": [
+          "Debt approximately doubled as a share of GDP.",
+          "No balanced budget since at least 1995."
+        ],
+        "eligible": true,
+        "eligibility_qualification": "Explicit relationship in the lede; no uncertainty about its precedence. This selects the assertion, without judging its accounting sufficiency.",
+        "alternatives_not_selected": [
+          "L13: falling ratio despite rising euro debt is later.",
+          "L33: interest savings offset old-age/health increases is later."
+        ],
+        "single_finding_exception": false,
+        "selection_basis": "Narrative order in supplied story only; no reader interpretation or verification consulted.",
+        "quoted_passages": [
+          {
+            "locator": "materials/M1d3194/stage2/story.md:L7",
+            "text": "French public debt has doubled as a share of the economy since 2000, from 59.7% of GDP to 119.0% in June 2026. The reason in the accounts is plain: France has not balanced its budget in any year since at least 1995."
+          }
+        ]
+      }
+    },
+    {
+      "output_code": "M30755c",
+      "commission_locator": "materials/M30755c/stage2/commission.md:L3",
+      "lede_comparison": {
+        "description": "Debt 60.5% of GDP in early 2000 versus 119.0% in mid-2026, rising in steps not fully reversed.",
+        "locators": [
+          "materials/M30755c/stage2/story.md:L7"
+        ],
+        "quoted_passages": [
+          {
+            "locator": "materials/M30755c/stage2/story.md:L7",
+            "text": "French public debt was 60.5% of GDP in early 2000. By mid-2026 it was 119.0%, or €3.6 trillion. It climbed in steps, and the steps never fully came back down."
+          }
+        ]
+      },
+      "primary_chart": {
+        "embedded_reference": "chart-1.png",
+        "embedded_locator": "materials/M30755c/stage2/story.md:L5",
+        "embedding_order": 1,
+        "eligible": true,
+        "reason": "First embedded chart; its story-embedded description explicitly displays the selected lede comparison. Image itself has not been opened.",
+        "ambiguity": "For the debt stories the chart supports the quantitative lede comparison, not necessarily the full causal explanation. No later chart substituted.",
+        "embedded_markdown": "![Line chart of French gross public debt as a share of GDP by quarter, 2000 to mid-2026, on a zero baseline. It rises from 60.5% in early 2000 to 65.5% at the end of 2007, jumps to 84.1% at the end of 2009 and from 98.2% at the end of 2019 to 114.9% at the end of 2020, dips to 109.5% at the end of 2023, and reaches 119.0%, €3.6 trillion, in mid-2026.](chart-1.png)"
+      },
+      "primary_relationship": {
+        "selection_id": "M30755c-primary-relationship",
+        "description": "The annual spending/revenue deficit adds to the stock of debt; the persistent deficits instantiate the connection to the rising debt in the lede.",
+        "locators": [
+          "materials/M30755c/stage2/story.md:L7",
+          "materials/M30755c/stage2/story.md:L9",
+          "materials/M30755c/stage2/story.md:L15"
+        ],
+        "distinct_findings": [
+          "Debt rose and shock steps were not fully reversed.",
+          "France spent more than it collected every year since at least 1995."
+        ],
+        "eligible": true,
+        "eligibility_qualification": "The first statement of the connection is L9 (\"Each deficit adds to the debt\"); the second empirical finding appears at L15. L7 combines historical levels, steps and nonreversal within the debt trajectory; these could be treated as distinct temporal findings, in which case L7 is an earlier implied relationship. Preserve this boundary ambiguity.",
+        "alternatives_not_selected": [
+          "L7: stepwise rises and nonreversal, if counted as distinct findings rather than one debt trajectory.",
+          "L17: shock deficits linked to debt jumps; more explicit numerical instantiation but later.",
+          "L19: post-pandemic ratio decline versus cash debt growth is later."
+        ],
+        "single_finding_exception": false,
+        "selection_basis": "Narrative order in supplied story only; no reader interpretation or verification consulted.",
+        "quoted_passages": [
+          {
+            "locator": "materials/M30755c/stage2/story.md:L7",
+            "text": "French public debt was 60.5% of GDP in early 2000. By mid-2026 it was 119.0%, or €3.6 trillion. It climbed in steps, and the steps never fully came back down."
+          },
+          {
+            "locator": "materials/M30755c/stage2/story.md:L9",
+            "text": "This is Maastricht gross debt: what central government, local authorities and social security funds owe, at face value, as a share of a year's GDP. The deficit is the yearly gap between what they spend and what they collect. Each deficit adds to the debt. The ratio falls only when the economy's cash value grows faster than the debt."
+          },
+          {
+            "locator": "materials/M30755c/stage2/story.md:L15",
+            "text": "France has spent more than it collected in every year since at least 1995, where the series starts. The smallest gap was 1.3% of GDP, in 2000. Leave interest aside and France last ran a surplus in 2001, at 1.7% of GDP. It has run a deficit before interest every year since."
+          }
+        ]
+      }
+    },
+    {
+      "output_code": "M948761",
+      "commission_locator": "materials/M948761/stage2/commission.md:L3",
+      "lede_comparison": {
+        "description": "WTI spot price −$36.98 per barrel versus Brent +$17.36 on 20 April 2020.",
+        "locators": [
+          "materials/M948761/stage2/story.md:L7",
+          "materials/M948761/stage2/story.md:L9"
+        ],
+        "quoted_passages": [
+          {
+            "locator": "materials/M948761/stage2/story.md:L7",
+            "text": "**On 20 April 2020 the spot price of WTI crude was −$36.98 a barrel. Brent was $17.36.**"
+          },
+          {
+            "locator": "materials/M948761/stage2/story.md:L9",
+            "text": "The price of oil did not go below zero. One price did: West Texas Intermediate (WTI), delivered at Cushing, Oklahoma, for one trading day. Where and for how long are the clues to why."
+          }
+        ]
+      },
+      "primary_chart": {
+        "embedded_reference": "chart-1.png",
+        "embedded_locator": "materials/M948761/stage2/story.md:L5",
+        "embedding_order": 1,
+        "eligible": true,
+        "reason": "First embedded chart; its story-embedded description explicitly displays the selected lede comparison. Image itself has not been opened.",
+        "ambiguity": "No ambiguity in first chart supporting the same-day WTI/Brent comparison; image accuracy remains unexamined.",
+        "embedded_markdown": "![Line chart of daily WTI and Brent spot prices, January to June 2020, in US dollars per barrel. Both fall from 6 January (Brent $70.25, WTI $63.27) to 17 April (WTI $18.31, down 71%; Brent $19.75, down 72%). On 20 April WTI drops through the zero line to −$36.98 while Brent is $17.36, $54.34 higher. On 21 April Brent is $9.12 and WTI $8.91. Both recover to about $40 by the end of June.](chart-1.png)"
+      },
+      "primary_relationship": {
+        "selection_id": "M948761-primary-relationship",
+        "description": "The same-day negative WTI finding is contrasted with the positive Brent finding: the negative event differs between the two benchmarks.",
+        "locators": [
+          "materials/M948761/stage2/story.md:L7",
+          "materials/M948761/stage2/story.md:L9"
+        ],
+        "distinct_findings": [
+          "WTI is negative on 20 April 2020.",
+          "Brent remains positive on the same date."
+        ],
+        "eligible": true,
+        "eligibility_qualification": "Selected as the earliest implied relationship between two benchmark outcomes. There is a boundary ambiguity: these two outcomes can instead be considered components of one self-contained cross-benchmark comparison. Under that narrower interpretation the earliest relationship between separate broader findings would be the shared collapse versus the isolated negative event, located below. No reader interpretation has yet been opened to resolve implied-link understanding.",
+        "alternatives_not_selected": [
+          {
+            "description": "Shared prior collapse versus isolated negative event; later than selected same-day contrast.",
+            "locators": [
+              "materials/M948761/stage2/story.md:L19",
+              "materials/M948761/stage2/story.md:L21"
+            ]
+          },
+          "Later mechanism attribution and data-limit discussion not substituted for the first relationship."
+        ],
+        "single_finding_exception": false,
+        "selection_basis": "Narrative order in supplied story only; no reader interpretation or verification consulted.",
+        "quoted_passages": [
+          {
+            "locator": "materials/M948761/stage2/story.md:L7",
+            "text": "**On 20 April 2020 the spot price of WTI crude was −$36.98 a barrel. Brent was $17.36.**"
+          },
+          {
+            "locator": "materials/M948761/stage2/story.md:L9",
+            "text": "The price of oil did not go below zero. One price did: West Texas Intermediate (WTI), delivered at Cushing, Oklahoma, for one trading day. Where and for how long are the clues to why."
+          }
+        ]
+      }
+    },
+    {
+      "output_code": "M9b1fee",
+      "commission_locator": "materials/M9b1fee/stage2/commission.md:L3",
+      "lede_comparison": {
+        "description": "WTI spot price −$36.98 per barrel versus Brent +$17.36 on 20 April 2020.",
+        "locators": [
+          "materials/M9b1fee/stage2/story.md:L7"
+        ],
+        "quoted_passages": [
+          {
+            "locator": "materials/M9b1fee/stage2/story.md:L7",
+            "text": "On 20 April 2020 a barrel of WTI crude at Cushing, Oklahoma, was priced at −$36.98. Brent was $17.36 the same day. Oil in general never cost less than nothing. One benchmark did, for one day."
+          }
+        ]
+      },
+      "primary_chart": {
+        "embedded_reference": "chart-1.png",
+        "embedded_locator": "materials/M9b1fee/stage2/story.md:L5",
+        "embedding_order": 1,
+        "eligible": true,
+        "reason": "First embedded chart; its story-embedded description explicitly displays the selected lede comparison. Image itself has not been opened.",
+        "ambiguity": "No ambiguity in first chart supporting the same-day WTI/Brent comparison; image accuracy remains unexamined.",
+        "embedded_markdown": "![Daily spot prices for WTI and Brent crude, March to May 2020, US dollars per barrel. Both fall through March and April. WTI drops from $18.31 on 17 April to −$36.98 on 20 April, the only point below the zero line, then recovers to $8.91 on 21 April and $19.23 on 30 April. Brent is $17.36 on 20 April, a gap of $54.34, and $9.12 on 21 April. On 31 March Brent, at $14.85, was below WTI, at $20.51. WTI's average for the week ending 24 April was $3.32.](chart-1.png)"
+      },
+      "primary_relationship": {
+        "selection_id": "M9b1fee-primary-relationship",
+        "description": "The same-day negative WTI finding is contrasted with the positive Brent finding: the negative event differs between the two benchmarks.",
+        "locators": [
+          "materials/M9b1fee/stage2/story.md:L7"
+        ],
+        "distinct_findings": [
+          "WTI is negative on 20 April 2020.",
+          "Brent remains positive on the same date."
+        ],
+        "eligible": true,
+        "eligibility_qualification": "Selected as the earliest implied relationship between two benchmark outcomes. There is a boundary ambiguity: these two outcomes can instead be considered components of one self-contained cross-benchmark comparison. Under that narrower interpretation the earliest relationship between separate broader findings would be the shared collapse versus the isolated negative event, located below. No reader interpretation has yet been opened to resolve implied-link understanding.",
+        "alternatives_not_selected": [
+          {
+            "description": "Shared prior collapse versus isolated negative event; later than selected same-day contrast.",
+            "locators": [
+              "materials/M9b1fee/stage2/story.md:L17",
+              "materials/M9b1fee/stage2/story.md:L19",
+              "materials/M9b1fee/stage2/story.md:L21",
+              "materials/M9b1fee/stage2/story.md:L25",
+              "materials/M9b1fee/stage2/story.md:L27"
+            ]
+          },
+          "Later mechanism attribution and data-limit discussion not substituted for the first relationship."
+        ],
+        "single_finding_exception": false,
+        "selection_basis": "Narrative order in supplied story only; no reader interpretation or verification consulted.",
+        "quoted_passages": [
+          {
+            "locator": "materials/M9b1fee/stage2/story.md:L7",
+            "text": "On 20 April 2020 a barrel of WTI crude at Cushing, Oklahoma, was priced at −$36.98. Brent was $17.36 the same day. Oil in general never cost less than nothing. One benchmark did, for one day."
+          }
+        ]
+      }
+    },
+    {
+      "output_code": "Mb8941a",
+      "commission_locator": "materials/Mb8941a/stage2/commission.md:L3",
+      "lede_comparison": {
+        "description": "Spending exceeded revenue in every one of the last 31 years; persistent gap contrasted with one bad year.",
+        "locators": [
+          "materials/Mb8941a/stage2/story.md:L7"
+        ],
+        "quoted_passages": [
+          {
+            "locator": "materials/Mb8941a/stage2/story.md:L7",
+            "text": "The French government has spent more than it raised in every one of the last 31 years. That persistent gap, not one bad year, is why the debt keeps climbing."
+          }
+        ]
+      },
+      "primary_chart": {
+        "embedded_reference": "chart-1.png",
+        "embedded_locator": "materials/Mb8941a/stage2/story.md:L5",
+        "embedding_order": 1,
+        "eligible": true,
+        "reason": "First embedded chart; its story-embedded description explicitly displays the selected lede comparison. Image itself has not been opened.",
+        "ambiguity": "For the debt stories the chart supports the quantitative lede comparison, not necessarily the full causal explanation. No later chart substituted.",
+        "embedded_markdown": "![Line chart of French general government spending and revenue as a share of GDP, 1995 to 2025. The spending line is above the revenue line in every year. Spending was 56.1% in 1995 and 57.2% in 2025; revenue was 50.9% and 52.1%. Marked deficits: 1.3% in 2000, 7.4% in 2009, 8.9% in 2020 and 5.1% in 2025.](chart-1.png)"
+      },
+      "primary_relationship": {
+        "selection_id": "Mb8941a-primary-relationship",
+        "description": "Persistent annual spending exceeding revenue is offered as the reason the debt keeps climbing.",
+        "locators": [
+          "materials/Mb8941a/stage2/story.md:L7"
+        ],
+        "distinct_findings": [
+          "Every year in the 31-year series has a spending/revenue gap.",
+          "Debt keeps climbing."
+        ],
+        "eligible": true,
+        "eligibility_qualification": "The second finding is asserted in the lede and quantified later at L15; explicit causal language fixes the relationship in the lede. Chart 1 supports persistent spending/revenue comparison, while chart 2 supports the resulting debt trajectory.",
+        "alternatives_not_selected": [
+          "L15: quantified deficit/debt relationship, later instantiation.",
+          "L29: ratio falls while euro debt grows, later."
+        ],
+        "single_finding_exception": false,
+        "selection_basis": "Narrative order in supplied story only; no reader interpretation or verification consulted.",
+        "quoted_passages": [
+          {
+            "locator": "materials/Mb8941a/stage2/story.md:L7",
+            "text": "The French government has spent more than it raised in every one of the last 31 years. That persistent gap, not one bad year, is why the debt keeps climbing."
+          }
+        ]
+      }
+    },
+    {
+      "output_code": "Mbe53b2",
+      "commission_locator": "materials/Mbe53b2/stage2/commission.md:L3",
+      "lede_comparison": {
+        "description": "WTI spot price −$36.98 per barrel versus Brent +$17.36 on 20 April 2020.",
+        "locators": [
+          "materials/Mbe53b2/stage2/story.md:L7",
+          "materials/Mbe53b2/stage2/story.md:L9"
+        ],
+        "quoted_passages": [
+          {
+            "locator": "materials/Mbe53b2/stage2/story.md:L7",
+            "text": "On Monday 20 April 2020 a barrel of West Texas Intermediate (WTI) crude at Cushing, Oklahoma, was priced at −$36.98. Brent, the North Sea benchmark, was $17.36 the same day."
+          },
+          {
+            "locator": "materials/Mbe53b2/stage2/story.md:L9",
+            "text": "So \"the price of oil\" did not go below zero. One of its two main benchmarks did, at one inland hub, for one day."
+          }
+        ]
+      },
+      "primary_chart": {
+        "embedded_reference": "chart-1.png",
+        "embedded_locator": "materials/Mbe53b2/stage2/story.md:L5",
+        "embedding_order": 1,
+        "eligible": true,
+        "reason": "First embedded chart; its story-embedded description explicitly displays the selected lede comparison. Image itself has not been opened.",
+        "ambiguity": "No ambiguity in first chart supporting the same-day WTI/Brent comparison; image accuracy remains unexamined.",
+        "embedded_markdown": "![Line chart of daily WTI and Brent spot prices, January to June 2020. On 2 January Brent is $67.05 and WTI $61.17. By 17 April WTI is $18.31 and Brent $19.75, down 70% and 71%. On 20 April WTI drops to −$36.98 while Brent is $17.36; Brent falls to $9.12 the next day. No other day is below zero.](chart-1.png)"
+      },
+      "primary_relationship": {
+        "selection_id": "Mbe53b2-primary-relationship",
+        "description": "The same-day negative WTI finding is contrasted with the positive Brent finding: the negative event differs between the two benchmarks.",
+        "locators": [
+          "materials/Mbe53b2/stage2/story.md:L7",
+          "materials/Mbe53b2/stage2/story.md:L9"
+        ],
+        "distinct_findings": [
+          "WTI is negative on 20 April 2020.",
+          "Brent remains positive on the same date."
+        ],
+        "eligible": true,
+        "eligibility_qualification": "Selected as the earliest implied relationship between two benchmark outcomes. There is a boundary ambiguity: these two outcomes can instead be considered components of one self-contained cross-benchmark comparison. Under that narrower interpretation the earliest relationship between separate broader findings would be the shared collapse versus the isolated negative event, located below. No reader interpretation has yet been opened to resolve implied-link understanding.",
+        "alternatives_not_selected": [
+          {
+            "description": "Shared prior collapse versus isolated negative event; later than selected same-day contrast.",
+            "locators": [
+              "materials/Mbe53b2/stage2/story.md:L19",
+              "materials/Mbe53b2/stage2/story.md:L21"
+            ]
+          },
+          "Later mechanism attribution and data-limit discussion not substituted for the first relationship."
+        ],
+        "single_finding_exception": false,
+        "selection_basis": "Narrative order in supplied story only; no reader interpretation or verification consulted.",
+        "quoted_passages": [
+          {
+            "locator": "materials/Mbe53b2/stage2/story.md:L7",
+            "text": "On Monday 20 April 2020 a barrel of West Texas Intermediate (WTI) crude at Cushing, Oklahoma, was priced at −$36.98. Brent, the North Sea benchmark, was $17.36 the same day."
+          },
+          {
+            "locator": "materials/Mbe53b2/stage2/story.md:L9",
+            "text": "So \"the price of oil\" did not go below zero. One of its two main benchmarks did, at one inland hub, for one day."
+          }
+        ]
+      }
+    },
+    {
+      "output_code": "Mee832a",
+      "commission_locator": "materials/Mee832a/stage2/commission.md:L3",
+      "lede_comparison": {
+        "description": "WTI spot price −$36.98 per barrel versus Brent +$17.36 on 20 April 2020.",
+        "locators": [
+          "materials/Mee832a/stage2/story.md:L7"
+        ],
+        "quoted_passages": [
+          {
+            "locator": "materials/Mee832a/stage2/story.md:L7",
+            "text": "On Monday 20 April 2020 the spot price of West Texas Intermediate (WTI) crude at Cushing, Oklahoma, was −$36.98 a barrel: sellers paid buyers to take it. Brent, the North Sea benchmark, was $17.36 the same day."
+          }
+        ]
+      },
+      "primary_chart": {
+        "embedded_reference": "chart-1.png",
+        "embedded_locator": "materials/Mee832a/stage2/story.md:L5",
+        "embedding_order": 1,
+        "eligible": true,
+        "reason": "First embedded chart; its story-embedded description explicitly displays the selected lede comparison. Image itself has not been opened.",
+        "ambiguity": "No ambiguity in first chart supporting the same-day WTI/Brent comparison; image accuracy remains unexamined.",
+        "embedded_markdown": "![Daily spot prices of WTI and Brent crude, January to June 2020. Both fall from early January (WTI $61.17, Brent $67.05) to Friday 17 April (WTI $18.31, Brent $19.75). On Monday 20 April WTI drops to −$36.98 while Brent is $17.36. On Tuesday 21 April WTI is $8.91 and Brent $9.12. Both then recover above $35 by the end of June.](chart-1.png)"
+      },
+      "primary_relationship": {
+        "selection_id": "Mee832a-primary-relationship",
+        "description": "The same-day negative WTI finding is contrasted with the positive Brent finding: the negative event differs between the two benchmarks.",
+        "locators": [
+          "materials/Mee832a/stage2/story.md:L7"
+        ],
+        "distinct_findings": [
+          "WTI is negative on 20 April 2020.",
+          "Brent remains positive on the same date."
+        ],
+        "eligible": true,
+        "eligibility_qualification": "Selected as the earliest implied relationship between two benchmark outcomes. There is a boundary ambiguity: these two outcomes can instead be considered components of one self-contained cross-benchmark comparison. Under that narrower interpretation the earliest relationship between separate broader findings would be the shared collapse versus the isolated negative event, located below. No reader interpretation has yet been opened to resolve implied-link understanding.",
+        "alternatives_not_selected": [
+          {
+            "description": "Shared prior collapse versus isolated negative event; later than selected same-day contrast.",
+            "locators": [
+              "materials/Mee832a/stage2/story.md:L19",
+              "materials/Mee832a/stage2/story.md:L21",
+              "materials/Mee832a/stage2/story.md:L23"
+            ]
+          },
+          "Later mechanism attribution and data-limit discussion not substituted for the first relationship."
+        ],
+        "single_finding_exception": false,
+        "selection_basis": "Narrative order in supplied story only; no reader interpretation or verification consulted.",
+        "quoted_passages": [
+          {
+            "locator": "materials/Mee832a/stage2/story.md:L7",
+            "text": "On Monday 20 April 2020 the spot price of West Texas Intermediate (WTI) crude at Cushing, Oklahoma, was −$36.98 a barrel: sellers paid buyers to take it. Brent, the North Sea benchmark, was $17.36 the same day."
+          }
+        ]
+      }
+    },
+    {
+      "output_code": "Mf4bb1f",
+      "commission_locator": "materials/Mf4bb1f/stage2/commission.md:L3",
+      "lede_comparison": {
+        "description": "Debt 119.0% of GDP in mid-2026 versus 60.5% in 2000, including 2009 and 2020 jumps and a further 14.1-point climb in the 2010s.",
+        "locators": [
+          "materials/Mf4bb1f/stage2/story.md:L7"
+        ],
+        "quoted_passages": [
+          {
+            "locator": "materials/Mf4bb1f/stage2/story.md:L7",
+            "text": "French public debt reached 119.0% of GDP in mid-2026, about €3.6 trillion. In 2000 it was 60.5%. It jumped by 14.3 points in 2009 and by 16.7 points in 2020, and neither jump was undone. Between them, through the 2010s, it climbed another 14.1 points. After 2020 it dipped to 109.5% at the end of 2023, then rose again."
+          }
+        ]
+      },
+      "primary_chart": {
+        "embedded_reference": "chart-1.png",
+        "embedded_locator": "materials/Mf4bb1f/stage2/story.md:L5",
+        "embedding_order": 1,
+        "eligible": true,
+        "reason": "First embedded chart; its story-embedded description explicitly displays the selected lede comparison. Image itself has not been opened.",
+        "ambiguity": "For the debt stories the chart supports the quantitative lede comparison, not necessarily the full causal explanation. No later chart substituted.",
+        "embedded_markdown": "![Line chart of French gross public debt as a share of GDP, quarterly, 2000 to mid-2026. It rises from 60.5% in 2000 Q1 to 119.0% (€3.6 trillion) in 2026 Q2. It jumps 14.3 points in 2009 and 16.7 points in 2020, and climbs a further 14.1 points over 2010–19. Its lowest point after 2020 is 109.5% in 2023 Q4.](chart-1.png)"
+      },
+      "primary_relationship": {
+        "selection_id": "Mf4bb1f-primary-relationship",
+        "description": "Debt increases during the two shock years were not undone, and the intervening 2010s added another rise: shock jumps and inter-shock accumulation fit into the overall increase.",
+        "locators": [
+          "materials/Mf4bb1f/stage2/story.md:L7"
+        ],
+        "distinct_findings": [
+          "Debt jumped 14.3 points in 2009 and 16.7 points in 2020; neither jump was undone.",
+          "Between those jumps debt climbed another 14.1 points through the 2010s."
+        ],
+        "eligible": true,
+        "eligibility_qualification": "\"Between them\" and \"another\" link distinct period findings within L7. Boundary ambiguity: if all of L7 counts as one debt-trajectory finding, the earliest cross-finding relationship is L9, linking that trajectory with an unbroken spending/revenue gap. Preserve selected L7 relationship without replacing it based on subsequent evidence.",
+        "alternatives_not_selected": [
+          "L9: \"Behind the jumps and the climb in between is one constant\" links debt trajectory to deficits since 1995.",
+          "L35: debt feedback into interest/deficits, later."
+        ],
+        "single_finding_exception": false,
+        "selection_basis": "Narrative order in supplied story only; no reader interpretation or verification consulted.",
+        "quoted_passages": [
+          {
+            "locator": "materials/Mf4bb1f/stage2/story.md:L7",
+            "text": "French public debt reached 119.0% of GDP in mid-2026, about €3.6 trillion. In 2000 it was 60.5%. It jumped by 14.3 points in 2009 and by 16.7 points in 2020, and neither jump was undone. Between them, through the 2010s, it climbed another 14.1 points. After 2020 it dipped to 109.5% at the end of 2023, then rose again."
+          }
+        ]
+      }
+    }
+  ],
+  "access_log": [
+    {
+      "sequence": 1,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/codebook.json",
+        "/tmp/datapressr-coder-input/custody-notes.json"
+      ],
+      "method": "cat",
+      "note": "Complete output received."
+    },
+    {
+      "sequence": 2,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/M1d3194/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/M1d3194/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Combined tool response was truncated; affected middle outputs reread in next operations."
+    },
+    {
+      "sequence": 3,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/M30755c/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/M30755c/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Combined tool response was truncated; affected middle outputs reread in next operations."
+    },
+    {
+      "sequence": 4,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/M948761/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/M948761/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Combined tool response was truncated; affected middle outputs reread in next operations."
+    },
+    {
+      "sequence": 5,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/M9b1fee/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/M9b1fee/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Combined tool response was truncated; affected middle outputs reread in next operations."
+    },
+    {
+      "sequence": 6,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/Mb8941a/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/Mb8941a/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Combined tool response was truncated; affected middle outputs reread in next operations."
+    },
+    {
+      "sequence": 7,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/Mbe53b2/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/Mbe53b2/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Combined tool response was truncated; affected middle outputs reread in next operations."
+    },
+    {
+      "sequence": 8,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/Mee832a/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/Mee832a/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Combined tool response was truncated; affected middle outputs reread in next operations."
+    },
+    {
+      "sequence": 9,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/Mf4bb1f/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/Mf4bb1f/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Combined tool response was truncated; affected middle outputs reread in next operations."
+    },
+    {
+      "sequence": 10,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/M9b1fee/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/M9b1fee/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Reread to recover full text after display truncation."
+    },
+    {
+      "sequence": 11,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/Mb8941a/stage2/story.md",
+        "/tmp/datapressr-coder-input/materials/Mb8941a/stage2/commission.md"
+      ],
+      "method": "cat -n",
+      "note": "Reread to recover full text after display truncation."
+    },
+    {
+      "sequence": 12,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/M1d3194/stage2/story.md"
+      ],
+      "method": "Python pathlib.read_text",
+      "note": "Extract exact quoted passage and embedding text into selection JSON."
+    },
+    {
+      "sequence": 13,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/M30755c/stage2/story.md"
+      ],
+      "method": "Python pathlib.read_text",
+      "note": "Extract exact quoted passage and embedding text into selection JSON."
+    },
+    {
+      "sequence": 14,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/M948761/stage2/story.md"
+      ],
+      "method": "Python pathlib.read_text",
+      "note": "Extract exact quoted passage and embedding text into selection JSON."
+    },
+    {
+      "sequence": 15,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/M9b1fee/stage2/story.md"
+      ],
+      "method": "Python pathlib.read_text",
+      "note": "Extract exact quoted passage and embedding text into selection JSON."
+    },
+    {
+      "sequence": 16,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/Mb8941a/stage2/story.md"
+      ],
+      "method": "Python pathlib.read_text",
+      "note": "Extract exact quoted passage and embedding text into selection JSON."
+    },
+    {
+      "sequence": 17,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/Mbe53b2/stage2/story.md"
+      ],
+      "method": "Python pathlib.read_text",
+      "note": "Extract exact quoted passage and embedding text into selection JSON."
+    },
+    {
+      "sequence": 18,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/Mee832a/stage2/story.md"
+      ],
+      "method": "Python pathlib.read_text",
+      "note": "Extract exact quoted passage and embedding text into selection JSON."
+    },
+    {
+      "sequence": 19,
+      "operation": "read",
+      "paths": [
+        "/tmp/datapressr-coder-input/materials/Mf4bb1f/stage2/story.md"
+      ],
+      "method": "Python pathlib.read_text",
+      "note": "Extract exact quoted passage and embedding text into selection JSON."
+    },
+    {
+      "sequence": 20,
+      "operation": "write",
+      "paths": [
+        "/tmp/datapressr-h-primary-selections.json"
+      ],
+      "method": "Python json.dumps",
+      "note": "Primary-selection-only record; no hypothesis codes assigned."
+    }
+  ]
+}
