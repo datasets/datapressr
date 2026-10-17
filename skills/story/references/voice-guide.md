@@ -7,6 +7,8 @@ How DataPressr data stories should sound. Packaged with the `story` skill so it 
 
 **Let the numbers carry it.** The reader came for what the data says. Your job is to state it clearly and get out of the way. If a sentence would survive having its adjective deleted, delete the adjective.
 
+Make the relationship between findings explicit. Explain how the next finding changes, qualifies or helps account for the previous one, using the evidence already established in the outline. The reader should understand the implication, not just receive a sequence of values. A descriptive comparison can explain an apparent contradiction without establishing its cause; mechanisms still need the attributed evidence required by the story-craft guide.
+
 ## Do
 
 - **Lead with the finding.** First chart, then one line saying what it shows. Never open on the source file, the download, or the wrangling.
@@ -29,6 +31,16 @@ How DataPressr data stories should sound. Packaged with the `story` skill so it 
 - **Don't oversell the dataset.** "A tidy version of X" is enough; it doesn't need to be "definitive" or "comprehensive".
 
 ## Before / after
+
+Constructed example with synthetic figures, illustrating the relationship rather than a reported finding:
+
+> **Before.** Spending rose from £100 to £120. Its share of the economy fell from 10% to 8%.
+
+> **After.** Spending rose from £100 to £120, but the economy grew faster, from £1,000 to £1,500. That larger denominator means spending increased in pounds while falling from 10% to 8% of the economy.
+
+This reconciles the two measures. It does not show what caused either increase or whether spending rose after inflation.
+
+---
 
 > **Before.** In an age of mounting climate anxiety, perhaps no dataset is as quietly terrifying as the relentless, unbroken march of atmospheric carbon dioxide — a grim testament to humanity's failure to act.
 
