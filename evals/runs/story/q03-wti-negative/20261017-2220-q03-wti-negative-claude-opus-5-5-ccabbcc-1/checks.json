@@ -1,0 +1,84 @@
+{
+  "checker": "story",
+  "results": [
+    {
+      "id": "S1",
+      "pass": true,
+      "severity": "fail",
+      "message": "outline, chart build, 2 embedded SVG(s) and prose present",
+      "evidence": {
+        "svgs": [
+          "oil-below-zero-only-wti.svg",
+          "oil-below-zero-averages.svg"
+        ]
+      }
+    },
+    {
+      "id": "S2",
+      "pass": true,
+      "severity": "fail",
+      "message": "568 words (budget 300–700)",
+      "evidence": {
+        "words": 568,
+        "min": 300,
+        "max": 700
+      }
+    },
+    {
+      "id": "S3",
+      "pass": true,
+      "severity": "fail",
+      "message": "all 17 prose number(s) appear on a chart or the exempt list",
+      "evidence": {
+        "checked": 17,
+        "exempt": [
+          "−$37.63",
+          "10,236",
+          "$10.25",
+          "$9.10",
+          "$9.12",
+          "1",
+          "$9.10"
+        ]
+      }
+    },
+    {
+      "id": "S4",
+      "pass": true,
+      "severity": "fail",
+      "message": "two offline builds reproduce 2 SVG(s) byte for byte",
+      "evidence": {
+        "svgs": [
+          "oil-below-zero-averages.svg",
+          "oil-below-zero-only-wti.svg"
+        ]
+      }
+    },
+    {
+      "id": "S5",
+      "pass": true,
+      "severity": "fail",
+      "message": "1 input(s) identical to their pinned commits",
+      "evidence": null
+    },
+    {
+      "id": "S6",
+      "pass": true,
+      "severity": "fail",
+      "message": "not applicable: the case has no as_of",
+      "evidence": null
+    },
+    {
+      "id": "S7",
+      "pass": true,
+      "severity": "fail",
+      "message": "2 embedded SVG(s) free of NaN, Infinity, undefined and function source",
+      "evidence": {
+        "svgs": [
+          "oil-below-zero-only-wti.svg",
+          "oil-below-zero-averages.svg"
+        ]
+      }
+    }
+  ]
+}

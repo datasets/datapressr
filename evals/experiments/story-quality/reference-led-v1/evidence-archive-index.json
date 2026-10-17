@@ -7,7 +7,8 @@
     "evals/runs/story/q01-french-debt/20261017-2156-q01-french-debt-claude-opus-5-5-92148d1-1",
     "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
     "evals/canaries/20261017-2136-canary-claude-haiku-5-5-1",
-    "evals/canaries/20261017-2138-canary-codex-gpt-6-luna-1"
+    "evals/canaries/20261017-2138-canary-codex-gpt-6-luna-1",
+    "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1"
   ],
   "files": [
     {
@@ -369,6 +370,96 @@
       "disposition": "copied",
       "git_ignored": true,
       "ignore_rule": ".gitignore:24:evals/canaries/**/transcript.jsonl\tevals/canaries/20261017-2138-canary-codex-gpt-6-luna-1/transcript.jsonl"
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/workspace.tar",
+      "bytes": 3066368,
+      "source_sha256": "0b4f9c06bc50e881a9a7764fe9662198bfb31337faecd29ee50e6dc270a3c98a",
+      "destination_sha256": "0b4f9c06bc50e881a9a7764fe9662198bfb31337faecd29ee50e6dc270a3c98a",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:22:evals/runs/**/workspace.tar\tevals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/workspace.tar"
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/transcript.jsonl",
+      "bytes": 635345,
+      "source_sha256": "5ede2f89e5a0a1c881f5d2e1068b687c6837e621a99c23d3fb05c3615f9be5b4",
+      "destination_sha256": "5ede2f89e5a0a1c881f5d2e1068b687c6837e621a99c23d3fb05c3615f9be5b4",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:21:evals/runs/**/transcript.jsonl\tevals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/transcript.jsonl"
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/checks.json",
+      "bytes": 1837,
+      "source_sha256": "179a0cda0ceef7eef9e73167d355840fe73457b99767b717d4f85af71e6d0e57",
+      "destination_sha256": "179a0cda0ceef7eef9e73167d355840fe73457b99767b717d4f85af71e6d0e57",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/run.json",
+      "bytes": 3237,
+      "source_sha256": "d9759e0383ffd5c29574a780793f63437cbb79f2e0cc05fe5d512e4971ab08a6",
+      "destination_sha256": "d9759e0383ffd5c29574a780793f63437cbb79f2e0cc05fe5d512e4971ab08a6",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-averages.svg",
+      "bytes": 9318,
+      "source_sha256": "5068c84cdb3a54fd82e44acd7b91c5508b84e0639cfc4fba1e75b181bfb50df6",
+      "destination_sha256": "5068c84cdb3a54fd82e44acd7b91c5508b84e0639cfc4fba1e75b181bfb50df6",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-editorial-review.md",
+      "bytes": 11201,
+      "source_sha256": "a3c6bd9c860bd11db96242be54f47979aab23aeab42ffbf3abdc38edf830576e",
+      "destination_sha256": "a3c6bd9c860bd11db96242be54f47979aab23aeab42ffbf3abdc38edf830576e",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-outline.md",
+      "bytes": 14526,
+      "source_sha256": "49e201ed738418e36c24291f9ff71bfc5ef343ac1bac1aa8ecc18fac8d1df3d4",
+      "destination_sha256": "49e201ed738418e36c24291f9ff71bfc5ef343ac1bac1aa8ecc18fac8d1df3d4",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-make-charts.mjs",
+      "bytes": 8972,
+      "source_sha256": "30e8ee761c5411dad7d5151463ba83271affb9ad442922c1e4bea7f98b962ac6",
+      "destination_sha256": "30e8ee761c5411dad7d5151463ba83271affb9ad442922c1e4bea7f98b962ac6",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero-only-wti.svg",
+      "bytes": 10627,
+      "source_sha256": "c6f3292947d7837281701bc04e14f6dd6235d0cfebd778455a85f79bfa7cd3f2",
+      "destination_sha256": "c6f3292947d7837281701bc04e14f6dd6235d0cfebd778455a85f79bfa7cd3f2",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1/artefacts/site/stories/oil-below-zero.md",
+      "bytes": 6813,
+      "source_sha256": "75950408fb2fa2e029007c44afdf7d0473d3512cd3cf410e5f7f66afefa1c925",
+      "destination_sha256": "75950408fb2fa2e029007c44afdf7d0473d3512cd3cf410e5f7f66afefa1c925",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
     }
   ],
   "skipped_symlinks": [],
@@ -381,5 +472,7 @@
     "Ignored transcripts/workspace archives preserved locally but not part of a normal Git commit; retain a durable approved backup if temporary execution checkout is removed.",
     "No ledger or REPORT was copied; driver must integrate selected ledger evidence independently.",
     "No symlinks followed; skipped symlinks, if any, require separate review."
-  ]
+  ],
+  "updated_at": "2026-10-17T22:37:36.051110+00:00",
+  "verification": "All cumulative source/destination file hashes and byte sizes verified after slot4 archive."
 }
