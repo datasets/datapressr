@@ -609,7 +609,7 @@ export function tally() {
       t.model_actual = res?.model_actual ?? t.model_actual;
       t.cli_version = res?.cli_version ?? t.cli_version;
     },
-    get: () => ({ calls: t.calls, cost_usd: t.cost_known ? Math.round(t.cost_usd * 1e6) / 1e6 : null, usage: t.usage, model_actual: t.model_actual, cli_version: t.cli_version }),
+    get: () => ({ calls: t.calls, known_cost_usd: Math.round(t.cost_usd * 1e6) / 1e6, cost_usd: t.cost_known ? Math.round(t.cost_usd * 1e6) / 1e6 : null, usage: t.usage, model_actual: t.model_actual, cli_version: t.cli_version }),
   };
 }
 
@@ -622,6 +622,7 @@ export async function callWithRetry({ adapter, args, build, costs, attempts = 2 
     try {
       res = await adapter.critic(args);
     } catch (e) {
+      costs.add(null);
       errors.push(`attempt ${i + 1}: ${e.message}`);
       continue;
     }
@@ -666,7 +667,8 @@ export function resolveCritic({ spec = "auto", model, writers, config, available
   } else throw new Error(`--critic must be auto, claude, codex or fake (got ${JSON.stringify(spec)})`);
   if (model) pick = { ...pick, model };
   for (const w of writers) if (w.model === pick.model) throw new Error(`the critic model ${pick.model} is a writer's own model; choose another`);
-  return pick;
+  const effort = config.efforts?.[pick.vendor]?.critic;
+  return { ...pick, ...(effort === undefined ? {} : { effort_requested: effort }) };
 }
 
 // --- Rendering -------------------------------------------------------------------------------
@@ -746,6 +748,7 @@ function criticArgs({ critic, config, root, kind, prompt, jsonSchema, meta, imag
     meta,
     ...(images?.length ? { images } : {}),
     model: critic.model,
+    effort: critic.effort_requested,
     root,
     timeoutMs: config.timeouts_ms?.critic,
     maxBudgetUsd: config.critic_caps?.max_usd_per_call,
@@ -894,10 +897,14 @@ export async function pairRuns({ root, evalsDir, runDirs, rubricId, overlay = nu
   log(`pair ${pairId}: judging with ${critic.vendor} ${critic.model} (rubric ${rubric.id})`);
 
   const costs = tally();
+  const judgements = [];
+  let questions = [];
+  let questionPromptHash = null;
   try {
     const q = await askQuestions({ rubric, kase, critic, adapter, config, root, costs, inventory });
+    questionPromptHash = sha256(q.prompt);
     if (!q.ok) throw new Error(`critic_failed writing reader questions: ${q.errors.join(" | ")}`);
-    const judgements = [];
+    questions = q.value;
     for (const order of ["AB", "BA"]) {
       const [first, second] = order === "AB" ? [byLabel.A, byLabel.B] : [byLabel.B, byLabel.A];
       const prompt = pairwisePrompt({ rubric, kase, questions: q.value, first, second, feedback, inventory });
@@ -914,6 +921,7 @@ export async function pairRuns({ root, evalsDir, runDirs, rubricId, overlay = nu
       });
       if (!res.ok) throw new Error(`critic_failed on order ${order}: ${res.errors.join(" | ")}`);
       judgements.push(res.value);
+      writeFileSync(join(pairDir, `critique-${order}.json`), `${JSON.stringify({ ...res.value, rubric_sha256: rubric.sha256 }, null, 2)}\n`);
     }
     const c = costs.get();
     const criticRec = { ...critic, model_actual: c.model_actual };
@@ -944,8 +952,20 @@ export async function pairRuns({ root, evalsDir, runDirs, rubricId, overlay = nu
     });
     return { pairId, pairDir, row, judgements, costs: c };
   } catch (e) {
-    rmSync(pairDir, { recursive: true, force: true });
-    e.costs = costs.get();
+    const c = costs.get();
+    const failure = {
+      pair_id: pairId, status: "critic_failed", errors: [e.message], questions, questions_prompt_sha256: questionPromptHash, judgements,
+      critic: { ...critic, model_actual: c.model_actual }, rubric: rubric.id, rubric_sha256: rubric.sha256,
+      costs: c,
+    };
+    writeFileSync(join(pairDir, "failure.json"), `${JSON.stringify(failure, null, 2)}\n`);
+    appendRow(join(evalsDir, "ledger.jsonl"), {
+      kind: "pair_failed", at: started.toISOString(), pair_id: pairId, case_id: kase.id,
+      run_ids: runs.map(r => r.run_id), rubric: rubric.id, rubric_sha256: rubric.sha256,
+      critic: failure.critic, errors: failure.errors, known_cost_usd: c.known_cost_usd, cost_usd: c.cost_usd, usage: c.usage, calls: c.calls,
+      path: relative(evalsDir, pairDir).split(sep).join("/"),
+    });
+    e.costs = c;
     throw e;
   }
 }

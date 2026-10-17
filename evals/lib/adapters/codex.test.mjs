@@ -197,3 +197,10 @@ test("usage limit: a turn that failed on the account limit is detected (datapres
   assert.equal(codex.usageLimited("stream disconnected before completion"), false);
   assert.equal(codex.usageLimited(null), false);
 });
+
+ test("explicit effort reaches writer and critic args and changes recipe identity", () => {
+  const opts = { prompt: "P", model: "m", cwd: "/w", mode: "fixed", lastPath: "/l", settingsPath: "/s", effort: "high" };
+  for (const args of [codex.writerArgs(opts), codex.criticArgs(opts)]) assert.ok(args.includes('model_reasoning_effort="high"' ));
+  assert.notEqual(codex.recipeHash("fixed"), codex.recipeHash("fixed", { effort: "high" }));
+  assert.notEqual(codex.recipeHash("fixed", { effort: "low" }), codex.recipeHash("fixed", { effort: "high" }));
+});

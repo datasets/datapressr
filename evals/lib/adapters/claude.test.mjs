@@ -189,3 +189,10 @@ test("usage limit: an api_error usage_limit_reached event is detected (datapress
   assert.equal(claude.usageLimited([{ type: "result", subtype: "error_max_budget_usd", is_error: true }]), false);
   assert.equal(claude.usageLimited([{ type: "result", api_error_status: 500, api_error: "overloaded" }]), false);
 });
+
+ test("explicit effort reaches writer and critic args and changes recipe identity", () => {
+  const opts = { prompt: "P", model: "m", cwd: "/w", mode: "fixed", lastPath: "/l", settingsPath: "/s", effort: "high" };
+  for (const args of [claude.writerArgs(opts), claude.criticArgs(opts)]) assert.ok(args.includes("--effort"));
+  assert.notEqual(claude.recipeHash("fixed"), claude.recipeHash("fixed", { effort: "high" }));
+  assert.notEqual(claude.recipeHash("fixed", { effort: "low" }), claude.recipeHash("fixed", { effort: "high" }));
+});

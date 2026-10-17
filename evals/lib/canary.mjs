@@ -461,7 +461,7 @@ export async function runCanary({ root, evalsDir, adapter, config, mode = "fixed
   const started = now();
   try {
     log(`canary workspace ${ws.dir}`);
-    const out = await adapter.write({ workspace: ws.dir, prompt, model, caps: { max_usd: c.max_usd, max_turns: c.max_turns }, mode, root, home, timeoutMs: c.timeout_ms, weaken, ...(bin ? { bin } : {}) });
+    const out = await adapter.write({ workspace: ws.dir, prompt, model, effort: config.efforts?.[adapter.vendor]?.writer, caps: { max_usd: c.max_usd, max_turns: c.max_turns }, mode, root, home, timeoutMs: c.timeout_ms, weaken, ...(bin ? { bin } : {}) });
     const tmpDirs = out.tmp_dirs ?? [];
     const verdict = codex
       ? evaluateCodexCanary({ transcript: out.transcript, resultText: out.result_text, homeReport: out.home_report, workspace: ws.dir, root, home, homes, mode, tmpDirs, sharedTmp })
@@ -487,6 +487,7 @@ export async function runCanary({ root, evalsDir, adapter, config, mode = "fixed
       harness_tree: harness.tree,
       harness_dirty: harness.dirty,
       model,
+      ...(out.effort_requested === undefined ? {} : { effort_requested: out.effort_requested }),
       model_actual: out.model_actual,
       turns: out.turns,
       cost_usd: out.cost_usd,
@@ -512,6 +513,7 @@ export async function runCanary({ root, evalsDir, adapter, config, mode = "fixed
       weakened: weaken,
       harness_tree: harness.tree,
       model,
+      ...(out.effort_requested === undefined ? {} : { effort_requested: out.effort_requested }),
       model_actual: out.model_actual,
       cost_usd: out.cost_usd,
       turns: out.turns,

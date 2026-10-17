@@ -480,25 +480,31 @@ function harnessSection(rows, a, ctx) {
   }
 
   out.push("### Critic and isolation", "");
-  const critiques = rows.filter((r) => r.kind === "score" || r.kind === "pair");
+  const critiques = rows.filter((r) => r.kind === "score" || r.kind === "pair" || r.kind === "pair_failed");
   const fallback = critiques.filter((r) => r.critic?.fallback).length;
   const scoreRows = rows.filter((r) => r.kind === "score");
   const failed = scoreRows.filter((r) => r.status === "critic_failed").length;
+  const failedPairs = rows.filter(r => r.kind === "pair_failed");
+  if (failedPairs.length) {
+    const knownCost = failedPairs.reduce((sum, r) => sum + (r.known_cost_usd ?? r.cost_usd ?? 0), 0);
+    const unknown = failedPairs.filter(r => r.cost_usd == null).length;
+    out.push(`- Failed pair attempts: ${failedPairs.length}; known cost ${Number(knownCost.toFixed(6))} USD; unknown cost for ${unknown} attempts. Excluded from preference outcomes.`);
+  }
   const leaked = a.runs.filter((r) => r.flags.includes("leaked")).length;
   out.push(`- Critic fallback: ${fallback} of ${plural(critiques.length, "critique")} (absolute and pairwise) used the fallback critic.`);
   out.push(`- Critic validation failures: ${failed} of ${plural(scoreRows.length, "absolute critique")} recorded as critic_failed.`);
   out.push(`- Leaks caught: ${leaked} of ${plural(a.runs.length, "run")} flagged leaked.`);
   out.push("");
 
-  out.push("Canary status (latest per vendor, CLI version and mode; weakened canaries are negative controls and must fail):", "");
+  out.push("Canary status (latest per vendor, CLI version, recipe and mode; weakened canaries are negative controls and must fail):", "");
   const canaries = rows.filter((r) => r.kind === "canary");
-  const latestCanary = [...latestBy(canaries, (r) => `${r.vendor}\u0000${r.cli_version}\u0000${r.mode}\u0000${r.weakened ? 1 : 0}`).values()];
+  const latestCanary = [...latestBy(canaries, (r) => `${r.vendor}\u0000${r.cli_version}\u0000${r.mode}\u0000${r.recipe_sha256}\u0000${r.weakened ? 1 : 0}`).values()];
   const installed = canaryStatus(rows, ctx);
   if (latestCanary.length === 0 && installed.length === 0) out.push("No canaries recorded yet.", "");
   else {
-    out.push("| Vendor | CLI | Mode | Kind | Latest | Result |", "|---|---|---|---|---|---|");
+    out.push("| Vendor | CLI | Mode | Recipe | Kind | Latest | Result |", "|---|---|---|---|---|---|---|");
     for (const r of latestCanary.sort((x, y) => cmp(x.vendor, y.vendor) || cmp(x.cli_version, y.cli_version) || cmp(x.mode, y.mode) || cmp(Boolean(x.weakened), Boolean(y.weakened)))) {
-      out.push(`| ${cell(r.vendor)} | ${cell(r.cli_version)} | ${cell(r.mode)} | ${r.weakened ? "weakened" : "recipe"} | ${cell(r.run_id)} | ${r.pass ? "PASS" : r.weakened ? "FAIL (expected)" : "FAIL"} |`);
+      out.push(`| ${cell(r.vendor)} | ${cell(r.cli_version)} | ${cell(r.mode)} | ${cell(r.recipe_sha256?.slice(0, 12))} | ${r.weakened ? "weakened" : "recipe"} | ${cell(r.run_id)} | ${r.pass ? "PASS" : r.weakened ? "FAIL (expected)" : "FAIL"} |`);
     }
     out.push("");
     for (const s of installed) {
@@ -606,6 +612,8 @@ export function readPrompts(evalsDir, rows) {
 }
 
 export function reportContext(root, evalsDir, rows, { adapters = CANARY_ADAPTERS } = {}) {
+  const configPath = join(evalsDir, "config.json");
+  const config = existsSync(configPath) ? JSON.parse(readFileSync(configPath, "utf8")) : {};
   const skills = {};
   for (const name of new Set(rows.filter((r) => r.kind === "run").map(skillOf))) skills[name] = skillHistory(root, name);
   const canary = [];
@@ -620,7 +628,7 @@ export function reportContext(root, evalsDir, rows, { adapters = CANARY_ADAPTERS
     for (const mode of [...modes].sort()) {
       let recipe = null;
       try {
-        recipe = ad.recipeHash(mode);
+        recipe = ad.recipeHash(mode, { effort: config.efforts?.[ad.vendor]?.writer });
       } catch {
         recipe = null;
       }

@@ -20,6 +20,8 @@ import {
   latestRubricId,
   loadRubric,
   pairResult,
+  tally,
+  callWithRetry,
   findRunDir,
   pairRuns,
   parseCsv,
@@ -523,14 +525,14 @@ test("pair: blind A/B folders, nothing identifying in the prompts, and the owner
   }
 });
 
-test("pair: refuses runs of different cases or the same run, and cleans up after a critic failure", async () => {
+test("pair: refuses runs of different cases or the same run, and retains a critic failure", async () => {
   const { root, evalsDir, cleanup } = setup();
   try {
     const r1 = writeRun(evalsDir, "20261010-0900-t01-demo-fake-fake-1abcdef-1");
     await assert.rejects(pairRuns({ root, evalsDir, runDirs: [r1, r1], critic: FAKE, config, adapters: capture().adapters }), /two different runs/);
     const s = scripted({ pairwise: ["call-failed", "call-failed"] });
     await assert.rejects(pairWith(evalsDir, root, s), /critic_failed on order AB/);
-    assert.ok(!existsSync(join(evalsDir, "pairs")) || readdirSync(join(evalsDir, "pairs")).length === 0, "no half-written pair left behind");
+    assert.equal(readdirSync(join(evalsDir, "pairs")).length, 1, "failed evidence retained");
     assert.ok(!readLedger(join(evalsDir, "ledger.jsonl")).some((r) => r.kind === "pair"));
   } finally {
     cleanup();
@@ -546,7 +548,7 @@ test("resolveCritic: fake, auto, explicit vendor and a model override", () => {
   assert.equal(resolveCritic({ spec: "auto", writers: claudeWriter, config, available }).vendor, "codex");
   assert.equal(resolveCritic({ spec: "auto", writers: claudeWriter, config, available, model: "gpt-6-luna" }).model, "gpt-6-luna");
   const same = resolveCritic({ spec: "claude", writers: claudeWriter, config, available });
-  assert.deepEqual(same, { vendor: "claude", model: config.families.sonnet, fallback: true, fallback_reason: "--critic claude requested for a claude writer" });
+  assert.deepEqual(same, { vendor: "claude", model: config.families.sonnet, effort_requested: "high", fallback: true, fallback_reason: "--critic claude requested for a claude writer" });
   assert.throws(() => resolveCritic({ spec: "auto", writers: [{ vendor: "fake", model: "fake" }], config, available }), /needs a real writer/);
   assert.throws(() => resolveCritic({ spec: "claude", writers: claudeWriter, config, available, model: config.models.claude.writer }), /writer's own model/);
   assert.throws(() => resolveCritic({ spec: "codex", writers: claudeWriter, config, available: () => ({ ok: false, reason: "no auth" }) }), /--critic codex: no auth/);
@@ -653,4 +655,63 @@ test("pair --overlay: the overlay's sections replace the base rubric's, rows rec
   } finally {
     cleanup();
   }
+});
+
+test("pair failure after AB preserves completed judgment, costs and failure ledger without a winning pair", async () => {
+  const { root, evalsDir, cleanup } = setup();
+  try {
+    const s = scripted({ pairwise: [verdict("1"), "call-failed", "call-failed"] });
+    await assert.rejects(pairWith(evalsDir, root, s), /critic_failed on order BA/);
+    const rows = readLedger(join(evalsDir, "ledger.jsonl"));
+    const failed = rows.find(r => r.kind === "pair_failed");
+    assert.ok(failed, "failed call accounting persisted");
+    assert.equal(failed.calls, 4);
+    assert.equal(failed.cost_usd, 0.03);
+    assert.ok(!rows.some(r => r.kind === "pair"));
+    const dir = join(evalsDir, "pairs", failed.pair_id);
+    assert.ok(existsSync(join(dir, "mapping.json")));
+    assert.ok(existsSync(join(dir, "critique-AB.json")));
+    const detail = JSON.parse(readFileSync(join(dir, "failure.json"), "utf8"));
+    assert.equal(detail.judgements.length, 1);
+    assert.equal(detail.questions.length, 5);
+    assert.match(detail.questions_prompt_sha256, /^[0-9a-f]{64}$/);
+    assert.match(detail.errors.join(" "), /order BA/);
+    assert.equal(validateLedgerRow(failed).ok, true);
+  } finally { cleanup(); }
+});
+
+test("thrown critic calls count as attempts with unknown cost", async () => {
+ const costs = tally();
+ const res = await callWithRetry({ adapter: { critic: async () => { throw new Error("transport"); } }, args: {}, build: () => ({ ok: true }), costs });
+ assert.equal(res.ok, false);
+ assert.equal(costs.get().calls, 2);
+ assert.equal(costs.get().cost_usd, null);
+});
+
+test("resolved critic effort reaches every pair call and persisted provenance", async () => {
+ const { root, evalsDir, cleanup } = setup();
+ try {
+   const r1 = writeRun(evalsDir, "20261010-0900-t01-demo-fake-fake-1abcdef-1");
+   const r2 = writeRun(evalsDir, "20261010-1000-t01-demo-fake-fake-2bcdef0-1");
+   const critic = resolveCritic({ spec: "codex", writers: [{ vendor: "claude", model: config.models.claude.writer }], config, available: () => ({ ok: true }) });
+   const scriptedCritic = scripted({ pairwise: [verdict("1"), verdict("2")] });
+   const result = await pairRuns({ root, evalsDir, runDirs: [r1, r2], critic, config, adapters: { codex: scriptedCritic.adapters.fake }, now: clock() });
+   assert.equal(result.row.critic.effort_requested, "high");
+   assert.ok(scriptedCritic.calls.every(c => c.effort === "high"));
+   for (const order of ["AB", "BA"]) assert.equal(JSON.parse(readFileSync(join(result.pairDir, `critique-${order}.json`), "utf8")).critic.effort_requested, "high");
+ } finally { cleanup(); }
+});
+
+test("mixed known and unknown failed pair cost retains the known subtotal", async () => {
+ const { root, evalsDir, cleanup } = setup();
+ try {
+   const s = scripted({ pairwise: [verdict("1"), new Error("transport"), new Error("transport")] });
+   await assert.rejects(pairWith(evalsDir, root, s), /order BA/);
+   const failed = readLedger(join(evalsDir, "ledger.jsonl")).find(r => r.kind === "pair_failed");
+   assert.equal(failed.calls, 4);
+   assert.equal(failed.cost_usd, null);
+   assert.equal(failed.known_cost_usd, 0.01);
+   const detail = JSON.parse(readFileSync(join(evalsDir, failed.path, "failure.json"), "utf8"));
+   assert.equal(detail.costs.known_cost_usd, 0.01);
+ } finally { cleanup(); }
 });

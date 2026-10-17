@@ -257,3 +257,12 @@ test("rows from before skill_name existed fall back to the domain", () => {
   assert.match(md, /### story\n/);
   assert.match(md, /A single run is an anecdote/);
 });
+
+test("failed pairs report spend without becoming completed comparisons", () => {
+ const failed = { schema: 1, kind: "pair_failed", at: "2026-10-18T00:00:00Z", pair_id: "bad", case_id: CASE, run_ids: ["old", "new"], rubric: "story/v2", critic, errors: ["BA failed"], calls: 4, cost_usd: 0.03, path: "pairs/bad" };
+ assert.equal(validateLedgerRow(failed).ok, true);
+ const md = renderReport([failed], ctx);
+ assert.match(md, /Failed pair attempts: 1; known cost 0.03 USD/);
+ assert.doesNotMatch(md, /n=1 pair/);
+ assert.match(renderReport([{ ...failed, cost_usd: null, known_cost_usd: 0.02 }], ctx), /known cost 0.02 USD; unknown cost for 1 attempts/);
+});

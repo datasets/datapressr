@@ -27,12 +27,12 @@ function claudeAuth({ bin = "claude" } = {}) {
 export const defaultProbes = {
   cliVersion: (adapter) => adapter.cliVersion(),
   auth: (adapter) => (adapter.vendor === "codex" ? codex.authOk() : claudeAuth()),
-  canary: (adapter, cliVersion, ledgerRows) => requireCanary(ledgerRows, { vendor: adapter.vendor, cli_version: cliVersion, recipe_sha256: adapter.recipeHash("fixed"), mode: "fixed" }),
+  canary: (adapter, cliVersion, ledgerRows, effort) => requireCanary(ledgerRows, { vendor: adapter.vendor, cli_version: cliVersion, recipe_sha256: adapter.recipeHash("fixed", { effort }), mode: "fixed" }),
 };
 
 // available(vendor) -> { ok, reason, cli_version, canary_run_id }, cached per checker (one
 // checker per harness invocation). Stops at the first failing step: binary, auth, canary.
-export function availabilityChecker({ ledgerFile, ledgerRows, probes = defaultProbes, adapters = VENDOR_ADAPTERS } = {}) {
+export function availabilityChecker({ ledgerFile, ledgerRows, probes = defaultProbes, adapters = VENDOR_ADAPTERS, config = {} } = {}) {
   const cache = new Map();
   const rows = () => (ledgerRows ??= ledgerFile ? readLedger(ledgerFile) : []);
   return function available(vendor) {
@@ -53,7 +53,7 @@ export function availabilityChecker({ ledgerFile, ledgerRows, probes = defaultPr
       }
       if (!res) {
         try {
-          const row = probes.canary(adapter, version, rows());
+          const row = probes.canary(adapter, version, rows(), config.efforts?.[vendor]?.writer);
           res = { ok: true, reason: null, cli_version: version, canary_run_id: row.run_id };
         } catch (e) {
           res = { ok: false, reason: `${vendor} canary not passed: ${e.message}`, cli_version: version, canary_run_id: null };

@@ -12,7 +12,7 @@ export const VENDORS = ["claude", "codex", "fake"];
 // also carries `failed`, the runner stops its remaining repeats and the report leaves it out of
 // regression flags.
 export const RUN_FLAGS = ["leaked", "over_budget", "failed", "dirty_skill", "fallback_critic", "no_skill", "usage_limit"];
-export const LEDGER_KINDS = ["canary", "run", "check", "score", "pair", "owner", "reveal"];
+export const LEDGER_KINDS = ["canary", "run", "check", "score", "pair", "pair_failed", "owner", "reveal"];
 export const SCORE_DIMENSIONS = ["argument", "depth", "charts", "honesty", "reader_questions", "prose"];
 export const OPEN_MODE_DIMENSIONS = ["data_choice"];
 
@@ -395,6 +395,18 @@ const ROW_CHECKS = {
         }
       }
     }
+  },
+  pair_failed(c, r) {
+    c.string(r.pair_id, "pair_id");
+    c.string(r.case_id, "case_id", { pattern: SLUG });
+    if (c.array(r.run_ids, "run_ids", { minItems: 2, maxItems: 2 })) r.run_ids.forEach((id, i) => c.string(id, `run_ids[${i}]`));
+    c.string(r.rubric, "rubric");
+    checkCritic(c, r.critic, "critic");
+    if (c.array(r.errors, "errors", { minItems: 1 })) r.errors.forEach((e, i) => c.string(e, `errors[${i}]`));
+    c.number(r.calls, "calls", { min: 0, integer: true });
+    c.number(r.known_cost_usd, "known_cost_usd", { min: 0, optional: true });
+    c.number(r.cost_usd, "cost_usd", { min: 0, nullable: true });
+    c.string(r.path, "path");
   },
   pair(c, r) {
     c.string(r.pair_id, "pair_id");

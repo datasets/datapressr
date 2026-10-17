@@ -51,8 +51,9 @@ export function makeHome({ authFile = authSource(), tmpRoot = tmpdir() } = {}) {
   return dir;
 }
 
-function flagsFor({ model, cwd, sandbox, mode, lastPath }) {
+function flagsFor({ model, effort, cwd, sandbox, mode, lastPath }) {
   const args = ["exec", "-C", cwd, "--skip-git-repo-check", "--ephemeral", "--ignore-user-config", "--ignore-rules", "--json", "-o", lastPath, "-m", model, "--sandbox", sandbox];
+  if (effort !== undefined) args.push("-c", `model_reasoning_effort=${JSON.stringify(effort)}`);
   for (const f of DISABLED_FEATURES) args.push("--disable", f);
   // No login shell: macOS's /etc/zprofile (path_helper) would move /opt/homebrew/bin ahead of the
   // nested-agent shim on PATH.
@@ -62,13 +63,13 @@ function flagsFor({ model, cwd, sandbox, mode, lastPath }) {
   return args;
 }
 
-export function writerArgs({ prompt, model, cwd, mode, lastPath }) {
+export function writerArgs({ prompt, model, effort, cwd, mode, lastPath }) {
   if (mode !== "fixed" && mode !== "open") throw new Error(`unknown mode ${mode}`);
-  return [...flagsFor({ model, cwd, sandbox: "workspace-write", mode, lastPath }), "--", prompt];
+  return [...flagsFor({ model, effort, cwd, sandbox: "workspace-write", mode, lastPath }), "--", prompt];
 }
 
-export function criticArgs({ prompt, model, cwd, lastPath, schemaPath, images = [] }) {
-  const args = flagsFor({ model, cwd, sandbox: "read-only", mode: "fixed", lastPath });
+export function criticArgs({ prompt, model, effort, cwd, lastPath, schemaPath, images = [] }) {
+  const args = flagsFor({ model, effort, cwd, sandbox: "read-only", mode: "fixed", lastPath });
   if (schemaPath) args.push("--output-schema", schemaPath);
   for (const img of images) args.push("-i", img);
   return [...args, "--", prompt];
@@ -92,13 +93,13 @@ export function childEnv({ home, env = process.env, weaken = false, shimBin, tmp
 }
 
 // What the recipe hash covers: flags and environment with machine paths as placeholders.
-export function recipeTemplate(mode, { weaken = false } = {}) {
+export function recipeTemplate(mode, { weaken = false, effort } = {}) {
   return {
     vendor,
     version: RECIPE_VERSION,
     mode,
     weaken,
-    args: writerArgs({ prompt: "<prompt>", model: "<model>", cwd: "<workspace>", mode, lastPath: "<last>" }),
+    args: writerArgs({ prompt: "<prompt>", model: "<model>", effort, cwd: "<workspace>", mode, lastPath: "<last>" }),
     env: { HOME: weaken ? "<user home>" : "<temp home>", CODEX_HOME: "<temp home>", home_contents: ["auth.json"], ...(weaken ? {} : { nested_agents: shimTemplate(), TMPDIR: "<run tmp>/tmp" }) },
   };
 }
@@ -268,11 +269,11 @@ const readText = (p) => (existsSync(p) ? readFileSync(p, "utf8") : null);
 
 // Writer role. Same interface and result shape as the Claude adapter; `home_report` is the temp
 // home inventory (used by the canary), `init` is null (Codex has no init event).
-export async function write({ workspace, prompt, model, caps, mode, timeoutMs, bin = "codex", authFile = authSource(), weaken = false }) {
+export async function write({ workspace, prompt, model, effort, caps, mode, timeoutMs, bin = "codex", authFile = authSource(), weaken = false }) {
   const version = cliVersion(bin);
   return withHome({ authFile, weaken }, async (home, env, runTmp) => {
     const lastPath = join(home, "last.md");
-    const proc = await execute({ bin: resolveBin(bin), args: writerArgs({ prompt, model, cwd: workspace, mode, lastPath }), cwd: workspace, env, timeoutMs });
+    const proc = await execute({ bin: resolveBin(bin), args: writerArgs({ prompt, model, effort, cwd: workspace, mode, lastPath }), cwd: workspace, env, timeoutMs });
     const p = parseEvents(proc.stdout);
     const last = readText(lastPath);
     const home_report = inspectHome(home);
@@ -282,9 +283,10 @@ export async function write({ workspace, prompt, model, caps, mode, timeoutMs, b
     if (p.turns > caps.max_turns) flags.push("over_budget");
     return {
       model,
+      ...(effort === undefined ? {} : { effort_requested: effort }),
       model_actual: p.model_actual,
       cli_version: version,
-      recipe_sha256: recipeHash(mode, { weaken }),
+      recipe_sha256: recipeHash(mode, { weaken, effort }),
       duration_ms: proc.wall_ms,
       turns: p.turns,
       cost_usd: null,
@@ -307,7 +309,7 @@ export async function write({ workspace, prompt, model, caps, mode, timeoutMs, b
 
 // Critic role: read-only sandbox from an empty temp dir, structured output via --output-schema,
 // chart images via -i. Returns { ok, error, output, model_actual, cost_usd, turns, usage, cli_version }.
-export async function critic({ prompt, model, jsonSchema, images = [], timeoutMs = 15 * 60_000, bin = "codex", authFile = authSource() }) {
+export async function critic({ prompt, model, effort, jsonSchema, images = [], timeoutMs = 15 * 60_000, bin = "codex", authFile = authSource() }) {
   const version = cliVersion(bin);
   const cwd = realpathSync(mkdtempSync(join(tmpdir(), "evals-critic-")));
   try {
@@ -318,7 +320,7 @@ export async function critic({ prompt, model, jsonSchema, images = [], timeoutMs
         schemaPath = join(home, "schema.json");
         writeFileSync(schemaPath, typeof jsonSchema === "string" ? jsonSchema : JSON.stringify(jsonSchema));
       }
-      const proc = await execute({ bin: resolveBin(bin), args: criticArgs({ prompt, model, cwd, lastPath, schemaPath, images }), cwd, env, timeoutMs });
+      const proc = await execute({ bin: resolveBin(bin), args: criticArgs({ prompt, model, effort, cwd, lastPath, schemaPath, images }), cwd, env, timeoutMs });
       const p = parseEvents(proc.stdout);
       const text = readText(lastPath) ?? p.last_message;
       let output = text;
@@ -334,6 +336,7 @@ export async function critic({ prompt, model, jsonSchema, images = [], timeoutMs
         ok,
         error: ok ? null : proc.timedOut ? "timeout" : p.failed || proc.stderr.trim().slice(0, 500) || `exit ${proc.code}`,
         output,
+        ...(effort === undefined ? {} : { effort_requested: effort }),
         model_actual: p.model_actual,
         cost_usd: null,
         turns: p.turns,
