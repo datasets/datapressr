@@ -8,7 +8,8 @@
     "evals/runs/story/q03-wti-negative/20261017-2208-q03-wti-negative-claude-opus-5-5-92148d1-1",
     "evals/canaries/20261017-2136-canary-claude-haiku-5-5-1",
     "evals/canaries/20261017-2138-canary-codex-gpt-6-luna-1",
-    "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1"
+    "evals/runs/story/q03-wti-negative/20261017-2220-q03-wti-negative-claude-opus-5-5-ccabbcc-1",
+    "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1"
   ],
   "files": [
     {
@@ -460,6 +461,123 @@
       "disposition": "copied",
       "git_ignored": false,
       "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/workspace.tar",
+      "bytes": 3388928,
+      "source_sha256": "0e60954a4284870c7e6014403829cc2644658fef82600cfddbdabf8bab5f4c86",
+      "destination_sha256": "0e60954a4284870c7e6014403829cc2644658fef82600cfddbdabf8bab5f4c86",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:22:evals/runs/**/workspace.tar\tevals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/workspace.tar"
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/transcript.jsonl",
+      "bytes": 1005130,
+      "source_sha256": "5f80c6f89cc59e4b1dea1cfa43bd3423ac3a65f4813a47557b525af745ef861e",
+      "destination_sha256": "5f80c6f89cc59e4b1dea1cfa43bd3423ac3a65f4813a47557b525af745ef861e",
+      "disposition": "copied",
+      "git_ignored": true,
+      "ignore_rule": ".gitignore:21:evals/runs/**/transcript.jsonl\tevals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/transcript.jsonl"
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/checks.json",
+      "bytes": 1984,
+      "source_sha256": "e0bf9d2cc02eca72e7c04db577e7c5bbcb38c56869fabd1d00c97ddcd6a65861",
+      "destination_sha256": "e0bf9d2cc02eca72e7c04db577e7c5bbcb38c56869fabd1d00c97ddcd6a65861",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/run.json",
+      "bytes": 3749,
+      "source_sha256": "35c2c0efd33a5da9ee65e52bf8af73b247d984929f486ea4cd5be791b644262e",
+      "destination_sha256": "35c2c0efd33a5da9ee65e52bf8af73b247d984929f486ea4cd5be791b644262e",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-borrowing.svg",
+      "bytes": 8848,
+      "source_sha256": "9ef8612fe59fb566228ae3e35ce1e5dd2e215760f549e4437db953d860d336a3",
+      "destination_sha256": "9ef8612fe59fb566228ae3e35ce1e5dd2e215760f549e4437db953d860d336a3",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-make-charts.mjs",
+      "bytes": 14308,
+      "source_sha256": "69ca4d6ec2ae6e0f445e6c4ae332a76ab9f6ca44e0913f2fb17ea0d71434a466",
+      "destination_sha256": "69ca4d6ec2ae6e0f445e6c4ae332a76ab9f6ca44e0913f2fb17ea0d71434a466",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt.md",
+      "bytes": 7375,
+      "source_sha256": "5c409ad3d06e5fc46481b04092148dc182996bacd0f584e055d54e0ae55ea7af",
+      "destination_sha256": "5c409ad3d06e5fc46481b04092148dc182996bacd0f584e055d54e0ae55ea7af",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-outline.md",
+      "bytes": 11918,
+      "source_sha256": "37c245b914bbdda2885296491dc756972e8919e7e1b2d829a033cb88fc874224",
+      "destination_sha256": "37c245b914bbdda2885296491dc756972e8919e7e1b2d829a033cb88fc874224",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-revenue-spending.svg",
+      "bytes": 5303,
+      "source_sha256": "73ebbf9f9ee33cac5402f5054f61b883db60c95af9c280c54caf2c06daf52849",
+      "destination_sha256": "73ebbf9f9ee33cac5402f5054f61b883db60c95af9c280c54caf2c06daf52849",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-editorial-review.md",
+      "bytes": 9014,
+      "source_sha256": "59e1291c5a25c7468c6842817944eac81a54310d5fe40f3a5c2810bcac07b9ec",
+      "destination_sha256": "59e1291c5a25c7468c6842817944eac81a54310d5fe40f3a5c2810bcac07b9ec",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-ratio.svg",
+      "bytes": 9605,
+      "source_sha256": "2de44492dbad1166874749f9e1af3141dfbc4fb9dfeaeb04e261bb189ab702ee",
+      "destination_sha256": "2de44492dbad1166874749f9e1af3141dfbc4fb9dfeaeb04e261bb189ab702ee",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-spending-change.svg",
+      "bytes": 7206,
+      "source_sha256": "8c5c07b2ba6a511a21d080a1ac4ac424d4caed6dc677390def7262884627d0be",
+      "destination_sha256": "8c5c07b2ba6a511a21d080a1ac4ac424d4caed6dc677390def7262884627d0be",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
+    },
+    {
+      "path": "evals/runs/story/q01-french-debt/20261017-2236-q01-french-debt-claude-opus-5-5-92148d1-1/artefacts/site/stories/french-debt-outline-review.md",
+      "bytes": 6032,
+      "source_sha256": "52a390b1ee79fd87b773386e9a73c73bc905d523c53c7747fe9e484f0a02b1fb",
+      "destination_sha256": "52a390b1ee79fd87b773386e9a73c73bc905d523c53c7747fe9e484f0a02b1fb",
+      "disposition": "copied",
+      "git_ignored": false,
+      "ignore_rule": null
     }
   ],
   "skipped_symlinks": [],
@@ -473,6 +591,6 @@
     "No ledger or REPORT was copied; driver must integrate selected ledger evidence independently.",
     "No symlinks followed; skipped symlinks, if any, require separate review."
   ],
-  "updated_at": "2026-10-17T22:37:36.051110+00:00",
-  "verification": "All cumulative source/destination file hashes and byte sizes verified after slot4 archive."
+  "updated_at": "2026-10-17T22:51:19.986448+00:00",
+  "verification": "All cumulative source/destination file hashes and sizes verified after slot5 archive."
 }
