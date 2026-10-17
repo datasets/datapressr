@@ -143,7 +143,7 @@ cd <name>
 
 Create `datapackage.json` with at minimum `name`, `title`, `description`. Add `"status": "stub"` if no data files yet.
 
-Copy the dataset part of this `AGENTS.md` (everything above the repo-only marker below) into the new directory so future AI sessions have context. In this repo `node scripts/sync-dataset-agents.mjs` does it.
+In the DataPressr repository, run `node scripts/sync-dataset-agents.mjs` to copy these conventions into each dataset. In a standalone dataset or installed skill, copy this entire conventions file into the new dataset directory.
 
 ### Publish to DataHub
 
