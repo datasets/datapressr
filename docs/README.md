@@ -14,6 +14,7 @@ This directory holds maintainer and agent material outside the published `site/`
 
 ## Planning and evidence
 
+- [Story quality tracking](plans/2026-10-18-story-quality-tracking.md): three human ratings, richer AI diagnostics, separate evidence checks and a gradual, versioned calibration loop; task `datapressr-8no.9.12`.
 - [French public finances investigation](france-public-finances-investigation.md): scope, official sources, first findings and interpretation limits, with [independent dataset review](reviews/france-public-finances-data-round2.md).
 - [BB preview v0.1 implementation plan](plans/2026-09-30-bb-preview-v01-plan.md): scope, component contracts, dependency-linked Beads, acceptance checks, effort estimate, and next-session prompt for the usable plugin.
 - [BB preview development gate, 2026-09-30](plans/2026-09-30-bb-preview-development-gate.md): clarified preview-only vision and evidence that the assistant can build, reload, operate, and visually inspect a local BB plugin without user testing.
