@@ -31,10 +31,11 @@ The shared interfaces are:
 ```js
 // All filesystem calls synchronous; root is the repository root.
 export function validateManifest(manifest, { root, instrument }) {} // returns manifest or throws
-export function validateRecords(records, { manifest, instrument }) {} // returns records or throws
+export function validateRecords(records, { manifest, instrument, root }) {} // returns records or throws
 export function readJournal(file) {} // returns parsed array; missing file means []
 export function appendRecord(file, record, { root, manifest, instrument }) {} // validates and appends one JSON line
-export function renderReport(records, { manifest, instrument }) {} // deterministic Markdown string
+export function renderReport(records, { manifest, instrument, linkBase }) {} // deterministic Markdown string
+// root and linkBase are optional backward-compatible integration parameters.
 // Task 2 preparation module; import must not perform I/O.
 export function preparePilot({ root, out }) {} // writes deterministic pilot files, returns manifest
 ```
@@ -110,7 +111,7 @@ Run `node --test evals/lib/story-quality-tracker.test.mjs`; expect initial failu
 // Thin CLI dispatch contract; resolve ROOT relative to import.meta.url.
 // validate <manifest.json> <journal.jsonl>
 // append   <manifest.json> <journal.jsonl> <record.json>
-// report   <manifest.json> <journal.jsonl>
+// report   <manifest.json> <journal.jsonl> [--relative-to <report-directory>]
 // report writes Markdown to stdout; it never mutates either input.
 const records = readJournal(journalPath);
 validateManifest(manifest, {root: ROOT, instrument});
@@ -193,7 +194,7 @@ Provide the complete human anchor table within the owner packet, stating that 1 
 node evals/calibration/story/tracking-v0.1/prepare-pilot.mjs
 node --test evals/lib/story-quality-tracker.test.mjs evals/calibration/story/tracking-v0.1/prepare-pilot.test.mjs
 node evals/story-quality.mjs validate evals/calibration/story/tracking-v0.1/pilot/manifest.json evals/calibration/story/tracking-v0.1/pilot/judgments.jsonl
-node evals/story-quality.mjs report evals/calibration/story/tracking-v0.1/pilot/manifest.json evals/calibration/story/tracking-v0.1/pilot/judgments.jsonl > evals/calibration/story/tracking-v0.1/pilot/report.md
+node evals/story-quality.mjs report evals/calibration/story/tracking-v0.1/pilot/manifest.json evals/calibration/story/tracking-v0.1/pilot/judgments.jsonl --relative-to evals/calibration/story/tracking-v0.1/pilot > evals/calibration/story/tracking-v0.1/pilot/report.md
 node scripts/check-invisible-characters.mjs evals/calibration/story/tracking-v0.1
 python3 /tmp/datapressr-tracker-tests.py /tmp/datapressr-tracker-final-tests.log
 git diff --check
