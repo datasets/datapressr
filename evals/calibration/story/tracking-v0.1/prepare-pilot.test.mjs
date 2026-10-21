@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, readlinkSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { spawnSync } from 'node:child_process';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validateManifest, readJournal } from '../../../lib/story-quality-tracker.mjs';
@@ -19,6 +20,34 @@ const temporary = fn => {
 const snapshot = dir => Object.fromEntries(readdirSync(dir, { recursive: true, withFileTypes: true }).filter(e => e.isFile()).map(e => {
   const path = join(e.parentPath, e.name);
   return [path.slice(dir.length), readFileSync(path).toString('base64')];
+}));
+
+test('fresh preparation import reads no application data', () => {
+  const probe = spawnSync(process.execPath, ['--input-type=module', '-e', `
+    import fs from 'node:fs';
+    import { syncBuiltinESMExports } from 'node:module';
+    const reads = [];
+    const original = fs.readFileSync;
+    fs.readFileSync = function(path, ...args) {
+      reads.push(String(path));
+      return original.call(this, path, ...args);
+    };
+    syncBuiltinESMExports();
+    await import('./${BASE}/prepare-pilot.mjs');
+    process.stdout.write(JSON.stringify(reads.filter(path => !path.endsWith('.mjs'))));
+  `], { cwd: ROOT, encoding: 'utf8' });
+  assert.equal(probe.status, 0, probe.stderr);
+  assert.deepEqual(JSON.parse(probe.stdout), []);
+});
+
+test('dangling final story symlink rejects preparation before any output writes', () => temporary(out => {
+  mkdirSync(join(out, 'owner'));
+  const link = join(out, 'owner/D.md');
+  symlinkSync('missing-story.md', link);
+  const before = readdirSync(out, { recursive: true }).sort();
+  assert.throws(() => preparePilot({ root: ROOT, out }));
+  assert.deepEqual(readdirSync(out, { recursive: true }).sort(), before);
+  assert.equal(readlinkSync(link), 'missing-story.md');
 }));
 
 // Catches slot drift, unindexed bytes, altered prose/charts and broken reading links.

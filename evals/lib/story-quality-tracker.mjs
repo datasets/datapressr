@@ -2,8 +2,7 @@ import { appendFileSync, readFileSync, realpathSync, statSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { isAbsolute, relative, resolve, sep, posix } from 'node:path';
 
-const frozenBytes = readFileSync(new URL('../calibration/story/tracking-v0.1/instrument.json', import.meta.url));
-const frozen = JSON.parse(frozenBytes);
+let frozenRegistry;
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const versions = ['instrument_id', 'human_anchor_version', 'diagnostic_version', 'procedure_version', 'check_version'];
 const fail = (field, message) => { throw new Error(`${field}: ${message}`); };
@@ -26,13 +25,18 @@ function fileAsset(asset, root, field) {
   if (digest(readFileSync(path)) !== asset.sha256) fail(`${field}.sha256`, 'file hash mismatch');
 }
 function registry(instrument) {
-  if (!same(instrument, frozen)) fail('instrument', 'unsupported instrument or version; supply a reviewed registry for a new instrument');
+  if (!frozenRegistry) {
+    const bytes = readFileSync(new URL('../calibration/story/tracking-v0.1/instrument.json', import.meta.url));
+    frozenRegistry = { instrument: JSON.parse(bytes), sha256: digest(bytes) };
+  }
+  if (!same(instrument, frozenRegistry.instrument)) fail('instrument', 'unsupported instrument or version; supply a reviewed registry for a new instrument');
+  return frozenRegistry;
 }
 function manifestIdentity(manifest, instrument) {
-  registry(instrument); object(manifest, 'manifest');
+  const frozen = registry(instrument); object(manifest, 'manifest');
   if (manifest.schema !== 1) fail('manifest.schema', 'unsupported version');
   if (manifest.instrument_id !== instrument.instrument_id) fail('manifest.instrument_id', 'unsupported instrument');
-  if (manifest.instrument_sha256 !== digest(frozenBytes)) fail('manifest.instrument_sha256', 'frozen instrument hash mismatch');
+  if (manifest.instrument_sha256 !== frozen.sha256) fail('manifest.instrument_sha256', 'frozen instrument hash mismatch');
   if (manifest.procedure_version !== instrument.procedure_version) fail('manifest.procedure_version', 'unsupported version');
   array(manifest.artifacts, 'manifest.artifacts');
 }

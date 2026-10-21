@@ -24,10 +24,12 @@ function confined(root, path) {
   if (rel === '..' || rel.startsWith(`..${sep}`) || isAbsolute(rel)) throw new Error('Path escapes repository root');
   // Check every existing ancestor, including symlinks, before creating output.
   let ancestor = path;
-  while (!existsSync(ancestor)) {
-    if (lstatSync(dirname(ancestor), { throwIfNoEntry: false })?.isSymbolicLink() && !existsSync(dirname(ancestor))) throw new Error('Broken output symlink');
+  let entry = lstatSync(ancestor, { throwIfNoEntry: false });
+  while (!entry) {
     ancestor = dirname(ancestor);
+    entry = lstatSync(ancestor, { throwIfNoEntry: false });
   }
+  if (entry.isSymbolicLink() && !existsSync(ancestor)) throw new Error('Broken output symlink');
   const real = realpathSync(ancestor);
   const actual = relative(root, real);
   if (actual === '..' || actual.startsWith(`..${sep}`) || isAbsolute(actual)) throw new Error('Symlink escapes repository root');
@@ -127,12 +129,13 @@ export function preparePilot({ root, out }) {
   put('report.md', renderReport([], { manifest, instrument, linkBase: pathFromRoot(out) }));
   for (const [path, bytes] of files) {
     confined(root, path);
-    if (existsSync(path)) {
-      if (!statSync(path).isFile() || !readFileSync(path).equals(bytes)) throw new Error(`Frozen packet or nonempty journal differs: ${path}; use a new output directory`);
+    const entry = lstatSync(path, { throwIfNoEntry: false });
+    if (entry) {
+      if (!entry.isFile() || !readFileSync(path).equals(bytes)) throw new Error(`Frozen packet or nonempty journal differs: ${path}; use a new output directory`);
     }
   }
   for (const [path, bytes] of files) {
-    if (existsSync(path)) continue;
+    if (lstatSync(path, { throwIfNoEntry: false })) continue;
     mkdirSync(dirname(path), { recursive: true });
     writeFileSync(path, bytes, { flag: 'wx' });
   }
