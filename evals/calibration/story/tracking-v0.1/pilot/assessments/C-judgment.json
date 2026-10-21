@@ -1,0 +1,297 @@
+{
+  "schema": 1,
+  "id": "tracking-20261021-C-ai-1",
+  "at": "2026-10-21T17:33:05Z",
+  "kind": "judgment",
+  "artifact_id": "tracking-pilot-20261021-C",
+  "artifact_sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+  "render_sha256": {
+    "chart-1": "8793d444cb68caeb5334ffeaa12831c60b66169562841147901c9a3128562f44",
+    "chart-2": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1"
+  },
+  "instrument_sha256": "318dd1484ac7b27c3ffae27e80393be7136f45a956eba8d0f22e1fdb9308b404",
+  "judge": {
+    "role": "ai",
+    "id": "openai-fresh-reader-C",
+    "requested_model": "gpt-6.1-sol",
+    "requested_effort": "high",
+    "served_model": null,
+    "unknown_reason": "Actual served model and effort are not exposed by the built-in subagent interface."
+  },
+  "exposure": {
+    "materials": [
+      {
+        "path": "evals/calibration/story/tracking-v0.1/instrument.json",
+        "sha256": "318dd1484ac7b27c3ffae27e80393be7136f45a956eba8d0f22e1fdb9308b404"
+      },
+      {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C-commission.md",
+        "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a"
+      },
+      {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+        "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-1.png",
+        "sha256": "8793d444cb68caeb5334ffeaa12831c60b66169562841147901c9a3128562f44"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-2.png",
+        "sha256": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1"
+      }
+    ],
+    "stage": "chart-first-then-prose",
+    "order": 1,
+    "prior_exposure": "First reading of this assigned story and these renders in this task, after the commission and instrument. General background familiarity with the April 2020 oil-price event; possible training exposure cannot be established. No historical ratings, other stories or author identity were inspected.",
+    "treatment_visible": false,
+    "model_visible": false,
+    "prior_ratings_visible": false,
+    "retrospective": true,
+    "viewed_sizes": null,
+    "unknown_reasons": {
+      "viewed_sizes": "Both PNGs were actually inspected with view_image detail original. The tool did not expose actual displayed pixel dimensions. Intrinsic 1440×840 and intended display width 720 from the packet are not reported as observed viewing sizes."
+    }
+  },
+  "supersedes": null,
+  "correction_reason": null,
+  "scores": {
+    "human.reader_value": {
+      "value": 8,
+      "reason": "A revealing comparison corrects the broad memory that oil itself went negative: WTI alone among these two benchmarks crossed zero, briefly, after both had already collapsed. Daily-versus-average and spot-versus-futures distinctions add useful reader payoff, meeting the consequential-comparison anchor.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "Opening: “One of its two main benchmarks did, at one inland hub, for one day”; What these prices are: “−$37.63 ... a different measurement”"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-1.png",
+          "sha256": "8793d444cb68caeb5334ffeaa12831c60b66169562841147901c9a3128562f44",
+          "locator": "WTI negative spike on 20 Apr at −$36.98 versus positive Brent; 17 Apr annotation shows both down about 70%"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-2.png",
+          "sha256": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1",
+          "locator": "Daily −$36.98 point versus week-ending-24-Apr $3.32 and April $16.55 benchmarks"
+        }
+      ],
+      "uncertainty": "Intended audience is unstated in the commission; source values and novelty beyond the supplied materials were not verified.",
+      "missing_reason": null
+    },
+    "human.explanation_argument": {
+      "value": 7,
+      "reason": "The sequence is clear and handles meaningful limits: prior shared collapse, distinct WTI event, positive Brent under severe stress, then an attributed expiry/storage mechanism. It falls short of the 8 anchor because why storage was scarce and how a futures-contract squeeze transmitted to the selected spot quote are left implicit. The explanation jumps from futures selling to spot moving the same day.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "Why it happened: “storage at Cushing was scarce”; “holders with nowhere to put the oil sold at any price”; “The Cushing spot price went negative the same day.”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "The wrinkle: Brent $9.12 on 21 April, “not between crisis and calm”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "What these prices are: dataset contains only two benchmarks; futures settlement differs from the EIA spot measure"
+        }
+      ],
+      "uncertainty": "This is a reading judgment about the explanatory bridge; the linked CFTC report and correctness of its attribution were not checked.",
+      "missing_reason": null
+    },
+    "human.presentation": {
+      "value": 8,
+      "reason": "Plain, short sections and concrete magnitudes make the comparison easy to follow. Both inspected charts make the daily anomaly and shared decline apparent, with direct labels and a strong zero baseline. Minor chart decoding remains: chart 2’s floating weekly segments need the legend and its late-April segment sits close to the April benchmark. The final process paragraph is denser than the story.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "What the prices show: bold leads “The collapse came first”, “The plunge took one trading day”, “Averages hide it”; final How this was made paragraph"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-1.png",
+          "sha256": "8793d444cb68caeb5334ffeaa12831c60b66169562841147901c9a3128562f44",
+          "locator": "Direct Brent/WTI end labels, zero baseline, red negative-day annotation"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-2.png",
+          "sha256": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1",
+          "locator": "Black weekly-average segments, gray dashed April line, and late-April segment near the monthly benchmark"
+        }
+      ],
+      "uncertainty": "Actual displayed size is unknown. No text clipping or meaning-obscuring collision was observed in the tool views; readability at the intended 720px width was not established.",
+      "missing_reason": null
+    },
+    "human.overall": {
+      "value": 7,
+      "reason": "A useful, memorable story with strong comparisons and readable charts. My independent overall judgment is that the commissioned “why” still needs one focused substantive edit: connect the storage constraint and expiring futures contract to the spot-price observation, rather than leaving that final causal step to the reader.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "Commission-facing Why it happened section, especially the transition from May futures holders selling below zero to “The Cushing spot price went negative the same day.”"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-1.png",
+          "sha256": "8793d444cb68caeb5334ffeaa12831c60b66169562841147901c9a3128562f44",
+          "locator": "One-day WTI negative observation against positive Brent and shared earlier collapse"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-2.png",
+          "sha256": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1",
+          "locator": "Daily event contrasted with positive weekly/monthly averages"
+        }
+      ],
+      "uncertainty": "Not a verification or publication approval. Sources, arithmetic, historical uniqueness and reproduction claims were not independently tested.",
+      "missing_reason": null
+    }
+  },
+  "diagnostics": {
+    "interest": {
+      "value": 2,
+      "reason": "Meets the revealing-comparison anchor: the everyday remembered claim about negative oil prices is narrowed to a particular benchmark and day, with a meaningful distinction from futures settlement and averages.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "Title “One Oil Benchmark Went Below Zero, for One Day”; opening WTI/Brent contrast; “The figure most people remember, −$37.63, is a different measurement”"
+        }
+      ],
+      "uncertainty": null,
+      "missing_reason": null
+    },
+    "findings_depth": {
+      "value": 2,
+      "reason": "Computes and unpacks the contrast carrying the argument: shared approximately 70% pre-event losses, a $55.29 one-day WTI change, a rebound, and positive weekly/monthly averages. Brent’s next-day near-record low further qualifies the comparison.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "What the prices show: 2 January versus 17 April; $55.29 fall and $8.91 rebound; Averages hide it; The wrinkle"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-2.png",
+          "sha256": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1",
+          "locator": "Daily line and week/month benchmarks, with exact negative-day and rebound annotations"
+        }
+      ],
+      "uncertainty": "Arithmetic and historical rankings are read as presented, not independently verified.",
+      "missing_reason": null
+    },
+    "argument_counterevidence": {
+      "value": 2,
+      "reason": "The claim and sequence connect the comparison to a narrow answer, and the strongest shown counterexample is addressed: positive Brent still experienced an extreme crisis. The two-benchmark scope and spot/futures distinction constrain the opening claim where they matter.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "What these prices are: “dataset holds these two benchmarks only”; different futures settlement measurement"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "The wrinkle: Brent came within two cents of its record low the next day"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "Why it happened: “The prices show that one price went negative, not why”; “this dataset cannot test it”"
+        }
+      ],
+      "uncertainty": "The spot/futures transmission explanation remains incomplete and is reflected in the separate explanation diagnostic.",
+      "missing_reason": null
+    },
+    "explanation": {
+      "value": 1,
+      "reason": "The measures and physical-delivery mechanism are explained in plain terms with named attribution, but a central bridge remains missing: why storage became scarce, and why forced selling of an expiring futures contract produced the quoted spot-price outcome. “The same day” establishes coincidence rather than explaining that link. This matches the anchor for a pattern defined while a central mechanism remains unclear.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "What these prices are: spot means delivery now; futures is a different measurement"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "Why it happened: contract expiry, physical delivery at Cushing, scarce storage, negative selling, then “The Cushing spot price went negative the same day.”"
+        }
+      ],
+      "uncertainty": "A reader already familiar with the episode may supply the missing connection; the report itself was not inspected, so no claim is made that the attributed account is false.",
+      "missing_reason": null
+    },
+    "chart_design": {
+      "value": 2,
+      "reason": "Both actual inspected visuals make their intended contrasts apparent: the WTI-specific one-day crossing of zero and the smoothing effect of averages. Units, dates, direct labels and benchmark values are recoverable. Minor observed decoding friction is confined to chart 2’s black weekly segments and the close late-April weekly/monthly lines; it does not obscure the main comparison.",
+      "evidence": [
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-1.png",
+          "sha256": "8793d444cb68caeb5334ffeaa12831c60b66169562841147901c9a3128562f44",
+          "locator": "Title/units, zero baseline, red 20 Apr WTI −$36.98 annotation, positive Brent observations"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-2.png",
+          "sha256": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1",
+          "locator": "Legend at upper right; black weekly segments and dashed April average; week-ending-24-Apr and daily negative-point labels"
+        }
+      ],
+      "uncertainty": "Actual displayed pixel sizes are not exposed. This rating concerns the tool views actually inspected, not a verified 720px delivered-page reading.",
+      "missing_reason": null
+    },
+    "writing": {
+      "value": 2,
+      "reason": "The prose is economical and concrete. Plain definitions distinguish spot and futures; bold leads state the comparisons, and limits accompany their claims. The final implementation-links paragraph is denser but does not hide the answer.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "What these prices are: “A spot price is the price of a barrel for delivery now”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "What the prices show: bold comparison leads and exact one-day change"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "Why it happened: data/attribution distinction; final How this was made paragraph"
+        }
+      ],
+      "uncertainty": null,
+      "missing_reason": null
+    },
+    "reader_coverage": {
+      "value": 1,
+      "reason": "The story answers what went negative, when, how exceptional it was, why averages miss it and what happened to Brent. The main commissioned why is partly answered through expiry and storage; the in-reach follow-ups about the storage shortage and the link between this futures event and the chosen spot measure remain open.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C-commission.md",
+          "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+          "locator": "Commission: “Why did the price of oil go below zero in April 2020?”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "Why it happened: scarce storage and futures-contract account followed by the same-day spot observation"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+          "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10",
+          "locator": "Averages hide it and The wrinkle sections"
+        }
+      ],
+      "uncertainty": "No external sources were read to determine how much fuller the explanation can be within the commissioned word limit.",
+      "missing_reason": null
+    }
+  },
+  "verbatim_comment": "Strong, readable comparative account of a very specific one-day negative WTI price, with useful distinctions between benchmarks, time aggregation and spot/futures measures. Its central explanatory paragraph needs a clearer bridge from scarce storage and expiring futures obligations to the spot quote. Fresh retrospective reading only; sources, arithmetic and reproduction unverified.",
+  "most_useful_improvement": "Add a short, evidence-backed explanation of why Cushing storage was scarce and how the expiry-driven futures pressure reached the EIA spot price used in the charts. Scope that account to the named source and preserve the distinction between what the supplied prices show and what the source explains.",
+  "instrument_id": "story-quality-tracking-v0.1",
+  "human_anchor_version": "story-quality-human-v0.1",
+  "diagnostic_version": "reference-led-manual-v1",
+  "procedure_version": "story-quality-procedure-v0.1",
+  "check_version": "story-quality-checks-v0.1"
+}

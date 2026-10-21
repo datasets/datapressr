@@ -1,0 +1,351 @@
+{
+  "schema": 1,
+  "id": "tracking-20261021-B-ai-1",
+  "at": "2026-10-21T17:32:06Z",
+  "kind": "judgment",
+  "artifact_id": "tracking-pilot-20261021-B",
+  "artifact_sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+  "render_sha256": {
+    "chart-1": "6eda688408e35b21c73a49a19579629021bc0afdd25d3851a3cc3bbe5123dc08",
+    "chart-2": "05f34adb55545df83e18be6bfdf6c55cad34cd7ab623fbd5d9900ac046baaba7",
+    "chart-3": "df70adff04ec1eb87befb3face38ddda9c70d2ab9c733b6fae5de00b87bd5fd5",
+    "chart-4": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53"
+  },
+  "instrument_sha256": "318dd1484ac7b27c3ffae27e80393be7136f45a956eba8d0f22e1fdb9308b404",
+  "judge": {
+    "role": "ai",
+    "id": "openai-fresh-reader-B",
+    "requested_model": "gpt-6.1-sol",
+    "requested_effort": "high",
+    "served_model": null,
+    "unknown_reason": "Actual served model and effort are not exposed by the built-in subagent interface."
+  },
+  "exposure": {
+    "materials": [
+      {
+        "path": "evals/calibration/story/tracking-v0.1/instrument.json",
+        "sha256": "318dd1484ac7b27c3ffae27e80393be7136f45a956eba8d0f22e1fdb9308b404"
+      },
+      {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B-commission.md",
+        "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-1.png",
+        "sha256": "6eda688408e35b21c73a49a19579629021bc0afdd25d3851a3cc3bbe5123dc08"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-2.png",
+        "sha256": "05f34adb55545df83e18be6bfdf6c55cad34cd7ab623fbd5d9900ac046baaba7"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-3.png",
+        "sha256": "df70adff04ec1eb87befb3face38ddda9c70d2ab9c733b6fae5de00b87bd5fd5"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-4.png",
+        "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53"
+      },
+      {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+        "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5"
+      },
+      {
+        "path": "evals/calibration/story/tracking-v0.1/README.md",
+        "sha256": "df0dcdf20fa4e741245e7a3ceb6f0538733efa2376428d9ad7ef601057dee31d"
+      }
+    ],
+    "stage": "chart-first-then-prose",
+    "order": 1,
+    "prior_exposure": "No prior reading of this assigned story or these renders is known to this reader. Input metadata and the dispatch exposed packet/path/hash identifiers and requested judge metadata before reading. This is a fresh retrospective assessment, not a holdout or perfect-blind claim. README consulted for record schema only.",
+    "treatment_visible": false,
+    "model_visible": false,
+    "prior_ratings_visible": false,
+    "retrospective": true,
+    "viewed_sizes": null,
+    "unknown_reasons": {
+      "viewed_sizes": "All four PNGs were actually inspected with view_image(detail=\"original\"). The tool does not expose the actual rendered viewport/display dimensions. Intrinsic dimensions and intended 720 px width in the input are not evidence of actual display size; 720 px legibility was not verified."
+    }
+  },
+  "supersedes": null,
+  "correction_reason": null,
+  "scores": {
+    "human.reader_value": {
+      "value": 7,
+      "reason": "The chronic-gap finding becomes useful through a revealing comparison: French revenue is high relative to peers, while cash benefits and public-sector pay account for most of the spending difference. This improves understanding of high debt, but the commissioned crisis question is only partly answered because urgency, market pressure and political blockage remain outside the evidence.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B-commission.md",
+          "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+          "locator": "Commission question: “Why is there a French debt crisis?”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“Not low taxes: high spending”, paragraphs beginning “Low revenue is not the explanation” and “Most of that 7.7-point difference”"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-4.png",
+          "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53",
+          "locator": "Title and cash-benefits/public-sector-pay bars"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "Final substantive paragraph beginning “These accounts explain why the debt is high”"
+        }
+      ],
+      "uncertainty": "Intended audience is unstated, so usefulness is judged for a general interested reader. Source validity and freshness were not independently verified.",
+      "missing_reason": null
+    },
+    "human.explanation_argument": {
+      "value": 6,
+      "reason": "The sequence from persistent deficits to accumulated debt, peer comparison and spending composition is understandable. Important limits are stated, including the benefits-category boundary and the debt/GDP denominator. However, “Between shocks it did not fall back” conflicts with the later explanation and chart of a falling debt ratio; “Low revenue is not the explanation” also treats a relative revenue level as a stronger exclusion of policy alternatives than the comparison establishes.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“Every deficit adds to the debt”: “Between shocks it did not fall back”"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-2.png",
+          "sha256": "05f34adb55545df83e18be6bfdf6c55cad34cd7ab623fbd5d9900ac046baaba7",
+          "locator": "End-2020 114.9% and end-2023 109.5% labels"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“A gap that never closed, not a spending spree”: debt-ratio/GDP explanation"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“Not low taxes: high spending”: “Low revenue is not the explanation” and benefits limitation"
+        }
+      ],
+      "uncertainty": "This is an assessment of the shown argument, not an external source, arithmetic or inference audit.",
+      "missing_reason": null
+    },
+    "human.presentation": {
+      "value": 7,
+      "reason": "Direct labels, restrained encodings and concrete prose make the main comparisons easy to follow. Chart 3 has a visible collision between its bottom axis title and source/footnote; chart 4 repeats that footer collision. These are concrete defects in otherwise useful graphics. The prose also needs a targeted consistency edit around the debt-ratio reversal.",
+      "evidence": [
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-3.png",
+          "sha256": "df70adff04ec1eb87befb3face38ddda9c70d2ab9c733b6fae5de00b87bd5fd5",
+          "locator": "Bottom center axis title “% of GDP, 2025” overlapping source/footnote"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-4.png",
+          "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53",
+          "locator": "Bottom axis title “Percentage points of GDP, France minus EU27 average, 2025” overlapping method/source line"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-1.png",
+          "sha256": "6eda688408e35b21c73a49a19579629021bc0afdd25d3851a3cc3bbe5123dc08",
+          "locator": "Direct 2025 spending/revenue/deficit labels"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“Between shocks it did not fall back” versus later 2020–2023 fall"
+        }
+      ],
+      "uncertainty": "Actual displayed dimensions are unknown; assessment reflects inspected original-detail renders, not verified legibility at the intended 720 px width.",
+      "missing_reason": null
+    },
+    "human.overall": {
+      "value": 7,
+      "reason": "A useful, coherent account of the fiscal gap with an unusually helpful spending decomposition. It answers why debt is high more convincingly than why there is a crisis now. The debt-ratio contradiction, overstrong revenue framing and two footer collisions keep it short of a compelling story requiring only minor edits.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "Lead and sections “Every deficit adds to the debt”, “Not low taxes: high spending”, and concluding scope paragraph"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-4.png",
+          "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53",
+          "locator": "Spending-difference decomposition and overlapping bottom footer"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-3.png",
+          "sha256": "df70adff04ec1eb87befb3face38ddda9c70d2ab9c733b6fae5de00b87bd5fd5",
+          "locator": "Peer-comparison chart and overlapping bottom footer"
+        }
+      ],
+      "uncertainty": "Independent overall editorial judgment; not an average or conversion of other ratings. Sources, arithmetic, and reproduction were not checked.",
+      "missing_reason": null
+    }
+  },
+  "diagnostics": {
+    "interest": {
+      "value": 2,
+      "reason": "The high-revenue/high-spending comparison and the concentration of the spending gap in benefits and pay offer a specific payoff beyond a debt time series.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“Low revenue is not the explanation” and “Most of that 7.7-point difference sits in two places”"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-4.png",
+          "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53",
+          "locator": "Cash benefits +2.9 and public-sector pay +2.1 bars"
+        }
+      ],
+      "uncertainty": "The intended audience is unknown.",
+      "missing_reason": null
+    },
+    "findings_depth": {
+      "value": 2,
+      "reason": "The story contrasts fiscal measures across time and peers, then opens the 7.7-point spending gap into categories, including the small interest contribution and negative goods/services contribution. This goes beyond listing totals.",
+      "evidence": [
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-3.png",
+          "sha256": "df70adff04ec1eb87befb3face38ddda9c70d2ab9c733b6fae5de00b87bd5fd5",
+          "locator": "France, Germany, Italy, Spain and EU27 revenue/spending/deficit comparisons"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-4.png",
+          "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53",
+          "locator": "All eight spending-category differences"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "Paragraph beginning “Most of that 7.7-point difference”"
+        }
+      ],
+      "uncertainty": "Displayed figures and arithmetic were not checked against underlying data.",
+      "missing_reason": null
+    },
+    "argument_counterevidence": {
+      "value": 1,
+      "reason": "It addresses the spending-spree alternative, small interest contribution and post-Covid debt-ratio fall, and limits claims about pensions and the crisis. But the earlier no-fall-back statement conflicts with that counterexample, while relative revenue levels do not test whether revenue policy also contributes to the gap.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "Section “A gap that never closed, not a spending spree”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“Between shocks it did not fall back” and “Low revenue is not the explanation”"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-2.png",
+          "sha256": "05f34adb55545df83e18be6bfdf6c55cad34cd7ab623fbd5d9900ac046baaba7",
+          "locator": "End-2020 to end-2023 decline"
+        }
+      ],
+      "uncertainty": "The scope paragraph appropriately admits missing market/political evidence; this does not itself supply a crisis explanation.",
+      "missing_reason": null
+    },
+    "explanation": {
+      "value": 1,
+      "reason": "Measures and institutional coverage are defined, and named INSEE attribution scopes the pension and interest mechanisms. Yet the central deficit-to-debt-ratio explanation initially blurs debt stock and ratio, and the high-spending comparison gives accounting composition without fully explaining why the gap persists.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "Paragraph beginning “The record is Eurostat's account”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“A deficit is financed mostly by borrowing” through “Between shocks it did not fall back”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "Later sentence “the debt kept growing in euros, but GDP measured in euros grew faster”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "Named INSEE pension and interest attributions"
+        }
+      ],
+      "uncertainty": "External attributions were read only as presented, not opened or verified.",
+      "missing_reason": null
+    },
+    "chart_design": {
+      "value": 1,
+      "reason": "The main encodings and direct labels are useful and recoverable in the inspected renders. Chart 3 and chart 4 both visibly overlap the bottom axis title with footer/source text, requiring effort to decode the affected text and preventing a fully clean reading.",
+      "evidence": [
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-3.png",
+          "sha256": "df70adff04ec1eb87befb3face38ddda9c70d2ab9c733b6fae5de00b87bd5fd5",
+          "locator": "Bottom axis-title/source-footnote collision"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-4.png",
+          "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53",
+          "locator": "Bottom axis-title/method-source collision"
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-1.png",
+          "sha256": "6eda688408e35b21c73a49a19579629021bc0afdd25d3851a3cc3bbe5123dc08",
+          "locator": "Spending/revenue direct labeling and shaded gap"
+        }
+      ],
+      "uncertainty": "Original-detail images were inspected; actual display size is unknown and intended 720 px viewing was not tested. Underlying geometric/data integrity was not verified.",
+      "missing_reason": null
+    },
+    "writing": {
+      "value": 1,
+      "reason": "Mostly plain, concrete and compact, with useful nearby definitions and limits. The absolute formulations “Low revenue is not the explanation” and “Between shocks it did not fall back” need revision; the latter becomes confusing when the prose later explicitly describes a ratio decline.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“Not low taxes: high spending” heading and first sentence"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“Every deficit adds to the debt” final sentence"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "“A gap that never closed, not a spending spree” debt-ratio explanation"
+        }
+      ],
+      "uncertainty": "These are targeted issues within otherwise fluent prose.",
+      "missing_reason": null
+    },
+    "reader_coverage": {
+      "value": 1,
+      "reason": "The story answers how high debt accumulated and which spending categories distinguish France, and identifies the available accounts' limits. It leaves the central crisis question partly open: why pressure has become acute now and how financing/market and political constraints turn chronic deficits into crisis.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B-commission.md",
+          "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+          "locator": "“Why is there a French debt crisis?”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "Interest paragraph beginning “The newer pressure is interest”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+          "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5",
+          "locator": "Final substantive paragraph: no bond yields, credit ratings or budget votes"
+        }
+      ],
+      "uncertainty": "The fixed supplied data constrain what is in reach; the limitation is honestly disclosed, but the commission is broader than the demonstrated answer.",
+      "missing_reason": null
+    }
+  },
+  "verbatim_comment": "Useful fiscal explanation with a concrete spending decomposition. The shown evidence supports persistent deficits and high debt better than it establishes a present crisis. Clarify the stock-versus-ratio sequence and soften the exclusion of revenue explanations; repair the overlapping axis/source footers in charts 3 and 4. Sources, central arithmetic, underlying chart geometry and reproduction were not verified in this reading.",
+  "most_useful_improvement": "Rewrite the main explanation around the debt stock versus debt/GDP ratio: replace “Between shocks it did not fall back” with the actual post-2020 decline, then distinguish the chronic fiscal problem from the separately evidenced financing or political pressures needed to answer why it is a crisis now. Keep the high-revenue comparison as an accounting contrast rather than a causal exclusion.",
+  "instrument_id": "story-quality-tracking-v0.1",
+  "human_anchor_version": "story-quality-human-v0.1",
+  "diagnostic_version": "reference-led-manual-v1",
+  "procedure_version": "story-quality-procedure-v0.1",
+  "check_version": "story-quality-checks-v0.1"
+}

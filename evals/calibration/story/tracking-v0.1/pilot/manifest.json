@@ -1,0 +1,432 @@
+{
+  "schema": 1,
+  "instrument_id": "story-quality-tracking-v0.1",
+  "instrument_sha256": "318dd1484ac7b27c3ffae27e80393be7136f45a956eba8d0f22e1fdb9308b404",
+  "study_id": "tracking-pilot-20261021",
+  "population": "known-development",
+  "selection_rule": "First replicate in both arms and both topics; fixed A–D order independent of historical ratings.",
+  "procedure_version": "story-quality-procedure-v0.1",
+  "source_index": {
+    "path": "evals/experiments/story-quality/reference-led-v1/review-materials-index.json",
+    "sha256": "85bd3785ebd9ff5241ce9a037c66159b55a12ba8c857bcf8ba747ba8fbaf9e0c"
+  },
+  "selection": {
+    "provenance": {
+      "path": "evals/experiments/story-quality/reference-led-v1/results.md",
+      "locator": "Predetermined pair outcomes table; mapping only, historical ratings are not tracker observations."
+    },
+    "identity_limit": "Identity-minimized, not proven blind: existing public mappings and prior exposure remain possible. All eight eligible outputs are known-development, not holdout material.",
+    "eligible": [
+      {
+        "source_code": "M30755c",
+        "topic": "France",
+        "case_id": "q01-french-debt",
+        "arm": "baseline",
+        "replicate": 1,
+        "packet_id": "A",
+        "selected": true,
+        "exclusion_reason": null
+      },
+      {
+        "source_code": "Mb8941a",
+        "topic": "France",
+        "case_id": "q01-french-debt",
+        "arm": "candidate",
+        "replicate": 1,
+        "packet_id": "B",
+        "selected": true,
+        "exclusion_reason": null
+      },
+      {
+        "source_code": "Mbe53b2",
+        "topic": "Oil",
+        "case_id": "q03-wti-negative",
+        "arm": "baseline",
+        "replicate": 1,
+        "packet_id": "C",
+        "selected": true,
+        "exclusion_reason": null
+      },
+      {
+        "source_code": "M9b1fee",
+        "topic": "Oil",
+        "case_id": "q03-wti-negative",
+        "arm": "candidate",
+        "replicate": 1,
+        "packet_id": "D",
+        "selected": true,
+        "exclusion_reason": null
+      },
+      {
+        "source_code": "Mf4bb1f",
+        "topic": "France",
+        "case_id": "q01-french-debt",
+        "arm": "baseline",
+        "replicate": 2,
+        "packet_id": null,
+        "selected": false,
+        "exclusion_reason": "second replicate outside four-artifact pilot"
+      },
+      {
+        "source_code": "M1d3194",
+        "topic": "France",
+        "case_id": "q01-french-debt",
+        "arm": "candidate",
+        "replicate": 2,
+        "packet_id": null,
+        "selected": false,
+        "exclusion_reason": "second replicate outside four-artifact pilot"
+      },
+      {
+        "source_code": "Mee832a",
+        "topic": "Oil",
+        "case_id": "q03-wti-negative",
+        "arm": "baseline",
+        "replicate": 2,
+        "packet_id": null,
+        "selected": false,
+        "exclusion_reason": "second replicate outside four-artifact pilot"
+      },
+      {
+        "source_code": "M948761",
+        "topic": "Oil",
+        "case_id": "q03-wti-negative",
+        "arm": "candidate",
+        "replicate": 2,
+        "packet_id": null,
+        "selected": false,
+        "exclusion_reason": "second replicate outside four-artifact pilot"
+      }
+    ]
+  },
+  "artifacts": [
+    {
+      "artifact_id": "tracking-pilot-20261021-A",
+      "packet_id": "A",
+      "source_code": "M30755c",
+      "story_id": "M30755c",
+      "case_id": "q01-french-debt",
+      "pair_id": "q01-french-debt-r1",
+      "topic": "France",
+      "arm": "baseline",
+      "replicate": 1,
+      "commission": {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A-commission.md",
+        "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+        "audience": null,
+        "audience_unknown_reason": "The archived commission does not state an intended audience."
+      },
+      "source_commission": {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/commission.md",
+        "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655"
+      },
+      "source_story": {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/story.md",
+        "sha256": "3999189e6baababf05d4379a9db21e63c15113915fd843f16fc80d89c30e7c4e"
+      },
+      "viewed_story": {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+        "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e"
+      },
+      "transformation": {
+        "duplicate_heading_removed": true,
+        "heading": "# Why French Debt Keeps Climbing",
+        "description": "Removed the second identical initial H1 and its following blank line; changed only local PNG destinations to the same immutable source files.",
+        "link_rewrites": [
+          {
+            "from": "chart-1.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-1.png"
+          },
+          {
+            "from": "chart-2.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-2.png"
+          },
+          {
+            "from": "chart-3.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-3.png"
+          },
+          {
+            "from": "chart-4.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-4.png"
+          }
+        ]
+      },
+      "renders": [
+        {
+          "render_id": "chart-1",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-1.png",
+          "sha256": "18eda1779fe55a1c5b9571297e8e64b26d9963e1908ecc697b638390e53a5655",
+          "width_px": 1440,
+          "height_px": 840,
+          "intended_display_width_px": 720
+        },
+        {
+          "render_id": "chart-2",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-2.png",
+          "sha256": "1b0558c94ecf2cd037967b94057fc539033d4902b7451da5165636ea429a0fed",
+          "width_px": 1440,
+          "height_px": 880,
+          "intended_display_width_px": 720
+        },
+        {
+          "render_id": "chart-3",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-3.png",
+          "sha256": "15f813ad844eead067a49ce9d7669ac0cf028267c487cb06a9875962acb17c5f",
+          "width_px": 1440,
+          "height_px": 680,
+          "intended_display_width_px": 720
+        },
+        {
+          "render_id": "chart-4",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-4.png",
+          "sha256": "7eca3881bcdc83b3cdb1b49f1224b6176f62bfeb0288f51dd0c4e4f4ddd39e0a",
+          "width_px": 1440,
+          "height_px": 980,
+          "intended_display_width_px": 720
+        }
+      ],
+      "process": {
+        "writer_rounds": null,
+        "review_rounds": null,
+        "resources": [],
+        "unknown_reason": "Stage2 stories, commissions and PNGs do not establish writer/review rounds or measured resource counters with accounting boundaries; no process usage is inferred."
+      },
+      "actual_viewed_sizes": null,
+      "actual_viewed_sizes_unknown_reason": "No reviewer observation has been collected; intrinsic and intended sizes do not establish actual viewed size."
+    },
+    {
+      "artifact_id": "tracking-pilot-20261021-B",
+      "packet_id": "B",
+      "source_code": "Mb8941a",
+      "story_id": "Mb8941a",
+      "case_id": "q01-french-debt",
+      "pair_id": "q01-french-debt-r1",
+      "topic": "France",
+      "arm": "candidate",
+      "replicate": 1,
+      "commission": {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B-commission.md",
+        "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+        "audience": null,
+        "audience_unknown_reason": "The archived commission does not state an intended audience."
+      },
+      "source_commission": {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/commission.md",
+        "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655"
+      },
+      "source_story": {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/story.md",
+        "sha256": "563bf4addd9beff4b984ae8f85c0415d37b26ab86f9d212a05eef92fa804523c"
+      },
+      "viewed_story": {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/B.md",
+        "sha256": "64a32c818724e2f89c23966e0f121fef05d81aeae07d32097ce037b76532ecf5"
+      },
+      "transformation": {
+        "duplicate_heading_removed": true,
+        "heading": "# France Has Run a Deficit Every Year Since 1995",
+        "description": "Removed the second identical initial H1 and its following blank line; changed only local PNG destinations to the same immutable source files.",
+        "link_rewrites": [
+          {
+            "from": "chart-1.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-1.png"
+          },
+          {
+            "from": "chart-2.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-2.png"
+          },
+          {
+            "from": "chart-3.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-3.png"
+          },
+          {
+            "from": "chart-4.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-4.png"
+          }
+        ]
+      },
+      "renders": [
+        {
+          "render_id": "chart-1",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-1.png",
+          "sha256": "6eda688408e35b21c73a49a19579629021bc0afdd25d3851a3cc3bbe5123dc08",
+          "width_px": 1440,
+          "height_px": 800,
+          "intended_display_width_px": 720
+        },
+        {
+          "render_id": "chart-2",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-2.png",
+          "sha256": "05f34adb55545df83e18be6bfdf6c55cad34cd7ab623fbd5d9900ac046baaba7",
+          "width_px": 1440,
+          "height_px": 800,
+          "intended_display_width_px": 720
+        },
+        {
+          "render_id": "chart-3",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-3.png",
+          "sha256": "df70adff04ec1eb87befb3face38ddda9c70d2ab9c733b6fae5de00b87bd5fd5",
+          "width_px": 1440,
+          "height_px": 632,
+          "intended_display_width_px": 720
+        },
+        {
+          "render_id": "chart-4",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mb8941a/stage2/chart-4.png",
+          "sha256": "8ca9b6367faf23eefe87c53ef6d9fbbe7a895a4d3332ee33ca00ce5b80bfce53",
+          "width_px": 1440,
+          "height_px": 712,
+          "intended_display_width_px": 720
+        }
+      ],
+      "process": {
+        "writer_rounds": null,
+        "review_rounds": null,
+        "resources": [],
+        "unknown_reason": "Stage2 stories, commissions and PNGs do not establish writer/review rounds or measured resource counters with accounting boundaries; no process usage is inferred."
+      },
+      "actual_viewed_sizes": null,
+      "actual_viewed_sizes_unknown_reason": "No reviewer observation has been collected; intrinsic and intended sizes do not establish actual viewed size."
+    },
+    {
+      "artifact_id": "tracking-pilot-20261021-C",
+      "packet_id": "C",
+      "source_code": "Mbe53b2",
+      "story_id": "Mbe53b2",
+      "case_id": "q03-wti-negative",
+      "pair_id": "q03-wti-negative-r1",
+      "topic": "Oil",
+      "arm": "baseline",
+      "replicate": 1,
+      "commission": {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C-commission.md",
+        "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+        "audience": null,
+        "audience_unknown_reason": "The archived commission does not state an intended audience."
+      },
+      "source_commission": {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/commission.md",
+        "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a"
+      },
+      "source_story": {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/story.md",
+        "sha256": "f0c4e44aadb66928fa5bb718808672fe7504be397f79f77cb72cf3516e3ecd7f"
+      },
+      "viewed_story": {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/C.md",
+        "sha256": "7a668ba7dbd5d8bc294b0feb74c22cb6e60ab891ff48a73465690ec8c8061d10"
+      },
+      "transformation": {
+        "duplicate_heading_removed": true,
+        "heading": "# One Oil Benchmark Went Below Zero, for One Day",
+        "description": "Removed the second identical initial H1 and its following blank line; changed only local PNG destinations to the same immutable source files.",
+        "link_rewrites": [
+          {
+            "from": "chart-1.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-1.png"
+          },
+          {
+            "from": "chart-2.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-2.png"
+          }
+        ]
+      },
+      "renders": [
+        {
+          "render_id": "chart-1",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-1.png",
+          "sha256": "8793d444cb68caeb5334ffeaa12831c60b66169562841147901c9a3128562f44",
+          "width_px": 1440,
+          "height_px": 840,
+          "intended_display_width_px": 720
+        },
+        {
+          "render_id": "chart-2",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/Mbe53b2/stage2/chart-2.png",
+          "sha256": "b65f97356e21b0f820bacf57f3b9cd37c510656982264a5a6960e5e64b4a62d1",
+          "width_px": 1440,
+          "height_px": 840,
+          "intended_display_width_px": 720
+        }
+      ],
+      "process": {
+        "writer_rounds": null,
+        "review_rounds": null,
+        "resources": [],
+        "unknown_reason": "Stage2 stories, commissions and PNGs do not establish writer/review rounds or measured resource counters with accounting boundaries; no process usage is inferred."
+      },
+      "actual_viewed_sizes": null,
+      "actual_viewed_sizes_unknown_reason": "No reviewer observation has been collected; intrinsic and intended sizes do not establish actual viewed size."
+    },
+    {
+      "artifact_id": "tracking-pilot-20261021-D",
+      "packet_id": "D",
+      "source_code": "M9b1fee",
+      "story_id": "M9b1fee",
+      "case_id": "q03-wti-negative",
+      "pair_id": "q03-wti-negative-r1",
+      "topic": "Oil",
+      "arm": "candidate",
+      "replicate": 1,
+      "commission": {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/D-commission.md",
+        "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a",
+        "audience": null,
+        "audience_unknown_reason": "The archived commission does not state an intended audience."
+      },
+      "source_commission": {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M9b1fee/stage2/commission.md",
+        "sha256": "2a60e9f783b7a1f70e53db661dda77f17568a5c2df3bf83d808c31f245c79a9a"
+      },
+      "source_story": {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M9b1fee/stage2/story.md",
+        "sha256": "e64c16cb62a28dc289ecb211d7ac391b853c2ff75424d510239083860b206232"
+      },
+      "viewed_story": {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/D.md",
+        "sha256": "14fbb83e1ce0f76abf1daa43f26ed50c5886cbed066d9e0a4267847755e1311e"
+      },
+      "transformation": {
+        "duplicate_heading_removed": true,
+        "heading": "# Oil Went Below Zero in One Place, for One Day",
+        "description": "Removed the second identical initial H1 and its following blank line; changed only local PNG destinations to the same immutable source files.",
+        "link_rewrites": [
+          {
+            "from": "chart-1.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/M9b1fee/stage2/chart-1.png"
+          },
+          {
+            "from": "chart-2.png",
+            "to": "../../../../../experiments/story-quality/reference-led-v1/review-materials/M9b1fee/stage2/chart-2.png"
+          }
+        ]
+      },
+      "renders": [
+        {
+          "render_id": "chart-1",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M9b1fee/stage2/chart-1.png",
+          "sha256": "c797d386b381a32d207262e72871f3094739b89cd780c07b1cde74fbf668c7c2",
+          "width_px": 1440,
+          "height_px": 880,
+          "intended_display_width_px": 720
+        },
+        {
+          "render_id": "chart-2",
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M9b1fee/stage2/chart-2.png",
+          "sha256": "7195eb4e976b2b62ab693e72d12c828754a82fdfc0e36bab43d29e628a2d6722",
+          "width_px": 1440,
+          "height_px": 840,
+          "intended_display_width_px": 720
+        }
+      ],
+      "process": {
+        "writer_rounds": null,
+        "review_rounds": null,
+        "resources": [],
+        "unknown_reason": "Stage2 stories, commissions and PNGs do not establish writer/review rounds or measured resource counters with accounting boundaries; no process usage is inferred."
+      },
+      "actual_viewed_sizes": null,
+      "actual_viewed_sizes_unknown_reason": "No reviewer observation has been collected; intrinsic and intended sizes do not establish actual viewed size."
+    }
+  ]
+}

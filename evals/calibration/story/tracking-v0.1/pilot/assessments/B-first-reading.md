@@ -1,0 +1,12 @@
+# B chart-first impressions
+
+Recorded after reading the commission and instrument and viewing all four assigned PNGs with `view_image(detail="original")`, before reading the assigned prose. This is a fresh retrospective reading, not a holdout or perfect-blind assessment. No prior assessment of this assigned story or these charts is known to this reader; the dispatch/input exposed packet identifiers, paths, hashes and requested judge metadata, but no ratings or treatment assignment.
+
+- Chart 1: The persistent space between spending and revenue is immediately visible, with crisis-year spikes and an explicit 2025 deficit label. Direct labels and matching red/black encodings are clear. It looks like a chronic gap punctuated by shocks; the chart alone does not establish causes of either series.
+- Chart 2: The long rise in debt and jumps around the financial crisis and Covid are easy to see. End-2023 is below end-2020, then the line rises again, so this is not an uninterrupted climb. Labeled endpoints help. The crisis shading gives context without establishing causal attribution.
+- Chart 3: France has the highest revenue and spending among the displayed comparators, and the largest displayed deficit. The dumbbells and separate deficit column support that comparison quickly. The bottom axis title collides visibly with the source/footnote, reducing footer legibility. Rounded endpoints versus the separate deficit values may require a rounding explanation (e.g. Germany 50.5 and 47.9 alongside 2.7); no source/arithmetic check performed.
+- Chart 4: Cash benefits and public-sector pay dominate the displayed positive difference from the EU average; goods/services bought is negative. Numerical differences and France/EU values make this useful and concrete. The bottom axis title visibly overlaps the source/method footer. It explains an accounting composition, not why policy choices or recipient needs differ.
+
+Displayed viewport dimensions are not exposed by the image tool. The input reports intrinsic dimensions (1440×800, 1440×800, 1440×632, 1440×712) and intended width 720 px, but neither establishes the actual displayed size; legibility at 720 px has not been verified.
+
+Only the assigned instrument, commission, input metadata and four renders have been viewed at this point. Sources, underlying arithmetic, plotted geometry against data, and reproduction have not been verified.

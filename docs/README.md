@@ -14,7 +14,7 @@ This directory holds maintainer and agent material outside the published `site/`
 
 ## Planning and evidence
 
-- [Story quality tracking](plans/2026-10-18-story-quality-tracking.md): three human ratings, richer AI diagnostics, separate evidence checks and a gradual, versioned calibration loop; task `datapressr-8no.9.12`.
+- [Story quality tracking](plans/2026-10-18-story-quality-tracking.md): three human ratings, richer AI diagnostics, separate evidence checks and a gradual, versioned calibration loop; task `datapressr-8no.9.12`. The [local tracker](../evals/calibration/story/tracking-v0.1/README.md) records versioned observations; [current pilot status](../evals/calibration/story/tracking-v0.1/pilot/STATUS.md) distinguishes completed AI assessments from missing owner ratings; the [pilot reading form](../evals/calibration/story/tracking-v0.1/pilot/owner/form.md) keeps AI scores separate from owner responses.
 - [French public finances investigation](france-public-finances-investigation.md): scope, official sources, first findings and interpretation limits, with [independent dataset review](reviews/france-public-finances-data-round2.md).
 - [BB preview v0.1 implementation plan](plans/2026-09-30-bb-preview-v01-plan.md): scope, component contracts, dependency-linked Beads, acceptance checks, effort estimate, and next-session prompt for the usable plugin.
 - [BB preview development gate, 2026-09-30](plans/2026-09-30-bb-preview-development-gate.md): clarified preview-only vision and evidence that the assistant can build, reload, operate, and visually inspect a local BB plugin without user testing.

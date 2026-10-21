@@ -1,0 +1,361 @@
+{
+  "schema": 1,
+  "id": "tracking-20261021-A-ai-1",
+  "at": "2026-10-21T17:32:40Z",
+  "kind": "judgment",
+  "artifact_id": "tracking-pilot-20261021-A",
+  "artifact_sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+  "render_sha256": {
+    "chart-1": "18eda1779fe55a1c5b9571297e8e64b26d9963e1908ecc697b638390e53a5655",
+    "chart-2": "1b0558c94ecf2cd037967b94057fc539033d4902b7451da5165636ea429a0fed",
+    "chart-3": "15f813ad844eead067a49ce9d7669ac0cf028267c487cb06a9875962acb17c5f",
+    "chart-4": "7eca3881bcdc83b3cdb1b49f1224b6176f62bfeb0288f51dd0c4e4f4ddd39e0a"
+  },
+  "instrument_sha256": "318dd1484ac7b27c3ffae27e80393be7136f45a956eba8d0f22e1fdb9308b404",
+  "judge": {
+    "role": "ai",
+    "id": "openai-fresh-reader-A",
+    "requested_model": "gpt-6.1-sol",
+    "requested_effort": "high",
+    "served_model": null,
+    "unknown_reason": "Actual served model and effort are not exposed by the built-in subagent interface."
+  },
+  "exposure": {
+    "materials": [
+      {
+        "path": "evals/calibration/story/tracking-v0.1/instrument.json",
+        "sha256": "318dd1484ac7b27c3ffae27e80393be7136f45a956eba8d0f22e1fdb9308b404"
+      },
+      {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A-commission.md",
+        "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655"
+      },
+      {
+        "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+        "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-1.png",
+        "sha256": "18eda1779fe55a1c5b9571297e8e64b26d9963e1908ecc697b638390e53a5655"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-2.png",
+        "sha256": "1b0558c94ecf2cd037967b94057fc539033d4902b7451da5165636ea429a0fed"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-3.png",
+        "sha256": "15f813ad844eead067a49ce9d7669ac0cf028267c487cb06a9875962acb17c5f"
+      },
+      {
+        "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-4.png",
+        "sha256": "7eca3881bcdc83b3cdb1b49f1224b6176f62bfeb0288f51dd0c4e4f4ddd39e0a"
+      },
+      {
+        "path": "evals/calibration/story/tracking-v0.1/README.md",
+        "sha256": "df0dcdf20fa4e741245e7a3ceb6f0538733efa2376428d9ad7ef601057dee31d"
+      }
+    ],
+    "stage": "chart-first-then-prose; first-reading draft composed before prose but persisted after prose following failed write",
+    "order": 1,
+    "prior_exposure": "No prior exposure to this assigned story, its renders, author/arm identity, or ratings is known within this reader task. Instrument and commission were read first; all four PNGs were then viewed. Chart-first notes were composed in tool input before prose, but their write failed because python was unavailable; the next operation displayed prose before the failure was noticed. The original draft was preserved and saved afterward with the deviation stated. This is a fresh retrospective assessment, not a holdout or perfect-blind claim.",
+    "treatment_visible": false,
+    "model_visible": false,
+    "prior_ratings_visible": false,
+    "retrospective": true,
+    "viewed_sizes": null,
+    "unknown_reasons": {
+      "viewed_sizes": "All four PNGs were opened with view_image(detail=\"original\"). Actual displayed pixel dimensions and viewport are not exposed by that interface. Supplied intrinsic dimensions and intended 720px width are not evidence of the actual viewing size."
+    }
+  },
+  "supersedes": null,
+  "correction_reason": null,
+  "scores": {
+    "human.reader_value": {
+      "value": 7,
+      "reason": "Above the 6 anchor of a useful finding: the comparison with Italy and the separation of interest from the rest of the deficit reveal why a large debt stock alone is an incomplete explanation. The composition chart also qualifies the familiar claim that total spending has simply kept rising. Short of the consequential answer at 8 because the commissioned question asks why there is a crisis, and the story explicitly cannot explain why it is called a crisis now.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A-commission.md",
+          "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+          "locator": "Commission: “Why is there a French debt crisis?”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“Not a shortage of revenue”, paragraph beginning “Deficits alone are not unusual”: Italy and EU also ran deficits, but France −2.9 versus Italy +0.8 before interest."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“Where the money goes”, final paragraph: “it cannot say why the word \"crisis\" is in use now.”"
+        }
+      ],
+      "uncertainty": "Editorial reading only: source documents, underlying rows, arithmetic and reproduction were not independently verified. The intended audience is unspecified.",
+      "missing_reason": null
+    },
+    "human.explanation_argument": {
+      "value": 7,
+      "reason": "Clear definitions connect the recurring deficits, shock-related debt jumps, nominal GDP recovery and rising interest bill. Counterexamples and limits are unusually well placed: interest used to take a larger GDP share; Italy also has persistent deficits; spending composition does not establish what caused the deficit. This approaches the 8 anchor. The heading “Not a shortage of revenue” goes beyond what a high revenue/GDP ratio among selected peers establishes, and the current crisis trigger remains outside the answer.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Opening definition paragraph: Maastricht gross debt, yearly deficit, and the condition for the debt/GDP ratio to fall."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“A deficit every year”, interest paragraph: INSEE attribution, earlier higher interest/GDP, and 2.9 of 5.1 deficit points outside interest."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Heading “Not a shortage of revenue” and following paragraph comparing revenue/GDP in France, Italy, Germany and Spain."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“Where the money goes”: “That shows where the money goes, not which part caused the deficit”."
+        }
+      ],
+      "uncertainty": "Editorial reading only: source documents, underlying rows, arithmetic and reproduction were not independently verified. The intended audience is unspecified.",
+      "missing_reason": null
+    },
+    "human.presentation": {
+      "value": 8,
+      "reason": "Fluent, compact prose and four direct-labelled charts make the main comparisons easy to grasp, fitting the 8 anchor with minor editing. Chart 1 gives useful event and endpoint labels; chart 4 shows both the functional shifts and key subcomponents. Concrete visual weaknesses are the dense multiline 2025 annotation and less immediate surplus/interest encoding in chart 2, and chart 3’s switch from unsigned deficit magnitudes to signed before-interest balances. Chart 3’s “collects the most” headline should name the selected comparison group. No label collision or clipping was observed in the available tool display.",
+      "evidence": [
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-1.png",
+          "sha256": "18eda1779fe55a1c5b9571297e8e64b26d9963e1908ecc697b638390e53a5655",
+          "locator": "Title, crisis bands, and labelled early-2000 / end-2023 / mid-2026 points."
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-2.png",
+          "sha256": "1b0558c94ecf2cd037967b94057fc539033d4902b7451da5165636ea429a0fed",
+          "locator": "Right-hand “2025: −5.1 = interest 2.2 (€67bn) + deficit before interest 2.9” annotation; blue primary-surplus bars and black total ticks in 1998–2001."
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-3.png",
+          "sha256": "15f813ad844eead067a49ce9d7669ac0cf028267c487cb06a9875962acb17c5f",
+          "locator": "Headline “France collects the most, and spends more still”; adjacent “Deficit” and “Before interest” columns."
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-4.png",
+          "sha256": "7eca3881bcdc83b3cdb1b49f1224b6176f62bfeb0288f51dd0c4e4f4ddd39e0a",
+          "locator": "Old-age subcomponent beside social protection; debt-interest subcomponent beside general public services."
+        }
+      ],
+      "uncertainty": "Actual viewing size is unknown; this is not a verified judgment of readability at the intended 720px width. Intrinsic original PNGs were viewed.",
+      "missing_reason": null
+    },
+    "human.overall": {
+      "value": 7,
+      "reason": "An independently judged useful and well-explained fiscal story: it replaces a one-cause account with persistent primary deficits, shocks, growth effects and a changing spending mix, while avoiding a causal claim about pensions. It falls short of the strong/compelling 8 anchor because it mainly answers why debt keeps climbing rather than the commission’s current-crisis question, and the revenue heading implies more than the peer comparison supports. The charts are effective overall, with chart 2’s dense annotation and chart 3’s sign-convention switch needing minor clarification.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A-commission.md",
+          "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+          "locator": "Commission: “Why is there a French debt crisis?”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Title “Why French Debt Keeps Climbing”; final narrative paragraph limits the answer to “the arithmetic underneath”."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“Where the money goes”: total spending barely moved, composition changed, and composition is not identified as the deficit’s cause."
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-2.png",
+          "sha256": "1b0558c94ecf2cd037967b94057fc539033d4902b7451da5165636ea429a0fed",
+          "locator": "Dense right-hand 2025 decomposition annotation."
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-3.png",
+          "sha256": "15f813ad844eead067a49ce9d7669ac0cf028267c487cb06a9875962acb17c5f",
+          "locator": "Unsigned “Deficit” versus signed “Before interest” columns."
+        }
+      ],
+      "uncertainty": "Editorial reading only: source documents, underlying rows, arithmetic and reproduction were not independently verified. The intended audience is unspecified. Overall is an independent editorial judgment, not an average or conversion of the dimension scores.",
+      "missing_reason": null
+    }
+  },
+  "diagnostics": {
+    "interest": {
+      "value": 2,
+      "reason": "Meets the 2 anchor: a specific consequential puzzle is reframed through revealing comparisons. France raises more revenue/GDP than the displayed neighbours but still has the largest deficit; Italy’s greater interest burden does not stop it showing a surplus before interest. These revise an interest-only or low-tax-revenue account.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“Not a shortage of revenue”: France 52.1 revenue/57.2 spending and France −2.9 versus Italy +0.8 before interest."
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-3.png",
+          "sha256": "15f813ad844eead067a49ce9d7669ac0cf028267c487cb06a9875962acb17c5f",
+          "locator": "France and Italy rows, revenue/spending dots and before-interest column."
+        }
+      ],
+      "uncertainty": "Editorial reading only: source documents, underlying rows, arithmetic and reproduction were not independently verified. The intended audience is unspecified.",
+      "missing_reason": null
+    },
+    "findings_depth": {
+      "value": 2,
+      "reason": "Meets the 2 anchor by unpacking the categories carrying the answer: the 2025 deficit is separated into 2.2 interest and 2.9 before interest, shock-era debt endpoints are contrasted with the later decline, and health/old age are set beside offsetting functional declines. This goes beyond listing totals; verification of the calculations themselves is outside this reading.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“A deficit every year”: “2.9 points of the 5.1 came from the rest of the budget.”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“Where the money goes”: total 56.1→57.3, old age 11.0→13.4, health 6.9→8.9, with smaller defence/education/interest shares."
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-4.png",
+          "sha256": "7eca3881bcdc83b3cdb1b49f1224b6176f62bfeb0288f51dd0c4e4f4ddd39e0a",
+          "locator": "All function rows and old-age/debt-interest subcomponent annotations."
+        }
+      ],
+      "uncertainty": "Editorial reading only: source documents, underlying rows, arithmetic and reproduction were not independently verified. The intended audience is unspecified.",
+      "missing_reason": null
+    },
+    "argument_counterevidence": {
+      "value": 2,
+      "reason": "The sequence connects accounting evidence to the answer and tests accessible alternatives: interest is not most of the deficit, persistent deficits also occur elsewhere, and the pension/health shift does not itself prove the cause of the deficit. The absence of bond-market and political evidence is explicit where the crisis interpretation is limited. The revenue heading is an overbroad framing, but the strongest accessible competing explanations are substantively addressed.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“A deficit every year”, final paragraph: earlier interest/GDP higher, and 2.9 of 5.1 deficit points are outside interest."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“Deficits alone are not unusual. Italy, and the EU as a whole, also ran one every year.”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“That shows where the money goes, not which part caused the deficit: revenue rose too”."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Final narrative paragraph names absent bond yields, ratings and parliamentary votes."
+        }
+      ],
+      "uncertainty": "Adjacent 1 is plausible if the unsupported “Not a shortage of revenue” heading is treated as a material untested alternative. Sources and inference checks were not independently performed.",
+      "missing_reason": null
+    },
+    "explanation": {
+      "value": 2,
+      "reason": "Fits the 2 anchor: the debt and deficit measures are explained in plain language, the ratio’s growth mechanism is stated, and the interest-rate explanation is attributed to INSEE with a date. The spending discussion separates observed allocation from an asserted causal explanation. The account explains fiscal accumulation well even though it cannot explain the current crisis label.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Opening definition paragraph: face-value government debt versus yearly spending/collection gap and nominal GDP condition."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Interest paragraph: “INSEE attributes the rise to a larger debt and to interest rates climbing since 2022”."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Spending paragraph explicitly says the mix does not show which part caused the deficit."
+        }
+      ],
+      "uncertainty": "Editorial reading only: source documents, underlying rows, arithmetic and reproduction were not independently verified. The intended audience is unspecified.",
+      "missing_reason": null
+    },
+    "chart_design": {
+      "value": 1,
+      "reason": "Useful visual evidence, but the 1 anchor fits because chart 2 requires decoding of surplus-above-zero versus interest-below-zero and an internal black total tick, followed by a dense four-line 2025 annotation. Chart 3 also requires interpreting unsigned deficits beside signed balances, and its “collects the most” headline omits the selected-country scope. The main comparisons remain recoverable and no collision/clipping was observed; a 2’s at-reading-size condition cannot be established from an unknown actual display size.",
+      "evidence": [
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-2.png",
+          "sha256": "1b0558c94ecf2cd037967b94057fc539033d4902b7451da5165636ea429a0fed",
+          "locator": "Legend and subtitle defining black total tick; 1998–2001 surplus bars; right-hand 2025 annotation."
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-3.png",
+          "sha256": "15f813ad844eead067a49ce9d7669ac0cf028267c487cb06a9875962acb17c5f",
+          "locator": "Headline; positive “Deficit” values next to signed “Before interest” values; bottom note that axis starts at 40."
+        },
+        {
+          "path": "evals/experiments/story-quality/reference-led-v1/review-materials/M30755c/stage2/chart-1.png",
+          "sha256": "18eda1779fe55a1c5b9571297e8e64b26d9963e1908ecc697b638390e53a5655",
+          "locator": "Direct endpoint labels and financial-crisis/pandemic bands."
+        }
+      ],
+      "uncertainty": "All four actual PNGs were inspected with original detail, but actual displayed dimensions are unknown. No claim is made that intrinsic or intended dimensions prove reading-size readability.",
+      "missing_reason": null
+    },
+    "writing": {
+      "value": 2,
+      "reason": "Plain, economical terms and concrete magnitudes make the accounting story readable. Definitions precede technical use; the prose states the comparisons and places the main causal and dataset limits beside the relevant claims. The “Not a shortage of revenue” heading merits narrowing, but it does not obscure the prose’s main answer.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“The deficit is the yearly gap between what they spend and what they collect.”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“The total barely moved; the mix did.” followed by old-age and health endpoints."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "“That shows where the money goes, not which part caused the deficit”."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Final narrative paragraph names the missing evidence for the current crisis label."
+        }
+      ],
+      "uncertainty": "Editorial reading only: source documents, underlying rows, arithmetic and reproduction were not independently verified. The intended audience is unspecified.",
+      "missing_reason": null
+    },
+    "reader_coverage": {
+      "value": 1,
+      "reason": "The fiscal-accumulation question and several prioritized follow-ups are answered: shocks, post-pandemic decline, interest versus the rest of the budget, peer differences, and spending composition. But the main commissioned “why crisis?” question is only partly answered: the story identifies absent yields/ratings/votes rather than explaining the present financing or political trigger. Naming that gap honestly does not supply the answer.",
+      "evidence": [
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A-commission.md",
+          "sha256": "16c01244ee3aceb68c921c3b4d0a7c98a3ff103ad9486b49deb66b147aaca655",
+          "locator": "Commission question “Why is there a French debt crisis?”"
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Final narrative paragraph: no bond yields, credit ratings or parliamentary votes; cannot say why “crisis” is in use now."
+        },
+        {
+          "path": "evals/calibration/story/tracking-v0.1/pilot/owner/A.md",
+          "sha256": "94e864a71bd4864bda5d4e0cea8e78d7b9add1b2b9a99b95623a82521c69518e",
+          "locator": "Sections “A deficit every year”, “Not a shortage of revenue”, and “Where the money goes”."
+        }
+      ],
+      "uncertainty": "The commission fixes supplied data, so the current-crisis gap may be a limitation of available evidence rather than an attainable omission within this packet. The audience is not stated.",
+      "missing_reason": null
+    }
+  },
+  "verbatim_comment": "Useful, clearly explained fiscal arithmetic with revealing interest, peer and spending-mix comparisons. The current-crisis trigger remains unanswered, the revenue heading needs narrower scope, and chart 2’s dense annotation plus chart 3’s mixed sign conventions add small decoding costs. Sources, arithmetic and reproduction were not verified. The chart-first draft existed before prose in tool input, but a failed write meant its file was persisted after prose; actual displayed sizes are unknown.",
+  "most_useful_improvement": "Connect the fiscal history to why a crisis is being discussed now with a brief, named and scoped attribution supported by the necessary dated market or political evidence; if that evidence is outside the fixed commission, explicitly frame the opening as a limited explanation of debt accumulation and state the missing crisis trigger there.",
+  "instrument_id": "story-quality-tracking-v0.1",
+  "human_anchor_version": "story-quality-human-v0.1",
+  "diagnostic_version": "reference-led-manual-v1",
+  "procedure_version": "story-quality-procedure-v0.1",
+  "check_version": "story-quality-checks-v0.1"
+}

@@ -1,0 +1,63 @@
+{
+  "document_type": "retrospective-assessment-custody",
+  "instrument_sha256": "318dd1484ac7b27c3ffae27e80393be7136f45a956eba8d0f22e1fdb9308b404",
+  "manifest_sha256": "6626f598a8923f8f767dc6c64a3b5975340ae9b53b828dad65e4e0e0f3d44aec",
+  "packet_freeze_commit": "7218050881e767a9f7ceea480fa8329fb63bfd92",
+  "accepted_code_commit": "798649b26b96aba5698e4b4811d1fd70e197c729",
+  "assessment_scope": "Four new independent editorial assessments of known existing outputs; not a fresh writer comparison, not owner calibration.",
+  "requested_reviewer_model": "gpt-6.1-sol",
+  "requested_effort": "high",
+  "served_identity": "unknown; not exposed by built-in subagent interface",
+  "roles": "Four fresh fork-none readers; driver administers and appends records, not author of scores.",
+  "access": "Instructed packet-only access to instrument, one commission/story and its PNGs; no prior ratings, treatment mappings or source analysis. No filesystem isolation claim.",
+  "procedure": "Commission and instrument, PNG-first impressions saved before prose; new three summary scores, optional independent overall and seven diagnostics. No arithmetic/source/reproduction check claimed. Actual viewed-size limits remain in each record.",
+  "owner_responses": "missing; no placeholder judgment records",
+  "original_artifacts": "Unchanged; packet removes duplicated title and rewrites image links only.",
+  "model_cli_calls": 0,
+  "notes": "Owner go-ahead21Oct explicitly prefers OpenAI subagents. Initial score-free packet and empty journal were frozen before these assessments. First-reading notes and raw judgments will be preserved alongside append-only records.",
+  "deviations": [
+    {
+      "reader": "A",
+      "description": "All PNGs viewed before prose. Chart-first note text was drafted before prose, but save command used unavailable python; prose was displayed in the same tool call before the failed write was noticed. Original note text then saved with deviation disclosed. No replacement or retrospectively claimed persisted-before-prose freeze."
+    }
+  ],
+  "raw_assessment_files": [
+    {
+      "path": "evals/calibration/story/tracking-v0.1/pilot/assessments/A-first-reading.md",
+      "sha256": "17a29d806347f5807bdad86758ac3949fc451dcb366ce04657316c871650710d"
+    },
+    {
+      "path": "evals/calibration/story/tracking-v0.1/pilot/assessments/A-judgment.json",
+      "sha256": "788ae368592051d1ca94b8f2455c7f2a99a3f285f93d101184e5a4b152c3504f"
+    },
+    {
+      "path": "evals/calibration/story/tracking-v0.1/pilot/assessments/B-first-reading.md",
+      "sha256": "2ec9be4c6768e1e89162d3df1e80b5f518c38ddb9dacd47c6bf3a731ac5a6514"
+    },
+    {
+      "path": "evals/calibration/story/tracking-v0.1/pilot/assessments/B-judgment.json",
+      "sha256": "91b750267ed833861e77cc164375f0e27fb8e240651856cc1f50bbdfd3109eb4"
+    },
+    {
+      "path": "evals/calibration/story/tracking-v0.1/pilot/assessments/C-first-reading.md",
+      "sha256": "7be3c49fb54012da3219bc8cab37b34a6f4203c09d26367cd1c0f19105a28361"
+    },
+    {
+      "path": "evals/calibration/story/tracking-v0.1/pilot/assessments/C-judgment.json",
+      "sha256": "025acbd87dea4f882b57449818361b4d9d348eeb7b415003d32e0319d50138ad"
+    },
+    {
+      "path": "evals/calibration/story/tracking-v0.1/pilot/assessments/D-first-reading.md",
+      "sha256": "1d4e2d2396d41846679566f491f5100b1f74dc234b82333930c78a26ea138e69"
+    },
+    {
+      "path": "evals/calibration/story/tracking-v0.1/pilot/assessments/D-judgment.json",
+      "sha256": "3863e1f8d4459594a076320bccc5021edb5eb3f31d28fffc2aaf4cd32a4488d4"
+    }
+  ],
+  "judgments": 4,
+  "owner_judgments": 0,
+  "evidence_check_rows": 0,
+  "factual_check_limit": "No new source, arithmetic, inference validity, reproduction or geometric verification was performed. Chart reading impressions are editorial evidence, not scoped technical gate passes. All actual display sizes remain unknown.",
+  "journal_sha256": "b88c884494bf0674e8883cc08cb53195a2acede07b1b5178b65ea0c5304fa520"
+}
