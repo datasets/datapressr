@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "instrument_id": "story-quality-tracking-v0.1",
+  "human_anchor_version": "story-quality-human-v0.1",
+  "diagnostic_version": "reference-led-manual-v1",
+  "procedure_version": "story-quality-procedure-v0.1",
+  "check_version": "story-quality-checks-v0.1",
+  "source": {
+    "path": "evals/calibration/story/reference-led-candidate.md",
+    "sha256": "bd4f19af84e7b0777d11399a323ceefc4786befc1a7b4085dd188ad06d808d1e"
+  },
+  "human_dimensions": [
+    {
+      "id": "human.reader_value",
+      "min": 1,
+      "max": 10,
+      "anchors": {
+        "2": "Dataset tour or familiar facts with little payoff.",
+        "4": "A relevant question, but the finding or why it matters remains weak.",
+        "6": "A useful finding, but its significance or freshness needs work.",
+        "8": "A revealing, consequential comparison or answer worth sharing.",
+        "10": "An exceptional, memorable answer that substantially improves the intended reader's understanding."
+      }
+    },
+    {
+      "id": "human.explanation_argument",
+      "min": 1,
+      "max": 10,
+      "anchors": {
+        "2": "The conclusion or relationship between findings is unclear.",
+        "4": "An answer is visible, but major reasoning steps or meanings are missing.",
+        "6": "Main answer is understandable, but an important explanation, boundary or alternative needs work.",
+        "8": "Clear reasoning and explanations; important limits and alternatives sit where they affect interpretation.",
+        "10": "Exceptionally clear and convincing reasoning; the relevant mechanisms, alternatives and limits are explained with precision and economy."
+      }
+    },
+    {
+      "id": "human.presentation",
+      "min": 1,
+      "max": 10,
+      "anchors": {
+        "2": "Hard to follow or decode.",
+        "4": "Readable in parts, but recurring prose or chart problems obstruct the story.",
+        "6": "Understandable, with substantial editing or chart clarification needed.",
+        "8": "Fluent prose and charts that make the intended comparison easy to grasp, with only minor edits.",
+        "10": "Exceptionally effortless, economical prose and charts that make the story's comparisons immediately clear."
+      }
+    },
+    {
+      "id": "human.overall",
+      "min": 1,
+      "max": 10,
+      "anchors": {
+        "2": "Confusing or largely a dataset dump.",
+        "4": "Understandable, but shallow or weakly explained.",
+        "6": "Useful story with substantial editing needed.",
+        "8": "Strong, compelling and clear; minor editorial work.",
+        "10": "Exceptional reference-quality work."
+      }
+    }
+  ],
+  "diagnostics": [
+    {
+      "id": "interest",
+      "min": 0,
+      "max": 2,
+      "anchors": {
+        "0": "Generic subject or dataset tour; no concrete reader payoff.",
+        "1": "Relevant question, but only scale/description or an unstated implication.",
+        "2": "Specific consequential puzzle or revealing comparison makes the reader revise an assumption or understand an everyday concern."
+      }
+    },
+    {
+      "id": "findings_depth",
+      "min": 0,
+      "max": 2,
+      "anchors": {
+        "0": "Lists available values/categories without a finding.",
+        "1": "Identifies a pattern or large category but leaves its contents, contribution to change or meaningful comparison to the reader.",
+        "2": "Computes the relevant contrast; unpacks the category/distribution carrying the argument; shows what changes and by how much within the available evidence."
+      }
+    },
+    {
+      "id": "argument_counterevidence",
+      "min": 0,
+      "max": 2,
+      "anchors": {
+        "0": "No answer, or the conclusion ignores conflicting evidence.",
+        "1": "Clear answer but a material alternative, boundary choice or affected group is omitted.",
+        "2": "Claim and sequence connect evidence to answer; strongest accessible alternative or counterexample is tested; beneficiary/spillover and metric limits sit where they change interpretation."
+      }
+    },
+    {
+      "id": "explanation",
+      "min": 0,
+      "max": 2,
+      "anchors": {
+        "0": "Technical/source labels stand in for meaning, or asserted cause stands in for evidence.",
+        "1": "Defines the pattern/category but leaves a central mechanism unclear, or offers attribution without distinguishing it from what the local data tests.",
+        "2": "Explains what the measure means and why the pattern could arise using shown evidence or named, scoped attribution; separates observation, mechanism and uncertainty. A demonstration can explain a mechanism without making a news or causal population claim."
+      }
+    },
+    {
+      "id": "chart_design",
+      "min": 0,
+      "max": 2,
+      "anchors": {
+        "0": "Unreadable or misleading encoding/denominator; visual conclusion contradicts the claimed comparison.",
+        "1": "Useful evidence but decoding, scaling, comparison or annotation requires effort/inference.",
+        "2": "Actual inspected visual makes its intended comparison readable at a glance; units, years, encodings and benchmark are recoverable at reading size; precise and first-impression readings agree."
+      }
+    },
+    {
+      "id": "writing",
+      "min": 0,
+      "max": 2,
+      "anchors": {
+        "0": "Jargon, overprecision, repetition or generic prose hides the point.",
+        "1": "Understandable but a key term, magnitude, implication or paragraph still needs work.",
+        "2": "Plain and economical; terms and magnitudes are concrete; comparison is stated; necessary method/limits sit beside the relevant claim without crowding the answer."
+      }
+    },
+    {
+      "id": "reader_coverage",
+      "min": 0,
+      "max": 2,
+      "anchors": {
+        "0": "Main in-reach reader question unanswered.",
+        "1": "Main question partly answered, with important in-reach follow-ups open.",
+        "2": "Main question and prioritized in-reach follow-ups answered; genuine evidence gaps identified once, with attribution or next evidence needed where useful."
+      }
+    }
+  ],
+  "checks": [
+    {
+      "id": "source.central_claim_scope",
+      "gate": "G1",
+      "method": "Pin source/vintage and compare measure, population, unit and denominator with the named central claim."
+    },
+    {
+      "id": "analysis.central_arithmetic",
+      "gate": "G2",
+      "method": "Recompute the named difference, ratio or percentage-point change from pinned rows; retain calculation and scope."
+    },
+    {
+      "id": "analysis.inference_scope",
+      "gate": "G2",
+      "method": "Examine whether the exact descriptive, accounting or causal claim exceeds the evidence or named attribution; record reviewer reasoning and unresolved alternatives."
+    },
+    {
+      "id": "reproduction.pipeline",
+      "gate": "G3",
+      "method": "Record which steps actually ran: raw-to-CSV, CSV-to-chart, render. Partial success must not become a whole-pipeline pass."
+    },
+    {
+      "id": "visual.label_collision",
+      "gate": "G4",
+      "method": "Inspect the actual delivered render at recorded viewport/size for overlapping labels, clipping and obscured meaning; locate the affected objects and render."
+    },
+    {
+      "id": "visual.encoding_integrity",
+      "gate": "G4",
+      "method": "Check plotted positions, units, labels and scale against the named data/encoding. Distinguish incorrect geometry from a stylistic dislike."
+    }
+  ],
+  "outcome_rules": {
+    "pass": "Named scope and method supported by concrete checked evidence; never a whole-story certification.",
+    "fail": "Observed defect within named scope; material failures require repair regardless of scores.",
+    "unresolved": "Missing or inconclusive evidence; unresolved central checks require verification.",
+    "not-applicable": "Named check does not apply to the target; explicit reason required."
+  }
+}
