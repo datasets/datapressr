@@ -14,6 +14,8 @@ This directory holds maintainer and agent material outside the published `site/`
 
 ## Planning and evidence
 
+- [Current story-skill improvement workplan](plans/2026-10-24-story-skill-improvement.md): main-priority craft workshop, separate R3 comparison and owner calibration; [independent Astra red-team review](reviews/2026-10-24-story-skill-backlog-review.md). Start with `datapressr-8no.9.13.1`; task state lives in Beads.
+
 - [Story quality tracking](plans/2026-10-18-story-quality-tracking.md): three human ratings, richer AI diagnostics, separate evidence checks and a gradual, versioned calibration loop; task `datapressr-8no.9.12`. The [local tracker](../evals/calibration/story/tracking-v0.1/README.md) records versioned observations; [current pilot status](../evals/calibration/story/tracking-v0.1/pilot/STATUS.md) distinguishes completed AI assessments from missing owner ratings; the [pilot reading form](../evals/calibration/story/tracking-v0.1/pilot/owner/form.md) keeps AI scores separate from owner responses.
 - [French public finances investigation](france-public-finances-investigation.md): scope, official sources, first findings and interpretation limits, with [independent dataset review](reviews/france-public-finances-data-round2.md).
 - [BB preview v0.1 implementation plan](plans/2026-09-30-bb-preview-v01-plan.md): scope, component contracts, dependency-linked Beads, acceptance checks, effort estimate, and next-session prompt for the usable plugin.
@@ -22,7 +24,7 @@ This directory holds maintainer and agent material outside the published `site/`
 - [Next phase plan, 2026-09-25](plans/2026-09-25-next-phase.md): current direction, epics, order and delegated decisions, with its [research reports](plans/2026-09-25-research/).
 - [Skills roadmap](plans/skills-roadmap.md) and [skills vision](plans/skills-vision.md): historical planning; current assignments live in Beads.
 - [Structure benchmark](structure-benchmark.md): overall findings, with [JSON/API](benchmarks/round-2-json.md) and [relational join](benchmarks/round-2-join.md) reports.
-- [Story harness, round 1](benchmarks/story-round-1.md): everything the story eval harness has measured so far: the q01 pilot, critic calibration v1 vs v2, the q03/q04 reference cases and the first A/B of a story-skill edit (post-edit wins 4 of 4 blind pairs), with per-run tables and what's next. See also the [structure eval, co2-monthly round 1](benchmarks/eval-structure-co2-round-1.md).
+- [Story harness, round 1](benchmarks/story-round-1.md): historical first-round evidence: the q01 pilot, critic calibration v1 vs v2, the q03/q04 reference cases and the first A/B of a story-skill edit (post-edit wins 4 of 4 blind pairs), with per-run tables and what's next. See also the [structure eval, co2-monthly round 1](benchmarks/eval-structure-co2-round-1.md).
 - [Session protocol](next-session-brief.md), [migration audit](next-audit.md) and [cloud handoff log](handoffs/cloud-queue.md): agent coordination and dated execution evidence.
 - [What to review now](review.md): the owner's review queue up to the v1 release (2026-09-18), moved off the public site; later review items carry the `review-after` label in Beads.
 - [Capturing ideas quickly](capturing-ideas.md): where a new dataset idea or URL gets logged (bead by default, Inbox issue without `bd`, own issue for long write-ups).
