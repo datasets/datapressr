@@ -1,0 +1,33 @@
+{
+  "id": "fc-c17",
+  "domain": "story",
+  "title": "Fixed historical demographic components",
+  "question": "How much of the acceleration in estimated U.S. population growth from the year ending July 2021 to the year ending July 2024 is accounted for by net international migration, and what can the supplied evidence establish about why the estimate rose?",
+  "type": "explanatory",
+  "data_mode": "fixed",
+  "as_of": "2024-12-19",
+  "inputs": [
+    {
+      "path": "evals/experiments/story-quality/fresh-case-c17/inputs",
+      "commit": "dd580cf2760b24ab4558b11a7092849bda3345ac"
+    }
+  ],
+  "skills": [
+    "story"
+  ],
+  "references": [],
+  "owner_feedback": [],
+  "budget": {
+    "max_usd": 0,
+    "max_turns": 1,
+    "words": [
+      300,
+      700
+    ]
+  },
+  "preparation_only": true,
+  "execution_blockers": [
+    "Input source commit must become a genuine ancestor of main through separately approved integration",
+    "Separately authorized bounded comparison proposal; no writer calls authorized"
+  ]
+}
