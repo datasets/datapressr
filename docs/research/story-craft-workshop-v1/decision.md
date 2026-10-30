@@ -1,0 +1,60 @@
+# Workshop lesson decision: retain one provisional move; revise the proposed rule
+
+30 October 2026 · `datapressr-8no.9.13.3` · synthesis actor `codex-craft-lessons-20261030` · independent review pending.
+
+**Retain the complete temperature revision for development and one provisional lesson: make the comparison a question the reader can follow, then explain the relationship before its threshold.** Revise the proposed guidance into a narrow option for aggregation puzzles, not a prose-first mandate. [Candidate v0.1](candidate-v0.1.md) is a proposal only; installed defaults remain unchanged pending a separate reviewed adoption task. The predecessor was closed before this task was claimed. This synthesis does not add a reader, change the frozen pair, execute a transfer, or enter the R3/fresh-case lane.
+
+## Exact passage and observed response
+
+In the [original](../../../evals/development/story-craft-workshop-v1/original/README.md), line 11 is the hurdle chart; line 13 opens “For 2026 to overtake 2024 in this calculation, October–December would have to exceed a tie hurdle of **1.02–1.03°C above 1991–2020**.” Weighting and rounding follow at line 15. The reason arrives at line 21: “Matching that final quarter would be insufficient because the annual average also carries the earlier months.”
+
+The [revision](../../../evals/development/story-craft-workshop-v1/revised/README.md), line 11, opens “Even if 2026 repeated the warmest October–December in the record, it would still fall short of 2024's annual temperature record.” The same paragraph identifies a scenario, not a forecast. Line 15 makes the relationship explicit: “Only three months remain to offset a deficit built up over nine.” The repeat scenario and cumulative chart precede the hurdle, introduced at line 23 by “What would it take to close the gap?” The counterpoint remains at line 21: “Falling short would still mean finishing close”. The result is a connected sequence: known finish → accumulated deficit → small annual gap → required finish, rather than an unexplained threshold followed immediately by calculation qualifications.
+
+The independent [first reading](../../../evals/development/story-craft-workshop-v1/reader-first.md), “A — spontaneous observations” and “Preference and possible influences”, supports plausibility: the nine-versus-three-month relationship made the result intuitive, and moving from the known finish to the required hurdle felt natural. The reader preferred A (revision) and accurately recalled its conditional claim. But the original already contained the explanation, counter-number and limits. This is evidence for a locally preferred arrangement, not a newly discovered factual insight or a proven comprehension gain.
+
+**Negative examples bound the lesson.** The same reader found B's immediate desktop visual stronger: a clear graphic can provide orientation without a prose preamble. The revised definition paragraph (line 13) slowed the story; moving a catalogue of definitions ahead of every chart would reproduce that weakness. The initial revised headline also overclaimed: the [technical review](../../../evals/development/story-craft-workshop-v1/technical-review.md), “Inference”, required the final wording to say **matching** the warmest quarter. “Even a record quarter cannot deliver a record year” would be false: a sufficiently large new record could. A catchy puzzle earns no exemption from exact scope. The candidate includes a new synthetic example and counterexample, not borrowed reference prose.
+
+## What the evidence can and cannot carry
+
+The [accepted result](../../../evals/development/story-craft-workshop-v1/result.md) and its [independent summary review](../../../evals/development/story-craft-workshop-v1/summary-review.md) establish a qualified local editorial preference with accurate takeaway and no material technical regression. Title, commissioned question, opening, prose and chart order changed together; clearer title, novelty of framing, or delayed caveats could account for preference. This comparison cannot isolate prose-first ordering or any single rule.
+
+Both versions answered all five recorded probe distinctions correctly. A was read first; its explanation could teach facts later recalled for B and make B feel repetitive. The reader read HTML source, including alt text and hidden captions, before screenshots; this is masked-label, source-assisted exploratory reading, not unaided visual comprehension. General climate familiarity also remains. No owner preference is recorded. Independent technical approval is not a second editorial preference or general skill-effect estimate.
+
+Reader-visible text versus hidden HTML is a **method limitation**, separate from the proposed craft effect. In a future ordinary visual-reading check, deliver the rendered page and, only if necessary, a transcript of visible body text; exclude hidden captions and alt text from that transcript. Alt text belongs in a separately declared accessibility reading scope, not a secret answer source. Retain the original HTML for technical inspection after reader responses freeze. This is a handoff correction for a later check, not a new installed writing protocol or a claim that removing source access will improve prose. The coordinator recorded this follow-up in existing bead `datapressr-8no.9.9`; no additional queue is needed.
+
+## Audit only where this workshop bears on a rule
+
+| Installed constraint | Decision from this evidence |
+| --- | --- |
+| Obligatory chart-first opening (`SKILL.md` step 4; craft patterns 1 and 5) | Propose a narrow, outline-declared option for an aggregation puzzle. Reject a blanket chart-first ban; the original's desktop visual was a strength. |
+| Fixed 300–700 words | No change. Length was not isolated or a demonstrated failure; the preference cannot justify a new length policy. |
+| Every data number charted, with existing exemptions | No change. Chart/data bytes were unchanged; this trial does not establish a benefit from relaxing the rule. |
+| Outline rigidity after approval | No change to approval gates. The commissioned question changed openly before revision; the trial did not compare improvisation against an approved outline. Put the candidate sequence in the reviewed outline. |
+| Approximately 6px mobile labels are “fine” | Reject that reassurance for these delivered charts. Exact-size technical crops showed small notes/ticks and indistinct weight bands; ordinary inline readability remains unresolved in both versions. Keep chart repair as a separate concrete follow-up (`factory-but.3.5`), not a second craft lesson or evidence that prose-first fixes charts. |
+
+## One conditional transfer proposal — not executed
+
+Use only the already exposed [oil story](../../../site/stories/oil-prices.md) named in the approved brief, whose recorded SHA-256 is `dd07dc9a7d479aacd190c2dd242da4389e5923866deb28e95c9384dbd5937a08`. Question: **Why can a positive weekly average conceal a negative daily WTI spot price?** Temperature compares a hypothetical finish with an annual aggregate; oil contrasts an observed daily extreme with a weekly aggregate. This tests the candidate on a different time aggregation, not a futures-market causal explanation. The oil story was not opened in this synthesis; source/aggregation feasibility must be checked inside the proposed author allocation before generation. Record any current-byte difference from the brief's pin and freeze the actual comparison inputs before writing.
+
+One author makes one complete revision of that frozen original, applying candidate v0.1 within a fixed question, facts, source package, numerical precision and limitations. Preserve chart bytes and reading template/sizes across versions; if the aggregation cannot be substantiated or requires new analysis/chart work beyond the cap, stop with a feasibility result. Do not rescue the trial by changing the question, adding outside mechanisms or dropping counterevidence. Record the writer and requested/served model identity where available, candidate hash and all package hashes before dispatch. This is known exposed development material for the programme; the author and reviewer each declare their actual prior exposure. It cannot become a fresh or R3-only test.
+
+**Outcome:** one independent reader/reviewer records a spontaneous takeaway, what clarified the apparent contradiction, weakest passage and preference/reasons before neutral probes. Primary distinction: a weekly mean can stay positive while a constituent daily spot observation is negative; it does not establish the cause of the negative price or substitute a futures quote. Ask identically for each version what the two reported prices measure and what the comparison explains. Record correct/incorrect/absent, not a composite score. An accurate revised takeaway, reasoned preference, and no factual/inference/render regression support retaining the option for development; equal correct probes still do not establish comprehension gain. Mixed/no preference, a misunderstanding or technical failure yields mixed/reject, not an automatic second attempt.
+
+**Controls and ceiling:** one randomized label/order draw, same exact viewport sizes for both versions, complete rendered packets, no author rationale/prior ratings or hidden-source text for the initial reading. Freeze reader responses before the same reviewer opens data/HTML for technical checks; acknowledge that technical review then is not independent of preference. Record order/carryover and any source exposure honestly; downgrade compromised visual evidence rather than rerun. Total ceiling **135 active minutes: one 90-minute author pass including input check/render/freeze, plus one 45-minute independent reader/technical session**. Maximum **two agent invocations**, one per role; zero paid batch calls, extra model generations, rescue drafts or additional readers. Local arithmetic/render commands are inside these time limits. The coordinator records elapsed work; any cap or unavailable prerequisite stops the check with partial artifacts. No transfer execution is authorized by this proposal; schedule it separately only after review.
+
+## Source pins and handoff
+
+Paths below are relative to the repository root. SHA-256 values identify the exact sources; the custody/technical manifests linked from the result identify HTML, screenshots and assets.
+
+| Source | SHA-256 |
+| --- | --- |
+| `docs/research/story-craft-workshop-v1/brief.md` | `02cf0606a08fd9c16fc8bf0fc9158323a7f72b87c89097e73435c8bf63223caf` |
+| `evals/development/story-craft-workshop-v1/original/README.md` | `1b39a28da930d14e53dacee8bac1d87f087025a767bf613f371de3538a800e90` |
+| `evals/development/story-craft-workshop-v1/revised/README.md` | `1d62960687247f7d17260a1d0507ff587af026b120179acfc62f515a183ea669` |
+| `evals/development/story-craft-workshop-v1/reader-first.md` | `0a9a80ee3738daabcffdff420cf829b0c8544f09540b8d93b0f0cbaa7387ebb3` |
+| `evals/development/story-craft-workshop-v1/reader-probes.md` | `3dffc06ffd5110342f2ded766aae282c63fee2574ade0a7a2846b4cc1e5ec470` |
+| `evals/development/story-craft-workshop-v1/technical-review.md` | `72a8a7478369f9914ae853eb8b4f0b06c655d3e1c23b66030879664c1e1c4d08` |
+| `evals/development/story-craft-workshop-v1/result.md` | `90a4c1a47cf212011ebf7893e36014eec7e7a6f581b695e4191473cbf638327e` |
+| `evals/development/story-craft-workshop-v1/summary-review.md` | `018dc8bf7e07019c0582ee5da690f9b8f9ed6d15f079baa08b633d5e8f5ffa75` |
+
+One synthesis session, within the 90-minute ceiling; exact token/cost totals unavailable. Scope was repository instructions/workplan, the approved brief, accepted temperature artifacts and installed story guidance; no fresh case, new reference survey, R3 materials or oil source reading. Leave the bead in progress for the parent's independent reviewer, who should challenge fidelity of the passage comparison, the proposed exception's breadth and the transfer stop conditions. No publication or installed-file edit is part of this decision.
