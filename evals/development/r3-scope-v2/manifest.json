@@ -1,0 +1,19 @@
+{
+  "baseline_commit": "bd561130735a8637f2fc0b2b5f5eac3b41e4bf6c",
+  "baseline_story_git_tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7",
+  "historical_v1_candidate_commit": "77c8c357f78390b1a986e9d684e5512587d245ab",
+  "files": {
+    "SKILL.md": "dc36079f819b7549ce42927075cfa08f776c94fc40776dc907a9f2e4484f54c6",
+    "references/charting.md": "086310e1e0068cfa3ca935e315bf05d4bb0ecfc5259b5ba304d17d33214e9129",
+    "references/editorial-review.md": "4aa893c687c070b8b7586046d8d1443b858961ca618f6c90f14073462aba0537",
+    "references/make-charts-template.mjs": "4c0037c931f88e40c4c55a8674f99e328c52aee588867b7df6a033f77ce75c1c",
+    "references/story-craft.md": "768d00accbb7d5fb6d7e6adda9751e737528edf4dd5a9e53ca9042a6276e3a02",
+    "references/voice-guide.md": "07dbabc4debfe62da5ab786fc71ce456bcd0e39554d5eb7f3060af841607a325"
+  },
+  "changed_files": [
+    "references/voice-guide.md"
+  ],
+  "writer_input": "story/ only; all adjacent documents are custody/review material",
+  "status": "author-frozen; independent review pending",
+  "candidate_story_git_tree": "abe2cd0707647eac6972b6f1bba28d49bf94c6be"
+}
