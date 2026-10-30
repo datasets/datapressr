@@ -1,0 +1,34 @@
+{
+  "original": {
+    "2026-temperature-record-hurdle.svg": "8745d8dfb48a33e7fcd16a6d60a9f9fe2caafa0d617fb845575e518f7e349354",
+    "2026-temperature-record-make-charts.mjs": "373a758d7252248caa31e3ac1f89a6d7a28ae2b84ed0fa4966c0d2cf1ca53e55",
+    "2026-temperature-record-repeat.svg": "ce956d619e3ecbce7b9021686c41ef12ee98c9d51327f51c9181bf9f86c63394",
+    "2026-temperature-record-src/PROVENANCE.md": "d0f263b6ee4d978ba8dd87e8906b18353068d226a8491830a3c24172df3e4e3b",
+    "2026-temperature-record-src/calculate.py": "6f60b139a79f5d863e99ccb2ea72b5969133a08120323e7f21592b7055d76541",
+    "2026-temperature-record-src/global-monthly.csv": "b31271d6984e7e4cc02bedffd268e68d7b5cda571fb521dcedf435c2eca5407e",
+    "2026-temperature-record-src/statistics.json": "e2b826420c5bd49ccd68a7a41e7a399e172bcde0ca1825df18b69fdac534603e",
+    "README.md": "1b39a28da930d14e53dacee8bac1d87f087025a767bf613f371de3538a800e90",
+    "index.html": "14bff93d39db7e4aaae8aa16ff98245cef7ef2a2d3332c300b04edd0b65649fe",
+    "package-lock.json": "a1277a148478da9a001c3fe3480573d691d7529010ca560fc0d6f1d4fa317187",
+    "package.json": "6e4bccd6fbc70d2d5b23ecdb8022a11d437f2e21a1820e39865a81cb994244a6"
+  },
+  "revised": {
+    "2026-temperature-record-hurdle.svg": "8745d8dfb48a33e7fcd16a6d60a9f9fe2caafa0d617fb845575e518f7e349354",
+    "2026-temperature-record-make-charts.mjs": "373a758d7252248caa31e3ac1f89a6d7a28ae2b84ed0fa4966c0d2cf1ca53e55",
+    "2026-temperature-record-repeat.svg": "ce956d619e3ecbce7b9021686c41ef12ee98c9d51327f51c9181bf9f86c63394",
+    "2026-temperature-record-src/PROVENANCE.md": "d0f263b6ee4d978ba8dd87e8906b18353068d226a8491830a3c24172df3e4e3b",
+    "2026-temperature-record-src/calculate.py": "6f60b139a79f5d863e99ccb2ea72b5969133a08120323e7f21592b7055d76541",
+    "2026-temperature-record-src/global-monthly.csv": "b31271d6984e7e4cc02bedffd268e68d7b5cda571fb521dcedf435c2eca5407e",
+    "2026-temperature-record-src/statistics.json": "e2b826420c5bd49ccd68a7a41e7a399e172bcde0ca1825df18b69fdac534603e",
+    "README.md": "1d62960687247f7d17260a1d0507ff587af026b120179acfc62f515a183ea669",
+    "index.html": "76fcd3cf15e4bab1375c702ab5f96a5c8d6187f9303224bd585261ff03f8cc8f",
+    "package-lock.json": "a1277a148478da9a001c3fe3480573d691d7529010ca560fc0d6f1d4fa317187",
+    "package.json": "6e4bccd6fbc70d2d5b23ecdb8022a11d437f2e21a1820e39865a81cb994244a6"
+  },
+  "screenshots": {
+    "original-desktop.png": "4e70e368172971995b82d1d56b53b7b98e16ee905effad8d1e27cdfcff5ca779",
+    "original-mobile.png": "51b37f8ed94f8d052a46af6783494bfbe5230f51d018a6c6cf4d842a767d92e6",
+    "revised-desktop.png": "de2b7e133a06574dd9aab0c2b39c9e229fb80852dabdcf7809ea0e406829a5db",
+    "revised-mobile.png": "eaa1aa1e4fb4c2328324f4eed456c5ae1b2dcaf6502fc7855bef5de8c3ef377c"
+  }
+}

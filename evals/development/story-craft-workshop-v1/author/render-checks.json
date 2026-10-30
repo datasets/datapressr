@@ -1,0 +1,98 @@
+[
+  {
+    "version": "original",
+    "device": "desktop",
+    "viewport": 1280,
+    "scrollWidth": 1280,
+    "height": 3146,
+    "images": [
+      {
+        "src": "2026-temperature-record-hurdle.svg",
+        "complete": true,
+        "width": 752,
+        "height": 648,
+        "naturalWidth": 720
+      },
+      {
+        "src": "2026-temperature-record-repeat.svg",
+        "complete": true,
+        "width": 752,
+        "height": 731,
+        "naturalWidth": 720
+      }
+    ],
+    "title": "The final-quarter hurdle for a new temperature record"
+  },
+  {
+    "version": "original",
+    "device": "mobile",
+    "viewport": 390,
+    "scrollWidth": 390,
+    "height": 3268,
+    "images": [
+      {
+        "src": "2026-temperature-record-hurdle.svg",
+        "complete": true,
+        "width": 350,
+        "height": 301,
+        "naturalWidth": 720
+      },
+      {
+        "src": "2026-temperature-record-repeat.svg",
+        "complete": true,
+        "width": 350,
+        "height": 340,
+        "naturalWidth": 720
+      }
+    ],
+    "title": "The final-quarter hurdle for a new temperature record"
+  },
+  {
+    "version": "revised",
+    "device": "desktop",
+    "viewport": 1280,
+    "scrollWidth": 1280,
+    "height": 3239,
+    "images": [
+      {
+        "src": "2026-temperature-record-repeat.svg",
+        "complete": true,
+        "width": 752,
+        "height": 731,
+        "naturalWidth": 720
+      },
+      {
+        "src": "2026-temperature-record-hurdle.svg",
+        "complete": true,
+        "width": 752,
+        "height": 648,
+        "naturalWidth": 720
+      }
+    ],
+    "title": "Why matching the warmest final quarter would still leave 2026 short"
+  },
+  {
+    "version": "revised",
+    "device": "mobile",
+    "viewport": 390,
+    "scrollWidth": 390,
+    "height": 3534,
+    "images": [
+      {
+        "src": "2026-temperature-record-repeat.svg",
+        "complete": true,
+        "width": 350,
+        "height": 340,
+        "naturalWidth": 720
+      },
+      {
+        "src": "2026-temperature-record-hurdle.svg",
+        "complete": true,
+        "width": 350,
+        "height": 301,
+        "naturalWidth": 720
+      }
+    ],
+    "title": "Why matching the warmest final quarter would still leave 2026 short"
+  }
+]

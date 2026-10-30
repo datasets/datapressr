@@ -1,0 +1,12 @@
+# Affected-scope result review: APPROVED
+
+30 October 2026; `/root/craft_technical_review`, within the same bounded technical-review session. Reviewed [result.md](result.md) SHA-256 `90a4c1a47cf212011ebf7893e36014eec7e7a6f581b695e4191473cbf638327e` against the retained first-reading, probe and technical records. **No blocking issue or inflated outcome claim found.** Approval concerns faithful synthesis and the bounded retain-for-development decision, not a new reader preference, skill-effect estimate or publication permission.
+
+- The reader's explicit A preference and reasons are accurately summarized, alongside weak passages and B's stronger immediate desktop visual. The result does not substitute technical correctness for editorial preference.
+- All five categorical probe distinctions are supported as correct for both A and B. The result appropriately declines a comprehension-gain claim and does not aggregate categories into a score.
+- Source-text assistance, alt text/hidden-caption exposure, A-first carryover, general climate knowledge and the limits of masked labels are explicit. The result describes this as exploratory rather than unaided visual comprehension evidence.
+- The resolved headline inference defect, desktop/no-regression findings, inherited unresolved mobile readability, and lack of full pipeline rerun agree with the technical report. It does not claim that click-through charts establish comfortable inline mobile reading.
+- Bundled commission/title/prose/order changes are not attributed to one rule. Owner taste, general efficacy, all-device approval and publication remain excluded. Stopping this pair and carrying at most provisional lessons to the separate synthesis task is consistent with the evidence.
+- Verified the cited first-reading hash `0a9a80ee3738daabcffdff420cf829b0c8544f09540b8d93b0f0cbaa7387ebb3`, probe hash `3dffc06ffd5110342f2ded766aae282c63fee2574ade0a7a2846b4cc1e5ec470`, and technical-report hash `72a8a7478369f9914ae853eb8b4f0b06c655d3e1c23b66030879664c1e1c4d08` against current bytes.
+
+This follow-up read only the result and reader records, checked their hashes, and reused the prior technical assessment. No new rendering, source research, reader responses or packet changes were made. The review now has exposure to the reader's preference; this occurred after the technical verdict and is not independent corroboration of that preference.

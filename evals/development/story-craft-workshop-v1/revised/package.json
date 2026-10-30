@@ -1,0 +1,13 @@
+{
+  "name": "factory-story-charts",
+  "private": true,
+  "type": "module",
+  "description": "Pinned build dependencies for static story charts.",
+  "scripts": {
+    "charts:temperature": "node 2026-temperature-record-make-charts.mjs"
+  },
+  "dependencies": {
+    "@observablehq/plot": "0.6.17",
+    "jsdom": "30.0.1"
+  }
+}

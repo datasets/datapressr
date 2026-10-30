@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The final-quarter hurdle for a new temperature record</title><style>*{box-sizing:border-box}body{margin:0;background:#fff;color:#202020;font-family:Georgia,serif;font-size:19px;line-height:1.6}main{max-width:800px;margin:48px auto;padding:0 24px 64px}h1{font-size:38px;line-height:1.15;letter-spacing:-.02em}h2{font-size:26px;margin-top:2em}p{margin:1.2em 0}a{color:#175d8d;text-underline-offset:3px;overflow-wrap:anywhere}figure{margin:30px 0}img{display:block;width:100%;height:auto}figcaption{display:none}pre{font-size:14px;white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f5f5;padding:16px}code{overflow-wrap:anywhere}@media(max-width:600px){body{font-size:18px}main{margin:28px auto;padding:0 20px 40px}h1{font-size:31px}}</style></head><body><main><h1>The final-quarter hurdle for a new temperature record</h1><figure>
+<a href="2026-temperature-record-hurdle.svg" aria-label="Open chart at full size"><img src="2026-temperature-record-hurdle.svg"
+alt="The October–December tie hurdle for 2026 is 1.02–1.03°C above 1991–2020, compared with the 2023 historical maximum of 0.85°C. The difference, 0.17–0.18°C, compares equal-month and day-weighted averaging." /></a>
+<figcaption aria-hidden="true">The October–December tie hurdle for 2026
+is 1.02–1.03°C above 1991–2020, compared with the 2023 historical
+maximum of 0.85°C. The difference, 0.17–0.18°C, compares equal-month and
+day-weighted averaging.</figcaption>
+</figure>
+<p>For 2026 to overtake 2024 in this calculation, October–December would
+have to exceed a tie hurdle of <strong>1.02–1.03°C above
+1991–2020</strong>. That is <strong>0.17–0.18°C above the warmest
+previous final quarter</strong> in the ERA5 monthly record.</p>
+<p>The ranges compare two ways of averaging: giving each month equal
+weight, or weighting it by its number of days. They show sensitivity to
+that choice, not physical uncertainty. A new record requires exceeding
+the unrounded hurdle; reaching the rounded label does not settle the
+comparison.</p>
+<p>The <a
+href="https://climate.copernicus.eu/surface-air-temperature-september-2026">Copernicus
+Climate Change Service’s September bulletin</a>, released in October,
+supplies the timely question. It puts 2026 second for January–September
+and says a repeat of late 2023 would bring it close to 2024. The hurdle
+calculation gives that comparison a historical scale.</p>
+<p>These are global surface air temperature anomalies from C3S/ECMWF’s
+ERA5 series, with observations through September 2026. Each month is
+compared with its own 1991–2020 average. A high anomaly means warmth
+relative to the same time of year; it does not mean the closing months
+must be the hottest months in absolute temperature. This is global air
+temperature across land and ocean, rather than local weather or sea
+surface temperature.</p>
+<p>The highest previous October–December anomaly was <strong>0.85°C in
+2023</strong>. Matching that final quarter would be insufficient because
+the annual average also carries the earlier months. January–September
+2026 averaged <strong>0.62°C</strong>, behind 2024’s
+<strong>0.70–0.71°C</strong>. The remaining quarter must offset that
+accumulated deficit as well as match the annual benchmark.</p>
+<figure>
+<a href="2026-temperature-record-repeat.svg" aria-label="Open chart at full size"><img src="2026-temperature-record-repeat.svg"
+alt="Cumulative anomalies for 2024 and 2026. January–September 2026 is second at 0.62°C, versus first-place 2024 at 0.70–0.71°C. If October–December repeats 2023, 2026 ends at 0.67–0.68°C, less than 0.05°C below 2024’s 0.72°C. Shading is hypothetical for 2026 only; 2024 remains actual." /></a>
+<figcaption aria-hidden="true">Cumulative anomalies for 2024 and 2026.
+January–September 2026 is second at 0.62°C, versus first-place 2024 at
+0.70–0.71°C. If October–December repeats 2023, 2026 ends at 0.67–0.68°C,
+less than 0.05°C below 2024’s 0.72°C. Shading is hypothetical for 2026
+only; 2024 remains actual.</figcaption>
+</figure>
+<p>Yet the repeat scenario would leave only a small annual gap:
+<strong>0.67–0.68°C for 2026</strong>, compared with <strong>0.72°C for
+2024</strong>, a difference of <strong>less than 0.05°C</strong>. C3S’s
+“close to” comparison is consistent with this result. Second through
+September is already a warm year in this record.</p>
+<p>A historical maximum is a comparison, not a ceiling. C3S also reports
+strengthening El Niño conditions; these anomaly calculations do not test
+that outlook or assign a probability to a new annual record. Nor does a
+single year’s ranking measure the Paris Agreement’s long-term warming
+level.</p>
+<h2 id="how-this-was-made">How this was made</h2>
+<p>The <a href="2026-temperature-record-src/global-monthly.csv">frozen
+monthly data</a>, <a
+href="2026-temperature-record-src/PROVENANCE.md">provenance and
+licence</a>, <a
+href="2026-temperature-record-src/calculate.py">calculation</a> and <a
+href="2026-temperature-record-make-charts.mjs">chart builder</a>
+reproduce the numbers. Both averaging choices use the supplied anomalies
+and actual calendars. This is a conditional calculation on that
+snapshot, rather than a reproduction of C3S’s eventual annual
+classification. From this download folder, run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> 2026-temperature-record-src/calculate.py</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> ci</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">node</span> 2026-temperature-record-make-charts.mjs</span></code></pre></div>
+</main></body></html>
