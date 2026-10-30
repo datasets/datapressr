@@ -1,0 +1,22 @@
+{
+  "version": "reader-packet-v2",
+  "mode": "ordinary-rendered",
+  "pages": [
+    {
+      "path": "page-1.png",
+      "sha256": "d3480381e4c9e1818eee6e03018377f3d042e80946635889ee757684f6b70a6b",
+      "width_px": 360,
+      "height_px": 220,
+      "intended_display_width_px": 360,
+      "intended_display_height_px": 220
+    },
+    {
+      "path": "page-2.png",
+      "sha256": "669c834d18b2f466eefb9b75df7bcd7c96c5bd72323e00ecdadc6c0d20c13159",
+      "width_px": 360,
+      "height_px": 260,
+      "intended_display_width_px": 360,
+      "intended_display_height_px": 260
+    }
+  ]
+}

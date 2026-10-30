@@ -1,3 +1,4 @@
+import { singleLeadingTitle } from '../../../lib/reader-packet.mjs';
 import { createHash } from 'node:crypto';
 import { existsSync, lstatSync, mkdirSync, readFileSync, realpathSync, statSync, writeFileSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
@@ -77,7 +78,7 @@ export function preparePilot({ root, out }) {
     put(`owner/${id}-commission.md`, commissionBytes);
     const viewedPath = join(out, 'owner', `${id}.md`);
     const original = readFileSync(join(root, sourceStory.path), 'utf8');
-    let text = original.replace(/^(# [^\n]+\n)\n\1\n/, '$1\n');
+    let text = singleLeadingTitle(original);
     if (text === original) throw new Error(`Expected identical duplicate leading H1: ${code}`);
     const rewrites = [];
     const renders = [];

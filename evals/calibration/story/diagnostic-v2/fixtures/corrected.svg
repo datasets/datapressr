@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="260" viewBox="0 0 360 260">
+<title>Synthetic fixture: hidden title says 10 to 20 units</title>
+<desc>Hidden assistance: group B is twice group A, 10 to 20 units. This must not be delivered as visible evidence.</desc>
+<rect width="360" height="260" fill="white"/>
+<g font-family="Arial" fill="#111">
+<text x="12" y="24" font-size="20">Group B doubles group A</text>
+<text x="12" y="56" font-size="16">Units</text>
+<rect x="50" y="120" width="80" height="60" fill="#176c9a"/>
+<rect x="210" y="60" width="80" height="120" fill="#176c9a"/>
+<text x="80" y="110" font-size="18">10</text><text x="240" y="50" font-size="18">20</text>
+<text x="84" y="200" font-size="16">A</text><text x="244" y="200" font-size="16">B</text>
+<text x="10" y="226" font-size="14">Source: synthetic only</text>
+<text x="10" y="247" font-size="14">Note: same units, same year</text>
+</g></svg>

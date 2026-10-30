@@ -83,3 +83,12 @@ export async function renderCharts(charts, outDir, { bin = CHROME, scale = SCALE
   }
   return out;
 }
+
+// Intrinsic PNG dimensions only. Header validation is not a decoder or legibility check.
+export function pngSize(bytes) {
+  const signature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+  if (!Buffer.isBuffer(bytes) || bytes.length < 33 || !bytes.subarray(0, 8).equals(signature) || bytes.readUInt32BE(8) !== 13 || bytes.toString('ascii', 12, 16) !== 'IHDR') throw new Error('Invalid PNG IHDR');
+  const width = bytes.readUInt32BE(16), height = bytes.readUInt32BE(20);
+  if (!width || !height) throw new Error('PNG dimensions must be positive');
+  return { width, height };
+}

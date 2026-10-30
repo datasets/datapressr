@@ -1,0 +1,79 @@
+{
+  "protocol": "reference-led-manual-v2",
+  "population": "synthetic-exposed-development",
+  "purpose": "Manual diagnostic controls, not automated language understanding or measured detection accuracy. Reviewer must independently check each expected judgment against the supplied evidence.",
+  "controls": [
+    {
+      "id": "debt-ratio-overstatement",
+      "commission": "Why did debt as a share of GDP change?",
+      "evidence": "Synthetic closed accounting example: debt rises from 100 to 110 units; GDP rises from 100 to 125 units; deficit financing adds exactly 10 units with zero stock-flow adjustment. Debt/GDP therefore falls from 100% to 88%.",
+      "claim": "Deficits added 10 units of debt, fully explaining why the debt-to-GDP ratio rose.",
+      "bounded_payoff": "supported: deficits added debt in levels",
+      "commission_answer": "unsupported: the claimed ratio direction is wrong and the denominator is ignored",
+      "central_claim_type": "causal",
+      "central_claim_support": "fail",
+      "first_descriptive_or_accounting_relation": "accounting: deficit financing adds to debt in levels; supported only in this stipulated closed example",
+      "reason": "A supported levels identity cannot validate a stronger ratio-change lede. Real debt reconciliations also need stock-flow adjustments."
+    },
+    {
+      "id": "bounded-payoff-not-causal-answer",
+      "commission": "Why did the price fall on the final day?",
+      "evidence": "Synthetic prices in units: day 1 = 10, day 2 = 8, day 3 = 4. No mechanism source is supplied.",
+      "claim": "The last day's price was half the previous day's, and the three-day average was 7.33 units.",
+      "bounded_payoff": "supported",
+      "commission_answer": "unanswered: a useful magnitude comparison supplies no cause",
+      "central_claim_type": "descriptive",
+      "central_claim_support": "pass",
+      "first_descriptive_or_accounting_relation": "descriptive: 4 is half of 8; supported",
+      "reason": "Do not mark a true comparison unsupported merely because it is incomplete, or mark the causal commission answered merely because the comparison is useful."
+    },
+    {
+      "id": "population-switch",
+      "commission": "How did all-government expenditure change?",
+      "evidence": "Synthetic table covers central-government expenditure only: 100 then 110. No all-government series is supplied.",
+      "claim": "All-government expenditure grew 10%.",
+      "bounded_payoff": "unsupported at the claimed population",
+      "commission_answer": "unsupported",
+      "central_claim_type": "descriptive",
+      "central_claim_support": "fail",
+      "first_descriptive_or_accounting_relation": "descriptive: central-government expenditure grew 10%; supported only for the narrower population",
+      "reason": "Matching arithmetic does not repair a population switch. This paraphrases the exposed Mb8941a-R7 failure class without importing fresh evidence."
+    },
+    {
+      "id": "futures-to-spot-switch",
+      "commission": "What explains the observed spot-price change?",
+      "evidence": "Synthetic source excerpt: 'Storage constraints pressured the expiring futures contract.' The plotted series is a spot assessment; no source links this particular spot observation to the mechanism.",
+      "claim": "Storage constraints caused the plotted spot-price drop, as the source proves.",
+      "bounded_payoff": "unsupported causal transfer",
+      "commission_answer": "unsupported",
+      "central_claim_type": "causal",
+      "central_claim_support": "fail",
+      "first_descriptive_or_accounting_relation": "The excerpt concerns expiring futures, not the observed spot series",
+      "reason": "A named source does not resolve a series/instrument mismatch. This is the exposed q03 failure class, not a claim about actual external-source verification."
+    },
+    {
+      "id": "qualified-attribution-valid",
+      "commission": "What does the permitted source say about the futures mechanism, and does our spot series establish it?",
+      "evidence": "Same synthetic permitted source excerpt: 'Storage constraints pressured the expiring futures contract.' The plotted series is a spot assessment. The quoted excerpt is available and verified within this synthetic fixture.",
+      "claim": "The source attributes pressure on the expiring futures contract to storage constraints. Our spot-price series alone does not establish that mechanism for the plotted observation.",
+      "bounded_payoff": "supported qualified attribution",
+      "commission_answer": "answered-by-attribution within the explicitly bounded question; not causal identification",
+      "central_claim_type": "attributed-mechanism",
+      "central_claim_support": "pass",
+      "first_descriptive_or_accounting_relation": "Source attribution matches contract scope; the limit on inference from spot prices is explicit",
+      "reason": "Accept useful, correctly scoped and checked external attribution. Do not demand causal identification for a claim that only reports what a permitted source attributes."
+    },
+    {
+      "id": "attribution-unverified",
+      "commission": "What explains the observed price change?",
+      "evidence": "The writer names an external report, but its relevant passage is unavailable.",
+      "claim": "According to the report, storage constraints contributed to the price change.",
+      "bounded_payoff": "unresolved",
+      "commission_answer": "unresolved attribution",
+      "central_claim_type": "attributed-mechanism",
+      "central_claim_support": "unresolved",
+      "first_descriptive_or_accounting_relation": "No eligible verified relationship supplied",
+      "reason": "Neither automatically false nor verified. Missing evidence must not become a pass or a categorical falsehood."
+    }
+  ]
+}

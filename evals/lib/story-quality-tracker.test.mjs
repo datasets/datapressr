@@ -81,3 +81,24 @@ test('CLI validates and reports without mutating inputs and resolves links from 
     for(const args of [['report',manifestPath,journalPath,'--relative-to'],['validate',manifestPath,journalPath,'--relative-to',root],['report',manifestPath,journalPath,'--relative-to',tmpdir()]]) assert.notEqual(spawnSync(process.execPath,[cli,...args]).status,0);
   } finally {rmSync(root,{recursive:true,force:true});}
 });
+
+test('manifest rejects invented dimensions even when the PNG hash is correct',()=>usingFixture(({root,manifest,options})=>{
+  const bytes=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=','base64');
+  writeFileSync(join(root,'render.png'),bytes);
+  manifest.artifacts[0].renders=[{render_id:'plot',path:'render.png',sha256:digest(bytes),width_px:900,height_px:600,intended_display_width_px:600}];
+  assert.throws(()=>validateManifest(manifest,options),/dimensions/);
+  Object.assign(manifest.artifacts[0].renders[0],{width_px:1,height_px:1});
+  assert.equal(validateManifest(manifest,options),manifest);
+}));
+test('changed reviewed render invalidates old acceptance; absent review stays unassessed',()=>usingFixture(({manifest,record})=>{
+  const render={render_id:'plot',path:'render.png',sha256:digest('before'),width_px:900,height_px:600,intended_display_width_px:600};
+  manifest.artifacts[0].renders=[render];record.render_sha256={plot:render.sha256};
+  record.exposure.materials.push({path:render.path,sha256:render.sha256});
+  record.exposure.viewed_sizes=[{target:'plot',width_px:600,height_px:400}];
+  const c=check(record,{check_id:'visual.label_collision',gate:'G4',outcome:'pass',evidence:[{path:render.path,sha256:render.sha256,locator:'all labels'}]});
+  assert.equal(validateRecords([c],{manifest,instrument}).length,1);
+  render.sha256=digest('after');
+  assert.throws(()=>validateRecords([c],{manifest,instrument}),/render hash mismatch/);
+  assert.match(renderReport([],{manifest,instrument}),/missing checks:.*visual.label_collision/);
+  for(const malformed of [{},null,{...c,outcome:undefined}])assert.throws(()=>validateRecords([malformed],{manifest,instrument}));
+}));

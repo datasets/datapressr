@@ -1,3 +1,4 @@
+import { pngSize } from './render.mjs';
 import { appendFileSync, readFileSync, realpathSync, statSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { isAbsolute, relative, resolve, sep, posix } from 'node:path';
@@ -61,6 +62,8 @@ export function validateManifest(manifest, { root, instrument }) {
       text(r.render_id, `${p}.render_id`); if (renderIds.has(r.render_id)) fail(p, 'duplicate render_id'); renderIds.add(r.render_id);
       fileAsset(r, root, `${p}.render ${r.render_id}`);
       for (const key of ['width_px', 'height_px', 'intended_display_width_px']) positive(r[key], `${p}.render.${key}`);
+      const size = pngSize(readFileSync(resolve(root, r.path)));
+      if (size.width !== r.width_px || size.height !== r.height_px) fail(`${p}.render`, 'PNG dimensions mismatch');
     }
     object(a.process, `${p}.process`);
     for (const key of ['writer_rounds', 'review_rounds']) {
