@@ -60,3 +60,9 @@ Hashes exclude this self-referential handoff. The independent review record shou
 | `evals/calibration/story/diagnostic-v2/rendered/reader/README.md` | `77d556ed41c816dd4561257af55c6f56bdaf5b8e98254a5e44c11108cdab6666` |
 | `evals/calibration/story/diagnostic-v2/rendered/reader/page-1.png` | `d3480381e4c9e1818eee6e03018377f3d042e80946635889ee757684f6b70a6b` |
 | `evals/calibration/story/diagnostic-v2/rendered/reader/page-2.png` | `669c834d18b2f466eefb9b75df7bcd7c96c5bd72323e00ecdadc6c0d20c13159` |
+
+## Accepted review and readiness attestation
+
+Independent reviewer `/root/diagnostic_independent_review` APPROVED implementation `e7233f0cbc022bbd99e2ad33c72cfc0cd8940015` without requested fixes. The [review record](../reviews/2026-10-30-diagnostic-repair-review.md) has SHA-256 `0013a12d92fd5421634d7482169d8145229fcef67471d7ef602b762031e7457c`. The reviewer independently passed 39 targeted tests, 525 full tests, existing pilot validation and 27 additional assertions including all 15 file pins. Worker rechecked all 15 implementation pins against working bytes and the reviewed commit before acceptance; no implementation changes followed review.
+
+Under root's explicit closure delegation, `.9.9` meets its bounded acceptance criteria and its diagnostic/custody prerequisite is ready for `.9.11`. Consume `reference-led-manual-v2` at this exact reviewed revision, with manual semantic and visual checks, truthful exposure/capture duties and the helper limitations preserved. This attestation concerns only `.9.9`: it does not attest fresh-case or candidate readiness, authorize a model batch, establish efficacy/calibration or close the broader quality programme. No fresh-case or candidate files were opened for this acceptance step. The review-only evidence commit is recorded in Beads and the coordinator handoff.
