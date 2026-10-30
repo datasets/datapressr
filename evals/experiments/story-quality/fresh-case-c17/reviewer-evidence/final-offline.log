@@ -1,0 +1,1 @@
+{"case_id":"FC-C17","status":"PASS","manifest_files":28,"raw_to_csv_to_svg":"byte-identical","separate_arithmetic":"PASS","png":"byte-identical; 1800x1000","writer_calls":0}

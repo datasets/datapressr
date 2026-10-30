@@ -1,0 +1,18 @@
+{
+  "case_id": "FC-C17",
+  "source_commit": "dd580cf2760b24ab4558b11a7092849bda3345ac",
+  "main_commit": "a11d0670702d8b76cb6131b4fcde0a084ddf42da",
+  "main_ancestor": false,
+  "shape_validation": "PASS",
+  "production_loader": {
+    "status": "BLOCKED",
+    "reason": "invalid case story/fc-c17:\n  inputs[0].commit: dd580cf2760b24ab4558b11a7092849bda3345ac is not an ancestor of main (pin a commit that is on main)"
+  },
+  "lower_level_staging": "PASS",
+  "permitted_input_files": 13,
+  "custody_exclusions": "PASS",
+  "staged_raw_reconstruction": "byte-identical",
+  "staged_skill_ref": "a11d0670702d8b76cb6131b4fcde0a084ddf42da",
+  "writer_calls": 0,
+  "limitation": "Lower-level stageWorkspace smoke test does not bypass or satisfy production loadCase ancestry gate; no execution authorized"
+}
