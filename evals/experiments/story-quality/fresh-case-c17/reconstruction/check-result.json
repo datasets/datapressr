@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "method": "Python csv/Decimal independent implementation; same custodian, pending separate-person review",
+  "rows": [
+    {
+      "year": 2021,
+      "change_people": 522040,
+      "natural_change_people": 146036,
+      "net_international_migration_people": 376004,
+      "migration_share_of_change_percent": "72.02589839859014634893877864"
+    },
+    {
+      "year": 2022,
+      "change_people": 1917561,
+      "natural_change_people": 224026,
+      "net_international_migration_people": 1693535,
+      "migration_share_of_change_percent": "88.31713828138974457657409595"
+    },
+    {
+      "year": 2023,
+      "change_people": 2788910,
+      "natural_change_people": 494611,
+      "net_international_migration_people": 2294299,
+      "migration_share_of_change_percent": "82.26507847151754628152217174"
+    },
+    {
+      "year": 2024,
+      "change_people": 3304757,
+      "natural_change_people": 518638,
+      "net_international_migration_people": 2786119,
+      "migration_share_of_change_percent": "84.30631964770783449433649736"
+    }
+  ]
+}

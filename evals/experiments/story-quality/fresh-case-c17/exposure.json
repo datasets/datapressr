@@ -1,0 +1,43 @@
+{
+  "case_id": "FC-C17",
+  "custodian": "codex-fresh-custodian-20261030-c17",
+  "started_at_utc": "2026-10-30T19:29:00Z",
+  "started_at_precision": "approximate first task tool activity; conservative rounded minute",
+  "role": "source custodian, no writer or candidate authorship",
+  "read_materials": [
+    "AGENTS.md",
+    "selected full bead datapressr-8no.9.10",
+    "workplan Lane B, resource/isolation excerpts; keyword search also exposed neighboring lane ordering snippets",
+    "reference-led-v1/decisions.md (explicitly required shared development record)",
+    "evals/cases/story directory/topic names and q04 case/prompt for existing harness format",
+    "docs/research/data-story-exemplar-notes.md topic registry rows only",
+    "evals/lib/render.mjs, fixture-staging.mjs prefix, schema.mjs and stage.mjs matching lines; package.json",
+    "Fresh source retrievals listed in inputs/retrieval.json; targeted primary-source web query also returned unrequested secondary snippets and later-vintage snippets; those were not used in source packet"
+  ],
+  "past_topics_excluded": [
+    "France public debt",
+    "WTI negative price",
+    "WWII allies",
+    "atmospheric CO2",
+    "global temperature workshop",
+    "London GDP",
+    "rent control",
+    "household spending and pay",
+    "gender politics",
+    "inflation basket",
+    "COVID journalism",
+    "OLS demonstration",
+    "Bostock explanatory example"
+  ],
+  "candidate_access": false,
+  "candidate_paths_read": [],
+  "case_content_recipients": [
+    "this custodian context only until independent reviewer handoff"
+  ],
+  "root_messages": "Opaque ID, readiness, paths, hash and prerequisites only; no topic, source names, numerical findings or controls",
+  "root_attestation_received": "2026-10-30: root reports candidate independently frozen/closed and diagnostics closed, neither author saw this case. No candidate bytes or rule wording supplied.",
+  "prior_exposure_limits": "No claim of excluding model pretraining knowledge or unrecorded historical human/source familiarity. Topic newly selected independently relative to checked case/exemplar registry; one case, not general transfer evidence. Fresh evaluation status conditional on reviewer accepting custody and author attestations.",
+  "consumed_by_evaluation": false,
+  "writer_calls": 0,
+  "publication": false
+}

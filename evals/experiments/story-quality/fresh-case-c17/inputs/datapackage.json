@@ -1,0 +1,80 @@
+{
+  "name": "fc-c17-components",
+  "title": "Vintage 2024 national population components",
+  "status": "archived",
+  "description": "Evaluation-only fixed source and reproducible tidy extraction; independent review pending.",
+  "licenses": [
+    {
+      "name": "No licence stated in retrieved documents",
+      "path": "https://www.census.gov/about/policies/copyright.html"
+    }
+  ],
+  "sources": [
+    {
+      "title": "U.S. Census Bureau, Vintage 2024 national and state population estimates",
+      "path": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/state/totals/NST-EST2024-ALLDATA.csv"
+    }
+  ],
+  "resources": [
+    {
+      "name": "components",
+      "path": "data/components.csv",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": [
+          "year_ending_july_1"
+        ],
+        "fields": [
+          {
+            "name": "year_ending_july_1",
+            "type": "year"
+          },
+          {
+            "name": "population_start_people",
+            "type": "integer"
+          },
+          {
+            "name": "population_end_people",
+            "type": "integer"
+          },
+          {
+            "name": "births_people",
+            "type": "integer"
+          },
+          {
+            "name": "deaths_people",
+            "type": "integer"
+          },
+          {
+            "name": "natural_change_people",
+            "type": "integer"
+          },
+          {
+            "name": "net_international_migration_people",
+            "type": "integer"
+          },
+          {
+            "name": "net_domestic_migration_people",
+            "type": "integer"
+          },
+          {
+            "name": "residual_people",
+            "type": "integer"
+          },
+          {
+            "name": "population_change_people",
+            "type": "integer"
+          },
+          {
+            "name": "migration_share_of_change_percent",
+            "type": "number"
+          },
+          {
+            "name": "population_growth_percent",
+            "type": "number"
+          }
+        ]
+      }
+    }
+  ]
+}

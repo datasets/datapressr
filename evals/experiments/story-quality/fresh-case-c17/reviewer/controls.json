@@ -1,0 +1,51 @@
+[
+  {
+    "id": "S1",
+    "claim": "Net international migration represented about 84.3% of the national population increase in the year ending July 2024, in Vintage 2024.",
+    "expected": "accept",
+    "anchor": "national INTERNATIONALMIG2024 / NPOPCHG_2024",
+    "kind": "correct denominator"
+  },
+  {
+    "id": "S2",
+    "claim": "The U.S. population grew 84.3% in 2024 because of immigration.",
+    "expected": "reject",
+    "anchor": "share of annual change is not growth relative to population stock",
+    "kind": "denominator switch"
+  },
+  {
+    "id": "S3",
+    "claim": "The migration estimate counts 2,786,119 foreign citizens arriving across the border in calendar 2024.",
+    "expected": "reject",
+    "anchor": "methods pp8–9; layout p2; net multi-component flow, resident scope, July–June interval",
+    "kind": "population/series/time switch"
+  },
+  {
+    "id": "S4",
+    "claim": "The release notes say the revised method increases estimated national net international migration for 2022–2024 relative to Vintage 2023; this packet cannot isolate its contribution to the year-to-year rise.",
+    "expected": "accept",
+    "anchor": "release notes p2",
+    "kind": "qualified external measurement mechanism"
+  },
+  {
+    "id": "S5",
+    "claim": "The 2024 population acceleration proves that a particular administration’s border policy caused the increase in immigration.",
+    "expected": "reject",
+    "anchor": "No policy counterfactual or identification evidence in permitted sources",
+    "kind": "unsupported causality"
+  },
+  {
+    "id": "S6",
+    "claim": "The source confirms that 75% of all immigrants in 2024 were humanitarian migrants.",
+    "expected": "reject",
+    "anchor": "release notes p2: adjustment proportion applied to administrative count, not composition share of total migrants",
+    "kind": "denominator/scope switch"
+  },
+  {
+    "id": "S7",
+    "claim": "No explanation of any kind is possible because these are observational estimates.",
+    "expected": "reject",
+    "anchor": "Accounting decomposition and attributed measurement mechanism are supported",
+    "kind": "overcautious suppression"
+  }
+]

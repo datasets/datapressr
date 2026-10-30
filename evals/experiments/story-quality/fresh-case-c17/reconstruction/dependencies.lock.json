@@ -1,0 +1,33 @@
+{
+  "npm_dependencies": [],
+  "runtime": {
+    "node": "v26.4.0",
+    "python": "Python 3.9.6",
+    "chrome": "Google Chrome 156.0.8078.74",
+    "pdftotext": "26.08.0",
+    "os": "macOS-15.6-arm64-arm-64bit"
+  },
+  "files": [
+    {
+      "path": "/opt/homebrew/bin/node",
+      "sha256": "b4036723a31962118876fec671cb0368cc621f011be38b0f8c4deedbc337209e"
+    },
+    {
+      "path": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "sha256": "cf864393a84aa983ba58feea2c24050748e39738591205ecaa54b2c1199ad28c"
+    },
+    {
+      "path": "/usr/bin/sips",
+      "sha256": "400b61e8dd4f8f633007f1e7a519fc2b3958fb9288a6c9f6a016763944d487f1"
+    },
+    {
+      "path": "evals/lib/render.mjs",
+      "sha256": "148ab2b07bbcc3541521cc9358388beb1670734a049e6e9aa4b3555e6d866066"
+    },
+    {
+      "path": "evals/lib/schema.mjs",
+      "sha256": "a128d64eb753f18b0ddb11f308b7616c2b16e0cd63a1d6e8740b1f803806424b"
+    }
+  ],
+  "limits": "Node build uses built-ins only. Python arithmetic uses standard library only. System renderer/extractor versions and executable hashes pinned; external binaries are not vendored. PDF extraction is preparation convenience, not part of numerical raw-to-chart build. No offline npm installation required."
+}

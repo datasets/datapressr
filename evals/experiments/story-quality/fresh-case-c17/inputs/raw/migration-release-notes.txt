@@ -1,0 +1,86 @@
+Vintage 2024 Release Notes
+
+The Vintage 2024 population estimates reflect the following methodological changes since the release
+of the Vintage 2023 estimates. For more detail, please refer to the full Vintage 2024 methodology
+statement: http://www.census.gov/programs-surveys/popest/technical-documentation/methodology.html.
+
+
+Base Population
+
+Whereas the latest decennial census has traditionally served as the population estimates base, the 2020
+Census could not be adopted for this purpose. This was the result of unique challenges including the
+unavailability of specific data required for estimates processing and delays caused by the COVID-19
+pandemic. As a result, the Population Estimates Program developed a process for integrating multiple data
+sources at varying levels of demographic and geographic detail to produce an estimate for April 1, 2020
+that is referred to as the “blended base.” The Vintage 2024 blended base for the United States did not
+feature changes relative to Vintage 2023.
+
+For Puerto Rico, the Vintage 2024 blended base for Puerto Rico consists of the following:
+
+     •    2020 Census Data: Commonwealth and municipio total resident, household, and GQ population
+          counts (by facility type) 1 from the PL 94-171 Redistricting File.
+                                        0F
+
+
+
+
+     •    Vintage 2020 Population Estimates for April 1, 2020: Commonwealth and municipio population
+          estimates by age, sex, and universe (including GQ facility type).
+
+This represents a slight modification to Vintage 2023, where the GQ population data from the 2020 Census
+matched the totals for institutional/noninstitutional facilities, while the GQ type detail (by age and sex)
+came exclusively from Vintage 2020.
+
+
+Vital Statistics Estimates
+
+For Vintage 2024, we began a phased transition to estimating births and deaths with a single source of
+data at the subnational level. In previous vintages, representatives from the Federal-State Cooperative for
+Population Estimates (FSCPE) contributed data on the geographic distribution of recent vital events within
+their respective states, but many of the reasons for combining the National Center for Health Statistics
+(NCHS) and FSCPE data sources are no longer applicable. Mainly, the timeliness and completeness of the
+NCHS provisional data has surpassed what we are able to collect from the FSCPE. For Vintage 2024, we did
+not request any new or revised data from the FSCPE; however, we still included data received in previous
+vintages for years 2020 through 2022 (where applicable). Future vintages will fully remove the FSCPE data
+and use only the NCHS data at the national and subnational levels to estimate births and deaths.
+
+
+
+
+1
+  The seven major GQ facility types utilized in estimates production are: correctional institutions, juvenile institutions, nursing
+homes, other institutional facilities, college dormitories, military housing, and other noninstitutional facilities. While we do not
+release data on GQ by facility type, we do use them to calculate population universes such as “civilian noninstitutionalized.”
+
+                                                                   1
+Net International Migration Estimates
+
+In the last three years, there has been a notable increase in the number of refugees, U.S. Border Patrol
+releases, and U.S. Customs and Border Protection Office of Field Operations’ paroles. To account for
+this increase, we utilized new, reliable monthly administrative data on these humanitarian migrant
+cases from the U.S. Refugee Admissions Program and the Office of Homeland Security Statistics to
+enhance the estimates of non-U.S. born immigration described in the method statement.
+
+The adjustment is applied at the national level by adding 75% of the humanitarian migrants to the ACS
+residence one year ago non-U.S.-born immigration estimate for each estimate year (July 1, 2021 - June
+30, 2022; July 1, 2022 -June 30, 2023; and July 1, 2023 - June 30, 2024). Similar to previous adjustments
+to international migration during the COVID-19 pandemic, this humanitarian migrant adjustment was
+specifically applied to the national total and distributed down to states and counties.
+
+Although non-U.S.-born immigration is the only component of NIM that is directly adjusted, this impacts
+the net international migration estimate. Specifically, it results in increased national-level NIM totals for
+estimate years (July 1 to June 30) 2022, 2023 and 2024 when compared to Vintage 2023.
+
+
+
+
+Note: The Census Bureau has reviewed this data product to ensure appropriate access, use, and disclosure
+avoidance protection of the confidential source data used to produce this product (Data Management
+System (DMS) number: P-6000042 and P-7501659. Disclosure Review Board (DRB) approval
+number: CBDRB-FY25-0078).
+
+
+
+
+                                                       2
+

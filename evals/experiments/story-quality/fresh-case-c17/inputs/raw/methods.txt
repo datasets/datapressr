@@ -1,0 +1,816 @@
+                                                                                                                               December 2024
+
+
+METHODOLOGY FOR THE UNITED STATES POPULATION ESTIMATES: VINTAGE 2024
+Nation, States, Counties, and Puerto Rico – April 1, 2020 to July 1, 2024
+
+Populations can change in three ways: people may be born (births), they may die (deaths), or they may move
+(domestic and international migration). The U.S. Census Bureau’s Population Estimates Program measures this
+change and adds it to a base population to produce updated estimates every year.
+
+OVERVIEW
+
+Each year, the United States Census Bureau produces and publishes estimates of the population for the nation,
+states, metropolitan and micropolitan statistical areas, counties, state/county equivalents, and Puerto Rico. 1                    0F
+
+
+
+
+We estimate the resident population for each year since the most recent decennial census by using measures
+of population change. The resident population includes all people currently residing in the United States.
+
+With each annual release of population estimates, the Population Estimates Program revises and updates the
+entire time series of estimates from April 1, 2020 to July 1 of the current year, which we refer to as the
+vintage year. We use the term “vintage” to denote an entire time series created with a consistent population
+starting point and methodology. The release of a new vintage of estimates supersedes any previous series and
+incorporates the most up-to-date input data and methodological improvements.
+
+The population estimates are used for federal funding allocations, as controls for major surveys including the
+Current Population Survey and the American Community Survey (ACS), for community development, to aid
+business planning, and as denominators for statistical rates, among many other uses. Overall, the estimates
+time series from 2010 to 2020 was very accurate, even accounting for ten years of population change. The
+mean absolute percent error (MAPE), which is the average absolute difference between the final total resident
+population estimates and 2020 Census counts, was only about 2.9 percent across all counties. 2                    1F
+
+
+
+
+We produce estimates using a cohort-component method, which is derived from the demographic
+balancing equation:
+
+
+    Population                                                                                                         Population
+                                     Births                      Deaths                    Migration
+      Base                                                                                                              Estimate
+
+The population estimate at any given time point starts with a population base (e.g., the last decennial census or
+the previous point in the time series), adds births, subtracts deaths, and adds net migration (both international and
+domestic). 3 The individual methods we use account for additional factors such as input data availability and the
+            2F
+
+
+
+
+requirement that all estimates be consistent by geography and age, sex, race, and Hispanic origin.
+
+This document describes the input data, methodology, and processes for the creation of population estimates for
+the nation, states, counties, state/county equivalents, and Puerto Rico. We begin with a short discussion on
+consistency in the estimates, describe the input data, and detail the processes by which we produce estimates.
+
+1 The methodologies for developing population estimates for incorporated places and minor civil divisions (cities and towns) and housing unit
+
+estimates are covered in separate documents available at https://www.census.gov/programs-surveys/popest/technical-
+documentation/methodology.html.
+2 For more information on estimates evaluation, see https://www.census.gov/programs-surveys/popest/technical-
+
+documentation/research/evaluation-estimates.2020.html.
+3 Domestic migration sums to 0 at the national level and therefore has no effect on the national estimates.
+
+
+                                                                      1
+                                                                                                           December 2024
+
+
+
+Estimates Consistency, Controlling, and the Residual
+
+The estimates are produced using a “top-down” approach. Given that it is generally more reliable to estimate the
+change of a larger population, we begin by estimating the monthly population at the national level by age, sex,
+race, and Hispanic origin. We then produce estimates of the total annual population for counties, which we sum
+to the state level. With the national characteristics, state total, and county total estimates created, we produce
+estimates of states and counties by age, sex, race, and Hispanic origin.
+
+One of our key estimates principles is that all of the estimates we produce must be consistent across geography
+and demographic characteristics. For example, the sum of the county total populations must equal the total
+national population, and the sum of a particular race group within a state’s counties must equal the total of that
+particular race group in the state. Since our various estimates products and processes use slightly different input
+data and methodology, they often do not generate this precise consistency automatically. Consequently, we
+adjust the final estimates to be perfectly consistent. As a result, the demographic components of change do not
+account for all of the year-to-year change in the estimates series. The difference between the result of the
+balancing equation and the final estimate is referred to as the residual.
+
+The national population estimates by characteristics do not contain a residual. This is because they are made first
+and are not required to sum to any pre-defined total. The balancing equations for the subnational processes
+initially produce what we call “uncontrolled” estimates. To ensure consistency, we use a process called
+controlling or raking. This involves calculating a rake factor as the control total (to which data must sum) divided
+by the sum of the numbers we wish to control (the initial estimated values).
+
+                                                                    𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶𝐶 𝑇𝑇𝑇𝑇𝑇𝑇𝑇𝑇𝑇𝑇
+                                  𝑅𝑅𝑅𝑅𝑅𝑅𝑅𝑅 𝐹𝐹𝐹𝐹𝐹𝐹𝐹𝐹𝐹𝐹𝐹𝐹 = �                                           �
+                                                              ∑(𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈𝑈 𝑉𝑉𝑉𝑉𝑉𝑉𝑉𝑉𝑉𝑉𝑉𝑉)
+
+We multiply this rake factor by the uncontrolled values to generate “controlled” estimates. In the simple case
+where the goal is to sum to a single total, this is fairly straightforward. However, deriving state and county
+population estimates by characteristics requires a slightly more complicated process. Since we produce national
+estimates by characteristics and state/county totals first, state and county characteristics need to use a two-way
+raking system. For example, state characteristics are required to be consistent with both national characteristics
+and state total estimates (see the section on state and county characteristics).
+
+The controlling process usually produces estimates that sum to a predefined total but are not integers. Because we
+require estimates in integer form, these data are rounded to remove the decimal values. However, applying a
+simple rounding algorithm may upset the consistency established in the controlling process. To account for this,
+we use a variety of controlled rounding procedures (e.g., greatest mantissa or two-way controlled rounding).
+
+Base Population
+
+The population estimates base is the starting point for each vintage of population estimates. Over recent decades,
+the decennial census typically provided all the necessary detail for the estimates base. However, the 2020 Census
+could not be similarly adopted for this purpose due to unique challenges.
+
+For example, the disclosure avoidance system applied to the 2020 Census counts impacted what variables would be
+available in the official (i.e., protected via differential privacy) data. This included several variables required for
+
+
+
+                                                                      2
+                                                                                                                                  December 2024
+
+
+
+estimates processing, such as “modified race” 4 (race variable featuring “Some other race” responses redistributed
+                                                         3F
+
+
+
+
+into the race groups defined by the Office of Management and Budget in 1997), the Master Address File ID (used to
+implement annual boundary updates), and variables necessary for data record linkages with administrative records
+(used to assign demographic characteristics for births and domestic migration).
+
+Additionally, the COVID-19 pandemic introduced significant delays to both the enumeration of the 2020 Census and
+post-processing of the data, affecting the availability of official decennial data by the full age, sex, race, and Hispanic
+origin detail required for estimates processing relative to the annual estimates production schedule.
+
+In response, the Population Estimates Program developed a process for integrating three data sources at varying
+levels of detail to produce what we refer to as the blended base. The blended base was initially created for the
+Vintage 2021 series of estimates, reflecting the most detail from alternate sources we could confidently incorporate
+into the estimates base in the time that was available to finalize the method. This approach has been retained since,
+featuring a limited number of modifications in each subsequent vintage. The Vintage 2024 (V2024) blended base
+consists of the following:
+     •    2020 Census Data: 2020 Census data from the internal Census Edited File (CEF) tabulated into 2024
+          geographies at the subcounty level, infused with differentially private noise, and then aggregated to create
+          county, state, and national total resident, household, and group quarters (by facility type) 5 population      4F
+
+
+
+
+          counts. We also use Hispanic or Latino origin from the 2020 Census PL 94-171 Redistricting File for the total
+          resident population.
+     •    2020 Demographic Analysis (DA) 6 Estimates: National population estimates by age and sex.
+                                                   5F
+
+
+
+
+     •    Vintage 2020 Population Estimates for April 1, 2020 (V2020): Nation, state, and county population estimates
+          by age, sex, and race. Hispanic origin is also used to distribute the household and group quarters (by facility
+          type) populations.
+
+The blended base process for V2024 began by tabulating population counts on the internal 2020 CEF by 2024
+geographic boundaries at the subcounty level. These counts were infused with a small amount of differentially
+private noise 7 before they were aggregated to national, state, and county levels for use as population controls. The
+                6F
+
+
+
+
+demographic characteristics (age, sex, race, and Hispanic origin) from the V2020 estimates for April 1 were applied to
+the protected 2020 Census totals by geography. This process created an initial dataset with aggregated 2020 Census
+totals featuring V2020 characteristics, hereafter referred to as “census-adjusted V2020.”
+
+From there, the blended base process incorporated the 2020 DA estimates using a top-down methodology which is
+very similar to the process for developing the postcensal population estimates each year, described earlier in this
+document: first, we created blended national-level data by raking 2020 DA to national controls created from the
+protected 2020 Census data. Then, the census-adjusted V2020 estimates were raked by single year of age and sex to
+the nationally controlled DA data. This integrated the protected 2020 Census counts, 2020 DA estimates, and
+
+
+4 In our estimates processing, we modify the Census race categories to be consistent with the race categories that appear in our input data. To
+
+learn more about the “Modified Race” process, go to https://www.census.gov/programs-surveys/popest/technical-
+documentation/research/modified-race-data.html.
+5
+  The seven major GQ facility types utilized in estimates production are: adult correctional institutions, juvenile institutions, nursing homes,
+other institutional facilities, college dormitories, military housing, and other noninstitutional facilities. While we do not release data on GQ by
+facility type, we do use them to calculate population universes such as “civilian noninstitutionalized.”
+6 The 2020 DA estimates of the national population by age, sex, and race or Hispanic origin on April 1, 2020 are developed from current and
+
+historical vital records, estimates of international migration, and Medicare records. The DA estimates are independent from the 2020 Census
+and are used to calculate net coverage error, one of the two main ways the U.S. Census Bureau uses population estimates to measure coverage
+of the census. For more information, see https://www.census.gov/programs-surveys/decennial-census/about/coverage-measurement/da.html.
+7 For more information regarding confidentiality protections applied using the 2020 Census Disclosure Avoidance System, see
+
+https://www.census.gov/programs-surveys/decennial-census/decade/2020/planning-management/process/disclosure-avoidance.html.
+                                                                        3
+                                                                                                              December 2024
+
+
+
+April 1, 2020 estimates from V2020 into a national blended base population. Starting with V2023, the 2020 Census
+Hispanic or Latino origin resident population distributions were added to this file. At the national level, then, it is
+accurate to say that resident, household, and group quarters (GQ) population totals are derived from the 2020
+Census; age and sex detail is drawn from 2020 DA; race detail comes from V2020; and Hispanic origin detail comes
+from the 2020 Census.
+
+Next, we raked the census-adjusted V2020 state-level estimates to the national level blended base by full detail and
+to the protected 2020 Census state resident population by Hispanic origin. This allowed us to retain the benefits of
+the national blended base while maintaining consistency with the aggregated, protected 2020 Census data. We
+developed the county-level blended base data using a parallel method, raking the census-adjusted V2020 county-
+level data (in V2024 geographic boundaries) to the state blended base and the protected 2020 Census county
+resident population by Hispanic origin. Finally, we rounded the county-level estimates, aggregated them to larger
+geographies to ensure consistency, and modeled additional detail required for our estimates processing (e.g., quarter
+years of age) using the V2020 data.
+
+The blended base for Puerto Rico is developed using a simplified version of the process described above. Since these
+estimates are produced for the Commonwealth and municipios by age and sex, and not for lower levels of
+geography, capturing geographic changes was not a factor. Additionally, there is no DA control available for Puerto
+Rico. The V2024 blended base for Puerto Rico consists of the following:
+
+    •   2020 Census Data: Commonwealth and municipio total resident, household, and GQ population counts (by
+        facility type) from the PL 94-171 Redistricting File.
+    •   V2020 Population Estimates for April 1, 2020: Commonwealth and municipio population estimates by age,
+        sex, and universe (including GQ facility type).
+
+The Puerto Rico Commonwealth blended base was developed by raking the V2020 April 1, 2020 population by age
+and sex directly to the 2020 Census total counts. Municipio data then followed the same process as U.S. counties,
+being raked to both the Puerto Rico Commonwealth blended base and the municipio 2020 Census total counts.
+
+Group Quarters
+
+We estimate the GQ population every year by single year of age, sex, race, Hispanic origin, and facility type. The
+GQ method begins with the April 1, 2020 blended base GQ population. We assume that the population in GQ
+remains constant throughout the decade unless we receive updated data on GQ population change.
+
+Information on change to the base GQ population comes from our annual Group Quarters Report (GQR). The GQR
+consists of time series data from the branches of the military, the Department of Veterans Affairs, and our state
+partners in the Federal-State Cooperative for Population Estimates (FSCPE). Our data providers supply data at the facility
+level, which allows us to aggregate to all other estimates geographies (e.g., subcounty areas, counties, and states).
+We use the submitted data to calculate year-to-year change for each subcounty area, which we then apply to the GQ
+population in the estimates base.
+
+Once we have a times series of total GQ population at the subcounty level, we aggregate the data to the national
+level and apply the April 1, 2020 blended base distribution of age, sex, race, and Hispanic origin detail by facility
+type to generate estimates of the GQ population by demographic characteristics. We also apply the county
+distribution of age, sex, race, and Hispanic origin to the county-level totals. To ensure consistency, we control the
+county characteristics to the national characteristics and the subcounty totals to the new county totals. Finally, we
+aggregate the data to the necessary levels for estimates production (e.g., three age groups for county totals
+production and full demographic detail for state characteristics production).
+                                                             4
+                                                                                                                                 December 2024
+
+
+
+Vital Statistics
+
+Vital statistics encompass two of the core components of the demographic equation: births and deaths. We
+receive data on vital records from the National Center for Health Statistics (NCHS) and, until V2024, the FSCPE.
+NCHS data are derived from birth and death certificates across the United States. Birth data include date of birth,
+sex of child, residence of mother, and race and Hispanic origin of both mother and father. Death data include
+residence, age, sex, race, and Hispanic origin of each decedent, and the date each death occurred. The FSCPE
+members contribute data on the geographic distribution of recent vital events within their respective states. For
+V2024, we began phased elimination of the FSCPE data from our subnational processes. This means that for
+V2024, we did not request any new or revised data from the FSCPE, but still included data received in previous
+vintages. Vital events data in the population estimates also include the results of our own short-term projections.
+
+In general, the birth and death data we receive from NCHS have a two-year lag. This means that the most recent
+final data we have on births and deaths by geographic and demographic detail for each vintage of estimates refer
+to the calendar year two years prior to the vintage year. For example, the most current full-detail birth and death
+data used in V2024 were from calendar year 2022. Additionally, for V2024 we utilized the available NCHS
+provisional data to account for recent trends and COVID-19 impacts on natality and mortality, which varied in
+recency by component. For births, we have NCHS monthly provisional totals by state for 2023 through June of
+2024. For deaths, we have NCHS monthly deaths with some characteristic detail for 2023 through June 2024 at
+the national level and monthly deaths by state for the same time period. The NCHS provisional data are used in
+conjunction with the data received from the FSCPE to approximate final NCHS data with characteristic
+assignment coming from the last year of final NCHS data when information on demographic characteristics is
+otherwise unavailable.
+
+We also modify the NCHS birth and death data to comply with our process. The first change to births is to assign
+race of child. Birth certificates include only data on the race and Hispanic origin of the parents, not the child, so we
+impute the race of the child through our “Kidlink” process. 8 This approach uses the combined distributions of
+                                                                        7F
+
+
+
+
+mothers’, fathers’, and children’s race and Hispanic origin from the 2010 Census to impute children’s race and
+Hispanic origin.
+
+Second, we adjust for inconsistencies between the imputed race and Hispanic origin distributions of births
+compared to the base population under age 1 in the blended base. This benchmarking process allows us to adjust
+the overall race and Hispanic origin distribution of births to create a consistent time series of births.
+
+While we make no adjustments to deaths occurring to people under 70 years of age, we do modify death records for
+persons aged 70 and over. Reporting of age at older ages is generally less reliable than at younger ages. 9 To address      8F
+
+
+
+
+this issue, we redistribute all deaths occurring to the aggregated population 70 years and older by sex, race, and
+Hispanic origin to single years of age (70 to 99 and 100+ years) using life-table-based death rates. 10                9F
+
+
+
+
+We aggregate NCHS-based birth and death data for the production of national-level population estimates and use
+births directly as a base for the population under age 1. We apply death rates by characteristics and control to
+NCHS death data by aggregate characteristic groups (see the section on national estimates).
+
+
+
+8 For more information on the Kidlink process, see https://nces.ed.gov/FCSM/pdf/Guarneri_2012FCSM_X-B.pdf.
+9 For more information on age reporting at older ages, see http://www.cdc.gov/nchs/data/nvsr/nvsr62/nvsr62_07.pdf.
+10 To derive the death rates for the population aged 70 and older, we employ life tables based on the United States Census Bureau’s 2023
+
+National Population Projections. The life tables are for males and females in five groups: Hispanic, non-Hispanic White, non-Hispanic Black,
+non-Hispanic American Indian and Alaska Native, and non-Hispanic Asian and Pacific Islander.
+
+                                                                       5
+                                                                                                            December 2024
+
+
+
+Distributing the national-level births and deaths to the subnational level requires additional computations. We
+distribute the monthly state provisional totals for 2023 and 2024 using characteristic and geographic
+distributions from the last year of final data (2022). These data are reconciled with the FSCPE data on the
+geographic distribution of total county vital events. Although we did not request new or revised data from the
+FSCPE for V2024, we still utilized data received in previous vintages for years 2020 through 2022, where
+applicable. These values are then summed to the state level and controlled to the national births and deaths by
+characteristic described above. The final county data are controlled to resulting state values. The national births
+and deaths serving as controls for the subnational vital events utilize recent provisional data to reflect the impact
+of the COVID-19 pandemic and other recent changes in natality and mortality trends. No other adjustments were
+made to the subnational birth or death estimates.
+
+Net Domestic Migration
+
+The third major component of the balancing equation is migration. Migration can be divided into net domestic
+migration (NDM) within the United States and net international migration (NIM) between the United States and
+elsewhere. The Population Estimates Program calculates domestic migration using several data sources and
+methods depending on the age group in question and the level of characteristic detail required.
+
+For state and county total estimates, we calculate county-specific net domestic migration based on four data
+sources:
+     1. Internal Revenue Service (IRS) tax return data for ages 0 to 64;
+     2. Medicare enrollment data from Centers for Medicare and Medicaid Services (CMS) for the population aged
+          65 and older;
+     3. Social Security Administration’s (SSA) Numerical Identification File (NUMIDENT) for all ages; and
+     4. Change in the GQ population (described in the group quarters section of this document).
+
+State and County Totals by Three Age Groups
+
+We produce overall net rates of movement into and out of each county for the total population by three age
+groups: 0 to 17, 18 to 64, and 65 and over. For the household population under age 18 and 18 to 64, we use
+person-level data on filers, spouses, and dependents from IRS tax return data. We match two years of IRS tax
+returns with age data from the NUMIDENT file to produce geographic data by age categories. The NUMIDENT is
+a database of all Social Security numbers ever assigned, which is updated annually with new entries and any
+changes to a person’s record.
+
+Once tax returns are matched, we then compare the addresses between the two years of IRS data to identify the
+number of exemptions that moved from one county to another between tax filings. An IRS exemption is defined
+here as an individual who appears in the IRS tax return data, either as primary filer, spouse, or dependent.
+
+Not all residents are represented in the tax exemption data, since not everyone files taxes. Therefore, the number
+of migrants in the IRS data is not equivalent to the number of migrants in the household population. To overcome
+this coverage limitation, we calculate NDM rates instead of using observed flows in the tax data. County-specific
+net migration rates can be thought of as the ratio of net migrant exemptions to the number of exemptions present
+at the beginning of the migration period. Mathematically, the rate is first obtained by subtracting the number of
+out-migrants from the number of in-migrants for each county to produce the number net migrant exemptions. We
+then divide the net migrant exemptions by the sum of non-migrant and out-migrant exemptions for each county.
+We calculate these rates separately for each period by the two age groups (0 to 17 and 18 to 64), as follows:
+
+
+                                                           6
+                                                                                                           December 2024
+
+
+
+
+Because the population aged 65 and over is more likely to enroll in Medicare than file taxes, we rely on Medicare
+enrollment data from CMS to account for movement of the older population. The process is similar to the under-
+18 and 18-to-64 age groups. Instead of tax exemptions, we match two years of Medicare enrollment data
+(address as of July 1) with age data from the NUMIDENT File. We then compare the addresses between the two
+years of Medicare data to identify the number of enrollees that moved from one county to another between the
+two years.
+
+Similar to IRS filing, not everyone enrolls in Medicare. Therefore, the number of migrants in the Medicare data is
+not equivalent to the number of migrants in the household population. For the same reason, we produce net
+rates based on Medicare enrollees for the 65-and-over population. We calculate the NDM rate for the 65-and-
+over population by subtracting the number of out-migrant enrollees from the in-migrant enrollees for each county
+to produce the number of Medicare-based net migrant enrollees. We then divide the number of Medicare-based
+net migrant enrollees by the sum of non-migrant enrollees and out-migrant enrollees for each county and period.
+The net rate is a ratio of the number of enrollees who moved in less those who moved out to the number of
+enrollees present at the beginning of the period, as given below:
+
+
+
+
+During the production of state and county total estimates, we apply these rates to the household population
+within the three age groups to produce a computed number of migrants for use in the balancing equation. We
+also treat change in GQ as an indirect measure of domestic migration. This methodology implicitly accounts for
+migration between GQ facilities as well as for household to GQ movement. To produce estimates of total
+migration for each of the three age groups, we combine age-specific domestic migration estimates from the
+application of these rates with the total amount of GQ population change in each age group. These total net
+domestic migration values are then controlled to sum to zero at the national level (as domestic migration must).
+
+State and County Characteristics
+
+The production of state and county characteristics estimates occurs after the production of state and county total
+estimates. The process for state and county total estimates only requires information on migration by age groups.
+However, to produce migration data by full characteristic detail, we need age, sex, race, and Hispanic origin.
+
+To create net domestic migration estimates by full demographic detail, we use data from four sources:
+     1. IRS tax return data for ages 0 to 64;
+     2. Medicare enrollment data from CMS for the population aged 65 and older;
+     3. SSA’s NUMIDENT File for all ages; and
+     4. The Demographic Characteristics File (DCF) for all ages.
+
+
+
+                                                           7
+                                                                                                           December 2024
+
+
+
+We use mailing address information from IRS tax return data for ages 0 to 64 to estimate migration. For ages 65
+and older, we utilize address information from Medicare enrollment data to assign migration status. We use the
+NUMIDENT File to allocate age and sex to individuals in the migration universe.
+
+The Population Estimates Program uses the DCF to allocate race and Hispanic origin to individuals in the
+migration universe. This file is developed internally from a collection of person-level data derived from
+decennial census data, administrative records, and a set of imputation techniques when reported race and
+Hispanic origin are not available.
+
+Because of known under-coverage in the IRS and Medicare data (i.e., not everyone files taxes or claims benefits),
+we calculate characteristic-specific out rates and in proportions and apply them to the population “at risk” of
+migrating. The population “at risk” is simply the population in each county in that particular age, sex, race, and
+Hispanic origin group.
+
+We calculate domestic out migration rates by dividing the number of out migrants identified in the particular
+source data (i.e., IRS or Medicare, depending on age) by the total number of individuals at the beginning of the
+period. The total number of individuals at the beginning of the period is the sum of out migrants and non
+migrants, as shown below:
+
+
+
+
+To distribute the pool of out migrants by demographic characteristics to their destination counties, we use in
+proportions. In proportions are defined as the number of exemptions (for ages 0 to 64) or the number of enrollees (for
+ages 65 and older) moving into a county divided by the national total number of out migrant exemptions/enrollees in a
+given demographic group. Though these can be very small proportions, it is important to note that no rounding is applied
+before calculating migrants.
+
+
+
+
+In the production of state and county population estimates by characteristics, we apply the out rates annually to
+each county’s population “at risk” to produce estimated numbers of domestic out migrants. Next, the national
+“pool” of out migrants by demographic characteristics are allocated to their destination counties with the in
+proportions. As a result, the in and out domestic migrants across all counties naturally aggregate to zero at the
+national level.
+
+Net International Migration
+
+As noted, the third major component of the balancing equation is migration: NDM within the United States and
+NIM between the United States and abroad. We estimate international migration via several components: non-
+U.S.-born immigration, non-U.S.-born emigration, net migration between the United States and Puerto Rico, net
+migration of the U.S.-born population to and from the United States, and net movement of the Armed Forces
+population to and from the United States.
+
+For each component, we first estimate migration totals for the nation. Then, we use a proxy universe to distribute
+totals (except net movement of the Armed Forces) to single years of age, sex, race, and Hispanic origin for the
+nation, states, and counties. For the net movement of the Armed Forces population, demographic characteristics
+                                                           8
+                                                                                                           December 2024
+
+
+and state and county distributions are developed based on a combination of data collected by the Defense
+Manpower Data Center (DMDC) and pooled 1-year ACS files.
+
+A proxy universe is a subset of the total ACS population which we use to represent the actual geographic and
+demographic composition of international migrants. We use proxy universes because the sample size is
+considerably larger than the input data we use for estimating national migration totals. In addition, a proxy
+universe provides characteristics of migrants that we cannot directly measure, such as for emigrants. Each annual
+national migration total is distributed to national and state characteristics using a proxy universe pooled from the
+corresponding ACS 1-year file and two previous ACS 1-year files. State characteristics are then distributed to
+counties using a proxy universe based on the corresponding ACS 5-year data. Since the ACS data release lags one
+year behind the vintage year, the proxy universes for the latest year available are utilized for the last annual
+period and are updated the following vintage.
+
+Immigration (Non-U.S.-Born)
+
+The immigration component accounts for international moves into the United States in which a change of usual
+residence has occurred, regardless of citizenship or migrant status. This includes the foreign born (naturalized citizens
+and non-citizens) and persons born abroad to U.S. citizen parents. We use ACS 1-year migration (residence one year
+ago) data to estimate annual national and state immigration totals. Since the ACS data release lags one year behind
+the vintage year, we hold the last available year of data constant for the final annual period of the vintage.
+
+Immigration totals are estimated separately for persons migrating from Mexico and persons migrating from all other
+countries.
+
+The proxy universe for immigration from Mexico is the ACS population born in Mexico whose year of entry was five
+years ago or less. The proxy universe for immigration from all other countries is the ACS population born in a foreign
+country (except Mexico) whose year of entry was five years ago or less. We adjust the age distribution to reflect age
+at arrival in the United States.
+
+Emigration (Non-U.S.-Born)
+
+The emigration component accounts for the resident foreign born (naturalized citizens and non-citizens) and
+persons born abroad to U.S. citizen parents. We use a residual method with ACS 1-year files to estimate emigration
+at the national level. Survival ratios are constructed from annual NCHS Hispanic life tables by single year of age (0-
+99, 100+) and sex. We apply these survival ratios to the non-U.S.-born population from one ACS file to estimate
+period deaths. Then we use ACS migration (year of entry) responses from the next consecutive ACS file to estimate
+immigration that occurred since the first ACS file. The residual is the remaining change in the ACS population after
+accounting for deaths and recent immigration. Residuals are calculated separately for the following mutually
+exclusive groups:
+
+    1.   Males born in Mexico who entered the United States within the past 10 years;
+    2.   Females born in Mexico who entered within the past 10 years;
+    3.   All persons born in Mexico who entered more than 10 years ago;
+    4.   All persons born in Canada or Europe who entered within the past 10 years;
+    5.   All persons born in Asia who entered within the past five years;
+    6.   All persons born in another country who entered within the past 10 years; and
+    7.   All persons born in Asia who entered more than five years ago, or born in another country (excluding
+         Mexico) who entered more than 10 years ago.
+
+
+                                                           9
+                                                                                                          December 2024
+
+
+We assume each group will exhibit different propensities to emigrate and different characteristics. These groups
+are also the definitions for the proxy universes constructed from the ACS files.
+
+We calculate three versions of residuals using the 2010-2014, 2010-2015, and 2010-2016 ACS periods and divide
+the residuals by person-years to get annualized rates. We average the rates from the three versions to produce the
+final emigration rate by group. To estimate national emigration totals for the current year, we apply the rate to the
+previous ACS 1-year population by group. We use proxy universes to distribute national totals to states, counties,
+and characteristics.
+
+Migration between the United States and Puerto Rico
+
+We use ACS and Puerto Rico Community Survey (PRCS) 1-year files on migration (residence one year ago) to estimate
+annual migration flows between the United States and Puerto Rico. We subtract PRCS respondents who resided in
+the United States one year ago from ACS respondents who resided in Puerto Rico one year ago to calculate net
+migration into the United States. The proxy universe is the ACS population born in Puerto Rico who entered the
+United States within the past 10 years.
+
+This component only accounts for migration between the United States and Puerto Rico. For all migration to and
+from Puerto Rico, please see the section on the Puerto Rico Resident Population by Age and Sex.
+
+U.S.-Born Net Emigration
+
+We use a residual method with census, survey, and population register data from approximately 100 countries to
+estimate net migration of the population born in the United States. The residual method measures change in the
+population of Americans (i.e., persons born in United States or citizens) in foreign countries measured at two points
+in time. We assume the change in population after accounting for deaths represents net migration between the
+United States and foreign country. This residual net migration is divided by the number of years between the two
+data points to produce an annualized country total. Country totals are then aggregated to a global total, which we
+hold constant every year. The estimate is updated periodically as foreign data become available. The proxy universe
+is the civilian population born in the United States whose residence one year ago was either in a different state or
+abroad.
+
+Movement of the Armed Forces Population to and from Overseas
+
+We derive the estimate of the net overseas movement of the Armed Forces population from data collected by the
+DMDC. The DMDC provides monthly tabulations of active-duty military personnel stationed outside the United States
+by age, sex, race, Hispanic origin, and individual branch of service within the Department of Defense. We use a
+combination of DMDC and ACS data to estimate the population by race. We aggregate the DMDC data to four race
+groups: 1) White alone, 2) Black alone, 3) American Indian and Alaska Native alone, and 4) all other races. We then
+utilize ACS data to distribute the “all other races” group to the full-detail alone and in combination race groups
+needed for estimates production.
+
+We assume that change over time in the overseas military population indicates movement of personnel into and
+out of the United States. The national-level estimates of net international movement of the Armed Forces are
+distributed to counties using the DMDC active-duty military population residing in the United States by age, sex,
+race, and Hispanic origin as a proxy universe. Five-digit zip code information from DMDC is matched to zip code
+information from the IRS to determine state and county location. When the DMDC zip code does not match, other
+information provided by DMDC is used to assign the state and county location. To improve the geographic
+distribution of the military population around certain domestic military installations, we use county grouping
+information derived from pooled 1-year ACS files.
+                                                              10
+                                                                                                            December 2024
+
+
+
+
+NIM Estimate Adjustments
+
+In recent years, there have been several notable shifts in international migration flows to and from the United States.
+Since 2020, we have been utilizing new sources of reliable administrative data to improve the precision of
+international migration estimates derived from ACS survey data. This approach allows our methodology to be more
+flexible by implementing adjustments that reflect shorter-term or sudden changes in international migration flows.
+The adjustments described in this section are applied at the national level; however, they are also reflected in the
+state and county estimates.
+
+Adjustments for COVID-19
+
+Due to the decrease in international migration resulting from the global COVID-19 pandemic, we have adjusted the
+methodology described above for migration occurring from April 1, 2020 to June 30, 2021. The national non-U.S.-
+born immigration, non-U.S.-born emigration, and U.S.-born net migration totals are adjusted according to 2019-2021
+time series on visa issuances, new student enrollments, refugee admissions, and humanitarian migrant cases from
+the Bureau of Consular Affairs, Institute of International Education, Refugee Processing Center, U.S. Citizenship and
+Immigration Services, and Department of Justice.
+
+These adjustments are as follows:
+
+    •   April 1 - June 30, 2020 – National migration totals for each component are set to 76% of July 1, 2018 -
+        June 30, 2019 levels. About 2.6% of the annual total is allocated into the last quarter of the year.
+    •   July 1, 2020 - June 30, 2021 – National migration totals for each component are set to 40% of July 1, 2018 -
+        June 30, 2019 levels.
+    •   Net Puerto Rico migration totals for 2020 and 2021 are retained from Vintage 2021. Adjustments are
+        based on T-100 airline passenger traffic data from the Bureau of Transportation Statistics combined with
+        previous 1-year ACS and PRCS migration (residence one year ago) data.
+
+Adjustments for Humanitarian Migrants
+
+In the last three years, there has been a notable increase in the number of refugees, U.S. Border Patrol releases,
+and U.S. Customs and Border Protection Office of Field Operations’ paroles. To account for this increase, we
+utilized new, reliable monthly administrative data on these humanitarian migrant cases from the U.S. Refugee
+Admissions Program and the Office of Homeland Security Statistics to enhance the estimates of non-U.S. born
+immigration described above.
+
+The adjustment is applied at the national level by adding 75% of the humanitarian migrants to the ACS residence one
+year ago non-U.S.-born immigration estimate for each estimate year (July 1, 2021 - June 30, 2022; July 1, 2022 -June
+30, 2023; and July 1, 2023 - June 30, 2024). Similar to the COVID-19 adjustments, this humanitarian migrant
+adjustment was specifically applied to the national total and distributed down to states and counties.
+
+Although non-U.S.-born immigration is the only component of NIM that is directly adjusted, this impacts the net
+international migration estimate. Specifically, it results in increased national-level NIM totals for estimate years
+(July 1 to June 30) 2022, 2023 and 2024 when compared to Vintage 2023.
+
+
+
+
+                                                           11
+                                                                                                                                          December 2024
+
+
+National Population by Age, Sex, Race, and Hispanic Origin
+
+The goal of the national population estimates process is to produce monthly resident population estimates by
+single year of age (0 to 100+), sex, Hispanic origin, and race (31 categories). We then separate these estimates
+into the following universes: household (HH), civilian (CIV), civilian noninstitutionalized (CNI), and resident plus
+Armed Forces overseas (RES+AFO). The core of the process is the demographic balancing equation. We take
+inputs on births, deaths, and net international migration by characteristics, and apply these components to the
+population at the beginning of the period as described above.
+The annual number of net international migrants is divided into monthly and quarterly values to use in the
+production of the estimates. For births, we directly utilize the number of monthly events from the births described
+above. For deaths, however, the process is more complicated. We multiply the starting population by life table-
+based death rates used in our Population Projections Program, and then control the resulting deaths to the deaths
+described above by sex and age (single-year-of-age under 70 and an aggregate of age 70 and over) for the
+following race and Hispanic origin groups: non-Hispanic White alone, non-Hispanic Black alone, non-Hispanic
+American Indian or Alaska Native alone, non-Hispanic Asian and Native Hawaiian or Other Pacific Islander alone,
+and Hispanic of any race.
+
+There are three main steps in the production of monthly national population estimates (which include the vital
+statistics process above): estimate the quarterly resident population; estimate the monthly resident population;
+and estimate the monthly population for the other four population universes described earlier.
+
+We create population estimates by quarter-years of age by applying final births, deaths, and international
+migration to the base, then aging the population forward one quarter-year of age. The process is repeated for
+every quarter in the time series. We round the final resident populations and components and assume any
+residual is part of international migration.
+
+Once we have created final quarterly estimates of the population by characteristics, we distribute the calculated
+deaths to each month of the quarter using the original monthly NCHS distribution of deaths. Then we estimate
+the population by age, sex, race, and Hispanic origin for the second and third month of each quarter using the
+monthly births, monthly net international migration, and calculated monthly deaths.
+
+The final step in the national estimates process is to calculate the additional population universes by
+demographic characteristics. To calculate the resident plus Armed Forces overseas population, we add the
+monthly overseas military population (from DMDC data) to the estimated resident population. The civilian
+population is the result of subtracting the monthly resident military population (also from DMDC) from the
+resident population. The civilian noninstitutionalized population is produced by subtracting the
+institutionalized GQ population from the civilian population. 11 Finally, we estimate the household
+                                                                               10F
+
+
+
+
+population by subtracting the total GQ population from the resident population. In addition, we use linear
+interpolation to derive daily resident population estimates and monthly component settings (e.g., average
+occurrence of births, deaths, and migration in seconds) for the U.S. Population Clock. 12                       11F
+
+
+
+
+State and County Total Resident Population
+
+The goal of the state and county total population estimates process is to produce total population estimates and
+estimates of the state population aged 18 and over for all states, counties, and equivalents in the United States.
+
+
+11 The institutionalized population is defined as people under formally authorized, supervised care or custody in institutions including
+
+correctional institutions, juvenile institutions, nursing homes, skilled nursing facilities, psychiatric hospitals, and facilities for the disabled.
+12 The Population Clock is published on the Census Bureau website and is located at https://www.census.gov/popclock.
+
+                                                                            12
+                                                                                                              December 2024
+
+
+We treat parishes in Louisiana, boroughs in Alaska, planning regions in Connecticut, and several independent
+cities (in Maryland, Missouri, Nevada, and Virginia) as counties. The process focuses on the development of
+estimates for counties (and equivalents) only. State estimates exist only as a sum of the final estimates for counties.
+
+Our process involves estimating the population separately for ages 0 to 17, 18 to 64, and 65 and over. We
+estimate three age groups for two reasons: first, we use different input data for domestic migration when
+estimating the population under age 65 (IRS tax exemptions) and the population aged 65 and over (Medicare
+enrollment). Second, we provide the Federal Election Commission with estimates of the state population aged
+18 and over by a mandated deadline.
+
+The production of state and county total population estimates is similar to the production of national estimates,
+as both are based on the balancing equation. However, state and county estimates are produced for annual July 1
+dates, and they incorporate domestic migration. Even though there are slight differences in the way we calculate
+the first three months (April to July) from the estimates base (using only one quarter of a year of migrants, for
+example), the process is very similar for all other points in the time series.
+
+We first subtract the GQ population and “age” the household population one year in order to produce an initial
+estimate of the household population at the end of the period. The aging process takes the proportions of the
+previous vintage county population in the oldest age of each age group (i.e., age 17 and age 64), applies those
+proportions to the population in each group at the beginning of the period, and moves that population into the
+next higher age group (e.g., the estimated number of 64-year-olds would “age” into the group aged 65 and over).
+
+Net migration rates calculated from IRS and Medicare data are then applied to an estimated population at risk
+of migrating in each age group which includes half of the components of change occurring in the period to
+create estimates of net domestic migration. Then we update the initial end-of-period household population by
+adding births (for the 0-to-17 population), subtracting deaths, adding net domestic migrants, and adding
+international migrants. Finally, the GQ population is added to create uncontrolled resident population
+estimates for each age group.
+
+The next step in the process ensures consistency with the national estimates. First, we control the calculated
+resident population numbers to equal the national numbers by the three age groups. Second, we add GQ change to
+the total household domestic net migration estimate for each age group and control that number to sum to zero at
+the national level by age group. We then round the final resident population by age group and allocate the
+remainder (usually very small) to the county with the largest population in the country. Finally, we aggregate the
+three age groups into total estimates for counties and sum these estimates to create final estimates for states.
+
+State and County Resident Population by Age, Sex, Race, and Hispanic Origin
+
+The goal of the state and county population estimates by demographic characteristics process is to create
+population estimates by age, sex, race, and Hispanic origin for all states, counties, and equivalents in the United
+States. This process essentially follows the cohort-component approach by adding births, subtracting deaths,
+adding the effects of net domestic and international migration, and aging the population forward. An additional
+factor in this process is the requirement of consistency between population estimates for the multiple levels of
+geography and characteristic detail (see the section on estimates consistency). County characteristics, for example,
+are produced by single years of age (0-84 and 85+), sex, race (31 categories), and Hispanic origin, resulting in
+10,664 characteristics combinations per geographic area.
+
+The calculation of state and county estimates by characteristics uses a two-way raking process to ensure that
+the final estimates sum correctly by both geography and characteristics. The method involves iteratively
+
+                                                            13
+                                                                                                         December 2024
+
+
+controlling estimated values to the larger geography’s characteristics and the smaller geography’s total
+estimates. In other words, we control state characteristics to national characteristics and state totals, and
+then we control county characteristics to state characteristics and county totals. After multiple raking
+iterations, changes in the data become progressively smaller. However, the resulting population values are
+not necessarily integers. Therefore, we apply a controlled rounding process which allows us to convert the
+estimates to whole numbers while maintaining consistency across geographic levels and characteristics detail.
+
+Puerto Rico Resident Population by Age and Sex
+
+The Population Estimates Program produces annual resident population estimates by single year of age and sex for
+the Commonwealth of Puerto Rico (ages 0 to 100+) and its municipios (ages 0 to 85+). We produce these estimates
+using a cohort-component method. Although the general method is similar to the national and state and county
+characteristic population estimates processes described above, the input data come from different sources.
+
+The birth and death data we utilize are provided by the Puerto Rico Institute of Statistics and originate from the
+Puerto Rico Department of Health vital registration system. Birth data include month and year of birth, sex of the
+child, mother’s age, and mother’s country and municipio of residence. Death data include month and year of death,
+sex, age, and decedent’s country and municipio of residence. In V2024, we utilize final monthly vital events from April
+2020 to December 2023 and provisional monthly events from January to June 2024.
+
+We estimate total annual net international migration between Puerto Rico and all other countries using Airline
+Passenger Traffic (APT) data from the Bureau of Transportation Statistics (BTS). These data include monthly detail of
+both domestic and international flights. First, we aggregate monthly in-bound and out-bound passenger flow data to
+annual totals for each estimate year, July 1 to June 30. We use proxy universes from ACS and PRCS to estimate the
+single-year-of-age and sex detail for the in-migrants and out-migrants, respectively. Finally, we calculate annual net
+migration into Puerto Rico by subtracting the out-migrants from the in-migrants. Each vintage, we revise the previous
+year’s net international migration estimate using the final BTS data as they become available.
+
+We have found that seasonal variation in the APT data related to tourism, particularly during the summer and winter
+months, can warrant minor adjustments when aggregated to annual July 1 to June 30 estimate periods. Data
+anomalies in the seasonal patterns since April 2020 coincide with varying phases of the COVID-19 pandemic and
+specifically the lifting of pandemic-related travel restrictions. To mitigate these anomalous seasonal patterns, we
+adjusted the levels for March to August 2021 by averaging the 2019 (pre-pandemic) and 2022 (post-pandemic) flight
+data for each specific month.
+
+Using the birth, death, and net international migration estimates by age and sex, we estimate the annual
+Commonwealth resident population using the balancing equation. The components of change and resulting
+populations are rounded, but, like the national estimates, no population control is required.
+
+At the municipio level, domestic and international migration are consolidated into a single total net migration
+component by age and sex. We start with municipio-level total net migration rates calculated using a residual
+method, where differences between the expected April 1, 2020 population (estimated from 2010 Census counts and
+10 years of birth and death data) and the V2024 blended base for each municipio by age and sex represent total net
+migration over the prior 10 years. These residual migration estimates are then translated into annual migration rates
+by age and sex for each municipio. Next, we multiply these net total migration rates by the household population at
+the beginning of the period to produce initial estimates of total net migration, which are added to the starting
+population along with births and deaths to estimate the population for the following year. Then, GQ population
+change is added into the initial migration estimates. Finally, both the net migration and population estimates by age
+and sex for each municipio are controlled and rounded to be precisely consistent with the Commonwealth net
+migration and resident population by age and sex.
+                                                            14
+

@@ -1,0 +1,32 @@
+{
+  "case_id": "FC-C17",
+  "status": "frozen-ready-for-independent-review",
+  "started_at_utc": "2026-10-30T19:29:00Z",
+  "frozen_at_utc": "2026-10-30T19:37:39.562829+00:00",
+  "initial_cap_minutes": 120,
+  "elapsed_minutes_at_freeze": 8.66,
+  "case_count": 1,
+  "source_strategy": "One selected topic; targeted primary downloads only, no broad survey",
+  "writer_calls": 0,
+  "new_model_batches": 0,
+  "paid_generation_authorized": false,
+  "cost_usd": "No paid generation invoked; orchestration/tool billing not available to custodian",
+  "coverage": [
+    "Primary raw source and methods PDFs archived",
+    "Source-to-tidy extraction with exact national scope",
+    "Separate Python Decimal arithmetic implementation",
+    "Existing renderer reused and visually inspected",
+    "Deliberate scope/denominator/causality controls frozen",
+    "Input identity/exposure/rights records",
+    "Dataset validation zero errors and warnings"
+  ],
+  "not_covered": [
+    "Separate-person source/reconstruction/custody review pending",
+    "Real main-ancestor input commit for harness staging pending",
+    "Model experiment not run",
+    "Owner calibration not performed",
+    "Mobile rendering not evaluated",
+    "System runtime binaries not vendored",
+    "No network-sandbox attestation"
+  ]
+}

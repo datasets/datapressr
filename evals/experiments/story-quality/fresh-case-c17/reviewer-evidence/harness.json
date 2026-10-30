@@ -1,0 +1,10 @@
+{
+  "shape": {
+    "ok": false,
+    "errors": [
+      "inputs[0].commit: must be a non-empty string"
+    ]
+  },
+  "loader": "no case at evals/cases/story/fc-c17",
+  "execution_authorized": false
+}

@@ -1,0 +1,161 @@
+NST-EST2024-ALLDATA: Annual Population Estimates, Estimated Components of Resident
+Population Change, and Rates of the Components of Resident Population Change for the United States,
+States, District of Columbia, and Puerto Rico: April 1, 2020 to July 1, 2024
+
+File: 7/1/2024 National and State Population Estimates
+
+Source: U.S. Census Bureau, Population Division
+Release date: December 2024
+
+Sort order of observations: States in FIPS code sort
+
+Data fields (in order of appearance):
+
+VARIABLE                                DESCRIPTION
+SUMLEV                                  Geographic summary level
+REGION                                  Census Region code
+DIVISION                                Census Division code
+STATE                                   State FIPS code
+NAME                                    State name
+ESTIMATESBASE2020                       4/1/2020 resident total population estimates base
+POPESTIMATE2020                         7/1/2020 resident total population estimate
+POPESTIMATE2021                         7/1/2021 resident total population estimate
+POPESTIMATE2022                         7/1/2022 resident total population estimate
+POPESTIMATE2023                         7/1/2023 resident total population estimate
+POPESTIMATE2024                         7/1/2024 resident total population estimate
+NPOPCHG_2020                            Numeric change in resident total population 4/1/2020 to 7/1/2020
+NPOPCHG_2021                            Numeric change in resident total population 7/1/2020 to 7/1/2021
+NPOPCHG_2022                            Numeric change in resident total population 7/1/2021 to 7/1/2022
+NPOPCHG_2023                            Numeric change in resident total population 7/1/2022 to 7/1/2023
+NPOPCHG_2024                            Numeric change in resident total population 7/1/2023 to 7/1/2024
+BIRTHS2020                              Births in period 4/1/2020 to 6/30/2020
+BIRTHS2021                              Births in period 7/1/2020 to 6/30/2021
+BIRTHS2022                              Births in period 7/1/2021 to 6/30/2022
+BIRTHS2023                              Births in period 7/1/2022 to 6/30/2023
+BIRTHS2024                              Births in period 7/1/2023 to 6/30/2024
+DEATHS2020                              Deaths in period 4/1/2020 to 6/30/2020
+DEATHS2021                              Deaths in period 7/1/2020 to 6/30/2021
+DEATHS2022                              Deaths in period 7/1/2021 to 6/30/2022
+DEATHS2023                              Deaths in period 7/1/2022 to 6/30/2023
+DEATHS2024                              Deaths in period 7/1/2023 to 6/30/2024
+NATURALCHG2020                          Natural change in period 4/1/2020 to 6/30/2020
+NATURALCHG2021                          Natural change in period 7/1/2020 to 6/30/2021
+NATURALCHG2022                          Natural change in period 7/1/2021 to 6/30/2022
+NATURALCHG2023                          Natural change in period 7/1/2022 to 6/30/2023
+NATURALCHG2024                          Natural change in period 7/1/2023 to 6/30/2024
+
+
+
+                                                       1
+INTERNATIONALMIG2020    Net international migration in period 4/1/2020 to 6/30/2020
+INTERNATIONALMIG2021    Net international migration in period 7/1/2020 to 6/30/2021
+INTERNATIONALMIG2022    Net international migration in period 7/1/2021 to 6/30/2022
+INTERNATIONALMIG2023    Net international migration in period 7/1/2022 to 6/30/2023
+INTERNATIONALMIG2024    Net international migration in period 7/1/2023 to 6/30/2024
+DOMESTICMIG2020         Net domestic migration in period 4/1/2020 to 6/30/2020
+DOMESTICMIG2021         Net domestic migration in period 7/1/2020 to 6/30/2021
+DOMESTICMIG2022         Net domestic migration in period 7/1/2021 to 6/30/2022
+DOMESTICMIG2023         Net domestic migration in period 7/1/2022 to 6/30/2023
+DOMESTICMIG2024         Net domestic migration in period 7/1/2023 to 6/30/2024
+NETMIG2020              Net migration in period 4/1/2020 to 6/30/2020
+NETMIG2021              Net migration in period 7/1/2020 to 6/30/2021
+NETMIG2022              Net migration in period 7/1/2021 to 6/30/2022
+NETMIG2023              Net migration in period 7/1/2022 to 6/30/2023
+NETMIG2024              Net migration in period 7/1/2023 to 6/30/2024
+RESIDUAL2020            Residual for period 4/1/2020 to 6/30/2020
+RESIDUAL2021            Residual for period 7/1/2020 to 6/30/2021
+RESIDUAL2022            Residual for period 7/1/2021 to 6/30/2022
+RESIDUAL2023            Residual for period 7/1/2022 to 6/30/2023
+RESIDUAL2024            Residual for period 7/1/2023 to 6/30/2024
+RBIRTH2021              Birth rate in period 7/1/2020 to 6/30/2021
+RBIRTH2022              Birth rate in period 7/1/2021 to 6/30/2022
+RBIRTH2023              Birth rate in period 7/1/2022 to 6/30/2023
+RBIRTH2024              Birth rate in period 7/1/2023 to 6/30/2024
+RDEATH2021              Death rate in period 7/1/2020 to 6/30/2021
+RDEATH2022              Death rate in period 7/1/2021 to 6/30/2022
+RDEATH2023              Death rate in period 7/1/2022 to 6/30/2023
+RDEATH2024              Death rate in period 7/1/2023 to 6/30/2024
+RNATURALCHG2021         Natural change rate in period 7/1/2020 to 6/30/2021
+RNATURALCHG2022         Natural change rate in period 7/1/2021 to 6/30/2022
+RNATURALCHG2023         Natural change rate in period 7/1/2022 to 6/30/2023
+RNATURALCHG2024         Natural change rate in period 7/1/2023 to 6/30/2024
+RINTERNATIONALMIG2021   Net international migration rate in period 7/1/2020 to 6/30/2021
+RINTERNATIONALMIG2022   Net international migration rate in period 7/1/2021 to 6/30/2022
+RINTERNATIONALMIG2023   Net international migration rate in period 7/1/2022 to 6/30/2023
+RINTERNATIONALMIG2024   Net international migration rate in period 7/1/2023 to 6/30/2024
+RDOMESTICMIG2021        Net domestic migration rate in period 7/1/2020 to 6/30/2021
+RDOMESTICMIG2022        Net domestic migration rate in period 7/1/2021 to 6/30/2022
+RDOMESTICMIG2023        Net domestic migration rate in period 7/1/2022 to 6/30/2023
+RDOMESTICMIG2024        Net domestic migration rate in period 7/1/2023 to 6/30/2024
+RNETMIG2021             Net migration rate in period 7/1/2020 to 6/30/2021
+RNETMIG2022             Net migration rate in period 7/1/2021 to 6/30/2022
+RNETMIG2023             Net migration rate in period 7/1/2022 to 6/30/2023
+RNETMIG2024             Net migration rate in period 7/1/2023 to 6/30/2024
+
+
+
+
+                                      2
+X = Not Applicable
+
+The key for SUMLEV is as follows:
+       010 = Nation
+       020 = Region
+       030 = Division
+       040 = State and/or Statistical Equivalent
+
+The key for REGION is as follows:
+       1 = Northeast
+       2 = Midwest
+       3 = South
+       4 = West
+
+The key for DIVISION is as follows:
+       1 = New England
+       2 = Middle Atlantic
+      3 = East North Central
+      4 = West North Central
+      5 = South Atlantic
+      6 = East South Central
+      7 = West South Central
+      8 = Mountain
+      9 = Pacific
+
+Notes: The Census Bureau has reviewed this data product to ensure appropriate access, use, and
+disclosure avoidance protection of the confidential source data used to produce this product (Data
+Management System (DMS) number: P-6000042 and P-7501659. Disclosure Review Board (DRB)
+approval number: CBDRB-FY25-0078).
+
+The estimates are developed from a base that integrates the 2020 Census, Vintage 2020 estimates, and
+(for the U.S. only) 2020 Demographic Analysis estimates. The estimates add births to, subtract deaths
+from, and add net migration to the April 1, 2020 base population. For population estimates methodology
+statements, see https://www.census.gov/programs-surveys/popest/technical-
+documentation/methodology.html.
+
+See Geographic Terms and Definitions at https://www.census.gov/programs-surveys/popest/guidance-
+geographies/terms-and-definitions.html for a list of the states that are included in each region and
+division. All geographic boundaries for the 2024 population estimates series are as of January 1, 2024.
+
+Total population change includes a residual. This residual represents the change in population that
+cannot be attributed to any specific demographic component. See Population Estimates Terms and
+Definitions at http://www.census.gov/programs-surveys/popest/about/glossary.html.
+
+Rates for birth, death, natural change, net international migration, net domestic migration, and net
+migration components are calculated by taking the component value between July 1 and June 30 for an
+
+                                                    3
+estimate year (e.g., BIRTHS2024), dividing by the average of the July 1 beginning and ending resident
+total populations for the estimate year (e.g., POPESTIMATE2023 and POPESTIMATE2024), and then
+multiplying by one thousand.
+
+Net international migration for the United States includes the international migration of both U.S.-born
+and non-U.S.-born populations. Specifically, it includes: (a) the net international migration of the non-
+U.S. born, (b) the net migration of U.S. born to and from the United States, (c) the net migration
+between the United States and Puerto Rico, and (d) the net movement of the Armed Forces population
+between the United States and overseas.
+
+
+
+
+                                                    4
+

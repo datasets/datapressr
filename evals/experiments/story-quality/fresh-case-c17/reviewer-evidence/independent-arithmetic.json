@@ -1,0 +1,57 @@
+{
+  "rows": [
+    {
+      "population_start_people": 331577720,
+      "population_end_people": 332099760,
+      "births_people": 3584459,
+      "deaths_people": 3438423,
+      "natural_change_people": 146036,
+      "net_international_migration_people": 376004,
+      "population_change_people": 522040,
+      "net_domestic_migration_people": 0,
+      "residual_people": 0,
+      "year_ending_july_1": 2021
+    },
+    {
+      "population_start_people": 332099760,
+      "population_end_people": 334017321,
+      "births_people": 3680380,
+      "deaths_people": 3456354,
+      "natural_change_people": 224026,
+      "net_international_migration_people": 1693535,
+      "population_change_people": 1917561,
+      "net_domestic_migration_people": 0,
+      "residual_people": 0,
+      "year_ending_july_1": 2022
+    },
+    {
+      "population_start_people": 334017321,
+      "population_end_people": 336806231,
+      "births_people": 3648896,
+      "deaths_people": 3154285,
+      "natural_change_people": 494611,
+      "net_international_migration_people": 2294299,
+      "population_change_people": 2788910,
+      "net_domestic_migration_people": 0,
+      "residual_people": 0,
+      "year_ending_july_1": 2023
+    },
+    {
+      "population_start_people": 336806231,
+      "population_end_people": 340110988,
+      "births_people": 3605563,
+      "deaths_people": 3086925,
+      "natural_change_people": 518638,
+      "net_international_migration_people": 2786119,
+      "population_change_people": 3304757,
+      "net_domestic_migration_people": 0,
+      "residual_people": 0,
+      "year_ending_july_1": 2024
+    }
+  ],
+  "acceleration": 2782717,
+  "migration_delta": 2410115,
+  "natural_delta": 372602,
+  "migration_share_percent": "86.61013678358237650468948154",
+  "status": "PASS"
+}

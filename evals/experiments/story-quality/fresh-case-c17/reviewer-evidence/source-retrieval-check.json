@@ -1,0 +1,30 @@
+[
+  {
+    "path": "raw/layout.pdf",
+    "url": "https://www2.census.gov/programs-surveys/popest/technical-documentation/file-layouts/2020-2024/NST-EST2024-ALLDATA.pdf",
+    "sha256": "f6141b7a8c4666b0a1ff2bf3ed293a3c890c73175379eeb54140851037fd6cb3",
+    "matches_frozen": true,
+    "bytes": 97608
+  },
+  {
+    "path": "raw/methods.pdf",
+    "url": "https://www2.census.gov/programs-surveys/popest/technical-documentation/methodology/2020-2024/methods-statement-v2024.pdf",
+    "sha256": "5995ca18b0d55b50e2d54e2224814a5edcd4c3f247a00e49b3d2c862f05a1f2d",
+    "matches_frozen": true,
+    "bytes": 504437
+  },
+  {
+    "path": "raw/migration-release-notes.pdf",
+    "url": "https://www2.census.gov/programs-surveys/popest/technical-documentation/methodology/2020-2024/2024-est-relnotes.pdf",
+    "sha256": "311348b869562a6e12d506c7b9d6c1a457d935f758d8936a08a5be0d9e9c6b8c",
+    "matches_frozen": true,
+    "bytes": 174012
+  },
+  {
+    "path": "raw/population.csv",
+    "url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2024/state/totals/NST-EST2024-ALLDATA.csv",
+    "sha256": "b8b50bd345d8a5f33d5c8a28c95aeaa0a50971356f000d9b48276a65fd9022a7",
+    "matches_frozen": true,
+    "bytes": 41378
+  }
+]
