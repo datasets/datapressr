@@ -12,6 +12,12 @@ review_on: 2026-11-07
 
 This plan is the current map for `datapressr-8no.9`; Beads owns executable tasks and status. Factory's [programme](../../../factory/PLAN.md) links this work through the Story craft and Evaluation and learning initiatives. Reuse the existing harness, tracker, source catalogue and known failures. Do not build another runner or expand a general research survey.
 
+## Execution checkpoint — 30 October
+
+The bounded craft workshop `.9.13` and its three children are complete: reviewed commission (`48b6e48`), complete original/revised reading pair with independent reader and technical evidence (`cc423a3`), and one provisional lesson/candidate with independent review (`4e525a0`). See the [workshop result](../../evals/development/story-craft-workshop-v1/result.md) and [lesson decision](../research/story-craft-workshop-v1/decision.md). Retain the revision for development on a qualified local editorial preference. Both versions answered the probes correctly; no comprehension gain or general skill efficacy was established. A-first carryover, hidden HTML/source assistance and inherited small mobile chart labels remain explicit limitations.
+
+Do not restart `.13.1` from the historical sequence below. Next concrete follow-ups are Factory `factory-but.3.5` for the mobile chart repair and existing `.9.9` for diagnostic/reader-packet repair using this observed failure. Candidate v0.1 remains uninstalled; the bounded exposed-oil transfer is proposed, not executed. Controlled R3 work and owner calibration remain separate and incomplete. The 7 November programme review still applies; workshop completion does not close the broader story-quality goal.
+
 ## What “better” means
 
 A reader gains a worthwhile understanding they can explain accurately: a consequential question, a supported finding, a clear line of reasoning and charts that make the comparison easy to see. The owner's reference register is short Guardian/FT/Economist-style data journalism, not a mandatory imitation of any publisher.
