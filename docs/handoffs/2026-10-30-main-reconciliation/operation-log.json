@@ -1,0 +1,403 @@
+{
+  "timestamp_utc": "2026-10-30T19:48:07.539329+00:00",
+  "operations": [
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "rev-parse",
+        "HEAD",
+        "main",
+        "origin/main",
+        "integration/main-reconciliation-20261030",
+        "work/structure-eval-quality-2026-10-15"
+      ],
+      "exit": 0,
+      "stdout": "46a14a5f25cee203844a38d5fcc284293ee2301b\na11d0670702d8b76cb6131b4fcde0a084ddf42da\n52f2b232298d88f4cc90c0c8a27d3b61688fd7e0\n5a2d8e8eac906102caf0a95547780260c7cb37dc\n46a14a5f25cee203844a38d5fcc284293ee2301b\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "worktree",
+        "list",
+        "--porcelain"
+      ],
+      "exit": 0,
+      "stdout": "worktree /Users/rgrp/src/datasets/datapressr\nHEAD 46a14a5f25cee203844a38d5fcc284293ee2301b\nbranch refs/heads/work/structure-eval-quality-2026-10-15\n\nworktree /private/tmp/datapressr-agents-wording-20261017\nHEAD 1f976fff656ffa59fcc7dfc1fdbc70d8e5ec0fef\nbranch refs/heads/work/agents-wording-20261017\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-comparison-prep-20261018\nHEAD 4a43168e6bab396973a0d862fff5d97c20133293\nbranch refs/heads/work/comparison-prep-20261018\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-harness-controls-20261018\nHEAD adc6fd1bbe6461ea4a5e54593929b98c3c14cecc\nbranch refs/heads/work/harness-controls-20261018\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-quality-20261017\nHEAD 4dedc73cb0c28df2e91c73710e09b81bb34d0c84\nbranch refs/heads/work/reference-led-quality-20261017\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-r3-20261030\nHEAD cb1ed43130c2dd9d402d228fb4d937630b855d6b\nbranch refs/heads/r3-controlled-candidate-20261030\n\nworktree /private/tmp/datapressr-story-tracker-20261021\nHEAD 27e4c10c11267ceb84fded8e8fac17c861a5fe17\nbranch refs/heads/work/story-tracker-20261021\nprunable gitdir file points to non-existent location\n\nworktree /Users/rgrp/src/datasets/datapressr/.runtime/worktrees/integration-20261030\nHEAD 5a2d8e8eac906102caf0a95547780260c7cb37dc\nbranch refs/heads/integration/main-reconciliation-20261030\n\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr/.runtime/worktrees/integration-20261030",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "stdout": "5a2d8e8eac906102caf0a95547780260c7cb37dc\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr/.runtime/worktrees/integration-20261030",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "status",
+        "--porcelain=v1",
+        "-uall"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "show",
+        "-s",
+        "--format=%T%n%P",
+        "5a2d8e8eac906102caf0a95547780260c7cb37dc"
+      ],
+      "exit": 0,
+      "stdout": "0e544055623bc1fa2fbbb62706938f00c9164e2d\n46a14a5f25cee203844a38d5fcc284293ee2301b 52f2b232298d88f4cc90c0c8a27d3b61688fd7e0\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "merge-base",
+        "--is-ancestor",
+        "a11d0670702d8b76cb6131b4fcde0a084ddf42da",
+        "5a2d8e8eac906102caf0a95547780260c7cb37dc"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "merge-base",
+        "--is-ancestor",
+        "dd580cf2760b24ab4558b11a7092849bda3345ac",
+        "5a2d8e8eac906102caf0a95547780260c7cb37dc"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "merge-base",
+        "--is-ancestor",
+        "46a14a5f25cee203844a38d5fcc284293ee2301b",
+        "5a2d8e8eac906102caf0a95547780260c7cb37dc"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "merge-base",
+        "--is-ancestor",
+        "52f2b232298d88f4cc90c0c8a27d3b61688fd7e0",
+        "5a2d8e8eac906102caf0a95547780260c7cb37dc"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "status",
+        "--porcelain=v1",
+        "-uall",
+        "-z"
+      ],
+      "exit": 0,
+      "stdout": " M .beads/issues.jsonl\u0000?? evals/experiments/story-quality/fresh-case-c17/reviewer-evidence/integration-review.md\u0000?? evals/experiments/story-quality/fresh-case-c17/reviewer-evidence/integration-staging.json\u0000",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "stdout": "46a14a5f25cee203844a38d5fcc284293ee2301b\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "symbolic-ref",
+        "HEAD"
+      ],
+      "exit": 0,
+      "stdout": "refs/heads/work/structure-eval-quality-2026-10-15\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "worktree",
+        "list",
+        "--porcelain"
+      ],
+      "exit": 0,
+      "stdout": "worktree /Users/rgrp/src/datasets/datapressr\nHEAD 46a14a5f25cee203844a38d5fcc284293ee2301b\nbranch refs/heads/work/structure-eval-quality-2026-10-15\n\nworktree /private/tmp/datapressr-agents-wording-20261017\nHEAD 1f976fff656ffa59fcc7dfc1fdbc70d8e5ec0fef\nbranch refs/heads/work/agents-wording-20261017\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-comparison-prep-20261018\nHEAD 4a43168e6bab396973a0d862fff5d97c20133293\nbranch refs/heads/work/comparison-prep-20261018\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-harness-controls-20261018\nHEAD adc6fd1bbe6461ea4a5e54593929b98c3c14cecc\nbranch refs/heads/work/harness-controls-20261018\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-quality-20261017\nHEAD 4dedc73cb0c28df2e91c73710e09b81bb34d0c84\nbranch refs/heads/work/reference-led-quality-20261017\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-r3-20261030\nHEAD cb1ed43130c2dd9d402d228fb4d937630b855d6b\nbranch refs/heads/r3-controlled-candidate-20261030\n\nworktree /private/tmp/datapressr-story-tracker-20261021\nHEAD 27e4c10c11267ceb84fded8e8fac17c861a5fe17\nbranch refs/heads/work/story-tracker-20261021\nprunable gitdir file points to non-existent location\n\nworktree /Users/rgrp/src/datasets/datapressr/.runtime/worktrees/integration-20261030\nHEAD 5a2d8e8eac906102caf0a95547780260c7cb37dc\nbranch refs/heads/integration/main-reconciliation-20261030\n\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "rev-parse",
+        "HEAD",
+        "main",
+        "origin/main",
+        "integration/main-reconciliation-20261030",
+        "work/structure-eval-quality-2026-10-15"
+      ],
+      "exit": 0,
+      "stdout": "46a14a5f25cee203844a38d5fcc284293ee2301b\na11d0670702d8b76cb6131b4fcde0a084ddf42da\n52f2b232298d88f4cc90c0c8a27d3b61688fd7e0\n5a2d8e8eac906102caf0a95547780260c7cb37dc\n46a14a5f25cee203844a38d5fcc284293ee2301b\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "update-ref",
+        "-m",
+        "Reviewed local integration of preserved work and origin/main",
+        "refs/heads/main",
+        "5a2d8e8eac906102caf0a95547780260c7cb37dc",
+        "a11d0670702d8b76cb6131b4fcde0a084ddf42da"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "rev-parse",
+        "HEAD",
+        "main",
+        "origin/main",
+        "integration/main-reconciliation-20261030",
+        "work/structure-eval-quality-2026-10-15"
+      ],
+      "exit": 0,
+      "stdout": "46a14a5f25cee203844a38d5fcc284293ee2301b\n5a2d8e8eac906102caf0a95547780260c7cb37dc\n52f2b232298d88f4cc90c0c8a27d3b61688fd7e0\n5a2d8e8eac906102caf0a95547780260c7cb37dc\n46a14a5f25cee203844a38d5fcc284293ee2301b\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "worktree",
+        "list",
+        "--porcelain"
+      ],
+      "exit": 0,
+      "stdout": "worktree /Users/rgrp/src/datasets/datapressr\nHEAD 46a14a5f25cee203844a38d5fcc284293ee2301b\nbranch refs/heads/work/structure-eval-quality-2026-10-15\n\nworktree /private/tmp/datapressr-agents-wording-20261017\nHEAD 1f976fff656ffa59fcc7dfc1fdbc70d8e5ec0fef\nbranch refs/heads/work/agents-wording-20261017\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-comparison-prep-20261018\nHEAD 4a43168e6bab396973a0d862fff5d97c20133293\nbranch refs/heads/work/comparison-prep-20261018\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-harness-controls-20261018\nHEAD adc6fd1bbe6461ea4a5e54593929b98c3c14cecc\nbranch refs/heads/work/harness-controls-20261018\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-quality-20261017\nHEAD 4dedc73cb0c28df2e91c73710e09b81bb34d0c84\nbranch refs/heads/work/reference-led-quality-20261017\nprunable gitdir file points to non-existent location\n\nworktree /private/tmp/datapressr-r3-20261030\nHEAD cb1ed43130c2dd9d402d228fb4d937630b855d6b\nbranch refs/heads/r3-controlled-candidate-20261030\n\nworktree /private/tmp/datapressr-story-tracker-20261021\nHEAD 27e4c10c11267ceb84fded8e8fac17c861a5fe17\nbranch refs/heads/work/story-tracker-20261021\nprunable gitdir file points to non-existent location\n\nworktree /Users/rgrp/src/datasets/datapressr/.runtime/worktrees/integration-20261030\nHEAD 5a2d8e8eac906102caf0a95547780260c7cb37dc\nbranch refs/heads/integration/main-reconciliation-20261030\n\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "merge-base",
+        "--is-ancestor",
+        "dd580cf2760b24ab4558b11a7092849bda3345ac",
+        "main"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "merge-base",
+        "--is-ancestor",
+        "46a14a5f25cee203844a38d5fcc284293ee2301b",
+        "main"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "merge-base",
+        "--is-ancestor",
+        "52f2b232298d88f4cc90c0c8a27d3b61688fd7e0",
+        "main"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "merge-base",
+        "--is-ancestor",
+        "a11d0670702d8b76cb6131b4fcde0a084ddf42da",
+        "main"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "status",
+        "--porcelain=v1",
+        "-uall",
+        "-z"
+      ],
+      "exit": 0,
+      "stdout": " M .beads/issues.jsonl\u0000?? evals/experiments/story-quality/fresh-case-c17/reviewer-evidence/integration-review.md\u0000?? evals/experiments/story-quality/fresh-case-c17/reviewer-evidence/integration-staging.json\u0000",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "rev-parse",
+        "HEAD"
+      ],
+      "exit": 0,
+      "stdout": "46a14a5f25cee203844a38d5fcc284293ee2301b\n",
+      "stderr": ""
+    },
+    {
+      "cwd": "/Users/rgrp/src/datasets/datapressr",
+      "argv": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "symbolic-ref",
+        "HEAD"
+      ],
+      "exit": 0,
+      "stdout": "refs/heads/work/structure-eval-quality-2026-10-15\n",
+      "stderr": ""
+    }
+  ],
+  "before": {
+    "status_hex": "204d202e62656164732f6973737565732e6a736f6e6c003f3f206576616c732f6578706572696d656e74732f73746f72792d7175616c6974792f66726573682d636173652d6331372f72657669657765722d65766964656e63652f696e746567726174696f6e2d7265766965772e6d64003f3f206576616c732f6578706572696d656e74732f73746f72792d7175616c6974792f66726573682d636173652d6331372f72657669657765722d65766964656e63652f696e746567726174696f6e2d73746167696e672e6a736f6e00",
+    "files": {
+      ".beads/issues.jsonl": {
+        "sha256": "a1c5199e4411718cc50f11d2568db5f8c2f311970f80217846106a5f686a7b86",
+        "bytes": 641092
+      },
+      "evals/experiments/story-quality/fresh-case-c17/reviewer-evidence/integration-review.md": {
+        "sha256": "9acabf51eceeeb380033301b1a569297260c3bf5fb0a1e0c082fbcda206926f9",
+        "bytes": 2458
+      },
+      "evals/experiments/story-quality/fresh-case-c17/reviewer-evidence/integration-staging.json": {
+        "sha256": "1fc2f56df855a6a728344c23dcb25a680b11e30b9eef4eec9a85e138d5edc162",
+        "bytes": 799
+      }
+    },
+    "head": "46a14a5f25cee203844a38d5fcc284293ee2301b",
+    "branch": "refs/heads/work/structure-eval-quality-2026-10-15"
+  },
+  "ref_update_occurred": true,
+  "after": {
+    "status_hex": "204d202e62656164732f6973737565732e6a736f6e6c003f3f206576616c732f6578706572696d656e74732f73746f72792d7175616c6974792f66726573682d636173652d6331372f72657669657765722d65766964656e63652f696e746567726174696f6e2d7265766965772e6d64003f3f206576616c732f6578706572696d656e74732f73746f72792d7175616c6974792f66726573682d636173652d6331372f72657669657765722d65766964656e63652f696e746567726174696f6e2d73746167696e672e6a736f6e00",
+    "files": {
+      ".beads/issues.jsonl": {
+        "sha256": "a1c5199e4411718cc50f11d2568db5f8c2f311970f80217846106a5f686a7b86",
+        "bytes": 641092
+      },
+      "evals/experiments/story-quality/fresh-case-c17/reviewer-evidence/integration-review.md": {
+        "sha256": "9acabf51eceeeb380033301b1a569297260c3bf5fb0a1e0c082fbcda206926f9",
+        "bytes": 2458
+      },
+      "evals/experiments/story-quality/fresh-case-c17/reviewer-evidence/integration-staging.json": {
+        "sha256": "1fc2f56df855a6a728344c23dcb25a680b11e30b9eef4eec9a85e138d5edc162",
+        "bytes": 799
+      }
+    },
+    "head": "46a14a5f25cee203844a38d5fcc284293ee2301b",
+    "branch": "refs/heads/work/structure-eval-quality-2026-10-15"
+  },
+  "result": "PASS",
+  "old_main": "a11d0670702d8b76cb6131b4fcde0a084ddf42da",
+  "new_main": "5a2d8e8eac906102caf0a95547780260c7cb37dc",
+  "source_ancestor_of_main": true,
+  "active_head_dirty_untracked_preserved": true
+}
