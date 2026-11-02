@@ -112,49 +112,46 @@ function write(name, node) {
   const y2021 = on(rows, 2021);
   const windJump2021 = y2021.wind_electricity_twh - y2020.wind_electricity_twh;
 
+  // Headroom above the lines' 2025 peak (2,778.6) is reserved for the 2025
+  // value labels, so they sit in clear space above both lines rather than
+  // crowding the point where the two lines converge (see charting.md's
+  // "labels vs. lines" rule, added after this chart's first draft put two
+  // value labels directly on top of the wind line).
   const fig = Plot.plot({
     document,
     width: 720,
     height: 400,
     marginLeft: 56,
-    marginRight: 80,
+    marginRight: 90,
     marginTop: 28,
     marginBottom: 40,
     style: FONT,
     x: { label: null },
-    y: { label: "Electricity generated (TWh)", labelArrow: "none", grid: true, domain: [0, 2950] },
+    y: { label: "Electricity generated (TWh)", labelArrow: "none", grid: true, domain: [0, 3500] },
     marks: [
       Plot.line(rows, { x: "year", y: "solar_electricity_twh", stroke: LINE, strokeWidth: 2 }),
       Plot.line(rows, { x: "year", y: "wind_electricity_twh", stroke: LINE2, strokeWidth: 2 }),
-      Plot.text([on(rows, 2025)], {
-        x: "year",
-        y: "solar_electricity_twh",
-        text: () => "Solar",
-        dx: 6,
-        dy: -4,
-        textAnchor: "start",
-        fill: LINE,
-        fontWeight: "bold",
-      }),
-      Plot.text([on(rows, 2025)], {
-        x: "year",
-        y: "wind_electricity_twh",
-        text: () => "Wind",
-        dx: 6,
-        dy: 4,
-        textAnchor: "start",
-        fill: LINE2,
-        fontWeight: "bold",
-      }),
       Plot.dot([y2025], { x: "year", y: "solar_electricity_twh", fill: HIGHLIGHT, r: 4 }),
+      Plot.dot([y2025], { x: "year", y: "wind_electricity_twh", fill: LINE2, r: 4 }),
+      // Both 2025 labels sit well above the domain's data (max 2,778.6),
+      // clear of both lines, rather than beside the points where the lines
+      // nearly touch.
       Plot.text([y2025], {
         x: "year",
-        y: "solar_electricity_twh",
+        y: () => 3430,
         text: (d) => `2025: solar ${d.solar_electricity_twh.toFixed(1)} TWh`,
-        dx: -8,
-        dy: -14,
+        dx: -6,
         textAnchor: "end",
         fill: HIGHLIGHT,
+        fontWeight: "bold",
+      }),
+      Plot.text([y2025], {
+        x: "year",
+        y: () => 3260,
+        text: (d) => `2025: wind ${d.wind_electricity_twh.toFixed(1)} TWh`,
+        dx: -6,
+        textAnchor: "end",
+        fill: LINE2,
         fontWeight: "bold",
       }),
       Plot.text([y2024], {
@@ -163,19 +160,9 @@ function write(name, node) {
         text: (d) =>
           `2024: wind ${d.wind_electricity_twh.toFixed(1)}, solar ${on(rows, 2024).solar_electricity_twh.toFixed(1)} TWh (wind still ahead)`,
         dx: -8,
-        dy: 16,
+        dy: 20,
         textAnchor: "end",
         fill: INK,
-      }),
-      Plot.text([y2025], {
-        x: "year",
-        y: "wind_electricity_twh",
-        text: (d) => `2025: wind ${d.wind_electricity_twh.toFixed(1)} TWh`,
-        dx: -8,
-        dy: 16,
-        textAnchor: "end",
-        fill: LINE2,
-        fontWeight: "bold",
       }),
       Plot.dot([y2021], { x: "year", y: "wind_electricity_twh", fill: LINE2, r: 4 }),
       Plot.text([y2021], {
@@ -183,7 +170,7 @@ function write(name, node) {
         y: "wind_electricity_twh",
         text: () => `wind's biggest one-year rise: +${windJump2021.toFixed(1)} TWh (2021)`,
         dx: 6,
-        dy: -10,
+        dy: -22,
         textAnchor: "start",
         fill: LINE2,
       }),
@@ -222,8 +209,8 @@ function write(name, node) {
       Plot.rect(bar, {
         x1: (d) => (d.order === 0 ? 0 : solarGrowth),
         x2: (d) => (d.order === 0 ? solarGrowth : totalGrowth),
-        y1: 0.3,
-        y2: 0.7,
+        y1: 0.4,
+        y2: 0.6,
         fill: "fill",
       }),
       Plot.text([{ x: solarGrowth / 2 }], {
@@ -246,7 +233,7 @@ function write(name, node) {
         y: 0.5,
         text: () => `2025 total: +${totalGrowth.toFixed(1)} TWh`,
         dx: -4,
-        dy: -40,
+        dy: -56,
         textAnchor: "end",
         fill: INK,
         fontWeight: "bold",
@@ -255,7 +242,7 @@ function write(name, node) {
         x: "x",
         y: 0.5,
         text: () => `${solarPct.toFixed(1)}% of 2025's generation growth`,
-        dy: -40,
+        dy: -56,
         textAnchor: "middle",
         fill: HIGHLIGHT,
         fontWeight: "bold",
@@ -283,7 +270,7 @@ function write(name, node) {
     marginTop: 28,
     marginBottom: 40,
     style: FONT,
-    x: { label: null, type: "band" },
+    x: { label: null, type: "band", padding: 0.55 },
     y: { label: "Fossil fuels' share of world electricity generation (%)", labelArrow: "none", grid: true, domain: [0, 70] },
     marks: [
       Plot.barY(bars, { x: "year", y: "value", fill: LINE2 }),
