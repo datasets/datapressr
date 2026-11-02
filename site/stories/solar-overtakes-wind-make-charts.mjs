@@ -108,6 +108,9 @@ function write(name, node) {
   const rows = series(2015, 2025);
   const y2024 = on(rows, 2024);
   const y2025 = on(rows, 2025);
+  const y2020 = on(rows, 2020);
+  const y2021 = on(rows, 2021);
+  const windJump2021 = y2021.wind_electricity_twh - y2020.wind_electricity_twh;
 
   const fig = Plot.plot({
     document,
@@ -173,6 +176,16 @@ function write(name, node) {
         textAnchor: "end",
         fill: LINE2,
         fontWeight: "bold",
+      }),
+      Plot.dot([y2021], { x: "year", y: "wind_electricity_twh", fill: LINE2, r: 4 }),
+      Plot.text([y2021], {
+        x: "year",
+        y: "wind_electricity_twh",
+        text: () => `wind's biggest one-year rise: +${windJump2021.toFixed(1)} TWh (2021)`,
+        dx: 6,
+        dy: -10,
+        textAnchor: "start",
+        fill: LINE2,
       }),
     ],
   });
