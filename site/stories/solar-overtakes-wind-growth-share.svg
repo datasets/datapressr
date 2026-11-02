@@ -1,0 +1,11 @@
+<svg class="plot-d6a7b5" fill="currentColor" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle" width="720" height="260" viewBox="0 0 720 260" style="font-size: 12px; font-family: ui-sans-serif, system-ui, sans-serif;" xmlns="http://www.w3.org/2000/svg"><style>:where(.plot-d6a7b5) {
+  --plot-background: white;
+  display: block;
+  height: auto;
+  height: intrinsic;
+  max-width: 100%;
+}
+:where(.plot-d6a7b5 text),
+:where(.plot-d6a7b5 tspan) {
+  white-space: pre;
+}</style><g aria-label="rect"><rect x="20" y="94.00000000000001" width="407.82145062461444" height="71.99999999999999" fill="#2563eb"></rect><rect x="427.82145062461444" y="94.00000000000001" width="132.17854937538556" height="71.99999999999999" fill="#9ca3af"></rect></g><g aria-label="text" fill="white" font-weight="bold"><text transform="translate(223.91072531230722,130)"><tspan x="0" y="-0.18em">Solar</tspan><tspan x="0" dy="1em">+636.0 TWh</tspan></text></g><g aria-label="text" fill="#111827"><text transform="translate(493.9107253123072,130)"><tspan x="0" y="-0.18em">Everything else</tspan><tspan x="0" dy="1em">+206.1 TWh</tspan></text></g><g aria-label="text" fill="#111827" text-anchor="end" font-weight="bold" transform="translate(-4,-40)"><text y="0.32em" transform="translate(560,130)">2025 total: +842.1 TWh</text></g><g aria-label="text" fill="#dc2626" font-weight="bold" transform="translate(0,-40)"><text y="0.32em" transform="translate(223.91072531230722,130)">75.5% of 2025's generation growth</text></g></svg>
