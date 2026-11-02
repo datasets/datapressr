@@ -1,5 +1,4 @@
 ---
-publish: false
 title: "Solar Overtakes Wind, and Climbs to 8.7% of World Electricity"
 description: In 2025 solar generated more of the world's electricity than wind for the first time, reaching 8.7% of world generation, up from 1.1% a decade earlier. One year's growth alone covered three-quarters of the entire rise in world electricity generation.
 datahub:

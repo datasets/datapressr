@@ -47,7 +47,7 @@ World total electricity generation and the share generated from solar, wind, all
 
 **Status:** structured · **Licence:** [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) · **Source:** [Our World in Data — Energy dataset (owid-energy-data.csv)](https://github.com/owid/energy-data) (+2 more)
 
-[folder](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/global-electricity-mix) · [README](https://github.com/datasets/datapressr/blob/main/datasets/energy-and-commodities/global-electricity-mix/README.md)
+[folder](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/global-electricity-mix) · [README](https://github.com/datasets/datapressr/blob/main/datasets/energy-and-commodities/global-electricity-mix/README.md) · story: [Solar Overtakes Wind, and Climbs to 8.7% of World Electricity](stories/solar-overtakes-wind.md)
 
 ## Population growth (annual %) by country and region, 1960–2025
 

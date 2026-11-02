@@ -1,5 +1,4 @@
 ---
-publish: false
 title: "Outline: Solar Overtakes Wind, and Climbs to 8.7% of World Electricity"
 description: The skeleton this story is built from — argument, order, key numbers, chart plan. Committed on purpose, before any chart or prose work.
 ---
