@@ -10,7 +10,7 @@ datahub:
 
 ![Line chart, 1985 to 2025, of solar's share of world electricity generation. The line is near zero through the 1990s and 2000s, reaches 1.1% in 2015, and rises steeply to 8.7% in 2025.](solar-overtakes-wind-share.svg)
 
-*World electricity generation, all sources, 1985–2025. Data: [global-electricity-mix](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/global-electricity-mix), from Our World in Data's energy dataset. Data story #8 — written from [an outline](solar-overtakes-wind-outline.md).*
+*World electricity generation, all sources, 1985–2025. Data: [global-electricity-mix](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/global-electricity-mix), compiled by Our World in Data from Ember's Yearly Electricity Data and the Energy Institute's Statistical Review of World Energy.*
 
 In 2025 solar generated **2,778.6 TWh** of the world's electricity — more than wind, for the first time. Solar's share of world generation reached **8.7%**, up from 1.1% ten years earlier.
 
@@ -42,9 +42,9 @@ This dataset shows what happened, not why. Falling cost is the usual explanation
 
 ## How this was made
 
-Solar, wind and fossil figures come from [`global-electricity-mix`](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/global-electricity-mix) in this repository, built by [`build.ts`](https://github.com/datasets/datapressr/blob/main/datasets/energy-and-commodities/global-electricity-mix/build.ts) from an archived snapshot of Our World in Data's energy dataset, filtered to the World rows. Re-running it reproduces every number above. The charts are built by [`solar-overtakes-wind-make-charts.mjs`](https://github.com/datasets/datapressr/blob/main/site/stories/solar-overtakes-wind-make-charts.mjs), which reads the same CSV.
+Solar, wind and fossil figures come from [`global-electricity-mix`](https://github.com/datasets/datapressr/tree/main/datasets/energy-and-commodities/global-electricity-mix) in this repository, built by [`build.ts`](https://github.com/datasets/datapressr/blob/main/datasets/energy-and-commodities/global-electricity-mix/build.ts) from an archived snapshot of [Our World in Data's energy dataset](https://github.com/owid/energy-data), filtered to the World rows. Re-running it reproduces every number above. The charts are built by [`solar-overtakes-wind-make-charts.mjs`](https://github.com/datasets/datapressr/blob/main/site/stories/solar-overtakes-wind-make-charts.mjs), which reads the same CSV.
 
-The dataset splices two underlying sources — Ember's Yearly Electricity Data for recent years, the Energy Institute's Statistical Review of World Energy for earlier years — without an established handoff point between the two in this repository. 2025 is the series' most recent year and may still be revised.
+Our World in Data compiles these figures from two underlying sources — [Ember's Yearly Electricity Data](https://ember-energy.org/data/yearly-electricity-data/) for recent years, the [Energy Institute's Statistical Review of World Energy](https://www.energyinst.org/statistical-review) for earlier years — without a documented handoff point between the two. 2025 is the series' most recent year and may still be revised.
 
 ## Friction notes
 
