@@ -251,3 +251,38 @@ function write(name, node) {
   });
   write("solar-overtakes-wind-growth-share.svg", fig);
 }
+
+// --- Chart 4: fossil's shrinking (but still majority) share, 1985 vs 2025 -----
+{
+  const y1985 = on(series(1985, 1985), 1985);
+  const y2025 = on(series(2025, 2025), 2025);
+  const bars = [
+    { year: "1985", value: y1985.fossil_share_elec_pct },
+    { year: "2025", value: y2025.fossil_share_elec_pct },
+  ];
+
+  const fig = Plot.plot({
+    document,
+    width: 720,
+    height: 320,
+    marginLeft: 52,
+    marginRight: 24,
+    marginTop: 28,
+    marginBottom: 40,
+    style: FONT,
+    x: { label: null, type: "band" },
+    y: { label: "Fossil fuels' share of world electricity generation (%)", labelArrow: "none", grid: true, domain: [0, 70] },
+    marks: [
+      Plot.barY(bars, { x: "year", y: "value", fill: LINE2 }),
+      Plot.text(bars, {
+        x: "year",
+        y: "value",
+        text: (d) => `${d.value.toFixed(1)}%`,
+        dy: -8,
+        fill: INK,
+        fontWeight: "bold",
+      }),
+    ],
+  });
+  write("solar-overtakes-wind-fossil-share.svg", fig);
+}
