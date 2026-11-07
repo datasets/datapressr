@@ -90,6 +90,14 @@ export function validateDatapackage(dir, { data = true, stats } = {}) {
     }
     listedPaths.add(resource.path);
 
+    // DataHub treats a resource named like its package as the "full" file of a
+    // premium full+sample package and shows only it (datapressr-kh5.12).
+    if (pkg.name && resource.name === pkg.name && resources.length > 1) {
+      warnings.push(
+        `${label} has the same name as the package — DataHub then shows only this resource and hides every other resource; rename it`,
+      );
+    }
+
     const filePath = join(dir, resource.path);
     if (!existsSync(filePath)) {
       errors.push(`${label} path "${resource.path}" does not exist on disk`);
@@ -167,7 +175,123 @@ export function validateDatapackage(dir, { data = true, stats } = {}) {
     }
   }
 
+  const mdx = readmeMdxHazard(dir);
+  if (mdx) errors.push(mdx);
+
   return { errors, warnings, notes };
+}
+
+// DataHub compiles README.md as MDX and on failure replaces the whole README
+// with "Error parsing MDX" (datapressr-fyy). Sync, dependency-free scan.
+const mdxMessage = (err, mode) =>
+  `README.md:${err.line}:${err.column}: will not render on DataHub (MDX${mode === "compile" ? "" : ", dependency-free scan"}): ${err.message} — DataHub would show only "Error parsing MDX"`;
+
+function readmeMdxHazard(dir) {
+  const path = join(dir, "README.md");
+  if (!existsSync(path)) return null;
+  const [first] = mdxHazards(readFileSync(path, "utf8"));
+  return first ? mdxMessage(first, "heuristic") : null;
+}
+
+/** Full MDX compile of README.md when the compiler is installed (else the scan). */
+export async function readmeMdxError(dir) {
+  const path = join(dir, "README.md");
+  if (!existsSync(path)) return null;
+  const { error, mode } = await checkMdx(readFileSync(path, "utf8"));
+  return error ? mdxMessage(error, mode) : null;
+}
+
+// ---------------------------------------------------------------------------
+// README as DataHub MDX. DataHub compiles every .md page as MDX (remark-gfm,
+// remark-math with $$ only), and one stray `<` or `{` replaces the whole README
+// with "Error parsing MDX" (datapressr-fyy). Two layers, so it runs anywhere
+// with no install (factory-but.3.4.4):
+//   mdxHazards(text)  dependency-free scan for the constructs that break MDX:
+//                     autolinks, HTML comments, `<` that cannot start a tag,
+//                     unclosed void elements, `{...}` that is not valid JS.
+//   checkMdx(text)    the real compiler when installed, else the scan.
+// The scan is a fallback, not a parser: mdx-scan.test.mjs pins it against the
+// compiler. It lives in this file because the validator is bundled as a single
+// file (scripts/sync-skill-bundles.mjs); scripts/story-check.mjs imports it.
+// ---------------------------------------------------------------------------
+
+// DataHub strips YAML front matter before compiling; blank it line for line.
+export const blankFrontmatter = (text) => text.replace(/^---\r?\n[\s\S]*?\r?\n---(?=\r?\n|$)/, (m) => m.replace(/[^\n]/g, ""));
+
+const blank = (s) => s.replace(/[^\n]/g, " ");
+
+// Code is literal in MDX: blank fenced blocks and inline code spans, keeping
+// line and column positions.
+export function stripCode(text) {
+  return text
+    .replace(/^(\s{0,3})(`{3,}|~{3,})[^\n]*\n[\s\S]*?(?:\n\s{0,3}\2[`~]*[ \t]*(?=\n|$)|$(?![\s\S]))/gm, blank)
+    .replace(/(`+)(?!`)[\s\S]*?[^`]\1(?!`)/g, blank);
+}
+
+const VOID = "area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr";
+const lineAt = (text, index) => text.slice(0, index).split("\n").length;
+const colAt = (text, index) => index - text.lastIndexOf("\n", index - 1);
+
+// Does `{inner}` parse as a JavaScript expression (or hold only a comment)?
+function validExpression(inner) {
+  const t = inner.trim();
+  if (t === "" || /^\/\*[\s\S]*\*\/$/.test(t)) return true;
+  try {
+    new Function(`return (${inner}\n);`);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+// Returns [{ line, column, message }] for constructs that make MDX fail.
+export function mdxHazards(text) {
+  let src = stripCode(blankFrontmatter(text));
+  const out = [];
+  const add = (index, message) => out.push({ line: lineAt(src, index), column: colAt(src, index), message });
+  // Quoted attribute values inside tags are literal strings.
+  src = src.replace(/<[A-Za-z][\w.:-]*(?:\s(?:[^>"']|"[^"]*"|'[^']*')*)?\/?>/g, (tag) => tag.replace(/"[^"]*"|'[^']*'/g, (q) => q[0] + blank(q.slice(1, -1)) + q[0]));
+  for (const m of src.matchAll(/<(?:[a-z][a-z0-9+.-]*:[^\s<>]*|[^\s<>@]+@[^\s<>]+)>/gi)) {
+    add(m.index, `autolink ${m[0]}: MDX cannot parse <...> links; write [text](url)`);
+  }
+  for (const m of src.matchAll(/<!--/g)) add(m.index, "HTML comment <!-- -->: MDX cannot parse it; use {/* ... */} or delete it");
+  for (const m of src.matchAll(/<(?=[^\sA-Za-z$_/>!])/g)) {
+    if (!out.some((h) => h.line === lineAt(src, m.index) && h.column === colAt(src, m.index))) add(m.index, `"<${src[m.index + 1]}" cannot start a tag: MDX fails; write "less than" or put it in code`);
+  }
+  for (const m of src.matchAll(new RegExp(`<(${VOID})\\b((?:[^>"'/]|"[^"]*"|'[^']*'|/(?!>))*)>`, "gi"))) {
+    add(m.index, `<${m[1]}> is not closed: MDX needs <${m[1]} ... />`);
+  }
+  // Balanced {...} groups must be valid expressions; a lone brace is an error.
+  let depth = 0;
+  let start = -1;
+  for (let i = 0; i < src.length; i++) {
+    if (src[i] === "{") {
+      if (depth++ === 0) start = i;
+    } else if (src[i] === "}" && depth > 0) {
+      if (--depth === 0 && !validExpression(src.slice(start + 1, i))) add(start, `{${src.slice(start + 1, i).slice(0, 40)}} is not a valid JavaScript expression: MDX fails; escape it as \\{ or reword`);
+    }
+  }
+  if (depth > 0) add(start, "unclosed { : MDX reads it as the start of an expression; escape it as \\{");
+  return out.sort((a, b) => a.line - b.line || a.column - b.column);
+}
+
+// The real compiler, loaded once: site/stories/mdx-check.mjs, whose @mdx-js/mdx
+// resolves from site/stories/node_modules beside it, whatever the cwd. null when
+// that is not installed, or in a bundled copy of this file (skills/validate,
+// a dataset's scripts/) where there is no site/stories.
+let compilerPromise;
+export function loadCompiler() {
+  compilerPromise ??= import(new URL("../site/stories/mdx-check.mjs", import.meta.url).href).then((m) => m.mdxError, () => null);
+  return compilerPromise;
+}
+
+// { error: null | { line, column, message }, mode: "compile" | "heuristic" }.
+// Pass { compiler: null } to force the dependency-free scan.
+export async function checkMdx(text, { compiler } = {}) {
+  const mdxError = compiler === undefined ? await loadCompiler() : compiler;
+  if (mdxError) return { error: await mdxError(text), mode: "compile" };
+  const [first] = mdxHazards(text);
+  return { error: first ?? null, mode: "heuristic" };
 }
 
 // ---------------------------------------------------------------------------
@@ -474,6 +598,10 @@ if (isEntryPoint) {
   const stats = { resources: 0, rows: 0, cells: 0, ms: 0 };
   const t0 = performance.now();
   const result = validateDatapackage(dir, { data, stats });
+  if (!result.errors.some((e) => e.startsWith("README.md:"))) {
+    const mdx = await readmeMdxError(dir);
+    if (mdx) result.errors.push(mdx);
+  }
   stats.ms = Math.round(performance.now() - t0);
   if (args.includes("--json")) console.log(JSON.stringify({ ...result, stats }, null, 2));
   else {

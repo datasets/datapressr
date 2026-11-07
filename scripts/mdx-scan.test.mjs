@@ -1,8 +1,8 @@
-// mdx-lint: the dependency-free MDX hazard scan must agree with the real
+// The dependency-free MDX hazard scan must agree with the real
 // compiler (site/stories/mdx-check.mjs) on the cases that broke DataHub pages.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mdxHazards, checkMdx } from "./mdx-lint.mjs";
+import { mdxHazards, checkMdx } from "./validate-datapackage.mjs";
 
 const { mdxError } = await import("../site/stories/mdx-check.mjs");
 

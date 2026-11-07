@@ -395,3 +395,84 @@ test("every dataset in datasets/ passes the validator with values checked: 0 err
     assert.ok(stats.rows > 0, `${relative(repoRoot, dir)}: no rows checked`);
   }
 });
+
+// --- Publish lint: what DataHub does with the package (datapressr-fyy, kh5.12) ---
+
+// The valid fixture copied to a temp dir, with `mutate(dir)` applied.
+const validCopy = (mutate) => {
+  const dir = mkdtempSync(join(tmpdir(), "validate-publish-"));
+  mkdirSync(join(dir, "data"));
+  copyFileSync(join(fixture("valid"), "datapackage.json"), join(dir, "datapackage.json"));
+  for (const f of readdirSync(join(fixture("valid"), "data"))) copyFileSync(join(fixture("valid"), "data", f), join(dir, "data", f));
+  mutate(dir);
+  return dir;
+};
+
+// The oil-prices README line that blanked https://datahub.io/datapressr/oil-prices (fyy).
+const AUTOLINK_README = "# Oil prices\n\nDaily Brent and WTI spot prices.\n\nSource: EIA (<https://www.eia.gov/dnav/pet/pet_pri_spt_s1_d.htm>).\n";
+
+test("fyy replay: a README with an autolink is an error that names MDX and the line", () => {
+  const dir = validCopy((d) => writeFileSync(join(d, "README.md"), AUTOLINK_README));
+  const { errors } = validateDatapackage(dir);
+  const mdx = errors.filter((e) => e.includes("MDX"));
+  assert.equal(mdx.length, 1, errors.join("\n"));
+  assert.match(mdx[0], /README\.md:5/);
+  assert.match(mdx[0], /Error parsing MDX/);
+});
+
+test("fyy replay: the CLI exits 1 on an autolink README (full compile when installed)", () => {
+  const dir = validCopy((d) => writeFileSync(join(d, "README.md"), AUTOLINK_README));
+  let status = 0;
+  let out = "";
+  try {
+    execFileSync(process.execPath, [join(here, "validate-datapackage.mjs"), dir], { encoding: "utf8" });
+  } catch (e) {
+    status = e.status;
+    out = e.stdout;
+  }
+  assert.equal(status, 1);
+  assert.match(out, /README\.md:5.*MDX/);
+});
+
+test("the CLI catches an MDX error the dependency-free scan misses, using the compiler", () => {
+  // An unclosed <b> across paragraphs: only the real compiler sees it.
+  const dir = validCopy((d) => writeFileSync(join(d, "README.md"), "# T\n\n<div>\n\n<b>bold\n\n</div>\n"));
+  assert.deepEqual(validateDatapackage(dir).errors, []);
+  let status = 0;
+  try {
+    execFileSync(process.execPath, [join(here, "validate-datapackage.mjs"), dir], { encoding: "utf8" });
+  } catch (e) {
+    status = e.status;
+  }
+  assert.equal(status, 1);
+});
+
+test("a README that compiles adds no error", () => {
+  const dir = validCopy((d) => writeFileSync(join(d, "README.md"), "# World GDP\n\nSource: [EIA](https://www.eia.gov/).\n"));
+  const { errors, warnings } = validateDatapackage(dir);
+  assert.deepEqual([...errors, ...warnings], []);
+});
+
+test("kh5.12: a resource named like its package is a warning (when there are others to hide)", () => {
+  const dir = validCopy((d) => {
+    const p = join(d, "datapackage.json");
+    const pkg = JSON.parse(readFileSync(p, "utf8"));
+    pkg.resources.push({ ...pkg.resources[0], name: "gdp-copy" });
+    pkg.resources[0].name = pkg.name;
+    writeFileSync(p, JSON.stringify(pkg, null, 2) + "\n");
+  });
+  const { errors, warnings } = validateDatapackage(dir);
+  assert.deepEqual(errors, []);
+  assert.equal(warnings.length, 1, warnings.join("\n"));
+  assert.match(warnings[0], /same name as the package.*hides every other resource/);
+});
+
+test("kh5.12: a single resource named like its package hides nothing, so no warning", () => {
+  const dir = validCopy((d) => {
+    const p = join(d, "datapackage.json");
+    const pkg = JSON.parse(readFileSync(p, "utf8"));
+    pkg.resources = [{ ...pkg.resources[0], name: pkg.name }];
+    writeFileSync(p, JSON.stringify(pkg, null, 2) + "\n");
+  });
+  assert.deepEqual(validateDatapackage(dir).warnings, []);
+});

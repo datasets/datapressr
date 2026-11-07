@@ -11,7 +11,7 @@
 // Checks (fail unless marked warn):
 //   frontmatter  title, description and date present
 //   no-h1        no H1 (DataHub renders the title from the publish flags)
-//   mdx          README compiles as DataHub MDX (scripts/mdx-lint.mjs: the real
+//   mdx          README compiles as DataHub MDX (the scan in validate-datapackage.mjs: the real
 //                compiler when site/stories/node_modules is installed, otherwise
 //                a dependency-free scan; the mode is shown)
 //   autolinks    no <https://...> autolinks (datapressr-fyy)
@@ -29,7 +29,7 @@ import { tmpdir } from "node:os";
 import { dirname, join, normalize } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { checkAsOf, checkNumbers, checkOpening, checkReproducible, checkSvgSanity, parseProse, splitFrontmatter, svgTexts } from "../evals/lib/checkers/story.mjs";
-import { blankFrontmatter, checkMdx, mdxHazards, stripCode } from "./mdx-lint.mjs";
+import { blankFrontmatter, checkMdx, mdxHazards, stripCode } from "./validate-datapackage.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const DATA_EXT = /\.(csv|tsv|json|geojson|zip|xlsx|parquet)$/i;
