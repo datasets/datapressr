@@ -85,6 +85,18 @@ test("saboteur: front matter without a date fails", async () => {
   assert.match(byId(results, "frontmatter").message, /date/);
 });
 
+test("saboteur: an unscoped 'first time' warns (S8), and a scoped one does not", async () => {
+  const bare = saboteur((d) => editReadme(d, (md) => md.replace("That rise came", "Solar beat wind for the first time ever. That rise came")));
+  const results = await checkStoryPackage(bare);
+  assert.deepEqual(failing(results), []);
+  const s8 = byId(results, "S8");
+  assert.equal(s8.pass, false);
+  assert.equal(s8.severity, "warn");
+  assert.match(s8.message, /first time ever/);
+  const scoped = saboteur((d) => editReadme(d, (md) => md.replace("That rise came", "In 2025 solar beat wind for the first time in this 1985–2025 series, a record high since 1985. That rise came")));
+  assert.equal(byId(await checkStoryPackage(scoped), "S8").pass, true);
+});
+
 test("the CLI prints a PASS/FAIL table and exits non-zero on failure", () => {
   const ok = spawnSync(process.execPath, [SCRIPT, GOOD], { encoding: "utf8", cwd: tmpdir() });
   assert.equal(ok.status, 0, ok.stdout + ok.stderr);

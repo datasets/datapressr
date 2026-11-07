@@ -114,7 +114,7 @@ Under the "Friction notes" heading, list every exempt number as a list item cont
   - $9.10: all-time low outside the chart's window
 ```
 
-Before committing, check: the opening paragraph stands alone as a summary (before any section heading, at least one number, at most 80 words); the length is earned, with no section the reader would skip; every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. Follow the project's draft visibility rules: in DataPressr, both outline and prose also carry `publish: false` and stay out of the public stories index until owner approval.
+Before committing, run the [claim checks](references/editorial-review.md#claim-checks--writer-runs-before-handoff-reviewer-re-runs) on every sentence, then check: the opening paragraph stands alone as a summary (before any section heading, at least one number, at most 80 words); the length is earned, with no section the reader would skip; every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. Follow the project's draft visibility rules: in DataPressr, both outline and prose also carry `publish: false` and stay out of the public stories index until owner approval.
 
 Commit: `Story #N (<Title>): prose`, together with the index-page links.
 

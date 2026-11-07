@@ -21,6 +21,8 @@
 //   S2, S3, S6   story-skill checks from evals/lib/checkers/story.mjs, as warnings:
 //                opening summary, prose numbers on a chart, no date after `date`
 //   S7           SVGs free of NaN, Infinity, undefined and leaked function source
+//   S8           warn: "first time", "ever", "all-time" or "record high/low" with no scope in
+//                the sentence ("since 1985", "1985–2025", "in this series/data/record")
 //   S4           with --build: the *-make-charts.mjs build, run twice offline in a
 //                temp copy, reproduces the SVGs byte for byte
 // Exits 1 when any fail-severity check fails. Runs from any directory, no install.
@@ -135,6 +137,20 @@ function checkDownloads(dir, links, images) {
     : result("downloads", true, `${data.length} data link(s) absolute${slugs.length ? ` (post ${slugs[0]})` : ""}`);
 }
 
+// S8: superlatives need their scope in the same sentence ("first time in this 1985–2025
+// series", not "first time ever"); production reviews caught unscoped ones twice.
+const SUPERLATIVE = /\b(?:first time|ever|all-time|record (?:high|low))\b/i;
+const SCOPE = /\bsince \d{4}\b|\b\d{4}\s*[–-]\s*\d{4}\b|\b(?:this|these|the) (?:[\w-]+ )?(?:series|dataset|data|record)\b/i;
+export function checkScopedSuperlatives(text) {
+  const hits = text
+    .split(/(?<=[.!?])\s+/)
+    .filter((s) => SUPERLATIVE.test(s) && !SCOPE.test(s))
+    .map((s) => s.trim().slice(0, 100));
+  return hits.length
+    ? result("S8", false, `superlative without a scope in the sentence (say "in this 1985–2025 series"): ${hits.map((h) => `"${h}"`).join("; ")}`, "warn")
+    : result("S8", true, "superlatives carry their scope");
+}
+
 const asWarning = (r) => (r.pass ? r : { ...r, severity: "warn" });
 
 // S4 in a throwaway copy, so the package itself is never written to.
@@ -174,6 +190,7 @@ export async function checkStoryPackage(dir, { build = false } = {}) {
     asWarning(checkNumbers({ prose, svgs })),
     asWarning(/^\d{4}-\d{2}-\d{2}$/.test(fields.date ?? "") ? checkAsOf({ workspace: dir, storiesDir: ".", slug: "README", asOf: fields.date }) : result("S6", true, "not applicable: no front matter date")),
     checkSvgSanity({ storiesAbs: dir, images: allSvgs }),
+    checkScopedSuperlatives(prose.mainText),
   ];
   if (build) results.push(checkBuild(dir));
   return results;
