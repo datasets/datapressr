@@ -7,6 +7,12 @@ description: Short data stories built from the datasets, each with charts as the
 
 Short data stories built from DataPressr datasets, newest first. Each one makes a single argument with charts as the evidence. Its outline, the argument and chart plan reviewed before any prose was written, is linked below the story.
 
+## [Solar Overtakes Wind, and Climbs to 8.7% of World Electricity](solar-overtakes-wind.md)
+
+In 2025 solar generated more of the world's electricity than wind for the first time, reaching 8.7% of world generation, up from 1.1% a decade earlier — and one year's growth alone covered three-quarters of the entire rise in world electricity generation.
+
+[Outline](solar-overtakes-wind-outline.md)
+
 ## [Where France’s public money goes](france-public-finances.md)
 
 What is growing, what old-age spending means, and why bigger euro bills can coexist with falling GDP shares.

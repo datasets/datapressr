@@ -1,0 +1,91 @@
+{
+  "name": "global-electricity-mix",
+  "title": "Global electricity generation mix, annual",
+  "description": "World total electricity generation and the share generated from solar, wind, all renewables, low-carbon sources (renewables + nuclear) and fossil fuels, 1985–2025. Compiled by Our World in Data from Ember's Yearly Electricity Data and the Energy Institute's Statistical Review of World Energy.",
+  "homepage": "https://github.com/owid/energy-data",
+  "status": "structured",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "title": "Creative Commons Attribution 4.0 International",
+      "path": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Our World in Data — Energy dataset (owid-energy-data.csv)",
+      "path": "https://github.com/owid/energy-data"
+    },
+    {
+      "title": "Ember — Yearly Electricity Data (primary underlying source for recent years)",
+      "path": "https://ember-energy.org/data/yearly-electricity-data/"
+    },
+    {
+      "title": "Energy Institute — Statistical Review of World Energy (underlying source for earlier years)",
+      "path": "https://www.energyinst.org/statistical-review"
+    }
+  ],
+  "resources": [
+    {
+      "path": "data/global-electricity-mix.csv",
+      "name": "global-electricity-mix",
+      "title": "World electricity generation mix, annual",
+      "mediatype": "text/csv",
+      "schema": {
+        "primaryKey": "year",
+        "fields": [
+          {
+            "name": "year",
+            "type": "integer",
+            "description": "Calendar year."
+          },
+          {
+            "name": "electricity_generation_twh",
+            "type": "number",
+            "description": "Total electricity generated worldwide, in terawatt-hours (TWh)."
+          },
+          {
+            "name": "solar_electricity_twh",
+            "type": "number",
+            "description": "Electricity generated from solar power worldwide, in terawatt-hours (TWh)."
+          },
+          {
+            "name": "solar_share_elec_pct",
+            "type": "number",
+            "description": "Solar's share of total electricity generated, in percent."
+          },
+          {
+            "name": "wind_electricity_twh",
+            "type": "number",
+            "description": "Electricity generated from wind power worldwide, in terawatt-hours (TWh)."
+          },
+          {
+            "name": "wind_share_elec_pct",
+            "type": "number",
+            "description": "Wind's share of total electricity generated, in percent."
+          },
+          {
+            "name": "renewables_electricity_twh",
+            "type": "number",
+            "description": "Electricity generated from all renewable sources (hydro, solar, wind, bioenergy, geothermal, wave/tidal) worldwide, in terawatt-hours (TWh)."
+          },
+          {
+            "name": "renewables_share_elec_pct",
+            "type": "number",
+            "description": "Renewables' share of total electricity generated, in percent."
+          },
+          {
+            "name": "low_carbon_share_elec_pct",
+            "type": "number",
+            "description": "Share of total electricity generated from low-carbon sources (renewables + nuclear), in percent."
+          },
+          {
+            "name": "fossil_share_elec_pct",
+            "type": "number",
+            "description": "Share of total electricity generated from fossil fuels (coal, oil, gas), in percent."
+          }
+        ]
+      }
+    }
+  ]
+}

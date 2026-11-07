@@ -28,5 +28,9 @@
     ]
   },
   "showEditLink": true,
+  "umami": {
+    "websiteId": "80b4f7d5-23a1-406f-b734-fba8aedeffcd",
+    "src": "https://umami.lifeitself.org/script.js"
+  },
   "contentHide": ["/changelog", "/charting-spike.html"]
 }
