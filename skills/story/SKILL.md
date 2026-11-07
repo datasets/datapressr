@@ -124,6 +124,8 @@ Save their completed review in the project's internal review folder (DataPressr:
 
 Handoff links the exact approved draft and review artifact, summarises the verdict and remaining human voice/owner stage. Agent approval clears this draft handoff only: it cannot certify the author's voice, change publication status or authorise publishing.
 
+**Pre-publish check.** Before a blog-layout package (`README.md` + SVGs + `<slug>-src/`) goes to `dh publish -p blog`, run `npm run story-check -- <package-dir>` in DataPressr and fix every FAIL: front matter, no H1, DataHub MDX, images present (mobile SVGs too), clean SVGs, absolute `https://datahub.io/blog/<slug>/_r/-/<path>` download links. The push skill's blog mode has the publish steps.
+
 ### 5. Voice pass — *human, separate*
 
 The author's "sounds like me" rewrite. The argument is fixed and the charts are independent, so this can happen any time and only touches wording. The skill ends at step 4; flag the voice pass as outstanding.

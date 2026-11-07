@@ -31,6 +31,7 @@ Validate the dataset in the current directory.
    - `name` is present and URL-safe (lowercase, hyphens only — no spaces, dots, or uppercase)
    - `resources` array is present and non-empty (not required while `status` is `capture` or `stub`)
    - Every resource `path` exists on disk
+   - `README.md`, if present, compiles as DataHub MDX: no `<https://...>` autolinks, HTML comments, stray `<` or `{`, or unclosed `<br>`/`<img>` (DataHub otherwise shows only "Error parsing MDX")
 
    **Warnings (ok to push, worth fixing):**
    - `title` is present (see Notes for a blank `""` at `capture`/`stub`)
@@ -41,6 +42,7 @@ Validate the dataset in the current directory.
    - `licenses` is missing or empty (required once `status` is past `stub` — see `AGENTS.md`)
    - `sources` is missing or empty (required once `status` is past `stub`)
    - Any resource has no `schema`, or a `schema` with fields missing a `type`
+   - A resource has the same name as the package while others exist (DataHub then shows only that resource)
    - A resource with an obvious identifying column (e.g. named `id`, or the first column) has no `schema.primaryKey` declared
 
    **Values (errors unless marked, for each CSV resource with a schema):**

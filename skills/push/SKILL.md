@@ -1,6 +1,6 @@
 ---
 name: push
-description: "Use this skill to publish the current dataset directory to DataHub with the `dh publish` CLI command, or (story mode, inside the DataPressr repo) to publish an approved data story as its own DataHub page. Checks datapackage.json, the root README.md, views and credentials (from `dh login` or DATAHUB_API_TOKEN) first, always passes an explicit --publication, and skips cleanly if `dh` or credentials aren't set up (committing to git is enough on its own). Invoked as `/push` in Claude Code, or by name; operates on the dataset in the current directory, or on the story named as the argument."
+description: "Use this skill to publish the current dataset directory to DataHub with the `dh publish` CLI command, or (story mode, inside the DataPressr repo) to publish an approved data story as its own DataHub page, or (blog mode) a finished story package to the DataHub blog with `dh publish -p blog`. Checks datapackage.json, the root README.md, views and credentials (from `dh login` or DATAHUB_API_TOKEN) first, always passes an explicit --publication, and skips cleanly if `dh` or credentials aren't set up (committing to git is enough on its own). Invoked as `/push` in Claude Code, or by name; operates on the dataset in the current directory, or on the story named as the argument."
 ---
 
 # Push: publish the current dataset to DataHub
@@ -87,6 +87,27 @@ Never publish `site/stories/` itself, or a story file in place: it holds every s
    - **Title and description are fixed at first publish.** Re-publishing does not update them; change them in the DataHub dashboard.
    - **The date shown is the first publish**, not the frontmatter `date`, and re-publishing does not move it.
    - **Deleted or renamed files linger.** Publishing is an upsert: a renamed chart leaves the old SVG online. `dh delete <slug> -p <pub>` removes the whole page, losing its URL history, so prefer not to.
+
+## Blog mode: publish a story package to the DataHub blog
+
+Use this path for a finished story package in the blog layout (a folder with `README.md`, its SVGs and an optional `<slug>-src/`, as Factory's `releases/*/package/`). Publishing to the blog is just `dh publish` to the `blog` publication; no DataPressr port, bundler or `datahubio/blog` commit is needed (factory-but.3.4.1). Step 0 applies unchanged.
+
+1. **Check the package first:** `npm run story-check -- <dir>` from the DataPressr repo (or `node <datapressr>/scripts/story-check.mjs <dir>` from anywhere; no install needed). Fix every FAIL before publishing. It checks:
+   - front matter has `title`, `description` and `date`;
+   - there is no H1, because DataHub shows the title from `-t`;
+   - the README compiles as DataHub MDX, with no `<https://...>` autolinks;
+   - every image exists, including `<picture>` sources such as the `-mobile.svg`;
+   - SVGs contain no NaN or undefined;
+   - download links are absolute.
+2. **Links are absolute.** Downloads and images point at `https://datahub.io/blog/<slug>/_r/-/<path>` (the path inside the package), not relative paths.
+3. **Publish with explicit flags:**
+
+   ```sh
+   dh publish <dir> -p blog -n <slug> -t "<title>" -d "<description>"
+   ```
+
+   `dh` ignores the front matter `title` and `description`, so always pass `-t` and `-d`. Copy them from the front matter.
+4. **Caveats.** Title and description are fixed at the first publish; after that, change them in the DataHub dashboard. Publishing is an upsert: files are added or overwritten, and a deleted or renamed file stays online. Check `https://datahub.io/blog/<slug>` in a browser: every chart loads on desktop and phone, and there is no "Error parsing MDX".
 
 ## Installing `dh`
 
