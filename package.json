@@ -8,6 +8,7 @@
     "validate": "node scripts/validate-datapackage.mjs",
     "check:invisible": "node scripts/check-invisible-characters.mjs .",
     "build:datasets-page": "node scripts/build-datasets-page.mjs",
-    "check:datasets-page": "node scripts/build-datasets-page.mjs --check"
+    "check:datasets-page": "node scripts/build-datasets-page.mjs --check",
+    "story-check": "node scripts/story-check.mjs"
   }
 }
