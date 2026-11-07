@@ -1,6 +1,6 @@
 // Deterministic story checks (design section 5.1): does a story meet the story skill's own
 // contract? Seven checks, each returning { id, pass, severity, message, evidence }:
-//   S1 artefacts exist        S2 prose word count        S3 every prose number on a chart
+//   S1 artefacts exist        S2 standalone opening summary   S3 every prose number on a chart
 //   S4 charts rebuild offline byte-identical               S5 inputs untouched
 //   S6 no date after as_of    S7 embedded SVGs well formed (no NaN, undefined, leaked JS)
 // The checks run against a *workspace*: a directory laid out like the writer's repo
@@ -18,7 +18,6 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const here = dirname(fileURLToPath(import.meta.url));
 export const OFFLINE_PRELOAD = join(here, "offline-preload.mjs");
 export const CHECK_IDS = ["S1", "S2", "S3", "S4", "S5", "S6", "S7"];
-const DEFAULT_WORDS = [300, 700];
 const BUILD_TIMEOUT_MS = 60_000;
 
 // --- Markdown helpers ---------------------------------------------------------
@@ -300,13 +299,44 @@ export function checkArtefacts({ workspace, storiesDir, slug, dataMode }) {
     : result("S1", true, `outline, chart build, ${presentSvgs.length} embedded SVG(s) and prose present`, { svgs: presentSvgs });
 }
 
-// S2: prose length, excluding frontmatter, alt text and friction notes.
-export function checkWords({ prose, words = DEFAULT_WORDS }) {
-  if (!prose) return result("S2", false, "no prose to count");
-  const n = countWords(prose.mainText);
-  const [min, max] = words;
-  const pass = n >= min && n <= max;
-  return result("S2", pass, `${n} words (budget ${min}–${max})`, { words: n, min, max });
+// S2: the story opens with a standalone summary of its finding (factory-but.3.4.2: length is
+// free, the opening must stand alone). The opening is the first prose paragraph of the body,
+// skipping the title, images and HTML-only blocks, an all-italic caption and the "Read on
+// DataHub" pointer. It must come before any section heading, carry at least one number, and be
+// short enough to read on its own: at most 80 words. An "In short:" label is allowed and not
+// counted.
+export const OPENING_MAX_WORDS = 80;
+
+export function openingParagraph(main) {
+  for (const raw of main.split(/\n\s*\n/)) {
+    const block = raw.trim();
+    if (!block || /^#\s/.test(block)) continue;
+    if (/^#{2,6}\s/.test(block)) return null;
+    const text = visibleText(block).replace(/\s+/g, " ").trim();
+    if (!text) continue;
+    if (/^([*_])(?!\1)[\s\S]*[^*_]\1$/.test(block)) continue; // caption
+    if (/^Read on DataHub\b/i.test(text)) continue;
+    return text.replace(/^In short\s*[:.—–-]\s*/i, "");
+  }
+  return null;
+}
+
+export function checkOpening({ prose }) {
+  if (!prose) return result("S2", false, "no prose to check");
+  const opening = openingParagraph(prose.main);
+  if (opening === null) {
+    const problems = ["no opening paragraph before the first section heading"];
+    return result("S2", false, problems[0], { opening: null, problems });
+  }
+  const words = countWords(opening);
+  const numbers = tokenizeNumbers(opening).filter((t) => t.kind === "number").length;
+  const problems = [];
+  if (!numbers) problems.push("opening has no number");
+  if (words > OPENING_MAX_WORDS) problems.push(`opening has ${words} words (at most ${OPENING_MAX_WORDS})`);
+  const evidence = { opening, words, numbers, problems };
+  return problems.length
+    ? result("S2", false, problems.join("; "), evidence)
+    : result("S2", true, `opening summary: ${words} words, ${numbers} number(s)`, evidence);
 }
 
 // S3: every data number in the prose is on a chart or on the friction notes' exempt list.
@@ -463,9 +493,9 @@ export function checkSvgSanity({ storiesAbs, images }) {
 //   slug        story slug (detected from the prose file when omitted)
 //   inputs      [{ path, commit }] compared against `root`'s git objects (S5)
 //   root        git repository holding the input commits
-//   asOf, dataMode, words ([min, max])
+//   asOf, dataMode
 //   build       false skips S4 (for unit tests that need no chart toolchain)
-export function checkStory({ workspace, storiesDir = "site/stories", slug, inputs = [], root, asOf, dataMode = "fixed", words = DEFAULT_WORDS, build = true }) {
+export function checkStory({ workspace, storiesDir = "site/stories", slug, inputs = [], root, asOf, dataMode = "fixed", build = true }) {
   const sd = join(workspace, storiesDir);
   slug = slug ?? detectSlug(sd);
   if (!slug) return CHECK_IDS.map((id) => result(id, false, `no story found in ${storiesDir}`));
@@ -476,7 +506,7 @@ export function checkStory({ workspace, storiesDir = "site/stories", slug, input
     .map((p) => ({ path: p, text: svgTexts(readFileSync(join(sd, p), "utf8")) }));
   const results = [
     checkArtefacts({ workspace, storiesDir, slug, dataMode }),
-    checkWords({ prose, words }),
+    checkOpening({ prose }),
     checkNumbers({ prose, svgs }),
     build ? checkReproducible({ workspace, storiesDir, slug }) : result("S4", true, "skipped (build: false)", null, "warn"),
     checkInputs({ workspace, inputs, root }),

@@ -12,7 +12,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { makeRepo } from "../fixture-repo.mjs";
 import { readLedger } from "../ledger.mjs";
 import { validateChecks } from "../schema.mjs";
-import { archiveInto, checkNumbers, checkStory, checkSvgSanity, countWords, findDates, linkNodeModules, numberOnChart, OFFLINE_PRELOAD, parseProse, removeWorkspace, svgProblems, svgTexts, tokenizeNumbers } from "./story.mjs";
+import { archiveInto, checkNumbers, checkOpening, checkStory, checkSvgSanity, countWords, findDates, linkNodeModules, numberOnChart, OFFLINE_PRELOAD, parseProse, removeWorkspace, svgProblems, svgTexts, tokenizeNumbers } from "./story.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "..");
 const STORIES = join(root, "site/stories");
@@ -105,6 +105,38 @@ test("the story skill's exempt-list example is what S3 parses", () => {
   assert.equal(listed.pass, true, listed.message);
 });
 
+// --- S2: a standalone opening summary (factory-but.3.4.2: no word cap) -------------
+
+const OPENING = "In 2025 solar generated **2,778.6 TWh** of the world's electricity, more than wind for the first time. Its share reached **8.7%**.";
+const story = (opening, rest = "") => `---\ntitle: "T"\n---\n\n# T\n\n**[Read on DataHub](https://datahub.io/x)**, where this story is published.\n\n![Chart alt with 1,000 numbers](c.svg)\n\n*Caption. Data: [x](https://x.org), 1985–2025.*\n\n${opening}\n\n## Background\n\n${rest}\n`;
+const filler = "Engineers kept building panels and the grid kept absorbing the new supply year after year. ".repeat(60);
+
+test("S2: a long story (>700 words) with a standalone opening summary passes", () => {
+  const prose = parseProse(story(OPENING, filler));
+  assert.ok(countWords(prose.mainText) > 700, "the story is long");
+  const r = checkOpening({ prose });
+  assert.equal(r.pass, true, r.message);
+  assert.equal(r.id, "S2");
+  assert.match(r.evidence.opening, /^In 2025 solar generated 2,778\.6 TWh/);
+});
+
+test("S2: an 'In short' label is accepted and not counted", () => {
+  const r = checkOpening({ prose: parseProse(story(`**In short:** ${OPENING}`)) });
+  assert.equal(r.pass, true, r.message);
+  assert.match(r.evidence.opening, /^In 2025/);
+});
+
+test("S2: a story lacking the opening summary fails", () => {
+  const problems = (md) => checkOpening({ prose: parseProse(md) }).evidence.problems;
+  // A section heading before any prose: the story opens with background, not its finding.
+  assert.deepEqual(problems(`# T\n\n![a](c.svg)\n\n## The record\n\nIn 1958 Keeling began measuring at 3,400 m.\n`), ["no opening paragraph before the first section heading"]);
+  // An opening with no number states no finding.
+  assert.deepEqual(problems(story("Oil is priced in many places, and the prices usually move together.", filler)), ["opening has no number"]);
+  // Too long to stand alone as a summary.
+  assert.deepEqual(problems(story(`Solar reached 8.7% of generation, ${"and that is a big share of the whole world's electricity ".repeat(8)}.`)), ["opening has 93 words (at most 80)"]);
+  assert.equal(checkOpening({ prose: null }).pass, false);
+});
+
 test("SVG text: <text> and <tspan> contents, entities decoded, tooltips ignored", () => {
   const svg = `<svg><text>a &amp; b</text><text><tspan>−&#36;36.98</tspan><tspan>x</tspan></text><g aria-label="99"><title>77</title></g></svg>`;
   assert.deepEqual(svgTexts(svg), ["a & b", "−$36.98 x"]);
@@ -156,11 +188,13 @@ const ORACLE_EXCEPTIONS = {
     S1: { reason: "Story #1 predates the <slug>-make-charts.mjs convention: its build is site/stories/make-charts.mjs.", missing: ["site/stories/keeling-curve-make-charts.mjs"] },
     S3: { reason: "Story #1 predates the every-number-on-a-chart rule: start/end values, rates and the source file's quirks (sentinel codes, altitude) are prose-only.", misses: ["3,400", "316", "427", "67", "0.9", "2.6", "6", "40", "-1", "-9.99", "-0.99"] },
     S4: { reason: "Follows from S1: there is no keeling-curve-make-charts.mjs to run (make-charts.mjs is reproducible on its own)." },
+    S2: { reason: "Story #1 predates the opening-summary rule (factory-but.3.4.2): it opens with a '## The record' section of background.", problems: ["no opening paragraph before the first section heading"] },
   },
   "france-public-finances": {
     S3: { reason: "An attributed DREES figure (pension uprating) with no exempt list; the story has no friction notes section.", misses: ["5.3%"] },
   },
   "planetary-boundaries": {
+    S2: { reason: "Story #2 predates the opening-summary rule (factory-but.3.4.2): it opens with a '## Six of nine' section that explains the framework first.", problems: ["no opening paragraph before the first section heading"] },
     S3: { reason: "Story #2 predates the rule: the scoreboard is in boundary units, so the raw readings and boundaries (and the Holocene span) are prose-only.", misses: ["11,700", "150", "10", "428", "350", "350"] },
   },
 };
@@ -190,6 +224,7 @@ for (const slug of Object.keys(ORACLE)) {
         assert.equal(r.pass, false, `${slug} ${r.id} now passes: remove its exception (${r.message})`);
         if (ex.misses) assert.deepEqual(r.evidence.misses.map((m) => m.number), ex.misses, `${slug} S3 misses changed`);
         if (ex.missing) assert.deepEqual(r.evidence.missing, ex.missing);
+        if (ex.problems) assert.deepEqual(r.evidence.problems, ex.problems, `${slug} S2 problems changed`);
       }
     } finally {
       removeWorkspace(ws);
@@ -247,8 +282,8 @@ const replaceOnce = (from, to) => (s) => {
 const SABOTEURS = {
   S1: { what: "a missing outline", apply: (ws) => rmSync(join(ws, "site/stories", `${SLUG}-outline.md`)) },
   S2: {
-    what: "a 900-word prose",
-    apply: (ws) => edit(proseFile(ws), insertBefore("## How this was made", `${"Traders watched the screens and waited for the market to settle down again. ".repeat(31)}\n\n`)),
+    what: "an opening that is background, not a summary of the finding",
+    apply: (ws) => edit(proseFile(ws), insertBefore("On 20 April 2020 the WTI spot price **was", "Oil is priced in many places, and the prices usually move together.\n\n")),
   },
   S3: { what: "a prose-only number", apply: (ws) => edit(proseFile(ws), insertBefore("## How this was made", "Brent averaged $41.96 a barrel over the whole of that year.\n\n")) },
   S4: {
@@ -296,6 +331,17 @@ for (const [name, { what, apply, expect = name, problem }] of Object.entries(SAB
   });
 }
 
+test("saboteur control: a 900-word oil-prices copy still passes all seven checks (no word cap)", { skip: buildSkip }, () => {
+  const ws = baseWorkspace();
+  try {
+    edit(proseFile(ws), insertBefore("## How this was made", `${"Traders watched the screens and waited for the market to settle down again. ".repeat(31)}\n\n`));
+    assert.ok(countWords(parseProse(readFileSync(proseFile(ws), "utf8")).mainText) > 700);
+    assert.deepEqual(failed(run(ws)), []);
+  } finally {
+    removeWorkspace(ws);
+  }
+});
+
 // --- The check subcommand -------------------------------------------------------
 
 test("check <run_id> and check --all write checks.json and append check rows", () => {
@@ -310,7 +356,7 @@ test("check <run_id> and check --all write checks.json and append check rows", (
     const first = JSON.parse(readFileSync(checksFile, "utf8"));
     assert.deepEqual(validateChecks(first).errors, []);
     assert.deepEqual(first.results.map((r) => r.id), ["S1", "S2", "S3", "S4", "S5", "S6", "S7"]);
-    // The fake story is a placeholder: everything holds except its length.
+    // The fake story is a placeholder: everything holds except its opening summary.
     assert.deepEqual(first.results.filter((r) => !r.pass).map((r) => r.id), ["S2"]);
 
     rmSync(checksFile);

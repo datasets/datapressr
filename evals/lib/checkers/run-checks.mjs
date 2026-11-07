@@ -14,7 +14,7 @@ const CHECKERS = {
   story: ({ root, runDir, kase, run }) => {
     const ws = materializeRunWorkspace({ root, runDir, inputs: kase.inputs, deleted: run.deleted ?? [] });
     try {
-      return checkStory({ workspace: ws, root, inputs: kase.inputs, asOf: kase.as_of, dataMode: kase.data_mode, words: kase.budget?.words });
+      return checkStory({ workspace: ws, root, inputs: kase.inputs, asOf: kase.as_of, dataMode: kase.data_mode });
     } finally {
       removeWorkspace(ws);
     }

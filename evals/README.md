@@ -152,7 +152,7 @@ For a pair, `owner` appends the owner row first (A/B labels as the owner saw the
 | Id | Passes when |
 |---|---|
 | S1 | `<slug>-outline.md`, `<slug>-make-charts.mjs`, `<slug>.md` exist and the prose embeds at least one `.svg` that exists; open mode also `DATA.md` and `<slug>-src/PROVENANCE.md` |
-| S2 | The prose is within the case's word budget, excluding frontmatter, alt text, link URLs and the friction notes section |
+| S2 | The prose opens with a standalone summary: the first paragraph after title, images, caption and DataHub pointer comes before any section heading, carries a number, and has at most 80 words (no word cap; factory-but.3.4.2) |
 | S3 | Every data number in that prose appears in the visible `<text>` of an SVG the prose embeds, or in the exempt list: friction-notes lines that say "exempt" and the list items nested under them. Years, dates, ordinals and `#N` references are not data numbers. The prose may round a chart value to its own precision; units must not conflict (% vs currency, EUR vs USD); sign is ignored |
 | S4 | `<slug>-make-charts.mjs` run twice offline (network blocked) gives byte-identical SVGs, identical to the committed ones |
 | S5 | Every input is identical to its pinned commit: no file edited, added or deleted |
@@ -187,6 +187,6 @@ The oracle is the co2-ppm `build.ts` as of `e24166f`, trimmed to the monthly res
 
 ## Adding a case
 
-1. Create `cases/<domain>/<id>/case.json` with the fields of design section 3.1: `id` and `domain` (matching the folder), `title`, `question` (verbatim), `type` (`explanatory`, `historical`, `current-state`, `markets`, `periodic`; `wrangling` for structure cases), `data_mode` (`fixed` or `open`), `inputs[]` of `{ path, commit }` where the commit is on `main`, `skills[]`, `references[]` (critic only), `owner_feedback[]` (paths in `docs/reviews/`, critic and calibration only), `budget` `{ max_usd, max_turns, words: [min, max] }` (`words` for stories only), and optionally `as_of` and `forbidden_domains[]`.
+1. Create `cases/<domain>/<id>/case.json` with the fields of design section 3.1: `id` and `domain` (matching the folder), `title`, `question` (verbatim), `type` (`explanatory`, `historical`, `current-state`, `markets`, `periodic`; `wrangling` for structure cases), `data_mode` (`fixed` or `open`), `inputs[]` of `{ path, commit }` where the commit is on `main`, `skills[]`, `references[]` (critic only), `owner_feedback[]` (paths in `docs/reviews/`, critic and calibration only), `budget` `{ max_usd, max_turns, words: [min, max] }` (`words` optional: the length a story prompt asks for, shown to the critic; the S2 check no longer enforces length, see factory-but.3.4.2), and optionally `as_of` and `forbidden_domains[]`.
 2. Write `prompt.md`: the only case text the writer sees. It holds the question, the data mode and inputs, the word budget, that files go in `site/stories/`, and which skill steps to skip in a scratch repo (site index links, DataHub publishing, the human voice pass). It never contains feedback, references or anything else the critic uses; `cases.test.mjs` checks this.
 3. Run `npm test` (the case must validate against this repo) and `node evals/run.mjs run <domain>/<id> --writer fake`.

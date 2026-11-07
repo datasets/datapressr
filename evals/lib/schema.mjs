@@ -146,9 +146,10 @@ export function validateCase(kase, opts = {}) {
   if (c.isObject(kase.budget, "budget")) {
     c.number(kase.budget.max_usd, "budget.max_usd", { min: 0 });
     c.number(kase.budget.max_turns, "budget.max_turns", { min: 1, integer: true });
-    // A word budget is a story constraint; other domains (structure) may omit it.
+    // Optional length asked for in the case prompt (critic context only; S2 checks the opening
+    // summary, not length, since factory-but.3.4.2).
     const w = kase.budget.words;
-    if ((kase.domain === "story" || w !== undefined) && c.array(w, "budget.words", { minItems: 2, maxItems: 2 })) {
+    if (w !== undefined && c.array(w, "budget.words", { minItems: 2, maxItems: 2 })) {
       if (c.number(w[0], "budget.words[0]", { min: 1, integer: true }) && c.number(w[1], "budget.words[1]", { min: 1, integer: true }) && w[0] >= w[1]) {
         c.at("budget.words", "minimum must be below maximum");
       }

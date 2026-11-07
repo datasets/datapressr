@@ -39,7 +39,7 @@ Chart-build dependencies live in one scoped `package.json` in that folder (`@obs
 - The outline was **reviewed and approved before charts or prose** (see step 2). The approval is recorded with the reviewer, the exact revision (commit and file hash) and the reproduced numbers.
 - Before any handoff for shipping, the finished draft has an independent agent's **APPROVED** editorial review using [the final-review template](references/editorial-review.md), with reviewer identity, exact commit and file SHA-256s, reproduced evidence and a saved review artifact (step 4). Outline approval alone does not clear this gate.
 - Every chart: Observable Plot per `references/charting.md`, a committed `.svg`, **annotated on the chart** (direct labels, marked moments), byte-identical across two builds. One chart = one idea.
-- Prose is **300–700 words**, follows `references/voice-guide.md`, does not narrate the chart, and **every data number in the prose is on a chart** — except the exempt kinds listed in `references/story-craft.md` §4, which the prose's friction notes list explicitly (format in step 4).
+- Prose **opens with a standalone summary**: the first paragraph after the title, chart and caption, before any section heading, states the main finding with at least one number in at most 80 words (an optional `**In short:**` label is fine). A reader who stops there has the story. There is **no word limit**: length is free, but it should be earned — every section answers a question the reader will ask. The prose follows `references/voice-guide.md`, does not narrate the chart, and **every data number in the prose is on a chart** — except the exempt kinds listed in `references/story-craft.md` §4, which the prose's friction notes list explicitly (format in step 4).
 - No causal claim the data can't support: explanations are attributed to a named, linked source.
 - A short **"How this was made"** section, last: links the dataset and its build script, says re-running reproduces the numbers.
 - The story is linked from the site's index pages (DataPressr: `site/datasets.md` and `site/README.md`).
@@ -95,7 +95,7 @@ Commit: `Story #N (<Title>): charts` — the `.mjs` and `.svg`s only.
 
 ### 4. Prose — *commit*
 
-`<slug>.md`. Render the approved outline — **wording only; the argument is fixed**. Lead with the headline chart and one line. Embed charts as `![alt](<slug>-chart.svg)` with alt text that states what the chart shows, including the key values. Method last and short. Keep a short "Friction notes" section while the skill is still evolving, and state that the author's voice pass is outstanding.
+`<slug>.md`. Render the approved outline — **wording only; the argument is fixed**. Lead with the headline chart, then the opening summary (the contract's first prose rule): the finding and its key number, standalone. Embed charts as `![alt](<slug>-chart.svg)` with alt text that states what the chart shows, including the key values. Method last and short. Keep a short "Friction notes" section while the skill is still evolving, and state that the author's voice pass is outstanding.
 
 Frontmatter: `title`, one-line `description`, and a `datahub` block with the story's DataHub slug (short, title-derived, never a dataset name, since stories and datasets share a publication's namespace) and `status: draft`. Only after the voice pass or an explicit owner OK does it become `status: approved` with an `approved:` line giving the date and basis:
 
@@ -114,7 +114,7 @@ Under the "Friction notes" heading, list every exempt number as a list item cont
   - $9.10: all-time low outside the chart's window
 ```
 
-Before committing, check: word count (300–700, excluding frontmatter, alt text and friction notes); every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. Follow the project's draft visibility rules: in DataPressr, both outline and prose also carry `publish: false` and stay out of the public stories index until owner approval.
+Before committing, check: the opening paragraph stands alone as a summary (before any section heading, at least one number, at most 80 words); the length is earned, with no section the reader would skip; every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. Follow the project's draft visibility rules: in DataPressr, both outline and prose also carry `publish: false` and stay out of the public stories index until owner approval.
 
 Commit: `Story #N (<Title>): prose`, together with the index-page links.
 

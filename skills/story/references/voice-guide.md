@@ -60,7 +60,7 @@ This reconciles the two measures. It does not show what caused either increase o
 
 ## Length
 
-A story is as long as its argument, usually 300–700 words of prose around one or two charts. If it runs longer, the argument probably has two stories in it.
+There is no word limit: a story is as long as its argument, and long stories are fine when the opening is compelling. The opening paragraph must stand alone as a summary of the finding, with its key number, so a reader who stops there has the story. Length should be earned: if a section answers no question the reader would ask, cut it; if the story makes two arguments, it is probably two stories.
 
 ## Structure the voice assumes
 
