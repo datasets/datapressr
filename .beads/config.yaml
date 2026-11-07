@@ -67,4 +67,4 @@
 
 sync.remote: "git+ssh://git@github.com/datasets/datapressr.git"
 export:
-    auto: true
+    auto: false
