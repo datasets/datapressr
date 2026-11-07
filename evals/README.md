@@ -185,6 +185,17 @@ The structure domain evaluates the `structure` skill: a writer turns an archived
 
 The oracle is the co2-ppm `build.ts` as of `e24166f`, trimmed to the monthly resource (the other four builders removed, the monthly code unchanged; it reproduces the published `co2-monthly-mlo.csv` byte for byte), with its `datapackage.json` trimmed to match at `status: "structured"` and a canned `DECISIONS.md`. It scores 13/13 directly and through `run --writer fake`. Each saboteur in `lib/checkers/structure.test.mjs` breaks a copy of it in one way and must fail exactly the checks listed: no `DECISIONS.md` (D1); a `fetch` in the build (D2, D3); a `Date.now()` column (D3); a name that is not URL-safe (D4); `status: archived` (D5); CRLF (D4, D6: the validator has warned on CR line endings since `datapressr-ck8`); the last month dropped (D7, D8, D10); `std_dev` and `uncertainty` values swapped under their own labels (D8 only: the multisets still match, so only the name-bound anchors catch it); sentinels kept (D9); one global sentinel list that also drops zero (D8, D9, D10); one cell off by 0.01 away from every anchor (D10); no provenance header (D11); `YYYY-MM` dates typed `yearmonth` (D12); the raw file edited (D13). A further test renames every column, dates months to the 15th and drops `decimal_date`, and still scores 13/13.
 
+## Improvement loop (lean)
+
+For a failure seen in production (publishing, a reader report), not in a run:
+
+1. File a bead for the friction, labelled `skill-gap`, with the exact symptom and where it happened.
+2. Reproduce it as a failing test: a saboteur fixture or replayed input in `scripts/*.test.mjs` or `evals/lib/checkers/*.test.mjs`.
+3. Make the smallest patch (checker, validator or skill text) that turns it green; `npm test` stays green.
+4. Run `npm run story-check -- <dir>` on every published story package, and `npm run validate -- <dir>` on every dataset; report new findings, don't silence them.
+5. Add one line to [LESSONS.md](LESSONS.md) citing the bead and the commit.
+6. Close the bead with the commit hash.
+
 ## Adding a case
 
 1. Create `cases/<domain>/<id>/case.json` with the fields of design section 3.1: `id` and `domain` (matching the folder), `title`, `question` (verbatim), `type` (`explanatory`, `historical`, `current-state`, `markets`, `periodic`; `wrangling` for structure cases), `data_mode` (`fixed` or `open`), `inputs[]` of `{ path, commit }` where the commit is on `main`, `skills[]`, `references[]` (critic only), `owner_feedback[]` (paths in `docs/reviews/`, critic and calibration only), `budget` `{ max_usd, max_turns, words: [min, max] }` (`words` optional: the length a story prompt asks for, shown to the critic; the S2 check no longer enforces length, see factory-but.3.4.2), and optionally `as_of` and `forbidden_domains[]`.
