@@ -1,0 +1,55 @@
+{
+  "checked_at": "2026-10-30T19:57:43.210Z",
+  "model_calls": 0,
+  "packaging": {
+    "base": "bd561130735a8637f2fc0b2b5f5eac3b41e4bf6c",
+    "staged": "bbe94efb15c9841937d9d52423783f6f5fe79041",
+    "candidate_tree": "abe2cd0707647eac6972b6f1bba28d49bf94c6be",
+    "only_difference": "skills/story/references/voice-guide.md"
+  },
+  "frozen_files_verified": {
+    "case": 28,
+    "candidate": 6
+  },
+  "preparation_reproduction": "all stable fields equal",
+  "reviewed_hashes": {
+    "proposal": "7844db79d7302ea7fa05ca7d58163323c43ae1e1fb534d3bc934048098028d3f",
+    "preparation_evidence": "b0e25708e224d64d89697fc96984eeca1d637f40282e250c7c9fc51ebee72571",
+    "final_case_review": "429e167095fc881b8d14a4bea6c475898385075726b96c106995ba09c155b94c"
+  },
+  "synthetic_critic": {
+    "returned": {
+      "ok": true,
+      "error": null,
+      "output": "Synthetic reader answer",
+      "effort_requested": "high",
+      "model_actual": null,
+      "cost_usd": null,
+      "turns": 2,
+      "usage": {
+        "input_tokens": 3,
+        "output_tokens": 2
+      },
+      "cli_version": "0.166.0"
+    },
+    "discarded": [
+      "transcript",
+      "stderr",
+      "recipe_sha256",
+      "home_report",
+      "tmp_dirs"
+    ],
+    "raw_synthetic_access_visible_in_result": false
+  },
+  "request_counter": {
+    "tool_items": 2,
+    "completion_events": 1,
+    "reported_turns": 3,
+    "actual_underlying_requests": "not present in supplied event stream"
+  },
+  "recipe_distinction": {
+    "writer_sandbox": "workspace-write",
+    "reader_sandbox": "read-only",
+    "reader_image_flags": true
+  }
+}

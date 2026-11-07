@@ -1,0 +1,26 @@
+✔ writer flags are the section 4.3 recipe, with the reach-out features off (0.736ms)
+✔ the child environment points HOME and CODEX_HOME at the temp home and drops session markers (0.161458ms)
+✔ the recipe hash is stable, path-free and changes with mode and weaken (0.428125ms)
+✔ makeHome copies only auth.json, mode 600 (3.194375ms)
+✔ parseEvents: turns, summed usage, last message, failures (0.227459ms)
+✔ writer role: runs in the workspace with a temp home holding only auth.json, removed afterwards (202.887833ms)
+✔ writer role flags a failed turn (413.490708ms)
+✔ critic role: read-only, structured output from the schema (203.641292ms)
+✔ authOk: logged in with an auth file, failing without (270.749792ms)
+✔ usage limit: a turn that failed on the account limit is detected (datapressr-9lc) (0.311125ms)
+✔ explicit effort reaches writer and critic args and changes recipe identity (0.288375ms)
+✔ ordinary packet contains only neutral instructions and raster pages, never neighboring hidden/source assistance (1.944042ms)
+✔ missing, invalid or unknown-size delivery cannot silently become a packet (0.814667ms)
+✔ single-title repair removes only the identical duplicate leading title and preserves other prose (0.106917ms)
+✔ verification release requires immutable spontaneous then prompted responses bound to the same packet (1.689791ms)
+✔ assisted readings are retained explicitly and cannot be released as unaided (0.650791ms)
+✔ cross-packet, swapped and malformed responses cannot authorize source release; accessibility stays separate (1.124792ms)
+✔ retained clipping and correction fixtures match delivered hashes and intrinsic dimensions (0.201875ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1133.596709

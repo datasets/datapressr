@@ -1,0 +1,3 @@
+Read the supplied commission and visible story images in order. Use only these materials. Do not open source files, HTML, SVG, alt text, earlier reviews, or other stories. Report any prior topic/source/story exposure and any accidental assistance. Report the dimensions/scaling visible to you and whether labels were unreadable; do not claim to know hidden image preprocessing.
+
+Before receiving any further questions, write your main takeaway in your own words. What changed your understanding, if anything? Identify the weakest or least clear passage and explain why. State uncertainty honestly. Do not guess facts you could not recover from the delivered story.

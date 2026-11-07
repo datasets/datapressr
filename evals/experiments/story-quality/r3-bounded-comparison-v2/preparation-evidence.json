@@ -1,0 +1,153 @@
+{
+  "checked_at": "2026-10-30T19:52:22.811Z",
+  "writer_calls": 0,
+  "model_calls": 0,
+  "main": "5a2d8e8eac906102caf0a95547780260c7cb37dc",
+  "harness": {
+    "tree": "1816715350ab5ab395c32f9f9d4035672ce7cf3f",
+    "dirty": false
+  },
+  "pins": {
+    "evals/config.json": "04acba8c618ca43f7a68f9df51f0393c6c56cf9e2f01376112ca9bb95d2d4e64",
+    "evals/cases/story/fc-c17/case.json": "30ae6e5cd9980b514b0ae467d9e82a9c39c364c2b244b6e845d1f06093385754",
+    "evals/cases/story/fc-c17/prompt.md": "e85f9cc838c77c5ec5cccce9829d1c08d088d8929f86100cb3170497e7192621",
+    "evals/experiments/story-quality/fresh-case-c17/manifest.json": "5241b16c5d066ddef8d7a6259725e92297051a1cf719f798ba08940350762d4b",
+    "evals/calibration/story/diagnostic-v2/README.md": "9f17a373de0f794e8aa918fb970f3f3a7efd629640fd255855fb15e3f31b0c33",
+    "evals/lib/reader-packet.mjs": "a783a43f093aa6b27fd9b0fa21a1bd59780a00a28e6d27c5a675669ed4fb73be",
+    "evals/development/r3-scope-v2/review.md": "82046bb07850ed1ee09ec74e70c1bee42b71dbce4a22d408b810ee7e0b0ef0d8"
+  },
+  "case_hash": "5fc11308b789fb60dee7b4bed17cd669922309dd2e7d8cfd48ee0f0e83a41b11",
+  "source_inputs": [
+    {
+      "path": "evals/experiments/story-quality/fresh-case-c17/inputs",
+      "commit": "dd580cf2760b24ab4558b11a7092849bda3345ac",
+      "tree": "c0d0455d86509a02e249981f3144692fca2ea3b3"
+    }
+  ],
+  "writer_prompt_sha256": "3c1038748af06081c4559c2dadc789cc36208402ca8b79e25dac819f92e8bfff",
+  "arms": [
+    {
+      "arm": "baseline",
+      "ref": "bd561130735a8637f2fc0b2b5f5eac3b41e4bf6c",
+      "skill_tree": "92148d1e210b6aec35ed1bff432a7d32e78044c7",
+      "files": {
+        ".gitignore": "dbac2f9acdd212480dbe0c8308e5c69adacb5c1cb2a0ea90f0a7129b700253da",
+        "AGENTS.md": "5fa9dd6fa24a5b99f6ce121983dd2c1eafed891a285be926dba0ed74c8c306bf",
+        "TASK.md": "3c1038748af06081c4559c2dadc789cc36208402ca8b79e25dac819f92e8bfff",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/README.md": "71a6fc9a624e396fe0c7f9c3d6d07cdaf1438f6dc4a53a51a54bd834ac14be1e",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/build.mjs": "03d593de640b10e3fe89f95575936cdb0e37f3c8f00055b6582ab444b5ab2d5b",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/components.svg": "03cbf00644b58aba1a8aeb7dca72d260d206f56973b356afce63401ec5eb6bc6",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/data/components.csv": "b0ea6bd6d9bd12f3c9100f36028d3ee29b73ff9a74385849799b5ae7c93bec63",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/datapackage.json": "102e58ddd5416cfd8ece525af785dec127c4526cf3e0b0c27533ea045336eaa2",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/layout.pdf": "f6141b7a8c4666b0a1ff2bf3ed293a3c890c73175379eeb54140851037fd6cb3",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/layout.txt": "a6814849a7628e9d7b1c0fe6c6f738dd040557c278c6b6620ece38d9eb5911c2",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/methods.pdf": "5995ca18b0d55b50e2d54e2224814a5edcd4c3f247a00e49b3d2c862f05a1f2d",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/methods.txt": "cdf4676b3687c891c69b088243944937745a1a2224c67080beca4ab78f982086",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/migration-release-notes.pdf": "311348b869562a6e12d506c7b9d6c1a457d935f758d8936a08a5be0d9e9c6b8c",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/migration-release-notes.txt": "6ceebafee97f942e3804e3855a036c4403f97ec5eb0aa946b178a7fc8e0dbddb",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/population.csv": "b8b50bd345d8a5f33d5c8a28c95aeaa0a50971356f000d9b48276a65fd9022a7",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/retrieval.json": "d94a350916d42f4102fef7e90bcb4533348a24659db5f10ace5470fafa3fff9a",
+        "site/stories/package-lock.json": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+        "site/stories/package.json": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+        "skills/story/SKILL.md": "dc36079f819b7549ce42927075cfa08f776c94fc40776dc907a9f2e4484f54c6",
+        "skills/story/references/charting.md": "086310e1e0068cfa3ca935e315bf05d4bb0ecfc5259b5ba304d17d33214e9129",
+        "skills/story/references/editorial-review.md": "4aa893c687c070b8b7586046d8d1443b858961ca618f6c90f14073462aba0537",
+        "skills/story/references/make-charts-template.mjs": "4c0037c931f88e40c4c55a8674f99e328c52aee588867b7df6a033f77ce75c1c",
+        "skills/story/references/story-craft.md": "768d00accbb7d5fb6d7e6adda9751e737528edf4dd5a9e53ca9042a6276e3a02",
+        "skills/story/references/voice-guide.md": "e0dd6900727ab765fc80d8132447c5e5ff645c0c513b44dd5d230b349b030382"
+      }
+    },
+    {
+      "arm": "candidate",
+      "ref": "bbe94efb15c9841937d9d52423783f6f5fe79041",
+      "skill_tree": "abe2cd0707647eac6972b6f1bba28d49bf94c6be",
+      "files": {
+        ".gitignore": "dbac2f9acdd212480dbe0c8308e5c69adacb5c1cb2a0ea90f0a7129b700253da",
+        "AGENTS.md": "5fa9dd6fa24a5b99f6ce121983dd2c1eafed891a285be926dba0ed74c8c306bf",
+        "TASK.md": "3c1038748af06081c4559c2dadc789cc36208402ca8b79e25dac819f92e8bfff",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/README.md": "71a6fc9a624e396fe0c7f9c3d6d07cdaf1438f6dc4a53a51a54bd834ac14be1e",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/build.mjs": "03d593de640b10e3fe89f95575936cdb0e37f3c8f00055b6582ab444b5ab2d5b",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/components.svg": "03cbf00644b58aba1a8aeb7dca72d260d206f56973b356afce63401ec5eb6bc6",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/data/components.csv": "b0ea6bd6d9bd12f3c9100f36028d3ee29b73ff9a74385849799b5ae7c93bec63",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/datapackage.json": "102e58ddd5416cfd8ece525af785dec127c4526cf3e0b0c27533ea045336eaa2",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/layout.pdf": "f6141b7a8c4666b0a1ff2bf3ed293a3c890c73175379eeb54140851037fd6cb3",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/layout.txt": "a6814849a7628e9d7b1c0fe6c6f738dd040557c278c6b6620ece38d9eb5911c2",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/methods.pdf": "5995ca18b0d55b50e2d54e2224814a5edcd4c3f247a00e49b3d2c862f05a1f2d",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/methods.txt": "cdf4676b3687c891c69b088243944937745a1a2224c67080beca4ab78f982086",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/migration-release-notes.pdf": "311348b869562a6e12d506c7b9d6c1a457d935f758d8936a08a5be0d9e9c6b8c",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/migration-release-notes.txt": "6ceebafee97f942e3804e3855a036c4403f97ec5eb0aa946b178a7fc8e0dbddb",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/raw/population.csv": "b8b50bd345d8a5f33d5c8a28c95aeaa0a50971356f000d9b48276a65fd9022a7",
+        "evals/experiments/story-quality/fresh-case-c17/inputs/retrieval.json": "d94a350916d42f4102fef7e90bcb4533348a24659db5f10ace5470fafa3fff9a",
+        "site/stories/package-lock.json": "2a5ca38400cf98b2e9a0dec48269f5b249e6dd96d19a1c462b2c123382817bcb",
+        "site/stories/package.json": "af626e6c02a4963467a7a655371d1da15d620cd7c97eae20528c43a5923823fa",
+        "skills/story/SKILL.md": "dc36079f819b7549ce42927075cfa08f776c94fc40776dc907a9f2e4484f54c6",
+        "skills/story/references/charting.md": "086310e1e0068cfa3ca935e315bf05d4bb0ecfc5259b5ba304d17d33214e9129",
+        "skills/story/references/editorial-review.md": "4aa893c687c070b8b7586046d8d1443b858961ca618f6c90f14073462aba0537",
+        "skills/story/references/make-charts-template.mjs": "4c0037c931f88e40c4c55a8674f99e328c52aee588867b7df6a033f77ce75c1c",
+        "skills/story/references/story-craft.md": "768d00accbb7d5fb6d7e6adda9751e737528edf4dd5a9e53ca9042a6276e3a02",
+        "skills/story/references/voice-guide.md": "07dbabc4debfe62da5ab786fc71ce456bcd0e39554d5eb7f3060af841607a325"
+      }
+    }
+  ],
+  "staged_differences": [
+    "skills/story/references/voice-guide.md"
+  ],
+  "cache": {
+    "key": "8984a9f462ae58e0",
+    "modules": "/Users/rgrp/.cache/datapressr-evals/node_modules/8984a9f462ae58e0/node_modules"
+  },
+  "interface": {
+    "vendor": "codex",
+    "cli_version": "0.166.0",
+    "recipe_sha256": "864bebd8a21dfc436cd67df3e2ce4f99252e76e71a7a9f3947526b2ae90ec773",
+    "mode": "fixed"
+  },
+  "auth": {
+    "ok": true,
+    "reason": ""
+  },
+  "canary": {
+    "status": "BLOCKED",
+    "reason": "no canary on record for codex 0.166.0, recipe 864bebd8a21d, fixed mode; run: node evals/run.mjs canary --writer codex --mode fixed"
+  },
+  "synthetic": {
+    "timeout": {
+      "timed_out": true,
+      "signal": "SIGTERM",
+      "wall_ms": 104
+    },
+    "valid": {
+      "exit_code": 0,
+      "parsed": {
+        "events": [
+          {
+            "type": "turn.completed",
+            "usage": {
+              "input_tokens": 3,
+              "output_tokens": 2
+            }
+          }
+        ],
+        "items": [],
+        "usage": {
+          "input_tokens": 3,
+          "output_tokens": 2
+        },
+        "model_actual": null,
+        "turns": 1,
+        "last_message": null,
+        "completed": true,
+        "failed": null
+      }
+    },
+    "transient_failure": {
+      "exit_code": 75,
+      "retries_authorized": 0,
+      "outcome": "exhausted; remaining launches prohibited"
+    },
+    "missing_prerequisite": {
+      "hard_token_and_cost_enforcement": false,
+      "outcome": "BLOCKED before any model launch"
+    }
+  }
+}
