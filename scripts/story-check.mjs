@@ -123,6 +123,24 @@ function checkImages(dir, images) {
   return result("images", true, `${images.length - external.length} image(s) present${external.length ? `; ${external.length} external not checked` : ""}`);
 }
 
+// Every file is served at https://datahub.io/blog/<slug>/_r/-/<path>, so names must be URL-safe:
+// a space broke the method PDF link and a shell-built manifest (china-co2-peak, 2026-11-08).
+function checkFilenames(dir) {
+  const bad = [];
+  const walk = (rel) => {
+    for (const e of readdirSync(join(dir, rel), { withFileTypes: true })) {
+      if (e.name === "node_modules" || e.name === ".git") continue;
+      const path = rel ? `${rel}/${e.name}` : e.name;
+      if (!/^[A-Za-z0-9._-]+$/.test(e.name)) bad.push(path);
+      if (e.isDirectory()) walk(path);
+    }
+  };
+  walk("");
+  return bad.length
+    ? result("filenames", false, `not URL-safe (use letters, digits, . _ -): ${bad.join(", ")}`)
+    : result("filenames", true, "all file names URL-safe");
+}
+
 function checkDownloads(dir, links, images) {
   const data = links.filter((l) => DATA_EXT.test(l.ref.replace(/[?#].*$/, "")));
   const problems = [];
@@ -186,6 +204,7 @@ export async function checkStoryPackage(dir, { build = false } = {}) {
     checkAutolinks(md),
     checkImages(dir, images),
     checkDownloads(dir, links, images),
+    checkFilenames(dir),
     asWarning(checkOpening({ prose })),
     asWarning(checkNumbers({ prose, svgs })),
     asWarning(/^\d{4}-\d{2}-\d{2}$/.test(fields.date ?? "") ? checkAsOf({ workspace: dir, storiesDir: ".", slug: "README", asOf: fields.date }) : result("S6", true, "not applicable: no front matter date")),

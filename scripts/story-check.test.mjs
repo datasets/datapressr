@@ -72,6 +72,15 @@ test("saboteur: an absolute download link to a file not in the package fails", a
   assert.deepEqual(failing(results), ["downloads"]);
 });
 
+test("saboteur: a file name with a space fails the filenames check", async () => {
+  // china-co2-peak (2026-11-08): "GCP fossilCO2 2026v11.pdf" broke the served URL and a shell manifest.
+  const dir = saboteur((d) => writeFileSync(join(d, "method doc.pdf"), "x"));
+  const r = byId(await checkStoryPackage(dir), "filenames");
+  assert.equal(r.pass, false);
+  assert.match(r.message, /method doc\.pdf/);
+  rmSync(dir, { recursive: true });
+});
+
 test("saboteur: an H1 fails the no-H1 check", async () => {
   const dir = saboteur((d) => editReadme(d, (md) => md.replace("\n<p><picture>", "\n# Solar passes 40 per cent\n\n<p><picture>")));
   const results = await checkStoryPackage(dir);
