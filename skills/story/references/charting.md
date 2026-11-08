@@ -23,6 +23,7 @@ A `<slug>-make-charts.mjs` next to the story. Start from [`make-charts-template.
 
 ## Rules that came out of real stories
 
+- **Round once, from full precision, with the template's `round()`.** `toFixed` rounds 94.55 down to 94.5 (binary storage), and rounding a CSV to 3 decimals then a label to 2 turned 0.7249… into 0.72 while statistics.json said 0.73. Keep derived CSVs at full precision and round only for display, with the same helper in the calculate and chart scripts (us-measles-2026, us-inflation-components).
 - **Read values, don't type them.** Annotations take their numbers from the CSV rows at build time (look the row up by key and throw if it's missing), so a label can never disagree with the data.
 - **Each series from its own rows.** Two resources on different calendars (e.g. two markets with different holidays) must not be joined into one wide table by date — the join invents null or zero points. Pass each resource to its own `Plot.line`.
 - **Respect gaps; never plot missing as zero.** Filter to finite values or let Plot break the line.

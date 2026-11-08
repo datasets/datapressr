@@ -23,6 +23,16 @@ const INK = "#111827";
 const HIGHLIGHT = "#dc2626";
 const FONT = { fontSize: "12px", fontFamily: "ui-sans-serif, system-ui, sans-serif" };
 
+/** Round half away from zero to `dp` decimals, correctly for decimal inputs.
+ * `(94.55).toFixed(1)` gives "94.5" because 94.55 is stored as 94.5499…;
+ * this gives 94.6. Round once, from full precision, here and in the calculate
+ * script alike: never round a value that was already rounded (us-measles-2026,
+ * us-inflation-components, 2026-11-08). */
+function round(v, dp = 0) {
+  const s = Math.sign(v) || 1;
+  return (s * Math.round(Number(`${Math.abs(v)}e${dp}`) + 1e-9)) / 10 ** dp;
+}
+
 /** Rows of one clean (unquoted) CSV between two ISO dates, inclusive. One call
  * per resource — never join resources by date (see charting.md). */
 function series(file, dateCol, valueCol, from, to) {
