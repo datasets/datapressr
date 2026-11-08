@@ -131,7 +131,7 @@ export function findDates(text) {
 
 // --- Numbers ------------------------------------------------------------------
 
-const MAGNITUDES = { trillion: 1e12, tn: 1e12, billion: 1e9, bn: 1e9, million: 1e6, mn: 1e6, m: 1e6, thousand: 1e3, k: 1e3 };
+const MAGNITUDES = { trillion: 1e12, tn: 1e12, billion: 1e9, bn: 1e9, million: 1e6, mn: 1e6, m: 1e6, thousand: 1e3, k: 1e3, b: 1e9 };
 const CURRENCY = { "€": "EUR", EUR: "EUR", "$": "USD", "US$": "USD", USD: "USD", "£": "GBP", GBP: "GBP" };
 const NUMBER_RE = new RegExp(
   [
@@ -139,9 +139,9 @@ const NUMBER_RE = new RegExp(
     "(?<cur1>US\\$|\\$|€|£|(?:EUR|USD|GBP)\\s)?",
     "(?<sign>[-−](?=\\s?(?:US\\$|\\$|€|£)?\\d))?",
     "(?<cur2>US\\$|\\$|€|£)?",
-    "(?<num>\\d{1,3}(?:[,\\u00a0\\u2009\\u202f]\\d{3})+(?:\\.\\d+)?|\\d+(?:\\.\\d+)?|\\.\\d+)",
+    "(?<num>\\d{1,3}(?:[,\\u00a0\\u2009\\u202f]\\d{3})+(?:\\.\\d+)?|\\d+(?:\\.\\d+)?|\\.\\d+)(?!\\.?\\d)", // never stop mid-number ("13.7M" is not "13")
     "(?<pct>\\s?(?:%|per\\s?cent\\b|percent\\b|pp\\b|percentage points?\\b))?",
-    "(?<mag>\\s?(?:trillion|billion|million|thousand)\\b|(?:tn|bn|mn|m|k)(?![\\p{L}]))?",
+    "(?<mag>\\s?(?:trillion|billion|million|thousand)\\b|(?:tn|bn|Bn|mn|m|k|M|K|B)(?![\\p{L}]))?", // chart labels use M, K, B
     "(?<cur3>\\s(?:EUR|USD|GBP)\\b)?",
     "(?<suffix>st|nd|rd|th|s)?(?![\\p{L}\\p{N}])",
   ].join(""),

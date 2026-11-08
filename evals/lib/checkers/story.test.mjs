@@ -40,6 +40,19 @@ test("numbers: thousands separators, decimals, percentages, signs and magnitudes
   assert.deepEqual(nums("12 percent and 4 per cent and 3pp"), ["12 percent", "4 per cent", "3pp"]);
 });
 
+test("numbers: chart-style capital magnitudes (13.7M, 4.5B, 250K) keep their decimals and scale", () => {
+  // Found on ev-market-vs-tesla (2026-11-08): "13.7M" tokenised as "13", so a chart label never
+  // matched "13.7 million" in prose and the decimal was silently dropped.
+  const [a, b, c, d] = tokenizeNumbers("13.7M sold, $4.5B raised, 250K jobs, 1.64M");
+  assert.deepEqual([a.raw, a.mantissa, a.scale], ["13.7M", 13.7, 1e6]);
+  assert.deepEqual([b.currency, b.value], ["USD", 4.5e9]);
+  assert.deepEqual([c.mantissa, c.scale], [250, 1e3]);
+  assert.deepEqual([d.mantissa, d.scale], [1.64, 1e6]);
+  assert.equal(numberOnChart(tokenizeNumbers("13.7 million")[0], tokenizeNumbers("13.7M")), true);
+  // A number glued to an unknown suffix is not truncated to its integer part.
+  assert.deepEqual(nums("13.7X"), []);
+});
+
 test("numbers: years, dates, ordinals and references are not data numbers", () => {
   assert.deepEqual(kinds("from 1959 to 2025, the 1960s"), ["year:1959", "year:2025", "year:1960s"]);
   assert.deepEqual(kinds("2014–2024 and 2014-2024"), ["year:2014", "year:2024", "year:2014", "year:2024"]);
