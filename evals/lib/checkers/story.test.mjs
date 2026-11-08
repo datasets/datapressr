@@ -102,6 +102,17 @@ test("prose parsing drops frontmatter, alt text, URLs and friction notes, and re
   assert.equal(countWords(p.mainText), 6);
 });
 
+// Blog packages (Factory releases) have no Friction notes section: the reader sees the whole
+// README. They list exempt numbers in front matter instead, which DataHub does not render.
+// Found on ev-market-vs-tesla and birth-rates (2026-11-08, datapressr-l52).
+test("blog packages list exempt numbers in front matter story_check_exempt", () => {
+  const md = `---\ntitle: "T"\nstory_check_exempt:\n  - "28%: IEA forecast, attributed"\n  - "10.3 billion: UN projection"\ndate: 2026-11-08\n---\n\nSales may reach 28% in 2026; population peaks near 10.3 billion; 42 cars.\n`;
+  const p = parseProse(md);
+  assert.deepEqual(nums(p.exemptText), ["28%", "10.3 billion"]);
+  const r = checkNumbers({ prose: p, svgs: [{ text: ["42"] }] });
+  assert.equal(r.pass, true, r.detail);
+});
+
 // The exempt-list format the story skill prescribes (skills/story/SKILL.md step 4), read from the
 // skill itself so the two cannot drift: its example must satisfy S3 with no charts at all.
 test("the story skill's exempt-list example is what S3 parses", () => {

@@ -69,7 +69,7 @@ export function visibleText(md) {
 
 // Parse a story's prose file into the parts the checks need.
 export function parseProse(md) {
-  const { body } = splitFrontmatter(md);
+  const { frontmatter, body } = splitFrontmatter(md);
   const { main, friction } = splitFriction(body);
   const images = [...main.matchAll(/!\[(?:[^\]\\]|\\.)*\]\(\s*<?([^)\s>]+)>?(?:\s+"[^"]*")?\s*\)/g)].map((m) => m[1]);
   // The exempt list (story-craft pattern 4): friction-notes lines that say "exempt", plus any
@@ -87,6 +87,15 @@ export function parseProse(md) {
       exemptLines.push(l);
       i = j;
     }
+  }
+  // Blog packages have no friction notes; they list exempt numbers in front matter, which
+  // DataHub does not render: `story_check_exempt:` followed by `- "28%: IEA forecast"` items.
+  const fm = frontmatter.split(/\r?\n/);
+  const at = fm.findIndex((l) => /^story_check_exempt:\s*$/.test(l));
+  if (at >= 0) for (const l of fm.slice(at + 1)) {
+    const item = l.match(/^\s+-\s+(.*)$/);
+    if (!item) break;
+    exemptLines.push(item[1].replace(/^["']|["']$/g, ""));
   }
   return { body, main, friction, images, mainText: visibleText(main), exemptText: visibleText(exemptLines.join("\n")) };
 }
