@@ -6,7 +6,7 @@ First, given only the topic and intended audience, write five to eight reader qu
 
 ## Claim checks — writer runs before handoff, reviewer re-runs
 
-Each failed at least once in production review (bead datapressr-6jr). Check every sentence of the draft, including title and description.
+Each failed at least once in production review (beads datapressr-6jr; 8–12 from the 2026-11-08 batch). Check every sentence of the draft, including title and description.
 
 1. **Names and paraphrase match the source.** Copy names from the cited page; paraphrase no stronger than it. *Before:* "Johan Hellstrand found no other factor explains it." *After:* "Julia Hellstrand and colleagues could not identify a factor that explains it."
 2. **Every outside figure or anecdote has a link that states it**; otherwise cut it. Generalisations ("the usual explanation") need a source too. *Before:* "The IEA expects 294 GW next year." *After:* cut, or link the IEA page that gives 294 GW.
@@ -15,6 +15,11 @@ Each failed at least once in production review (bead datapressr-6jr). Check ever
 5. **Date the hook.** State the latest data year and why now; never call old data "now", and credit who reported it first. *Before:* "Births are now falling." (2023 data) *After:* "In 2023, the latest year in the data, births fell…"
 6. **Lead with the strongest finding and check the path, not just endpoints.** Compute the share of the total change each part explains; check for a peak or trough between endpoints. *Before:* "Fossil generation is lower than in 1985." *After:* "Fossil generation peaked in 2007 and has been roughly flat since; solar and wind supplied 99.7% of net growth."
 7. **No precision claims without evidence.** Mention revisions only with a cited revision history. *Before:* "within the range revisions could change". *After:* cut, or quote the size of past revisions from the publisher's revision notes, linked.
+8. **A trend break chosen from the data needs a start-year sweep.** Report the slope for neighbouring start years and the full record, and never headline the flattest. *Before:* "Since 2007 the September minimum has hardly moved (−0.03 a decade)." *After:* "Losses have slowed since 2007, by how much depends on the start year: −0.03 from 2007, −0.26 from 2005, −0.73 over the full record." (arctic-sea-ice, 2026-11-08)
+9. **Rank with the publisher's own tie and uncertainty rules.** Look for them before writing "record" or a rank; a margin inside a tie threshold or an instrument change is a tie. *Before:* "2026's winter maximum was the lowest on record." *After:* "2026's maximum was tied with 2025's for the lowest (NSIDC treats differences under 0.04 million km² as ties)." (arctic-sea-ice)
+10. **A period total or a baseline-month claim needs its latest value and its sensitivity beside it.** A 26-year ratio can hide a near-tie in the last two years; "all of the rise" can depend on one baseline month. *Before:* "Cold deaths outnumber heat deaths 1.9 to 1." *After:* "…1.9 to 1 over 1999–2024, but by 2023 heat deaths were 95% of cold." (heat-deaths, us-inflation-components)
+11. **Combining datasets: name each one's unit and pick the comparable denominator.** Deliveries vs sales, battery-electric vs all plug-ins; say which and why. *Before:* "Tesla's share of electric car sales fell to 7.7%." *After:* "Tesla's deliveries were under 13% of battery-electric car sales, the only kind it makes." (ev-market-vs-tesla, datapressr-79t)
+12. **Check the data's licence, not the report's.** A CC BY report can sit beside a data product with stricter terms; quote figures from the licensed document, or cite the data terms that allow the extract. *Before:* "IEA data, CC BY 4.0 (via OWID)." *After:* "18 figures quoted from the CC BY 4.0 report, with page numbers and the IEA's adaptations notice." (ev-market-vs-tesla)
 
 Copy this template into the project's internal review folder and fill it in:
 
