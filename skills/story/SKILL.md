@@ -38,7 +38,7 @@ Chart-build dependencies live in one scoped `package.json` in that folder (`@obs
 - The argument is stated in **one sentence** in the outline.
 - The outline was **reviewed and approved before charts or prose** (see step 2). The approval is recorded with the reviewer, the exact revision (commit and file hash) and the reproduced numbers.
 - Before any handoff for shipping, the finished draft has an independent agent's **APPROVED** editorial review using [the final-review template](references/editorial-review.md), with reviewer identity, exact commit and file SHA-256s, reproduced evidence and a saved review artifact (step 4). Outline approval alone does not clear this gate.
-- Every chart: Observable Plot per `references/charting.md`, a committed `.svg`, **annotated on the chart** (direct labels, marked moments), byte-identical across two builds. One chart = one idea.
+- Every chart: Observable Plot per `references/charting.md`, a committed `.svg` plus its `-mobile.svg`, built from one `chart()` spec, **framed** (takeaway title, subtitle with measure and unit, source line inside the SVG), **annotated on the chart** (direct labels, marked moments; no text key on phones), greys plus one accent, byte-identical across two builds. One chart = one idea; chart 1 proves the post title.
 - Prose **opens with a standalone summary**: the first paragraph after the title, chart and caption, before any section heading, states the main finding with at least one number in at most 80 words (an optional `**In short:**` label is fine). A reader who stops there has the story. There is **no word limit**: length is free, but it should be earned — every section answers a question the reader will ask. The prose follows `references/voice-guide.md`, does not narrate the chart, and **every data number in the prose is on a chart** — except the exempt kinds listed in `references/story-craft.md` §4, which the prose's friction notes list explicitly (format in step 4).
 - No causal claim the data can't support: explanations are attributed to a named, linked source.
 - A short **"How this was made"** section, last: links the dataset and its build script, says re-running reproduces the numbers.
@@ -67,7 +67,7 @@ If the upstream data can change under you (someone else's dataset, still updatin
 - **What this story is about** — and what it is *not* about (almost always: not the wrangling). If the data shows *that* but not *why*, say so here.
 - **Argument, in order** — numbered beats on the default spine (`references/story-craft.md` §5). Real numbers in the beats now, with dates and units. Include the numbers that **weaken** the argument, not only those that make it. Distinguish measurement kinds that readers conflate (spot vs futures, nominal vs inflation-adjusted, a monthly mean vs a single reading) and note any widely quoted figure that differs from yours.
 - **Outside context** — any mechanism or explanation, attributed to a named source with a link, marked as not tested by this data.
-- **Chart plan** — a table: `# | chart | data (resource + fields) | transform, gaps, dates | purpose`. One row per chart, each serving one beat. The "transform, gaps, dates" column is where most review corrections land: say how the filter/transform is computed, how missing rows and different calendars are handled (never join two resources by date; never plot missing as zero), how period data is dated (e.g. week-ending), and what the y-domain must include. **Run any formula against the actual columns before submitting** — story #2's plan named a ratio that was undefined for one row and wrong-signed for three.
+- **Chart plan** — a table: `# | chart | data (resource + fields) | transform, gaps, dates | purpose`. One row per chart, each serving one beat. The purpose column gives the chart's draft title (the point it proves), its accent (the same protagonist hue across the story; a second accent only for a two-way comparison) and its explanatory annotations (three or fewer; see `references/charting.md` design rules). The "transform, gaps, dates" column is where most review corrections land: say how the filter/transform is computed, how missing rows and different calendars are handled (never join two resources by date; never plot missing as zero), how period data is dated (e.g. week-ending), and what the y-domain must include. **Run any formula against the actual columns before submitting** — story #2's plan named a ratio that was undefined for one row and wrong-signed for three.
 - **Voice** — one line pointing at the voice guide; the voice pass is separate.
 - **Friction notes** — what the story surfaced about the skill, the charts or the data.
 
@@ -89,13 +89,13 @@ Record the verdict with the reviewer's identity, the exact revision reviewed (co
 
 ### 3. Charts — *commit*
 
-`<slug>-make-charts.mjs` from `references/make-charts-template.mjs`, following `references/charting.md`. Implement exactly the approved chart plan. Annotations read their values from the data rows. Build twice and compare SHA-256; inspect at desktop and phone width.
+`<slug>-make-charts.mjs` from `references/make-charts-template.mjs`, following `references/charting.md`. Implement exactly the approved chart plan. Annotations read their values from the data rows. Build twice and compare SHA-256; render the desktop SVG at 720 px and the mobile one at 326 px and look at both. Run `npm run story-check -- <dir>` (DataPressr) on the charts: no `chart-*` FAIL; fix each `chart-*` warning or record in the chart plan why it stands (e.g. a categorical chart with four hues).
 
 Commit: `Story #N (<Title>): charts` — the `.mjs` and `.svg`s only.
 
 ### 4. Prose — *commit*
 
-`<slug>.md`. Render the approved outline — **wording only; the argument is fixed**. Lead with the headline chart, then the opening summary (the contract's first prose rule): the finding and its key number, standalone. Embed charts as `![alt](<slug>-chart.svg)` with alt text that states what the chart shows, including the key values. Method last and short. Keep a short "Friction notes" section while the skill is still evolving, and state that the author's voice pass is outstanding.
+`<slug>.md`. Render the approved outline — **wording only; the argument is fixed**. Lead with the headline chart, then the opening summary (the contract's first prose rule): the finding and its key number, standalone. The chart's own title, subtitle and source line travel with it, so a caption below holds only notes the chart can't (or nothing). Embed charts as `![alt](<slug>-chart.svg)` (or a `<picture>` with the `-mobile.svg` as `<source media="(max-width: 600px)">`) with alt text that states what the chart shows, including the key values. Method last and short. Keep a short "Friction notes" section while the skill is still evolving, and state that the author's voice pass is outstanding.
 
 Frontmatter: `title`, one-line `description`, and a `datahub` block with the story's DataHub slug (short, title-derived, never a dataset name, since stories and datasets share a publication's namespace) and `status: draft`. Only after the voice pass or an explicit owner OK does it become `status: approved` with an `approved:` line giving the date and basis:
 
@@ -148,4 +148,4 @@ Keep the owner's remarks on any draft verbatim in `docs/reviews/<slug>-user-feed
 ## Known limits
 
 - The spine is proven on a single series, a scoreboard and a two-resource comparison. A genuinely dashboard-shaped story (many small multiples, no single headline) is untested; if one doesn't fit, say so in the outline.
-- Charts are 720px wide with 12px text — on a phone that scales to about 6px. Fine on high-DPI screens; keep labels short.
+- Chart text widths are estimated (no font measuring in Node), so `frame()` wraps and `chart-clipping` checks with average glyph widths: look at the rendered PNGs, especially long labels and wide tick values.

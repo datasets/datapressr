@@ -23,6 +23,12 @@
 //   S7           SVGs free of NaN, Infinity, undefined and leaked function source
 //   S8           warn: "first time", "ever", "all-time" or "record high/low" with no scope in
 //                the sentence ("since 1985", "1985–2025", "in this series/data/record")
+//   chart-*      design checks on every chart SVG (scripts/svg-design.mjs; rules in
+//                skills/story/references/charting.md): chart-frame (title, source,
+//                accessible name), chart-text-size (>= 11 px rendered), chart-contrast
+//                (4.5:1), chart-colour-blind, chart-accents, chart-mobile-height,
+//                chart-mobile-key. FAIL for charts built with the template's frame()
+//                (data-dp-frame); warnings for older charts. The last four always warn.
 //   S4           with --build: the *-make-charts.mjs build, run twice offline in a
 //                temp copy, reproduces the SVGs byte for byte
 // Exits 1 when any fail-severity check fails. Runs from any directory, no install.
@@ -32,6 +38,7 @@ import { dirname, join, normalize } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { checkAsOf, checkNumbers, checkOpening, checkReproducible, checkSvgSanity, parseProse, splitFrontmatter, svgTexts } from "../evals/lib/checkers/story.mjs";
 import { blankFrontmatter, checkMdx, mdxHazards, stripCode } from "./validate-datapackage.mjs";
+import { checkChartDesign } from "./svg-design.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const DATA_EXT = /\.(csv|tsv|json|geojson|zip|xlsx|parquet)$/i;
@@ -169,6 +176,16 @@ export function checkScopedSuperlatives(text) {
     : result("S8", true, "superlatives carry their scope");
 }
 
+// Which device each chart is shown on: X-mobile.svg is the phone variant, X.svg with
+// such a sibling is desktop-only, anything else is shown on every screen.
+export function chartRoles(localSvgs) {
+  const set = new Set(localSvgs);
+  return localSvgs.map((path) => ({
+    path,
+    role: /-mobile\.svg$/.test(path) ? "mobile" : set.has(path.replace(/\.svg$/, "-mobile.svg")) ? "desktop" : "only",
+  }));
+}
+
 const asWarning = (r) => (r.pass ? r : { ...r, severity: "warn" });
 
 // S4 in a throwaway copy, so the package itself is never written to.
@@ -210,6 +227,7 @@ export async function checkStoryPackage(dir, { build = false } = {}) {
     asWarning(/^\d{4}-\d{2}-\d{2}$/.test(fields.date ?? "") ? checkAsOf({ workspace: dir, storiesDir: ".", slug: "README", asOf: fields.date }) : result("S6", true, "not applicable: no front matter date")),
     checkSvgSanity({ storiesAbs: dir, images: allSvgs }),
     checkScopedSuperlatives(prose.mainText),
+    ...checkChartDesign(chartRoles(localSvgs).map(({ path, role }) => ({ path, role, svg: readFileSync(join(dir, path), "utf8") }))),
   ];
   if (build) results.push(checkBuild(dir));
   return results;
