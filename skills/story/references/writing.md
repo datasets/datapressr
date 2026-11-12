@@ -61,7 +61,7 @@ Each paragraph after the first starts by saying how it changes, qualifies or exp
 
 ## 6. Introduce each chart in one sentence, then say what follows
 
-Before every chart after the first, one sentence tells the reader what the chart compares and what to look for. After it, say what follows from it. Place each chart directly after the sentence that uses it. This is not narrating the chart (the voice guide still bans "then it rises, then it dips"): it is where to look, plus the conclusion. Chart 1 is exempt: it comes first and the opening summary interprets it.
+Before every chart after the first, one sentence tells the reader what the chart compares and what to look for. After it, say what follows from it. Place each chart directly after the sentence that uses it. This is not narrating the chart (the voice guide still bans "then it rises, then it dips"): it is where to look, plus the conclusion. Chart 1 is exempt: it comes first and the opening summary interprets it. A lead-in names what the chart compares, never what drives it: "the chart shows what that gap does to births" turned a descriptive comparison into a causal claim in round 1 and cost a D2 point.
 
 **Check:** Is every chart after the first preceded by a sentence naming what it compares? Is each chart next to the paragraph that cites it?
 
@@ -71,7 +71,7 @@ Before every chart after the first, one sentence tells the reader what the chart
 
 ## 7. Give each caveat once, in plain words, where the doubt arises
 
-Keep every caveat the outline requires. Say each one once, in the reader's terms, beside the claim it limits, and merge stacked qualifiers into one sentence. Measurement mechanics (rounding, weighting, version comparisons, sensor uptime) move to "How this was made", with a short pointer in the body when a claim depends on them. Don't say a figure "may be revised" unless the source says so.
+Keep every caveat the outline requires. Say each one once, in the reader's terms, beside the claim it limits, and merge stacked qualifiers into one sentence. A caveat that limits the headline itself (what a benchmark like "replacement" means and how much it varies) stays in the body, in one clause beside the headline. Measurement mechanics (rounding, weighting, version comparisons, sensor uptime) move to "How this was made", with a short pointer in the body when a claim depends on them. Don't say a figure "may be revised" unless the source says so.
 
 **Check:** Does any paragraph carry two or more hedges in a row? Can each outline caveat be traced to a sentence, in the body or in the method section?
 
