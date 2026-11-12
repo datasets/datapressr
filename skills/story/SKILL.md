@@ -9,6 +9,7 @@ This skill is the **workflow**. The craft travels with it in `references/` — r
 
 - [`references/story-craft.md`](references/story-craft.md) — what makes a good data story: the patterns, the anti-patterns, the default spine.
 - [`references/voice-guide.md`](references/voice-guide.md) — the house voice.
+- [`references/writing.md`](references/writing.md) — sentence and structure rules for the prose (step 4): open on the change, one or two numbers per sentence, definitions inline, claim headings, linked paragraphs, chart lead-ins, one plain caveat, yardsticks, a reader-facing close.
 - [`references/charting.md`](references/charting.md) — how charts are made (Observable Plot → static SVG at build time), with [`references/make-charts-template.mjs`](references/make-charts-template.mjs) to start from.
 
 Proven on three stories: Keeling Curve (one time series), Planetary Boundaries (multi-indicator scoreboard) and "WTI Went Negative. Brent Didn't." (two resources compared at one moment — the first story written with the skill, in draft, with an independent outline review).
@@ -39,7 +40,7 @@ Chart-build dependencies live in one scoped `package.json` in that folder (`@obs
 - The outline was **reviewed and approved before charts or prose** (see step 2). The approval is recorded with the reviewer, the exact revision (commit and file hash) and the reproduced numbers.
 - Before any handoff for shipping, the finished draft has an independent agent's **APPROVED** editorial review using [the final-review template](references/editorial-review.md), with reviewer identity, exact commit and file SHA-256s, reproduced evidence and a saved review artifact (step 4). Outline approval alone does not clear this gate.
 - Every chart: Observable Plot per `references/charting.md`, a committed `.svg` plus its `-mobile.svg`, built from one `chart()` spec, **framed** (takeaway title, subtitle with measure and unit, source line inside the SVG), **annotated on the chart** (direct labels, marked moments; no text key on phones), greys plus one accent, byte-identical across two builds. One chart = one idea; chart 1 proves the post title.
-- Prose **opens with a standalone summary**: the first paragraph after the title, chart and caption, before any section heading, states the main finding with at least one number in at most 80 words (an optional `**In short:**` label is fine). A reader who stops there has the story. There is **no word limit**: length is free, but it should be earned — every section answers a question the reader will ask. The prose follows `references/voice-guide.md`, does not narrate the chart, and **every data number in the prose is on a chart** — except the exempt kinds listed in `references/story-craft.md` §4, which the prose's friction notes list explicitly (format in step 4).
+- Prose **opens with a standalone summary**: the first paragraph after the title, chart and caption, before any section heading, states the main finding with at least one number in at most 80 words (an optional `**In short:**` label is fine). A reader who stops there has the story. There is **no word limit**: length is free, but it should be earned — every section answers a question the reader will ask. The prose follows `references/voice-guide.md` and `references/writing.md`, does not narrate the chart, and **every data number in the prose is on a chart** — except the exempt kinds listed in `references/story-craft.md` §4, which the prose's friction notes list explicitly (format in step 4).
 - No causal claim the data can't support: explanations are attributed to a named, linked source.
 - A short **"How this was made"** section, last: links the dataset and its build script, says re-running reproduces the numbers.
 - The story is linked from the site's index pages (DataPressr: `site/datasets.md` and `site/README.md`).
@@ -95,7 +96,7 @@ Commit: `Story #N (<Title>): charts` — the `.mjs` and `.svg`s only.
 
 ### 4. Prose — *commit*
 
-`<slug>.md`. Render the approved outline — **wording only; the argument is fixed**. Lead with the headline chart, then the opening summary (the contract's first prose rule): the finding and its key number, standalone. The chart's own title, subtitle and source line travel with it, so a caption below holds only notes the chart can't (or nothing). Embed charts as `![alt](<slug>-chart.svg)` (or a `<picture>` with the `-mobile.svg` as `<source media="(max-width: 600px)">`) with alt text that states what the chart shows, including the key values. Method last and short. Keep a short "Friction notes" section while the skill is still evolving, and state that the author's voice pass is outstanding.
+`<slug>.md`. Render the approved outline — **wording only; the argument is fixed**. Write it with [`references/writing.md`](references/writing.md): the outline's beat order is the argument, but the prose turns it into a connected read (claim headings, each paragraph linked to the last, definitions inline, a close that answers the opening question). Lead with the headline chart, then the opening summary (the contract's first prose rule): the finding and its key number, standalone. The chart's own title, subtitle and source line travel with it, so a caption below holds only notes the chart can't (or nothing). Embed charts as `![alt](<slug>-chart.svg)` (or a `<picture>` with the `-mobile.svg` as `<source media="(max-width: 600px)">`) with alt text that states what the chart shows, including the key values. Method last and short. Keep a short "Friction notes" section while the skill is still evolving, and state that the author's voice pass is outstanding.
 
 Frontmatter: `title`, one-line `description`, and a `datahub` block with the story's DataHub slug (short, title-derived, never a dataset name, since stories and datasets share a publication's namespace) and `status: draft`. Only after the voice pass or an explicit owner OK does it become `status: approved` with an `approved:` line giving the date and basis:
 
@@ -114,7 +115,7 @@ Under the "Friction notes" heading, list every exempt number as a list item cont
   - $9.10: all-time low outside the chart's window
 ```
 
-Before committing, run the [claim checks](references/editorial-review.md#claim-checks--writer-runs-before-handoff-reviewer-re-runs) on every sentence, then check: the opening paragraph stands alone as a summary (before any section heading, at least one number, at most 80 words); the length is earned, with no section the reader would skip; every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. Follow the project's draft visibility rules: in DataPressr, both outline and prose also carry `publish: false` and stay out of the public stories index until owner approval.
+Before committing, run the writing checks at the end of `references/writing.md` and the [claim checks](references/editorial-review.md#claim-checks--writer-runs-before-handoff-reviewer-re-runs) on every sentence, then check: the opening paragraph stands alone as a summary (before any section heading, at least one number, at most 80 words); the length is earned, with no section the reader would skip; every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. Follow the project's draft visibility rules: in DataPressr, both outline and prose also carry `publish: false` and stay out of the public stories index until owner approval.
 
 Commit: `Story #N (<Title>): prose`, together with the index-page links.
 
@@ -142,6 +143,7 @@ Keep the owner's remarks on any draft verbatim in `docs/reviews/<slug>-user-feed
 - **Joining two resources by date for one chart** — invents missing points.
 - **Chart soup** / **a chart serving two points.**
 - **Narrating the chart** instead of stating the conclusion.
+- **The dense report** — every value in every sentence, a definitions block after the lede, label headings, a methods ending. Accurate and unread; see `references/writing.md`.
 - **Relative links that escape the published folder.**
 - **Treating the voice pass as part of the draft.**
 

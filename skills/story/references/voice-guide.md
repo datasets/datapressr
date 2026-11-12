@@ -58,6 +58,8 @@ This reconciles the two measures. It does not show what caused either increase o
 
 > **After.** Brent and WTI spot prices from the EIA, daily to annual, in one tidy package.
 
+Sentence- and structure-level rules (numbers per sentence, headings, chart lead-ins, endings) are in [`writing.md`](writing.md).
+
 ## Length
 
 There is no word limit: a story is as long as its argument, and long stories are fine when the opening is compelling. The opening paragraph must stand alone as a summary of the finding, with its key number, so a reader who stops there has the story. Length should be earned: if a section answers no question the reader would ask, cut it; if the story makes two arguments, it is probably two stories.
