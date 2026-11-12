@@ -27,7 +27,7 @@
 //                skills/story/references/charting.md): chart-frame (title, source,
 //                accessible name), chart-text-size (>= 11 px rendered), chart-contrast
 //                (4.5:1), chart-colour-blind, chart-accents, chart-mobile-height,
-//                chart-mobile-key. FAIL for charts built with the template's frame()
+//                chart-mobile-key, chart-clipping. FAIL for charts built with the template's frame()
 //                (data-dp-frame); warnings for older charts. The last four always warn.
 //   S4           with --build: the *-make-charts.mjs build, run twice offline in a
 //                temp copy, reproduces the SVGs byte for byte
