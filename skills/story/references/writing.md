@@ -106,14 +106,45 @@ The last section before "How this was made" returns to the question the title ra
 > Weekday morning trips more than doubled while weekend trips rose 12.7%: on these counts, the growth in cycling is a weekday-morning story, though the counters log trips rather than riders.
 > ## How this was made
 
+## 10. Write the prose fresh from the finding, and let the charts carry the numbers
+
+Draft from the one-sentence finding, the charts and the statistics, not by editing an earlier draft: edits keep the old draft's density (round 1 cut 0–4 numbers per story; writing still lost 12/12). Before writing, pick the few numbers the argument needs, usually one per beat; every other value stays on the chart, in the alt text and in the data. In the opening paragraph, at most one number per sentence. Aim for under one number per sentence overall. Fractions in words ("a fifth", "three times") count as numbers and must match the chart.
+
+**Check:** Numbers per reader-facing sentence (figures and number-words)? Any opening sentence with two?
+
+## 11. Start with who or what changed, as subject and verb
+
+Sentence 1 has a concrete subject (people, a country, a power source) and an active verb, and says why a reader should care. The precise count comes second. Use plain words for every technical term; the formal name belongs in "How this was made".
+
+> **Before.** In 2025, 41,280 trips were logged by the city's counters, a 118% rise on 2015.
+> **After.** The city's commuters have taken to bikes. On weekday mornings, counters now log more than twice as many trips as ten years ago.
+
+## 12. Every sentence of colour must trace to the data or a linked source
+
+Fresh prose invites background "everyone knows" facts. Each one is a claim: compute it from the package data, attribute it to a source you have opened (check the source page, not review notes), or cut it. A yardstick compares like with like (same measure, same period length, same baseline) and must hold across the whole series, not just the cases you remember: "records are usually broken by hundredths" was false for 3 of 16 cases when checked.
+
+**Check:** For each sentence without a number, could a reviewer ask "says who?" Is every yardstick computed from the package data?
+
+## 13. Keep "How this was made" under about 150 words
+
+Sources linked, data vintage, definitions with denominators, the data and code links; everything else is one link to DATA.md. Caveats that limit a claim stay beside the claim in the body, not here.
+
+## 14. Plain words must keep the measure's meaning
+
+Translating a technical measure into everyday words is where fresh prose loses accuracy (round 2: two of six stories fell below the accuracy gate this way). Keep the threshold, the category and the denominator exactly: a fertility rate below 2.1 is not "families with fewer than two children" (a period rate is not a family size, and 2.0–2.1 is not "fewer than two"); "unvaccinated or unknown status" is not "unvaccinated"; "49 reporting jurisdictions (48 states and DC)" is not "49 states plus DC". A trend word in a heading or close ("has not slowed", "the second half of the year") must match the window the number covers.
+
+**Check:** For each plain-words phrase that stands for a measure, does it still mean the same threshold, category and denominator as the chart? Does each trend word name or match its window?
+
 ## Before handing off
 
 Run these on the finished prose, together with the claim checks in `editorial-review.md`:
 
-1. Fewer than one in six reader-facing sentences has three or more numbers (years and claim-check-required ranges excluded). Round 0 originals: median 11%; ours: 33%.
+1. Under one number per reader-facing sentence on average, one at most per opening sentence, and fewer than one in six sentences with three or more (years and claim-check-required ranges excluded). Round 0 originals: median 0.8 per sentence, 11% with three or more; ours: 2.1 and 33%.
 2. No definitions or method section before the first finding.
 3. Every heading except "How this was made" is a claim.
 4. Every chart after the first has a one-sentence lead-in.
 5. Every paragraph after the first opens with a link word or a back-reference.
 6. The last reader-facing paragraph answers the title's question and adds no new claim.
 7. Every outline caveat and attribution is traceable to a sentence; every prose number is on a chart or on the exempt list, exactly as the chart labels it.
+8. Every plain-words phrase for a measure keeps its threshold, category, denominator and window (rule 14).
+9. Every sentence of background or yardstick traces to the package data or an opened, linked source (rule 12); the method section is about 150 words or fewer.
