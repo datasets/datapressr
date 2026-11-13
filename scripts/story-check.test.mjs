@@ -285,3 +285,53 @@ test("design: a y tick label wider than the left margin, or an end label past th
   assert.equal(designById(svgDoc(ticks.replace("40,100", "52,100")), "chart-clipping").pass, true);
   assert.match(designById(svgDoc(`<text x="300" y="200" font-weight="700">+636.0 (75.5%)</text>`), "chart-clipping").message, /right edge/);
 });
+
+// Measure fidelity (writing.md rule 14, SKILL.md step 4): the writer's NOTES.md, in the package
+// or the folder above it, lists each plain-words phrase for a measure against the source wording.
+const NOTES_TABLE = `| Phrase as published | Where | Source wording | Checked | Result |\n|---|---|---|---|---|\n`;
+const writeNotes = (d, body) => writeFileSync(join(d, "NOTES.md"), `# Notes\n\n## Measure fidelity\n\n${body}\n## Time spent\n\nAn hour.\n`);
+
+test("fidelity: a NOTES.md table whose phrases are in the README or a chart passes", async () => {
+  const r = byId(await checkStoryPackage(GOOD), "fidelity");
+  assert.equal(r.pass, true, r.message);
+});
+
+test("fidelity: no NOTES.md, or one without a table row, warns; NOTES.md one folder up is found", async () => {
+  const none = byId(await checkStoryPackage(saboteur((d) => rmSync(join(d, "NOTES.md")))), "fidelity");
+  assert.equal(none.pass, false);
+  assert.equal(none.severity, "warn");
+  assert.match(none.message, /no NOTES\.md/);
+  const empty = byId(await checkStoryPackage(saboteur((d) => writeNotes(d, NOTES_TABLE))), "fidelity");
+  assert.equal(empty.pass, false);
+  assert.match(empty.message, /no "Measure fidelity" table/);
+  const parent = mkdtempSync(join(tmpdir(), "story-check-parent-"));
+  cpSync(GOOD, join(parent, "package"), { recursive: true });
+  cpSync(join(GOOD, "NOTES.md"), join(parent, "NOTES.md"));
+  rmSync(join(parent, "package", "NOTES.md"));
+  assert.equal(byId(await checkStoryPackage(join(parent, "package")), "fidelity").pass, true);
+});
+
+test("fidelity: a row with no quoted phrase or an empty cell warns", async () => {
+  for (const row of [`| wind share | opening | Solar share | measure | matches |`, `| "Solar supplied" | opening |  | measure | matches |`]) {
+    const r = byId(await checkStoryPackage(saboteur((d) => writeNotes(d, `${NOTES_TABLE}${row}\n`))), "fidelity");
+    assert.equal(r.pass, false, row);
+    assert.match(r.message, /incomplete row/);
+  }
+});
+
+test("fidelity: phrases match rendered text (links unwrapped, comments and unembedded charts ignored)", async () => {
+  const row = (p) => `${NOTES_TABLE}| "${p}" | body | Solar share | measure | matches |\n`;
+  const linked = saboteur((d) => { writeNotes(d, row("frozen data reproduce")); editReadme(d, (md) => md.replace("[frozen data](https://datahub.io/blog/good-story/_r/-/good-story-src/share.csv) and [provenance](good-story-src/PROVENANCE.md)", "[frozen data](https://datahub.io/blog/good-story/_r/-/good-story-src/share.csv) reproduce")); });
+  assert.equal(byId(await checkStoryPackage(linked), "fidelity").pass, true);
+  const comment = saboteur((d) => { writeNotes(d, row("wind and solar")); editReadme(d, (md) => `${md}\n<!-- wind and solar -->\n`); });
+  assert.equal(byId(await checkStoryPackage(comment), "fidelity").pass, false);
+  const stray = saboteur((d) => { writeNotes(d, row("wind and solar")); writeFileSync(join(d, "old-chart.svg"), "<svg><text>wind and solar</text></svg>"); });
+  assert.equal(byId(await checkStoryPackage(stray), "fidelity").pass, false);
+});
+
+test("fidelity: a listed phrase that is not in the README or a chart warns (a stale table)", async () => {
+  const dir = saboteur((d) => writeNotes(d, `${NOTES_TABLE}| "wind and solar" | opening | Solar share of electricity | measure, period | fixed |\n`));
+  const r = byId(await checkStoryPackage(dir), "fidelity");
+  assert.equal(r.pass, false);
+  assert.match(r.message, /"wind and solar"/);
+});

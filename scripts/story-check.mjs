@@ -21,6 +21,9 @@
 //   S2, S3, S6   story-skill checks from evals/lib/checkers/story.mjs, as warnings:
 //                opening summary, prose numbers on a chart, no date after `date`
 //   S7           SVGs free of NaN, Infinity, undefined and leaked function source
+//   fidelity     warn: the writer's NOTES.md (package folder or the one above) has a "Measure
+//                fidelity" table of complete rows, and each quoted phrase in its first column is
+//                in the README or an embedded chart (SKILL.md step 4, writing.md rule 14)
 //   S8           warn: "first time", "ever", "all-time" or "record high/low" with no scope in
 //                the sentence ("since 1985", "1985–2025", "in this series/data/record")
 //   chart-*      design checks on every chart SVG (scripts/svg-design.mjs; rules in
@@ -176,6 +179,29 @@ export function checkScopedSuperlatives(text) {
     : result("S8", true, "superlatives carry their scope");
 }
 
+// Measure fidelity: the writer lists each plain-words phrase for a measure or category against the
+// source definition (round 2 and h1 D2 failures: "retail" for "retail and wholesale"). Cheap and
+// mechanical only: the table exists, each row is complete, and its quoted phrase is in the published
+// text (README with links unwrapped and comments dropped, plus the charts it embeds). Whether each
+// phrase matches its source is for the writer and the editorial reviewer.
+const squash = (s) => s.toLowerCase().replace(/[*_`]/g, "").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
+export const renderedText = (md) => md.replace(/<!--[\s\S]*?-->/g, " ").replace(/!?\[((?:[^\]\\]|\\.)*)\]\([^)]*\)/g, "$1").replace(/<[^>]+>/g, " ");
+export function checkFidelity(dir, publishedText) {
+  const path = [join(dir, "NOTES.md"), join(dir, "..", "NOTES.md")].find(existsSync);
+  if (!path) return result("fidelity", false, "no NOTES.md in the package or the folder above: add the measure-fidelity table (SKILL.md step 4)", "warn");
+  const section = readFileSync(path, "utf8").split(/^#{1,6}[ \t]+measure fidelity\b.*$/im)[1]?.split(/^#{1,6}[ \t]/m)[0] ?? "";
+  const rows = section.split("\n").filter((l) => /^\s*\|/.test(l)).slice(2).map((l) => l.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim()));
+  if (!rows.length) return result("fidelity", false, `no "Measure fidelity" table with rows in ${path}`, "warn");
+  const phrase = (cells) => cells[0].match(/^["“](.+)["”]$/)?.[1];
+  const incomplete = rows.filter((cells) => !phrase(cells) || cells.length < 5 || cells.some((c) => !c));
+  if (incomplete.length) return result("fidelity", false, `incomplete row(s) in ${path} (quote the phrase; fill every cell): ${incomplete.map((c) => c.join(" | ").slice(0, 60)).join("; ")}`, "warn");
+  const text = squash(publishedText);
+  const stale = rows.map(phrase).filter((p) => !text.includes(squash(p)));
+  return stale.length
+    ? result("fidelity", false, `phrases not found in the README or charts (update the table): ${stale.map((p) => `"${p}"`).join("; ")}`, "warn")
+    : result("fidelity", true, `${rows.length} phrase(s) listed and found in ${path}; whether each matches its source is for review`);
+}
+
 // Which device each chart is shown on: X-mobile.svg is the phone variant, X.svg with
 // such a sibling is desktop-only, anything else is shown on every screen.
 export function chartRoles(localSvgs) {
@@ -227,6 +253,7 @@ export async function checkStoryPackage(dir, { build = false } = {}) {
     asWarning(/^\d{4}-\d{2}-\d{2}$/.test(fields.date ?? "") ? checkAsOf({ workspace: dir, storiesDir: ".", slug: "README", asOf: fields.date }) : result("S6", true, "not applicable: no front matter date")),
     checkSvgSanity({ storiesAbs: dir, images: allSvgs }),
     checkScopedSuperlatives(prose.mainText),
+    checkFidelity(dir, [renderedText(md), ...svgs.map((s) => s.text.join(" "))].join(" ")),
     ...checkChartDesign(chartRoles(localSvgs).map(({ path, role }) => ({ path, role, svg: readFileSync(join(dir, path), "utf8") }))),
   ];
   if (build) results.push(checkBuild(dir));
