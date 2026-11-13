@@ -1,32 +1,29 @@
 # Writing the prose: sentence and structure rules
 
-Packaged with the `story` skill. Use it in step 4, after the outline and charts are fixed. They come from blind comparisons with top published stories (Factory `projects/story-remakes`: rounds 0–2 and the h1 held-out test, 2026-11-12/13). In round 0 the originals won writing 12 of 12 while ours won accuracy: they "read in one go"; ours "pack many figures into each sentence" and end "in methods". Diagnosis: Factory `rounds/r1-diagnosis.md`; h1 lessons: `rounds/h1/results.md`.
+Packaged with the `story` skill. Use it in step 4, after the outline and charts are fixed. They come from blind comparisons with top published stories (Factory `projects/story-remakes`, rounds 0–2, h1 and h2, 2026-11-12/13): the originals "read in one go"; ours "pack many figures into each sentence". Since h2, number load, hook, finding and close are also enforced mechanically, by `story-check`'s `density` line and the cold edit, and measure wording by the fidelity review ([cold-edit.md](cold-edit.md)).
 
 **Wording and order only.** These rules never add a claim or drop a caveat. Stakes, named examples, a sourced scene and the close's implication (rules 1, 9, 11) are material, not wording: they come from the approved outline (SKILL.md step 1). A new comparison, ratio, yardstick or "what to watch next" that is not in the approved outline is an outline change (step 2), not a wording change. Moving a beat to a different place from the outline is also an outline change: note it for the reviewer. Every caveat and attribution in the outline must still be traceable to a sentence. The voice guide and the claim checks in `editorial-review.md` still apply; if a rule here conflicts with a claim check, the claim check wins and you shorten something else.
 
 Before/After examples are invented (a fictional city's bicycle counters); in each, the After states nothing the Before doesn't support. Bad/Good examples are real, from h1.
 
-## 1. Open on why it matters, then what changed
+## 1. Open on the news hook or the stake, then what changed
 
-The opening summary (SKILL.md contract: first paragraph after chart 1, at most 80 words, with the key number) first says, in a sentence or a clause, why the measure matters to a reader (risk, money, health, time), then what changed and where, with a concrete subject and an active verb; the number follows, inside the summary. The stake is a claim from the data or a linked source in the outline. A human scene (a named case or quote) may open instead, only if a cited source has it; never invent or composite one. No bracket, code or definition in the first sentence; don't repeat the dek.
+The opening summary (SKILL.md contract: first paragraph after chart 1, at most 80 words, with the key number) opens on a dated event (the latest reading, a decision, a release) or on why the measure matters to a reader, then says what changed, with a concrete subject and an active verb. A stake from a linked source is attributed; never imply the data shows an effect it doesn't (h2: "whether tariffs cut sales depends on whose figures you read"). A sourced scene may open instead; never invent one. No bracket, code or definition in the first sentence; don't repeat the dek.
 
-**Check:** Before the first number, does the reader know why it matters? Is any scene or quote in a cited source? Does the first sentence contain a bracket, code or definition, or repeat the dek?
+**Check:** Does the first sentence give a dated hook or a sourced stake, with no definition in it?
 
 > **Bad.** The average new car registered in the EU, Iceland and Norway weighed 1,608 kg in 2025, which is 157 kg more than in 2020.
 > **Good.** A heavier car is more likely to kill the people in the car it hits (a study the original links). New cars in the EU, Iceland and Norway keep getting heavier: in 2025 they weighed 157 kg more on average than in 2020.
 
 ## 2. Few numbers, and say the finding once
 
-Pick the few numbers the argument needs, usually one per beat; the rest stay on the chart, in the alt text and in the data. One number per sentence, two only for a comparison, at most one per opening sentence; under one per sentence overall (originals: about 0.8). Keep values exactly as the chart labels them; fractions in words ("a fifth", "three times") count. A list of three or more values becomes the pattern plus the one value that makes it. Ranges, slope sweeps and tie thresholds a claim check requires are exempt; split them rather than cut them. Say the finding once: title, opening and close carry it (rule 9); elsewhere cut any sentence that repeats it or an earlier figure without adding evidence, a qualification or a needed baseline. Each section adds something new: a breakdown, an exception, an attributed cause, a consequence.
+Pick the few numbers the argument needs, usually one per beat; the rest stay on the chart. One per sentence, two only for a comparison. A list of three or more values becomes the pattern plus the one value that makes it. Ranges, slope sweeps and tie thresholds a claim check requires stay; split them rather than cut them. Numbers in words ("a fifth", "three times") count too. `story-check`'s `density` line counts numeric figures, years included (h2: originals 0.8 per sentence, ours 1.7); the cold edit cuts towards its thresholds. Say the finding once: title, opening and close carry it; elsewhere cut any sentence that repeats it without adding evidence, a qualification or a baseline.
 
-**Check:** Numbers per reader-facing sentence, ignoring years and exempt kinds: under one on average, fewer than one in six with three or more? Does any sentence outside the close repeat an earlier point and add nothing?
+**Check:** Does `density` pass? Does any sentence outside the close repeat an earlier point and add nothing?
 
 > **Before.** Weekday morning trips rose 118.4%, weekend trips 12.7%, evening trips 31.2% and night trips 4.9%.
 
 > **After.** Weekday morning trips rose 118.4%, far faster than any other time of day. The next fastest, evening trips, rose 31.2%.
-
-> **Bad.** Whole terms tell the same story. The 100th Congress finished with 713 public laws; the 118th finished with 274.
-> **Good.** Waiting for the end of the term doesn't close the gap: the 118th Congress finished with 274 public laws, the fewest of any completed Congress in this series.
 
 ## 3. Define a term in one clause, where the reader first needs it
 
@@ -94,9 +91,9 @@ When a number is the point, set it against something the reader can picture: ano
 
 ## 9. Pose the question, answer it, then say what follows
 
-The last section before "How this was made" answers the question the title raises in its first sentence, from findings already given, with its main caveat in a clause. When the commission poses a question, build the story as its answer: the opening sets out the question (as a statement, or a real question the story answers, never a rhetorical one) or its stake, and each section moves the answer on (rule 5). The answer adds no new finding. It may be followed by what follows from it (an implication or recommendation) only if the approved outline has it and the evidence carries it; a recommendation is always attributed to a named, linked source. If the outline puts others' explanations last, flag to the outline reviewer that they read better beside the finding they explain.
+The last section before "How this was made" answers the question the title raises in its first sentence, from findings already given, and ends on the strongest supported point or its implication, never on a limitation (h2: "its point fades"). When the commission poses a question, build the story as its answer, each section moving it on (rule 5). An implication comes only from the approved outline; a recommendation is always attributed to a named, linked source.
 
-**Check:** Does the last reader-facing paragraph answer the question in its first sentence? Does anything in it go beyond the findings and the approved outline? (It must not.)
+**Check:** Does the last paragraph answer the question first and end on a supported point, going no further than the findings and the outline?
 
 > **Bad.** [close] The lost jobs were almost entirely in hospitality and retail. (The industry figures cover a different measure and period from the headline fall.)
 > **Good.** "We can't confidently blame the minimum wage", so the Low Pay Commission should "tread carefully". (Resolution Foundation, in its author's own voice: the answer, then a recommendation as far as its evidence goes. Ours would attribute it.)
@@ -136,20 +133,20 @@ Sources linked, data vintage, definitions with denominators, the data and code l
 
 Translating a technical measure into everyday words is where fresh prose loses accuracy (round 2: two of six stories fell below the accuracy gate this way). Keep the threshold, the category and the denominator exactly: a fertility rate below 2.1 is not "families with fewer than two children" (a period rate is not a family size, and 2.0–2.1 is not "fewer than two"); "unvaccinated or unknown status" is not "unvaccinated"; "49 reporting jurisdictions (48 states and DC)" is not "49 states plus DC". A trend word in a heading or close ("has not slowed", "the second half of the year") must match the window the number covers.
 
-Keep the measure, population, period, geography and category names too: h1 wrote "retail" for "retail and wholesale" and attached an industry job count to a payroll fall in people over another period (rule 9). Show the check in the NOTES.md fidelity table (SKILL.md step 4).
+Keep the measure, population, period, geography and category names too (h1: "retail" for "retail and wholesale"; h2: "held elections" for a year-end democracy status). The independent fidelity review checks each phrase (SKILL.md step 4).
 
-**Check:** For each plain-words phrase that stands for a measure, does it still mean the same threshold, category, denominator and window as the source? Is it in the NOTES.md fidelity table?
+**Check:** For each plain-words phrase that stands for a measure, does it still mean the same threshold, category, denominator and window as the source?
 
 ## Before handing off
 
 Run these on the finished prose, together with the claim checks in `editorial-review.md`:
 
-1. Numbers per sentence and restatement as rule 2.
+1. `density` passes; no restatement (rule 2).
 2. No definitions or method section before the first finding.
 3. Every heading except "How this was made" is a claim.
 4. Every chart after the first has a one-sentence lead-in.
 5. Every paragraph after the first opens with a link word or a back-reference.
 6. The opening gives the stake (or a sourced scene) before the number; the last reader-facing paragraph answers the question and goes no further than the findings and the approved outline.
 7. Every outline caveat and attribution is traceable to a sentence; every prose number is on a chart or on the exempt list, exactly as the chart labels it.
-8. Every plain-words phrase for a measure is in the NOTES.md fidelity table and matches its source (rule 14).
+8. Every mismatch in the fidelity reviewer's table is fixed (rule 14).
 9. Every sentence of background or yardstick traces to the package data or an opened, linked source (rule 12); the method section is about 150 words or fewer.
