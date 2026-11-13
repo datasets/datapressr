@@ -90,6 +90,16 @@ test('the site-only "Read on DataHub" paragraph is dropped from the bundle (kh5.
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
 
+test('the story_check_exempt front-matter list survives bundling (skills/story step 4)', () => {
+  const root = fakeRoot('There are 25,415 rows.');
+  const md = join(root, 'site/stories/s.md');
+  writeFileSync(md, readFileSync(md, 'utf8').replace('description: d\n', 'description: d\nstory_check_exempt:\n  - "25,415: dataset-wide count"\n'));
+  try {
+    const { readme } = bundleStory('s', { ...DRAFT_OK, root, out: join(root, 'out') });
+    assert.match(readme, /^---\n[\s\S]*story_check_exempt:\n {2}- "25,415: dataset-wide count"\n[\s\S]*?---\n/);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
 test('any other link to the story\'s own DataHub page fails, naming it', () => {
   const root = fakeRoot('Also [here](https://datahub.io/datapressr/s#top).');
   try {

@@ -113,13 +113,13 @@ test("blog packages list exempt numbers in front matter story_check_exempt", () 
   assert.equal(r.pass, true, r.detail);
 });
 
-// The exempt-list format the story skill prescribes (skills/story/SKILL.md step 4), read from the
-// skill itself so the two cannot drift: its example must satisfy S3 with no charts at all.
+// The exempt-list format the story skill prescribes (skills/story/SKILL.md step 4: front matter, since
+// friction notes moved to NOTES.md), read from the skill itself so the two cannot drift: its example must satisfy S3 with no charts at all.
 test("the story skill's exempt-list example is what S3 parses", () => {
   const skill = readFileSync(join(root, "skills/story/SKILL.md"), "utf8");
-  const example = skill.match(/exempt"[^\n]*\n\n```markdown\n([\s\S]*?)```/)?.[1];
-  assert.ok(example, "SKILL.md step 4 has a fenced exempt-list example");
-  const md = `# T\n\nThere are 25,415 rows and the low was $9.10, but 77 is unlisted.\n\n## Friction notes\n\n${example}`;
+  const example = skill.match(/```yaml\n(story_check_exempt:\n[\s\S]*?)```/)?.[1];
+  assert.ok(example, "SKILL.md step 4 has a fenced front-matter exempt-list example");
+  const md = `---\ntitle: "T"\n${example}---\n\nThere are 25,415 rows and the low was $9.10, but 77 is unlisted.\n`;
   const prose = parseProse(md);
   assert.deepEqual(nums(prose.exemptText), ["25,415", "$9.10"]);
   const s3 = checkNumbers({ prose, svgs: [] });

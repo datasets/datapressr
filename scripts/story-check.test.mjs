@@ -408,6 +408,26 @@ test("fidelity: a flagged mismatch passes only when its quoted fix is published"
   assert.equal(byId(await checkStoryPackage(wider), "fidelity").pass, true);
 });
 
+test("fidelity: a short flagged phrase also used correctly elsewhere clears only with ok-elsewhere (r4 smoke: \"customs value\")", async () => {
+  // "solar" was wrong in one sentence (fixed to "Solar supplied") but stays correct in another.
+  const row = (resolution) => `${NOTES_TABLE}| "solar" | opening | Solar share of electricity generation | measure: share, not capacity | ${resolution} |\n`;
+  const keep = (d) => editReadme(d, (md) => md.replace("That rise came", "Solar panels are cheap. That rise came"));
+  const plain = byId(await checkStoryPackage(saboteur((d) => { writeNotes(d, row(`fixed: "Solar supplied"`)); keep(d); })), "fidelity");
+  assert.equal(plain.pass, false, plain.message);
+  assert.match(plain.message, /ok-elsewhere/);
+  const marked = byId(await checkStoryPackage(saboteur((d) => { writeNotes(d, row(`fixed: "Solar supplied"; ok-elsewhere: "Solar panels are cheap"`)); keep(d); })), "fidelity");
+  assert.equal(marked.pass, true, marked.message);
+  // Only an affirmative marker with a quoted location counts (Codex review).
+  for (const res of [`fixed: "Solar supplied"; ok-elsewhere`, `fixed: "Solar supplied"; not ok-elsewhere: "x"`, `fixed: "Solar supplied"; ok-elsewhere: pending`]) {
+    const r = byId(await checkStoryPackage(saboteur((d) => { writeNotes(d, row(res)); keep(d); })), "fidelity");
+    assert.equal(r.pass, false, res);
+  }
+  // ok-elsewhere never excuses an unpublished fix.
+  const nofix = byId(await checkStoryPackage(saboteur((d) => { writeNotes(d, row(`fixed: "solar and storage"; ok-elsewhere`)); keep(d); })), "fidelity");
+  assert.equal(nofix.pass, false);
+  assert.match(nofix.message, /unresolved/);
+});
+
 test("fidelity: --notes points the check at notes kept elsewhere (DataPressr docs/reviews/<slug>-notes.md)", async () => {
   const dir = saboteur((d) => rmSync(join(d, "NOTES.md")));
   const notes = join(mkdtempSync(join(tmpdir(), "story-check-notes-")), "slug-notes.md");

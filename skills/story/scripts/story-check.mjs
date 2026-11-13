@@ -28,8 +28,8 @@
 //   S7           SVGs free of NaN, Infinity, undefined and leaked function source
 //   fidelity     warn: NOTES.md (package folder or the one above, or --notes <path>) has the independent reviewer's
 //                "Measure fidelity" table ("Reviewer:" line, complete rows); unflagged phrases are in
-//                the README or an embedded chart, and each flagged one's quoted fix is published
-//                (SKILL.md step 4, references/cold-edit.md)
+//                the README or an embedded chart, and each flagged one's quoted fix is published and the
+//                phrase gone elsewhere unless marked ok-elsewhere (SKILL.md step 4, references/cold-edit.md)
 //   density      warn: figures per sentence in the reader prose above DENSITY_MAX_MEAN, or the share
 //                of sentences with 3+ figures above DENSITY_MAX_SHARE3; lists the five densest
 //                (definition at proseSentences/countFigures below; h2: originals 0.8, ours 1.7)
@@ -306,8 +306,8 @@ export function checkDensity(md) {
 // section), each row is complete, an unflagged phrase is in the published text (README with links
 // unwrapped and comments dropped, plus the charts it embeds), and each flagged row's Resolution quotes
 // the fixed wording ("fixed: ..."), which must be published while the flagged phrase, outside it, no
-// longer is. The Reviewer line marks whose table it is; it can't prove independence or coverage, and
-// whether each phrase matches its source is the reviewer's call.
+// longer is, unless the Resolution also says ok-elsewhere (the reviewer checked its other uses).
+// The Reviewer line marks whose table it is; it can't prove independence or coverage, and whether each phrase matches its source is the reviewer's call.
 const squash = (s) => s.toLowerCase().replace(/[*_`]/g, "").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
 export const renderedText = (md) => md.replace(/<!--[\s\S]*?-->/g, " ").replace(/!?\[((?:[^\]\\]|\\.)*)\]\([^)]*\)/g, "$1").replace(/<[^>]+>/g, " ");
 export function checkFidelity(dir, publishedText, notes) {
@@ -323,12 +323,15 @@ export function checkFidelity(dir, publishedText, notes) {
   const text = squash(publishedText);
   const flagged = (cells) => !/^(?:none|no|ok|matches)\b/i.test(cells[3]);
   const fix = (cells) => cells[4].match(/^fixed\b[^"“]*["“]([^"”]+)["”]/i)?.[1];
+  // A short phrase can be wrong in one sentence and right in another ("customs value", r4 smoke):
+  // ok-elsewhere in the Resolution says the reviewer checked the remaining uses. The fix must still be published.
+  const okElsewhere = (cells) => /(?:^|[;,.]\s*)ok-elsewhere:\s*["“][^"”]+["”]/i.test(cells[4]);
   const resolved = (c) => {
     const f = fix(c) && squash(fix(c));
-    return f && text.includes(f) && !text.split(f).join(" ").includes(squash(phrase(c)));
+    return f && text.includes(f) && (okElsewhere(c) || !text.split(f).join(" ").includes(squash(phrase(c))));
   };
   const unresolved = rows.filter((c) => flagged(c) && !resolved(c)).map(phrase);
-  if (unresolved.length) return result("fidelity", false, `unresolved mismatch(es): fix the text, then write fixed: "<wording as published>" in the Resolution cell (the flagged phrase must be gone): ${unresolved.map((p) => `"${p}"`).join("; ")}`, "warn");
+  if (unresolved.length) return result("fidelity", false, `unresolved mismatch(es): fix the text, then write fixed: "<wording as published>" in the Resolution cell. The flagged phrase must be gone outside the fix, unless the reviewer confirms its other uses match the source: then append ; ok-elsewhere: "<where>" to the Resolution: ${unresolved.map((p) => `"${p}"`).join("; ")}`, "warn");
   const stale = rows.filter((c) => !flagged(c)).map(phrase).filter((p) => !text.includes(squash(p)));
   return stale.length
     ? result("fidelity", false, `phrases not found in the README or charts (re-run the review on the final text): ${stale.map((p) => `"${p}"`).join("; ")}`, "warn")
