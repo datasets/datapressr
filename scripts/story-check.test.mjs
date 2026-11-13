@@ -438,7 +438,7 @@ test("fidelity: --notes points the check at notes kept elsewhere (DataPressr doc
 });
 
 // --- Figure density (story-remakes h2: originals 0.83 figures per sentence, ours 1.7) ---
-import { checkDensity, checkProcessNotes, countFigures, proseSentences, DENSITY_REF_MEAN, DENSITY_REF_SHARE3 } from "./story-check.mjs";
+import { checkDensity, checkProcessNotes, renderedText, countFigures, proseSentences, DENSITY_REF_MEAN, DENSITY_REF_SHARE3 } from "./story-check.mjs";
 
 test("density: a figure is a number, percentage, money value, year or date; a date counts once, each end of a range once", () => {
   const cases = [
@@ -543,12 +543,17 @@ test("process-note: the h3 voice-pass line fails, and so do other draft or voice
     "The author's voice pass is still to come.",
     "This is a draft and may change.",
     "_This story is still a draft._",
+    // Codex review: markup before the label, and a phrase wrapped across lines
+    "## Draft: pending review",
+    "- Draft: pending review",
+    "**Draft**: pending review",
+    "The author's voice\npass is outstanding.",
   ];
   for (const leak of leaks) {
     const r = checkProcessNotes(`---\ntitle: T\n---\n\nSolar rose in 2025.\n\n${leak}\n`);
     assert.equal(r.pass, false, leak);
     assert.equal(r.severity, "fail", leak);
-    assert.match(r.message, /line 7:/, leak);
+    assert.match(r.message, /line 7:/, leak); // the leak starts on line 7
   }
 });
 
@@ -559,9 +564,18 @@ test("process-note: front matter status, code, HTML comments and ordinary uses o
     "Ministers published a draft budget in May.", "",
     "<!-- Draft: voice pass outstanding -->", "",
     "```", "Draft: x", "```", "",
+    "[Data](https://example.org/voice-pass.csv) and <img src=\"draft:x.svg\" alt=\"chart\"> are links, not text.", "",
   ].join("\n");
   const r = checkProcessNotes(md);
   assert.equal(r.pass, true, r.message);
+});
+
+test("fidelity: hidden front matter is not published text, but the title and description are (Codex review)", () => {
+  const md = '---\ntitle: "Solar output tripled"\ndescription: Grid share rose\nstory_check_exempt:\n  - "held elections: hidden"\n---\n\nBody text.\n';
+  const text = renderedText(md);
+  assert.match(text, /Solar output tripled/);
+  assert.match(text, /Grid share rose/);
+  assert.doesNotMatch(text, /held elections/);
 });
 
 test("saboteur: the voice-pass line in a package README fails story-check", async () => {

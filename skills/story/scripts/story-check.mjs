@@ -302,14 +302,21 @@ export function checkDensity(md) {
 // Process notes in the reader text. The writer's draft status and voice-pass status (and friction
 // notes) belong in NOTES.md (SKILL.md step 4). In story-remakes h3 every round-4 story printed "Draft: the
 // author's voice pass is outstanding" because the skill said to state it; judges cited it 15 times.
-// Front matter (datahub.status: draft, an approved: comment), code and HTML comments are not scanned.
-// "Draft:" counts as a label at the start of a line or sentence (after any > * _ markup), so "the 2024 NFL draft: ..." passes.
-const PROCESS_NOTE = /(?:^|[.!?]\s+)[>*_\s]*draft\s*:|(?<![A-Za-z0-9])voice[- ]pass\b|(?<![A-Za-z0-9])this (?:story |post |piece )?is (?:a|still a) draft\b/i; // not \b: "_This" has no word boundary
+// Front matter (datahub.status: draft, an approved: comment), code, HTML comments and link or image
+// URLs are not scanned (blanked in place, so line numbers hold); a phrase may wrap across lines.
+// "Draft:" counts as a label at the start of a line or sentence, after any heading, list, quote or
+// emphasis markup ("## Draft:", "- Draft:", "**Draft**:"), so "the 2024 NFL draft: ..." passes.
+// Known miss: reported speech ("'This is a draft,' the minister said") fails; reword or paraphrase.
+const PROCESS_NOTE = /(?:^|[.!?]["”’)]?[ \t]+)[ \t>#*_+-]*draft[*_]*[ \t]*:|(?<![A-Za-z0-9])voice[- \t\n]+pass\b|(?<![A-Za-z0-9])this\s+(?:(?:story|post|piece)\s+)?is\s+(?:still\s+)?a\s+draft\b/gim; // not \b: "_This" has no word boundary
 export function checkProcessNotes(md) {
-  const body = stripCode(blankFrontmatter(md)).replace(/<!--[\s\S]*?-->/g, (m) => m.replace(/[^\n]/g, " "));
-  const hits = body.split("\n").flatMap((l, i) => {
-    const m = l.match(PROCESS_NOTE);
-    return m ? [`line ${i + 1}: "${l.slice(Math.max(0, m.index - 20), m.index + m[0].length + 50).replace(/\s+/g, " ").trim()}"`] : [];
+  const blank = (m) => m.replace(/[^\n]/g, " ");
+  const body = stripCode(blankFrontmatter(md))
+    .replace(/<!--[\s\S]*?-->/g, blank)
+    .replace(/(\]\()([^)]*)(\))/g, (_, a, url, b) => a + blank(url) + b)
+    .replace(/(\s(?:href|src|srcset)\s*=\s*["'])([^"']*)(["'])/gi, (_, a, url, b) => a + blank(url) + b);
+  const hits = [...body.matchAll(PROCESS_NOTE)].map((m) => {
+    const line = body.slice(0, m.index).split("\n").length;
+    return `line ${line}: "${body.slice(Math.max(0, m.index - 20), m.index + m[0].length + 50).replace(/\s+/g, " ").trim()}"`;
   });
   return hits.length
     ? result("process-note", false, `writer's process note in the reader text (draft or voice-pass status goes in NOTES.md, never the README): ${hits.join("; ")}`)
@@ -326,7 +333,13 @@ export function checkProcessNotes(md) {
 // longer is, unless the Resolution also says ok-elsewhere (the reviewer checked its other uses).
 // The Reviewer line marks whose table it is; it can't prove independence or coverage, and whether each phrase matches its source is the reviewer's call.
 const squash = (s) => s.toLowerCase().replace(/[*_`]/g, "").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
-export const renderedText = (md) => md.replace(/<!--[\s\S]*?-->/g, " ").replace(/!?\[((?:[^\]\\]|\\.)*)\]\([^)]*\)/g, "$1").replace(/<[^>]+>/g, " ");
+// The fidelity check's published text: title and description from the front matter (readers see
+// them), then the body; other front matter (story_check_exempt, datahub) is hidden and never counts.
+export const renderedText = (md) => {
+  const { title = "", description = "" } = frontmatterFields(md);
+  return [title, description, renderedBody(splitFrontmatter(md).body)].join(" \n");
+};
+const renderedBody = (md) => md.replace(/<!--[\s\S]*?-->/g, " ").replace(/!?\[((?:[^\]\\]|\\.)*)\]\([^)]*\)/g, "$1").replace(/<[^>]+>/g, " ");
 export function checkFidelity(dir, publishedText, notes) {
   const path = notes ? (existsSync(notes) ? notes : null) : [join(dir, "NOTES.md"), join(dir, "..", "NOTES.md")].find(existsSync);
   if (!path) return result("fidelity", false, "no NOTES.md in the package or the folder above: add the fidelity reviewer's table (SKILL.md step 4)", "warn");
