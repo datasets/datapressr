@@ -1,11 +1,13 @@
 # Notes: good-story fixture
 
-## Measure fidelity review
+Writer's notes beside the package, never published (skills/story SKILL.md step 4).
 
-Reviewer: fixture (a fresh-context fidelity subagent in a real run)
+## Time spent
 
-| Phrase as published | Where | Source wording and definition | Mismatch | Resolution |
-|---|---|---|---|---|
-| "Solar supplied **42%** of the grid's electricity" | opening | Solar share of electricity generation, grid total, 2025 | none | ok |
-| "Solar share of electricity, per cent" | chart 1 subtitle | Solar share of electricity generation | none | ok |
-| "solar output" | opening | Solar share of electricity generation | measure: a share, not output | fixed: "Solar supplied **42%** of the grid's electricity" |
+Start: Thu 13 Nov 2026 09:00:00 GMT. End: Thu 13 Nov 2026 09:30:00 GMT. 30 min.
+
+## Friction notes
+
+- None: a fixture.
+
+Voice pass: outstanding.

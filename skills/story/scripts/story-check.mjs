@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Is a blog-format story package ready for `dh publish <dir> -p blog`?
 //
-//   node scripts/story-check.mjs <post-dir> [--build] [--notes <NOTES.md>]     (npm run story-check -- <dir>)
+//   node scripts/story-check.mjs <post-dir> [--build]     (npm run story-check -- <dir>)
 //
 // The checker ships inside the story skill (skills/story/scripts/), with copies of the helpers it
 // needs in lib/ (kept identical to their DataPressr originals by scripts/sync-skill-bundles.mjs),
@@ -26,13 +26,12 @@
 //   S2, S3, S6   story-skill checks from evals/lib/checkers/story.mjs, as warnings:
 //                opening summary, prose numbers on a chart, no date after `date`
 //   S7           SVGs free of NaN, Infinity, undefined and leaked function source
-//   fidelity     warn: NOTES.md (package folder or the one above, or --notes <path>) has the independent reviewer's
-//                "Measure fidelity" table ("Reviewer:" line, complete rows); unflagged phrases are in
-//                the README or an embedded chart, and each flagged one's quoted fix is published and the
-//                phrase gone elsewhere unless marked ok-elsewhere (SKILL.md step 4, references/cold-edit.md)
-//   density      warn: figures per sentence in the reader prose above DENSITY_MAX_MEAN, or the share
-//                of sentences with 3+ figures above DENSITY_MAX_SHARE3; lists the five densest
-//                (definition at proseSentences/countFigures below; h2: originals 0.8, ours 1.7)
+//   process-note README has no writer's process notes: a "Draft:" label, "voice pass", "this is a draft"
+//                (status and friction notes go in NOTES.md; Factory story-remakes h3: 10/10 stories printed
+//                "Draft: the author's voice pass is outstanding" as reader text)
+//   density      info only, never fails or warns: figures per sentence in the reader prose and the share
+//                of sentences with 3+ figures, with the five densest (definition at proseSentences/
+//                countFigures below). Info because cutting density did not win craft (story-remakes h3)
 //   S8           warn: "first time", "ever", "all-time" or "record high/low" with no scope in
 //                the sentence ("since 1985", "1985–2025", "in this series/data/record")
 //   chart-*      design checks on every chart SVG (scripts/svg-design.mjs; rules in
@@ -200,11 +199,12 @@ export function checkScopedSuperlatives(text) {
     : result("S8", true, "superlatives carry their scope");
 }
 
-// Figure density. Blind judges said our stories "overload readers with figures": in the h2 held-out
-// test the originals averaged 0.83 figures per sentence and 12% of sentences with 3+, ours 1.7 and
-// 30% (Factory story-remakes rounds/h2/results.md). The thresholds sit between the two.
-export const DENSITY_MAX_MEAN = 1.2;
-export const DENSITY_MAX_SHARE3 = 0.15;
+// Figure density, reported as info. In the h2 held-out test the originals averaged 0.83 figures per
+// sentence and 12% of sentences with 3+, ours 1.7 and 30% (Factory story-remakes rounds/h2). In h3 a
+// skill that warned above these reference points cut density to the originals' level and still lost
+// blind craft 2-15 (rounds/h3), so the numbers are shown for the writer, not enforced.
+export const DENSITY_REF_MEAN = 1.2;
+export const DENSITY_REF_SHARE3 = 0.15;
 // A methods-type heading is one of these labels in full ("Data centres are growing" is a claim, kept).
 const METHOD_HEADING = /^(?:how (?:this|we|it) (?:was made|made (?:this|it)|did (?:this|it))\b.*|(?:methods?|methodology|about (?:the|this|our) data|(?:the )?data(?: and (?:code|methods?|sources?))?|sources?(?: and (?:methods?|notes?|data))?|notes?|footnotes|references|acknowledge?ments|downloads?|friction notes)\s*[.:]?)$/i;
 const CAPTION = /^(?:[*_]+)?(?:sources?|notes?|chart|data|credits?|photo)\s*:/i;
@@ -289,53 +289,34 @@ export function densityStats(md) {
 
 export function checkDensity(md) {
   const { sentences, mean, share3, worst } = densityStats(md);
-  const highMean = mean > DENSITY_MAX_MEAN;
-  const highShare = share3 > DENSITY_MAX_SHARE3;
   const pct = (x) => `${Math.round(x * 100)}%`;
-  if (!sentences) return result("density", false, "no reader prose found to measure", "warn");
-  const summary = `${mean.toFixed(2)} figures per sentence${highMean ? ` (over ${DENSITY_MAX_MEAN})` : ""}; ${pct(share3)} of ${sentences} sentences carry 3+ figures${highShare ? ` (over ${pct(DENSITY_MAX_SHARE3)})` : ""}`;
-  if (!highMean && !highShare) return result("density", true, `${summary} (warn above ${DENSITY_MAX_MEAN} or ${pct(DENSITY_MAX_SHARE3)})`, "warn");
+  if (!sentences) return result("density", true, "no reader prose found to measure", "info");
   const list = worst.map((x) => `(${x.n}) "${x.s.length > 140 ? `${x.s.slice(0, 137)}...` : x.s}"`).join("; ");
-  return result("density", false, `${summary}. Cut figures a chart already shows or the finding doesn't need. Densest: ${list}`, "warn");
+  return result("density", true, `${mean.toFixed(2)} figures per sentence; ${pct(share3)} of ${sentences} sentences carry 3+ figures (for reference, h2 originals 0.83 and 12%)${list ? `. Densest: ${list}` : ""}`, "info");
 }
 
-// Measure fidelity: an independent, fresh-context reviewer lists each plain-words phrase for a measure
-// or category against the source definition and flags mismatches (round 2, h1 and h2 D2 failures:
-// "retail" for "retail and wholesale"; "held elections" for a year-end status, which the writer's own
-// table had passed). Cheap and mechanical only: the reviewer's table exists (a "Reviewer:" line in the
-// section), each row is complete, an unflagged phrase is in the published text (README with links
-// unwrapped and comments dropped, plus the charts it embeds), and each flagged row's Resolution quotes
-// the fixed wording ("fixed: ..."), which must be published while the flagged phrase, outside it, no
-// longer is, unless the Resolution also says ok-elsewhere (the reviewer checked its other uses).
-// The Reviewer line marks whose table it is; it can't prove independence or coverage, and whether each phrase matches its source is the reviewer's call.
-const squash = (s) => s.toLowerCase().replace(/[*_`]/g, "").replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/\s+/g, " ").trim();
-export const renderedText = (md) => md.replace(/<!--[\s\S]*?-->/g, " ").replace(/!?\[((?:[^\]\\]|\\.)*)\]\([^)]*\)/g, "$1").replace(/<[^>]+>/g, " ");
-export function checkFidelity(dir, publishedText, notes) {
-  const path = notes ? (existsSync(notes) ? notes : null) : [join(dir, "NOTES.md"), join(dir, "..", "NOTES.md")].find(existsSync);
-  if (!path) return result("fidelity", false, "no NOTES.md in the package or the folder above: add the fidelity reviewer's table (SKILL.md step 4)", "warn");
-  const section = readFileSync(path, "utf8").split(/^#{1,6}[ \t]+measure fidelity\b.*$/im)[1]?.split(/^#{1,6}[ \t]/m)[0] ?? "";
-  const rows = section.split("\n").filter((l) => /^\s*\|/.test(l)).slice(2).map((l) => l.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim()));
-  if (!rows.length) return result("fidelity", false, `no "Measure fidelity" table with rows in ${path}`, "warn");
-  if (!/^\s*\**Reviewer:?\**:?\s*\S/im.test(section)) return result("fidelity", false, `the "Measure fidelity" table in ${path} has no "Reviewer:" line: it must be built by a fresh-context reviewer, not the writer (SKILL.md step 4, references/cold-edit.md)`, "warn");
-  const phrase = (cells) => cells[0].match(/^["“](.+)["”]$/)?.[1];
-  const incomplete = rows.filter((cells) => !phrase(cells) || cells.length < 5 || cells.some((c) => !c));
-  if (incomplete.length) return result("fidelity", false, `incomplete row(s) in ${path} (quote the phrase; fill every cell): ${incomplete.map((c) => c.join(" | ").slice(0, 60)).join("; ")}`, "warn");
-  const text = squash(publishedText);
-  const flagged = (cells) => !/^(?:none|no|ok|matches)\b/i.test(cells[3]);
-  const fix = (cells) => cells[4].match(/^fixed\b[^"“]*["“]([^"”]+)["”]/i)?.[1];
-  // A short phrase can be wrong in one sentence and right in another ("customs value", r4 smoke):
-  // ok-elsewhere in the Resolution says the reviewer checked the remaining uses. The fix must still be published.
-  const okElsewhere = (cells) => /(?:^|[;,.]\s*)ok-elsewhere:\s*["“][^"”]+["”]/i.test(cells[4]);
-  const resolved = (c) => {
-    const f = fix(c) && squash(fix(c));
-    return f && text.includes(f) && (okElsewhere(c) || !text.split(f).join(" ").includes(squash(phrase(c))));
-  };
-  const unresolved = rows.filter((c) => flagged(c) && !resolved(c)).map(phrase);
-  if (unresolved.length) return result("fidelity", false, `unresolved mismatch(es): fix the text, then write fixed: "<wording as published>" in the Resolution cell. The flagged phrase must be gone outside the fix, unless the reviewer confirms its other uses match the source: then append ; ok-elsewhere: "<where>" to the Resolution: ${unresolved.map((p) => `"${p}"`).join("; ")}`, "warn");
-  const stale = rows.filter((c) => !flagged(c)).map(phrase).filter((p) => !text.includes(squash(p)));
-  return stale.length
-    ? result("fidelity", false, `phrases not found in the README or charts (re-run the review on the final text): ${stale.map((p) => `"${p}"`).join("; ")}`, "warn")
-    : result("fidelity", true, `${rows.length} phrase(s) reviewed in ${path}, ${rows.filter(flagged).length} mismatch(es) fixed; whether each matches its source is the reviewer's call`);
+// Process notes in the reader text. The writer's draft status and voice-pass status (and friction
+// notes) belong in NOTES.md (SKILL.md step 4). In story-remakes h3 every round-4 story printed "Draft: the
+// author's voice pass is outstanding" because the skill said to state it; judges cited it 15 times.
+// Front matter (datahub.status: draft, an approved: comment), code, HTML comments and link or image
+// URLs are not scanned (blanked in place, so line numbers hold); a phrase may wrap across lines.
+// "Draft:" counts as a label at the start of a line or sentence, after any heading, list, quote or
+// emphasis markup ("## Draft:", "- Draft:", "**Draft**:"), so "the 2024 NFL draft: ..." passes.
+// Known miss: reported speech ("'This is a draft,' the minister said") fails; reword or paraphrase.
+const PROCESS_NOTE = /(?:^|[.!?]["”’)]?[ \t]+)[ \t>#*_+-]*draft[*_]*[ \t]*:|(?<![A-Za-z0-9])voice[- \t\n]+pass\b|(?<![A-Za-z0-9])this\s+(?:(?:story|post|piece)\s+)?is\s+(?:still\s+)?a\s+draft\b/gim; // not \b: "_This" has no word boundary
+export function checkProcessNotes(md) {
+  const blank = (m) => m.replace(/[^\n]/g, " ");
+  const body = stripCode(blankFrontmatter(md))
+    .replace(/<!--[\s\S]*?-->/g, blank)
+    .replace(/(\]\()([^)]*)(\))/g, (_, a, url, b) => a + blank(url) + b)
+    .replace(/(\s(?:href|src|srcset)\s*=\s*["'])([^"']*)(["'])/gi, (_, a, url, b) => a + blank(url) + b);
+  const hits = [...body.matchAll(PROCESS_NOTE)].map((m) => {
+    const line = body.slice(0, m.index).split("\n").length;
+    return `line ${line}: "${body.slice(Math.max(0, m.index - 20), m.index + m[0].length + 50).replace(/\s+/g, " ").trim()}"`;
+  });
+  return hits.length
+    ? result("process-note", false, `writer's process note in the reader text (draft or voice-pass status goes in NOTES.md, never the README): ${hits.join("; ")}`)
+    : result("process-note", true, "no draft or voice-pass status in the README");
 }
 
 // Which device each chart is shown on: X-mobile.svg is the phone variant, X.svg with
@@ -365,7 +346,7 @@ function checkBuild(dir) {
   }
 }
 
-export async function checkStoryPackage(packageDir, { build = false, notes = null } = {}) {
+export async function checkStoryPackage(packageDir, { build = false } = {}) {
   const dir = resolve(packageDir); // a relative path broke --build: the node_modules symlink pointed nowhere
   const readmePath = join(dir, "README.md");
   if (!existsSync(readmePath)) return [result("readme", false, `no README.md in ${dir}`)];
@@ -390,8 +371,8 @@ export async function checkStoryPackage(packageDir, { build = false, notes = nul
     asWarning(/^\d{4}-\d{2}-\d{2}$/.test(fields.date ?? "") ? checkAsOf({ workspace: dir, storiesDir: ".", slug: "README", asOf: fields.date }) : result("S6", true, "not applicable: no front matter date")),
     checkSvgSanity({ storiesAbs: dir, images: allSvgs }),
     checkScopedSuperlatives(prose.mainText),
+    checkProcessNotes(md),
     checkDensity(md),
-    checkFidelity(dir, [renderedText(md), ...svgs.map((s) => s.text.join(" "))].join(" "), notes && resolve(notes)),
     ...checkChartDesign(chartRoles(localSvgs).map(({ path, role }) => ({ path, role, svg: readFileSync(join(dir, path), "utf8") }))),
   ];
   if (build) results.push(checkBuild(dir));
@@ -399,7 +380,7 @@ export async function checkStoryPackage(packageDir, { build = false, notes = nul
 }
 
 export function formatTable(dir, results) {
-  const label = (r) => (r.pass ? "PASS" : r.severity === "fail" ? "FAIL" : "WARN");
+  const label = (r) => (r.severity === "info" ? "INFO" : r.pass ? "PASS" : r.severity === "fail" ? "FAIL" : "WARN");
   const w = Math.max(...results.map((r) => r.id.length));
   const fails = results.filter((r) => !r.pass && r.severity === "fail").length;
   const warns = results.filter((r) => !r.pass && r.severity !== "fail").length;
@@ -411,14 +392,12 @@ export function formatTable(dir, results) {
 }
 
 export async function main(args) {
-  const at = args.indexOf("--notes");
-  const notes = at >= 0 ? args[at + 1] : null;
-  const dir = args.find((a, i) => !a.startsWith("--") && (at < 0 || i !== at + 1));
-  if (!dir || (at >= 0 && !notes)) {
-    console.error("usage: node scripts/story-check.mjs <post-dir> [--build] [--notes <NOTES.md>]");
+  const dir = args.find((a) => !a.startsWith("--"));
+  if (!dir) {
+    console.error("usage: node scripts/story-check.mjs <post-dir> [--build]");
     return 2;
   }
-  const results = await checkStoryPackage(dir, { build: args.includes("--build"), notes });
+  const results = await checkStoryPackage(dir, { build: args.includes("--build") });
   console.log(formatTable(dir, results));
   return results.some((r) => !r.pass && r.severity === "fail") ? 1 : 0;
 }

@@ -1,25 +1,26 @@
 # Writing the prose: sentence and structure rules
 
-Packaged with the `story` skill. Use it in step 4, after the outline and charts are fixed. They come from blind comparisons with top published stories (Factory `projects/story-remakes`, rounds 0–2, h1 and h2, 2026-11-12/13): the originals "read in one go"; ours "pack many figures into each sentence". Since h2, number load, hook, finding and close are also enforced mechanically, by `story-check`'s `density` line and the cold edit, and measure wording by the fidelity review ([cold-edit.md](cold-edit.md)).
+Packaged with the `story` skill. Use it in step 4, after the outline and charts are fixed. They come from a blind comparison (Factory `projects/story-remakes`, round 0, 2026-11-12) in which top published stories (Our World in Data, Carbon Brief, Reuters, FT) beat ours on writing in 12 of 12 judgements and on structure in 8 of 12, while ours won on accuracy and sourcing. The judges' words: the originals "read in one go"; ours "pack many figures into each sentence" and end "in methods". Diagnosis with quoted contrasts: Factory `projects/story-remakes/rounds/r1-diagnosis.md`.
 
-**Wording and order only.** These rules never add a claim or drop a caveat. Stakes, named examples, a sourced scene and the close's implication (rules 1, 9, 11) are material, not wording: they come from the approved outline (SKILL.md step 1). A new comparison, ratio, yardstick or "what to watch next" that is not in the approved outline is an outline change (step 2), not a wording change. Moving a beat to a different place from the outline is also an outline change: note it for the reviewer. Every caveat and attribution in the outline must still be traceable to a sentence. The voice guide and the claim checks in `editorial-review.md` still apply; if a rule here conflicts with a claim check, the claim check wins and you shorten something else.
+**Wording and order only.** These rules never add a claim or drop a caveat. A new comparison, ratio, yardstick or "what to watch next" that is not in the approved outline is an outline change (step 2), not a wording change. Moving a beat to a different place from the outline is also an outline change: note it for the reviewer. Every caveat and attribution in the outline must still be traceable to a sentence. The voice guide and the claim checks in `editorial-review.md` still apply; if a rule here conflicts with a claim check, the claim check wins and you shorten something else.
 
-Before/After examples are invented (a fictional city's bicycle counters); in each, the After states nothing the Before doesn't support. Bad/Good examples are real, from h1.
+The examples are invented (a fictional city's bicycle counters), not real figures. In each, the After states nothing the Before doesn't support.
 
-## 1. Open on the news hook or the stake, then what changed
+## 1. Open on what changed, in plain words
 
-The opening summary (SKILL.md contract: first paragraph after chart 1, at most 80 words, with the key number) opens on a dated event (the latest reading, a decision, a release) or on why the measure matters to a reader, then says what changed, with a concrete subject and an active verb. A stake from a linked source is attributed; never imply the data shows an effect it doesn't (h2: "whether tariffs cut sales depends on whose figures you read"). A sourced scene may open instead; never invent one. No bracket, code or definition in the first sentence; don't repeat the dek.
+The opening summary (SKILL.md contract: first paragraph after chart 1, at most 80 words, with the key number) starts with a sentence that says what changed and where, with no bracket, code or definition in it. The number can share that sentence or follow in the next one, but stays inside the summary. Don't repeat the description (dek) word for word.
 
-**Check:** Does the first sentence give a dated hook or a sourced stake, with no definition in it?
+**Check:** Does the first sentence contain a bracket, a code or a definition? Is it the dek verbatim? Is the key number inside the first 80 words?
 
-> **Bad.** The average new car registered in the EU, Iceland and Norway weighed 1,608 kg in 2025, which is 157 kg more than in 2020.
-> **Good.** A heavier car is more likely to kill the people in the car it hits (a study the original links). New cars in the EU, Iceland and Norway keep getting heavier: in 2025 they weighed 157 kg more on average than in 2020.
+> **Before.** In 2025, 41,280 trips (sensor-logged weekday crossings before 9 am, network v3.2) were recorded by the city's 64 counters, up from 18,950 in 2015.
 
-## 2. Few numbers, and say the finding once
+> **After.** Weekday morning bike trips in the city have more than doubled in ten years. The 64 roadside counters logged 41,280 trips before 9 am in 2025, against 18,950 in 2015.
 
-Pick the few numbers the argument needs, usually one per beat; the rest stay on the chart. One per sentence, two only for a comparison. A list of three or more values becomes the pattern plus the one value that makes it. Ranges, slope sweeps and tie thresholds a claim check requires stay; split them rather than cut them. Numbers in words ("a fifth", "three times") count too. `story-check`'s `density` line counts numeric figures, years included (h2: originals 0.8 per sentence, ours 1.7); the cold edit cuts towards its thresholds. Say the finding once: title, opening and close carry it; elsewhere cut any sentence that repeats it without adding evidence, a qualification or a baseline.
+## 2. One or two numbers per sentence
 
-**Check:** Does `density` pass? Does any sentence outside the close repeat an earlier point and add nothing?
+Give each sentence one number, two if it states a comparison. Keep the values the chart labels show (don't re-round them so prose and chart disagree), but drop values the point doesn't need: they stay on the chart and in the alt text. If a sentence lists three or more values, split it, or state the pattern and give the one value that makes it. Ranges, slope sweeps and tie thresholds that a claim check requires are exempt from the count; split them across sentences rather than cut them.
+
+**Check:** Count numbers per reader-facing sentence, ignoring years and the exempt kinds above. Do fewer than one in six sentences have three or more?
 
 > **Before.** Weekday morning trips rose 118.4%, weekend trips 12.7%, evening trips 31.2% and night trips 4.9%.
 
@@ -54,11 +55,13 @@ Each paragraph after the first starts by saying how it changes, qualifies or exp
 
 > **Before.** Weekend trips were 87,300 in 2025. Evening trips were 52,100 in 2025.
 
-> **After.** Weekends are the exception to the morning surge. Weekend trips rose 12.7%.
+> **After.** Weekends are the exception to the morning surge. Weekend trips rose 12.7%, about a tenth of the weekday-morning increase in percentage terms.
+
+(Only if that ratio is in the outline; otherwise stop after "rose 12.7%".)
 
 ## 6. Introduce each chart in one sentence, then say what follows
 
-Before every chart after the first, one sentence tells the reader what the chart compares and what to look for. After it, say what follows from it. Place each chart directly after the sentence that uses it. This is not narrating the chart (the voice guide still bans "then it rises, then it dips"): it is where to look, plus the conclusion. Chart 1 is exempt: it comes first and the opening summary interprets it. A lead-in names what the chart compares, never what drives it ("what that gap does to births" read as causal and cost a D2 point).
+Before every chart after the first, one sentence tells the reader what the chart compares and what to look for. After it, say what follows from it. Place each chart directly after the sentence that uses it. This is not narrating the chart (the voice guide still bans "then it rises, then it dips"): it is where to look, plus the conclusion. Chart 1 is exempt: it comes first and the opening summary interprets it. A lead-in names what the chart compares, never what drives it: "the chart shows what that gap does to births" turned a descriptive comparison into a causal claim in round 1 and cost a D2 point.
 
 **Check:** Is every chart after the first preceded by a sentence naming what it compares? Is each chart next to the paragraph that cites it?
 
@@ -89,14 +92,11 @@ When a number is the point, set it against something the reader can picture: ano
 
 (Both numbers are already on the chart.)
 
-## 9. Pose the question, answer it, then say what follows
+## 9. Close by answering the opening question, then the method
 
-The last section before "How this was made" answers the question the title raises in its first sentence, from findings already given, and ends on the strongest supported point or its implication, never on a limitation (h2: "its point fades"). When the commission poses a question, build the story as its answer, each section moving it on (rule 5). An implication comes only from the approved outline; a recommendation is always attributed to a named, linked source.
+The last section before "How this was made" returns to the question the title raises and answers it from the findings already given, with its main caveat in a clause, not as a separate closing hedge. If the outline puts others' explanations last, flag to the outline reviewer that they read better beside the finding they explain; don't move them without that approval.
 
-**Check:** Does the last paragraph answer the question first and end on a supported point, going no further than the findings and the outline?
-
-> **Bad.** [close] The lost jobs were almost entirely in hospitality and retail. (The industry figures cover a different measure and period from the headline fall.)
-> **Good.** "We can't confidently blame the minimum wage", so the Low Pay Commission should "tread carefully". (Resolution Foundation, in its author's own voice: the answer, then a recommendation as far as its evidence goes. Ours would attribute it.)
+**Check:** Does the last reader-facing paragraph answer the title's question in its first sentence? Does it add any claim not made earlier? (It must not.)
 
 > **Before.** ## Why, according to others
 > Planners credit the new lanes. Not every count is complete.
@@ -106,18 +106,18 @@ The last section before "How this was made" answers the question the title raise
 > Weekday morning trips more than doubled while weekend trips rose 12.7%: on these counts, the growth in cycling is a weekday-morning story, though the counters log trips rather than riders.
 > ## How this was made
 
-## 10. Write fresh from the finding
+## 10. Write the prose fresh from the finding, and let the charts carry the numbers
 
-Draft from the one-sentence finding, the charts and the statistics, not by editing an earlier draft: edits keep the old draft's density and repetition (rule 2).
+Draft from the one-sentence finding, the charts and the statistics, not by editing an earlier draft: edits keep the old draft's density (round 1 cut 0–4 numbers per story; writing still lost 12/12). Before writing, pick the few numbers the argument needs, usually one per beat; every other value stays on the chart, in the alt text and in the data. In the opening paragraph, at most one number per sentence. Aim for under one number per sentence overall. Fractions in words ("a fifth", "three times") count as numbers and must match the chart.
 
-## 11. Name the real things the sources name
+**Check:** Numbers per reader-facing sentence (figures and number-words)? Any opening sentence with two?
 
-Where the data or a linked source names the laws, places, products or programmes behind a category, add one or two by name beside the aggregate. Only what the sources name; an example illustrates a count, it never stands for it.
+## 11. Start with who or what changed, as subject and verb
 
-**Check:** Is there a paragraph of category nouns ("legislation", "sectors", "measures") where a source names a real one?
+Sentence 1 has a concrete subject (people, a country, a power source) and an active verb, and says why a reader should care. The precise count comes second. Use plain words for every technical term; the formal name belongs in "How this was made".
 
-> **Bad.** The current Congress has turned fewer bills into law than almost any of its predecessors.
-> **Good.** The current Congress has turned fewer bills into law than almost any of its predecessors, though they include the "One Big Beautiful Bill" of tax and spending changes and a new framework for stablecoins (Pew).
+> **Before.** In 2025, 41,280 trips were logged by the city's counters, a 118% rise on 2015.
+> **After.** The city's commuters have taken to bikes. On weekday mornings, counters now log more than twice as many trips as ten years ago.
 
 ## 12. Every sentence of colour must trace to the data or a linked source
 
@@ -133,20 +133,18 @@ Sources linked, data vintage, definitions with denominators, the data and code l
 
 Translating a technical measure into everyday words is where fresh prose loses accuracy (round 2: two of six stories fell below the accuracy gate this way). Keep the threshold, the category and the denominator exactly: a fertility rate below 2.1 is not "families with fewer than two children" (a period rate is not a family size, and 2.0–2.1 is not "fewer than two"); "unvaccinated or unknown status" is not "unvaccinated"; "49 reporting jurisdictions (48 states and DC)" is not "49 states plus DC". A trend word in a heading or close ("has not slowed", "the second half of the year") must match the window the number covers.
 
-Keep the measure, population, period, geography and category names too (h1: "retail" for "retail and wholesale"; h2: "held elections" for a year-end democracy status). The independent fidelity review checks each phrase (SKILL.md step 4).
-
-**Check:** For each plain-words phrase that stands for a measure, does it still mean the same threshold, category, denominator and window as the source?
+**Check:** For each plain-words phrase that stands for a measure, does it still mean the same threshold, category and denominator as the chart? Does each trend word name or match its window?
 
 ## Before handing off
 
 Run these on the finished prose, together with the claim checks in `editorial-review.md`:
 
-1. `density` passes; no restatement (rule 2).
+1. Under one number per reader-facing sentence on average, one at most per opening sentence, and fewer than one in six sentences with three or more (years and claim-check-required ranges excluded). Round 0 originals: median 0.8 per sentence, 11% with three or more; ours: 2.1 and 33%.
 2. No definitions or method section before the first finding.
 3. Every heading except "How this was made" is a claim.
 4. Every chart after the first has a one-sentence lead-in.
 5. Every paragraph after the first opens with a link word or a back-reference.
-6. The opening gives the stake (or a sourced scene) before the number; the last reader-facing paragraph answers the question and goes no further than the findings and the approved outline.
+6. The last reader-facing paragraph answers the title's question and adds no new claim.
 7. Every outline caveat and attribution is traceable to a sentence; every prose number is on a chart or on the exempt list, exactly as the chart labels it.
-8. Every mismatch in the fidelity reviewer's table is fixed (rule 14).
+8. Every plain-words phrase for a measure keeps its threshold, category, denominator and window (rule 14).
 9. Every sentence of background or yardstick traces to the package data or an opened, linked source (rule 12); the method section is about 150 words or fewer.

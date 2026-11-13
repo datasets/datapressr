@@ -332,113 +332,8 @@ test("design: a y tick label wider than the left margin, or an end label past th
   assert.match(designById(svgDoc(`<text x="300" y="200" font-weight="700">+636.0 (75.5%)</text>`), "chart-clipping").message, /right edge/);
 });
 
-// Measure fidelity (writing.md rule 14, SKILL.md step 4): the writer's NOTES.md, in the package
-// or the folder above it, lists each plain-words phrase for a measure against the source wording.
-// The fidelity table is now the independent reviewer's (round 4): a "Reviewer:" line, then
-// Phrase | Where | Source wording | Mismatch ("none" or the fields) | Resolution (a flagged row: the fixed wording, quoted).
-const NOTES_TABLE = `| Phrase as published | Where | Source wording | Mismatch | Resolution |\n|---|---|---|---|---|\n`;
-const writeNotes = (d, body, reviewer = "Reviewer: fresh-context subagent, 2026-11-13\n\n") => writeFileSync(join(d, "NOTES.md"), `# Notes\n\n## Measure fidelity review\n\n${reviewer}${body}\n## Time spent\n\nAn hour.\n`);
-
-test("fidelity: the reviewer's NOTES.md table whose phrases are in the README or a chart passes", async () => {
-  const r = byId(await checkStoryPackage(GOOD), "fidelity");
-  assert.equal(r.pass, true, r.message);
-});
-
-test("fidelity: no NOTES.md, or one without a table row, warns; NOTES.md one folder up is found", async () => {
-  const none = byId(await checkStoryPackage(saboteur((d) => rmSync(join(d, "NOTES.md")))), "fidelity");
-  assert.equal(none.pass, false);
-  assert.equal(none.severity, "warn");
-  assert.match(none.message, /no NOTES\.md/);
-  const empty = byId(await checkStoryPackage(saboteur((d) => writeNotes(d, NOTES_TABLE))), "fidelity");
-  assert.equal(empty.pass, false);
-  assert.match(empty.message, /no "Measure fidelity" table/);
-  const parent = mkdtempSync(join(tmpdir(), "story-check-parent-"));
-  cpSync(GOOD, join(parent, "package"), { recursive: true });
-  cpSync(join(GOOD, "NOTES.md"), join(parent, "NOTES.md"));
-  rmSync(join(parent, "package", "NOTES.md"));
-  assert.equal(byId(await checkStoryPackage(join(parent, "package")), "fidelity").pass, true);
-});
-
-test("fidelity: a row with no quoted phrase or an empty cell warns", async () => {
-  for (const row of [`| wind share | opening | Solar share | none | ok |`, `| "Solar supplied" | opening |  | none | ok |`]) {
-    const r = byId(await checkStoryPackage(saboteur((d) => writeNotes(d, `${NOTES_TABLE}${row}\n`))), "fidelity");
-    assert.equal(r.pass, false, row);
-    assert.match(r.message, /incomplete row/);
-  }
-});
-
-test("fidelity: phrases match rendered text (links unwrapped, comments and unembedded charts ignored)", async () => {
-  const row = (p) => `${NOTES_TABLE}| "${p}" | body | Solar share | none | ok |\n`;
-  const linked = saboteur((d) => { writeNotes(d, row("frozen data reproduce")); editReadme(d, (md) => md.replace("[frozen data](https://datahub.io/blog/good-story/_r/-/good-story-src/share.csv) and [provenance](good-story-src/PROVENANCE.md)", "[frozen data](https://datahub.io/blog/good-story/_r/-/good-story-src/share.csv) reproduce")); });
-  assert.equal(byId(await checkStoryPackage(linked), "fidelity").pass, true);
-  const comment = saboteur((d) => { writeNotes(d, row("wind and solar")); editReadme(d, (md) => `${md}\n<!-- wind and solar -->\n`); });
-  assert.equal(byId(await checkStoryPackage(comment), "fidelity").pass, false);
-  const stray = saboteur((d) => { writeNotes(d, row("wind and solar")); writeFileSync(join(d, "old-chart.svg"), "<svg><text>wind and solar</text></svg>"); });
-  assert.equal(byId(await checkStoryPackage(stray), "fidelity").pass, false);
-});
-
-test("fidelity: a listed phrase that is not in the README or a chart warns (a stale table)", async () => {
-  const dir = saboteur((d) => writeNotes(d, `${NOTES_TABLE}| "wind and solar" | opening | Solar share of electricity | none | ok |\n`));
-  const r = byId(await checkStoryPackage(dir), "fidelity");
-  assert.equal(r.pass, false);
-  assert.match(r.message, /"wind and solar"/);
-});
-
-test("fidelity: a table with no Reviewer line is the writer's own and warns", async () => {
-  const dir = saboteur((d) => writeNotes(d, `${NOTES_TABLE}| "Solar supplied" | opening | Solar share | none | ok |\n`, ""));
-  const r = byId(await checkStoryPackage(dir), "fidelity");
-  assert.equal(r.pass, false);
-  assert.match(r.message, /Reviewer:/);
-});
-
-test("fidelity: a flagged mismatch passes only when its quoted fix is published", async () => {
-  const flagged = (resolution) => `${NOTES_TABLE}| "wind and solar" | opening | Solar share of electricity generation | category: solar only | ${resolution} |\n`;
-  for (const res of ["pending", "fixed", `fixed: "solar and storage"`, `pending: "Solar supplied"`]) {
-    const r = byId(await checkStoryPackage(saboteur((d) => writeNotes(d, flagged(res)))), "fidelity");
-    assert.equal(r.pass, false, res);
-    assert.match(r.message, /unresolved/);
-  }
-  const fixed = byId(await checkStoryPackage(saboteur((d) => writeNotes(d, flagged(`fixed: "Solar supplied"`)))), "fidelity");
-  assert.equal(fixed.pass, true, fixed.message);
-  // The fix is published but the flagged phrase is still there too: unresolved.
-  const both = saboteur((d) => { writeNotes(d, flagged(`fixed: "Solar supplied"`)); editReadme(d, (md) => md.replace("That rise came", "Wind and solar grew. That rise came")); });
-  assert.equal(byId(await checkStoryPackage(both), "fidelity").pass, false);
-  // A fix that widens the phrase ("retail" -> "retail and wholesale") resolves it.
-  const wider = saboteur((d) => writeNotes(d, `${NOTES_TABLE}| "grid's" | opening | grid total | population | fixed: "the grid's electricity" |\n`));
-  assert.equal(byId(await checkStoryPackage(wider), "fidelity").pass, true);
-});
-
-test("fidelity: a short flagged phrase also used correctly elsewhere clears only with ok-elsewhere (r4 smoke: \"customs value\")", async () => {
-  // "solar" was wrong in one sentence (fixed to "Solar supplied") but stays correct in another.
-  const row = (resolution) => `${NOTES_TABLE}| "solar" | opening | Solar share of electricity generation | measure: share, not capacity | ${resolution} |\n`;
-  const keep = (d) => editReadme(d, (md) => md.replace("That rise came", "Solar panels are cheap. That rise came"));
-  const plain = byId(await checkStoryPackage(saboteur((d) => { writeNotes(d, row(`fixed: "Solar supplied"`)); keep(d); })), "fidelity");
-  assert.equal(plain.pass, false, plain.message);
-  assert.match(plain.message, /ok-elsewhere/);
-  const marked = byId(await checkStoryPackage(saboteur((d) => { writeNotes(d, row(`fixed: "Solar supplied"; ok-elsewhere: "Solar panels are cheap"`)); keep(d); })), "fidelity");
-  assert.equal(marked.pass, true, marked.message);
-  // Only an affirmative marker with a quoted location counts (Codex review).
-  for (const res of [`fixed: "Solar supplied"; ok-elsewhere`, `fixed: "Solar supplied"; not ok-elsewhere: "x"`, `fixed: "Solar supplied"; ok-elsewhere: pending`]) {
-    const r = byId(await checkStoryPackage(saboteur((d) => { writeNotes(d, row(res)); keep(d); })), "fidelity");
-    assert.equal(r.pass, false, res);
-  }
-  // ok-elsewhere never excuses an unpublished fix.
-  const nofix = byId(await checkStoryPackage(saboteur((d) => { writeNotes(d, row(`fixed: "solar and storage"; ok-elsewhere`)); keep(d); })), "fidelity");
-  assert.equal(nofix.pass, false);
-  assert.match(nofix.message, /unresolved/);
-});
-
-test("fidelity: --notes points the check at notes kept elsewhere (DataPressr docs/reviews/<slug>-notes.md)", async () => {
-  const dir = saboteur((d) => rmSync(join(d, "NOTES.md")));
-  const notes = join(mkdtempSync(join(tmpdir(), "story-check-notes-")), "slug-notes.md");
-  cpSync(join(GOOD, "NOTES.md"), notes);
-  assert.equal(byId(await checkStoryPackage(dir, { notes }), "fidelity").pass, true);
-  const r = spawnSync(process.execPath, [SCRIPT, dir, "--notes", notes], { encoding: "utf8", cwd: tmpdir() });
-  assert.match(r.stdout, /PASS\s+fidelity/, r.stdout + r.stderr);
-});
-
 // --- Figure density (story-remakes h2: originals 0.83 figures per sentence, ours 1.7) ---
-import { checkDensity, countFigures, proseSentences, DENSITY_MAX_MEAN, DENSITY_MAX_SHARE3 } from "./story-check.mjs";
+import { checkDensity, checkProcessNotes, countFigures, proseSentences, DENSITY_REF_MEAN, DENSITY_REF_SHARE3 } from "./story-check.mjs";
 
 test("density: a figure is a number, percentage, money value, year or date; a date counts once, each end of a range once", () => {
   const cases = [
@@ -498,29 +393,83 @@ test("density: short sentences, claim headings, linked figures, italic asides an
   assert.deepEqual(proseSentences(caption), ["Solar rose fast in 2025."]);
 });
 
-test("density: no reader prose at all warns instead of passing at zero", () => {
+test("density: no reader prose at all is reported as info, not scored", () => {
   const r = checkDensity("## How this was made\n\nWe used 3 files.\n");
-  assert.equal(r.pass, false);
+  assert.equal(r.pass, true);
+  assert.equal(r.severity, "info");
   assert.match(r.message, /no reader prose/);
 });
 
-test("density: warns above the thresholds and lists the five densest sentences", () => {
-  assert.equal(DENSITY_MAX_MEAN, 1.2);
-  assert.equal(DENSITY_MAX_SHARE3, 0.15);
+test("density is info only (story-remakes h3): it never fails or warns, even far above the reference points", () => {
+  assert.equal(DENSITY_REF_MEAN, 1.2);
+  assert.equal(DENSITY_REF_SHARE3, 0.15);
   const light = "Solar supplied 42% of the grid's power last year. That share keeps rising every year. Wind came next with a smaller share.";
   const ok = checkDensity(light);
   assert.equal(ok.pass, true, ok.message);
-  assert.equal(ok.severity, "warn");
+  assert.equal(ok.severity, "info");
   assert.match(ok.message, /0\.33 figures per sentence; 0% of 3 sentences carry 3\+/);
   const dense = Array.from({ length: 6 }, (_, i) => `In 20${10 + i} output rose ${i + 1}% to ${i + 100} units.`).join(" ") + " Nothing else changed much at all.";
-  const bad = checkDensity(dense);
-  assert.equal(bad.pass, false);
-  assert.match(bad.message, /2\.57 figures per sentence \(over 1\.2\); 86% of 7 sentences carry 3\+ figures \(over 15%\)/);
-  assert.equal((bad.message.match(/\(3\) "/g) ?? []).length, 5, bad.message);
+  const high = checkDensity(dense);
+  assert.equal(high.pass, true);
+  assert.equal(high.severity, "info");
+  assert.match(high.message, /2\.57 figures per sentence; 86% of 7 sentences carry 3\+ figures/);
+  assert.doesNotMatch(high.message, /over|cut/i);
+  assert.equal((high.message.match(/\(3\) "/g) ?? []).length, 5, high.message);
 });
 
-test("density: story-check reports it for the package README", async () => {
-  const r = byId(await checkStoryPackage(GOOD), "density");
+test("density: story-check reports it as INFO for the package README and it never counts as a warning", async () => {
+  const results = await checkStoryPackage(GOOD);
+  const r = byId(results, "density");
   assert.ok(r, "density result present");
-  assert.equal(r.severity, "warn");
+  assert.equal(r.severity, "info");
+  const table = formatTable(GOOD, results);
+  assert.match(table, /^INFO {2}density/m);
+  const warns = results.filter((x) => !x.pass && x.severity !== "fail").length;
+  assert.match(table, new RegExp(`${warns} warning\\(s\\)`));
+});
+
+// --- Process notes in the reader text (story-remakes h3: "Draft: the author's voice pass is outstanding" in 10/10) ---
+
+test("process-note: the h3 voice-pass line fails, and so do other draft or voice-pass labels", () => {
+  const leaks = [
+    "*Draft: the author's voice pass is outstanding.*",
+    "Solar rose. Draft: numbers to be checked.",
+    "> **Draft:** not yet reviewed.",
+    "The author's voice pass is still to come.",
+    "This is a draft and may change.",
+    "_This story is still a draft._",
+    // Codex review: markup before the label, and a phrase wrapped across lines
+    "## Draft: pending review",
+    "- Draft: pending review",
+    "**Draft**: pending review",
+    "The author's voice\npass is outstanding.",
+  ];
+  for (const leak of leaks) {
+    const r = checkProcessNotes(`---\ntitle: T\n---\n\nSolar rose in 2025.\n\n${leak}\n`);
+    assert.equal(r.pass, false, leak);
+    assert.equal(r.severity, "fail", leak);
+    assert.match(r.message, /line 7:/, leak); // the leak starts on line 7
+  }
+});
+
+test("process-note: front matter status, code, HTML comments and ordinary uses of 'draft' pass", () => {
+  const md = [
+    "---", "title: T", "datahub:", "  status: draft", "  # approved: 2026-10-12 owner voice pass", "---", "",
+    "The 2024 NFL draft: a record for wide receivers.", "",
+    "Ministers published a draft budget in May.", "",
+    "<!-- Draft: voice pass outstanding -->", "",
+    "```", "Draft: x", "```", "",
+    "[Data](https://example.org/voice-pass.csv) and <img src=\"draft:x.svg\" alt=\"chart\"> are links, not text.", "",
+  ].join("\n");
+  const r = checkProcessNotes(md);
+  assert.equal(r.pass, true, r.message);
+});
+
+test("saboteur: the voice-pass line in a package README fails story-check", async () => {
+  const dir = saboteur((d) => editReadme(d, (md) => `${md}\n*Draft: the author's voice pass is outstanding.*\n`));
+  try {
+    const results = await checkStoryPackage(dir);
+    assert.deepEqual(failing(results), ["process-note"]);
+    assert.match(formatTable(dir, results), /RESULT: FAIL/);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
 });
