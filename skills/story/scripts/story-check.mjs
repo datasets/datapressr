@@ -32,6 +32,9 @@
 //   density      info only, never fails or warns: figures per sentence in the reader prose and the share
 //                of sentences with 3+ figures, with the five densest (definition at proseSentences/
 //                countFigures below). Info because cutting density did not win craft (story-remakes h3)
+//   scope-review info only, never fails or warns: whether NOTES.md (package folder or the one above) has
+//                the fresh-context "Fidelity and scope review" (references/scope-review.md), with its
+//                Reviewer line and must-fix count. A marker, not a gate: it cannot judge the review
 //   S8           warn: "first time", "ever", "all-time" or "record high/low" with no scope in
 //                the sentence ("since 1985", "1985–2025", "in this series/data/record")
 //   chart-*      design checks on every chart SVG (scripts/svg-design.mjs; rules in
@@ -319,6 +322,21 @@ export function checkProcessNotes(md) {
     : result("process-note", true, "no draft or voice-pass status in the README");
 }
 
+// The fidelity-and-scope review (round 6, SKILL.md step 4): a marker that the fresh-context review
+// ran and how many must-fix items it returned. Info only: the round-4/5 fidelity warning pushed writers
+// to paste long source wording everywhere (story-remakes h3b), so nothing here asks for more text.
+export function checkScopeReview(dir) {
+  const path = [join(dir, "NOTES.md"), join(dir, "..", "NOTES.md")].find(existsSync);
+  if (!path) return result("scope-review", true, "no NOTES.md in the package or the folder above, so no fidelity-and-scope review found (SKILL.md step 4)", "info");
+  const section = readFileSync(path, "utf8").split(/^#{1,6}[ \t]+fidelity and scope review\b.*$/im)[1]?.split(/^#{1,6}[ \t]/m)[0];
+  if (section === undefined) return result("scope-review", true, `no "Fidelity and scope review" section in ${path} (SKILL.md step 4)`, "info");
+  const reviewer = section.match(/^\s*\**Reviewer:?\**:?\s*(\S.*)$/im)?.[1]?.trim();
+  const mustFix = section.split(/^\s*\**must fix\b/im)[1];
+  const none = mustFix !== undefined && /^[^\n]*\bnone\b/i.test(mustFix.replace(/^[*:\s]+/, ""));
+  const items = mustFix === undefined || none ? 0 : mustFix.split("\n").filter((l) => /^\s*(?:[-*]|\d+[.)])\s+\S/.test(l)).length;
+  return result("scope-review", true, `review in ${path}${reviewer ? `, Reviewer: ${reviewer}` : ", no Reviewer line"}; ${mustFix === undefined ? "no Must fix list" : `${items} must-fix item(s)`}`, "info");
+}
+
 // Which device each chart is shown on: X-mobile.svg is the phone variant, X.svg with
 // such a sibling is desktop-only, anything else is shown on every screen.
 export function chartRoles(localSvgs) {
@@ -373,6 +391,7 @@ export async function checkStoryPackage(packageDir, { build = false } = {}) {
     checkScopedSuperlatives(prose.mainText),
     checkProcessNotes(md),
     checkDensity(md),
+    checkScopeReview(dir),
     ...checkChartDesign(chartRoles(localSvgs).map(({ path, role }) => ({ path, role, svg: readFileSync(join(dir, path), "utf8") }))),
   ];
   if (build) results.push(checkBuild(dir));

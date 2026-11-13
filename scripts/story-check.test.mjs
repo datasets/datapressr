@@ -473,3 +473,21 @@ test("saboteur: the voice-pass line in a package README fails story-check", asyn
     assert.match(formatTable(dir, results), /RESULT: FAIL/);
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
+
+// --- Fidelity-and-scope review marker (round 6, references/scope-review.md): info only, never a warning ---
+test("scope-review: info only, whether or not NOTES.md has the review; counts must-fix items", async () => {
+  const none = byId(await checkStoryPackage(GOOD), "scope-review");
+  assert.equal(none.severity, "info");
+  assert.equal(none.pass, true);
+  assert.match(none.message, /no "Fidelity and scope review" section/);
+  const missing = saboteur((d) => rmSync(join(d, "NOTES.md")));
+  const gone = byId(await checkStoryPackage(missing), "scope-review");
+  assert.equal(gone.pass, true);
+  assert.equal(gone.severity, "info");
+  const review = (mustFix) => saboteur((d) => writeFileSync(join(d, "NOTES.md"), `# Notes\n\n## Fidelity and scope review\n\nReviewer: fresh-context subagent, 2026-11-13\n\n- "Solar supplied 42%": supported\n\n${mustFix}\n\n## Time spent\n\n- 1. not an item\n`));
+  const two = byId(await checkStoryPackage(review('Must fix:\n1. "x" → "y"\n2. "z" → "w"')), "scope-review");
+  assert.equal(two.severity, "info");
+  assert.match(two.message, /Reviewer: fresh-context subagent, 2026-11-13; 2 must-fix item\(s\)/);
+  assert.match(byId(await checkStoryPackage(review("Must fix: none")), "scope-review").message, /0 must-fix item\(s\)/);
+  assert.match(formatTable(GOOD, await checkStoryPackage(GOOD)), /INFO\s+scope-review/);
+});
