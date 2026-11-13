@@ -12,7 +12,7 @@
 //
 // README.md is the story with only these changes, so DataHub renders it
 // correctly (docs/plans/2026-10-10-stories-on-datahub.md, sections 1-3):
-// - frontmatter cut down to title, description and date;
+// - frontmatter cut down to title, description, date and story_check_exempt;
 // - the first h1 removed (DataHub prints the title in its header);
 // - the internal "Friction notes" section removed;
 // - the site-only "Read on DataHub" paragraph removed (a page linking to
@@ -43,7 +43,7 @@ import { collect } from './build-datasets-page.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE_URL = 'https://datapressr.datahub.io';
 const REPO_URL = 'https://github.com/datasets/datapressr';
-const KEEP_FRONTMATTER = ['title', 'description', 'date'];
+const KEEP_FRONTMATTER = ['title', 'description', 'date', 'story_check_exempt']; // the exempt list: DataHub ignores it, story-check reads it
 
 // Publications a story may go to, with where the right to publish there is
 // recorded. Add `blog` only once Datopian has granted it (datahub-next-cyz.1,

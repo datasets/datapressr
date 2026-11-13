@@ -9,9 +9,9 @@ date: 2026-10-20
   <img className="rounded-md" src="https://datahub.io/blog/good-story/_r/-/good-story-share.svg?preview=true" alt="Solar share rose to 42 per cent in 2025." />
 </picture></p>
 
-Solar supplied **42%** of the grid's electricity in 2025, up from 12% in 2015.
+Solar supplied **42%** of the grid's electricity in 2025, more than triple its share a decade earlier.
 
-That rise came mostly after 2020.
+That rise came mostly in the last five years.
 
 ![Annual growth](good-story-growth.svg)
 

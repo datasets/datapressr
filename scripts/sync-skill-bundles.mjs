@@ -28,6 +28,11 @@ export const BUNDLES = {
   "skills/validate/scripts/validate-datapackage.mjs": (root) => readFileSync(join(root, "scripts/validate-datapackage.mjs"), "utf8"),
   "skills/init/references/AGENTS.md": (root) => datasetSection(readFileSync(join(root, "AGENTS.md"), "utf8")),
   "skills/structure/references/wrangling-idioms.mjs": (root) => readFileSync(join(root, "scripts/wrangling-idioms.mjs"), "utf8"),
+  // story-check's helpers, so a copy of the story skill runs its checker (datapressr-7e4).
+  "skills/story/scripts/lib/story.mjs": (root) => readFileSync(join(root, "evals/lib/checkers/story.mjs"), "utf8"),
+  "skills/story/scripts/lib/offline-preload.mjs": (root) => readFileSync(join(root, "evals/lib/checkers/offline-preload.mjs"), "utf8"),
+  "skills/story/scripts/lib/validate-datapackage.mjs": (root) => readFileSync(join(root, "scripts/validate-datapackage.mjs"), "utf8"),
+  "skills/story/scripts/lib/svg-design.mjs": (root) => readFileSync(join(root, "scripts/svg-design.mjs"), "utf8"),
 };
 
 const VALIDATOR = join("scripts", "validate-datapackage.mjs");
