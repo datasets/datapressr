@@ -490,4 +490,15 @@ test("scope-review: info only, whether or not NOTES.md has the review; counts mu
   assert.match(two.message, /Reviewer: fresh-context subagent, 2026-11-13; 2 must-fix item\(s\)/);
   assert.match(byId(await checkStoryPackage(review("Must fix: none")), "scope-review").message, /0 must-fix item\(s\)/);
   assert.match(formatTable(GOOD, await checkStoryPackage(GOOD)), /INFO\s+scope-review/);
+  const startsNone = byId(await checkStoryPackage(review('Must fix:\n1. "None of the industries changed" → "The same industries led in both periods"')), "scope-review");
+  assert.match(startsNone.message, /1 must-fix item\(s\)/, "an item starting with None is still an item (Codex review)");
+});
+
+test("scope-review: --notes points the marker at notes kept elsewhere (DataPressr docs/reviews/<slug>-notes.md)", async () => {
+  const dir = saboteur(() => {});
+  const notes = join(mkdtempSync(join(tmpdir(), "story-notes-")), "elsewhere-notes.md");
+  writeFileSync(notes, "## Fidelity and scope review\n\nReviewer: subagent\n\nMust fix:\n- \"a\" → \"b\"\n");
+  assert.match(byId(await checkStoryPackage(dir, { notes }), "scope-review").message, /elsewhere-notes\.md, Reviewer: subagent; 1 must-fix item/);
+  const r = spawnSync(process.execPath, [join(here, "story-check.mjs"), dir, "--notes", notes], { encoding: "utf8" });
+  assert.match(r.stdout, /INFO\s+scope-review\s+review in .*elsewhere-notes\.md/, r.stdout + r.stderr);
 });

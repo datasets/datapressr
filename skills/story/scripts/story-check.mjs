@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Is a blog-format story package ready for `dh publish <dir> -p blog`?
 //
-//   node scripts/story-check.mjs <post-dir> [--build]     (npm run story-check -- <dir>)
+//   node scripts/story-check.mjs <post-dir> [--build] [--notes <NOTES.md>]     (npm run story-check -- <dir>)
 //
 // The checker ships inside the story skill (skills/story/scripts/), with copies of the helpers it
 // needs in lib/ (kept identical to their DataPressr originals by scripts/sync-skill-bundles.mjs),
@@ -32,7 +32,8 @@
 //   density      info only, never fails or warns: figures per sentence in the reader prose and the share
 //                of sentences with 3+ figures, with the five densest (definition at proseSentences/
 //                countFigures below). Info because cutting density did not win craft (story-remakes h3)
-//   scope-review info only, never fails or warns: whether NOTES.md (package folder or the one above) has
+//   scope-review info only, never fails or warns: whether NOTES.md (package folder or the one above, or
+//                --notes <path>, e.g. DataPressr docs/reviews/<slug>-notes.md) has
 //                the fresh-context "Fidelity and scope review" (references/scope-review.md), with its
 //                Reviewer line and must-fix count. A marker, not a gate: it cannot judge the review
 //   S8           warn: "first time", "ever", "all-time" or "record high/low" with no scope in
@@ -325,14 +326,14 @@ export function checkProcessNotes(md) {
 // The fidelity-and-scope review (round 6, SKILL.md step 4): a marker that the fresh-context review
 // ran and how many must-fix items it returned. Info only: the round-4/5 fidelity warning pushed writers
 // to paste long source wording everywhere (story-remakes h3b), so nothing here asks for more text.
-export function checkScopeReview(dir) {
-  const path = [join(dir, "NOTES.md"), join(dir, "..", "NOTES.md")].find(existsSync);
-  if (!path) return result("scope-review", true, "no NOTES.md in the package or the folder above, so no fidelity-and-scope review found (SKILL.md step 4)", "info");
+export function checkScopeReview(dir, notes = null) {
+  const path = notes ? (existsSync(notes) ? notes : null) : [join(dir, "NOTES.md"), join(dir, "..", "NOTES.md")].find(existsSync);
+  if (!path) return result("scope-review", true, `no ${notes ?? "NOTES.md in the package or the folder above"}, so no fidelity-and-scope review found (SKILL.md step 4)`, "info");
   const section = readFileSync(path, "utf8").split(/^#{1,6}[ \t]+fidelity and scope review\b.*$/im)[1]?.split(/^#{1,6}[ \t]/m)[0];
   if (section === undefined) return result("scope-review", true, `no "Fidelity and scope review" section in ${path} (SKILL.md step 4)`, "info");
   const reviewer = section.match(/^\s*\**Reviewer:?\**:?\s*(\S.*)$/im)?.[1]?.trim();
   const mustFix = section.split(/^\s*\**must fix\b/im)[1];
-  const none = mustFix !== undefined && /^[^\n]*\bnone\b/i.test(mustFix.replace(/^[*:\s]+/, ""));
+  const none = mustFix !== undefined && /^[*:\s]*none[.*\s]*$/i.test(mustFix.split("\n")[0]); // only "Must fix: none", not an item that starts with "None"
   const items = mustFix === undefined || none ? 0 : mustFix.split("\n").filter((l) => /^\s*(?:[-*]|\d+[.)])\s+\S/.test(l)).length;
   return result("scope-review", true, `review in ${path}${reviewer ? `, Reviewer: ${reviewer}` : ", no Reviewer line"}; ${mustFix === undefined ? "no Must fix list" : `${items} must-fix item(s)`}`, "info");
 }
@@ -364,7 +365,7 @@ function checkBuild(dir) {
   }
 }
 
-export async function checkStoryPackage(packageDir, { build = false } = {}) {
+export async function checkStoryPackage(packageDir, { build = false, notes = null } = {}) {
   const dir = resolve(packageDir); // a relative path broke --build: the node_modules symlink pointed nowhere
   const readmePath = join(dir, "README.md");
   if (!existsSync(readmePath)) return [result("readme", false, `no README.md in ${dir}`)];
@@ -391,7 +392,7 @@ export async function checkStoryPackage(packageDir, { build = false } = {}) {
     checkScopedSuperlatives(prose.mainText),
     checkProcessNotes(md),
     checkDensity(md),
-    checkScopeReview(dir),
+    checkScopeReview(dir, notes && resolve(notes)),
     ...checkChartDesign(chartRoles(localSvgs).map(({ path, role }) => ({ path, role, svg: readFileSync(join(dir, path), "utf8") }))),
   ];
   if (build) results.push(checkBuild(dir));
@@ -411,12 +412,14 @@ export function formatTable(dir, results) {
 }
 
 export async function main(args) {
-  const dir = args.find((a) => !a.startsWith("--"));
-  if (!dir) {
-    console.error("usage: node scripts/story-check.mjs <post-dir> [--build]");
+  const at = args.indexOf("--notes");
+  const notes = at >= 0 ? args[at + 1] : null;
+  const dir = args.find((a, i) => !a.startsWith("--") && (at < 0 || i !== at + 1));
+  if (!dir || (at >= 0 && !notes)) {
+    console.error("usage: node scripts/story-check.mjs <post-dir> [--build] [--notes <NOTES.md>]");
     return 2;
   }
-  const results = await checkStoryPackage(dir, { build: args.includes("--build") });
+  const results = await checkStoryPackage(dir, { build: args.includes("--build"), notes });
   console.log(formatTable(dir, results));
   return results.some((r) => !r.pass && r.severity === "fail") ? 1 : 0;
 }
