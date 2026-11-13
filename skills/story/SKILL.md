@@ -9,7 +9,7 @@ This skill is the **workflow**. The craft travels with it in `references/` — r
 
 - [`references/story-craft.md`](references/story-craft.md) — what makes a good data story: the patterns, the anti-patterns, the default spine.
 - [`references/voice-guide.md`](references/voice-guide.md) — the house voice.
-- [`references/writing.md`](references/writing.md) — sentence and structure rules for the prose (step 4): open on the change, one or two numbers per sentence, definitions inline, claim headings, linked paragraphs, chart lead-ins, one plain caveat, yardsticks, a reader-facing close.
+- [`references/writing.md`](references/writing.md) — sentence and structure rules for the prose (step 4): open on the stakes, few numbers and the finding said once, definitions inline, claim headings, linked paragraphs, chart lead-ins, one plain caveat, yardsticks, a question answered in the close, real named things, plain words that keep the measure.
 - [`references/charting.md`](references/charting.md) — how charts are made (Observable Plot → static SVG at build time), with [`references/make-charts-template.mjs`](references/make-charts-template.mjs) to start from.
 
 Proven on three stories: Keeling Curve (one time series), Planetary Boundaries (multi-indicator scoreboard) and "WTI Went Negative. Brent Didn't." (two resources compared at one moment — the first story written with the skill, in draft, with an independent outline review).
@@ -68,6 +68,7 @@ If the upstream data can change under you (someone else's dataset, still updatin
 - **What this story is about** — and what it is *not* about (almost always: not the wrangling). If the data shows *that* but not *why*, say so here.
 - **Argument, in order** — numbered beats on the default spine (`references/story-craft.md` §5). Real numbers in the beats now, with dates and units. Include the numbers that **weaken** the argument, not only those that make it. Distinguish measurement kinds that readers conflate (spot vs futures, nominal vs inflation-adjusted, a monthly mean vs a single reading) and note any widely quoted figure that differs from yours.
 - **Outside context** — any mechanism or explanation, attributed to a named source with a link, marked as not tested by this data.
+- **Stakes and concrete material** — why the measure matters to a reader; the real laws, places, products or programmes the sources name; any named case or quote from a cited source (never invented); and, if the commission asks a question, the answer and what follows from it, no further than the evidence (`references/writing.md` rules 1, 9, 11). The prose may use only what is here.
 - **Chart plan** — a table: `# | chart | data (resource + fields) | transform, gaps, dates | purpose`. One row per chart, each serving one beat. The purpose column gives the chart's draft title (the point it proves), its accent (the same protagonist hue across the story; a second accent only for a two-way comparison) and its explanatory annotations (three or fewer; see `references/charting.md` design rules). The "transform, gaps, dates" column is where most review corrections land: say how the filter/transform is computed, how missing rows and different calendars are handled (never join two resources by date; never plot missing as zero), how period data is dated (e.g. week-ending), and what the y-domain must include. **Run any formula against the actual columns before submitting** — story #2's plan named a ratio that was undefined for one row and wrong-signed for three.
 - **Voice** — one line pointing at the voice guide; the voice pass is separate.
 - **Friction notes** — what the story surfaced about the skill, the charts or the data.
@@ -114,6 +115,16 @@ Under the "Friction notes" heading, list every exempt number as a list item cont
   - 25,415: dataset-wide count
   - $9.10: all-time low outside the chart's window
 ```
+
+**Measure-fidelity check — required, after drafting and before story-check.** List every plain-language restatement of a measure or category in the title, dek, prose, chart titles, subtitles and captions (for example "hospitality and retail", "payroll jobs", "unvaccinated"). Check each against the source definition for measure, population, period, geography and category name. Fix anything that does not match exactly, or use the source's own wording. Record the list as a table under a `## Measure fidelity` heading in `NOTES.md`, the writer's notes beside the story package and never published (for a story in DataPressr `site/stories/`, `docs/reviews/<slug>-notes.md`), one row per phrase, the phrase in double quotes exactly as published, every cell filled:
+
+```markdown
+| Phrase as published | Where | Source term and definition | Checked | Result |
+|---|---|---|---|---|
+| "retail and wholesale" | chart 2 title | HMRC industry "Wholesale and retail; repair of motor vehicles": payrolled jobs held by under-18s, UK, Dec 2022 and Dec 2025 | measure, population, period, geography, category | fixed: was "retail" |
+```
+
+`story-check`'s `fidelity` check warns when the table is missing, has an incomplete row or lists a phrase no longer in the README or embedded charts; for a new or revised story, clear that warning before handoff (the warning, not a FAIL, spares older packages). It cannot judge the match itself: the final editorial reviewer audits the table (claim check 13). Rule 14 in `references/writing.md` says what must match; this table shows it was checked.
 
 Before committing, run the writing checks at the end of `references/writing.md` and the [claim checks](references/editorial-review.md#claim-checks--writer-runs-before-handoff-reviewer-re-runs) on every sentence, then check: the opening paragraph stands alone as a summary (before any section heading, at least one number, at most 80 words); the length is earned, with no section the reader would skip; every local link resolves; every data number is on a chart or on the exempt list; no claim beyond the approved outline. Follow the project's draft visibility rules: in DataPressr, both outline and prose also carry `publish: false` and stay out of the public stories index until owner approval.
 
