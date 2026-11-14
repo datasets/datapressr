@@ -1,7 +1,8 @@
 ---
 title: From acceptable stories to compelling data journalism
 created: 2026-10-24
-status: active
+status: superseded
+superseded-by: factory/PLAN.md (workstream 2 Story quality, epic factory-but.2.16)
 bead: datapressr-8no.9
 review_on: 2026-11-07
 ---

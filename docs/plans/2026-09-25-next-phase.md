@@ -1,6 +1,8 @@
 ---
 title: "Next phase: publish, get used, keep producing, measure, keep current"
 date: 2026-09-25
+status: superseded
+superseded-by: factory/PLAN.md (14 Nov 2026); epics deferred
 ---
 
 # Next phase plan — 2026-09-25
