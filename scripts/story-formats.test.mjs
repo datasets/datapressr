@@ -71,7 +71,7 @@ test("chart-mark-contrast: the old context grey #b6bcc6 (1.9:1) fails a framed c
   assert.equal(mark(svgDoc(`<g aria-label="line" stroke="#b6bcc6"><path d="M0,0L9,9"/></g>`, { framed: false })).severity, "warn");
 });
 
-test("chart-mark-contrast: accents, 3:1 greys, white halos, gridlines, rules and declared faint context pass", () => {
+test("chart-mark-contrast: accents, 3:1 greys, white halos, gridlines, the frame's rule and declared faint context pass", () => {
   const C = templatePalette();
   const body = [
     `<g aria-label="line" fill="none" stroke="${C.accent}"><path d="M0,0L9,9"/></g>`,
@@ -79,7 +79,7 @@ test("chart-mark-contrast: accents, 3:1 greys, white halos, gridlines, rules and
     `<g aria-label="dot" fill="${C.accent2}" stroke="#ffffff"><circle r="4"/></g>`,
     `<g aria-label="y-grid" stroke="#e5e7eb"><line x1="0" x2="9"/></g>`,
     `<g aria-label="faint context" fill="none" stroke="${C.contextFaint}"><path d="M0,0L9,9"/></g>`,
-    `<rect fill="#2563eb" fill-opacity="0.1" width="9" height="9"/>`, // a pale band is structure (< 1.5:1)
+    `<svg x="0" y="0"><g aria-label="faint band" fill="#2563eb" fill-opacity="0.1"><rect width="9" height="9"/></g></svg>`, // a declared pale band
   ].join("");
   const r = mark(svgDoc(body));
   assert.equal(r.pass, true, r.message);
@@ -278,4 +278,58 @@ test("social mode: the build fails without the social overrides, with a long tit
   assert.throws(() => t.card({ ...base, social: { ...social, title: "one two three four five six seven eight nine ten eleven" } }), /10 words/);
   assert.throws(() => t.card({ ...base, social: { ...social, heroLabel: Array.from({ length: 40 }, () => "w").join(" ") } }), /40 words/);
   rmSync(ws, { recursive: true, force: true });
+});
+
+// --- Codex review of 03aae6f ------------------------------------------------------------------
+
+test("chart-mark-contrast reads painted geometry: opacity on the bars counts, an overridden group colour and text halos don't", () => {
+  // Plot puts a channel fillOpacity on each rect, under a group that sets the fill.
+  assert.equal(mark(svgDoc(`<svg x="0" y="0"><g aria-label="bar" fill="#1d4ed8"><rect width="9" height="9" fill-opacity="0.45"/></g></svg>`)).pass, false);
+  // A pale group colour that every child overrides is not drawn.
+  assert.equal(mark(svgDoc(`<svg x="0" y="0"><g aria-label="bar" fill="#eeeeee"><rect width="9" height="9" fill="#1d4ed8"/></g></svg>`)).pass, true);
+  // A white or pale halo behind a label is text styling, not a mark.
+  assert.equal(mark(svgDoc(`<svg x="0" y="0"><g aria-label="text" fill="#111827" stroke="#f3f4f6" stroke-width="8"><text>Heat 5,366</text></g></svg>`)).pass, true);
+});
+
+test("chart-mark-contrast: a pale data mark fails however pale; structure is exempt by role, not by colour", () => {
+  assert.equal(mark(svgDoc(`<svg x="0" y="0"><g aria-label="bar" fill="#eeeeee"><rect width="9" height="9"/></g></svg>`)).pass, false);
+  assert.equal(mark(svgDoc(`<svg x="0" y="0"><g aria-label="faint band" fill="#eeeeee"><rect width="9" height="9"/></g></svg>`)).pass, true);
+  assert.equal(mark(svgDoc(`<svg x="0" y="0"><g aria-label="frame" stroke="#e5e7eb"><rect width="9" height="9" fill="none"/></g></svg>`)).pass, true);
+});
+
+test("compare-scope: per-1,000 against per-100,000 denominators fail; an unrelated table after the comparison is ignored", () => {
+  const rate = (d) => `| Rate | 4.1 | deaths per head | WHO | 2023 | WHO | ${d} |`;
+  const r = checkCompareScope(comparatron([rate("per 1,000 people"), rate("per 100,000 people")]));
+  assert.equal(r.pass, false);
+  assert.match(r.message, /denominator scale/);
+  assert.equal(checkCompareScope(comparatron([rate("per 100,000 people"), rate("per 100,000 children")])).pass, true);
+  const other = "\n| Source | URL |\n|---|---|\n| NWS | https://x.org |\n| CDC | https://y.org |\n";
+  assert.equal(checkCompareScope(comparatron([heat, tornado], other)).pass, true);
+});
+
+test("compare-scope: an explicit ratio (front matter compare_ratio) may pair a stock with a flow, same period", () => {
+  const debt = "| US federal debt | 28 | dollars (stock) | Treasury, year end | 2024 | Treasury | none: totals |";
+  const gdp = "| US GDP | 29 | dollars a year (flow) | BEA, national accounts | 2024 | BEA | none: totals |";
+  const md = comparatron([debt, gdp]).replace("format: comparatron", 'format: comparatron\ncompare_ratio: "debt equals about one year of output"');
+  assert.equal(checkCompareScope(md).pass, true, checkCompareScope(md).message);
+  assert.equal(checkCompareScope(md.replace("| 2024 | BEA", "| 2023 | BEA")).pass, false);
+  assert.equal(checkCompareScope(comparatron([debt, gdp])).pass, false);
+});
+
+test("chart-alt: a short finding with a value passes; photos need only some alt text; reference-style images are read", () => {
+  assert.equal(checkAlt("![Solar doubled to 40%.](a.svg)\n").pass, true);
+  assert.equal(checkAlt("![Rufus at the launch](photo.jpg)\n").pass, true);
+  assert.equal(checkAlt("![](photo.jpg)\n").severity, "warn");
+  const ref = checkAlt("Text.\n\n![][chart]\n\n[chart]: a.svg\n");
+  assert.equal(ref.pass, false);
+  assert.equal(ref.severity, "fail");
+  assert.deepEqual(imageAlts("![Heat 5,366 vs tornado 2,167 deaths][c]\n\n[c]: https://x.org/b.svg\n").map((i) => i.src), ["https://x.org/b.svg"]);
+});
+
+test("chart-data-link counts PNG and remote chart images, not only local SVGs", async () => {
+  const dir = mkdtempSync(join(tmpdir(), "story-formats-"));
+  writeFileSync(join(dir, "README.md"), "---\ntitle: T\ndescription: d\ndate: 2026-11-14\n---\n\n![Line chart: solar reached 42% in 2025.](https://example.org/chart.png)\n\nSolar reached 42% in 2025.\n");
+  const r = byId(await checkStoryPackage(dir), "chart-data-link");
+  assert.equal(r.pass, false);
+  rmSync(dir, { recursive: true, force: true });
 });

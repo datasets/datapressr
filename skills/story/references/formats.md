@@ -35,7 +35,7 @@ Failure modes: a total with no denominator; a nominal record that recurs every y
 
 ## Comparatron: outline and fairness
 
-Front matter `format: comparatron` turns on story-check's `compare-scope`, which reads this table:
+Front matter `format: comparatron` turns on story-check's `compare-scope`, which reads this table and fails unless unit, basis and period match, both denominators are stated, and any "per N" rates use the same N. For a stock against a flow, add `compare_ratio: "debt equals about 1.2 years of output"` to the front matter: unit and basis may then differ, the period may not.
 
 | Figure | Number | Unit | Basis | Period | Source | Denominator |
 |---|---|---|---|---|---|---|

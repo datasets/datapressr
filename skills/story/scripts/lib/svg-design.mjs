@@ -18,7 +18,6 @@ export const MIN_TEXT_PX = 11; // rendered, on the device the SVG is shown on
 export const MOBILE_MAX_H = 560; // graphic height at 360 px wide
 export const MAX_ACCENTS = 2; // hue families besides greys and ink
 export const MIN_MARK_CONTRAST = 3; // WCAG 2.2 1.4.11 non-text contrast
-export const STRUCTURE_CONTRAST = 1.5; // below this a colour is background structure (grid, rule, pale band), not a mark
 
 // --- Colour -----------------------------------------------------------------------
 
@@ -162,7 +161,7 @@ export function parseSvg(svg) {
   const height = vb.length === 4 && vb[3] ? vb[3] : Number(root.height) || 0;
   const texts = [], colours = [], gridYs = [], marks = [];
   let titleEl = false, descEl = false;
-  const stack = [{ font: 16, fill: "#000000", color: "#000000", opacity: 1, x: 0, y: 0, aria: "", cls: "", weight: 400, hidden: false, anchor: "start" }];
+  const stack = [{ font: 16, fill: "#000000", stroke: null, color: "#000000", opacity: 1, group: 1, fillOp: 1, strokeOp: 1, x: 0, y: 0, aria: "", cls: "", weight: 400, hidden: false, anchor: "start" }];
   let cur = null; // open <text>
   const tags = /<!--[\s\S]*?-->|<style\b[\s\S]*?<\/style>|<(title|desc)\b[^>]*>[\s\S]*?<\/\1>|<(\/?)([\w:-]+)([^>]*?)(\/?)>|([^<]+)/g;
   for (const raw of svg.matchAll(tags)) {
@@ -191,8 +190,17 @@ export function parseSvg(svg) {
     const op = Number(prop(a, st, "fill-opacity") ?? 1) * Number(prop(a, st, "opacity") ?? 1);
     const [tx, ty] = translate(a.transform);
     const nested = tag === "svg" && stack.length > 1;
+    const rawStroke = prop(a, st, "stroke");
+    const num = (v, d) => (Number.isFinite(Number(v)) && v != null ? Number(v) : d);
     const node = {
       font, color, fill, opacity: p.opacity * (Number.isFinite(op) ? op : 1),
+      // Paint as drawn, for mark contrast: stroke inherits like fill; fill-/stroke-opacity
+      // inherit; opacity multiplies down the tree.
+      stroke: rawStroke === "currentColor" ? color : parseColour(rawStroke) ?? (rawStroke === "none" ? null : p.stroke),
+      group: p.group * num(prop(a, st, "opacity"), 1),
+      fillOp: num(prop(a, st, "fill-opacity"), p.fillOp),
+      strokeOp: num(prop(a, st, "stroke-opacity"), p.strokeOp),
+      rootLevel: stack.length === 2, // a direct child of the root <svg>
       x: p.x + tx + (nested ? lengthPx(a.x, font) : 0), y: p.y + ty + (nested ? lengthPx(a.y, font) : 0),
       aria: a["aria-label"] ?? p.aria, cls: `${p.cls} ${a.class ?? ""}`,
       weight: Number(String(prop(a, st, "font-weight") ?? "").replace("bold", "700")) || p.weight,
@@ -206,15 +214,14 @@ export function parseSvg(svg) {
         const v = prop(a, st, k);
         const c = v === "currentColor" ? color : parseColour(v);
         if (c) colours.push(c);
-        if (c) marks.push(markOf(tag, k, c, a, st, p, node));
       }
+      if (GEOMETRY.has(tag)) marks.push(...paintOf(tag, node));
       if (/y-grid/.test(node.aria) && tag === "line") gridYs.push(node.y + Number(a.y1 ?? 0));
     } else if (tag === "g") {
       for (const k of ["fill", "stroke"]) {
         const v = prop(a, st, k);
         const c = parseColour(v);
         if (c && !/axis|grid/.test(node.aria)) colours.push(c);
-        if (c) marks.push(markOf(tag, k, c, a, st, p, node));
       }
     }
     if (self || tag === "br") { if (tag === "text" && cur) { finishText(cur, texts); cur = null; } continue; }
@@ -228,11 +235,18 @@ export function parseSvg(svg) {
   return { width, height, texts, colours, marks, plotTop, framed, card, accessibleName, hasDesc: descEl, role: root.role ?? null, background: parseColour(styleOf(root.style).background) ?? "#ffffff" };
 }
 
-// A coloured non-text element (or a <g> setting a mark colour), with its drawn colour after opacity.
-function markOf(tag, kind, colour, a, st, parent, node) {
-  const own = Number(prop(a, st, `${kind}-opacity`) ?? 1) * Number(prop(a, st, "opacity") ?? 1);
-  const op = parent.opacity * (Number.isFinite(own) ? own : 1);
-  return { tag, kind, colour: op < 1 ? blend(colour, op) : colour, raw: colour, aria: node.aria, cls: node.cls, hidden: node.hidden };
+// Painted geometry: the fill and stroke each shape is drawn with (inherited from its groups),
+// after opacity. Groups and text are not marks; a group colour every child overrides is never drawn.
+const GEOMETRY = new Set(["path", "rect", "circle", "ellipse", "line", "polyline", "polygon"]);
+function paintOf(tag, node) {
+  const out = [];
+  const add = (kind, colour, op) => {
+    if (!colour || op <= 0) return;
+    out.push({ tag, kind, raw: colour, colour: op < 1 ? blend(colour, op) : colour, aria: node.aria, cls: node.cls, hidden: node.hidden, rootLevel: node.rootLevel });
+  };
+  if (tag !== "line" && tag !== "polyline") add("fill", node.fill, node.group * node.fillOp);
+  add("stroke", node.stroke, node.group * node.strokeOp);
+  return out;
 }
 
 function finishText(cur, texts) {
@@ -250,16 +264,18 @@ function finishText(cur, texts) {
 // --- Checks -----------------------------------------------------------------------
 
 /**
- * Marks below 3:1 on the background (WCAG 1.4.11). Exempt: axes, gridlines, the frame rule,
- * white halos, pale structure under 1.5:1, and marks the chart plan declares faint context
- * (Plot `ariaLabel: "faint context"`, library accessibility B3). Returns one hit per colour.
+ * Marks below 3:1 on the background (WCAG 1.4.11). Exempt by role, never by colour: axes,
+ * gridlines and Plot's frame; the template's own chrome (background and rules drawn at the
+ * top level of a framed chart or card); paint identical to the background (halos); and marks
+ * the chart plan declares faint (Plot `ariaLabel: "faint context"`, library accessibility B3).
+ * Returns one hit per colour.
  */
 export function lowContrastMarks(p) {
   const out = new Map();
   for (const m of p.marks) {
-    if (m.hidden || /axis|grid|faint|dp-rule/i.test(`${m.aria} ${m.cls}`) || luminance(m.colour) > 0.8) continue;
+    if (m.hidden || /axis|grid|faint|frame|dp-rule/i.test(`${m.aria} ${m.cls}`) || (m.rootLevel && (p.framed || p.card))) continue;
     const r = contrastRatio(m.colour, p.background);
-    if (r < STRUCTURE_CONTRAST || r >= MIN_MARK_CONTRAST) continue;
+    if (m.colour === p.background || r >= MIN_MARK_CONTRAST) continue;
     out.set(m.colour, `${m.raw === m.colour ? m.colour : `${m.raw} (with opacity ${m.colour})`} is ${r.toFixed(1)}:1`);
   }
   return [...out.values()];

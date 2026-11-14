@@ -40,12 +40,13 @@
 //                (4.5:1), chart-colour-blind, chart-accents, chart-mobile-height,
 //                chart-mobile-key, chart-clipping. FAIL for charts built with the template's frame()
 //                (data-dp-frame); warnings for older charts. The last four always warn.
-//   chart-mark-contrast  marks (lines, bars, dots) >= 3:1 on the background (WCAG 1.4.11); axes,
-//                gridlines, pale structure and marks with ariaLabel "faint context" are exempt.
-//                FAIL for framed charts, warn for older ones
-//   chart-alt    every image has alt text that states the finding: empty, a label of under five
-//                words, a file name or "chart of X" without a value fails; no value at all warns
-//   chart-data-link  a story that shows charts links at least one data file
+//   chart-mark-contrast  painted marks (lines, bars, dots) >= 3:1 on the background (WCAG 1.4.11).
+//                Exempt by role, not colour: axes, gridlines, Plot's frame, the template's own chrome
+//                and marks with an ariaLabel containing "faint". FAIL for framed charts, warn for older ones
+//   chart-alt    every chart image (SVG, PNG) has alt text that states the finding: empty, a file name,
+//                a short label with no value, or "chart of X" without a value fails; no value warns.
+//                Photos (jpg, webp, gif) only warn when alt text is missing
+//   chart-data-link  a story that shows SVG or PNG charts, local or remote, links at least one data file
 //   card-*       social cards (any *.svg with data-dp-card, from the template's card()):
 //                card-text-size (>= 32 px at 1080 wide), card-words (<= 40, title <= 10),
 //                card-safe-zone (nothing in the outer 48 px), card-hero (one hero number,
@@ -53,7 +54,9 @@
 //                mark; warn without a year), card-contrast. Cards skip the chart-* checks
 //   compare-scope  front matter `format: comparatron` only: the two-row table (Unit, Basis,
 //                Period, Denominator columns) has matching unit, basis and period and a
-//                stated denominator on both rows (references/formats.md)
+//                stated denominator on both rows, on the same "per N" scale; with front matter
+//                compare_ratio (an explicit stock-to-flow ratio) only the period must match
+//                (references/formats.md)
 //   S4           with --build: the *-make-charts.mjs build, run twice offline in a
 //                temp copy, reproduces the SVGs byte for byte
 // Exits 1 when any fail-severity check fails. Runs from any directory, no install.
@@ -333,71 +336,100 @@ export function checkProcessNotes(md) {
     : result("process-note", true, "no draft or voice-pass status in the README");
 }
 
-// Alt text of every image: Markdown ![alt](src) and <img alt> in either attribute order.
+// Alt text of every image: Markdown inline ![alt](src), reference ![alt][ref], ![alt][] and
+// ![alt] with a [ref]: url definition, and <img alt> in either attribute order.
 export function imageAlts(md) {
   const body = stripCode(blankFrontmatter(md));
+  const defs = new Map([...body.matchAll(/^ {0,3}\[([^\]]+)\]:\s*<?([^\s>]+)>?.*$/gm)].map((m) => [m[1].trim().toLowerCase(), m[2]]));
   const out = [];
-  for (const m of body.matchAll(/!\[((?:[^\]\\]|\\.)*)\]\(\s*<?([^)\s>]+)>?(?:\s+"[^"]*")?\s*\)|<img\b([^>]*)>/gi)) {
-    if (m[2]) { out.push({ src: m[2], alt: m[1].trim() }); continue; }
-    const attr = (k) => m[3].match(new RegExp(`\\s${k}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, "i"));
-    const src = attr("src");
-    if (src) out.push({ src: src[1] ?? src[2], alt: ((a) => (a ? a[1] ?? a[2] : ""))(attr("alt")).trim() });
+  for (const m of body.matchAll(/!\[((?:[^\]\\]|\\.)*)\](?:\(\s*<?([^)\s>]+)>?(?:\s+"[^"]*")?\s*\)|\[([^\]]*)\])?|<img\b([^>]*)>/gi)) {
+    if (m[4] !== undefined) {
+      const attr = (k) => m[4].match(new RegExp(`\\s${k}\\s*=\\s*(?:"([^"]*)"|'([^']*)')`, "i"));
+      const src = attr("src");
+      if (src) out.push({ src: src[1] ?? src[2], alt: ((a) => (a ? a[1] ?? a[2] : ""))(attr("alt")).trim() });
+      continue;
+    }
+    const alt = m[1].trim();
+    const src = m[2] ?? defs.get((m[3] || m[1]).trim().toLowerCase());
+    if (src) out.push({ src, alt });
   }
   return out;
 }
 
+const PHOTO = /\.(jpe?g|webp|gif|avif)$/i;
+const CHART_IMAGE = /\.(svg|png)$/i;
+const fileOf = (src) => src.replace(/[?#].*$/, "").split("/").pop();
+
 // Alt text states the finding with its values (library accessibility E1; WCAG 1.1.1). A screen
-// reader hears only this, so "Chart of UK electricity" is a missing chart.
+// reader hears only this, so "Chart of UK electricity" is a missing chart. Photos need alt text
+// but not a finding.
 const GENERIC_ALT = /^(?:an?\s+|the\s+)?(?:[\w-]+\s+)?(?:chart|graph|plot|image|figure|map|diagram|picture|visuali[sz]ation)\s+(?:of|showing|shows|about|for|on)\b/i;
 export function checkAlt(md) {
   const fails = [], warns = [];
   for (const { src, alt } of imageAlts(md)) {
-    const name = src.split("/").pop().replace(/[?#].*$/, "");
+    const name = fileOf(src);
     const words = alt.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
     const hasValue = /\d/.test(alt);
+    if (PHOTO.test(name)) { if (!alt) warns.push(`${name}: no alt text`); continue; }
     if (!alt) fails.push(`${name}: no alt text`);
-    else if (/\.(svg|png|jpe?g|gif|webp)$/i.test(alt) || words < 5) fails.push(`${name}: "${alt}" is a label, not the finding`);
+    else if (/\.(svg|png|jpe?g|gif|webp)$/i.test(alt) || (words < 5 && !hasValue)) fails.push(`${name}: "${alt}" is a label, not the finding`);
     else if (GENERIC_ALT.test(alt) && !hasValue) fails.push(`${name}: "${alt.slice(0, 50)}" describes the chart, not its finding`);
     else if (!hasValue) warns.push(`${name}: no values in "${alt.slice(0, 50)}"`);
   }
   if (fails.length) return result("chart-alt", false, `alt text must state the finding with its key values (chart type, finding, start/end or high/low): ${[...fails, ...warns].join("; ")}`);
-  if (warns.length) return result("chart-alt", false, `alt text without values (give the start/end or high/low numbers): ${warns.join("; ")}`, "warn");
-  return result("chart-alt", true, "every image's alt text states a finding with values");
+  if (warns.length) return result("chart-alt", false, `alt text to add or strengthen (give the start/end or high/low numbers): ${warns.join("; ")}`, "warn");
+  return result("chart-alt", true, "every chart's alt text states a finding with values");
 }
 
 // Every chart's data is a link away (library accessibility E2): at least one data file linked.
-function checkDataLink(links, chartCount) {
-  if (!chartCount) return result("chart-data-link", true, "no charts");
+// Charts are the SVG and PNG images the README shows, local or remote, less phone variants and cards.
+function checkDataLink(md, links, cards) {
+  const charts = new Set(imageAlts(md).map((i) => i.src).filter((src) => CHART_IMAGE.test(fileOf(src)) && !/-mobile\.svg$/i.test(fileOf(src)) && !cards.includes(resolveRef(src).local)));
+  if (!charts.size) return result("chart-data-link", true, "no charts");
   const data = links.filter((l) => DATA_EXT.test(l.ref.replace(/[?#].*$/, "")));
   return data.length
-    ? result("chart-data-link", true, `${data.length} data link(s) for ${chartCount} chart(s)`)
-    : result("chart-data-link", false, `${chartCount} chart(s) but no link to a data file (.csv, .json ...): link the frozen data under each chart or in "How this was made"`);
+    ? result("chart-data-link", true, `${data.length} data link(s) for ${charts.size} chart(s)`)
+    : result("chart-data-link", false, `${charts.size} chart(s) but no link to a data file (.csv, .json ...): link the frozen data under each chart or in "How this was made"`);
 }
 
 // compare-scope (references/formats.md, comparatron fairness rule 1): a comparatron's two-row
-// table holds unit, basis and period equal and states each denominator. Returns null for other formats.
+// table holds unit, basis and period equal and states each denominator, on the same scale where
+// both are rates ("per 100,000"). Front matter `compare_ratio: "<what the ratio means>"` declares
+// an explicit ratio (a stock against a flow, "debt equals 1.2 years of output"): unit and basis
+// may then differ, the period may not. Returns null for other formats.
+const SCALE_WORD = { k: 1e3, thousand: 1e3, m: 1e6, million: 1e6, bn: 1e9, billion: 1e9 };
+const denominatorScale = (v) => {
+  const m = String(v ?? "").match(/\bper\s+(\d[\d,.]*)\s*(thousand|million|billion|bn|k|m)?\b/i);
+  return m ? Number(m[1].replace(/,/g, "")) * (SCALE_WORD[(m[2] ?? "").toLowerCase()] ?? 1) : null;
+};
 export function checkCompareScope(md) {
   const fields = frontmatterFields(md);
   if (!/^comparatron$/i.test(fields.format ?? "")) return null;
-  const rows = stripCode(blankFrontmatter(md)).split("\n").filter((l) => /^\s*\|.*\|\s*$/.test(l));
+  const lines = stripCode(blankFrontmatter(md)).split("\n");
+  const isRow = (l) => /^\s*\|.*\|\s*$/.test(l ?? "");
   const cells = (l) => l.trim().replace(/^\||\|$/g, "").split("|").map((c) => c.trim());
   const need = ["unit", "basis", "period", "denominator"];
-  const headAt = rows.findIndex((l) => { const h = cells(l).map((c) => c.toLowerCase()); return need.every((k) => h.some((c) => c.startsWith(k))); });
+  const headAt = lines.findIndex((l) => isRow(l) && ((h) => need.every((k) => h.some((c) => c.startsWith(k))))(cells(l).map((c) => c.toLowerCase())));
   if (headAt < 0) return result("compare-scope", false, `no comparison table with ${need.join(", ")} columns: add the two-row table from formats.md`);
-  const head = cells(rows[headAt]).map((c) => c.toLowerCase());
-  const body = rows.slice(headAt + 1).filter((l) => !/^\s*\|[\s:|-]+\|\s*$/.test(l)).map(cells);
+  const head = cells(lines[headAt]).map((c) => c.toLowerCase());
+  const body = [];
+  for (let i = headAt + 1; isRow(lines[i]); i++) if (!/^\s*\|[\s:|-]+\|\s*$/.test(lines[i])) body.push(cells(lines[i]));
   if (body.length !== 2) return result("compare-scope", false, `the comparison table has ${body.length} row(s); a comparatron compares exactly two figures`);
   const col = (k) => head.findIndex((c) => c.startsWith(k));
   const norm = (v) => (v ?? "").toLowerCase().replace(/[‐-―]/g, "-").replace(/\s+/g, " ").trim();
+  const ratio = (fields.compare_ratio ?? "").trim();
   const problems = [];
-  for (const k of ["unit", "basis", "period"]) {
+  for (const k of ratio ? ["period"] : ["unit", "basis", "period"]) {
     const [a, b] = body.map((r) => r[col(k)]);
     if (!norm(a) || norm(a) !== norm(b)) problems.push(`${k} differs ("${a ?? ""}" vs "${b ?? ""}")`);
   }
-  if (body.some((r) => !norm(r[col("denominator")]))) problems.push("denominator not stated on both rows");
+  const dens = body.map((r) => r[col("denominator")]);
+  if (dens.some((d) => !norm(d))) problems.push("denominator not stated on both rows");
+  const [sa, sb] = dens.map(denominatorScale);
+  if (sa && sb && sa !== sb) problems.push(`denominator scale differs ("${dens[0]}" vs "${dens[1]}")`);
   return problems.length
-    ? result("compare-scope", false, `the two figures are not like for like: ${problems.join("; ")}. Fix the pairing, or write it as an explicit ratio with its meaning stated`)
-    : result("compare-scope", true, "both figures share unit, basis and period; denominators stated");
+    ? result("compare-scope", false, `the two figures are not like for like: ${problems.join("; ")}. Fix the pairing, or for a stock against a flow declare compare_ratio: "<what the ratio means>" in the front matter`)
+    : result("compare-scope", true, ratio ? `explicit ratio ("${ratio}"): same period, denominators stated` : "both figures share unit, basis and period; denominators stated");
 }
 
 // Which device each chart is shown on: X-mobile.svg is the phone variant, X.svg with
@@ -458,7 +490,7 @@ export async function checkStoryPackage(packageDir, { build = false } = {}) {
     checkProcessNotes(md),
     checkDensity(md),
     checkAlt(md),
-    checkDataLink(links, charts.filter((p) => !/-mobile\.svg$/.test(p)).length),
+    checkDataLink(md, links, cards),
     ...checkChartDesign(chartRoles(charts).map(({ path, role }) => ({ path, role, svg: readFileSync(join(dir, path), "utf8") }))),
     ...(cards.length ? checkCards(cards.map((path) => ({ path, svg: readFileSync(join(dir, path), "utf8") }))) : []),
     checkCompareScope(md),
