@@ -13,7 +13,7 @@ Solar supplied **42%** of the grid's electricity in 2025, more than triple its s
 
 That rise came mostly in the last five years.
 
-![Annual growth](good-story-growth.svg)
+![Line chart: solar reached 42% of electricity in 2025, with most of the rise in the last five years.](good-story-growth.svg)
 
 ## How this was made
 

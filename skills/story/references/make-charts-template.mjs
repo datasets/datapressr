@@ -10,8 +10,14 @@
 // subtitle with measure and unit, and a source line, all inside the SVG, plus <title>
 // and <desc> for screen readers. Colour roles are greys + one accent (C); type sizes
 // are in T. story-check's chart-* checks hold framed charts to these rules.
+//
+// Social cards (1080x1350, 1080x1080, 1200x630) come from card(), or from chart() when
+// the spec carries `social` overrides; story-check's card-* checks hold them to the
+// rules in references/formats.md.
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { JSDOM } from "jsdom";
@@ -26,13 +32,19 @@ const document = window.document;
 
 // Colour roles. One accent per story: the protagonist, the same hue in every chart.
 // Everything else is grey. A second accent (accent2) only for a genuine two-way
-// comparison named in the chart plan. Text in a series colour uses the darker *Text
-// shade (>= 4.5:1 on white). Never use `context` for text: it is a mark colour only.
-// accent/accent2 (blue/orange) stay distinct under red-green colour blindness.
+// comparison named in the chart plan. Text in a series colour uses the *Text shade
+// (>= 4.5:1 on white). Never use `context` for text: it is a mark colour only.
+// Every mark colour is >= 3:1 on white (WCAG 1.4.11): accent 6.7:1, accent2 3.2:1,
+// context 3.1:1. accent and accent2 are 2.1:1 apart in lightness, so they separate in
+// greyscale, and stay apart under protanopia, deuteranopia and tritanopia (dark blue
+// against light orange). context and accent2 share a lightness: label both.
+// contextFaint (1.9:1) is the one exception, for unnamed background series only: give
+// those marks `ariaLabel: "faint context"` and say so in the chart plan.
 export const C = {
-  accent: "#2563eb", accentText: "#1d4ed8",
-  accent2: "#ea580c", accent2Text: "#c2410c",
-  context: "#b6bcc6", // grey marks: other series, earlier years
+  accent: "#1d4ed8", accentText: "#1d4ed8",
+  accent2: "#ec6a0c", accent2Text: "#c2410c",
+  context: "#8b929d", // grey marks: other series, earlier years
+  contextFaint: "#b6bcc6", // unnamed background series only, with ariaLabel "faint context"
   contextDark: "#6b7280", // the grey series you still name
   ink: "#111827", // zero rule, titles
   muted: "#4b5563", // subtitle, grey labels (7.6:1)
@@ -46,7 +58,12 @@ export const C = {
 export const T = {
   desktop: { w: 720, title: 21, subtitle: 15, body: 14, tick: 13, source: 12, plotH: 340, marginRight: 140 },
   mobile: { w: 360, title: 19, subtitle: 15, body: 14, tick: 13, source: 13, plotH: 290, marginRight: 88 },
+  // Social cards, canvas px at 1080 wide. Shown at ~390 px in a feed (x0.36: title 84 ->
+  // 30 px) and ~125 px in a profile grid (x0.12: only the hero survives, 320 -> 37 px).
+  // Nothing below 32 px; lines >= 4 px, dots >= 12 px across. margin is the safe zone.
+  social: { w: 1080, margin: 72, hero: 320, title: 84, subtitle: 44, body: 44, tick: 40, source: 34, stroke: 6, r: 9 },
 };
+export const CARD_SIZES = { portrait: [1080, 1350], square: [1080, 1080], link: [1200, 630] };
 const FAMILY = "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif";
 const PAD = 8;
 
@@ -158,8 +175,9 @@ const quietAxis = (t) => ({ label: null, tickSize: 0, fontSize: t.tick, color: C
  * quiet axes. Gridlines are off: pass `y: { grid: true }` only when readers must read
  * values off the axis. Returns { desktop, mobile } SVG strings.
  */
-export function chart({ slug, name = "chart", title, subtitle, source, notes, alt, plot, height = {} }) {
+export function chart({ slug, name = "chart", title, subtitle, source, notes, alt, plot, height = {}, social }) {
   const out = {};
+  if (social) out.card = card({ slug, name: `${name}-card`, social, source, plot });
   for (const mode of ["desktop", "mobile"]) {
     const t = T[mode];
     const spec = plot(mode, t);
@@ -203,11 +221,138 @@ export function endLabels(mode, items) {
   return marks;
 }
 
-/** Write <slug>-<name>.svg and <slug>-<name>-mobile.svg. */
+/** Write <slug>-<name>.svg and <slug>-<name>-mobile.svg (and <slug>-<name>-card.svg/.png with social overrides). */
 export function writeChart(slug, name, built) {
   writeFileSync(join(HERE, `${slug}-${name}.svg`), built.desktop + "\n");
   writeFileSync(join(HERE, `${slug}-${name}-mobile.svg`), built.mobile + "\n");
   console.log(`wrote ${slug}-${name}.svg, ${slug}-${name}-mobile.svg`);
+  if (built.card) writeCard(HERE, `${slug}-${name}-card`, built.card);
+}
+
+// --- Social cards ----------------------------------------------------------------
+// A card is not a resized chart: it has its own short claim, one hero number and at
+// most one annotation, sized for a feed. See references/formats.md.
+
+const wordCount = (s) => String(s ?? "").split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
+
+/**
+ * One social card as an SVG string. size: "portrait" (1080x1350, the house default),
+ * "square" (1080x1080) or "link" (1200x630 Open Graph: title and hero only).
+ * social (required): {
+ *   title,      the claim, at most 10 words
+ *   hero,       the one number the reader keeps, with its unit ("555", "2.5×", "$66bn")
+ *   heroLabel,  its comparison in the same breath ("deaths in 2023, against 161 a year before")
+ *   subtitle,   measure, unit, place, period
+ *   alt,        alt text: chart type, claim, two to four values, source (goes in <desc> and PROMOTION.md)
+ * }
+ * plot(mode, t) is optional and called with mode "social" and T.social: one chart, at
+ * most three series, direct labels, no legend, at most one annotation. Use t.stroke for
+ * lines and t.r for dots. The build throws when a rule is broken, so a card can't ship without them.
+ */
+export function card({ slug, name = "card", size = "portrait", social, source, plot }) {
+  const id = `${slug}-${name}`;
+  if (!social) throw new Error(`${id}: a card needs social overrides { title, hero, heroLabel, subtitle, alt }: a card is not a resized chart`);
+  const { title, hero, heroLabel = "", subtitle = "", alt } = social;
+  for (const [k, v] of Object.entries({ title, hero, alt, source })) if (!v) throw new Error(`${id}: social.${k === "source" ? "source (the card's source line)" : k} is required`);
+  if (wordCount(title) > 10) throw new Error(`${id}: the card title is ${wordCount(title)} words; at most 10 words`);
+  if (!CARD_SIZES[size]) throw new Error(`${id}: size must be one of ${Object.keys(CARD_SIZES).join(", ")}`);
+  const [W, H] = CARD_SIZES[size];
+  const s = T.social;
+  const M = s.margin;
+  const link = size === "link";
+  const titleSize = link ? 64 : plot ? 76 : s.title;
+  const heroTarget = link ? 200 : !plot ? 360 : size === "square" ? 240 : 280;
+  // Shrink a long hero to fit the width, but never below the grid-thumbnail tier.
+  const heroSize = Math.min(heroTarget, Math.floor((W - 2 * M) / (String(hero).length * 0.62)));
+  if (heroSize < (link ? 180 : 240)) throw new Error(`${id}: hero "${hero}" is too long to set large; shorten it (e.g. "$66bn", "2.5×")`);
+
+  const ns = "http://www.w3.org/2000/svg";
+  const texts = [];
+  let y = M;
+  const put = (cls, text, size, fill, weight, lh, gap, width = W - 2 * M) => {
+    if (!text) return;
+    for (const l of wrap(String(text), width, size, weight >= 700)) {
+      y += texts.length ? size * lh : size * 0.85;
+      texts.push({ cls, l, size, fill, weight, x: M, y });
+    }
+    y += gap;
+  };
+  put("dp-title", title, titleSize, C.ink, 700, 1.12, link ? 20 : 28);
+  put("dp-hero", hero, heroSize, C.accent, 800, 0.98, link ? 0 : 18);
+  if (!link) {
+    put("dp-hero-label", heroLabel, s.subtitle, C.ink, 400, 1.22, 14);
+    put("dp-subtitle", subtitle, 40, C.muted, 400, 1.25, 24);
+  }
+
+  // Foot strip: source (with its period) left, DataHub mark right, on the safe-zone edge.
+  const fs = Math.ceil((s.source * W) / 1080); // 34 px at 1080 wide, 38 on the 1200 px link card
+  const markW = 10 * fs * 0.58 + 44;
+  const sourceLines = wrap(source, W - 2 * M - markW - 32, fs);
+  const footTop = H - M - (sourceLines.length - 1) * fs * 1.25 - fs - 26;
+  sourceLines.forEach((l, i) => texts.push({ cls: "dp-source", l, size: fs, fill: C.faint, weight: 400, x: M, y: H - M - (sourceLines.length - 1 - i) * fs * 1.25 }));
+  texts.push({ cls: "dp-mark", l: "datahub.io", size: fs, fill: C.ink, weight: 700, x: W - M, y: H - M, anchor: "end" });
+  if (y > footTop - 16) throw new Error(`${id}: the ${size} card overflows by ${Math.ceil(y - footTop + 16)} px; shorten the title or hero label${plot ? ", or drop the plot" : ""}`);
+
+  let plotSvg = null;
+  if (plot && !link) {
+    const plotW = W - 2 * M;
+    const avail = Math.floor(footTop - 24 - y);
+    if (avail < 160) throw new Error(`${id}: only ${avail} px left for the plot on the ${size} card; shorten the title or hero label, or use the portrait size`);
+    const plotH = Math.min(avail, plotW); // plot area between square and wide; a short card gets a wide plot
+    const spec = plot("social", s);
+    const fig = Plot.plot({
+      document, width: plotW, height: plotH, marginLeft: 56, marginRight: 56, marginTop: 24, marginBottom: 56, // room for edge ticks at 40 px
+      ...spec,
+      style: { fontSize: `${s.body}px`, fontFamily: FAMILY, background: C.bg, color: C.ink },
+      x: { ...quietAxis(s), ...spec.x },
+      y: { ...quietAxis(s), ...spec.y },
+    });
+    plotSvg = fig.tagName.toLowerCase() === "svg" ? fig : fig.querySelector("svg");
+    if (plotSvg !== fig) {
+      const style = fig.querySelector("style");
+      if (style && !plotSvg.contains(style)) plotSvg.insertBefore(style, plotSvg.firstChild);
+    }
+    plotSvg.setAttribute("x", String(M));
+    plotSvg.setAttribute("y", String(Math.round(y + (avail - plotH) / 2)));
+    plotSvg.removeAttribute("xmlns");
+  }
+
+  const outer = setAll(document.createElementNS(ns, "svg"), {
+    xmlns: ns, "data-dp-card": size, role: "img", "aria-labelledby": `${id}-title ${id}-desc`,
+    width: W, height: H, viewBox: `0 0 ${W} ${H}`, "font-family": FAMILY, fill: C.ink,
+  });
+  const titleEl = setAll(document.createElementNS(ns, "title"), { id: `${id}-title` });
+  titleEl.textContent = title;
+  const desc = setAll(document.createElementNS(ns, "desc"), { id: `${id}-desc` });
+  desc.textContent = alt;
+  outer.append(titleEl, desc, setAll(document.createElementNS(ns, "rect"), { width: W, height: H, fill: C.bg }));
+  outer.append(setAll(document.createElementNS(ns, "line"), { class: "dp-rule", x1: M, x2: W - M, y1: footTop, y2: footTop, stroke: C.grid, "stroke-width": 2 }));
+  outer.append(setAll(document.createElementNS(ns, "rect"), { class: "dp-mark", x: W - M - markW + 4, y: H - M - 27, width: 28, height: 28, rx: 6, fill: C.accent }));
+  for (const tx of texts) {
+    const e = setAll(document.createElementNS(ns, "text"), { class: tx.cls, x: tx.x, y: tx.y.toFixed(1), "font-size": tx.size, fill: tx.fill, "font-weight": tx.weight, ...(tx.anchor ? { "text-anchor": tx.anchor } : {}) });
+    e.textContent = tx.l;
+    outer.appendChild(e);
+  }
+  if (plotSvg) outer.appendChild(plotSvg);
+  const out = outer.outerHTML;
+  if (/NaN|Infinity|undefined|=>/.test(out)) throw new Error(`${id}: NaN, Infinity, undefined or function source in the SVG`);
+  const words = [...out.matchAll(/<(?:text|tspan)\b[^>]*>([^<]*)/g)].reduce((n, m) => n + wordCount(m[1]), 0);
+  if (words > 40) throw new Error(`${id}: ${words} words on the card; at most 40 words (one claim, one comparison)`);
+  return out;
+}
+
+// PNG via Playwright, if the Factory renderer is installed; otherwise SVG only.
+export const SVG2PNG = join(homedir(), ".cache", "factory-playwright", "svg2png.mjs");
+
+/** Write <dir>/<file>.svg and, when SVG2PNG exists, <file>.png at the card's own width. */
+export function writeCard(dir, file, svg) {
+  const svgPath = join(dir, `${file}.svg`);
+  writeFileSync(svgPath, svg + "\n");
+  const width = svg.match(/viewBox="0 0 (\d+) /)[1];
+  if (!existsSync(SVG2PNG)) return console.log(`wrote ${file}.svg (no PNG: ${SVG2PNG} not installed)`);
+  const r = spawnSync(process.execPath, [SVG2PNG, svgPath, join(dir, `${file}.png`), width], { encoding: "utf8", cwd: dirname(SVG2PNG) });
+  if (r.status !== 0) throw new Error(`svg2png failed for ${file}: ${r.stderr}`);
+  console.log(`wrote ${file}.svg, ${file}.png`);
 }
 
 // --- Charts: run only when this file is executed, not imported -------------------

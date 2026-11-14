@@ -17,6 +17,8 @@ export const DESKTOP_PX = 720;
 export const MIN_TEXT_PX = 11; // rendered, on the device the SVG is shown on
 export const MOBILE_MAX_H = 560; // graphic height at 360 px wide
 export const MAX_ACCENTS = 2; // hue families besides greys and ink
+export const MIN_MARK_CONTRAST = 3; // WCAG 2.2 1.4.11 non-text contrast
+export const STRUCTURE_CONTRAST = 1.5; // below this a colour is background structure (grid, rule, pale band), not a mark
 
 // --- Colour -----------------------------------------------------------------------
 
@@ -71,6 +73,7 @@ const hue = (hex) => ((Math.atan2(lab(hex)[2], lab(hex)[1]) * 180) / Math.PI + 3
 const CVD = {
   protanopia: [[0.152286, 1.052583, -0.204868], [0.114503, 0.786281, 0.099216], [-0.003882, -0.048116, 1.051998]],
   deuteranopia: [[0.367322, 0.860646, -0.227968], [0.280085, 0.672501, 0.047413], [-0.01182, 0.04294, 0.968881]],
+  tritanopia: [[1.255528, -0.076749, -0.178779], [-0.078411, 0.930809, 0.147602], [0.004733, 0.691367, 0.3039]],
 };
 export function simulateCvd(hex, type) {
   const c = rgb(hex).map(lin);
@@ -93,7 +96,7 @@ export function hueFamilies(colours) {
   return fams;
 }
 
-/** Pairs of hue families that normal vision separates but protanopia or deuteranopia merges. */
+/** Pairs of hue families that normal vision separates but protanopia, deuteranopia or tritanopia merges. */
 export function cvdConfusions(colours) {
   const reps = hueFamilies(colours).map((f) => f.rep);
   const out = [];
@@ -157,7 +160,7 @@ export function parseSvg(svg) {
   const vb = (root.viewBox ?? "").split(/[\s,]+/).map(Number);
   const width = vb.length === 4 && vb[2] ? vb[2] : Number(root.width) || 0;
   const height = vb.length === 4 && vb[3] ? vb[3] : Number(root.height) || 0;
-  const texts = [], colours = [], gridYs = [];
+  const texts = [], colours = [], gridYs = [], marks = [];
   let titleEl = false, descEl = false;
   const stack = [{ font: 16, fill: "#000000", color: "#000000", opacity: 1, x: 0, y: 0, aria: "", cls: "", weight: 400, hidden: false, anchor: "start" }];
   let cur = null; // open <text>
@@ -203,6 +206,7 @@ export function parseSvg(svg) {
         const v = prop(a, st, k);
         const c = v === "currentColor" ? color : parseColour(v);
         if (c) colours.push(c);
+        if (c) marks.push(markOf(tag, k, c, a, st, p, node));
       }
       if (/y-grid/.test(node.aria) && tag === "line") gridYs.push(node.y + Number(a.y1 ?? 0));
     } else if (tag === "g") {
@@ -210,6 +214,7 @@ export function parseSvg(svg) {
         const v = prop(a, st, k);
         const c = parseColour(v);
         if (c && !/axis|grid/.test(node.aria)) colours.push(c);
+        if (c) marks.push(markOf(tag, k, c, a, st, p, node));
       }
     }
     if (self || tag === "br") { if (tag === "text" && cur) { finishText(cur, texts); cur = null; } continue; }
@@ -219,7 +224,15 @@ export function parseSvg(svg) {
   const plotTop = [...gridYs, ...yTicks].length ? Math.min(...gridYs, ...yTicks) : null;
   const framed = /\bdata-dp-frame\b/.test(svg.match(/<svg\b[^>]*>/)?.[0] ?? "");
   const accessibleName = titleEl || !!root["aria-label"] || !!root["aria-labelledby"];
-  return { width, height, texts, colours, plotTop, framed, accessibleName, hasDesc: descEl, role: root.role ?? null, background: parseColour(styleOf(root.style).background) ?? "#ffffff" };
+  const card = svg.match(/<svg\b[^>]*\bdata-dp-card="([^"]*)"/)?.[1] ?? null;
+  return { width, height, texts, colours, marks, plotTop, framed, card, accessibleName, hasDesc: descEl, role: root.role ?? null, background: parseColour(styleOf(root.style).background) ?? "#ffffff" };
+}
+
+// A coloured non-text element (or a <g> setting a mark colour), with its drawn colour after opacity.
+function markOf(tag, kind, colour, a, st, parent, node) {
+  const own = Number(prop(a, st, `${kind}-opacity`) ?? 1) * Number(prop(a, st, "opacity") ?? 1);
+  const op = parent.opacity * (Number.isFinite(own) ? own : 1);
+  return { tag, kind, colour: op < 1 ? blend(colour, op) : colour, raw: colour, aria: node.aria, cls: node.cls, hidden: node.hidden };
 }
 
 function finishText(cur, texts) {
@@ -235,6 +248,22 @@ function finishText(cur, texts) {
 }
 
 // --- Checks -----------------------------------------------------------------------
+
+/**
+ * Marks below 3:1 on the background (WCAG 1.4.11). Exempt: axes, gridlines, the frame rule,
+ * white halos, pale structure under 1.5:1, and marks the chart plan declares faint context
+ * (Plot `ariaLabel: "faint context"`, library accessibility B3). Returns one hit per colour.
+ */
+export function lowContrastMarks(p) {
+  const out = new Map();
+  for (const m of p.marks) {
+    if (m.hidden || /axis|grid|faint|dp-rule/i.test(`${m.aria} ${m.cls}`) || luminance(m.colour) > 0.8) continue;
+    const r = contrastRatio(m.colour, p.background);
+    if (r < STRUCTURE_CONTRAST || r >= MIN_MARK_CONTRAST) continue;
+    out.set(m.colour, `${m.raw === m.colour ? m.colour : `${m.raw} (with opacity ${m.colour})`} is ${r.toFixed(1)}:1`);
+  }
+  return [...out.values()];
+}
 
 // Average glyph width in em for system sans (mixed text ~0.52, bold ~0.58).
 export const textWidth = (t) => t.longest * t.size * (t.weight >= 600 ? 0.58 : 0.52); // = the template wrap()
@@ -316,6 +345,16 @@ export function checkChartDesign(charts) {
     out.push(summarise("chart-contrast", hits, "chart text has at least 4.5:1 contrast"));
   }
 
+  // D3b data marks: 3:1 against the background (WCAG 1.4.11; library accessibility B2-B3).
+  {
+    const hits = [];
+    for (const c of parsed) {
+      const low = lowContrastMarks(c.p);
+      if (low.length) hits.push(tag(c, `mark colour ${low.join(", ")} (needs ${MIN_MARK_CONTRAST}:1; darken it, or mark faint unnamed context with ariaLabel "faint context")`));
+    }
+    out.push(summarise("chart-mark-contrast", hits, `chart marks have at least ${MIN_MARK_CONTRAST}:1 contrast`));
+  }
+
   // D4 colour-blind confusable hue pairs (warning: labels or shapes can still separate them).
   {
     const hits = [];
@@ -374,5 +413,95 @@ export function checkChartDesign(charts) {
     }
     out.push(summarise("chart-clipping", hits, "no text runs off the chart edges", "warn"));
   }
+  return out;
+}
+
+// --- Social cards (Factory projects/story-formats/social-specs.md) ------------------
+// A card is an SVG whose root carries data-dp-card="portrait|square|link" (the template's
+// card()). Sizes are canvas px at 1080 wide, scaled for the 1200 px link card. A card is
+// shown at about 390 px in a feed (scale 0.36) and 125 px in a profile grid (0.12).
+
+export const CARD_MIN_TEXT = 32; // 11.5 px in a 390 px feed, including the source line
+export const CARD_MAX_WORDS = 40;
+export const CARD_MAX_TITLE_WORDS = 10;
+export const CARD_SAFE = 48; // nothing essential in the outer 48 px (Instagram's 3:4 grid trims ~34 px)
+export const CARD_HERO_MIN = { portrait: 240, square: 240, link: 160 }; // survives a 125 px grid thumbnail
+const FEED_SCALE = 0.36;
+const YEAR = /\b(?:1[89]|20)\d{2}\b/;
+const wordsIn = (s) => s.split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
+
+/** Card checks: card-text-size, card-words, card-safe-zone, card-hero, card-self-contained, card-contrast. */
+export function checkCards(cards) {
+  const out = [];
+  const parsed = cards.map((c) => ({ ...c, p: parseSvg(c.svg) }));
+  const each = (id, fn, okMsg, severity = "fail") => {
+    const hits = [];
+    let sev = "warn";
+    for (const c of parsed) {
+      const r = fn(c, c.p.texts.filter(visible), c.p.width / 1080);
+      if (!r) continue;
+      const [msg, s] = Array.isArray(r) ? r : [r, severity];
+      hits.push(`${c.path}: ${msg}`);
+      if (s === "fail") sev = "fail";
+    }
+    out.push(hits.length ? res(id, false, sev, hits.join("; ")) : res(id, true, severity, okMsg));
+  };
+
+  each("card-text-size", (c, t, k) => {
+    const small = t.filter((x) => x.size < CARD_MIN_TEXT * k - 0.05);
+    return small.length && `${small.length} text(s) below ${CARD_MIN_TEXT} px, smallest ${Math.min(...small.map((x) => x.size))} px ("${small[0].text.slice(0, 30)}"): ${(Math.min(...small.map((x) => x.size)) * FEED_SCALE / k).toFixed(1)} px in a feed`;
+  }, `all card text is at least ${CARD_MIN_TEXT} px at 1080 wide`);
+
+  each("card-words", (c, t) => {
+    const words = t.filter((x) => !/axis/.test(x.aria)).reduce((n, x) => n + wordsIn(x.text), 0);
+    const title = wordsIn(t.filter((x) => x.classes.includes("dp-title")).map((x) => x.text).join(" "));
+    const msgs = [words > CARD_MAX_WORDS && `${words} words (max ${CARD_MAX_WORDS})`, title > CARD_MAX_TITLE_WORDS && `title is ${title} words (max ${CARD_MAX_TITLE_WORDS})`].filter(Boolean);
+    return msgs.length && msgs.join(", ");
+  }, `at most ${CARD_MAX_WORDS} words, title at most ${CARD_MAX_TITLE_WORDS}`);
+
+  each("card-safe-zone", (c, t) => {
+    const { width: W, height: H } = c.p;
+    const bad = t.filter((x) => {
+      const w = textWidth(x);
+      const left = x.anchor === "end" ? x.x - w : x.anchor === "middle" ? x.x - w / 2 : x.x;
+      const top = x.y - x.size * 0.8;
+      const bottom = x.y + x.size * 0.2 + (x.lines - 1) * x.size * 1.2;
+      return left < CARD_SAFE || left + w > W - CARD_SAFE || top < CARD_SAFE || bottom > H - CARD_SAFE;
+    });
+    return bad.length && `${bad.length} text(s) in the outer ${CARD_SAFE} px: ${bad.slice(0, 3).map((x) => `"${x.text.slice(0, 30)}"`).join(", ")}`;
+  }, `no text in the outer ${CARD_SAFE} px`);
+
+  each("card-hero", (c, t, k) => {
+    const heroes = t.filter((x) => x.classes.includes("dp-hero"));
+    const min = (CARD_HERO_MIN[c.p.card] ?? 240) * k;
+    if (heroes.length !== 1) return `${heroes.length} hero numbers (exactly one: the number the reader keeps)`;
+    const h = heroes[0];
+    if (!/\d/.test(h.text)) return `hero "${h.text}" has no number`;
+    if (h.size < min - 0.05) return `hero "${h.text}" is ${h.size} px (min ${Math.round(min)} px, to survive a 125 px grid thumbnail)`;
+    if (t.some((x) => x !== h && x.size > h.size)) return `hero "${h.text}" is not the largest text`;
+    return null;
+  }, "one hero number, the largest text on the card");
+
+  each("card-self-contained", (c, t) => {
+    const source = t.some((x) => x.classes.includes("dp-source") && /\bsources?\b/i.test(x.text));
+    const brand = t.some((x) => /datahub\.io/i.test(x.text));
+    const missing = [!source && "source line", !brand && "DataHub mark (datahub.io)"].filter(Boolean);
+    if (missing.length) return [`no ${missing.join(" or ")}: the card is screenshotted without its post`, "fail"];
+    if (!t.some((x) => YEAR.test(x.text))) return ["no year or period in the card text", "warn"];
+    return null;
+  }, "source line, DataHub mark and period on the card");
+
+  each("card-contrast", (c, t, k) => {
+    const low = [];
+    for (const x of t) {
+      if (!x.fill || luminance(x.fill) > 0.8) continue;
+      const shown = (x.size * FEED_SCALE) / k;
+      const need = shown >= 24 || (shown >= 18.66 && x.weight >= 700) ? 3 : 4.5;
+      const r = contrastRatio(x.fill, c.p.background);
+      if (r < need) low.push(`"${x.text.slice(0, 20)}" in ${x.fill} is ${r.toFixed(1)}:1 (needs ${need}:1)`);
+    }
+    low.push(...lowContrastMarks(c.p).map((m) => `mark ${m} (needs ${MIN_MARK_CONTRAST}:1)`));
+    return low.length && low.slice(0, 4).join(", ");
+  }, "card text and marks pass contrast");
   return out;
 }

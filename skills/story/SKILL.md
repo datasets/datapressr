@@ -130,6 +130,10 @@ Handoff links the exact approved draft and review artifact, summarises the verdi
 
 **Pre-publish check.** Before a blog-layout package (`README.md` + SVGs + `<slug>-src/`) goes to `dh publish -p blog`, run `npm run story-check -- <package-dir>` in DataPressr and fix every FAIL: front matter, no H1, DataHub MDX, images present (mobile SVGs too), clean SVGs, absolute `https://datahub.io/blog/<slug>/_r/-/<path>` download links. Exempt numbers stay in the front matter's `story_check_exempt:` list (step 4; DataHub does not render it), and friction notes and the voice-pass flag stay in NOTES.md. The push skill's blog mode has the publish steps.
 
+### 4b. Spin-offs — *NOTES.md*
+
+Propose one or two short formats (a single figure or a comparatron) and one to three social cards from the story's data, as [`references/formats.md`](references/formats.md) describes; run its comparatron fairness checklist on any comparison. Build cards with the template's `card()` only when asked.
+
 ### 5. Voice pass — *human, separate*
 
 The author's "sounds like me" rewrite. The argument is fixed and the charts are independent, so this can happen any time and only touches wording. The skill ends at step 4; flag the voice pass as outstanding in NOTES.md, not in the story.
