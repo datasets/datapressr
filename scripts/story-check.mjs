@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Is a blog-format story package ready for `dh publish <dir> -p blog`?
 //
-//   node scripts/story-check.mjs <post-dir> [--build]     (npm run story-check -- <dir>)
+//   node scripts/story-check.mjs <post-dir> [--build] [--notes <NOTES.md>]     (npm run story-check -- <dir>)
 //
 // The checker lives in the story skill, skills/story/scripts/story-check.mjs (checks listed there),
 // so a copy of the skill runs it without this repo. This wrapper keeps the DataPressr command and

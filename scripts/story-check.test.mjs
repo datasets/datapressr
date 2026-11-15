@@ -473,3 +473,32 @@ test("saboteur: the voice-pass line in a package README fails story-check", asyn
     assert.match(formatTable(dir, results), /RESULT: FAIL/);
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
+
+// --- Fidelity-and-scope review marker (round 6, references/scope-review.md): info only, never a warning ---
+test("scope-review: info only, whether or not NOTES.md has the review; counts must-fix items", async () => {
+  const none = byId(await checkStoryPackage(GOOD), "scope-review");
+  assert.equal(none.severity, "info");
+  assert.equal(none.pass, true);
+  assert.match(none.message, /no "Fidelity and scope review" section/);
+  const missing = saboteur((d) => rmSync(join(d, "NOTES.md")));
+  const gone = byId(await checkStoryPackage(missing), "scope-review");
+  assert.equal(gone.pass, true);
+  assert.equal(gone.severity, "info");
+  const review = (mustFix) => saboteur((d) => writeFileSync(join(d, "NOTES.md"), `# Notes\n\n## Fidelity and scope review\n\nReviewer: fresh-context subagent, 2026-11-13\n\n- "Solar supplied 42%": supported\n\n${mustFix}\n\n## Time spent\n\n- 1. not an item\n`));
+  const two = byId(await checkStoryPackage(review('Must fix:\n1. "x" → "y"\n2. "z" → "w"')), "scope-review");
+  assert.equal(two.severity, "info");
+  assert.match(two.message, /Reviewer: fresh-context subagent, 2026-11-13; 2 must-fix item\(s\)/);
+  assert.match(byId(await checkStoryPackage(review("Must fix: none")), "scope-review").message, /0 must-fix item\(s\)/);
+  assert.match(formatTable(GOOD, await checkStoryPackage(GOOD)), /INFO\s+scope-review/);
+  const startsNone = byId(await checkStoryPackage(review('Must fix:\n1. "None of the industries changed" → "The same industries led in both periods"')), "scope-review");
+  assert.match(startsNone.message, /1 must-fix item\(s\)/, "an item starting with None is still an item (Codex review)");
+});
+
+test("scope-review: --notes points the marker at notes kept elsewhere (DataPressr docs/reviews/<slug>-notes.md)", async () => {
+  const dir = saboteur(() => {});
+  const notes = join(mkdtempSync(join(tmpdir(), "story-notes-")), "elsewhere-notes.md");
+  writeFileSync(notes, "## Fidelity and scope review\n\nReviewer: subagent\n\nMust fix:\n- \"a\" → \"b\"\n");
+  assert.match(byId(await checkStoryPackage(dir, { notes }), "scope-review").message, /elsewhere-notes\.md, Reviewer: subagent; 1 must-fix item/);
+  const r = spawnSync(process.execPath, [join(here, "story-check.mjs"), dir, "--notes", notes], { encoding: "utf8" });
+  assert.match(r.stdout, /INFO\s+scope-review\s+review in .*elsewhere-notes\.md/, r.stdout + r.stderr);
+});
