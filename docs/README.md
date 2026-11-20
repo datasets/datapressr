@@ -9,11 +9,13 @@ This directory holds maintainer and agent material outside the published `site/`
 | Setup, dataset conventions, how-to guides, worked examples | `site/docs/` | Published user documentation, linked from its curated index |
 | Design documents, implementation plans, Superpowers plans and historical roadmaps | `docs/plans/` | Project planning and decision context |
 | Benchmark reports | `docs/benchmarks/`, `docs/structure-benchmark.md` | Evidence for improving the skills |
+| Research notes and surveys | `docs/research/` | Background research that informs the skills |
 | Agent handoff logs | `docs/handoffs/` | Execution evidence and continuity |
 | Session protocol, audits and owner decision material | `docs/` | Maintainer reference |
 
 ## Planning and evidence
 
+- [AI data-viz skills survey, 2026-11-20](research/2026-11-20-ai-dataviz-skills-survey.md): thirteen published chart and design skills for agents, read in full; none is a strong, opinionated chart skill, where DataPressr's story charting stands, and the next steps to make it the best one.
 - [Current story-skill improvement workplan](plans/2026-10-24-story-skill-improvement.md): main-priority craft workshop, separate R3 comparison and owner calibration; [independent Astra red-team review](reviews/2026-10-24-story-skill-backlog-review.md). Start with `datapressr-8no.9.13.1`; task state lives in Beads.
 
 - [Story quality tracking](plans/2026-10-18-story-quality-tracking.md): three human ratings, richer AI diagnostics, separate evidence checks and a gradual, versioned calibration loop; task `datapressr-8no.9.12`. The [local tracker](../evals/calibration/story/tracking-v0.1/README.md) records versioned observations; [current pilot status](../evals/calibration/story/tracking-v0.1/pilot/STATUS.md) distinguishes completed AI assessments from missing owner ratings; the [pilot reading form](../evals/calibration/story/tracking-v0.1/pilot/owner/form.md) keeps AI scores separate from owner responses.
