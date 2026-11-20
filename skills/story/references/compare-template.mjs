@@ -56,7 +56,7 @@ export const CT = {
   mobile: { w: 350, pad: 0, title: 21, deck: 14.5, label: 13.5, small: 18, meta: 12, kicker: 16, maxBig: 44, L: 240, Lmin: 150, gap: 22 },
   portrait: { w: 1080, h: 1350, pad: 72, title: 58, deck: 36, label: 38, small: 54, meta: 34, kicker: 48, maxBig: 110, L: 490, Lmin: 260, gap: 64 },
   square: { w: 1080, h: 1080, pad: 72, title: 54, deck: 34, label: 36, small: 50, meta: 34, kicker: 44, maxBig: 100, L: 420, Lmin: 240, gap: 56 },
-  link: { w: 1200, h: 630, pad: 72, title: 48, deck: 0, label: 38, small: 48, meta: 36, kicker: 40, maxBig: 84, L: 300, Lmin: 200, gap: 44 },
+  link: { w: 1200, h: 630, pad: 72, title: 48, deck: 36, label: 38, small: 48, meta: 36, kicker: 40, maxBig: 84, L: 300, Lmin: 200, gap: 44 },
 };
 const CARD_SAFE = 48; // story-check card-safe-zone
 const MAX_LF_ERROR = 0.02;
@@ -98,7 +98,8 @@ function wrap(s, width, size, o, strict = false) {
 }
 
 // Kicker runs: "A year of aid = **15 days** of defense" -> the bold part in the accent. A "\n"
-// is a preferred break, used only when the kicker does not fit on one line.
+// is a preferred break, used only when the kicker does not fit on one line; a no-break space
+// (\u00a0) keeps a number with its unit ("11\u00a0minutes").
 function kickerRuns(s) {
   return String(s).split(/(\*\*[^*]+\*\*)/).filter(Boolean).flatMap((part) => {
     const hi = /^\*\*.*\*\*$/.test(part);
@@ -126,7 +127,7 @@ function canvas(W, H, mode) {
     line(x1, y1, x2, y2, stroke, o = {}) { const el = { type: "line", x1, y1, x2, y2, stroke, ...o }; els.push(el); return el; },
     /** Wrapped paragraph; y is the top of the block. Returns the last baseline. */
     para(x, y, s, width, o, lh = 1.3) {
-      const lines = wrap(s, width, o.size, o, mode === "portrait" || mode === "square" || mode === "link");
+      const lines = wrap(s, width, o.size, o, true); // story-check's width estimate, so chart-clipping agrees
       lines.forEach((l, i) => { y += i === 0 ? o.size * 0.9 : o.size * lh; c.text(x, y, l, o); });
       return y;
     },
@@ -139,8 +140,7 @@ function kicker(cv, x, y, width, size, s, P, draw = true) {
   const runs = kickerRuns(s);
   const o = (hi) => ({ size, weight: hi ? 600 : 500, fill: hi ? P.accent : P.ink, cls: "dp-kicker" });
   const sp = measure(" ", size, { weight: 500 });
-  const strict = cv.mode === "portrait" || cv.mode === "square" || cv.mode === "link";
-  const ww = (r) => (strict ? checkWidth(r.w, size, o(r.hi)) : measure(r.w, size, o(r.hi)));
+  const ww = (r) => checkWidth(r.w, size, o(r.hi));
   const one = runs.filter((r) => r.w !== "\n");
   const fitsOne = one.reduce((n, r) => n + ww(r), 0) + sp * (one.length - 1) <= width;
   const lines = [[]];
@@ -493,6 +493,7 @@ function cardLink(spec, A, P) {
   const colW = bx - pad - 48;
   let y = pad;
   y = cv.para(pad, y, spec.title, colW, { size: t.title, weight: 500, fill: P.ink, cls: "dp-title", ls: -0.01 }, 1.12);
+  if (spec.linkDeck) { y += t.deck * 0.5; y = cv.para(pad, y, spec.linkDeck, colW, { size: t.deck, italic: true, fill: P.muted, cls: "dp-subtitle" }, 1.25); y += t.deck * 0.24; }
   if (spec.kicker) { y += t.kicker * 0.8; y += kicker(cv, pad, y, colW, t.kicker, spec.kicker, P).h; }
   if (y > footY - t.meta * 1.4 - 24) throw new Error(`compare ${spec.slug}-link: the title and kicker need ${Math.ceil(y)} px; shorten card.title or card.kicker`);
   sourceStrip(cv, footY, t, spec.source, P, pad, W - pad);
@@ -513,7 +514,9 @@ function cardLink(spec, A, P) {
  *   source                 "Source: ..." for the figure's foot strip
  *   form                   sideSquares (default) | nestedSquares | circles | nestedCircles | bars
  *   accent                 the small value's colour (default vermilion #c8381f; >= 4.5:1 on white)
- *   card                   overrides for the cards: { title, deck, source, kicker } (40 words max)
+ *   card                   overrides for the cards: { title, deck, source, kicker, alt } (40 words max);
+ *                          card.link overrides the 1200x630 card alone, and its linkDeck is an
+ *                          italic line under the title (the link card shows no deck otherwise)
  *   alt                    alt text; default built from the spec (form, title, both values, ratio, source)
  * Returns { desktop, mobile, portrait, square, link, alt, cardAlt, ratio, lieFactor }.
  */
@@ -558,7 +561,7 @@ export function compare(spec) {
     out[mode] = serialize(cv, { id: fid, title: s.title, alt, root: `data-dp-frame="1" data-dp-compare="${s.form}"` });
   }
   for (const size of ["portrait", "square", "link"]) {
-    const { cv, dy } = size === "link" ? cardLink(c, A, P) : cardTall(c, size, A, P);
+    const { cv, dy } = size === "link" ? cardLink({ ...c, ...(s.card?.link ?? {}) }, A, P) : cardTall(c, size, A, P);
     const cid = `${id}-card-${size}`;
     // Check at the final position: shift every element by dy first.
     const moved = { ...cv, els: cv.els.map((e) => (e.type === "text" ? { ...e, y: e.y + dy, top: e.top + dy, bottom: e.bottom + dy } : e.type === "rect" ? { ...e, y: e.y + dy } : e.type === "circle" ? { ...e, cy: e.cy + dy } : { ...e, y1: e.y1 + dy, y2: e.y2 + dy })) };

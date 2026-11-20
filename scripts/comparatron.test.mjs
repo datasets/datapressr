@@ -88,6 +88,14 @@ test("compare(): a ratio too large to draw as an area (an invisible small mark) 
   assert.throws(() => compare({ ...AID, items: [{ label: "A", value: 1e6, display: "1,000,000" }, { label: "B", value: 1, display: "1" }] }), /too small to see/);
 });
 
+test("compare(): card.link gives the link card its own line; a no-break space keeps a number with its unit", () => {
+  const b = compare({ ...AID, kicker: "One fall death every 11\u00a0minutes", card: { ...AID.card, link: { linkDeck: "Nine in ten were 65 or older.", kicker: "" } } });
+  assert.match(b.link, /class="dp-subtitle"[^>]*>Nine in ten/);
+  assert.doesNotMatch(b.link, /dp-kicker/);
+  assert.match(b.portrait, /dp-kicker/);
+  for (const k of ["desktop", "mobile", "portrait"]) assert.doesNotMatch(b[k], />[^<]*\b11<\/text>/, `${k}: "11" split from "minutes"`);
+});
+
 // --- card-hero on comparatron cards -----------------------------------------------------------
 
 test("card-hero: a comparatron card passes on its marks; one mark, a missing value or small marks fail", () => {
