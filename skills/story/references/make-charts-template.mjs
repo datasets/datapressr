@@ -14,6 +14,9 @@
 // Social cards (1080x1350, 1080x1080, 1200x630) come from card(), or from chart() when
 // the spec carries `social` overrides; story-check's card-* checks hold them to the
 // rules in references/formats.md.
+//
+// Comparatrons (two numbers drawn to scale) use the sibling compare-template.mjs, not this
+// file: it needs no Plot or jsdom. See comparatron.md.
 
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -177,7 +180,9 @@ const quietAxis = (t) => ({ label: null, tickSize: 0, fontSize: t.tick, color: C
  */
 export function chart({ slug, name = "chart", title, subtitle, source, notes, alt, plot, height = {}, social }) {
   const out = {};
-  if (social) out.card = card({ slug, name: `${name}-card`, social, source, plot });
+  // A card gets its own short source line (social.source, with the period); the chart's long one
+  // would spend most of the 40-word budget (datapressr-fnl.1). Falls back to the chart's.
+  if (social) out.card = card({ slug, name: `${name}-card`, social, source: social.source ?? source, plot });
   for (const mode of ["desktop", "mobile"]) {
     const t = T[mode];
     const spec = plot(mode, t);
@@ -244,6 +249,7 @@ const wordCount = (s) => String(s ?? "").split(/\s+/).filter((w) => /[\p{L}\p{N}
  *   heroLabel,  its comparison in the same breath ("deaths in 2023, against 161 a year before")
  *   subtitle,   measure, unit, place, period
  *   alt,        alt text: chart type, claim, two to four values, source (goes in <desc> and PROMOTION.md)
+ *   source,     optional, via chart(): the card's own short source line with its period
  * }
  * plot(mode, t) is optional and called with mode "social" and T.social: one chart, at
  * most three series, direct labels, no legend, at most one annotation. Use t.stroke for

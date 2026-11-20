@@ -159,7 +159,7 @@ export function parseSvg(svg) {
   const vb = (root.viewBox ?? "").split(/[\s,]+/).map(Number);
   const width = vb.length === 4 && vb[2] ? vb[2] : Number(root.width) || 0;
   const height = vb.length === 4 && vb[3] ? vb[3] : Number(root.height) || 0;
-  const texts = [], colours = [], gridYs = [], marks = [];
+  const texts = [], colours = [], gridYs = [], marks = [], compareMarks = [];
   let titleEl = false, descEl = false;
   const stack = [{ font: 16, fill: "#000000", stroke: null, color: "#000000", opacity: 1, group: 1, fillOp: 1, strokeOp: 1, x: 0, y: 0, aria: "", cls: "", weight: 400, hidden: false, anchor: "start" }];
   let cur = null; // open <text>
@@ -216,6 +216,8 @@ export function parseSvg(svg) {
         if (c) colours.push(c);
       }
       if (GEOMETRY.has(tag)) marks.push(...paintOf(tag, node));
+      // compare() marks: the size across each value's own shape, for a comparatron card's card-hero.
+      if (/\bdp-cmp-mark\b/.test(a.class ?? "")) compareMarks.push(tag === "circle" ? 2 * Number(a.r) : Math.max(Number(a.width), Number(a.height)));
       if (/y-grid/.test(node.aria) && tag === "line") gridYs.push(node.y + Number(a.y1 ?? 0));
     } else if (tag === "g") {
       for (const k of ["fill", "stroke"]) {
@@ -232,7 +234,8 @@ export function parseSvg(svg) {
   const framed = /\bdata-dp-frame\b/.test(svg.match(/<svg\b[^>]*>/)?.[0] ?? "");
   const accessibleName = titleEl || !!root["aria-label"] || !!root["aria-labelledby"];
   const card = svg.match(/<svg\b[^>]*\bdata-dp-card="([^"]*)"/)?.[1] ?? null;
-  return { width, height, texts, colours, marks, plotTop, framed, card, accessibleName, hasDesc: descEl, role: root.role ?? null, background: parseColour(styleOf(root.style).background) ?? "#ffffff" };
+  const compare = svg.match(/<svg\b[^>]*\bdata-dp-compare="([^"]*)"/)?.[1] ?? null;
+  return { width, height, texts, colours, marks, compareMarks, compare, plotTop, framed, card, accessibleName, hasDesc: descEl, role: root.role ?? null, background: parseColour(styleOf(root.style).background) ?? "#ffffff" };
 }
 
 // Painted geometry: the fill and stroke each shape is drawn with (inherited from its groups),
@@ -488,6 +491,16 @@ export function checkCards(cards) {
   }, `no text in the outer ${CARD_SAFE} px`);
 
   each("card-hero", (c, t, k) => {
+    // A comparatron card (compare(), data-dp-compare) has no hero number: the pair of marks is the
+    // hero. Its largest mark must survive the grid thumbnail and every mark carries its printed value.
+    if (c.p.compare) {
+      const min = (CARD_HERO_MIN[c.p.card] ?? 240) * k;
+      const values = t.filter((x) => x.classes.includes("dp-cmp-value") && /\d/.test(x.text));
+      if (c.p.compareMarks.length < 2) return `${c.p.compareMarks.length} compare mark(s) (a comparatron draws two)`;
+      if (values.length < c.p.compareMarks.length) return `${c.p.compareMarks.length} marks but ${values.length} printed value(s): print every value`;
+      if (Math.max(...c.p.compareMarks) < min - 0.05) return `the largest mark is ${Math.round(Math.max(...c.p.compareMarks))} px across (min ${Math.round(min)} px, to survive a 125 px grid thumbnail)`;
+      return null;
+    }
     const heroes = t.filter((x) => x.classes.includes("dp-hero"));
     const min = (CARD_HERO_MIN[c.p.card] ?? 240) * k;
     if (heroes.length !== 1) return `${heroes.length} hero numbers (exactly one: the number the reader keeps)`;
@@ -496,7 +509,7 @@ export function checkCards(cards) {
     if (h.size < min - 0.05) return `hero "${h.text}" is ${h.size} px (min ${Math.round(min)} px, to survive a 125 px grid thumbnail)`;
     if (t.some((x) => x !== h && x.size > h.size)) return `hero "${h.text}" is not the largest text`;
     return null;
-  }, "one hero number, the largest text on the card");
+  }, "one hero number (or, on a comparatron card, the pair of marks), the largest text on the card");
 
   each("card-self-contained", (c, t) => {
     const source = t.some((x) => x.classes.includes("dp-source") && /\bsources?\b/i.test(x.text));

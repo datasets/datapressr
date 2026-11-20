@@ -136,7 +136,9 @@ Handoff links the exact approved draft and review artifact, summarises the verdi
 
 ### 4b. Spin-offs — *NOTES.md*
 
-Propose one or two short formats (a single figure or a comparatron) and one to three social cards from the story's data, as [`references/formats.md`](references/formats.md) describes; run its comparatron fairness checklist on any comparison. Build cards with the template's `card()` only when asked.
+Propose one or two short formats (a single figure or a comparatron) and one to three social cards from the story's data, as [`references/formats.md`](references/formats.md) describes. Build cards with the template's `card()` only when asked.
+
+Comparatron: [`references/comparatron.md`](references/comparatron.md) (fairness checklist with the sensitivity check, then `compare()` for the figure and cards).
 
 ### 5. Voice pass — *human, separate*
 

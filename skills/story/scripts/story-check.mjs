@@ -59,8 +59,8 @@
 //   compare-scope  front matter `format: comparatron` only: the two-row table (Unit, Basis,
 //                Period, Denominator columns) has matching unit, basis and period and a
 //                stated denominator on both rows, on the same "per N" scale; with front matter
-//                compare_ratio (an explicit stock-to-flow ratio) only the period must match
-//                (references/formats.md)
+//                compare_ratio (an explicit stock-to-flow ratio) only the period must match;
+//                with compare_period_note the period cells may differ (references/comparatron.md)
 //   S4           with --build: the *-make-charts.mjs build, run twice offline in a
 //                temp copy, reproduces the SVGs byte for byte
 // Exits 1 when any fail-severity check fails. Runs from any directory, no install.
@@ -400,7 +400,10 @@ function checkDataLink(md, links, cards) {
 // table holds unit, basis and period equal and states each denominator, on the same scale where
 // both are rates ("per 100,000"). Front matter `compare_ratio: "<what the ratio means>"` declares
 // an explicit ratio (a stock against a flow, "debt equals 1.2 years of output"): unit and basis
-// may then differ, the period may not. Returns null for other formats.
+// may then differ, the period may not. Front matter `compare_period_note: "<why the two periods
+// are comparable>"` lets the period cells differ (a US fiscal year against a calendar year, both a
+// twelve-month flow): the note is the fairness line for the period, and the post must say it too.
+// Returns null for other formats.
 const SCALE_WORD = { k: 1e3, thousand: 1e3, m: 1e6, million: 1e6, bn: 1e9, billion: 1e9 };
 const denominatorScale = (v) => {
   const m = String(v ?? "").match(/\bper\s+(\d[\d,.]*)\s*(thousand|million|billion|bn|k|m)?\b/i);
@@ -422,10 +425,12 @@ export function checkCompareScope(md) {
   const col = (k) => head.findIndex((c) => c.startsWith(k));
   const norm = (v) => (v ?? "").toLowerCase().replace(/[‐-―]/g, "-").replace(/\s+/g, " ").trim();
   const ratio = (fields.compare_ratio ?? "").trim();
+  const periodNote = (fields.compare_period_note ?? "").trim();
   const problems = [];
   for (const k of ratio ? ["period"] : ["unit", "basis", "period"]) {
     const [a, b] = body.map((r) => r[col(k)]);
-    if (!norm(a) || norm(a) !== norm(b)) problems.push(`${k} differs ("${a ?? ""}" vs "${b ?? ""}")`);
+    if (!norm(a) || !norm(b)) problems.push(`${k} not stated on both rows`);
+    else if (norm(a) !== norm(b) && !(k === "period" && periodNote)) problems.push(`${k} differs ("${a ?? ""}" vs "${b ?? ""}")${k === "period" ? ': if the periods are equivalent in length but labelled differently (a fiscal against a calendar year), say so in compare_period_note' : ""}`);
   }
   const dens = body.map((r) => r[col("denominator")]);
   if (dens.some((d) => !norm(d))) problems.push("denominator not stated on both rows");
@@ -433,7 +438,7 @@ export function checkCompareScope(md) {
   if (sa && sb && sa !== sb) problems.push(`denominator scale differs ("${dens[0]}" vs "${dens[1]}")`);
   return problems.length
     ? result("compare-scope", false, `the two figures are not like for like: ${problems.join("; ")}. Fix the pairing, or for a stock against a flow declare compare_ratio: "<what the ratio means>" in the front matter`)
-    : result("compare-scope", true, ratio ? `explicit ratio ("${ratio}"): same period, denominators stated` : "both figures share unit, basis and period; denominators stated");
+    : result("compare-scope", true, `${ratio ? `explicit ratio ("${ratio}"): same period, denominators stated` : "both figures share unit, basis and period; denominators stated"}${periodNote && ((a, b) => norm(a) !== norm(b))(...body.map((r) => r[col("period")])) ? `; periods differ with a note ("${periodNote}")` : ""}`);
 }
 
 // The fidelity-and-scope review (round 6, SKILL.md step 4): a marker that the fresh-context review
