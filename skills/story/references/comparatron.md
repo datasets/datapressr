@@ -1,21 +1,21 @@
 # Comparatron: two numbers, drawn to scale
 
-A comparatron changes how the reader sees one number by setting it beside another. Two numbers and nothing else, drawn true to scale, both printed, with one sentence that turns the ratio into something a person can hold. It descends from David McCandless's 2010 Compare-o-Tron mock and the 2020 Comparotron cards; this is the version Rufus approved in November 2026 (Factory `projects/story-formats/sketches/contact-sheet-v3.html`).
+A comparatron changes how the reader sees one number by setting it beside another. Two numbers and nothing else, drawn true to scale, both printed, with one sentence that turns the ratio into something a person can hold. It descends from David McCandless's 2010 Compare-o-Tron mock and the 2020 Comparotron cards; this is the version Rufus approved in November 2026: circles side by side, composed like the portrait card (Factory `projects/story-formats/sketches/contact-sheet-v3.html`, round 3, and his verdict of 21 November).
 
 Length 150–300 words plus one figure. Retell test: the ratio, correctly directed and scoped, and what was held equal. Format choice and the other short formats: [formats.md](formats.md).
 
 ## The direction, distilled
 
-Two numbers and nothing else. One shape family per picture, so the eye compares like with like. The shape's *area* is true to the value, never its height or its diameter. The value is printed on or beside every shape, so the picture can be checked without a legend. One conversion line turns the total into something a person can hold ("a year of aid = 15 days of defense"), so the comparison lands twice: once as a shape, once as a sentence. Colour is used once: a warm near-black mass for the big thing, one vermilion for the small one, which carries the point, and everything else is paper. Generous space around the marks; a serif title, an italic deck, and small, complete sources at the foot. No icons, rings, gradients or second chart. The restraint is the elegance: the reader gets one thing to look at and one thing to read, and they agree.
+Two numbers and nothing else. One shape family per picture, so the eye compares like with like. The shape's *area* is true to the value, never its height or its diameter. The value is printed on or beside every shape, the big one's name under its value inside the mass, so the picture can be checked without a legend. One conversion line turns the total into something a person can hold ("a year of aid = 15 days of defense"), so the comparison lands twice: once as a shape, once as a sentence. Colour is used once: a warm near-black mass for the big thing, one vermilion for the small one, which carries the point, and everything else is paper. Generous space around the marks; a serif title, an italic deck, and small, complete sources at the foot. No icons, rings, gradients or second chart. The restraint is the elegance: the reader gets one thing to look at and one thing to read, and they agree.
 
 ## Anatomy
 
 | Part | What | Example (US aid, FY2025) |
 |---|---|---|
-| Title | The claim as a ratio, ≤ 10 words | $24 on defense for every $1 of US foreign aid |
-| Deck | Period, scope, "drawn to scale", ≤ 15 words | Fiscal 2025, drawn to scale by area. Economic aid only, military aid excluded. |
-| Marks | Two shapes of one family, area ∝ value; the big one in the mass with its value inside, the small one in the accent with its value beside | $916bn, $37.5bn |
-| Kicker | The conversion line, its number in the accent | A year of aid = **15 days** of defense |
+| Title | The claim as a ratio, ≤ 10 words, true on its own when cropped | $24 on defense for every $1 of US economic aid |
+| Deck | Period, scope, "drawn to scale by area", ≤ 15 words | Fiscal 2025, drawn to scale by area. Aid excludes military assistance. |
+| Marks | Two circles side by side, area ∝ value; the big one in the mass with its value and name inside, the small one in the accent with its value beside | $916bn, $37.5bn |
+| Kicker | The conversion line under the marks, its number in the accent; a quiet note under it | A year of aid = **15 days** of defense / 24 to 1, up from 19 in 2024 |
 | Foot strip | Hairline, full source with period and scope, `datahub.io` | Source: OMB and US Treasury, FY2025. … |
 | Post | 150–300 words: the finding first, the ratio and both absolutes in words, one fairness line beside the claim, the two-row table, "How this was made" | |
 
@@ -62,17 +62,15 @@ The reviewer (SKILL.md step 4 and editorial-review.md) recomputes the sensitivit
 
 ## Forms
 
-All forms take the same spec; `form` picks one. Every form prints both values and draws true to scale.
+All forms take the same spec; `form` picks one, `altForm` adds a second for the post's switcher. Every form prints both values and draws true to scale.
 
 | `form` | Encoding | Use when |
 |---|---|---|
-| `sideSquares` (default) | area | Almost always. Two squares on one baseline: area and height both carry the ratio, and square areas are the easiest areas to judge. Ratios from about 2 to about 400. |
-| `nestedSquares` | area | A part against its whole, or to show the leftover (the Billion Dollar-o-Gram move). |
-| `circles` | area | A warm, iconic card in the 2020 Comparotron line, when both values are printed large. Circle areas are under-read the most. |
-| `nestedCircles` | area | Rarely: one object with a small part marked. Nested areas are the hardest of all to read. |
-| `bars` | length | Ratios under about 5, where two areas look alike, and an in-text chart. The most exact and the flattest. |
+| `circles` (default) | area | Almost always: the 2010 and 2020 Comparotron signature, the calmest of the forms, and Rufus's choice. Circle areas are under-read, so the deck says "by area" and both values are printed. |
+| `nestedSquares` | area | The usual switcher alternative, and the form for a part against its whole (the Billion Dollar-o-Gram move). Only above about 5 to 1: closer than that, the small square sits on the big one's label and the build refuses. |
+| `sideSquares` | area | The alternative when nested squares cannot be drawn (ratios under about 5), and for square-grid feeds. |
 
-Beyond about 400 to 1 the small square is a speck (the build throws below 8 px): use bars, a 1-against-N grid of squares, or a time strip ("a year of aid in 15 days") instead.
+Bars and nested circles still build (`bars`, `nestedCircles`) but are not recommended: bars are exact and flat, and nested circles are the hardest areas of all to read. Beyond about 400 to 1 the small mark is a speck (the build throws below 8 px): use a 1-against-N grid of squares or a time strip ("a year of aid in 15 days") instead.
 
 ## Building: `compare()`
 
@@ -83,40 +81,51 @@ Beyond about 400 to 1 the small square is a speck (the build throws below 8 px):
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { compare, writeCompare } from "./compare-template.mjs";
+import { compare, mdx, writeCompare } from "./compare-template.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const S = JSON.parse(readFileSync(join(HERE, "<slug>-src", "statistics.json"), "utf8"));
+const SLUG = "<slug>";
+const S = JSON.parse(readFileSync(join(HERE, `${SLUG}-src`, "statistics.json"), "utf8"));
 const built = compare({
-  slug: "<slug>",
-  title: "$24 on defense for every $1 of US foreign aid",                   // <= 10 words
-  deck: "Fiscal 2025, drawn to scale by area. Economic aid only, military aid excluded.", // <= 15
+  slug: SLUG,
+  title: "$24 on defense for every $1 of US economic aid",                  // <= 10 words
+  deck: "Fiscal 2025, drawn to scale by area. Aid excludes military assistance.", // <= 15
   items: [
     { label: "Defense", value: S.military_usd_m / 1000, display: "$916bn", unit: "US$ bn" },
-    { label: "Foreign aid", value: S.aid_usd_m / 1000, display: "$37.5bn", unit: "US$ bn" },
+    { label: "Economic aid", value: S.aid_usd_m / 1000, display: "$37.5bn", unit: "US$ bn" },
   ],
   kicker: "A year of aid =\n**15 days** of defense",   // **accent**; \n = preferred break
-  kickerNote: "24 to 1, fiscal 2025",                   // optional, desktop only
-  source: "Source: OMB and US Treasury, FY2025. Defense outlays (function 050) against economic aid; military aid excluded.",
-  form: "sideSquares",
-  card: { deck: "Fiscal 2025, drawn to scale. Economic aid only.", source: "Source: OMB, US Treasury, FY2025." },
+  kickerNote: "24 to 1, up from 19 in 2024",            // optional quiet line under the kicker
+  source: "Source: OMB and US Treasury, FY2025. Defense outlays (function 050) against economic aid.",
+  form: "circles",                                      // the default
+  altForm: "nestedSquares",                             // optional: the switcher's second form
+  card: { deck: "Fiscal 2025, to scale. Aid excludes military assistance.", source: "Source: OMB, US Treasury, FY 2025." },
 });
 const preview = process.argv.includes("--preview") ? join(HERE, "..", "previews") : null;
-await writeCompare(HERE, built, { base: "<slug>-pair", cardBase: "<slug>-card", preview });
-console.log(built.alt); // paste into the README's alt text and PROMOTION.md
+await writeCompare(HERE, built, { base: `${SLUG}-pair`, cardBase: `${SLUG}-card`, preview });
+// The README's figure markup, with the switcher; paste it in place of the old figure.
+console.log(mdx({ slug: SLUG, alt: built.alt, altAlt: built.alternative.alt, files: {
+  desktop: `${SLUG}-pair.svg`, mobile: `${SLUG}-pair-mobile.svg`,
+  altDesktop: `${SLUG}-pair-nested-squares.svg`, altMobile: `${SLUG}-pair-nested-squares-mobile.svg` } }));
 ```
 
-It returns `{ desktop, mobile, portrait, square, link, alt, cardAlt, ratio, lieFactor }`: the blog figure at 1024 px (kicker beside the marks) and 350 px (stacked, drawn 1:1), and cards at 1080×1350, 1080×1080 and 1200×630. `writeCompare` writes `<base>.svg`, `<base>-mobile.svg`, `<cardBase>.svg|png`, `<cardBase>-square.svg|png` and `<cardBase>-link.svg|png`; with `preview` it also renders the figure to PNG (desktop 2×, mobile 1× and 2×) for review. PNGs need Playwright at `~/.cache/factory-playwright`.
+It returns `{ desktop, mobile, portrait, square, link, alt, cardAlt, ratio, lieFactor, alternative }`. The blog figure is **narrow** by default: the portrait card's vertical composition (title, deck, marks, kicker, note, source) 680 px wide, which sits in the text column (494–667 px on desktop) with no breakout; `width` changes it. `layout: "wide"` gives the earlier 1024 px figure with the kicker beside the marks, placed with the breakout snippet below. The phone figure (350 px, drawn 1:1) has the same composition. Cards are 1080×1350, 1080×1080 and 1200×630; `card.form` can differ from the figure's. With `altForm`, `alternative` holds the figure in the second form, checked like the first. `writeCompare` writes `<base>.svg`, `<base>-mobile.svg`, `<base>-<alt-form>.svg` and `-mobile.svg`, and the cards `<cardBase>.svg|png`, `-square` and `-link`; with `preview` it also renders the figures to PNG for review. PNGs need Playwright at `~/.cache/factory-playwright`.
 
-**What the build enforces** (it throws, naming the fix): title ≤ 10 words and deck ≤ 15; exactly two positive values; the lie factor, recomputed from the geometry as written, within 2% of 1; every value printed, and the printed values reproducing the ratio within 1%; text contrast 4.5:1 (3:1 at 24 px and up), on white or on the mark it sits on; no text off the canvas or in a card's outer 48 px, no text on text, no text across a mark it is not printed on; nothing under 16 px on desktop, 12 on mobile, 32 on a card (at 1080); a card ≤ 40 words and within its height (marks shrink to fit, to a floor). Cards' deck and source are usually shorter than the figure's: pass them in `card`. `card.link` overrides the 1200×630 card alone: it shows no deck unless given `linkDeck`, and `kicker: ""` drops the kicker there (the falls piece puts its age line there instead). Wrapping uses story-check's own width estimate, so its checks agree with the build; write `\u00a0` between a number and its unit to keep them on one line.
+**What the build enforces** (it throws, naming the fix): title ≤ 10 words and deck ≤ 15; exactly two positive values; every mark wholly on its canvas (the marks shrink to fit the width first); the lie factor, computed from the geometry as written and as visible on the canvas, within 2% of 1; every value printed, and the printed values reproducing the ratio within 1%; text contrast 4.5:1 (3:1 at 24 px and up), on white or on the mark it sits on; no text off the canvas or in a card's outer 48 px, no text on text, no text across a mark it is not printed on; nothing under 16 px on desktop, 12 on mobile, 32 on a card (at 1080); a card ≤ 40 words and within its height. Cards' deck and source are usually shorter than the figure's: pass them in `card`. `card.link` overrides the 1200×630 card alone: it shows no deck unless given `linkDeck`, and `kicker: ""` drops the kicker there (the falls piece puts its age line there instead). Wrapping uses story-check's own width estimate, so its checks agree with the build, and never leaves one word on a last line; write `\u00a0` between a number and its unit to keep them together.
 
 **Type.** The figures embed a subset of Lora 3.008 (SIL OFL, renamed Comparatron Serif as the licence requires; `comparatron-fonts.OFL.txt`), about 75 KB per SVG. The blog shows figures as `<img>`, which cannot load page fonts, so embedding is the only way the serif reaches the reader. Text is measured with the face's own advance widths. Without `comparatron-fonts.mjs` the figures fall back to Georgia. To rebuild the font module, see make-comparatron-fonts.py in the [DataPressr scripts](https://github.com/datasets/datapressr/tree/main/scripts).
 
-**Checks.** story-check treats the figure as a framed chart (`data-dp-frame`) and the cards as cards; on a comparatron card (`data-dp-compare`) `card-hero` asks for the pair of marks (the largest at least 240 px across, every value printed) instead of a hero number.
+**Checks.** story-check treats the figures as framed charts (`data-dp-frame`) and the cards as cards; on a comparatron card (`data-dp-compare`) `card-hero` asks for the pair of marks (the largest at least 240 px across, every value printed) instead of a hero number.
 
-## Placing it in the post: wide on desktop, stacked on mobile
+## The switcher: circles by default, nested squares on request
 
-The blog's text column is 494–667 px on desktop with an empty right-hand column; the figure breaks out into it, keeping the text's left edge (the sticky table of contents is on the left). Tailwind classes in a post are not compiled, so the breakout is an inline style object, which DataHub MDX accepts. Measured on the live blog, 20 Nov 2026: the figure is 1024 px at 1440 and up, 947 at 1280, 754 at 1024, the column width below that.
+`mdx()` writes the figure markup for the post's README. With an alternative it is a CSS-only switcher: two radio inputs, a quiet line "Drawn as circles · nested squares" whose words are their labels, and two `<picture>`s; a `:checked ~` sibling rule hides the picture not chosen. It needs no JavaScript and no platform change. DataHub renders posts as MDX on the server (`next-mdx-remote-client`, no sanitiser), so `<input>`, `<label>` and `<style>` pass through; the CSS goes in through `dangerouslySetInnerHTML` because React escapes text inside `<style>` (a `>` would become `&gt;`). Without CSS (a feed reader) both figures show, the default first; ids carry the slug, so two switchers can share a page.
+
+Tested on 21 November 2026: the markup compiled through `next-mdx-remote-client` 1.1.4 with datahub-next's remark and rehype plugins and React 18.2 (the versions in its lockfile), then injected into a live datahub.io blog post (its own CSS and layout) with the SVGs served from the package. At 1440 px the circles showed at the column's 667 px; a click on "nested squares" swapped them, and the arrow keys swapped them back; at 390 px the phone SVGs swapped the same way at 350 px, with no sideways scroll. Re-test on the live post after publishing.
+
+## The wide layout: a breakout on desktop
+
+For `layout: "wide"` only (the narrow default needs none of this). The blog's text column is 494–667 px on desktop with an empty right-hand column; the figure breaks out into it, keeping the text's left edge (the sticky table of contents is on the left). Tailwind classes in a post are not compiled, so the breakout is an inline style object, which DataHub MDX accepts. Measured on the live blog, 20 Nov 2026: the figure is 1024 px at 1440 and up, 947 at 1280, 754 at 1024, the column width below that.
 
 ```mdx
 <figure style={{

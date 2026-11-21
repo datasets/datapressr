@@ -8,7 +8,7 @@ One objective for all four: the most people who can retell the finding the next 
 |---|---|---|---|---|
 | **Job** | Argue one finding with visible evidence | Lodge one number the reader can't un-know | Change how the reader sees one number by setting it beside another | One claim read in three seconds, screenshotted |
 | **Size** | 800–1,200 words, 2–5 charts | 120–250 words, one figure | 150–300 words, one figure | ≤ 40 words on the image, ≤ 5 cards |
-| **Visual** | `chart()` | A typeset hero number plus a sparkline or one reference | `compare()`: two squares drawn to scale by area, both values printed, a conversion line | `card()`: 1080×1350 (default), 1080×1080, 1200×630 link card |
+| **Visual** | `chart()` | A typeset hero number plus a sparkline or one reference | `compare()`: two circles drawn to scale by area, both values printed, a conversion line | `card()`: 1080×1350 (default), 1080×1080, 1200×630 link card |
 | **Retell test** | "US measles cases are the highest since 1991 and twice last year" | The number *with* its denominator and comparison: "aid is about 1% of federal spending, not a quarter" | The ratio, correctly directed and scoped, and what was held equal | Shown for three seconds without the caption, the reader states the claim |
 
 **When to use which.** One finding that needs an argument, a tension and counter-evidence: a data story. One number whose size surprises (it beats the reader's guess by more than their confidence): a single figure. A number that only means something beside another, and the pair survives the sensitivity check in [comparatron.md](comparatron.md): a comparatron. Any of the three, for a feed: cards. If a short format needs more than one *necessary* caveat, narrow the claim or make it a story.
@@ -35,7 +35,7 @@ Failure modes: a total with no denominator; a nominal record that recurs every y
 
 ## Comparatron
 
-[comparatron.md](comparatron.md) is the method: the approved design and its anatomy, the two-row table that `compare-scope` reads, the fairness checklist with the bounded sensitivity check, how to find a pair, the five forms, `compare()` in `compare-template.mjs` (desktop, mobile and the three cards from one spec), and the MDX snippet that sets the figure wide on desktop and stacked on a phone.
+[comparatron.md](comparatron.md) is the method: the approved design and its anatomy, the two-row table that `compare-scope` reads, the fairness checklist with the bounded sensitivity check, how to find a pair, the forms, `compare()` in `compare-template.mjs` (the blog figure, its phone version and three cards from one spec), and `mdx()`, the post markup with a CSS-only switcher between circles and nested squares.
 
 ## Social cards: the template's `card()`
 

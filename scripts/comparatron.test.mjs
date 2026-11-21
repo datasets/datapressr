@@ -10,7 +10,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { checkCards, checkChartDesign } from "./svg-design.mjs";
 import { checkCompareScope } from "./story-check.mjs";
-import { compare, FORMS, lieFactor } from "../skills/story/references/compare-template.mjs";
+import { compare, FORMS, lieFactor, mdx } from "../skills/story/references/compare-template.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const byId = (results, id) => results.find((r) => r.id === id);
@@ -63,7 +63,7 @@ test("compare(): the lie factor read back from the written SVG is within 2% of 1
 test("compare(): embeds the serif, with a <title> and a <desc> giving both values and the ratio", () => {
   const b = compare(AID);
   assert.match(b.desktop, /@font-face\{font-family:'Comparatron Serif'/);
-  assert.match(b.desktop, /<desc id="aid-pair-desc">Side-by-side squares, drawn to scale by area: .*Defense \$916bn, Foreign aid \$37\.5bn, 24 to 1\./);
+  assert.match(b.desktop, /<desc id="aid-pair-desc">Circles side by side, drawn to scale by area: .*Defense \$916bn, Foreign aid \$37\.5bn, 24 to 1\./);
   assert.match(b.alt, /A year of aid = 15 days of defense/);
 });
 
@@ -84,6 +84,11 @@ test("compare(): a card over 40 words, or one that cannot fit its height, throws
   assert.throws(() => compare({ ...AID, card: { ...AID.card, kicker: long } }), /overflows|words on the card|title and kicker/);
 });
 
+test("compare(): a form that cannot hold its labels at this ratio is refused, not drawn badly", () => {
+  const items = [{ label: "Fall deaths", value: 48308, display: "48,308" }, { label: "Homicides", value: 20162, display: "20,162" }];
+  assert.throws(() => compare({ ...AID, items, form: "nestedSquares" }), /crosses a mark/);
+});
+
 test("compare(): a ratio too large to draw as an area (an invisible small mark) throws", () => {
   assert.throws(() => compare({ ...AID, items: [{ label: "A", value: 1e6, display: "1,000,000" }, { label: "B", value: 1, display: "1" }] }), /too small to see/);
 });
@@ -96,10 +101,64 @@ test("compare(): card.link gives the link card its own line; a no-break space ke
   for (const k of ["desktop", "mobile", "portrait"]) assert.doesNotMatch(b[k], />[^<]*\b11<\/text>/, `${k}: "11" split from "minutes"`);
 });
 
+test("compare(): circles and the narrow layout are the defaults; layout wide gives the 1024 px figure", () => {
+  const b = compare(AID);
+  assert.match(b.desktop, /data-dp-compare="circles"[^>]*width="680"/);
+  assert.match(b.portrait, /data-dp-compare="circles"/);
+  assert.match(compare({ ...AID, layout: "wide" }).desktop, /width="1024"/);
+  assert.match(compare({ ...AID, width: 600 }).desktop, /width="600"/);
+  assert.throws(() => compare({ ...AID, layout: "tall" }), /layout/);
+});
+
+test("compare(): altForm adds the second form for the switcher, checked like the first", () => {
+  const b = compare({ ...AID, altForm: "nestedSquares" });
+  assert.equal(b.alternative.form, "nestedSquares");
+  assert.match(b.alternative.desktop, /data-dp-compare="nestedSquares"/);
+  assert.match(b.alternative.alt, /^Nested squares, drawn to scale/);
+  for (const k of ["desktop", "mobile"]) assert.ok(Math.abs(b.alternative.lieFactor[k] - 1) < 0.02);
+  assert.throws(() => compare({ ...AID, altForm: "circles" }), /altForm/);
+});
+
+test("lieFactor: a mark cut off by the canvas edge is measured as seen, and the build refuses it", () => {
+  const els = [{ type: "rect", id: "big", x: 0, y: 0, w: 240, h: 240, value: 2.4 }, { type: "rect", id: "small", x: 262, y: 85, w: 155, h: 155, value: 1 }];
+  // The pilot's clipped phone figure: 57,600 against 88 x 155 visible, so 4.22 to 1 shown for 2.4.
+  assert.ok(Math.abs(lieFactor(els, "area") * 2.4 - 57600 / (155 * 155)) < 0.01);
+  assert.ok(Math.abs(lieFactor(els, "area", 350, 300) * 2.4 - 57600 / (88 * 155)) < 0.01);
+  const circles = [{ type: "circle", id: "big", cx: 100, cy: 100, r: 100, value: 4 }, { type: "circle", id: "small", cx: 340, cy: 100, r: 50, value: 1 }];
+  assert.ok(Math.abs(lieFactor(circles, "area", 340, 300) - 2) < 0.01, "half the small circle is off the canvas");
+});
+
+test("compare(): every mark fits the canvas, at every width and ratio (the marks shrink to fit)", () => {
+  // Nested squares only where the small square sits clear of the big label (ratio above ~5); the build refuses otherwise.
+  const cases = [[48308, 20162, "circles"], [48308, 20162, "sideSquares"], [916, 37.5, "circles"], [916, 37.5, "sideSquares"], [916, 37.5, "nestedSquares"], [3, 2.2, "circles"], [3, 2.2, "sideSquares"]];
+  for (const [a, b, form] of cases) for (const width of [560, 680, 800]) {
+    const items = [{ label: "Fall deaths", value: a, display: String(a) }, { label: "Homicides", value: b, display: String(b) }];
+    const out = compare({ ...AID, items, width, form });
+    for (const k of ["desktop", "mobile", "portrait", "square", "link"]) {
+      const W = Number(out[k].match(/viewBox="0 0 (\d+)/)[1]);
+      for (const m of out[k].matchAll(/<(rect|circle) class="dp-cmp-mark" ([^>]*)\/>/g)) {
+        const a = Object.fromEntries([...m[2].matchAll(/([\w-]+)="([^"]*)"/g)].map((x) => [x[1], Number(x[2])]));
+        const right = m[1] === "circle" ? a.cx + a.r : a.x + a.width;
+        assert.ok(right <= W + 0.05, `${form} ${width} ${k} ${a}/${b}: mark to ${right} on ${W}`);
+      }
+    }
+  }
+});
+
+test("mdx(): the switcher is two radios, two labels and two pictures, CSS via dangerouslySetInnerHTML", () => {
+  const m = mdx({ slug: "s", files: { desktop: "s-pair.svg", mobile: "s-pair-mobile.svg", altDesktop: "s-sq.svg", altMobile: "s-sq-mobile.svg" }, alt: "A 24 to 1", altAlt: "B 24 to 1" });
+  assert.equal((m.match(/<input type="radio" name="cmp-s"/g) ?? []).length, 2);
+  assert.match(m, /id="cmp-s-a" defaultChecked/);
+  assert.match(m, /<style dangerouslySetInnerHTML=\{\{ __html: "[^"]*#cmp-s-b:checked~\.cmp-s-a[^"]*display:none/);
+  assert.equal((m.match(/<picture className="cmp-s-[ab]">/g) ?? []).length, 2);
+  assert.match(m, /srcSet="https:\/\/datahub\.io\/blog\/s\/_r\/-\/s-sq-mobile\.svg"/);
+  assert.doesNotMatch(mdx({ slug: "s", files: { desktop: "a.svg", mobile: "b.svg" }, alt: "x 1" }), /radio/);
+});
+
 // --- card-hero on comparatron cards -----------------------------------------------------------
 
 test("card-hero: a comparatron card passes on its marks; one mark, a missing value or small marks fail", () => {
-  const svg = compare(AID).portrait;
+  const svg = compare({ ...AID, form: "sideSquares" }).portrait;
   const hero = (s) => byId(checkCards([{ path: "c.svg", svg: s }]), "card-hero");
   assert.equal(hero(svg).pass, true);
   assert.equal(hero(svg.replace(/<rect class="dp-cmp-mark"[^>]*data-value="37.49"\/>/, "")).pass, false);

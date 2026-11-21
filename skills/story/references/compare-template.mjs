@@ -7,15 +7,17 @@
 // Copy this file and comparatron-fonts.mjs next to the story (the make-charts script imports
 // them). No npm install: it builds SVG strings, so a comparatron package needs no Plot or jsdom.
 //
-// One spec, five outputs: the blog figure wide on desktop (1024 px, shown through the breakout
-// snippet in comparatron.md) and stacked on a phone (350 px, drawn 1:1), and the social cards at
-// 1080x1350 (portrait, the house default), 1080x1080 (square) and 1200x630 (link). The design is
-// the approved "quiet" direction: Lora (embedded as Comparatron Serif), warm near-black mass,
-// one vermilion accent on the small value's own mark, white, generous space.
+// One spec, five outputs: the blog figure on desktop (680 px, the portrait card's vertical
+// composition; or 1024 px wide with layout "wide") and on a phone (350 px, drawn 1:1), and the
+// social cards at 1080x1350 (portrait, the house default), 1080x1080 (square) and 1200x630 (link);
+// plus, with altForm, the figure in a second form for the post's switcher. The design is the
+// approved "quiet" direction: circles side by side, Lora (embedded as Comparatron Serif), warm
+// near-black mass, one vermilion accent on the small value's own mark, white, generous space.
 //
 // The build throws, so a figure that breaks a rule cannot ship: title over 10 words, deck over 15,
-// anything but two positive values, an area (or length) off true by 2% or more (the lie factor is
-// computed from the geometry as written), a value not printed, printed values that do not
+// anything but two positive values, a mark not wholly on the canvas, an area (or length) off true
+// by 2% or more (the lie factor is computed from the geometry as written and as visible), a value
+// not printed, printed values that do not
 // reproduce the ratio within 1%, text below contrast, text off the canvas, text on text, text
 // across a mark it is not printed on, or a card over 40 words or over its height.
 
@@ -52,6 +54,9 @@ export const CP = {
 // 12. Cards: nothing under 34 px at 1080 (12 px in a 390 px feed). L is the big mark's side (or
 // diameter); cards shrink it to fit their height, never below Lmin.
 export const CT = {
+  // narrow (the default blog figure): the card's vertical composition at the text column's width
+  narrow: { w: 680, pad: 0, title: 28, deck: 17, label: 17, small: 26, meta: 16, kicker: 25, maxBig: 64, L: 360, Lmin: 200, gap: 56 },
+  // wide (layout: "wide"): 1024 px through the breakout snippet, kicker beside the marks
   desktop: { w: 1024, pad: 0, title: 30, deck: 17, label: 17, small: 26, meta: 16, kicker: 30, maxBig: 56, L: 360, Lmin: 220, gap: 72 },
   mobile: { w: 350, pad: 0, title: 21, deck: 14.5, label: 13.5, small: 18, meta: 12, kicker: 16, maxBig: 44, L: 240, Lmin: 150, gap: 22 },
   portrait: { w: 1080, h: 1350, pad: 72, title: 58, deck: 36, label: 38, small: 54, meta: 34, kicker: 48, maxBig: 110, L: 490, Lmin: 260, gap: 64 },
@@ -128,6 +133,12 @@ function canvas(W, H, mode) {
     /** Wrapped paragraph; y is the top of the block. Returns the last baseline. */
     para(x, y, s, width, o, lh = 1.3) {
       const lines = wrap(s, width, o.size, o, true); // story-check's width estimate, so chart-clipping agrees
+      // No one-word last line: take a word down from the line above.
+      if (lines.length > 1 && !/\s/.test(lines.at(-1)) && /\s/.test(lines.at(-2))) {
+        const prev = lines.at(-2).split(" ");
+        lines[lines.length - 1] = `${prev.pop()} ${lines.at(-1)}`;
+        lines[lines.length - 2] = prev.join(" ");
+      }
       lines.forEach((l, i) => { y += i === 0 ? o.size * 0.9 : o.size * lh; c.text(x, y, l, o); });
       return y;
     },
@@ -141,13 +152,14 @@ function kicker(cv, x, y, width, size, s, P, draw = true) {
   const o = (hi) => ({ size, weight: hi ? 600 : 500, fill: hi ? P.accent : P.ink, cls: "dp-kicker" });
   const sp = measure(" ", size, { weight: 500 });
   const ww = (r) => checkWidth(r.w, size, o(r.hi));
+  const spFit = Math.max(sp, size * 0.52); // story-check counts a space like any glyph
   const one = runs.filter((r) => r.w !== "\n");
-  const fitsOne = one.reduce((n, r) => n + ww(r), 0) + sp * (one.length - 1) <= width;
+  const fitsOne = one.reduce((n, r) => n + ww(r), 0) + spFit * (one.length - 1) <= width;
   const lines = [[]];
   let lw = 0;
   for (const r of runs) {
     if (r.w === "\n") { if (!fitsOne && lines.at(-1).length) { lines.push([]); lw = 0; } continue; }
-    const add = ww(r) + (lines.at(-1).length ? sp : 0);
+    const add = ww(r) + (lines.at(-1).length ? spFit : 0);
     if (lines.at(-1).length && lw + add > width) { lines.push([r]); lw = ww(r); } else { lines.at(-1).push(r); lw += add; }
   }
   let maxW = 0;
@@ -184,8 +196,10 @@ function valueInside(cv, x, y, L, t, item, P, { centre = false, cx, cy } = {}) {
   return el;
 }
 
-/** The small value and its label beside its mark (vertically centred on cy) or, without room, under it. */
-function smallLabel(cv, mx, mw, cy, bottom, xMax, t, item, P) {
+/** The small value and its label beside its mark (vertically centred on cy) or, without room, under
+ * it, kept right of minX (the big mark's edge) so it never sits under the big mark; with no room
+ * there either, under both marks at belowY. */
+function smallLabel(cv, mx, mw, cy, bottom, xMax, t, item, P, minX = -Infinity, belowY = bottom) {
   const vW = measure(item.display, t.small, { weight: 600 });
   const lW = measure(item.label, t.label);
   const lx = mx + mw + Math.max(10, mw * 0.22);
@@ -195,8 +209,10 @@ function smallLabel(cv, mx, mw, cy, bottom, xMax, t, item, P) {
     return { right: lx + Math.max(vW, lW), under: 0 };
   }
   const half = Math.max(vW, lW) / 2;
-  const ax = Math.min(Math.max(mx + mw / 2, half + 1), xMax - half - 1);
-  const vy = bottom + t.small * 1.15;
+  const lo = Math.max(minX + 8, cv.minX ?? 0) + half + 1, hi = xMax - half - 1;
+  const fits = lo <= hi;
+  const ax = fits ? Math.min(Math.max(mx + mw / 2, lo), hi) : Math.min(Math.max(mx + mw / 2, half + 1), hi);
+  const vy = (fits ? bottom : Math.max(bottom, belowY) + t.label * 1.7) + t.small * 1.15;
   cv.text(ax, vy, item.display, { size: t.small, weight: 600, fill: P.accent, anchor: "middle", cls: "dp-cmp-value" });
   cv.text(ax, vy + t.label * 1.3, item.label, { size: t.label, fill: P.ink, anchor: "middle", cls: "dp-cmp-label" });
   return { right: ax + half, under: vy + t.label * 1.3 + t.label * 0.24 - bottom };
@@ -213,11 +229,12 @@ export const FORMS = {
       const inside = valueInside(cv, x, y, L, t, big, P);
       const sx = x + L + t.gap;
       cv.rect(sx, y + L - s, s, s, P.accent, { id: "small", cls: "dp-cmp-mark", value: small.value });
-      let h = L + t.label * 1.7;
-      if (!inside) { cv.text(x, y + L + t.small * 1.15, big.display, { size: t.small, weight: 600, fill: P.ink, cls: "dp-cmp-value" }); h = L + t.small * 1.15 + t.label * 1.4; }
-      cv.text(x, y + h, big.label, { size: t.label, fill: P.ink, cls: "dp-cmp-label" });
-      const sl = smallLabel(cv, sx, s, y + L - s / 2, y + L, x + w, t, small, P);
-      return { h: Math.max(h, L + sl.under) + t.label * 0.24, right: Math.max(sl.right, sx + s), markH: L };
+      // The big mark's label sits inside it, under its value, so the number is never nameless.
+      let h = L;
+      if (inside) cv.text(x + Math.max(12, L * 0.055), inside.y + inside.size * 0.3 + t.label * 1.2, big.label, { size: t.label, fill: P.onMass, opacity: 0.82, cls: "dp-cmp-label", on: "big" });
+      else { cv.text(x, y + L + t.small * 1.15, big.display, { size: t.small, weight: 600, fill: P.ink, cls: "dp-cmp-value" }); h = L + t.small * 1.15 + t.label * 1.4; cv.text(x, y + h, big.label, { size: t.label, fill: P.ink, cls: "dp-cmp-label" }); }
+      const sl = smallLabel(cv, sx, s, y + L - s / 2, y + L, x + w, t, small, P, x + L, y + L + t.label * 0.4);
+      return { h: Math.max(h, L + sl.under), right: Math.max(sl.right, sx + s), markH: L };
     },
   },
   nestedSquares: {
@@ -245,14 +262,13 @@ export const FORMS = {
     draw(cv, x, y, w, L, t, { big, small, R }, P) {
       const rb = L / 2, rs = rb / Math.sqrt(R), cy = y + rb;
       cv.circle(x + rb, cy, rb, P.mass, { id: "big", cls: "dp-cmp-mark", value: big.value });
-      const inside = valueInside(cv, x, y, L, t, big, P, { centre: true, cx: x + rb, cy });
+      const inside = valueInside(cv, x, y, L, t, big, P, { centre: true, cx: x + rb, cy: cy - t.label * 0.75 });
       if (!inside) throw new Error("compare: the big value does not fit inside the circle; use sideSquares");
+      cv.text(x + rb, inside.y + inside.size * 0.3 + t.label * 1.2, big.label, { size: t.label, fill: P.onMass, opacity: 0.82, anchor: "middle", cls: "dp-cmp-label", on: "big" });
       const cxs = x + L + t.gap + rs;
       cv.circle(cxs, cy, rs, P.accent, { id: "small", cls: "dp-cmp-mark", value: small.value });
-      const h = L + t.label * 1.7;
-      cv.text(x + rb, y + h, big.label, { size: t.label, fill: P.ink, anchor: "middle", cls: "dp-cmp-label" });
-      const sl = smallLabel(cv, cxs - rs, 2 * rs, cy, cy + rs, x + w, t, small, P);
-      return { h: Math.max(h + t.label * 0.24, cy + rs - y + sl.under), right: Math.max(sl.right, cxs + rs), markH: L };
+      const sl = smallLabel(cv, cxs - rs, 2 * rs, cy, cy + rs, x + w, t, small, P, x + L, y + L + t.label * 0.4);
+      return { h: Math.max(L, cy + rs - y + sl.under), right: Math.max(sl.right, cxs + rs), markH: L };
     },
   },
   nestedCircles: {
@@ -264,7 +280,7 @@ export const FORMS = {
       cv.circle(cx, cy, rb, P.mass, { id: "big", cls: "dp-cmp-mark", value: big.value });
       const v = valueInside(cv, x, y, L, t, big, P, { centre: true, cx, cy: cy - rb * 0.22 });
       if (!v) throw new Error("compare: the big value does not fit inside the circle; use sideSquares");
-      cv.text(cx, v.y + t.label * 1.6, big.label, { size: t.label, fill: P.onMass, opacity: 0.82, anchor: "middle", cls: "dp-cmp-label", on: "big" });
+      cv.text(cx, v.y + v.size * 0.3 + t.label * 1.2, big.label, { size: t.label, fill: P.onMass, opacity: 0.82, anchor: "middle", cls: "dp-cmp-label", on: "big" });
       const scy = cy + rb - rs - 1;
       cv.circle(cx, scy, rs, P.accent, { id: "small", cls: "dp-cmp-mark", value: small.value });
       const lx = x + L + t.gap * 0.6;
@@ -325,10 +341,25 @@ function textInsideShape(t, s) {
   return [[t.left, t.top], [t.right, t.top], [t.left, t.bottom], [t.right, t.bottom]].every(([px, py]) => Math.hypot(px - s.cx, py - s.cy) <= s.r + 0.5);
 }
 
-/** Lie factor from the geometry as written (after rounding): drawn ratio / data ratio. */
-export function lieFactor(els, encoding) {
+// The part of a circle inside the canvas [0, W] x [0, H], by summing clipped vertical chords.
+function visibleCircleArea(cx, cy, r, W, H) {
+  if (cx - r >= 0 && cx + r <= W && cy - r >= 0 && cy + r <= H) return Math.PI * r * r;
+  const x0 = Math.max(0, cx - r), x1 = Math.min(W, cx + r), n = 4000, dx = (x1 - x0) / n;
+  let a = 0;
+  for (let i = 0; i < n; i++) {
+    const x = x0 + (i + 0.5) * dx, h = Math.sqrt(Math.max(0, r * r - (x - cx) ** 2));
+    a += Math.max(0, Math.min(H, cy + h) - Math.max(0, cy - h)) * dx;
+  }
+  return a;
+}
+
+/** Lie factor from the geometry as written (after rounding) and as seen (clipped to the canvas,
+ * W x H): drawn ratio / data ratio. A mark cut off by the edge shows less than it encodes. */
+export function lieFactor(els, encoding, W = Infinity, H = Infinity) {
   const r = (n) => Number(f1(n));
-  const size = (e) => (e.type === "circle" ? Math.PI * r(e.r) ** 2 : encoding === "length" ? r(e.w) : r(e.w) * r(e.h));
+  const clip = (a, b, max) => Math.max(0, Math.min(b, max) - Math.max(a, 0));
+  const size = (e) => (e.type === "circle" ? visibleCircleArea(r(e.cx), r(e.cy), r(e.r), W, H)
+    : encoding === "length" ? clip(r(e.x), r(e.x) + r(e.w), W) : clip(r(e.x), r(e.x) + r(e.w), W) * clip(r(e.y), r(e.y) + r(e.h), H));
   const big = els.find((e) => e.id === "big"), small = els.find((e) => e.id === "small");
   return size(big) / size(small) / (big.value / small.value);
 }
@@ -337,7 +368,12 @@ function check(cv, { id, encoding, items, P, card }) {
   const problems = [];
   const texts = cv.els.filter((e) => e.type === "text");
   const shapes = cv.els.filter((e) => e.type === "rect" && e.cls === "dp-cmp-mark" || e.type === "circle");
-  const lf = lieFactor(cv.els, encoding);
+  const lf = lieFactor(cv.els, encoding, cv.W, cv.H);
+  // Containment: every mark wholly on the canvas, so the reader sees all of the area it encodes.
+  for (const sh of shapes) {
+    const b = boxOf(sh);
+    if (b.left < -0.05 || b.top < -0.05 || b.right > cv.W + 0.05 || b.bottom > cv.H + 0.05) problems.push(`the ${sh.id} mark runs off the canvas (${b.left.toFixed(1)}..${b.right.toFixed(1)} x ${b.top.toFixed(1)}..${b.bottom.toFixed(1)} on ${cv.W} x ${cv.H})`);
+  }
   if (!(Math.abs(lf - 1) < MAX_LF_ERROR)) problems.push(`lie factor ${lf.toFixed(4)} (|LF - 1| must be under ${MAX_LF_ERROR})`);
   const smallMark = cv.els.find((e) => e.id === "small");
   const across = smallMark.type === "circle" ? 2 * smallMark.r : Math.min(smallMark.w, smallMark.h);
@@ -413,9 +449,12 @@ function sourceStrip(cv, y, t, source, P, x0, x1) {
   return y;
 }
 
-/** The blog figure: desktop (kicker beside the marks) or mobile (everything stacked). */
+/** The blog figure. Narrow (default) and mobile stack title, deck, marks, kicker and source like
+ * the portrait card; wide (desktop only) puts the kicker beside the marks. */
 function figure(spec, mode, A, P) {
-  const t = CT[mode], W = t.w, pad = t.pad, cw = W - 2 * pad;
+  const wide = mode === "desktop" && spec.layout === "wide";
+  const t = mode === "mobile" ? CT.mobile : wide ? CT.desktop : { ...CT.narrow, w: spec.width ?? CT.narrow.w };
+  const W = t.w, pad = t.pad, cw = W - 2 * pad;
   const form = FORMS[spec.form];
   const build = (L) => {
     const cv = canvas(W, 0, mode);
@@ -429,7 +468,7 @@ function figure(spec, mode, A, P) {
     if (spec.kicker) {
       const kx = Math.max(body.right + 56, Math.round(W * 0.66));
       const kw = W - pad - kx;
-      const k = mode === "desktop" && spec.form !== "bars" && kw >= 240 ? kicker(cv, kx, 0, kw, t.kicker, spec.kicker, P, false) : null;
+      const k = wide && spec.form !== "bars" && kw >= 240 ? kicker(cv, kx, 0, kw, t.kicker, spec.kicker, P, false) : null;
       if (k && k.lines <= 3) {
         const noteH = spec.kickerNote ? t.label * 1.8 : 0;
         const ky = bodyTop + body.markH / 2 - (k.h + noteH) / 2;
@@ -438,7 +477,7 @@ function figure(spec, mode, A, P) {
       } else {
         y += t.kicker * 1.1;
         y += kicker(cv, pad, y, cw, t.kicker, spec.kicker, P).h;
-        if (spec.kickerNote && mode === "desktop") { y += t.label * 1.3; cv.text(pad, y, spec.kickerNote, { size: t.label, fill: P.muted, cls: "dp-note" }); }
+        if (spec.kickerNote) { const ns = mode === "desktop" ? t.label : Math.max(t.meta, 12.5); y += ns * 1.6; cv.text(pad, y, spec.kickerNote, { size: ns, fill: P.muted, cls: "dp-note" }); }
       }
     }
     y += t.meta * 2.8;
@@ -446,7 +485,15 @@ function figure(spec, mode, A, P) {
     cv.H = Math.ceil(y + t.meta * 0.5 + pad);
     return cv;
   };
-  return build(t.L);
+  // Shrink the marks until they and their labels fit the width (never clip a mark).
+  let L = t.L, cv = build(L);
+  for (let i = 0; i < 8; i++) {
+    const over = Math.max(...cv.els.filter((e) => e.type !== "line").map((e) => (e.type === "text" ? e.right : boxOf(e).right))) - (W - pad);
+    if (over <= 0 || L <= 80) break; // the width decides; containment in check() is the backstop
+    L = Math.max(80, Math.floor(L - over - 1));
+    cv = build(L);
+  }
+  return cv;
 }
 
 /** A portrait or square card: title, deck, the pair, the kicker, the foot strip; centred vertically. */
@@ -464,10 +511,11 @@ function cardTall(spec, size, A, P) {
     if (spec.kicker) { y += t.kicker * 0.9; y += kicker(cv, pad, y, cw, t.kicker, spec.kicker, P).h; }
     y += t.meta * 2.4;
     y = sourceStrip(cv, y, t, spec.source, P, pad, W - pad);
-    return { cv, bottom: y + t.meta * 0.24 };
+    const right = Math.max(...cv.els.filter((e) => e.type !== "line").map((e) => (e.type === "text" ? e.right : boxOf(e).right)));
+    return { cv, bottom: y + t.meta * 0.24, over: Math.max(y + t.meta * 0.24 - (H - pad), right - (W - pad)) };
   };
   let L = t.L, r = build(L);
-  for (let i = 0; i < 6 && r.bottom > H - pad; i++) { L = Math.floor(L - (r.bottom - (H - pad)) - 1); if (L < t.Lmin) break; r = build(L); }
+  for (let i = 0; i < 8 && r.over > 0; i++) { L = Math.floor(L - r.over - 1); if (L < t.Lmin) break; r = build(L); }
   if (r.bottom > H - pad) throw new Error(`compare ${spec.slug}-${size}: the ${size} card overflows by ${Math.ceil(r.bottom - (H - pad))} px even with the marks at ${t.Lmin} px; shorten card.title, card.deck or card.kicker`);
   return { cv: r.cv, dy: (H - pad - r.bottom) / 2 };
 }
@@ -481,7 +529,7 @@ function cardLink(spec, A, P) {
   let L = t.L, probe;
   for (let i = 0; i < 6; i++) {
     probe = canvas(W, H, "link");
-    const b = form.draw(probe, 0, 0, W - 2 * pad - 420, L, t, A, P); // leave the title column at least 420 px
+    const b = form.draw(probe, 0, 0, W - 2 * pad - 480, L, t, A, P); // leave the title column at least 480 px
     if (b.h <= avail || L <= t.Lmin) { probe.body = b; break; }
     L = Math.max(t.Lmin, Math.floor(L - (b.h - avail) - 1));
   }
@@ -510,19 +558,25 @@ function cardLink(spec, A, P) {
  *   items                  [{ label, value, display, unit }] x2: value is the number drawn (same unit
  *                          both sides), display the printed value ("$37.5bn"), unit for the alt text
  *   kicker                 the conversion line, "**bold**" in the accent, "\n" a preferred break
- *   kickerNote             optional quiet line under the desktop kicker ("24 to 1, fiscal 2025")
+ *   kickerNote             optional quiet line under the kicker on the blog figure ("24 to 1, fiscal 2025")
  *   source                 "Source: ..." for the figure's foot strip
- *   form                   sideSquares (default) | nestedSquares | circles | nestedCircles | bars
+ *   form                   circles (default) | nestedSquares | sideSquares
+ *   altForm                optional second form for the post's switcher ("nestedSquares"): adds
+ *                          { alternative: { form, desktop, mobile, alt } } with the same text
+ *   layout                 "narrow" (default: the card's vertical composition, `width` px, 680) or
+ *                          "wide" (1024 px, kicker beside the marks, for the breakout snippet)
  *   accent                 the small value's colour (default vermilion #c8381f; >= 4.5:1 on white)
- *   card                   overrides for the cards: { title, deck, source, kicker, alt } (40 words max);
+ *   card                   overrides for the cards: { title, deck, source, kicker, alt, form } (40 words max);
  *                          card.link overrides the 1200x630 card alone, and its linkDeck is an
  *                          italic line under the title (the link card shows no deck otherwise)
  *   alt                    alt text; default built from the spec (form, title, both values, ratio, source)
- * Returns { desktop, mobile, portrait, square, link, alt, cardAlt, ratio, lieFactor }.
+ * Returns { desktop, mobile, portrait, square, link, alt, cardAlt, ratio, lieFactor, alternative? }.
+ * (bars and nestedCircles still build but are not recommended: see comparatron.md.)
  */
 export function compare(spec) {
-  const s = { name: "pair", form: "sideSquares", ...spec };
+  const s = { name: "pair", form: "circles", layout: "narrow", ...spec };
   s.form = FORM_ALIASES[s.form] ?? s.form;
+  if (!["narrow", "wide"].includes(s.layout)) throw new Error(`compare: layout must be "narrow" or "wide"`);
   const id = `${s.slug}-${s.name}`;
   if (!s.slug) throw new Error("compare: slug is required");
   if (!FORMS[s.form]) throw new Error(`compare ${id}: form must be one of ${Object.keys(FORMS).join(", ")}`);
@@ -550,7 +604,9 @@ export function compare(spec) {
   const ratioText = R >= 10 ? Math.round(R) : Math.round(R * 10) / 10;
   const alt = s.alt ?? `${form.name}, drawn to scale by ${form.encoding}: ${s.title}. ${big.label} ${big.display}, ${small.label} ${small.display}, ${ratioText} to 1.${s.kicker ? ` ${plainKicker(s.kicker)}.` : ""} ${s.source}`;
   const c = { ...s, ...(s.card ?? {}) };
-  const cardAlt = s.card?.alt ?? `${form.name}: ${c.title}. ${big.label} ${big.display}, ${small.label} ${small.display}.${c.kicker ? ` ${plainKicker(c.kicker)}.` : ""} ${c.source}`;
+  c.form = FORM_ALIASES[c.form] ?? c.form;
+  if (!FORMS[c.form]) throw new Error(`compare ${id}: card.form must be one of ${Object.keys(FORMS).join(", ")}`);
+  const cardAlt = s.card?.alt ?? `${FORMS[c.form].name}: ${c.title}. ${big.label} ${big.display}, ${small.label} ${small.display}.${c.kicker ? ` ${plainKicker(c.kicker)}.` : ""} ${c.source}`;
   const out = { alt, cardAlt, ratio: R, lieFactor: {} };
   const fig = { encoding: form.encoding, items: s.items, P };
 
@@ -560,15 +616,66 @@ export function compare(spec) {
     out.lieFactor[mode] = check(cv, { ...fig, id: fid });
     out[mode] = serialize(cv, { id: fid, title: s.title, alt, root: `data-dp-frame="1" data-dp-compare="${s.form}"` });
   }
+  if (s.altForm) {
+    const af = FORM_ALIASES[s.altForm] ?? s.altForm;
+    if (!FORMS[af] || af === s.form) throw new Error(`compare ${id}: altForm must be another of ${Object.keys(FORMS).join(", ")}`);
+    const as = { ...s, form: af };
+    const aAlt = s.altFormAlt ?? alt.replace(form.name, FORMS[af].name);
+    out.alternative = { form: af, alt: aAlt, lieFactor: {} };
+    for (const mode of ["desktop", "mobile"]) {
+      const cv = figure(as, mode, A, P);
+      const fid = `${id}-${af}${mode === "mobile" ? "-mobile" : ""}`;
+      out.alternative.lieFactor[mode] = check(cv, { ...fig, encoding: FORMS[af].encoding, id: fid });
+      out.alternative[mode] = serialize(cv, { id: fid, title: s.title, alt: aAlt, root: `data-dp-frame="1" data-dp-compare="${af}"` });
+    }
+  }
   for (const size of ["portrait", "square", "link"]) {
     const { cv, dy } = size === "link" ? cardLink({ ...c, ...(s.card?.link ?? {}) }, A, P) : cardTall(c, size, A, P);
     const cid = `${id}-card-${size}`;
     // Check at the final position: shift every element by dy first.
     const moved = { ...cv, els: cv.els.map((e) => (e.type === "text" ? { ...e, y: e.y + dy, top: e.top + dy, bottom: e.bottom + dy } : e.type === "rect" ? { ...e, y: e.y + dy } : e.type === "circle" ? { ...e, cy: e.cy + dy } : { ...e, y1: e.y1 + dy, y2: e.y2 + dy })) };
-    out.lieFactor[size] = check(moved, { ...fig, id: cid, card: true });
-    out[size] = serialize(moved, { id: cid, title: c.title, alt: cardAlt, root: `data-dp-card="${size}" data-dp-compare="${s.form}"` });
+    out.lieFactor[size] = check(moved, { ...fig, encoding: FORMS[c.form].encoding, id: cid, card: true });
+    out[size] = serialize(moved, { id: cid, title: c.title, alt: cardAlt, root: `data-dp-card="${size}" data-dp-compare="${c.form}"` });
   }
   return out;
+}
+
+// --- Post markup ------------------------------------------------------------------------------
+
+/**
+ * The MDX for the figure in a DataHub blog post (README.md), with a <picture> that serves the phone
+ * figure under 641 px. With an alternative form, a CSS-only switcher: two radio inputs, two labels and
+ * two <picture>s; a :checked sibling rule hides the other picture. It needs no JavaScript (posts are
+ * server-rendered MDX), no platform change and no Tailwind. The CSS goes in through
+ * dangerouslySetInnerHTML because React escapes text inside <style>. Without CSS the reader sees
+ * both figures, the default first. ids are prefixed with the slug, so two switchers can share a page.
+ *   files: { desktop, mobile, altDesktop?, altMobile? } published file names
+ *   labels: [default, alternative] for the switcher, e.g. ["Circles", "Nested squares"]
+ */
+export function mdx({ slug, files, alt, altAlt, labels = ["Circles", "Nested squares"], accent = CP.accent }) {
+  const url = (f) => `https://datahub.io/blog/${slug}/_r/-/${f}`;
+  const q = (s) => String(s).replace(/"/g, "&quot;");
+  const pic = (d, m, a, cls) => `<picture${cls ? ` className="${cls}"` : ""}><source media="(max-width: 640px)" srcSet="${url(m)}" /><img src="${url(d)}" alt="${q(a)}" style={{ width: "100%", height: "auto", display: "block" }} /></picture>`;
+  if (!files.altDesktop) return `<figure style={{ margin: "2em 0" }}>\n  ${pic(files.desktop, files.mobile, alt)}\n</figure>`;
+  const k = `cmp-${slug.replace(/[^a-z0-9-]/gi, "")}`;
+  const css = [
+    `.${k} input{position:absolute;opacity:0;width:1px;height:1px;margin:0}`,
+    `.${k} .${k}-sw{font-size:14px;line-height:1.4;color:#6b6760;margin:0 0 10px}`,
+    `.${k} .${k}-sw label{cursor:pointer;padding:2px 0;border-bottom:2px solid transparent;margin:0 2px}`,
+    `#${k}-a:checked~.${k}-sw label[for=${k}-a],#${k}-b:checked~.${k}-sw label[for=${k}-b]{color:#2a2925;border-bottom-color:${accent}}`,
+    `#${k}-a:focus-visible~.${k}-sw label[for=${k}-a],#${k}-b:focus-visible~.${k}-sw label[for=${k}-b]{outline:2px solid ${accent};outline-offset:2px}`,
+    `#${k}-a:checked~.${k}-b,#${k}-b:checked~.${k}-a{display:none}`,
+  ].join("");
+  return [
+    `<figure className="${k}" style={{ margin: "2em 0" }}>`,
+    `  <style dangerouslySetInnerHTML={{ __html: "${css}" }} />`,
+    `  <input type="radio" name="${k}" id="${k}-a" defaultChecked />`,
+    `  <input type="radio" name="${k}" id="${k}-b" />`,
+    `  <div className="${k}-sw">Drawn as <label htmlFor="${k}-a">${labels[0].toLowerCase()}</label> · <label htmlFor="${k}-b">${labels[1].toLowerCase()}</label></div>`,
+    `  ${pic(files.desktop, files.mobile, alt, `${k}-a`)}`,
+    `  ${pic(files.altDesktop, files.altMobile, altAlt, `${k}-b`)}`,
+    `</figure>`,
+  ].join("\n");
 }
 
 // --- Files and PNGs ----------------------------------------------------------------------------
@@ -605,11 +712,14 @@ export async function writeCompare(dir, built, { base, cardBase, preview } = {})
   base ??= id;
   cardBase ??= `${base}-card`;
   const files = { [`${base}.svg`]: built.desktop, [`${base}-mobile.svg`]: built.mobile, [`${cardBase}.svg`]: built.portrait, [`${cardBase}-square.svg`]: built.square, [`${cardBase}-link.svg`]: built.link };
+  const altBase = built.alternative && `${base}-${built.alternative.form.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)}`; // <base>-nested-squares
+  if (altBase) Object.assign(files, { [`${altBase}.svg`]: built.alternative.desktop, [`${altBase}-mobile.svg`]: built.alternative.mobile });
   for (const [f, svg] of Object.entries(files)) writeFileSync(join(dir, f), svg + "\n");
   const jobs = [["portrait", cardBase], ["square", `${cardBase}-square`], ["link", `${cardBase}-link`]].map(([k, f]) => ({ svg: built[k], path: join(dir, `${f}.png`) }));
   if (preview) {
     mkdirSync(preview, { recursive: true });
     jobs.push({ svg: built.desktop, path: join(preview, `${base}-desktop.png`), scale: 2 }, { svg: built.mobile, path: join(preview, `${base}-mobile@1x.png`), scale: 1 }, { svg: built.mobile, path: join(preview, `${base}-mobile@2x.png`), scale: 2 });
+    if (altBase) jobs.push({ svg: built.alternative.desktop, path: join(preview, `${altBase}-desktop.png`), scale: 2 }, { svg: built.alternative.mobile, path: join(preview, `${altBase}-mobile@2x.png`), scale: 2 });
   }
   const png = await renderPngs(jobs);
   console.log(`wrote ${Object.keys(files).join(", ")}${png ? ` and ${jobs.length} PNG(s)` : ""}`);
