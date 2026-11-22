@@ -295,7 +295,13 @@ export async function checkOrg(org, { skip = new Set(), limit = Infinity, log = 
         // would fetch the filtered blobs back).
         const git = (args, timeout = 120000) => execFileSync("git", args, { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], timeout, env: { ...process.env, GIT_LFS_SKIP_SMUDGE: "1" } });
         git(["clone", "--quiet", "--depth", "1", "--no-checkout", "--filter=blob:limit=50m", `https://github.com/${org}/${repo.name}.git`, dir]);
-        const big = git(["-C", dir, "ls-tree", "-r", "-l", "HEAD"]).split("\n")
+        let tree;
+        try { tree = git(["-C", dir, "ls-tree", "-r", "-l", "HEAD"]); }
+        catch {
+          results.push({ ...row, status: "skip", errors: [], warnings: ["empty repository (no commits on the default branch)"], notes: [], upkeep: "-" });
+          continue;
+        }
+        const big = tree.split("\n")
           .map((l) => l.match(/^\S+ blob \S+\s+(\d+)\t(.+)$/)).filter((m) => m && Number(m[1]) > 50 * 1024 * 1024).map((m) => m[2]);
         if (big.length) {
           git(["-C", dir, "sparse-checkout", "set", "--no-cone", "/*", ...big.map((f) => `!/${f}`)]);
