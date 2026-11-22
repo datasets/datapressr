@@ -1,0 +1,3 @@
+{
+  "contentExclude": ["archive", "scripts", "AGENTS.md", "build.ts", "build.mjs", "package.json", "package-lock.json", "node_modules", ".github"]
+}

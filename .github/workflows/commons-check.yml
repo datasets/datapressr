@@ -1,0 +1,48 @@
+# Nightly: every dataset repo in github.com/datasets against the Commons dataset
+# standard (stock level). Standard: docs/dataset-standard.md.
+# The report goes to the job summary, an artifact, and the `commons-check`
+# branch (reports/latest.md plus a dated JSON per night), so trends are kept
+# without commits on main.
+name: commons-check
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: commons-check
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check every dataset in the org
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Exit code 1 means some dataset fails; that's the report, not a broken job.
+        run: node scripts/dataset-check.mjs --org datasets --out out > /dev/null || true
+      - run: cat out/report.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: commons-check
+          path: out/
+      - name: Keep the report on the commons-check branch
+        run: |
+          d=$(date -u +%F)
+          git config user.name "datasets-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin commons-check || true
+          if git rev-parse --verify origin/commons-check >/dev/null 2>&1; then
+            git worktree add rep origin/commons-check && git -C rep switch -c commons-check
+          else
+            git worktree add --orphan -b commons-check rep
+          fi
+          mkdir -p rep/reports
+          cp out/report.md rep/reports/latest.md
+          cp out/report.json "rep/reports/$d.json"
+          git -C rep add reports
+          git -C rep commit -q -m "Commons check $d" && git -C rep push origin commons-check || echo "no change"

@@ -55,3 +55,7 @@ Validate the dataset in the current directory.
    - `title` or `description` is the blank `""` placeholder `/init` scaffolds, while `status` is `capture` or `stub`
 
    Print a clear summary with ✓ for passing checks, ✗ for errors, ⚠ for warnings and · for notes.
+
+## Commons datasets: the dataset standard
+
+A dataset going into the Commons (`github.com/datasets/<name>`, shown at `datahub.io/core/<name>`) must also pass the Commons dataset standard ([docs/dataset-standard.md](https://github.com/datasets/datapressr/blob/main/docs/dataset-standard.md)): open licence, clear source, upkeep declared, a "What stands out" README section, git-sync exclusions and a check-on-push workflow. From a DataPressr checkout: `node scripts/dataset-check.mjs <dir> --new --prepublish` before the first publish, and `--live` after. It builds on this validator, so a pass there includes everything above.

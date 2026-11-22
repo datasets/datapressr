@@ -1,0 +1,28 @@
+# Runs the Commons dataset standard on every push and pull request.
+# Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard.md
+name: dataset-check
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: dataset
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch the checker
+        run: |
+          mkdir checker
+          for f in dataset-check.mjs validate-datapackage.mjs; do
+            curl -fsSL "https://raw.githubusercontent.com/datasets/datapressr/main/scripts/$f" -o "checker/$f"
+          done
+      - name: Check
+        run: node checker/dataset-check.mjs dataset --new --name "${GITHUB_REPOSITORY#*/}"
