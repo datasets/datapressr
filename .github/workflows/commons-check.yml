@@ -32,12 +32,14 @@ jobs:
           path: out/
       - name: Keep the report on the commons-check branch
         run: |
+          set -euo pipefail
           d=$(date -u +%F)
           git config user.name "datasets-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git fetch origin commons-check || true
-          if git rev-parse --verify origin/commons-check >/dev/null 2>&1; then
-            git worktree add rep origin/commons-check && git -C rep switch -c commons-check
+          # ls-remote fails loudly on a network error; empty output means no branch yet.
+          if [ -n "$(git ls-remote --heads origin commons-check)" ]; then
+            git fetch origin commons-check
+            git worktree add -B commons-check rep origin/commons-check
           else
             git worktree add --orphan -b commons-check rep
           fi
@@ -45,4 +47,6 @@ jobs:
           cp out/report.md rep/reports/latest.md
           cp out/report.json "rep/reports/$d.json"
           git -C rep add reports
-          git -C rep commit -q -m "Commons check $d" && git -C rep push origin commons-check || echo "no change"
+          if git -C rep diff --cached --quiet; then echo "report unchanged"; exit 0; fi
+          git -C rep commit -q -m "Commons check $d"
+          git -C rep push origin commons-check
