@@ -2,15 +2,14 @@
 
 Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard.md (stock level).
 
-156 repos: 24 fail, 106 warn, 0 pass, 26 skipped (no datapackage.json).
+164 repos: 23 fail, 106 warn, 8 pass, 27 skipped (no datapackage.json).
 
 | Dataset | Status | Upkeep | Errors | First finding |
 |---|---|---|---|---|
-| [airport-codes](https://github.com/datasets/airport-codes) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-21 |
+| [airport-codes](https://github.com/datasets/airport-codes) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-22 |
 | [bond-yields-uk-10y](https://github.com/datasets/bond-yields-uk-10y) | fail | living (inferred), quarterly | 1 | refresh job failing: last scheduled run failure on 2026-10-01 |
 | [covid-19](https://github.com/datasets/covid-19) | fail | frozen (inferred) | 1 | README.md:113:244: will not render on DataHub (MDX, dependency-free scan): autolink <https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30120-1/ |
-| [datasets.github.com](https://github.com/datasets/datasets.github.com) | fail | unknown | 1 | check crashed: Command failed: git -C /tmp/dataset-check-nNxc8l/datasets.github.com ls-tree -r -l HEAD |
-| [emojis](https://github.com/datasets/emojis) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-21 |
+| [emojis](https://github.com/datasets/emojis) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-22 |
 | [employment-us](https://github.com/datasets/employment-us) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-09-01 |
 | [exchange-rates-usd](https://github.com/datasets/exchange-rates-usd) | fail | frozen (inferred) | 1 | `resources` is missing or empty (only allowed while `status` is `capture` or `stub`) |
 | [finance-vix](https://github.com/datasets/finance-vix) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-21 |
@@ -136,6 +135,14 @@ Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard
 | [unece-units-of-measure](https://github.com/datasets/unece-units-of-measure) | warn | living (inferred), monthly | 0 | `description` is missing |
 | [world-cities](https://github.com/datasets/world-cities) | warn | living (inferred), monthly | 0 | no `upkeep`: declare `{"mode": "frozen", "snapshot": "YYYY-MM-DD"}` or `{"mode": "living", "refresh": "<cadence>", "workflow": "<file>"}` (standard rule 6) |
 | [world-wealth-and-income-database](https://github.com/datasets/world-wealth-and-income-database) | warn | frozen (inferred) | 0 | `description` is missing |
+| [atlantic-hurricanes](https://github.com/datasets/atlantic-hurricanes) | pass | frozen | 0 |  |
+| [extreme-poverty](https://github.com/datasets/extreme-poverty) | pass | frozen | 0 |  |
+| [gdp-per-capita-long-run](https://github.com/datasets/gdp-per-capita-long-run) | pass | frozen | 0 |  |
+| [orbital-launches](https://github.com/datasets/orbital-launches) | pass | frozen | 0 |  |
+| [protein-structures](https://github.com/datasets/protein-structures) | pass | frozen | 0 |  |
+| [us-drug-overdose-deaths](https://github.com/datasets/us-drug-overdose-deaths) | pass | living, monthly | 0 |  |
+| [us-energy-consumption-by-source](https://github.com/datasets/us-energy-consumption-by-source) | pass | frozen | 0 |  |
+| [us-measles-cases](https://github.com/datasets/us-measles-cases) | pass | living, weekly | 0 |  |
 | [ai](https://github.com/datasets/ai) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [carbon-capture-cant-solve-climate-change](https://github.com/datasets/carbon-capture-cant-solve-climate-change) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [carbondoomsday](https://github.com/datasets/carbondoomsday) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
@@ -144,6 +151,7 @@ Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard
 | [commons](https://github.com/datasets/commons) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [datacatalogs.org](https://github.com/datasets/datacatalogs.org) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [datapressr](https://github.com/datasets/datapressr) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
+| [datasets.github.com](https://github.com/datasets/datasets.github.com) | skip | - | 0 | empty repository (no commits on the default branch) |
 | [economic-history](https://github.com/datasets/economic-history) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [energy-and-commodities](https://github.com/datasets/energy-and-commodities) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [football-datasets](https://github.com/datasets/football-datasets) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
