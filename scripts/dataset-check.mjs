@@ -68,6 +68,18 @@ export function scheduledWorkflows(dir) {
   return out;
 }
 
+/** Files under dir (relative paths), skipping .git and node_modules. */
+function walk(dir, rel = "") {
+  const out = [];
+  for (const e of readdirSync(join(dir, rel), { withFileTypes: true })) {
+    if (e.name === ".git" || e.name === "node_modules") continue;
+    const p = rel ? `${rel}/${e.name}` : e.name;
+    if (e.isDirectory()) out.push(...walk(dir, p));
+    else if (e.isFile()) out.push(p);
+  }
+  return out;
+}
+
 const isDate = (s) => typeof s === "string" && /^\d{4}-\d{2}-\d{2}$/.test(s) && !Number.isNaN(Date.parse(s));
 
 /**
@@ -87,7 +99,7 @@ export function checkDataset(dir, { level = "stock", repoName, facts = {} } = {}
   // matching a legacy schema) are warnings; metadata and README errors stay errors.
   const meta = validateDatapackage(dir, { data: false });
   errors.push(...meta.errors);
-  for (const w of meta.warnings.filter((w) => !/licenses|sources|schema|primaryKey|same name as the package/.test(w))) {
+  for (const w of meta.warnings.filter((w) => !/licenses|sources|schema|primaryKey|no `type`|same name as the package/.test(w))) {
     // Legacy Commons packages predate the DataPressr lifecycle `status`.
     if (!isNew && /`status`/.test(w)) notes.push(w);
     else warnings.push(w);
@@ -122,7 +134,7 @@ export function checkDataset(dir, { level = "stock", repoName, facts = {} } = {}
   if (!sources.some((s) => /^https?:\/\//.test(s?.path ?? ""))) rule(isNew, "no `sources` entry with an http(s) `path`: a clear primary source is required (standard rule 4)");
 
   // Rule 5: typed schemas and keys (the validator's own warnings, promoted for new).
-  for (const w of meta.warnings.filter((w) => /schema|primaryKey/.test(w))) rule(isNew, w);
+  for (const w of meta.warnings.filter((w) => /schema|primaryKey|no `type`/.test(w))) rule(isNew, w);
 
   // Rules 6 and 7: upkeep declared, living stays fresh.
   const upkeep = pkg.upkeep;
@@ -143,16 +155,19 @@ export function checkDataset(dir, { level = "stock", repoName, facts = {} } = {}
   } else {
     rule(isNew, `\`upkeep.mode\` "${upkeep.mode}" must be "frozen" or "living"`);
   }
+  if (String(mode).startsWith("living") && CADENCE_DAYS[cadence] && facts.lastDataCommit === undefined && facts.remote) {
+    warnings.push("freshness not checked: could not read the commit history of data/ (check incomplete)");
+  }
   if (String(mode).startsWith("living") && CADENCE_DAYS[cadence] && facts.lastDataCommit !== undefined) {
     const declared = mode === "living";
     if (facts.lastDataCommit === null) rule(declared, "living dataset: no commit touching data/ found");
     else {
       const ageDays = ((facts.now ?? new Date()) - new Date(facts.lastDataCommit)) / 864e5;
-      const limit = 2 * CADENCE_DAYS[cadence] + 2;
+      const limit = 2 * CADENCE_DAYS[cadence];
       if (ageDays > limit) rule(declared, `stale: ${mode} dataset refreshed ${cadence}, but data/ last changed ${Math.floor(ageDays)} days ago (${facts.lastDataCommit.slice(0, 10)}); limit ${limit} days`);
     }
   }
-  if (facts.lastRun && facts.lastRun.conclusion && facts.lastRun.conclusion !== "success") {
+  if (facts.lastRun && facts.lastRun.conclusion && !["success", "skipped", "neutral"].includes(facts.lastRun.conclusion)) {
     errors.push(`refresh job failing: last scheduled run ${facts.lastRun.conclusion} on ${String(facts.lastRun.at).slice(0, 10)}`);
   }
 
@@ -183,9 +198,8 @@ export function checkDataset(dir, { level = "stock", repoName, facts = {} } = {}
   }
 
   // Rule 11: sizes, package-named resource, views.
-  for (const r of resources) {
-    const p = r.path && !/^https?:/.test(r.path) ? join(dir, r.path) : null;
-    if (p && existsSync(p) && statSync(p).size > MAX_FILE_BYTES) rule(isNew, `resource "${r.name}" is over 50 MB`);
+  for (const f of walk(dir)) {
+    if (statSync(join(dir, f)).size > MAX_FILE_BYTES) rule(isNew, `${f} is over 50 MB`);
   }
   for (const w of meta.warnings.filter((w) => /same name as the package/.test(w))) rule(isNew, w);
   const resourceNames = new Set(resources.map((r) => r.name));
@@ -196,8 +210,11 @@ export function checkDataset(dir, { level = "stock", repoName, facts = {} } = {}
   }
 
   // Rule 12: check-on-push workflow.
-  if (isNew && !existsSync(join(dir, ".github", "workflows", "dataset-check.yml"))) {
-    errors.push("no .github/workflows/dataset-check.yml: new datasets run this checker on every push (standard rule 12)");
+  if (isNew) {
+    const wf = join(dir, ".github", "workflows", "dataset-check.yml");
+    const text = existsSync(wf) ? readFileSync(wf, "utf8") : "";
+    if (!text) errors.push("no .github/workflows/dataset-check.yml: new datasets run this checker on every push (standard rule 12)");
+    else if (!/^\s*push\s*:/m.test(text) || !/dataset-check\.mjs/.test(text)) errors.push(".github/workflows/dataset-check.yml must run dataset-check.mjs on `push` (standard rule 12)");
   }
 
   return { errors, warnings, notes, upkeep: cadence ? `${mode}, ${cadence}` : String(mode) };
@@ -206,7 +223,7 @@ export function checkDataset(dir, { level = "stock", repoName, facts = {} } = {}
 /** Rules 13 and 14: what datahub.io/core/<name> shows. */
 export async function checkCorePage(name, { expect = "live" } = {}) {
   let res;
-  try { res = await fetch(`${CORE_URL}/${name}`, { headers: UA, redirect: "follow" }); }
+  try { res = await fetch(`${CORE_URL}/${name}`, { headers: UA, redirect: "follow", signal: AbortSignal.timeout(60000) }); }
   catch (e) { return [`could not reach ${CORE_URL}/${name}: ${e.message}`]; }
   if (expect === "free") {
     return res.status === 404 ? [] : [`${CORE_URL}/${name} already exists (HTTP ${res.status}): pick another name; linking would overwrite it`];
@@ -224,10 +241,23 @@ export async function checkCorePage(name, { expect = "live" } = {}) {
 async function gh(path) {
   const headers = { ...UA, accept: "application/vnd.github+json" };
   if (process.env.GITHUB_TOKEN) headers.authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
-  const res = await fetch(`https://api.github.com${path}`, { headers });
-  if (!res.ok) throw new Error(`GitHub ${path}: HTTP ${res.status}`);
-  return res.json();
+  for (let attempt = 1; ; attempt++) {
+    let res;
+    try { res = await fetch(`https://api.github.com${path}`, { headers, signal: AbortSignal.timeout(30000) }); }
+    catch (e) { if (attempt < 3) { await sleep(2000 * attempt); continue; } throw e; }
+    if (res.ok) return res.json();
+    // Rate limited: wait for the reset (capped), then retry.
+    if ((res.status === 403 || res.status === 429) && attempt < 3) {
+      const reset = Number(res.headers.get("x-ratelimit-reset")) * 1000 - Date.now();
+      await sleep(Math.min(Math.max(reset, 5000), 300000));
+      continue;
+    }
+    if (res.status >= 500 && attempt < 3) { await sleep(2000 * attempt); continue; }
+    throw new Error(`GitHub ${path}: HTTP ${res.status}`);
+  }
 }
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function listOrgRepos(org) {
   const repos = [];
@@ -245,13 +275,13 @@ async function lastDataCommit(org, repo) {
 }
 
 async function lastScheduledRun(org, repo, workflowFile) {
-  const runs = await gh(`/repos/${org}/${repo}/actions/workflows/${basename(workflowFile)}/runs?event=schedule&per_page=1`);
+  const runs = await gh(`/repos/${org}/${repo}/actions/workflows/${basename(workflowFile)}/runs?event=schedule&status=completed&per_page=1`);
   const r = runs.workflow_runs?.[0];
-  return r ? { conclusion: r.conclusion ?? r.status, at: r.created_at } : null;
+  return r ? { conclusion: r.conclusion, at: r.created_at } : null;
 }
 
 /** Stock run over every public repo in an org that has a datapackage.json. */
-export async function checkOrg(org, { skip = new Set(), limit = Infinity, log = () => {} } = {}) {
+export async function checkOrg(org, { skip = new Set(), limit = Infinity, log = () => {}, checkpoint = () => {} } = {}) {
   const repos = (await listOrgRepos(org)).filter((r) => !skip.has(r.name)).slice(0, limit);
   const results = [];
   const work = mkdtempSync(join(tmpdir(), "dataset-check-"));
@@ -260,8 +290,18 @@ export async function checkOrg(org, { skip = new Set(), limit = Infinity, log = 
       const dir = join(work, repo.name);
       const row = { name: repo.name, url: `https://github.com/${org}/${repo.name}`, page: `${CORE_URL}/${repo.name}` };
       try {
-        // Blobless over 50 MB: those files are reported, not downloaded.
-        execFileSync("git", ["clone", "--quiet", "--depth", "1", "--filter=blob:limit=50m", `https://github.com/${org}/${repo.name}.git`, dir], { stdio: "ignore", timeout: 180000, env: { ...process.env, GIT_LFS_SKIP_SMUDGE: "1" } });
+        // Files over 50 MB are reported, not downloaded: clone without blobs that
+        // big or a checkout, then check out everything else (a plain checkout
+        // would fetch the filtered blobs back).
+        const git = (args, timeout = 120000) => execFileSync("git", args, { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"], timeout, env: { ...process.env, GIT_LFS_SKIP_SMUDGE: "1" } });
+        git(["clone", "--quiet", "--depth", "1", "--no-checkout", "--filter=blob:limit=50m", `https://github.com/${org}/${repo.name}.git`, dir]);
+        const big = git(["-C", dir, "ls-tree", "-r", "-l", "HEAD"]).split("\n")
+          .map((l) => l.match(/^\S+ blob \S+\s+(\d+)\t(.+)$/)).filter((m) => m && Number(m[1]) > 50 * 1024 * 1024).map((m) => m[2]);
+        if (big.length) {
+          git(["-C", dir, "sparse-checkout", "set", "--no-cone", "/*", ...big.map((f) => `!/${f}`)]);
+          row.bigFiles = big;
+        }
+        git(["-C", dir, "checkout", "--quiet"]);
         // DataHub reads datapackage.yml too; convert it in the throwaway clone.
         const yml = ["datapackage.yml", "datapackage.yaml"].find((f) => existsSync(join(dir, f)));
         if (!existsSync(join(dir, "datapackage.json")) && yml) {
@@ -274,10 +314,17 @@ export async function checkOrg(org, { skip = new Set(), limit = Infinity, log = 
           continue;
         }
         const pkg = JSON.parse(readFileSync(join(dir, "datapackage.json"), "utf8"));
-        const facts = { lastDataCommit: await lastDataCommit(org, repo.name).catch(() => undefined) };
+        const facts = { remote: true, lastDataCommit: await lastDataCommit(org, repo.name).catch(() => undefined) };
         const wf = pkg.upkeep?.workflow ?? scheduledWorkflows(dir)[0]?.file;
-        if (wf) facts.lastRun = await lastScheduledRun(org, repo.name, wf).catch(() => null);
+        let runUnknown = false;
+        if (wf) facts.lastRun = await lastScheduledRun(org, repo.name, wf).catch(() => { runUnknown = true; return null; });
         const r = checkDataset(dir, { level: "stock", repoName: repo.name, facts });
+        // Big files skipped above look "missing" to the validator; say what happened instead.
+        for (const f of row.bigFiles ?? []) {
+          r.errors = r.errors.filter((e) => !e.includes(`"${f}" does not exist`));
+          r.warnings.push(`${f} is over 50 MB (not downloaded; values not checked)`);
+        }
+        if (runUnknown) r.warnings.push(`refresh job not checked: could not read the runs of ${wf} (check incomplete)`);
         r.errors.push(...(await checkCorePage(repo.name)));
         results.push({ ...row, status: r.errors.length ? "fail" : r.warnings.length ? "warn" : "pass", ...r });
       } catch (e) {
@@ -286,6 +333,7 @@ export async function checkOrg(org, { skip = new Set(), limit = Infinity, log = 
         rmSync(dir, { recursive: true, force: true });
       }
       log(`${results.at(-1).status.padEnd(4)} ${repo.name}`);
+      checkpoint(results);
     }
   } finally {
     rmSync(work, { recursive: true, force: true });
@@ -293,13 +341,14 @@ export async function checkOrg(org, { skip = new Set(), limit = Infinity, log = 
   return results;
 }
 
-export function formatStockReport(results, { date = new Date().toISOString().slice(0, 10) } = {}) {
+export function formatStockReport(results, { date = new Date().toISOString().slice(0, 10), partial = false } = {}) {
   const count = (s) => results.filter((r) => r.status === s).length;
   const lines = [
     `# Commons dataset check, ${date}`,
     "",
     `Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard.md (stock level).`,
     "",
+    ...(partial ? ["**Partial: the run stopped before every repo was checked.**", ""] : []),
     `${results.length} repos: ${count("fail")} fail, ${count("warn")} warn, ${count("pass")} pass, ${count("skip")} skipped (no datapackage.json).`,
     "",
     "| Dataset | Status | Upkeep | Errors | First finding |",
@@ -335,13 +384,16 @@ if (isEntryPoint) {
     const out = opt("--out");
     const limit = opt("--limit") ? Number(opt("--limit")) : Infinity;
     const skip = new Set((opt("--skip") ?? "").split(",").filter(Boolean));
-    const results = await checkOrg(org, { skip, limit, log: (l) => console.error(l) });
-    const report = formatStockReport(results);
-    if (out) {
+    const save = (results, partial) => {
+      if (!out) return;
       mkdirSync(out, { recursive: true });
-      writeFileSync(join(out, "report.md"), report);
+      writeFileSync(join(out, "report.md"), formatStockReport(results, { partial }));
       writeFileSync(join(out, "report.json"), JSON.stringify(results, null, 2) + "\n");
-    }
+    };
+    // Checkpoint after every repo, so a run cut short still leaves a report.
+    const results = await checkOrg(org, { skip, limit, log: (l) => console.error(l), checkpoint: (r) => save(r, true) });
+    save(results, false);
+    const report = formatStockReport(results);
     console.log(json ? JSON.stringify(results, null, 2) : report);
     process.exit(results.some((r) => r.status === "fail") ? 1 : 0);
   }

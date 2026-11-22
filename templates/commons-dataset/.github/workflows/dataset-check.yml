@@ -18,11 +18,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Fetch the checker
+      - name: Fetch the checker and the MDX compiler DataHub uses
         run: |
-          mkdir checker
-          for f in dataset-check.mjs validate-datapackage.mjs; do
-            curl -fsSL "https://raw.githubusercontent.com/datasets/datapressr/main/scripts/$f" -o "checker/$f"
+          base=https://raw.githubusercontent.com/datasets/datapressr/main
+          mkdir -p checker/scripts checker/site/stories
+          for f in scripts/dataset-check.mjs scripts/validate-datapackage.mjs site/stories/mdx-check.mjs; do
+            curl -fsSL "$base/$f" -o "checker/$f"
           done
+          npm install --silent --no-save --prefix checker/site/stories @mdx-js/mdx@3.1.1 remark-gfm@4.0.1 remark-math@6.0.0
       - name: Check
-        run: node checker/dataset-check.mjs dataset --new --name "${GITHUB_REPOSITORY#*/}"
+        run: node checker/scripts/dataset-check.mjs dataset --new --name "${GITHUB_REPOSITORY#*/}"

@@ -18,18 +18,18 @@ Two levels:
 
 | # | Rule | New | Stock |
 |---|---|---|---|
-| 1 | `datapackage.json` passes `validate-datapackage.mjs` with no errors (metadata, README MDX, CSV values against the schema) | error | error |
+| 1 | `datapackage.json` passes `validate-datapackage.mjs` with no errors (metadata, README MDX, CSV values against the schema) | error | error (CSV values not matching a legacy schema: warning) |
 | 2 | `name` is URL-safe and equals the repo (directory) name; `title` and `description` are set | error | warning |
 | 3 | **Open licence:** `licenses` names one on the allowlist below | error | warning |
 | 4 | **Clear primary source:** `sources` has at least one entry with an `http(s)` `path` | error | warning |
 | 5 | Every resource has a `schema` with typed fields; identifying columns have a `primaryKey` | error | warning |
 | 6 | **Upkeep declared at birth:** `upkeep.mode` is `frozen` (with `upkeep.snapshot`, a date) or `living` (with `upkeep.refresh`, a cadence, and `upkeep.workflow`, a scheduled GitHub Actions file that exists) | error | warning |
-| 7 | **Living stays fresh:** for a living dataset, the newest commit touching `data/` is within twice its cadence | error | error |
+| 7 | **Living stays fresh:** for a living dataset, the newest commit touching `data/` is within twice its cadence (weekly: 14 days), and its last completed scheduled run succeeded | error | error (declared living); warning (living inferred from a scheduled workflow) |
 | 8 | Root `README.md` exists, has no H1, and has a `## What stands out` section (one striking fact, with the number) and a `## Source and licence` section | error | warning (README missing: error) |
 | 9 | The README says how the data is kept: it contains "frozen snapshot" or "updated" + the cadence | error | – |
 | 10 | Git sync ships only the dataset: if `archive/`, `scripts/`, `AGENTS.md`, `build.*`, `package*.json` or `node_modules/` exist, a root `config.json` lists them in `contentExclude` (DataHub's git sync ignores `.datahubignore`) | error | – |
-| 11 | No file over 50 MB; no resource named the same as the package (DataHub then hides the others); every view names an existing resource | error | warning |
-| 12 | A check-on-push workflow (`.github/workflows/dataset-check.yml`) runs this checker | error | – |
+| 11 | No file in the repo over 50 MB; no resource named the same as the package (DataHub then hides the others); every view names an existing resource | error | warning |
+| 12 | A check-on-push workflow (`.github/workflows/dataset-check.yml`) runs this checker on `push` | error | – |
 | 13 | **Live page** (`--live`): `datahub.io/core/<name>` returns 200 without "Error parsing MDX" or "Resource not found for view" | error | error |
 | 14 | **Name is free** (`--prepublish`): `datahub.io/core/<name>` returns 404 before the first link, so a link never overwrites another dataset | error | – |
 
@@ -61,4 +61,4 @@ node scripts/dataset-check.mjs <dir> --live                # after linking: the 
 node scripts/dataset-check.mjs --org datasets --out report # stock: every repo in the org (nightly)
 ```
 
-`--json` prints machine-readable results. Exit code is 1 if any error.
+`--json` prints machine-readable results. Exit code is 1 if any error. In the stock run, evidence the checker could not fetch (commit history, workflow runs) shows as a "check incomplete" warning, never as a pass, and the report is checkpointed after every repo.
