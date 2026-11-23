@@ -1,4 +1,4 @@
-# Commons dataset check, 2026-11-22
+# Commons dataset check, 2026-11-23
 
 Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard.md (stock level).
 
@@ -6,22 +6,22 @@ Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard
 
 | Dataset | Status | Upkeep | Errors | First finding |
 |---|---|---|---|---|
-| [airport-codes](https://github.com/datasets/airport-codes) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-22 |
+| [airport-codes](https://github.com/datasets/airport-codes) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-23 |
 | [bond-yields-uk-10y](https://github.com/datasets/bond-yields-uk-10y) | fail | living (inferred), quarterly | 1 | refresh job failing: last scheduled run failure on 2026-10-01 |
 | [covid-19](https://github.com/datasets/covid-19) | fail | frozen (inferred) | 1 | README.md:113:244: will not render on DataHub (MDX, dependency-free scan): autolink <https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30120-1/ |
-| [emojis](https://github.com/datasets/emojis) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-22 |
+| [emojis](https://github.com/datasets/emojis) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-23 |
 | [employment-us](https://github.com/datasets/employment-us) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-09-01 |
 | [exchange-rates-usd](https://github.com/datasets/exchange-rates-usd) | fail | frozen (inferred) | 1 | `resources` is missing or empty (only allowed while `status` is `capture` or `stub`) |
-| [finance-vix](https://github.com/datasets/finance-vix) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-21 |
+| [finance-vix](https://github.com/datasets/finance-vix) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-22 |
 | [gdp](https://github.com/datasets/gdp) | fail | living (inferred), monthly | 2 | refresh job failing: last scheduled run failure on 2026-11-01 |
 | [glwd](https://github.com/datasets/glwd) | fail | frozen (inferred) | 1 | resource "Level 2 (GLWD-2) comprises permanent open water bodies with a surface area ≥ 0.1 km2 excluding the water bodies contained in GLWD-1. Compressed becaus |
-| [language-codes](https://github.com/datasets/language-codes) | fail | living (inferred), weekly | 1 | refresh job failing: last scheduled run failure on 2026-11-16 |
+| [language-codes](https://github.com/datasets/language-codes) | fail | living (inferred), weekly | 1 | refresh job failing: last scheduled run failure on 2026-11-23 |
 | [london-population](https://github.com/datasets/london-population) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-06-01 |
 | [pharmaceutical-drug-spending](https://github.com/datasets/pharmaceutical-drug-spending) | fail | living (inferred), quarterly | 1 | refresh job failing: last scheduled run failure on 2026-10-01 |
 | [population-growth-estimates-and-projections](https://github.com/datasets/population-growth-estimates-and-projections) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-06-01 |
 | [ppp](https://github.com/datasets/ppp) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-06-01 |
 | [project-drawdown](https://github.com/datasets/project-drawdown) | fail | frozen (inferred) | 1 | https://datahub.io/core/project-drawdown returns HTTP 404 |
-| [publicbodies](https://github.com/datasets/publicbodies) | fail | living (inferred), weekly | 1 | refresh job failing: last scheduled run failure on 2026-11-15 |
+| [publicbodies](https://github.com/datasets/publicbodies) | fail | living (inferred), weekly | 1 | refresh job failing: last scheduled run failure on 2026-11-22 |
 | [s-and-p-500-companies](https://github.com/datasets/s-and-p-500-companies) | fail | living (inferred), daily | 1 | https://datahub.io/core/s-and-p-500-companies returns HTTP 404 |
 | [threatened-species](https://github.com/datasets/threatened-species) | fail | living (inferred), weekly | 1 | refresh job failing: last scheduled run failure on 2026-05-10 |
 | [top-level-domain-names](https://github.com/datasets/top-level-domain-names) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-10-01 |
