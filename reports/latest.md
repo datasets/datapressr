@@ -1,18 +1,18 @@
-# Commons dataset check, 2026-11-25
+# Commons dataset check, 2026-11-26
 
 Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard.md (stock level).
 
-164 repos: 23 fail, 106 warn, 8 pass, 27 skipped (no datapackage.json).
+165 repos: 23 fail, 106 warn, 8 pass, 28 skipped (no datapackage.json).
 
 | Dataset | Status | Upkeep | Errors | First finding |
 |---|---|---|---|---|
-| [airport-codes](https://github.com/datasets/airport-codes) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-25 |
+| [airport-codes](https://github.com/datasets/airport-codes) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-26 |
 | [bond-yields-uk-10y](https://github.com/datasets/bond-yields-uk-10y) | fail | living (inferred), quarterly | 1 | refresh job failing: last scheduled run failure on 2026-10-01 |
 | [covid-19](https://github.com/datasets/covid-19) | fail | frozen (inferred) | 1 | README.md:113:244: will not render on DataHub (MDX, dependency-free scan): autolink <https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30120-1/ |
-| [emojis](https://github.com/datasets/emojis) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-25 |
+| [emojis](https://github.com/datasets/emojis) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-26 |
 | [employment-us](https://github.com/datasets/employment-us) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-09-01 |
 | [exchange-rates-usd](https://github.com/datasets/exchange-rates-usd) | fail | frozen (inferred) | 1 | `resources` is missing or empty (only allowed while `status` is `capture` or `stub`) |
-| [finance-vix](https://github.com/datasets/finance-vix) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-24 |
+| [finance-vix](https://github.com/datasets/finance-vix) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-25 |
 | [gdp](https://github.com/datasets/gdp) | fail | living (inferred), monthly | 2 | refresh job failing: last scheduled run failure on 2026-11-01 |
 | [glwd](https://github.com/datasets/glwd) | fail | frozen (inferred) | 1 | resource "Level 2 (GLWD-2) comprises permanent open water bodies with a surface area ≥ 0.1 km2 excluding the water bodies contained in GLWD-1. Compressed becaus |
 | [language-codes](https://github.com/datasets/language-codes) | fail | living (inferred), weekly | 1 | refresh job failing: last scheduled run failure on 2026-11-23 |
@@ -150,6 +150,7 @@ Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard
 | [collective](https://github.com/datasets/collective) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [commons](https://github.com/datasets/commons) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [datacatalogs.org](https://github.com/datasets/datacatalogs.org) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
+| [datadeck](https://github.com/datasets/datadeck) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [datapressr](https://github.com/datasets/datapressr) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [datasets.github.com](https://github.com/datasets/datasets.github.com) | skip | - | 0 | empty repository (no commits on the default branch) |
 | [economic-history](https://github.com/datasets/economic-history) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
