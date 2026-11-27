@@ -1,18 +1,18 @@
-# Commons dataset check, 2026-11-26
+# Commons dataset check, 2026-11-27
 
 Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard.md (stock level).
 
-165 repos: 23 fail, 106 warn, 8 pass, 28 skipped (no datapackage.json).
+165 repos: 24 fail, 106 warn, 7 pass, 28 skipped (no datapackage.json).
 
 | Dataset | Status | Upkeep | Errors | First finding |
 |---|---|---|---|---|
-| [airport-codes](https://github.com/datasets/airport-codes) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-26 |
+| [airport-codes](https://github.com/datasets/airport-codes) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-27 |
 | [bond-yields-uk-10y](https://github.com/datasets/bond-yields-uk-10y) | fail | living (inferred), quarterly | 1 | refresh job failing: last scheduled run failure on 2026-10-01 |
 | [covid-19](https://github.com/datasets/covid-19) | fail | frozen (inferred) | 1 | README.md:113:244: will not render on DataHub (MDX, dependency-free scan): autolink <https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30120-1/ |
-| [emojis](https://github.com/datasets/emojis) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-26 |
+| [emojis](https://github.com/datasets/emojis) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-27 |
 | [employment-us](https://github.com/datasets/employment-us) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-09-01 |
 | [exchange-rates-usd](https://github.com/datasets/exchange-rates-usd) | fail | frozen (inferred) | 1 | `resources` is missing or empty (only allowed while `status` is `capture` or `stub`) |
-| [finance-vix](https://github.com/datasets/finance-vix) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-25 |
+| [finance-vix](https://github.com/datasets/finance-vix) | fail | living (inferred), daily | 1 | refresh job failing: last scheduled run failure on 2026-11-26 |
 | [gdp](https://github.com/datasets/gdp) | fail | living (inferred), monthly | 2 | refresh job failing: last scheduled run failure on 2026-11-01 |
 | [glwd](https://github.com/datasets/glwd) | fail | frozen (inferred) | 1 | resource "Level 2 (GLWD-2) comprises permanent open water bodies with a surface area ≥ 0.1 km2 excluding the water bodies contained in GLWD-1. Compressed becaus |
 | [language-codes](https://github.com/datasets/language-codes) | fail | living (inferred), weekly | 1 | refresh job failing: last scheduled run failure on 2026-11-23 |
@@ -26,6 +26,7 @@ Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard
 | [threatened-species](https://github.com/datasets/threatened-species) | fail | living (inferred), weekly | 1 | refresh job failing: last scheduled run failure on 2026-05-10 |
 | [top-level-domain-names](https://github.com/datasets/top-level-domain-names) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-10-01 |
 | [unicode-characters](https://github.com/datasets/unicode-characters) | fail | living (inferred), monthly | 1 | https://datahub.io/core/unicode-characters returns HTTP 404 |
+| [us-measles-cases](https://github.com/datasets/us-measles-cases) | fail | living, weekly | 1 | refresh job failing: last scheduled run failure on 2026-11-26 |
 | [usa-education-budget-analysis](https://github.com/datasets/usa-education-budget-analysis) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-06-01 |
 | [world-religion-projections](https://github.com/datasets/world-religion-projections) | fail | frozen (inferred) | 2 | README.md:7:83: will not render on DataHub (MDX, dependency-free scan): "<1" cannot start a tag: MDX fails; write "less than" or put it in code — DataHub would  |
 | [zopa](https://github.com/datasets/zopa) | fail | living (inferred), monthly | 1 | refresh job failing: last scheduled run failure on 2026-07-01 |
@@ -142,7 +143,6 @@ Standard: https://github.com/datasets/datapressr/blob/main/docs/dataset-standard
 | [protein-structures](https://github.com/datasets/protein-structures) | pass | frozen | 0 |  |
 | [us-drug-overdose-deaths](https://github.com/datasets/us-drug-overdose-deaths) | pass | living, monthly | 0 |  |
 | [us-energy-consumption-by-source](https://github.com/datasets/us-energy-consumption-by-source) | pass | frozen | 0 |  |
-| [us-measles-cases](https://github.com/datasets/us-measles-cases) | pass | living, weekly | 0 |  |
 | [ai](https://github.com/datasets/ai) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [carbon-capture-cant-solve-climate-change](https://github.com/datasets/carbon-capture-cant-solve-climate-change) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
 | [carbondoomsday](https://github.com/datasets/carbondoomsday) | skip | - | 0 | no datapackage.json (catalog, tooling or not a dataset yet) |
